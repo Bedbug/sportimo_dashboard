@@ -1,0 +1,48 @@
+<div class="row" ng-controller="DashboardController as dash">
+
+    <div class="col-lg-12">
+        <!-- START widget-->
+        <div class="panel">
+            <div class="panel-heading"><h4>Scheduled Matches</h4></div>
+            <div class="panel-body row">
+
+
+                <div ng-repeat="match in livematches" class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                    <div class="panel scheduled-match">
+                        <div class="panel-heading  text-center"><h4>{{match.home_team_name}} -
+                            {{match.visitor_team_name}}</h4>
+                        </div>
+                        <div class="panel-body">
+                            <div class="match-logos">
+                                <div class="team-logo pull-left ">
+                                    <img ng-src="http://162.13.157.7/soccerapp/images/teams_logos/{{match.home_team_logo}}"/>
+
+                                    <div></div>
+                                </div>
+                                <div class="team-logo pull-right ">
+                                    <img ng-src="http://162.13.157.7/soccerapp/images/teams_logos/{{match.visitor_team_logo}}"/>
+
+                                    <div></div>
+                                </div>
+                            </div>
+                            <div  ng-show="match.started=='1'" class = "match-info">
+                                <small class="text-muted"></small>
+                                <h1>2 - 0</h1>
+                                <h5>89'</h5>
+                            </div>
+                            <div  ng-show="match.started=='0'" class = "match-info">
+                                <small class="text-muted"></small>
+                                <h5><strong>{{formatDate(match.match_date)}}</strong></h5>
+                                <h5 class="text-muted">{{getMatchStatus(match.status)}}</h5>
+                            </div>
+                        </div>
+                        <div class="panel-footer text-center">clicking on the panel starts moderation</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- END widget-->
+
+    </div>
+</div>

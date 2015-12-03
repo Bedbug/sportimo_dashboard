@@ -1,0 +1,192 @@
+<h3>Match Interviews
+    <small>Add and manage in-game Interviews</small>
+</h3>
+
+<div class="panel">
+    <toaster-container toaster-options="{'position-class': 'toast-bottom-right', 'close-button':true}"></toaster-container>
+
+    <!--<div class="panel-heading"><strong>Match ID filter:</strong></div>-->
+    <div class="panel-body">
+
+        <div class="mda-form-group float-label">
+            <input ng-model="matchfilter" required="" tabindex="0"
+                   aria-required="true" aria-invalid="true"
+                   class="mda-form-control  ng-touched"
+                   style="">
+            <label>Match ID Filter</label>
+        </div>
+        <dir-pagination-controls></dir-pagination-controls>
+        <button type="button" ng-click="newPoll()" class="btn btn-default pull-right">Add an Activity</button>
+    </div>
+
+
+</div>
+
+
+
+<div ng-show="composeItem">
+    <div class="panel">
+        <div class="panel-heading"><h4>New Activity</h4></div>
+
+        <div class="panel-body">
+            <form role="form" class="ng-pristine ng-valid">
+                <div class="form-group">
+                    <label>Match ID</label>
+                    <input type="text" class="form-control" ng-model="activeItem.matchid"/>
+                </div>
+
+                <div class="col-xs-4" style="float:left">
+                    <img src="{{activeItem.image}}" class="img-responsive-contestant">
+                </div>
+
+                <div ng-class="activeItem.image? 'col-xs-8': 'col-xs-12'">
+                    <label>Date</label>
+                    <!--<input type="datetime-local" id="exampleInput" name="input" ng-model="activeItem.date"-->
+                    <!--placeholder="yyyy-MM-ddTHH:mm:ss" min="2001-01-01T00:00:00" max="2017-12-31T00:00:00" />-->
+                    <input type="datetime-local" class="form-control" ng-model="activeItem.date"/>
+                    <label>Image</label>
+                    <input type="text" class="form-control" ng-model="activeItem.image"/>
+                    <label>Title</label>
+                    <input type="text" class="form-control" ng-model="activeItem.title"/>
+                    <label>Text</label>
+                    <textarea class="form-control" ng-model="activeItem.text"/>
+
+                    <!--<div class="row">-->
+                    <!--<div class="col-md-12">-->
+                    <!--<p class="input-group">-->
+                    <!--<input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="activeItem.date" is-open="opened"  datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />-->
+                    <!--<span class="input-group-btn">-->
+                    <!--<button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>-->
+                    <!--</span>-->
+                    </p>
+                    </div>
+
+                    </div>
+                </div>
+                <br/>
+
+                <div style="clear:both">
+                    <button type="button" ng-click="pushItem(activeItem)" class="btn btn-lg btn-success">Send</button>
+                </div>
+
+
+            </form>
+            <!--<pre>form = {{question | json}}</pre>-->
+        </div>
+    </div>
+</div>
+
+
+<div dir-paginate="item in allItems | reverse | filter: {matchid: matchfilter} | itemsPerPage: 4">
+
+    <div class="panel">
+        <!--<div ng-class="timelineAlt ? 'right' : 'left'" class="popover">-->
+        <div ng-class="left">
+            <!--<button ng-click="delete(item)" type="button" class="btn btn-labeled btn-default "-->
+            <!--style="position: absolute; right: 5px; top: 4px;"><i class="fa fa-times"></i></button>-->
+            <div class="arrow"></div>
+            <div>
+                <div class="panel widget">
+                    <div class="col-xs-12">
+                        <!--<h5>Match ID: <strong>{{item.matchid}}</strong> / Activity - {{item._id}}</h5>-->
+                        <h4>{{item.title}}</h4>
+
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <!-- START widget-->
+                                <div class="">
+                                    <div>
+
+                                        <form role="form" class="ng-pristine ng-valid">
+                                            <div class="form-group">
+                                            <div class="mda-form-group float-label">
+                                                <input ng-model="item.matchid" required="" tabindex="0"
+                                                       aria-required="true" aria-invalid="true"
+                                                       class="ng-dirty mda-form-control ng-pristine ng-invalid ng-invalid-required ng-touched"
+                                                       style="">
+                                                <label>Match ID</label>
+                                            </div>
+                                            <!--<div class="form-group">-->
+                                            <!--<label>Match ID</label>-->
+                                            <!--<input type="text" class="form-control" ng-model="item.matchid"/>-->
+                                            <!--</div>-->
+
+
+
+                                                <br>
+
+                                                <div class="col-xs-4" style="float:left">
+                                                    <img ng-src="{{item.image}}" class="img-responsive-contestant">
+                                                </div>
+
+                                                <div ng-class="item.image? 'col-xs-8': 'col-xs-12'">
+                                                    <label>Date</label>
+                                                    <input type="text" class="form-control" ng-model="item.date"/>
+                                                    <label>Image</label>
+                                                    <input type="text" class="form-control" ng-model="item.image"/>
+                                                    <label>Title</label>
+                                                    <input type="text" class="form-control" ng-model="item.title"/>
+                                                    <label>Text</label>
+                                                    <textarea class="form-control" ng-model="item.text"/>
+                                                    <p>
+
+                                                    <div class="text-right">
+                                                        <button ng-click="updateItem(item)" type="button"
+                                                                class="btn btn-sm btn-success">
+                                                            Update
+                                                            <em class="fa fa-check"></em>
+                                                        </button>
+                                                        <button ng-click="delete(item)" type="button"
+                                                                class="btn btn-sm btn-danger">
+                                                            <em class="fa fa-trash"></em>
+                                                        </button>
+
+                                                    </div>
+
+                                                    </p>
+                                                </div>
+
+
+                                            </div>
+
+                                        </form>
+
+                                    </div>
+
+
+                                </div>
+                                <!-- END widget-->
+                            </div>
+
+                        </div>
+                    </div>
+
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<script type="text/ng-template" id="ConfirmDelete">
+    <div class="ngdialog-message"><h3>Confirm Deletion</h3>
+
+        <p>The<code>deletion</code> of a question is permanent and cannot be reversed. Are you certain that you want to
+            delete this question?</p>
+        <button type="button" ng-click="confirm(confirmValue)" class="btn btn-danger mr">Confirm</button>
+        <button type="button" ng-click="closeThisDialog('button')" class="btn btn-default">Cancel</button>
+    </div>
+</script>
+<script type="text/ng-template" id="AdvanceShow">
+    <div class="ngdialog-message"><h3>Advance Show</h3>
+
+        <p>Are you certain that you want to create a new show?</p>
+
+        <p>This is permanent and cannot be reversed.</p>
+        <button type="button" ng-click="confirm(0)" class="btn btn-danger mr">Confirm</button>
+        <button type="button" ng-click="closeThisDialog(1)" class="btn btn-default">Cancel</button>
+    </div>
+</script>
+
