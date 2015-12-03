@@ -46,7 +46,8 @@
             'app.activities',
             'app.interviews',
             'app.welcomes',
-            'app.polls'
+            'app.polls',
+            'app.match-moderation'
         ]);
 })();
 
@@ -69,6 +70,13 @@
 
     angular
         .module('app.welcomes', []);
+})();
+
+(function () {
+    'use strict';
+
+    angular
+        .module('app.match-moderation', []);
 })();
 
 (function () {
@@ -2645,7 +2653,6 @@
         core.value = $provide.value;
 
 
-
     }
 
 })();
@@ -2675,17 +2682,17 @@
         .module('app.core')
         .run(appRun);
 
-    appRun.$inject = ['$rootScope', '$state', '$stateParams', '$window', '$templateCache', 'Colors', '$location', '$cookieStore', '$http','$websocket'];
+    appRun.$inject = ['$rootScope', '$state', '$stateParams', '$window', '$templateCache', 'Colors', '$location', '$cookieStore', '$http', '$websocket'];
 
     function appRun($rootScope, $state, $stateParams, $window, $templateCache, Colors, $location, $cookieStore, $http, $websocket) {
 
 
         var dataStream = $websocket('wss://sportimo_instance.mod.bz/');
         var messageCount = 0;
-        $rootScope.dataset = [{ data: [], yaxis: 1, label: 'Users', color:"#1ba3cd" }];
+        $rootScope.dataset = [{data: [], yaxis: 1, label: 'Users', color: "#1ba3cd"}];
 
 
-        dataStream.onMessage(function(message) {
+        dataStream.onMessage(function (message) {
             messageCount++;
 
 
@@ -2697,7 +2704,7 @@
                 //$scope.dataset = [{"yaxis":1,"label":"Users","data":[["4:19:32",1],["4:19:42",10],["4:19:52",1],["4:20:02",1],["4:20:12",1],["4:20:22",6],["4:20:32",1],["4:20:42",4],["4:20:52",1]],"color":"#1ba3cd"}];
                 $rootScope.usersCount = wsData.users;
                 $rootScope.dataset[0].data.push([moment().format("h:mm:ss"), wsData.users]);
-                if($rootScope.dataset[0].data.length > 16) $rootScope.dataset[0].data.shift();
+                if ($rootScope.dataset[0].data.length > 16) $rootScope.dataset[0].data.shift();
             }
 
             //activate();
@@ -2792,18 +2799,20 @@
         });
 
 
-    SportimoPollsController.$inject = ['$scope', 'Restangular', 'toaster','$state',];
+    SportimoPollsController.$inject = ['$scope', 'Restangular', 'toaster', '$state',];
     function SportimoPollsController($scope, Restangular, toaster, $state) {
 
         'use strict';
 
-        $scope.getPercentFor = function(results,index){
+        $scope.getPercentFor = function (results, index) {
             var sum = 0;
-            for(var i in results) { sum += results[i]; }
+            for (var i in results) {
+                sum += results[i];
+            }
 
             var percentage = Math.round(( ( results[index] / sum) * 10000) / 100);
 
-           return percentage;
+            return percentage;
         }
 
         //$scope.knobLoaderData1 = 80;
@@ -3314,7 +3323,7 @@
                         } else {
                             response = {success: false, message: 'Username or password is incorrect'};
                         }
-                        callback(response,user.name,user.job,user.picture);
+                        callback(response, user.name, user.job, user.picture);
                     });
             }, 1000);
 
@@ -3466,8 +3475,7 @@
         .controller('SportimoPushesController', SportimoPushesController)
 
 
-    SportimoPushesController.$inject = ['$scope', 'Restangular','toaster'];
-
+    SportimoPushesController.$inject = ['$scope', 'Restangular', 'toaster'];
 
 
     function SportimoPushesController($scope, Restangular, toaster) {
@@ -3500,9 +3508,9 @@
         $scope.$on('panel-refresh', function (event, id) {
             $scope.pushLoading = true;
             console.log('Simulating chart refresh during 3s on #' + id);
-            Items.getList().then(function (data,err) {
-                if(!err)
-                $scope.allItems = data;
+            Items.getList().then(function (data, err) {
+                if (!err)
+                    $scope.allItems = data;
                 $scope.$broadcast('removeSpinner', id);
                 $scope.pushLoading = false;
 
@@ -3531,12 +3539,10 @@
         }
 
 
-
-
-        $scope.pushRequest= function(Users,message,data){
+        $scope.pushRequest = function (Users, message, data) {
             $scope.pushLoading = true;
 
-            if(message == undefined){
+            if (message == undefined) {
                 toaster.pop("error", "Error", "Message cannot be empty");
                 $scope.pushLoading = false;
                 return;
@@ -3549,11 +3555,11 @@
                 data: data != undefined ? JSON.parse(JSON.stringify(data)) : data
             }
 
-            Push.post(Request).then(function(res) {
+            Push.post(Request).then(function (res) {
                 $scope.pushLoading = false;
                 toaster.pop("success", "Success", "Successfuly sent Push Request");
                 console.log(res);
-            }, function() {
+            }, function () {
                 $scope.pushLoading = false;
                 console.log("There was an error saving");
             });
@@ -3562,16 +3568,15 @@
 
         $scope.demomessage = "Message can be multilingual. You can send them as objects like the Data format. \n ex. \n";
         $scope.demomessage += JSON.stringify({
-            "en":"English",
-            "ru":"Русский",
-            "de":"Deutsch"
+            "en": "English",
+            "ru": "Русский",
+            "de": "Deutsch"
         }, null, 4);
 
         $scope.demodata = JSON.stringify({
-        "match_id":"435",
-        "screen":"match"
+            "match_id": "435",
+            "screen": "match"
         }, null, 4);
-
 
 
         // SELECTION
@@ -3611,45 +3616,50 @@
 
         $scope.enable = function () {
             $scope.disabled = false;
-            };
+        };
 
         $scope.disable = function () {
-                vm.disabled = true;
-            };
+            vm.disabled = true;
+        };
 
         $scope.clear = function () {
-                vm.template.selected = undefined;
-            };
+            vm.template.selected = undefined;
+        };
 
         $scope.template = {};
         $scope.templates = [
-                {name: 'Blank', message: {"en":"_message_", "ru": "_message_"}},
-                {name: 'New question', message: {"en":"Question coming in about a minute! Don't miss it...", "ru": "Мы зададим следующий вопрос через минуту"}}
-            ];
+            {name: 'Blank', message: {"en": "_message_", "ru": "_message_"}},
+            {name: 'New question',
+                message: {
+                    "en": "Question coming in about a minute! Don't miss it...",
+                    "ru": "Мы зададим следующий вопрос через минуту"
+                }
+            }
+        ];
 
         $scope.templateData = {};
         $scope.templatesData = [
-            {name: 'Blank Key/Value', message: {"_key_":"_value_"}},
-            {name: 'Set Match Screen', message: {"screen":"match", "match_id":"_message_"}}
+            {name: 'Blank Key/Value', message: {"_key_": "_value_"}},
+            {name: 'Set Match Screen', message: {"screen": "match", "match_id": "_message_"}}
         ];
 
 
-            // Multiple
+        // Multiple
         $scope.someGroupFn = function (item) {
 
-                if (item.name[0] >= 'A' && item.name[0] <= 'M')
-                    return 'From A - M';
+            if (item.name[0] >= 'A' && item.name[0] <= 'M')
+                return 'From A - M';
 
-                if (item.name[0] >= 'N' && item.name[0] <= 'Z')
-                    return 'From N - Z';
+            if (item.name[0] >= 'N' && item.name[0] <= 'Z')
+                return 'From N - Z';
 
-            };
+        };
 
         $scope.counter = 0;
         $scope.someFunction = function (item, model) {
             $scope.counter++;
             $scope.eventResult = {item: item, model: model};
-            };
+        };
 
         $scope.availableColors = ['Red', 'Green', 'Blue', 'Yellow', 'Magenta', 'Maroon', 'Umbra', 'Turquoise'];
 
@@ -3658,11 +3668,6 @@
         $scope.multipleDemo.selectedPeople = [$scope.templates[5], $scope.templates[4]];
         $scope.multipleDemo.selectedPeopleWithGroupBy = [$scope.templates[8], $scope.templates[6]];
         $scope.multipleDemo.selectedPeopleSimple = ['samantha@email.com', 'wladimir@email.com'];
-
-
-
-
-
 
 
     }
@@ -3845,9 +3850,8 @@
         //});
     ;
 
-    SportimoInterviewsController.$inject = ['$scope', 'Restangular', 'toaster','$state'];
-    function SportimoInterviewsController($scope, Restangular, toaster,$state) {
-
+    SportimoInterviewsController.$inject = ['$scope', 'Restangular', 'toaster', '$state'];
+    function SportimoInterviewsController($scope, Restangular, toaster, $state) {
 
 
         'use strict';
@@ -3996,7 +4000,59 @@
  * ***********************************************
  * ***********************************************
  */
+(function () {
+    'use strict';
 
+    angular
+        .module('app.match-moderation')
+        .controller('SportimoModerationController', SportimoModerationController)
+        .filter('reverse', function () {
+            return function (items) {
+
+                if(!angular.isArray(items)) {   return items; }
+                return items.slice().reverse();
+            };
+        });
+
+
+    SportimoModerationController.$inject = ['$scope', 'Restangular', 'toaster', '$stateParams', '$http'];
+    function SportimoModerationController($scope, Restangular, toaster, $stateParams, $http) {
+
+
+        'use strict';
+
+        function AddHooks(match){
+
+            match.data.state =  match.data.state || 0;
+
+            match.GetCurrentSegment = function () {
+                // We assign the name of the segment to the currentSegment var
+                return match.sport.segments[match.data.state].name;
+            }
+            return match;
+        };
+
+        $http({
+            method: 'POST',
+            url: 'http://localhost:3030/v1/live/match',
+            data: {id: $stateParams.id}
+        }).then(function successCallback(response) {
+            console.log(response.data);
+            $scope.match = AddHooks(response.data);
+
+        }, function errorCallback(response) {
+            // called asynchronously if an error occurs
+            // or server returns response with an error status.
+        });
+
+        $scope.formatDate = function (stringDate) {
+            return moment(stringDate).calendar(); //format("dddd, MMMM Do YYYY, h:mm:ss a");
+        };
+
+
+    };
+
+})();
 
 (function () {
     'use strict';
@@ -4006,40 +4062,47 @@
         .controller('DashboardController', DashboardController);
 
 
-    DashboardController.$inject = ['$rootScope','$scope', 'ChartData', '$timeout','$websocket', '$http'];
+    DashboardController.$inject = ['$rootScope', '$scope', 'ChartData', '$timeout', '$websocket', '$http', '$state'];
 
-    function DashboardController($rootScope, $scope, ChartData, $timeout,  $websocket, $http) {
+    function DashboardController($rootScope, $scope, ChartData, $timeout, $websocket, $http, $state) {
 
-        $scope.getMatchStatus = function(status){
+        $scope.getMatchStatus = function (status) {
 
-            if(status=="0") return "Pre Game";
-        }
+            if (status == "0") return "Pre Game";
+        };
 
-        $scope.formatDate = function(stringDate) {
+        $scope.formatDate = function (stringDate) {
             return moment(stringDate).calendar();//format("dddd, MMMM Do YYYY, h:mm:ss a");
-        }
-       //var usersConnected = [ {
-       //     "label": "Home",
-       //     "color": "#1ba3cd",
-       //     "data": [
-       //         ["1", 38],
-       //         ["2", 40],
-       //         ["3", 42],
-       //         ["4", 48],
-       //         ["5", 50],
-       //         ["6", 70],
-       //         ["7", 145],
-       //         ["8", 70],
-       //         ["9", 59],
-       //         ["10", 48],
-       //         ["11", 38],
-       //         ["12", 29],
-       //         ["13", 30],
-       //         ["14", 22],
-       //         ["15", 28]
-       //     ]
-       // }];
-       // $scope.dataset = [{ data: [], yaxis: 1, label: 'Users', color:"#1ba3cd" }];
+        };
+
+        $scope.ModerateMatch = function (matchid) {
+
+            $state.go("app.match-moderation", {id: (matchid || "565c4af6e4b030fba33dd459")});
+
+        };
+
+        //var usersConnected = [ {
+        //     "label": "Home",
+        //     "color": "#1ba3cd",
+        //     "data": [
+        //         ["1", 38],
+        //         ["2", 40],
+        //         ["3", 42],
+        //         ["4", 48],
+        //         ["5", 50],
+        //         ["6", 70],
+        //         ["7", 145],
+        //         ["8", 70],
+        //         ["9", 59],
+        //         ["10", 48],
+        //         ["11", 38],
+        //         ["12", 29],
+        //         ["13", 30],
+        //         ["14", 22],
+        //         ["15", 28]
+        //     ]
+        // }];
+        // $scope.dataset = [{ data: [], yaxis: 1, label: 'Users', color:"#1ba3cd" }];
         //$scope.dataset = [{"yaxis":1,"label":"Users","data":[["4:19:42",10],["4:19:52",1],["4:20:02",1],["4:20:12",1],["4:20:22",6],["4:20:32",1],["4:20:42",4],["4:20:52",1]],"color":"#1ba3cd"}];
         //var dataset = [];
 
@@ -4075,11 +4138,9 @@
 
         clearInterval($rootScope.DataUpdate);
 
-        $rootScope.DataUpdate = setInterval(function(){
+        $rootScope.DataUpdate = setInterval(function () {
             vm.splineData = angular.copy($rootScope.dataset);
-        },5000)
-
-
+        }, 5000)
 
 
         ////////////////
@@ -4159,7 +4220,7 @@
 
                 // Instead of timeout you can request a chart data
                 $timeout(function () {
-                    vm.splineData =  $rootScope.dataset;
+                    vm.splineData = $rootScope.dataset;
                     // directive listen for to remove the spinner
                     // after we end up to perform own operations
                     $scope.$broadcast('removeSpinner', id);
@@ -7179,10 +7240,10 @@
             // Angular based script (use the right module name)
             modules: [
                 {
-                    name: 'angular-ladda', files: [ "vendor/ladda/dist/ladda-themeless.min.css",
-                                                    "vendor/ladda/js/spin.js",
-                                                    "vendor/ladda/js/ladda.js",
-                                                    "vendor/angular-ladda/dist/angular-ladda.min.js" ]
+                    name: 'angular-ladda', files: ["vendor/ladda/dist/ladda-themeless.min.css",
+                    "vendor/ladda/js/spin.js",
+                    "vendor/ladda/js/ladda.js",
+                    "vendor/angular-ladda/dist/angular-ladda.min.js"]
                 },
                 {
                     name: 'ngWebSocket', files: ['vendor/angular-websocket/angular-websocket.min.js']
@@ -7191,7 +7252,8 @@
                     name: 'dirPagination', files: ['vendor/pagination/dirPagination.js']
                 },
                 {
-                    name: 'restangular', files: ['vendor/restangular/dist/restangular.min.js']},
+                    name: 'restangular', files: ['vendor/restangular/dist/restangular.min.js']
+                },
 
                 {
                     name: 'toaster', files: ['vendor/angularjs-toaster/toaster.js',
@@ -9687,14 +9749,14 @@
 
                     // we know there are at least two views to be loaded 
                     // before the app is ready (1-index.html 2-app*.html)
-                    if (viewsLoaded === 1 &&  !$rootScope.globals.currentUser) {
+                    if (viewsLoaded === 1 && !$rootScope.globals.currentUser) {
                         // with resolve this fires only once
                         $timeout(function () {
                             deferred.resolve();
                         }, 3000);
 
                         off();
-                    }else if(viewsLoaded === 2){
+                    } else if (viewsLoaded === 2) {
                         // with resolve this fires only once
                         $timeout(function () {
                             deferred.resolve();
@@ -9840,13 +9902,20 @@
                 url: '/dashboard',
                 title: 'Dashboard',
                 templateUrl: helper.basepath('sportimo-dashboard.html'),
-                resolve: helper.resolveFor('flot-chart', 'flot-chart-plugins', 'weather-icons','ngWebSocket','moment')
+                resolve: helper.resolveFor('flot-chart', 'flot-chart-plugins', 'weather-icons', 'ngWebSocket', 'moment')
+            })
+            .state('app.match-moderation', {
+                url: '/match-moderation/:id',
+                title: 'Mathces Administration',
+                templateUrl: helper.basepath('sportimo_moderation.html'),
+                resolve: helper.resolveFor('restangular', 'toaster', 'dirPagination', 'moment'),
+                controller: 'SportimoModerationController'
             })
             .state('app.welcomes', {
                 url: '/welcomes',
                 title: 'Mathces Welcomes',
                 templateUrl: helper.basepath('sportimo_welcomes.html'),
-                resolve: helper.resolveFor('restangular', 'toaster','dirPagination','moment'),
+                resolve: helper.resolveFor('restangular', 'toaster', 'dirPagination', 'moment'),
                 controller: 'SportimoWelcomesController'
             })
             .state('app.pushes', {
@@ -9854,28 +9923,28 @@
                 title: 'Push Notifications Management',
                 templateUrl: helper.basepath('sportimo_pushes.html'),
                 controller: 'SportimoPushesController',
-                resolve: helper.resolveFor('restangular','toaster','dirPagination','ui.select','angular-ladda')
+                resolve: helper.resolveFor('restangular', 'toaster', 'dirPagination', 'ui.select', 'angular-ladda')
             })
             .state('app.polls', {
                 url: '/polls',
                 title: 'Polls Management',
                 templateUrl: helper.basepath('sportimo_polls.html'),
                 controller: 'SportimoPollsController',
-                resolve: helper.resolveFor('restangular', 'toaster','dirPagination', 'ui.knob')
+                resolve: helper.resolveFor('restangular', 'toaster', 'dirPagination', 'ui.knob')
             })
             .state('app.activities', {
                 url: '/activities',
                 title: 'Activities Management',
                 templateUrl: helper.basepath('sportimo_activities.html'),
                 controller: 'SportimoActivitiesController',
-                resolve: helper.resolveFor('restangular', 'toaster','dirPagination','moment')
+                resolve: helper.resolveFor('restangular', 'toaster', 'dirPagination', 'moment')
             })
             .state('app.interviews', {
                 url: '/interviews',
                 title: 'Interviews Management',
                 templateUrl: helper.basepath('sportimo_interviews.html'),
                 controller: 'SportimoInterviewsController',
-                resolve: helper.resolveFor('restangular', 'toaster','dirPagination','moment')
+                resolve: helper.resolveFor('restangular', 'toaster', 'dirPagination', 'moment')
             })
             .state('app.dashboard_v2', {
                 url: '/dashboard_v2',
@@ -10880,7 +10949,7 @@
         ////////////////
 
         function activate() {
-           // console.log($rootScope.user);
+            // console.log($rootScope.user);
             //$rootScope.user = {
             //    name: 'John',
             //    job: 'ng-developer',
@@ -10889,16 +10958,16 @@
 
 
             // Hides/show user avatar on sidebar
-            $rootScope.toggleUserBlock = function(){
+            $rootScope.toggleUserBlock = function () {
                 console.log("toggle");
                 $rootScope.$broadcast('toggleUserBlock');
             };
 
             $rootScope.userBlockVisible = true;
 
-            $rootScope.$on('toggleUserBlock', function(/*event, args*/) {
+            $rootScope.$on('toggleUserBlock', function (/*event, args*/) {
 
-                $rootScope.userBlockVisible = ! $rootScope.userBlockVisible;
+                $rootScope.userBlockVisible = !$rootScope.userBlockVisible;
 
             });
         }

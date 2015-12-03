@@ -1,0 +1,115 @@
+<!--<h3>Match Moderation-->
+    <!--<small>Administration and Moderation of matches</small>-->
+<!--</h3>-->
+<div class="unwrap">
+    <div class="match-profile bg-cover bg-gray-darker">
+        <div class="match-profile-heading p-xl text-center text-white">
+            <div class="match-logos">
+                <div class="team-logo pull-left ">
+                    <img ng-src="{{match.data.home_team.logo}}"/>
+                    {{match.data.home_team.name}}
+                </div>
+                <div class="team-logo pull-right ">
+                    <img ng-src="{{match.data.away_team.logo}}"/>
+                    {{match.data.away_team.name}}
+                </div>
+            </div>
+            <div  ng-show="match.data.state > 0" class = "match-info">
+                <small class="text-muted"></small>
+                <h1>2 - 0</h1>
+                <h5>89'</h5>
+            </div>
+            <div  ng-show="match.data.state == 0" class = "match-info">
+                <small class="text-muted"></small>
+                <h5><strong>{{formatDate(match.data.match_date)}}</strong></h5>
+                <h5 class="text-muted">{{match.GetCurrentSegment()}}</h5>
+            </div>
+        </div>
+    </div>
+    <div class="text-center bg-gray-dark p-lg">
+        <div class="row row-table">
+            <div class="col-xs-4 br">
+                <h3 class="m0">400</h3>
+                <p class="m0">
+                    <span class="hidden-xs">Connected</span>
+                    <span>Users</span>
+                </p>
+            </div>
+            <div class="col-xs-4 br">
+                <h3 class="m0">2000</h3>
+                <p class="m0">Likes</p>
+            </div>
+            <div class="col-xs-4">
+                <h3 class="m0">100</h3>
+                <p class="m0">Following</p>
+            </div>
+        </div>
+    </div>
+
+<div >
+    <!-- START panel-->
+    <div id="matchData" class="panel panel-default">
+        <div class="panel-body">
+            <tabset>
+                <tab heading="Timeline">
+
+                    <div class="col-lg-12">
+                    <!-- START timeline-->
+                    <ul ng-repeat="segment in match.data.timeline | reverse " class="timeline">
+
+                        <li  data-datetime="{{match.sport.segments[ match.data.timeline.length - 1 - $index].name}}" class="timeline-separator"></li>
+                        <!-- START timeline item-->
+                        <li ng-repeat="event in segment | reverse" ng-class="$index%2==0?'timeline-inverted':'timeline-left'">
+                            <div class="timeline-badge" >
+                                <em class="fa fa-comment" ng-class="event.trigger"></em>
+                            </div>
+                            <div class="timeline-panel">
+                                <div class="popover" ng-class="($index%2==0?'right':'left') +' '+ event.trigger">
+                                    <div class="arrow"></div>
+                                    <div class="popover-content" ng-class="event.trigger">
+                                        <div class="table-grid table-grid-align-middle mb">
+                                            <div class="col col-xs">
+                                               {{event.time}}
+                                            </div>
+                                            <div class="col">
+                                                <p class="m0">
+                                                    <a href="#" class="text-muted">
+                                                        <strong>Aiden Curtis</strong>
+                                                    </a>posted a comment</p>
+                                            </div>
+                                        </div>
+                                        <p>
+                                            <em>Trigger: {{event.trigger}}</em>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <!-- END timeline item-->
+                        <!-- START timeline item-->
+                        <li class="timeline-end">
+                            <a href="#" class="timeline-badge timeline-start-badge">
+                                <em class="fa fa-circle"></em>
+                            </a>
+                        </li>
+                        <!-- END timeline item-->
+                    </ul>
+                    <!-- END timeline-->
+                </div>
+                    </tab>
+                <tab heading="Teams">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+                    aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat , sunt in culpa qui officia deserunt mollit anim id est laborum.</tab>
+                <tab heading="Stats">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+                    aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</tab>
+                <tab heading="Settings">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+                    aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</tab>
+            </tabset>
+        </div>
+    </div>
+    <!-- END panel-->
+</div>
+  </div>
+
+
+
+

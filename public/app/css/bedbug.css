@@ -245,7 +245,7 @@ border: 2px dashed #F1F1F1;
 
 .team-logo div{
     border-radius: 75%;
-    background-color: rgb(213, 213, 213);
+    background-color:  #000000;
     position: relative;
     width: 45px;
     height: 3px;
@@ -264,7 +264,15 @@ border: 2px dashed #F1F1F1;
 }
 
 .scheduled-match{
-    
+    max-width: 250px;
+    min-height: 380px;
+    float: left;
+    margin-left: 5%;
+}
+
+.scheduled-match .panel-body{
+    max-width: 250px;
+    min-height: 255px;
 }
 
 .scheduled-match h4{
@@ -285,6 +293,55 @@ border: 2px dashed #F1F1F1;
 
 }
 
+.match-profile-heading{
+    max-width: 500px;
+    margin: auto;
+    height: 170px;
+}
+
+.timeline-start-badge{
+
+    margin-top: 17px;
+    margin-left: 0;
+    position: absolute;
+    left: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 500px;
+    line-height: 36px;
+    font-size: 1em;
+    text-align: center;
+    color: grey !important;
+    background-color: transparent  !important;
+    z-index: 100;
+}
+
+.timeline-left{
+     margin-top: 50px;
+}
+.timeline-inverted{
+    margin-top: 0 !important;
+}
+
+.tab-content > .active {
+    display: flex;
+    /*overflow-y: scroll;*/
+    /*max-height: 510px;*/
+}
+.yellow{
+    color: yellow;
+}
+
+.yellow .popover-content{
+    color: #000;
+}
+.popover.yellow{
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    background-color: yellow;
+    color: #000 !important;
+}
 @media (min-width: 992px) {
     .col-md-offset-right-1 {
         margin-right: 8.33333333%;
