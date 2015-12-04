@@ -273,12 +273,14 @@ border: 2px dashed #F1F1F1;
 .scheduled-match .panel-body{
     max-width: 250px;
     min-height: 255px;
+    background-color: ghostwhite;
 }
 
 .scheduled-match h4{
     color: #6B6B6B;
     font-weight: 500;
-    text-transform: capitalize;
+    font-size: 14px;
+    /*text-transform: capitalize;*/
 }
 
 .scheduled-match h4.text-muted{
@@ -342,8 +344,79 @@ border: 2px dashed #F1F1F1;
     background-color: yellow;
     color: #000 !important;
 }
+
+.tab-content{
+    background-color: #f0f0f0;
+    /*darkslategrey;*/
+}
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus{
+    background-color: #f0f0f0;
+    /*darkslategrey;*/
+    color: #3a3f51;
+    border-bottom-color: #f0f0f0;
+}
+
+.timeline > li.timeline-separator:before, .timeline-alt > li.timeline-separator:before {
+    content: attr(data-datetime);
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    padding: 0 20px;
+    line-height: 30px;
+    font-weight: bold;
+    border-radius: 5px;
+    background-color: darkorange;
+    color: #fff;
+}
+
+.timeline > li.timeline-separator, .timeline-alt > li.timeline-separator {
+    width: 100%;
+    margin-left: 0 !important;
+}
+
+@media only screen and (min-width: 992px){
+    .timeline > li.timeline-separator:before {
+        margin-left: 0 !important;
+    }
+}
+
 @media (min-width: 992px) {
     .col-md-offset-right-1 {
         margin-right: 8.33333333%;
     }
+}
+
+.custom.ng-enter,
+.custom.ng-leave,
+.custom.ng-move {
+    -webkit-transition: .5s linear all;
+    -moz-transition: .5s linear all;
+    -o-transition: .5s linear all;
+    transition: .5s linear all;
+    position:relative;
+}
+
+.custom.ng-enter {
+    left: 50px;
+    opacity:0;
+}
+.custom.ng-enter.custom.ng-enter-active {
+    left:0;
+    opacity:1;
+}
+
+.custom.ng-leave {
+    left:0;
+    opacity:1;
+}
+.custom-.ng-leave.ng-leave-active {
+    left:-10px;
+    opacity:0;
+}
+
+.custom-move {
+    opacity:0.5;
+}
+.custom.ng-move.custom.ng-move-active {
+    opacity:1;
 }

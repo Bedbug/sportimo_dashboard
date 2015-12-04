@@ -2687,12 +2687,14 @@
     function appRun($rootScope, $state, $stateParams, $window, $templateCache, Colors, $location, $cookieStore, $http, $websocket) {
 
 
-        var dataStream = $websocket('wss://sportimo_instance.mod.bz/');
         var messageCount = 0;
         $rootScope.dataset = [{data: [], yaxis: 1, label: 'Users', color: "#1ba3cd"}];
 
 
-        dataStream.onMessage(function (message) {
+        //$rootScope.dataStream = $websocket('wss://sportimo_instance.mod.bz/');
+        $rootScope.dataStream = $websocket('ws://localhost:8080/');
+
+        $rootScope.dataStream.onMessage(function (message) {
             messageCount++;
 
 
@@ -2704,7 +2706,8 @@
                 //$scope.dataset = [{"yaxis":1,"label":"Users","data":[["4:19:32",1],["4:19:42",10],["4:19:52",1],["4:20:02",1],["4:20:12",1],["4:20:22",6],["4:20:32",1],["4:20:42",4],["4:20:52",1]],"color":"#1ba3cd"}];
                 $rootScope.usersCount = wsData.users;
                 $rootScope.dataset[0].data.push([moment().format("h:mm:ss"), wsData.users]);
-                if ($rootScope.dataset[0].data.length > 16) $rootScope.dataset[0].data.shift();
+
+                if ($rootScope.dataset[0].data.length > 14) $rootScope.dataset[0].data.shift();
             }
 
             //activate();
@@ -3629,7 +3632,8 @@
         $scope.template = {};
         $scope.templates = [
             {name: 'Blank', message: {"en": "_message_", "ru": "_message_"}},
-            {name: 'New question',
+            {
+                name: 'New question',
                 message: {
                     "en": "Question coming in about a minute! Don't miss it...",
                     "ru": "Мы зададим следующий вопрос через минуту"
@@ -4009,27 +4013,53 @@
         .filter('reverse', function () {
             return function (items) {
 
-                if(!angular.isArray(items)) {   return items; }
+                if (!angular.isArray(items)) {
+                    return items;
+                }
                 return items.slice().reverse();
             };
         });
 
 
-    SportimoModerationController.$inject = ['$scope', 'Restangular', 'toaster', '$stateParams', '$http'];
-    function SportimoModerationController($scope, Restangular, toaster, $stateParams, $http) {
-
-        
+    SportimoModerationController.$inject = ['$scope', 'Restangular', 'toaster', '$stateParams', '$http', '$rootScope'];
+    function SportimoModerationController($scope, Restangular, toaster, $stateParams, $http, $rootScope) {
 
 
-        $scope.sendMessage = function(matchid, message){
-            console.log(matchid+": "+message);
+        $rootScope.dataStream.onMessage(function (message) {
+
+            var evt = JSON.parse(message.data);
+            if (!evt.users)
+                console.log(evt);
+            if(evt.timeline_event)
+                $scope.match.data.timeline[evt.state].push(evt);
+        });
+
+
+        //{"id":43,"data":"{"event":"message","data":{"message":".","match_id":421}}"}
+
+        $scope.sendMessage = function (matchid, message) {
+            console.log(matchid + ": " + message);
+            var data = {
+                match_id: matchid,
+                type: "message",
+                timeline_event: true,
+                state: $scope.match.data.state,
+                data: {
+                    sender: "Moderator",
+                    time: $scope.match.data.time,
+                    message: message,
+                    match_id: matchid,
+                }
+
+            }
+
             $http({
                 method: 'POST',
-                url: 'http://localhost:3030/v1/moderation/' + $stateParams.id+'/event',
-                data: message
+                url: 'http://localhost:3030/v1/moderation/' + $stateParams.id + '/event',
+                data: data
             }).then(function successCallback(response) {
                 console.log(response.data);
-
+                $scope.match = AddHooks(response.data);
             }, function errorCallback(response) {
                 // called asynchronously if an error occurs
                 // or server returns response with an error status.
@@ -4038,9 +4068,9 @@
 
         'use strict';
 
-        function AddHooks(match){
+        function AddHooks(match) {
 
-            match.data.state =  match.data.state || 0;
+            match.data.state = match.data.state || 0;
 
             match.GetCurrentSegment = function () {
                 // We assign the name of the segment to the currentSegment var
@@ -4054,7 +4084,7 @@
             url: 'http://localhost:3030/v1/live/match',
             data: {id: $stateParams.id}
         }).then(function successCallback(response) {
-            console.log(response.data);
+            //console.log(response.data);
             $scope.match = AddHooks(response.data);
 
         }, function errorCallback(response) {
@@ -4171,7 +4201,7 @@
                 method: 'GET',
                 url: 'http://162.13.157.7/soccerapp/client/fetch_live_matches.php'
             }).then(function successCallback(response) {
-                console.log(response.data);
+
                 $scope.livematches = response.data;
             }, function errorCallback(response) {
                 // called asynchronously if an error occurs
@@ -4181,7 +4211,7 @@
             // SPLINE
             // -----------------------------------
             //vm.splineData = ChartData.load('server/chart/spline.json');
-            vm.splineData = $rootScope.dataset;
+            vm.splineData = angular.copy($rootScope.dataset);
 
             vm.splineOptions = {
                 series: {
@@ -4217,7 +4247,7 @@
                 },
                 yaxis: {
                     min: 0,
-                    max: 150, // optional: use it for a clear represetation
+                    max: 300, // optional: use it for a clear represetation
                     tickColor: '#eee',
                     position: ($scope.app.layout.isRTL ? 'right' : 'left'),
                     tickFormatter: function (v) {
@@ -4233,16 +4263,16 @@
 
             $scope.$on('panel-refresh', function (event, id) {
 
-                console.log('Simulating chart refresh during 3s on #' + id);
+                //console.log('Simulating chart refresh during 3s on #' + id);
 
                 // Instead of timeout you can request a chart data
                 $timeout(function () {
-                    vm.splineData = $rootScope.dataset;
+                    vm.splineData = angular.copy($rootScope.dataset);
                     // directive listen for to remove the spinner
                     // after we end up to perform own operations
                     $scope.$broadcast('removeSpinner', id);
 
-                    console.log('Refreshed #' + id);
+                    //console.log('Refreshed #' + id);
 
                 }, 3000);
 
