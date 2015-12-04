@@ -4018,6 +4018,23 @@
     SportimoModerationController.$inject = ['$scope', 'Restangular', 'toaster', '$stateParams', '$http'];
     function SportimoModerationController($scope, Restangular, toaster, $stateParams, $http) {
 
+        
+
+
+        $scope.sendMessage = function(matchid, message){
+            console.log(matchid+": "+message);
+            $http({
+                method: 'POST',
+                url: 'http://localhost:3030/v1/moderation/' + $stateParams.id+'/event',
+                data: message
+            }).then(function successCallback(response) {
+                console.log(response.data);
+
+            }, function errorCallback(response) {
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+            });
+        }
 
         'use strict';
 
