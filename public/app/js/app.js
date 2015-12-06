@@ -47,7 +47,7 @@
             'app.interviews',
             'app.welcomes',
             'app.polls',
-            'app.match-moderation'
+            'app.match-moderation-soccer'
         ]);
 })();
 
@@ -76,7 +76,7 @@
     'use strict';
 
     angular
-        .module('app.match-moderation', []);
+        .module('app.match-moderation-soccer', []);
 })();
 
 (function () {
@@ -4008,8 +4008,8 @@
     'use strict';
 
     angular
-        .module('app.match-moderation')
-        .controller('SportimoModerationController', SportimoModerationController)
+        .module('app.match-moderation-soccer')
+        .controller('SportimoModerationSoccerController', SportimoModerationController)
         .directive('disableAnimation', function ($animate) {
             return {
                 restrict: 'A',
@@ -4199,9 +4199,9 @@
             return moment(stringDate).calendar();//format("dddd, MMMM Do YYYY, h:mm:ss a");
         };
 
-        $scope.ModerateMatch = function (matchid) {
+        $scope.ModerateMatch = function (matchid, sport) {
 
-            $state.go("app.match-moderation", {id: (matchid || "565c4af6e4b030fba33dd459")});
+            $state.go("app.match-moderation-"+(sport || 'soccer'), {id: (matchid || "565c4af6e4b030fba33dd459")});
 
         };
 
@@ -10028,12 +10028,12 @@
                 templateUrl: helper.basepath('sportimo-dashboard.html'),
                 resolve: helper.resolveFor('flot-chart', 'flot-chart-plugins', 'weather-icons', 'ngWebSocket', 'moment')
             })
-            .state('app.match-moderation', {
-                url: '/match-moderation/:id',
+            .state('app.match-moderation-soccer', {
+                url: '/match-moderation/soccer/:id',
                 title: 'Mathces Administration',
-                templateUrl: helper.basepath('sportimo_moderation.html'),
+                templateUrl: helper.basepath('sportimo_moderation_soccer.html'),
                 resolve: helper.resolveFor('restangular', 'toaster', 'dirPagination', 'moment'),
-                controller: 'SportimoModerationController'
+                controller: 'SportimoModerationSoccerController'
             })
             .state('app.welcomes', {
                 url: '/welcomes',

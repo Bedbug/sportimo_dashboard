@@ -499,8 +499,13 @@ border: 2px dashed #F1F1F1;
 .moderation .dropdown-toggle {
     width: 100%;
 }
+.team-logo img {
+    min-height: 100px;
+    min-width: 75px;
+}
 
 .moving-self img{
+    min-height: 100px;
     width: 75px;
     height: auto;
     cursor: pointer;
