@@ -4014,7 +4014,7 @@
             return {
                 restrict: 'A',
                 link: function($scope, $element){
-                    $animate.enabled(false, $element);
+                    $animate.enabled($element, false);
                 }
             };
         })
