@@ -4010,25 +4010,11 @@
     angular
         .module('app.match-moderation')
         .controller('SportimoModerationController', SportimoModerationController)
-        .directive('drawer', function () {
+        .directive('disableAnimation', function ($animate) {
             return {
-                restrict: 'AE',
-                replace: false,
-                template: '<div ng-show="openMessage=1" class="events-self">{{showhen}}</div>',
-                link: function (scope, elem, attrs) {
-                    elem.css('events-self');
-                    elem.addClass("ng-show");
-                    //  scope.showhen = attrs.openWhen;
-
-                    //elem.bind('click', function() {
-                    //    elem.css('background-color', 'white');
-                    //    scope.$apply(function() {
-                    //        scope.color = "white";
-                    //    });
-                    //});
-                    //elem.bind('mouseover', function() {
-                    //    elem.css('cursor', 'pointer');
-                    //});
+                restrict: 'A',
+                link: function($scope, $element){
+                    $animate.enabled(false, $element);
                 }
             };
         })
@@ -4078,6 +4064,7 @@
         }
         $scope.createEvent = function (eventType) {
             $scope.playerSelected = "";
+            $scope.complete = false;
             $scope.event = {
                 match_id: $scope.match.id,
                 type: eventType,
@@ -4091,13 +4078,13 @@
         }
 
         //{"id":43,"data":"{"event":"message","data":{"message":".","match_id":421}}"}
-
+            $scope.complete = false;
         $scope.$watch('event', function (now, then) {
             if (now.type == 'foul') {
-                if (now.data.team && $scope.playerSelected)
-                    now.complete = true;
+                if (now.data.team && $scope.playerSelected == now.data.player)
+                    $scope.complete = true;
                 else
-                    now.complete = false;
+                    $scope.complete = false;
             }
         }, true);
 

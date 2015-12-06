@@ -53,6 +53,7 @@
         <!-- START panel-->
         <div id="matchData" class="panel panel-default">
             <div class="panel-body">
+
                 <tabset>
                     <tab heading="Timeline">
                         <div class="grid col-md-12">
@@ -113,11 +114,11 @@
                                                 <button ng-click="openMessage=0" type="button"
                                                         class="mb-sm btn btn-pill-right btn-default pull-right">Cancel
                                                 </button>
-                                                <button ng-show="event.complete == true" type="button"
+                                                <button disable-animation ng-show="complete == true" type="button"
                                                         class="btn btn-square btn-pill-left pull-right btn-success">Send
                                                     Event
                                                 </button>
-                                                <button ng-hide="event.complete == true" type="button"
+                                                <button disable-animation ng-show="complete == false" type="button"
                                                         class="mb-sm btn btn-pill-left btn-warning pull-right">
                                                     Send and Update later
                                                 </button>
