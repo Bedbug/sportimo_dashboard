@@ -240,11 +240,14 @@ border: 2px dashed #F1F1F1;
     text-align : center;
 }
 
+.player-result {
+    border-left: 1px solid #ccc;
+}
 .team-logo{
     /*width: 100px;*/
-    height: 100px;
-    overflow: hidden;
-    float: left;
+    /*height: 100px;*/
+    /*overflow: hidden;*/
+    /*float: left;*/
 }
 
 .team-logo div{
@@ -299,10 +302,15 @@ border: 2px dashed #F1F1F1;
 
 }
 
+.match-profile{
+    overflow: hidden;
+}
+
 .match-profile-heading{
-    max-width: 500px;
-    margin: auto;
-    height: 170px;
+    /*max-width: 500px;*/
+    /*margin: auto;*/
+    /*height: 170px;*/
+    /*overflow: hidden;*/
 }
 
 .timeline-start-badge{
@@ -416,6 +424,7 @@ border: 2px dashed #F1F1F1;
 }
 
 .moving-self{
+    min-height:  180px;;
     /*height: 198px;*/
     /*background-color: green;*/
 
@@ -449,7 +458,7 @@ border: 2px dashed #F1F1F1;
 
 @keyframes ShrinkUp {
     from {
-        height: 180px;
+        height: 230px;
         margin-bottom: 16px;
     }
 
@@ -470,7 +479,7 @@ border: 2px dashed #F1F1F1;
     }
 
     to {
-        height: 180px;
+        height: 230px;
         margin-bottom: 16px;
     }
 }
@@ -499,6 +508,15 @@ border: 2px dashed #F1F1F1;
 
 .mda-form-control ~ label{
     position: relative !important;
+}
+
+.mda-form-control:focus,
+.mda-form-control.focus {
+    border-color: #3f51b5;
+}
+.mda-form-control:focus ~ label,
+.mda-form-control.focus ~ label {
+    color: #3f51b5;
 }
 
 .mda-form-group {
@@ -550,6 +568,27 @@ border: 2px dashed #F1F1F1;
     background-color: #9E9D24;
     color: #fff;
 }
+
+
+.mda-form-control.foul-text:focus,
+.mda-form-control.foul-text.focus {
+    border-color: #3a3f51;
+}
+.mda-form-control.foul-text:focus ~ label,
+.mda-form-control.foul-text.focus ~ label {
+    color: #3a3f51;
+}
+
+.mda-form-control.yellow-text:focus,
+.mda-form-control.yellow-text.focus {
+    border-color: #9E9D24;
+}
+.mda-form-control.yellow-text:focus ~ label,
+.mda-form-control.yellow-text.focus ~ label {
+    color: #9E9D24;
+}
+
+
 
 .type-banner-vertical span{
     position: absolute;

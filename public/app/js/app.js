@@ -4075,6 +4075,31 @@
                     time: $scope.match.data.time
                 }
             }
+
+            $scope.eventDrawer = 1;
+        }
+
+        $scope.closeDrawer = function(){
+            $scope.eventDrawer = 0;
+        }
+
+        $scope.sendEvent = function (event) {
+
+            event.created = moment().utc();
+
+            // Close the drawer
+            $scope.eventDrawer = 0;
+            //$http({
+            //    method: 'POST',
+            //    url: 'http://localhost:3030/v1/moderation/' + $stateParams.id + '/event',
+            //    data: data
+            //}).then(function successCallback(response) {
+            //    console.log(response.data);
+            //    $scope.match = AddHooks(response.data);
+            //}, function errorCallback(response) {
+            //    // called asynchronously if an error occurs
+            //    // or server returns response with an error status.
+            //});
         }
 
         //{"id":43,"data":"{"event":"message","data":{"message":".","match_id":421}}"}

@@ -3,27 +3,30 @@
 <!--</h3>-->
 <div class="unwrap">
     <div class="match-profile bg-cover bg-gray-darker">
-        <div class="match-profile-heading p-xl text-center text-white">
+        <div class="match-profile-heading p-xl text-center text-white col-md-8 col-md-offset-2 ">
             <div class="match-logos">
-                <div class="team-logo pull-left ">
+                <div class="team-logo col-sm-4">
                     <img ng-src="{{match.data.home_team.logo}}"/>
-                    {{match.data.home_team.name}}
+                    <p>{{match.data.home_team.name}}</p>
                 </div>
-                <div class="team-logo pull-right ">
+                <div class="col-sm-4">
+                    <div ng-show="match.data.state > 0" class="match-info">
+                        <small class="text-muted"></small>
+                        <h1>2 - 0</h1>
+                        <h5>89'</h5>
+                    </div>
+                    <div ng-show="match.data.state == 0" class="match-info">
+                        <small class="text-muted"></small>
+                        <h5><strong>{{formatDate(match.data.match_date)}}</strong></h5>
+                        <h5 class="text-muted">{{match.GetCurrentSegment()}}</h5>
+                    </div>
+                </div>
+                <div class="team-logo  col-sm-4">
                     <img ng-src="{{match.data.away_team.logo}}"/>
-                    {{match.data.away_team.name}}
+                    <p> {{match.data.away_team.name}}</p>
                 </div>
             </div>
-            <div ng-show="match.data.state > 0" class="match-info">
-                <small class="text-muted"></small>
-                <h1>2 - 0</h1>
-                <h5>89'</h5>
-            </div>
-            <div ng-show="match.data.state == 0" class="match-info">
-                <small class="text-muted"></small>
-                <h5><strong>{{formatDate(match.data.match_date)}}</strong></h5>
-                <h5 class="text-muted">{{match.GetCurrentSegment()}}</h5>
-            </div>
+
         </div>
     </div>
     <div class="text-center bg-gray-dark p-lg">
@@ -61,7 +64,7 @@
                             <div class="row">
 
                                 <div class="col-sm-9">
-                                    <div ng-show="openMessage==1" class="events-self ">
+                                    <div ng-show="eventDrawer == 1" class="events-self ">
                                         <div class="type-banner-vertical" ng-class="event.type">
                                             <span>{{event.type}}</span>
                                         </div>
@@ -90,7 +93,7 @@
 
                                                         <div class="mda-form-group float-label">
                                                             <input ng-model="event.data.player" required="" tabindex="0"
-
+                                                                   ng-class="event.type+'-text'"
                                                                    aria-required="true" aria-invalid="true"
                                                                    class="mda-form-control ng-pristine ng-invalid ng-invalid-required ng-touched"
                                                                    style="">
@@ -101,7 +104,7 @@
                                                     </div>
                                                     <div class="player-result col-sm-4 col-xs-6">
                                                         <div ng-click="selectPlayer(player)"
-                                                             ng-class="event.data.player == player?'selected':''"
+                                                             ng-class="event.data.player == player?'{{event.type}} + selected':''"
                                                              ng-if="filteredPlayers.length<10"
                                                              ng-repeat="player in (filteredPlayers = ( players | filter:event.data.player))">
                                                             {{player}}
@@ -111,14 +114,14 @@
                                             </div>
                                             <div class="panel-footer">
 
-                                                <button ng-click="openMessage=0" type="button"
+                                                <button ng-click="closeDrawer()" type="button"
                                                         class="mb-sm btn btn-pill-right btn-default pull-right">Cancel
                                                 </button>
-                                                <button disable-animation ng-show="complete == true" type="button"
+                                                <button ng-click="sendEvent(event)"  disable-animation ng-show="complete == true" type="button"
                                                         class="btn btn-square btn-pill-left pull-right btn-success">Send
                                                     Event
                                                 </button>
-                                                <button disable-animation ng-show="complete == false" type="button"
+                                                <button ng-click="sendEvent(event)" disable-animation ng-show="complete == false" type="button"
                                                         class="mb-sm btn btn-pill-left btn-warning pull-right">
                                                     Send and Update later
                                                 </button>
@@ -185,11 +188,11 @@
                                             <span class="caret"></span>
                                         </button>
                                         <ul role="menu" class="dropdown-menu">
-                                            <li><a ng-click="createEvent('foul'); openMessage=1">Foul</a>
+                                            <li><a ng-click="createEvent('foul');">Foul</a>
                                             </li>
                                             <li><a href="#">Corner</a>
                                             </li>
-                                            <li><a ng-click="createEvent('yellow'); openMessage=1">Yellow Card</a>
+                                            <li><a ng-click="createEvent('yellow');">Yellow Card</a>
                                             </li>
                                             <li><a href="#">Red</a>
                                             </li>
