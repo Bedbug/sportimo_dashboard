@@ -14,9 +14,10 @@
     "opener": "~1.4.0"
   },
   "devDependencies": {
-    "vows": "0.7.x",
+    "gulp-server-livereload": "^1.5.4",
     "request": "2.49.x",
-    "stylezero": "2.1.1"
+    "stylezero": "2.1.1",
+    "vows": "0.7.x"
   },
   "preferGlobal": "true",
   "bin": {

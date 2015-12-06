@@ -4010,28 +4010,28 @@
     angular
         .module('app.match-moderation')
         .controller('SportimoModerationController', SportimoModerationController)
-        .directive('drawer', function() {
-        return {
-            restrict: 'AE',
-            replace: false,
-            template: '<div ng-show="openMessage=1" class="events-self">{{showhen}}</div>',
-            link: function(scope, elem, attrs) {
-                elem.css('events-self');
-                elem.addClass("ng-show");
-              //  scope.showhen = attrs.openWhen;
+        .directive('drawer', function () {
+            return {
+                restrict: 'AE',
+                replace: false,
+                template: '<div ng-show="openMessage=1" class="events-self">{{showhen}}</div>',
+                link: function (scope, elem, attrs) {
+                    elem.css('events-self');
+                    elem.addClass("ng-show");
+                    //  scope.showhen = attrs.openWhen;
 
-                //elem.bind('click', function() {
-                //    elem.css('background-color', 'white');
-                //    scope.$apply(function() {
-                //        scope.color = "white";
-                //    });
-                //});
-                //elem.bind('mouseover', function() {
-                //    elem.css('cursor', 'pointer');
-                //});
-            }
-        };
-    })
+                    //elem.bind('click', function() {
+                    //    elem.css('background-color', 'white');
+                    //    scope.$apply(function() {
+                    //        scope.color = "white";
+                    //    });
+                    //});
+                    //elem.bind('mouseover', function() {
+                    //    elem.css('cursor', 'pointer');
+                    //});
+                }
+            };
+        })
 
         .filter('reverse', function () {
             return function (items) {
@@ -4053,10 +4053,11 @@
             var evt = JSON.parse(message.data);
             if (!evt.users)
                 console.log(evt);
-            if(evt.timeline_event)
+            if (evt.timeline_event)
                 $scope.match.data.timeline[evt.state].push(evt);
         });
 
+        $scope.playerSelected = "";
         $scope.players = [
             "marco",
             "polo",
@@ -4071,8 +4072,35 @@
             'indiana',
             "jones"
         ]
+        $scope.selectPlayer = function(player){
+            $scope.event.data.player = player;
+            $scope.playerSelected = player;
+        }
+        $scope.createEvent = function (eventType) {
+            $scope.playerSelected = "";
+            $scope.event = {
+                match_id: $scope.match.id,
+                type: eventType,
+                timeline_event: true,
+                state: $scope.match.data.state,
+                data: {
+                    sender: "Moderator",
+                    time: $scope.match.data.time
+                }
+            }
+        }
 
         //{"id":43,"data":"{"event":"message","data":{"message":".","match_id":421}}"}
+
+        $scope.$watch('event', function (now, then) {
+            if (now.type == 'foul') {
+                if (now.data.team && $scope.playerSelected)
+                    now.complete = true;
+                else
+                    now.complete = false;
+            }
+        }, true);
+
 
         $scope.sendMessage = function (matchid, message) {
             console.log(matchid + ": " + message);

@@ -55,52 +55,54 @@
             <div class="panel-body">
                 <tabset>
                     <tab heading="Timeline">
-                        <div class="grid">
+                        <div class="grid col-md-12">
 
                             <div class="row">
 
-                                <div class="col-md-9">
+                                <div class="col-sm-9">
                                     <div ng-show="openMessage==1" class="events-self ">
-                                        <div class="type-banner col-md-1">
-                                            <span>FOUL</span>
+                                        <div class="type-banner-vertical" ng-class="event.type">
+                                            <span>{{event.type}}</span>
                                         </div>
                                         <div class=" events-self panel">
                                             <!--<div class="panel-heading"><strong>{{event.time+"'"+" "+event.type}}</strong></div>-->
                                             <div class="moving-self panel-body">
                                                 <div class="row">
 
-                                                    <div class="match-logos col-md-4 col-sm-12">
-                                                        <div class="team-logo col-xs-6">
-                                                            <img ng-click="event.team = 'home_team'"
-                                                                 ng-class="event.team != 'home_team'? 'desaturate':'zoom'"
+                                                    <div class="match-logos col-sm-4 col-xs-12">
+                                                        <div class="team-logo col-md-6 col-sm-12">
+                                                            <img ng-click="event.data.team = 'home_team'"
+                                                                 ng-class="event.data.team != 'home_team'? 'desaturate':'zoom'"
                                                                  ng-src="{{match.data.home_team.logo}}"/>
+                                                            <br/>
                                                             {{match.data.home_team.name}}
                                                         </div>
-                                                        <div class="team-logo col-xs-6">
-                                                            <img ng-click="event.team ='away_team'"
-                                                                 ng-class="event.team != 'away_team'? 'desaturate':'zoom'"
+                                                        <div class="team-logo col-md-6 col-sm-12">
+                                                            <img ng-click="event.data.team ='away_team'"
+                                                                 ng-class="event.data.team != 'away_team'? 'desaturate':'zoom'"
                                                                  ng-src="{{match.data.away_team.logo}}"/>
+                                                            <br/>
                                                             {{match.data.away_team.name}}
                                                         </div>
                                                     </div>
-                                                    <div class="match-logos col-md-4 col-sm-6">
+                                                    <div class="player-input col-sm-4 col-xs-6">
 
                                                         <div class="mda-form-group float-label">
-                                                            <input ng-model="event.player" required="" tabindex="0"
+                                                            <input ng-model="event.data.player" required="" tabindex="0"
 
                                                                    aria-required="true" aria-invalid="true"
                                                                    class="mda-form-control ng-pristine ng-invalid ng-invalid-required ng-touched"
                                                                    style="">
-                                                            <label>Player Name</label>
+                                                            <label ng-hide="event.data.player">Player Name</label>
                                                         </div>
 
 
                                                     </div>
-                                                    <div class="match-logos col-md-4 col-sm-6">
-                                                        <div ng-click="event.player = player"
-                                                             ng-class="event.player == player?'selected':''"
+                                                    <div class="player-result col-sm-4 col-xs-6">
+                                                        <div ng-click="selectPlayer(player)"
+                                                             ng-class="event.data.player == player?'selected':''"
                                                              ng-if="filteredPlayers.length<10"
-                                                             ng-repeat="player in (filteredPlayers = ( players | filter:event.player))">
+                                                             ng-repeat="player in (filteredPlayers = ( players | filter:event.data.player))">
                                                             {{player}}
                                                         </div>
                                                     </div>
@@ -111,11 +113,11 @@
                                                 <button ng-click="openMessage=0" type="button"
                                                         class="mb-sm btn btn-pill-right btn-default pull-right">Cancel
                                                 </button>
-                                                <button ng-show="event.complte == true" type="button"
+                                                <button ng-show="event.complete == true" type="button"
                                                         class="btn btn-square btn-pill-left pull-right btn-success">Send
                                                     Event
                                                 </button>
-                                                <button ng-hide="event.complte == true" type="button"
+                                                <button ng-hide="event.complete == true" type="button"
                                                         class="mb-sm btn btn-pill-left btn-warning pull-right">
                                                     Send and Update later
                                                 </button>
@@ -172,7 +174,7 @@
                                     <!-- END timeline-->
                                 </div>
 
-                                <div class="col-md-3 panel">
+                                <div class="col-sm-3 panel">
 
                                     <!-- Message Option-->
                                     <div dropdown="dropdown" class="moderation btn-group" style="">
@@ -182,11 +184,11 @@
                                             <span class="caret"></span>
                                         </button>
                                         <ul role="menu" class="dropdown-menu">
-                                            <li><a ng-click="event = {type:'foul'}; openMessage=1">Foul</a>
+                                            <li><a ng-click="createEvent('foul'); openMessage=1">Foul</a>
                                             </li>
                                             <li><a href="#">Corner</a>
                                             </li>
-                                            <li><a href="#">Yellow</a>
+                                            <li><a ng-click="createEvent('yellow'); openMessage=1">Yellow Card</a>
                                             </li>
                                             <li><a href="#">Red</a>
                                             </li>
@@ -195,6 +197,13 @@
                                             </li>
                                         </ul>
                                     </div>
+
+                                    <div class="panel" style="margin-top: 18px;">
+                                        <h3 ng-click="openMessage=3" class="m0 pb-lg panel-heading">Event data:</h3>
+
+                                        <textarea class="panel-body">{{event}}</textarea>
+                                    </div>
+
                                     <!-- Message Option-->
                                     <div class="panel" style="margin-top: 18px;">
                                         <h3 ng-click="openMessage=2" class="m0 pb-lg panel-heading">Message</h3>
@@ -246,6 +255,7 @@
                                             </div>
                                         </div>
                                     </div>
+
 
                                 </div>
                             </div>
