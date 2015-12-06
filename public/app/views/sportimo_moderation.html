@@ -55,137 +55,200 @@
             <div class="panel-body">
                 <tabset>
                     <tab heading="Timeline">
+                        <div class="grid">
 
-                        <div class="col-md-9">
-                            <!-- START timeline-->
-                            <ul ng-repeat="segment in match.data.timeline | reverse " class="timeline">
+                            <div class="row">
 
-                                <li data-datetime="{{match.sport.segments[ match.data.timeline.length - 1 - $index].name}}"
-                                    class="timeline-separator"></li>
-                                <!-- START timeline item-->
+                                <div class="col-md-9">
+                                    <div ng-show="openMessage==1" class="events-self ">
+                                        <div class="type-banner col-md-1">
+                                            <span>FOUL</span>
+                                        </div>
+                                        <div class=" events-self panel">
+                                            <!--<div class="panel-heading"><strong>{{event.time+"'"+" "+event.type}}</strong></div>-->
+                                            <div class="moving-self panel-body">
+                                                <div class="row">
 
-                                <li ng-repeat="event in segment | reverse" class="custom"
-                                    ng-class="$index%2==0?'timeline-inverted':'timeline-left'">
-                                    <div class="timeline-badge">
-                                        <em class="fa fa-comment" ng-class="event.trigger"></em>
-                                    </div>
-                                    <div class="timeline-panel">
-                                        <div class="popover"
-                                             ng-class="($index%2==0?'right':'left') +' '+ event.trigger">
-                                            <div class="arrow"></div>
+                                                    <div class="match-logos col-md-4 col-sm-12">
+                                                        <div class="team-logo col-xs-6">
+                                                            <img ng-click="event.team = 'home_team'"
+                                                                 ng-class="event.team != 'home_team'? 'desaturate':'zoom'"
+                                                                 ng-src="{{match.data.home_team.logo}}"/>
+                                                            {{match.data.home_team.name}}
+                                                        </div>
+                                                        <div class="team-logo col-xs-6">
+                                                            <img ng-click="event.team ='away_team'"
+                                                                 ng-class="event.team != 'away_team'? 'desaturate':'zoom'"
+                                                                 ng-src="{{match.data.away_team.logo}}"/>
+                                                            {{match.data.away_team.name}}
+                                                        </div>
+                                                    </div>
+                                                    <div class="match-logos col-md-4 col-sm-6">
 
-                                            <ng-include
-                                                    src="'app/views/partials/events/'+event.type+'.html'"></ng-include>
+                                                        <div class="mda-form-group float-label">
+                                                            <input ng-model="event.player" required="" tabindex="0"
 
-                                            <!--<div class="popover-content" ng-class="event.trigger">-->
-                                            <!--<div class="table-grid table-grid-align-middle mb">-->
-                                            <!--<div class="col">-->
-                                            <!--<p class="m0">-->
-                                            <!--{{event.data.time}}-->
-                                            <!--<a href="#" class="text-muted">-->
-                                            <!--<strong>{{event.data.sender}}</strong>-->
-                                            <!--</a>posted a comment</p>-->
-                                            <!--</div>-->
-                                            <!--</div>-->
-                                            <!--<p>-->
-                                            <!--<em>{{event.data.message}}</em>-->
-                                            <!--</p>-->
-                                            <!--</div>-->
+                                                                   aria-required="true" aria-invalid="true"
+                                                                   class="mda-form-control ng-pristine ng-invalid ng-invalid-required ng-touched"
+                                                                   style="">
+                                                            <label>Player Name</label>
+                                                        </div>
 
+
+                                                    </div>
+                                                    <div class="match-logos col-md-4 col-sm-6">
+                                                        <div ng-click="event.player = player"
+                                                             ng-class="event.player == player?'selected':''"
+                                                             ng-if="filteredPlayers.length<10"
+                                                             ng-repeat="player in (filteredPlayers = ( players | filter:event.player))">
+                                                            {{player}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="panel-footer">
+
+                                                <button ng-click="openMessage=0" type="button"
+                                                        class="mb-sm btn btn-pill-right btn-default pull-right">Cancel
+                                                </button>
+                                                <button ng-show="event.complte == true" type="button"
+                                                        class="btn btn-square btn-pill-left pull-right btn-success">Send
+                                                    Event
+                                                </button>
+                                                <button ng-hide="event.complte == true" type="button"
+                                                        class="mb-sm btn btn-pill-left btn-warning pull-right">
+                                                    Send and Update later
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
-                                </li>
-                                <!-- END timeline item-->
-                                <!-- START timeline item-->
-                                <li class="timeline-end">
-                                    <a href="#" class="timeline-badge timeline-start-badge">
-                                        <em class="fa fa-circle"></em>
-                                    </a>
-                                </li>
-                                <!-- END timeline item-->
-                            </ul>
-                            <!-- END timeline-->
-                        </div>
+                                    <!-- START timeline-->
+                                    <ul ng-repeat="segment in match.data.timeline | reverse " class="timeline">
 
-                        <div class="col-md-3 panel">
+                                        <li data-datetime="{{match.sport.segments[ match.data.timeline.length - 1 - $index].name}}"
+                                            class="timeline-separator"></li>
+                                        <!-- START timeline item-->
 
-                            <!-- Message Option-->
-                            <div class="panel" style="margin-top: 18px;">
-                                <h3 ng-click="openMessage=1" class="m0 pb-lg panel-heading">Message</h3>
+                                        <li ng-repeat="event in segment | reverse" class="custom"
+                                            ng-class="$index%2==0?'timeline-inverted':'timeline-left'">
+                                            <div class="timeline-badge">
+                                                <em class="fa fa-comment" ng-class="event.trigger"></em>
+                                            </div>
+                                            <div class="timeline-panel">
+                                                <div class="popover"
+                                                     ng-class="($index%2==0?'right':'left') +' '+ event.trigger">
+                                                    <div class="arrow"></div>
 
-                                <div ng-show="openMessage==1" class="form-group mb-xl panel-body">
+                                                    <ng-include
+                                                            src="'app/views/partials/events/'+event.type+'.html'"></ng-include>
 
-                                    <div class="mda-form-group ">
+                                                    <!--<div class="popover-content" ng-class="event.trigger">-->
+                                                    <!--<div class="table-grid table-grid-align-middle mb">-->
+                                                    <!--<div class="col">-->
+                                                    <!--<p class="m0">-->
+                                                    <!--{{event.data.time}}-->
+                                                    <!--<a href="#" class="text-muted">-->
+                                                    <!--<strong>{{event.data.sender}}</strong>-->
+                                                    <!--</a>posted a comment</p>-->
+                                                    <!--</div>-->
+                                                    <!--</div>-->
+                                                    <!--<p>-->
+                                                    <!--<em>{{event.data.message}}</em>-->
+                                                    <!--</p>-->
+                                                    <!--</div>-->
+
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <!-- END timeline item-->
+                                        <!-- START timeline item-->
+                                        <li class="timeline-end">
+                                            <a href="#" class="timeline-badge timeline-start-badge">
+                                                <em class="fa fa-circle"></em>
+                                            </a>
+                                        </li>
+                                        <!-- END timeline item-->
+                                    </ul>
+                                    <!-- END timeline-->
+                                </div>
+
+                                <div class="col-md-3 panel">
+
+                                    <!-- Message Option-->
+                                    <div dropdown="dropdown" class="moderation btn-group" style="">
+                                        <button type="button" ng-disabled="disabled" dropdown-toggle=""
+                                                class="btn dropdown-toggle btn-inverse" aria-haspopup="true"
+                                                aria-expanded="false" aria-disabled="false">Events
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul role="menu" class="dropdown-menu">
+                                            <li><a ng-click="event = {type:'foul'}; openMessage=1">Foul</a>
+                                            </li>
+                                            <li><a href="#">Corner</a>
+                                            </li>
+                                            <li><a href="#">Yellow</a>
+                                            </li>
+                                            <li><a href="#">Red</a>
+                                            </li>
+                                            <li class="divider"></li>
+                                            <li><a href="#">Goal</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!-- Message Option-->
+                                    <div class="panel" style="margin-top: 18px;">
+                                        <h3 ng-click="openMessage=2" class="m0 pb-lg panel-heading">Message</h3>
+
+                                        <div ng-show="openMessage==2" class="form-group mb-xl panel-body">
+
+                                            <div class="mda-form-group ">
                                     <textarea ng-model="push.message" style="height: 180px;"
                                               placeholder="{{demomessage}}" rows="7"
                                               aria-multiline="true" tabindex="0" aria-invalid="false"
                                               class="mda-form-control ng-pristine ng-valid ng-touched"
                                               style="margin-top: 0px; margin-bottom: 0px; height: 139px;"></textarea>
-                                        <label>Message</label>
-                                        <span class="mda-form-msg right">Any message here</span>
-                                    </div>
-                                    <div class="">
-                                        <br/>
-                                        <button ladda="pushLoading" data-style="expand-left"
-                                                ng-click="sendMessage(match.id, push.message)"
-                                                class="btn btn-success pull-right btn-lg">
-                                            Send Message
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Message Option-->
-                            <div class="panel" style="margin-top: 18px;">
-                                <h3 ng-click="openMessage=2" class="m0 pb-lg panel-heading">Message</h3>
+                                                <label>Message</label>
+                                                <span class="mda-form-msg right">Any message here</span>
+                                            </div>
+                                            <div class="">
+                                                <br/>
+                                                <button ladda="pushLoading" data-style="expand-left"
+                                                        ng-click="sendMessage(match.id, push.message)"
+                                                        class="btn btn-success pull-right btn-lg">
+                                                    Send Message
+                                                </button>
+                                            </div>
+                                        </div>
 
-                                <div ng-show="openMessage==2" class="form-group mb-xl panel-body">
+                                    </div>
+                                    <!-- Message Option-->
+                                    <div class="panel" style="margin-top: 18px;">
+                                        <h3 ng-click="openMessage=3" class="m0 pb-lg panel-heading">Message</h3>
 
-                                    <div class="mda-form-group ">
+                                        <div ng-show="openMessage==3" class="form-group mb-xl panel-body">
+
+                                            <div class="mda-form-group ">
                                     <textarea ng-model="push.message" style="height: 180px;"
                                               placeholder="{{demomessage}}" rows="7"
                                               aria-multiline="true" tabindex="0" aria-invalid="false"
                                               class="mda-form-control ng-pristine ng-valid ng-touched"
                                               style="margin-top: 0px; margin-bottom: 0px; height: 139px;"></textarea>
-                                        <label>Message</label>
-                                        <span class="mda-form-msg right">Any message here</span>
+                                                <label>Message</label>
+                                                <span class="mda-form-msg right">Any message here</span>
+                                            </div>
+                                            <div class="">
+                                                <br/>
+                                                <button ladda="pushLoading" data-style="expand-left"
+                                                        ng-click="sendMessage(match.id, push.message)"
+                                                        class="btn btn-success pull-right btn-lg">
+                                                    Send Message
+                                                </button>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="">
-                                        <br/>
-                                        <button ladda="pushLoading" data-style="expand-left"
-                                                ng-click="sendMessage(match.id, push.message)"
-                                                class="btn btn-success pull-right btn-lg">
-                                            Send Message
-                                        </button>
-                                    </div>
-                                </div>
 
-                            </div>
-                            <!-- Message Option-->
-                            <div class="panel" style="margin-top: 18px;">
-                                <h3 ng-click="openMessage=3" class="m0 pb-lg panel-heading">Message</h3>
-
-                                <div ng-show="openMessage==3" class="form-group mb-xl panel-body">
-
-                                    <div class="mda-form-group ">
-                                    <textarea ng-model="push.message" style="height: 180px;"
-                                              placeholder="{{demomessage}}" rows="7"
-                                              aria-multiline="true" tabindex="0" aria-invalid="false"
-                                              class="mda-form-control ng-pristine ng-valid ng-touched"
-                                              style="margin-top: 0px; margin-bottom: 0px; height: 139px;"></textarea>
-                                        <label>Message</label>
-                                        <span class="mda-form-msg right">Any message here</span>
-                                    </div>
-                                    <div class="">
-                                        <br/>
-                                        <button ladda="pushLoading" data-style="expand-left"
-                                                ng-click="sendMessage(match.id, push.message)"
-                                                class="btn btn-success pull-right btn-lg">
-                                            Send Message
-                                        </button>
-                                    </div>
                                 </div>
                             </div>
-
                         </div>
                     </tab>
                     <tab heading="Teams">

@@ -4010,6 +4010,29 @@
     angular
         .module('app.match-moderation')
         .controller('SportimoModerationController', SportimoModerationController)
+        .directive('drawer', function() {
+        return {
+            restrict: 'AE',
+            replace: false,
+            template: '<div ng-show="openMessage=1" class="events-self">{{showhen}}</div>',
+            link: function(scope, elem, attrs) {
+                elem.css('events-self');
+                elem.addClass("ng-show");
+              //  scope.showhen = attrs.openWhen;
+
+                //elem.bind('click', function() {
+                //    elem.css('background-color', 'white');
+                //    scope.$apply(function() {
+                //        scope.color = "white";
+                //    });
+                //});
+                //elem.bind('mouseover', function() {
+                //    elem.css('cursor', 'pointer');
+                //});
+            }
+        };
+    })
+
         .filter('reverse', function () {
             return function (items) {
 
@@ -4024,7 +4047,7 @@
     SportimoModerationController.$inject = ['$scope', 'Restangular', 'toaster', '$stateParams', '$http', '$rootScope'];
     function SportimoModerationController($scope, Restangular, toaster, $stateParams, $http, $rootScope) {
 
-
+        $scope.event = {};
         $rootScope.dataStream.onMessage(function (message) {
 
             var evt = JSON.parse(message.data);
@@ -4034,6 +4057,20 @@
                 $scope.match.data.timeline[evt.state].push(evt);
         });
 
+        $scope.players = [
+            "marco",
+            "polo",
+            "christopher",
+            "colombo",
+            "jekhis",
+            "han",
+            "chackie",
+            "chan",
+            "marlon",
+            "brando",
+            'indiana',
+            "jones"
+        ]
 
         //{"id":43,"data":"{"event":"message","data":{"message":".","match_id":421}}"}
 
