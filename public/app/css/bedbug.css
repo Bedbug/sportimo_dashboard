@@ -252,12 +252,13 @@ border: 2px dashed #F1F1F1;
 
 .team-logo div{
     border-radius: 75%;
-    background-color:  #000000;
-    position: relative;
-    width: 45px;
-    height: 3px;
-    left: 28px;
-    top: 13px;
+    background-color: rgba(0,0,0,0.4);
+    /* position: relative; */
+    width: 80px;
+    margin: auto;
+    height: 8px;
+
+
     -webkit-filter: blur(3px);
     -moz-filter: blur(3px);
     -o-filter: blur(3px);
@@ -304,6 +305,11 @@ border: 2px dashed #F1F1F1;
 
 .match-profile{
     overflow: hidden;
+    background-image: url(../img/sportimo/court2.png);
+    background-size: 1024px 68%;
+    background-repeat: no-repeat;
+    background-position: 50% 124%;
+    /* background-position: 0px 375px; */
 }
 
 .match-profile-heading{
@@ -311,6 +317,7 @@ border: 2px dashed #F1F1F1;
     /*margin: auto;*/
     /*height: 170px;*/
     /*overflow: hidden;*/
+    /*background-image: url(../img/sportimo/court2.png);*/
 }
 
 .score{
@@ -523,7 +530,8 @@ border: 2px dashed #F1F1F1;
     width: 100%;
 }
 
-.moderation .btn{
+.moderation .btn,
+.moderation.btn{
     margin-top: 15px;
 }
 
@@ -624,6 +632,15 @@ border: 2px dashed #F1F1F1;
     background-color: #3a3f51;
     color:#fff;
 }
+
+.subtle-checkbox{
+    color: #3a3f51;
+}
+
+.mda-checkbox {
+    font-weight: 500;
+}
+
 .mda-form-control.foul-text:focus,
 .mda-form-control.foul-text.focus {
     border-color: #3a3f51;

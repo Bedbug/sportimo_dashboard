@@ -3685,7 +3685,6 @@
     function SportimoActivitiesController($scope, Restangular, toaster) {
 
 
-
         'use strict';
 
         $scope.allItems = [];
@@ -3993,7 +3992,7 @@
         .directive('disableAnimation', function ($animate) {
             return {
                 restrict: 'A',
-                link: function($scope, $element){
+                link: function ($scope, $element) {
                     $animate.enabled($element, false);
                 }
             };
@@ -4026,25 +4025,28 @@
 
 
         $scope.players = [
-            {team:"home_team",name:"marco"},
-            {team:"home_team",name:"polo"},
-            {team:"home_team",name:"christopher"},
-            {team:"away_team",name:"colombo"},
-            {team:"away_team",name:"jekhis"},
-            {team:"home_team",name:"marlon"},
-            {team:"home_team",name:"jones"},
-            {team:"away_team",name:"indiana"},
-            {team:"home_team",name:"brando"},
-            {team:"away_team",name:"han"},
-            {team:"home_team",name:"indiana"},
-            {team:"home_team",name:"chackie"}
+            {team: "home_team", name: "marco"},
+            {team: "home_team", name: "polo"},
+            {team: "home_team", name: "christopher"},
+            {team: "away_team", name: "colombo"},
+            {team: "away_team", name: "jekhis"},
+            {team: "home_team", name: "marlon"},
+            {team: "home_team", name: "jones"},
+            {team: "away_team", name: "indiana"},
+            {team: "home_team", name: "brando"},
+            {team: "away_team", name: "han"},
+            {team: "home_team", name: "indiana"},
+            {team: "home_team", name: "chackie"}
         ]
 
 
-        $scope.checkSelection = function($item,$model){
+        $scope.checkSelection = function ($item, $model) {
 
         }
         $scope.createEvent = function (eventType) {
+            console.log("click: " + $scope.eventDrawer);
+            $scope.eventDrawer = 1;
+
             $scope.playerSelected = "";
             $scope.complete = false;
             $scope.event = {
@@ -4059,29 +4061,34 @@
                 }
             }
 
-           if(eventType == "substitution")   $scope.event.playerscount = 2;
+            if (eventType == "substitution")   $scope.event.playerscount = 2;
 
-            $scope.eventDrawer = 1;
+
         }
-
-        $scope.closeDrawer = function(){
+        $scope.openDrawer = function (drawer) {
+            $scope.eventDrawer = drawer;
+        }
+        $scope.closeDrawer = function () {
             $scope.eventDrawer = 0;
         }
 
-        function validateEvent(event){
-            if(event.timeline_event && event.state == 0) return false;
+        function validateEvent(event) {
+            if (event.timeline_event && event.state == 0) return false;
 
             return false;
         }
 
         $scope.sendEvent = function (event) {
 
-            if(!validateEvent(event)){
+            if (!validateEvent(event)) {
 
-                    ngDialog.open({template: 'firstDialogId', data: {
+                ngDialog.open({
+                    template: 'firstDialogId', data: {
                         title: 'Warning',
-                    message: 'You can only play timeline events while the match is in session.'}});
-                    return;
+                        message: 'You can only play timeline events while the match is in session.'
+                    }
+                });
+                return;
             }
 
             event.created = moment().utc();
@@ -4102,33 +4109,35 @@
             });
         }
 
-        String.prototype.capitalize = function() {
-            return this.replace(/(?:^|\s)\S/g, function(a) { return a.toUpperCase(); });
+        String.prototype.capitalize = function () {
+            return this.replace(/(?:^|\s)\S/g, function (a) {
+                return a.toUpperCase();
+            });
         };
 
         //{"id":43,"data":"{"event":"message","data":{"message":".","match_id":421}}"}
         $scope.complete = false;
         $scope.humanizedEvent = "";
-        $scope.$watch('event', function (now, then){
+        $scope.$watch('event', function (now, then) {
 
             $scope.humanizedEvent = "";
 
-            if(!now.data) return;
-            if(!now.data.players) return;
+            if (!now.data) return;
+            if (!now.data.players) return;
 
-            var teamlogo = "<img class='ui-select-match-img' alt='"+now.data.team+"' src='"+$scope.match.data[now.data.team].logo+"'>";
+            var teamlogo = "<img class='ui-select-match-img' alt='" + now.data.team + "' src='" + $scope.match.data[now.data.team].logo + "'>";
 
-            switch(now.type){
+            switch (now.type) {
                 case "substitution":
                     if (now.data.team && now.data.players.length == 2) {
                         $scope.complete = true;
-                        $scope.humanizedEvent =  teamlogo +"<strong>"+ now.data.time + "'</strong> " + now.type.capitalize() + ": <strong>Out:</strong> " + now.data.players[0].name.capitalize()+" <strong>In:</strong> " + now.data.players[1].name.capitalize();
+                        $scope.humanizedEvent = "<strong>" + now.data.time + "'</strong> " + teamlogo + now.type.capitalize() + ": <strong>Out:</strong> " + now.data.players[0].name.capitalize() + " <strong>In:</strong> " + now.data.players[1].name.capitalize();
                     }
                     break;
                 default:
                     if (now.data.team && now.data.players.length == 1) {
                         $scope.complete = true;
-                        $scope.humanizedEvent = teamlogo +"<strong>"+ now.data.time + "'</strong> " + now.type.capitalize() + " - " + now.data.players[0].name.capitalize();
+                        $scope.humanizedEvent = "<strong>" + now.data.time + "'</strong> " + teamlogo + now.type.capitalize() + " - " + now.data.players[0].name.capitalize();
                     }
                     break;
             }
@@ -4223,7 +4232,7 @@
 
         $scope.ModerateMatch = function (matchid, sport) {
 
-            $state.go("app.match-moderation-"+(sport || 'soccer'), {id: (matchid || "565c4af6e4b030fba33dd459")});
+            $state.go("app.match-moderation-" + (sport || 'soccer'), {id: (matchid || "565c4af6e4b030fba33dd459")});
 
         };
 
@@ -4276,8 +4285,6 @@
         //
         //    //activate();
         //});
-
-
 
 
         var vm = this;
@@ -10056,7 +10063,7 @@
                 url: '/match-moderation/soccer/:id',
                 title: 'Mathces Administration',
                 templateUrl: helper.basepath('sportimo_moderation_soccer.html'),
-                resolve: helper.resolveFor('restangular', 'toaster', 'dirPagination', 'moment','ui.select', 'angular-ladda','ngDialog'),
+                resolve: helper.resolveFor('restangular', 'toaster', 'dirPagination', 'moment', 'ui.select', 'angular-ladda', 'ngDialog'),
                 controller: 'SportimoModerationSoccerController'
             })
             .state('app.welcomes', {

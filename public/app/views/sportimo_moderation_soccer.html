@@ -3,11 +3,11 @@
 <!--</h3>-->
 <div class="unwrap">
     <div class="match-profile bg-cover bg-gray-darker">
-        <div class="match-profile-heading p-xl text-center text-white col-md-8 col-md-offset-2 ">
+        <div class="match-profile-heading p-xl text-center text-white col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
             <div class="match-logos">
                 <div class="team-logo col-sm-4">
                     <img ng-src="{{match.data.home_team.logo}}"/>
-
+                    <div></div>
                     <p>{{match.data.home_team.name}}</p>
                 </div>
                 <div class="col-sm-4">
@@ -24,7 +24,7 @@
                 </div>
                 <div class="team-logo  col-sm-4">
                     <img ng-src="{{match.data.away_team.logo}}"/>
-
+                    <div></div>
                     <p> {{match.data.away_team.name}}</p>
                 </div>
             </div>
@@ -109,7 +109,7 @@
                                                                 {{$item.name}}
                                                             </ui-select-match>
                                                             <ui-select-choices
-                                                                    repeat="player in players | propsFilter: {name: $select.search, team: $select.search}">
+                                                                    repeat="player in players | filter: (filterTeamPlayers || '') && {team: event.data.team} | propsFilter: {name: $select.search, team: $select.search}">
                                                                 <img class="ui-select-match-img" alt='{{player.team}}'
                                                                      ng-src='{{match.data[player.team].logo}}'>
 
@@ -148,7 +148,7 @@
                                                         <div class="mb">
                                                             <label class="mda-checkbox">
                                                                 <input type="checkbox"  ng-model="filterTeamPlayers" />
-                                                                <em class="foul"></em>Filter team players</label>
+                                                                <em class="subtle-checkbox"></em>Only selected team players</label>
                                                         </div>
                                                     </div>
                                                     <!--<div class="player-input col-sm-4 col-xs-6">-->
@@ -288,11 +288,12 @@
                                                   class="panel-body">{{event}}</textarea>
                                     </div>
 
+                                    <button  ng-click="openDrawer(2)" type="button" class="moderation btn btn-labeled  btn-group btn-inverse">
+                                      <span class="btn-label"><i class="fa fa-bullhorn"></i>
+                                    </span>Send Message</button>
                                     <!-- Message Option-->
                                     <div class="panel" style="margin-top: 18px;">
-                                        <h3 ng-click="eventDrawer = 2" class="m0 pb-lg panel-heading">Message</h3>
-
-                                        <div ng-show="eventDrawer == 2" class="form-group mb-xl panel-body">
+                                    <div ng-show="eventDrawer == 2" class="form-group mb-xl panel-body">
 
                                             <div class="mda-form-group ">
                                     <textarea ng-model="push.message" style="height: 180px;"
