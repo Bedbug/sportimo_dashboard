@@ -8,12 +8,16 @@ gulp.task('webserver', function () {
                 enable: true,
                 filter: function (filePath, cb) {
 
-                    console.log(cb( !(/.git/.test(filePath)) ));
-                    //if (filePath.match(/.css$/))
-                    //    return false;
-                    //else {
-                    //    return true;
-                    //}
+                    //console.log(filePath.indexOf(".css"));
+                if(filePath.indexOf(".css")>0)
+                    cb(true);
+                    else
+                if(filePath.indexOf(".html")>0)
+                    cb(true);
+                else
+                if(filePath.indexOf(".js")>0)
+                    cb(true);
+
                 }
             },
             directoryListing: true,

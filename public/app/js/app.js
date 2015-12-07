@@ -2884,12 +2884,7 @@
 
         $scope.delete = function (item) {
             $scope.loading = true;
-            // Confirm first the deletion
-            //ngDialog.openConfirm({
-            //    template: 'ConfirmDelete',
-            //    className: 'ngdialog-theme-default'
-            //}).then(function (value) {
-            //console.log('Modal promise resolved. Value: ', value);
+
             console.log(item);
             item.remove().then(function (res, err) {
                 console.log(res);
@@ -2999,12 +2994,7 @@
 
         $scope.delete = function (item) {
             $scope.loading = true;
-            // Confirm first the deletion
-            //ngDialog.openConfirm({
-            //    template: 'ConfirmDelete',
-            //    className: 'ngdialog-theme-default'
-            //}).then(function (value) {
-            //console.log('Modal promise resolved. Value: ', value);
+
             item.remove().then(function (res, err) {
                 console.log(res);
                 console.log(err);
@@ -3695,7 +3685,7 @@
     function SportimoActivitiesController($scope, Restangular, toaster) {
 
 
-//App.controller('ActivitiesController', [$scope','$http','$state','Restangular','ngDialog','tpl','ws','$filter', 'ngTableParams','$timeout','toaster', function( $rootScope, $scope, $http, $state, Restangular,ngDialog,tpl,ws, $filter, ngTableParams, $timeout,toaster) {
+
         'use strict';
 
         $scope.allItems = [];
@@ -3758,12 +3748,7 @@
 
         $scope.delete = function (item) {
             $scope.loading = true;
-            // Confirm first the deletion
-            //ngDialog.openConfirm({
-            //    template: 'ConfirmDelete',
-            //    className: 'ngdialog-theme-default'
-            //}).then(function (value) {
-            //console.log('Modal promise resolved. Value: ', value);
+
             item.remove().then(function (res, err) {
                 console.log(res);
                 console.log(err);
@@ -3925,12 +3910,7 @@
 
         $scope.delete = function (item) {
             $scope.loading = true;
-            // Confirm first the deletion
-            //ngDialog.openConfirm({
-            //    template: 'ConfirmDelete',
-            //    className: 'ngdialog-theme-default'
-            //}).then(function (value) {
-            //console.log('Modal promise resolved. Value: ', value);
+
             item.remove().then(function (res, err) {
                 console.log(res);
                 console.log(err);
@@ -4009,7 +3989,7 @@
 
     angular
         .module('app.match-moderation-soccer')
-        .controller('SportimoModerationSoccerController', SportimoModerationController)
+        .controller('SportimoModerationSoccerController', SportimoModerationSoccerController)
         .directive('disableAnimation', function ($animate) {
             return {
                 restrict: 'A',
@@ -4030,9 +4010,10 @@
         });
 
 
-    SportimoModerationController.$inject = ['$scope', 'Restangular', 'toaster', '$stateParams', '$http', '$rootScope'];
-    function SportimoModerationController($scope, Restangular, toaster, $stateParams, $http, $rootScope) {
+    SportimoModerationSoccerController.$inject = ['$scope', 'Restangular', 'toaster', '$stateParams', '$http', '$rootScope', 'ngDialog'];
+    function SportimoModerationSoccerController($scope, Restangular, toaster, $stateParams, $http, $rootScope, ngDialog) {
 
+        $scope.filterTeamPlayers = true;
         $scope.event = {};
         $rootScope.dataStream.onMessage(function (message) {
 
@@ -4043,24 +4024,25 @@
                 $scope.match.data.timeline[evt.state].push(evt);
         });
 
-        $scope.playerSelected = "";
+
         $scope.players = [
-            "marco",
-            "polo",
-            "christopher",
-            "colombo",
-            "jekhis",
-            "han",
-            "chackie",
-            "chan",
-            "marlon",
-            "brando",
-            'indiana',
-            "jones"
+            {team:"home_team",name:"marco"},
+            {team:"home_team",name:"polo"},
+            {team:"home_team",name:"christopher"},
+            {team:"away_team",name:"colombo"},
+            {team:"away_team",name:"jekhis"},
+            {team:"home_team",name:"marlon"},
+            {team:"home_team",name:"jones"},
+            {team:"away_team",name:"indiana"},
+            {team:"home_team",name:"brando"},
+            {team:"away_team",name:"han"},
+            {team:"home_team",name:"indiana"},
+            {team:"home_team",name:"chackie"}
         ]
-        $scope.selectPlayer = function(player){
-            $scope.event.data.player = player;
-            $scope.playerSelected = player;
+
+
+        $scope.checkSelection = function($item,$model){
+
         }
         $scope.createEvent = function (eventType) {
             $scope.playerSelected = "";
@@ -4068,6 +4050,7 @@
             $scope.event = {
                 match_id: $scope.match.id,
                 type: eventType,
+                playerscount: 1,
                 timeline_event: true,
                 state: $scope.match.data.state,
                 data: {
@@ -4076,6 +4059,8 @@
                 }
             }
 
+           if(eventType == "substitution")   $scope.event.playerscount = 2;
+
             $scope.eventDrawer = 1;
         }
 
@@ -4083,34 +4068,71 @@
             $scope.eventDrawer = 0;
         }
 
+        function validateEvent(event){
+            if(event.timeline_event && event.state == 0) return false;
+
+            return false;
+        }
+
         $scope.sendEvent = function (event) {
+
+            if(!validateEvent(event)){
+
+                    ngDialog.open({template: 'firstDialogId', data: {
+                        title: 'Warning',
+                    message: 'You can only play timeline events while the match is in session.'}});
+                    return;
+            }
 
             event.created = moment().utc();
 
             // Close the drawer
             $scope.eventDrawer = 0;
-            //$http({
-            //    method: 'POST',
-            //    url: 'http://localhost:3030/v1/moderation/' + $stateParams.id + '/event',
-            //    data: data
-            //}).then(function successCallback(response) {
-            //    console.log(response.data);
-            //    $scope.match = AddHooks(response.data);
-            //}, function errorCallback(response) {
-            //    // called asynchronously if an error occurs
-            //    // or server returns response with an error status.
-            //});
+
+            $http({
+                method: 'POST',
+                url: 'http://localhost:3030/v1/moderation/' + $stateParams.id + '/event',
+                data: event
+            }).then(function successCallback(response) {
+                console.log(response.data);
+                $scope.match = AddHooks(response.data);
+            }, function errorCallback(response) {
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+            });
         }
 
+        String.prototype.capitalize = function() {
+            return this.replace(/(?:^|\s)\S/g, function(a) { return a.toUpperCase(); });
+        };
+
         //{"id":43,"data":"{"event":"message","data":{"message":".","match_id":421}}"}
-            $scope.complete = false;
-        $scope.$watch('event', function (now, then) {
-            if (now.type == 'foul') {
-                if (now.data.team && $scope.playerSelected == now.data.player)
-                    $scope.complete = true;
-                else
-                    $scope.complete = false;
+        $scope.complete = false;
+        $scope.humanizedEvent = "";
+        $scope.$watch('event', function (now, then){
+
+            $scope.humanizedEvent = "";
+
+            if(!now.data) return;
+            if(!now.data.players) return;
+
+            var teamlogo = "<img class='ui-select-match-img' alt='"+now.data.team+"' src='"+$scope.match.data[now.data.team].logo+"'>";
+
+            switch(now.type){
+                case "substitution":
+                    if (now.data.team && now.data.players.length == 2) {
+                        $scope.complete = true;
+                        $scope.humanizedEvent =  teamlogo +"<strong>"+ now.data.time + "'</strong> " + now.type.capitalize() + ": <strong>Out:</strong> " + now.data.players[0].name.capitalize()+" <strong>In:</strong> " + now.data.players[1].name.capitalize();
+                    }
+                    break;
+                default:
+                    if (now.data.team && now.data.players.length == 1) {
+                        $scope.complete = true;
+                        $scope.humanizedEvent = teamlogo +"<strong>"+ now.data.time + "'</strong> " + now.type.capitalize() + " - " + now.data.players[0].name.capitalize();
+                    }
+                    break;
             }
+
         }, true);
 
 
@@ -4254,6 +4276,8 @@
         //
         //    //activate();
         //});
+
+
 
 
         var vm = this;
@@ -10032,7 +10056,7 @@
                 url: '/match-moderation/soccer/:id',
                 title: 'Mathces Administration',
                 templateUrl: helper.basepath('sportimo_moderation_soccer.html'),
-                resolve: helper.resolveFor('restangular', 'toaster', 'dirPagination', 'moment'),
+                resolve: helper.resolveFor('restangular', 'toaster', 'dirPagination', 'moment','ui.select', 'angular-ladda','ngDialog'),
                 controller: 'SportimoModerationSoccerController'
             })
             .state('app.welcomes', {

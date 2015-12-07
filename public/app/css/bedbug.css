@@ -313,6 +313,15 @@ border: 2px dashed #F1F1F1;
     /*overflow: hidden;*/
 }
 
+.score{
+    font-weight: bolder;
+    font-size: 7vw;
+}
+
+.match-time{
+    font-size: 3vw;
+}
+
 .timeline-start-badge{
 
     margin-top: 17px;
@@ -377,7 +386,7 @@ border: 2px dashed #F1F1F1;
     line-height: 30px;
     font-weight: bold;
     border-radius: 5px;
-    background-color: darkorange;
+    background-color: slategrey;
     color: #fff;
 }
 
@@ -404,6 +413,7 @@ border: 2px dashed #F1F1F1;
 }
 .custom.ng-enter.custom.ng-enter-active {
     left:0;
+
     opacity:1;
 }
 
@@ -425,6 +435,8 @@ border: 2px dashed #F1F1F1;
 
 .moving-self{
     min-height:  180px;;
+    position: relative;
+    overflow: hidden;
     /*height: 198px;*/
     /*background-color: green;*/
 
@@ -443,17 +455,22 @@ border: 2px dashed #F1F1F1;
 }
 
 .events-self.panel{
-   border-radius: 0 4px 4px 0;
+   border-radius: 0 4px 4px 4px;
 }
 
 .events-self.ng-hide-add{
-    animation:  0.51s ShrinkUp ease, 0.5s fadeOutUp ease;
-
-
+    animation:  0.5s ShrinkUp ease, 0.5s fadeOutUp ease;
+}
+.events-self.ng-hide-remove{
+    animation:0.5s  slideInRight ease, 0.5s ExpandDown ease;
 }
 
-.events-self.ng-hide-remove{
-    animation:0.5s slideInRight ease, 0.5s ExpandDown ease;
+.humanized-event.ng-hide-add {
+    animation:  0.5s  slideOutRight ease;
+}
+
+.humanized-event.ng-hide-remove{
+    animation:0.5s  slideInRight ease;
 }
 
 @keyframes ShrinkUp {
@@ -484,6 +501,20 @@ border: 2px dashed #F1F1F1;
     }
 }
 
+@media (max-width: 768px) {
+    @keyframes ExpandDown {
+        from {
+            margin-bottom: 0px;
+            height: 0px;
+        }
+
+        to {
+            height: 266px;
+            margin-bottom: 16px;
+        }
+    }
+}
+
 .ExpandDown {
     animation-name: ExpandDown;
 }
@@ -500,12 +531,12 @@ border: 2px dashed #F1F1F1;
     width: 100%;
 }
 .team-logo img {
-    min-height: 100px;
+    min-height: 75px;
     min-width: 75px;
 }
 
-.moving-self img{
-    min-height: 100px;
+.moving-self-img{
+    min-height: 75px;
     width: 75px;
     height: auto;
     cursor: pointer;
@@ -541,16 +572,41 @@ border: 2px dashed #F1F1F1;
     animation:2s flipInY;
 }
 
-.moving-self .team-logo{
+.moving-self .event-team-logo{
    /*width: 50%;;*/
     font-size: 12px;
     text-align: center;
+    margin-bottom: 30px;
+}
+
+.event-team-logo{
+
 }
 
 .selected{
     background-color: #46a149;
     padding-left: 5px;
     color: #fff;
+}
+
+.moving-self-heading{
+    font-size: 14px;
+    margin-left: 7px;
+    font-weight: bold;
+}
+
+.ui-select-bootstrap > .ui-select-choices {
+    width: 100%;
+    height: auto;
+    max-height: 112px !important;
+    overflow-x: hidden;
+}
+
+.ui-select-match-img{
+    float: left;
+    height: 20px;
+    width: 20px;
+    margin-right: 5px;
 }
 
 .type-banner-vertical{
@@ -568,13 +624,6 @@ border: 2px dashed #F1F1F1;
     background-color: #3a3f51;
     color:#fff;
 }
-
-.yellow{
-    background-color: #9E9D24;
-    color: #fff;
-}
-
-
 .mda-form-control.foul-text:focus,
 .mda-form-control.foul-text.focus {
     border-color: #3a3f51;
@@ -584,14 +633,38 @@ border: 2px dashed #F1F1F1;
     color: #3a3f51;
 }
 
+.yellow{
+    background-color: #9E9D24;
+    color: #fff;
+}
 .mda-form-control.yellow-text:focus,
 .mda-form-control.yellow-text.focus {
     border-color: #9E9D24;
 }
+.yellow-text,
 .mda-form-control.yellow-text:focus ~ label,
 .mda-form-control.yellow-text.focus ~ label {
     color: #9E9D24;
 }
+
+
+.red{
+    background-color: #9E3B25;
+    color: #fff;
+}
+
+.mda-form-control.red-text:focus,
+.mda-form-control.red-text.focus {
+    border-color: #9E3B25;
+}
+.mda-form-control.red-text:focus ~ label,
+.mda-form-control.red-text.focus ~ label {
+    color: #9E3B25;
+}
+
+
+
+
 
 
 
@@ -602,7 +675,7 @@ border: 2px dashed #F1F1F1;
 
     transform:  translateX(-50%) translateY(-50%) rotate(-90deg);
 
-    font-size: 36px;
+    font-size: 24px;
     text-transform: capitalize;
 }
 
@@ -624,6 +697,14 @@ border: 2px dashed #F1F1F1;
     }
 }
 
+@media (max-width: 375px) {
+    .moving-self {
+        min-height: 340px !important;
+
+    }
+}
+
+
 .panel-footer {
     padding: 10px 15px;
     background-color: #fafafa;
@@ -632,4 +713,50 @@ border: 2px dashed #F1F1F1;
     border-bottom-left-radius: 3px;
     height: 50px;
     overflow: hidden;
+}
+
+.humanized-event{
+    position: absolute;
+    bottom: 10px;
+    right: 0;
+    padding: 5px 14px 5px 7px;
+    border-radius: 4px 0 0 4px;
+    font-size: 14px;
+}
+
+.sportimo-dialog{
+    color: #000;
+}
+
+.sportimo-dialog-heading img{
+    display: block;
+    position: relative;
+    top: 2px;
+    height: 20px;
+}
+
+.sportimo-dialog-heading{
+    background-color: #2196f3;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 4px;
+    border-radius: 4px 4px 0 0;
+    margin: -14px -14px 22px -14px;
+}
+
+.ngdialog.ngdialog-theme-default .ngdialog-close:before {
+    background: 0 0;
+    border-radius: 3px;
+    color: #fff !important;
+    content: '\00D7';
+    font-size: 26px;
+    font-weight: 400;
+    height: 30px;
+    line-height: 26px;
+    position: absolute;
+    right: 3px;
+    text-align: center;
+    top: 3px;
+    width: 30px;
 }
