@@ -2691,7 +2691,7 @@
         $rootScope.dataset = [{data: [], yaxis: 1, label: 'Users', color: "#1ba3cd"}];
 
 
-        //$rootScope.dataStream = $websocket('wss://sportimo_instance.mod.bz/');
+        //$rootScope.dataStream = $websocket('wss://sportimosocketinstance-56448.onmodulus.net/');
         $rootScope.dataStream = $websocket('ws://localhost:8080/');
 
         $rootScope.dataStream.onMessage(function (message) {
@@ -4044,7 +4044,7 @@
 
         }
         $scope.createEvent = function (eventType) {
-            console.log("click: " + $scope.eventDrawer);
+            console.log($scope.match);
             $scope.eventDrawer = 1;
 
             $scope.playerSelected = "";
@@ -4073,9 +4073,10 @@
         }
 
         function validateEvent(event) {
+            console.log(event);
             if (event.timeline_event && event.state == 0) return false;
 
-            return false;
+            return true;
         }
 
         $scope.sendEvent = function (event) {
