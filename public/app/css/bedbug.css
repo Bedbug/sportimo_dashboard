@@ -281,7 +281,7 @@ border: 2px dashed #F1F1F1;
 .scheduled-match .panel-body{
     max-width: 250px;
     min-height: 255px;
-    background-color: ghostwhite;
+    /*background-color: ghostwhite;*/
 }
 
 .scheduled-match h4{
@@ -290,7 +290,9 @@ border: 2px dashed #F1F1F1;
     font-size: 14px;
     /*text-transform: capitalize;*/
 }
-
+.scheduled-match .team-logos{
+    padding: 10px;
+}
 .scheduled-match h4.text-muted{
     color: #909fa7;
 }
@@ -322,32 +324,136 @@ border: 2px dashed #F1F1F1;
 
 .score{
     font-weight: bolder;
-    font-size: 7vw;
+    font-size: 70px;
 }
 
 .match-time{
     font-size: 3vw;
 }
 
-.timeline-start-badge{
-
-    margin-top: 17px;
-    margin-left: 0;
-    position: absolute;
-    left: 0;
-    width: 36px;
-    height: 36px;
-    border-radius: 500px;
-    line-height: 36px;
-    font-size: 1em;
-    text-align: center;
-    color: grey !important;
-    background-color: transparent  !important;
-    z-index: 100;
+.event-card{
+    overflow: hidden;
+    position: relative;
+    /* padding: 2px; */
+    margin: 0 3px;
+    min-height:48px;
+}
+.timeline-left{
+    margin-top: -5px;
+    margin-bottom: 0 !important;
 }
 
-.timeline-left{
-     margin-top: 50px;
+.timeline > li {
+    margin-top: 0px !important;
+    margin-bottom: 0 !important;
+}
+
+.timeline .timeline-end, .timeline-alt .timeline-end{
+    margin-bottom: 20px !important;
+}
+
+.popover-content {
+     position: relative;
+    z-index: 1;
+    background-color: white;
+    min-height: 48px;
+ }
+
+.popover-content.slideLeft {
+    animation: 0.5s conrtrolsSlideLeft ease;
+    animation-fill-mode: forwards;
+}
+.controlls{
+    float: right;
+    position: absolute;
+    padding: 0;
+    right: 0;
+    width: 100px;
+    height: 48px;
+
+}
+
+.controlls.ng-hide-add{
+    animation:  0.5s  slideOutRight ease;
+}
+.controlls.ng-hide-remove{
+    animation:0.3s  slideInRight ease;
+}
+
+.controlls .btn-label{
+    position: relative;
+    background: transparent;
+    /*background: rgba(0, 0, 0, 0.05);*/
+    /*display: inline-block;*/
+    /*padding: 6px 20px;*/
+    left: -16px;
+    /*border-radius: 3px 0 0 3px;*/
+    /*line-height: 38px;*/
+}
+.controlls .delete,
+.controlls .edit{
+    height: 44px;
+    width: 44px;
+    margin: 2px;
+}
+
+.delete,
+.delete:hover,
+.delete:focus{
+    color: #f33123;
+    background-color: white;
+    border: 1px solid #f33123;
+}
+
+.edit,
+.edit:hover,
+.edit:focus{
+    color: #1c94f3;
+    background-color: white;
+    border: 1px solid #1c94f3;
+}
+.conrtrolsSlideLeft{
+    animation-name:conrtrolsSlideLeft;
+}
+.conrtrolsSlideRight{
+    animation-name: conrtrolsSlideRight;
+}
+.popover-content.slideRight {
+    animation: 0.5s conrtrolsSlideRight ease;
+    animation-fill-mode: forwards;
+}
+
+@keyframes conrtrolsSlideLeft {
+    from {
+        left: 0px;
+    }
+
+    to {
+        left: -100px;
+    }
+}
+
+@keyframes conrtrolsSlideRight {
+    from {
+        left: -100px;
+    }
+
+    to {
+        left: 0px;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .timeline > li.timeline-inverted {
+        float: right;
+        clear: both;
+        margin-top: -20px; !important;
+    }
+    .timeline > li {
+        float: left;
+        clear: both;
+        width: 45%;
+    }
 }
 .timeline-inverted{
     margin-top: 0 !important;
@@ -359,18 +465,19 @@ border: 2px dashed #F1F1F1;
     /*max-height: 510px;*/
 }
 .yellow{
-    color: yellow;
+    color: #f5a623;
 }
 
 .yellow .popover-content{
     color: #000;
 }
-.popover.yellow{
+.popover .yellow{
     -webkit-border-radius: 15px;
     -moz-border-radius: 15px;
     border-radius: 15px;
-    background-color: yellow;
-    color: #000 !important;
+
+    background-color: #F5B11C;
+    color: #fff!important;
 }
 
 .tab-content{
@@ -397,9 +504,51 @@ border: 2px dashed #F1F1F1;
     color: #fff;
 }
 
+.timeline:before, .timeline-alt:before {
+
+    background-color: #3a3f51 !important;
+
+}
+
+
+
 .timeline > li.timeline-separator, .timeline-alt > li.timeline-separator {
     width: 100%;
     margin-left: 0 !important;
+}
+
+.timeline:before, .timeline-alt:before {
+
+    background-color: #3a3f51 !important;
+
+}
+
+.timeline > li > .timeline-badge, .timeline-alt > li > .timeline-badge {
+    background-color: #fff;
+    color: #1e272c;
+    border: 1px solid #3a3f51;
+}
+
+.timeline > li.timeline-separator, .timeline-alt > li.timeline-separator {
+    width: 100%;
+    margin-left: 0 !important;
+}
+
+.timeline-start-badge{
+    margin-top: 17px;
+    margin-left: 0;
+    position: absolute;
+    left: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 500px;
+    line-height: 36px;
+    font-size: 1em;
+    text-align: center;
+    color: grey !important;
+    background-color: transparent  !important;
+    border: 0 !important;
+    z-index: 100;
 }
 
 
@@ -420,7 +569,6 @@ border: 2px dashed #F1F1F1;
 }
 .custom.ng-enter.custom.ng-enter-active {
     left:0;
-
     opacity:1;
 }
 
@@ -428,8 +576,8 @@ border: 2px dashed #F1F1F1;
     left:0;
     opacity:1;
 }
-.custom-.ng-leave.ng-leave-active {
-    left:-10px;
+.custom.ng-leave.custom.ng-leave-active {
+    left:15px;
     opacity:0;
 }
 
@@ -472,6 +620,7 @@ border: 2px dashed #F1F1F1;
     animation:0.5s  slideInRight ease, 0.5s ExpandDown ease;
 }
 
+
 .humanized-event.ng-hide-add {
     animation:  0.5s  slideOutRight ease;
 }
@@ -482,7 +631,7 @@ border: 2px dashed #F1F1F1;
 
 @keyframes ShrinkUp {
     from {
-        height: 230px;
+        height: 243px;
         margin-bottom: 16px;
     }
 
@@ -503,7 +652,7 @@ border: 2px dashed #F1F1F1;
     }
 
     to {
-        height: 230px;
+        height: 243px;
         margin-bottom: 16px;
     }
 }
@@ -628,6 +777,11 @@ border: 2px dashed #F1F1F1;
     float: left;
 }
 
+.shadowed {
+    -webkit-filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.3));
+    filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.3));
+}
+
 .foul{
     background-color: #3a3f51;
     color:#fff;
@@ -712,15 +866,32 @@ border: 2px dashed #F1F1F1;
     .type-banner-vertical{
         display:    none;
     }
+    .timeline-options-header{
+        display: block !important;
+    }
+
+    .timeline-options-side{
+        display: none;
+    }
 }
 
 @media (max-width: 375px) {
     .moving-self {
         min-height: 340px !important;
-
     }
-}
+    
 
+}
+.timeline-options-header{
+    display: none;
+    width: 100%;
+    height: 30px;
+    margin-bottom: 5px;
+}
+.timeline-options-header .btn-group{
+    float: left;
+     width:33.33%;
+}
 
 .panel-footer {
     padding: 10px 15px;
@@ -728,7 +899,7 @@ border: 2px dashed #F1F1F1;
     border-top: 1px solid #eeeeee;
     border-bottom-right-radius: 3px;
     border-bottom-left-radius: 3px;
-    height: 50px;
+    height: 63px;
     overflow: hidden;
 }
 
@@ -745,6 +916,7 @@ border: 2px dashed #F1F1F1;
     color: #000;
 }
 
+.sportimo-dialog-danger-heading img,
 .sportimo-dialog-heading img{
     display: block;
     position: relative;
@@ -761,6 +933,16 @@ border: 2px dashed #F1F1F1;
     border-radius: 4px 4px 0 0;
     margin: -14px -14px 22px -14px;
 }
+.sportimo-dialog-danger-heading{
+    background-color: #f33123;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 4px;
+    border-radius: 4px 4px 0 0;
+    margin: -14px -14px 22px -14px;
+}
+
 
 .ngdialog.ngdialog-theme-default .ngdialog-close:before {
     background: 0 0;

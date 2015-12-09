@@ -13,7 +13,7 @@
                             {{match.visitor_team_name}}</h4>
                         </div>
                         <div class="panel-body">
-                            <div class="match-logos">
+                            <div class="team-logos row">
                                 <div class="team-logo pull-left ">
                                     <img ng-src="http://162.13.157.7/soccerapp/images/teams_logos/{{match.home_team_logo}}"/>
 
@@ -31,9 +31,10 @@
                                 <h5>89'</h5>
                             </div>
                             <div  ng-show="match.started=='0'" class = "match-info">
-                                <small class="text-muted"></small>
-                                <h5><strong>{{formatDate(match.match_date)}}</strong></h5>
-                                <h5 class="text-muted">{{getMatchStatus(match.status)}}</h5>
+                               <p>
+                                   <br/>
+                                <strong>{{formatDate(match.match_date)}}</strong><br/>
+                                <span class="text-muted">{{getMatchStatus(match.status)}}</span></p>
                             </div>
                         </div>
                         <div ng-click="ModerateMatch(match._id, match.sport)" class="panel-footer text-center">clicking on the panel starts moderation</div>

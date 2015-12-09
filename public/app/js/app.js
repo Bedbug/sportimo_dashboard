@@ -132,7 +132,8 @@
             'ui.utils',
             'ngAria',
             'ngMessages',
-            'ngWebSocket'
+            'ngWebSocket',
+            'ngTouch'
 
         ]);
 })();
@@ -3996,6 +3997,16 @@
                     $animate.enabled($element, false);
                 }
             };
+        }).directive('noSwipeClick', function () {
+            return function(scope, elm) {
+                var el = angular.element(elm);
+                el.bind('click', function(e) {
+                    if(scope.swipe.swiping === true) {
+                        e.stopPropagation();
+                        e.preventDefault();
+                    }
+                });
+            };
         })
 
         .filter('reverse', function () {
@@ -4009,8 +4020,9 @@
         });
 
 
-    SportimoModerationSoccerController.$inject = ['$scope', 'Restangular', 'toaster', '$stateParams', '$http', '$rootScope', 'ngDialog'];
-    function SportimoModerationSoccerController($scope, Restangular, toaster, $stateParams, $http, $rootScope, ngDialog) {
+    SportimoModerationSoccerController.$inject = ['$scope', 'Restangular', 'toaster', '$stateParams', '$http', '$rootScope', 'ngDialog','$timeout'];
+    function SportimoModerationSoccerController($scope, Restangular, toaster, $stateParams, $http, $rootScope, ngDialog, $timeout) {
+        var vm = this;
 
         $scope.filterTeamPlayers = true;
         $scope.event = {};
@@ -4019,10 +4031,39 @@
             var evt = JSON.parse(message.data);
             if (!evt.users)
                 console.log(evt);
-            if (evt.timeline_event)
-                $scope.match.data.timeline[evt.state].push(evt);
+
+            if (evt.match_id == $scope.match.id) {
+                console.log("Event is for this match");
+                if (evt.timeline_event) {
+                    console.log("Adding Event");
+                    $scope.match.data.timeline[evt.state].push(evt);
+                }
+
+                if (evt.type == "removeEvent") {
+                     _.findWhere( $scope.match.data.timeline[evt.data.event_segment], {id: evt.data.event_id, match_id: evt.match_id}).status = "removed";
+                }
+
+                $timeout(function(){ $scope.loadMatchData(evt.match_id)}, 1500)
+
+            }
         });
 
+        $scope.loadMatchData = function(id){
+            $http({
+                method: 'GET',
+                url: 'http://localhost:3030/v1/live/match/'+id
+
+            }).then(function successCallback(response) {
+                //console.log(response.data);
+                $scope.match = AddHooks(response.data);
+                console.log("Events_sent: "+ $scope.match.data.matchstats.events_sent);
+                vm.pushLoading = false;
+            }, function errorCallback(response) {
+                vm.pushLoading = false;
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+            });
+        }
 
         $scope.players = [
             {team: "home_team", name: "marco"},
@@ -4043,16 +4084,77 @@
         $scope.checkSelection = function ($item, $model) {
 
         }
+
+        $scope.selectedEvent = {};
+        $scope.editEvent = function(event){
+            $scope.selectedEvent = event;
+            $scope.eventDrawer = 3;
+        }
+
+        $scope.clickedEvent = -1;
+
+        $scope.updateEvent = function (event) {
+
+            delete(event.clicked);
+
+            ngDialog.openConfirm({
+                template: 'deleteEventDialog', data: {
+                    title: 'DANGER',
+                    message: 'This action will destroy the selected event. It will remove points from users and re-calculate new points and leaderboards.<br/> Will also cause floods and earthquakes in a poor distant country.<br/> There is also a high probability that it kill a few unborn babies somewhere too.<p>Do you still want to continue?</p>'
+                }
+            }).then(function (value) {
+                //console.log('Modal promise resolved. Value: ', value);
+                var updateEventData = {
+                    type: "updateEvent",
+                    match_id: event.match_id,
+                    data: event
+                }
+
+                $scope.sendEvent(updateEventData);
+
+            }, function (reason) {
+
+                console.log('Modal promise rejected. Reason: ', reason);
+            });
+        }
+
+        $scope.removeEvent = function (event) {
+            ngDialog.openConfirm({
+                template: 'deleteEventDialog', data: {
+                    title: 'DANGER',
+                    message: 'This action will destroy the selected event. It will remove points from users and re-calculate new points and leaderboards.<br/> Will also cause floods and earthquakes in a poor distant country.<br/> There is also a high probability that it kill a few unborn babies somewhere too.<p>Do you still want to continue?</p>'
+                }
+            }).then(function (value) {
+                //console.log('Modal promise resolved. Value: ', value);
+                var removeEventData = {
+                    type: "removeEvent",
+                    match_id: event.match_id,
+                    data: {
+                        event_id: event.id,
+                        event_segment: event.state
+                    }
+                }
+
+                $scope.sendEvent(removeEventData);
+
+            }, function (reason) {
+
+                console.log('Modal promise rejected. Reason: ', reason);
+            });
+        }
+
         $scope.createEvent = function (eventType) {
-            console.log($scope.match);
+
             $scope.eventDrawer = 1;
 
             $scope.playerSelected = "";
             $scope.complete = false;
             $scope.event = {
+                id: $scope.match.data.matchstats.events_sent || 0,
                 match_id: $scope.match.id,
                 type: eventType,
                 playerscount: 1,
+                status: "active",
                 timeline_event: true,
                 state: $scope.match.data.state,
                 data: {
@@ -4073,7 +4175,7 @@
         }
 
         function validateEvent(event) {
-            console.log(event);
+
             if (event.timeline_event && event.state == 0) return false;
 
             return true;
@@ -4102,16 +4204,16 @@
                 url: 'http://localhost:3030/v1/moderation/' + $stateParams.id + '/event',
                 data: event
             }).then(function successCallback(response) {
-                console.log(response.data);
-                $scope.match = AddHooks(response.data);
+                //console.log(response);
+                //$scope.match = AddHooks(response.data);
             }, function errorCallback(response) {
                 // called asynchronously if an error occurs
                 // or server returns response with an error status.
             });
         }
 
-        String.prototype.capitalize = function () {
-            return this.replace(/(?:^|\s)\S/g, function (a) {
+        $scope.capitalize = function (str) {
+            return str.replace(/(?:^|\s)\S/g, function (a) {
                 return a.toUpperCase();
             });
         };
@@ -4132,13 +4234,13 @@
                 case "substitution":
                     if (now.data.team && now.data.players.length == 2) {
                         $scope.complete = true;
-                        $scope.humanizedEvent = "<strong>" + now.data.time + "'</strong> " + teamlogo + now.type.capitalize() + ": <strong>Out:</strong> " + now.data.players[0].name.capitalize() + " <strong>In:</strong> " + now.data.players[1].name.capitalize();
+                        $scope.humanizedEvent = "<strong>" + now.data.time + "'</strong> " + teamlogo + $scope.capitalize(now.type) + ": <strong>Out:</strong> " + $scope.capitalize(now.data.players[0].name) + " <strong>In:</strong> " + $scope.capitalize( now.data.players[1].name);
                     }
                     break;
                 default:
                     if (now.data.team && now.data.players.length == 1) {
                         $scope.complete = true;
-                        $scope.humanizedEvent = "<strong>" + now.data.time + "'</strong> " + teamlogo + now.type.capitalize() + " - " + now.data.players[0].name.capitalize();
+                        $scope.humanizedEvent = "<strong>" + now.data.time + "'</strong> " + teamlogo + $scope.capitalize(now.type) + " - " + $scope.capitalize(now.data.players[0].name);
                     }
                     break;
             }
@@ -4178,7 +4280,7 @@
         'use strict';
 
         function AddHooks(match) {
-
+            //console.log(match);
             match.data.state = match.data.state || 0;
 
             match.GetCurrentSegment = function () {
@@ -4187,6 +4289,8 @@
             }
             return match;
         };
+
+
 
         $http({
             method: 'POST',
@@ -10065,7 +10169,8 @@
                 title: 'Mathces Administration',
                 templateUrl: helper.basepath('sportimo_moderation_soccer.html'),
                 resolve: helper.resolveFor('restangular', 'toaster', 'dirPagination', 'moment', 'ui.select', 'angular-ladda', 'ngDialog'),
-                controller: 'SportimoModerationSoccerController'
+                controller: 'SportimoModerationSoccerController',
+                controllerAs: 'modCtrl',
             })
             .state('app.welcomes', {
                 url: '/welcomes',
