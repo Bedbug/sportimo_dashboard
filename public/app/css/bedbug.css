@@ -18,6 +18,19 @@ img.desaturate {
     background-repeat: no-repeat;
 }
 
+.footer-wrapper{
+    position: fixed !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    z-index: 121 !important;
+    height: 20px !important;
+    border: 0 !important;
+    background-color: #2196f3 !important;
+    color: white !important;
+    margin-left: 0 !important;
+    padding: 0 8px 22px !important;
+}
+
 @media (min-width: 768px)
 {
     /*#orangeBox {*/

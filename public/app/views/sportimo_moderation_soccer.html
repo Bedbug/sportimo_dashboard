@@ -111,16 +111,16 @@
                                                     <div class="match-logos col-sm-4 col-xs-12">
                                                         <div class="event-team-logo col-xs-6 col-sm-12 col-md-6">
                                                             <img class="moving-self-img"
-                                                                 ng-click="event.data.team = 'home_team'"
-                                                                 ng-class="event.data.team != 'home_team'? 'desaturate':'zoom'"
+                                                                 ng-click="event.team = 'home_team'"
+                                                                 ng-class="event.team != 'home_team'? 'desaturate':'zoom'"
                                                                  ng-src="{{match.data.home_team.logo}}"/>
                                                             <br/>
                                                             {{match.data.home_team.name}}
                                                         </div>
                                                         <div class="event-team-logo col-xs-6 col-sm-12 col-md-6">
                                                             <img class="moving-self-img"
-                                                                 ng-click="event.data.team ='away_team'"
-                                                                 ng-class="event.data.team != 'away_team'? 'desaturate':'zoom'"
+                                                                 ng-click="event.team ='away_team'"
+                                                                 ng-class="event.team != 'away_team'? 'desaturate':'zoom'"
                                                                  ng-src="{{match.data.away_team.logo}}"/>
                                                             <br/>
                                                             {{match.data.away_team.name}}
@@ -135,7 +135,7 @@
                                                         <ui-select ng-hide="event.playerscount == 2" limit=1 on-select="checkSelection($item,$model)"
                                                                    multiple
                                                                    reset-search-input = "true"
-                                                                   ng-model="event.data.players" theme="bootstrap"
+                                                                   ng-model="event.players" theme="bootstrap"
                                                                    ng-disabled="event.chooseplayer.disabled">
                                                             <ui-select-match placeholder="Select player name"><img
                                                                     class="ui-select-match-img" alt="$item.team"
@@ -143,7 +143,7 @@
                                                                 {{$item.name}}
                                                             </ui-select-match>
                                                             <ui-select-choices
-                                                                    repeat="player in players | filter: (filterTeamPlayers || '') && {team: event.data.team} | propsFilter: {name: $select.search, team: $select.search}">
+                                                                    repeat="player in players | filter: (filterTeamPlayers || '') && {team: event.team} | propsFilter: {name: $select.search, team: $select.search}">
                                                                 <img class="ui-select-match-img" alt='{{player.team}}'
                                                                      ng-src='{{match.data[player.team].logo}}'>
 
@@ -161,7 +161,7 @@
                                                         <ui-select ng-hide="event.playerscount == 1" limit=2 on-select="checkSelection"
                                                                    multiple
                                                                    reset-search-input = "true"
-                                                                   ng-model="event.data.players" theme="bootstrap"
+                                                                   ng-model="event.players" theme="bootstrap"
                                                                    ng-disabled="event.chooseplayer.disabled">
                                                             <ui-select-match placeholder="Select player name"><img
                                                                     class="ui-select-match-img" alt="$item.team"
@@ -169,7 +169,7 @@
                                                                 {{$item.name}}
                                                             </ui-select-match>
                                                             <ui-select-choices
-                                                                    repeat="player in players | filter: (filterTeamPlayers || '') && {team: event.data.team} | propsFilter: {name: $select.search, team: $select.search}">
+                                                                    repeat="player in players | filter: (filterTeamPlayers || '') && {team: event.team} | propsFilter: {name: $select.search, team: $select.search}">
                                                                 <img class="ui-select-match-img" alt='{{player.team}}'
                                                                      ng-src='{{match.data[player.team].logo}}'>
 
@@ -214,12 +214,12 @@
                                                 <button ng-click="closeDrawer()" type="button"
                                                         class="mb-sm btn btn-pill-right btn-default pull-right">Cancel
                                                 </button>
-                                                <button ng-click="sendEvent(event)" disable-animation
+                                                <button ng-click="addEvent(event)" disable-animation
                                                         ng-show="complete == true" type="button"
                                                         class="btn btn-square btn-pill-left pull-right btn-success">Send
                                                     Event
                                                 </button>
-                                                <button ng-click="sendEvent(event)" disable-animation
+                                                <button ng-click="addEvent(event)" disable-animation
                                                         ng-show="complete == false" type="button"
                                                         class="mb-sm btn btn-pill-left btn-warning pull-right">
                                                     Send and Update later
@@ -241,16 +241,16 @@
                                                     <div class="match-logos col-sm-4 col-xs-12">
                                                         <div class="event-team-logo col-xs-6 col-sm-12 col-md-6">
                                                             <img class="moving-self-img"
-                                                                 ng-click="selectedEvent.data.team = 'home_team'"
-                                                                 ng-class="selectedEvent.data.team != 'home_team'? 'desaturate':'zoom'"
+                                                                 ng-click="selectedEvent.team = 'home_team'"
+                                                                 ng-class="selectedEvent.team != 'home_team'? 'desaturate':'zoom'"
                                                                  ng-src="{{match.data.home_team.logo}}"/>
                                                             <br/>
                                                             {{match.data.home_team.name}}
                                                         </div>
                                                         <div class="event-team-logo col-xs-6 col-sm-12 col-md-6">
                                                             <img class="moving-self-img"
-                                                                 ng-click="selectedEvent.data.team ='away_team'"
-                                                                 ng-class="selectedEvent.data.team != 'away_team'? 'desaturate':'zoom'"
+                                                                 ng-click="selectedEvent.team ='away_team'"
+                                                                 ng-class="selectedEvent.team != 'away_team'? 'desaturate':'zoom'"
                                                                  ng-src="{{match.data.away_team.logo}}"/>
                                                             <br/>
                                                             {{match.data.away_team.name}}
@@ -265,7 +265,7 @@
                                                         <ui-select ng-hide="selectedEvent.playerscount == 2" limit=1 on-select="checkSelection($item,$model)"
                                                                    multiple
                                                                    reset-search-input = "true"
-                                                                   ng-model="selectedEvent.data.players" theme="bootstrap"
+                                                                   ng-model="selectedEvent.players" theme="bootstrap"
                                                                    ng-disabled="selectedEvent.chooseplayer.disabled">
                                                             <ui-select-match placeholder="Select player name"><img
                                                                     class="ui-select-match-img" alt="$item.team"
@@ -273,7 +273,7 @@
                                                                 {{$item.name}}
                                                             </ui-select-match>
                                                             <ui-select-choices
-                                                                    repeat="player in players | filter: (filterTeamPlayers || '') && {team: selectedEvent.data.team} | propsFilter: {name: $select.search, team: $select.search}">
+                                                                    repeat="player in players | filter: (filterTeamPlayers || '') && {team: selectedEvent.team} | propsFilter: {name: $select.search, team: $select.search}">
                                                                 <img class="ui-select-match-img" alt='{{player.team}}'
                                                                      ng-src='{{match.data[player.team].logo}}'>
 
@@ -291,7 +291,7 @@
                                                         <ui-select ng-hide="selectedEvent.playerscount == 1" limit=2 on-select="checkSelection"
                                                                    multiple
                                                                    reset-search-input = "true"
-                                                                   ng-model="selectedEvent.data.players" theme="bootstrap"
+                                                                   ng-model="selectedEvent.players" theme="bootstrap"
                                                                    ng-disabled="selectedEvent.chooseplayer.disabled">
                                                             <ui-select-match placeholder="Select player name"><img
                                                                     class="ui-select-match-img" alt="$item.team"
@@ -299,7 +299,7 @@
                                                                 {{$item.name}}
                                                             </ui-select-match>
                                                             <ui-select-choices
-                                                                    repeat="player in players | filter: (filterTeamPlayers || '') && {team: selectedEvent.data.team} | propsFilter: {name: $select.search, team: $select.search}">
+                                                                    repeat="player in players | filter: (filterTeamPlayers || '') && {team: selectedEvent.team} | propsFilter: {name: $select.search, team: $select.search}">
                                                                 <img class="ui-select-match-img" alt='{{player.team}}'
                                                                      ng-src='{{match.data[player.team].logo}}'>
 
@@ -502,7 +502,7 @@
     </div>
 </div>
 <br/>
-<footer ng-include="'app/views/partials/footer.html'"></footer>
+
 
 <script type="text/ng-template" id="firstDialogId">
     <!--<div>-->
