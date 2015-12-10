@@ -4029,6 +4029,7 @@
         $rootScope.dataStream.onMessage(function (message) {
 
             var evt = JSON.parse(message.data);
+
             if (!evt.users)
                 console.log(evt);
 
@@ -4056,7 +4057,6 @@
             }).then(function successCallback(response) {
                 //console.log(response.data);
                 $scope.match = AddHooks(response.data);
-                console.log("Events_sent: " + $scope.match.data.matchstats.events_sent);
                 vm.pushLoading = false;
             }, function errorCallback(response) {
                 vm.pushLoading = false;
@@ -4066,18 +4066,18 @@
         }
 
         $scope.players = [
-            { id: "565c4af6e4b030fba33dd459", team: "home_team", name: "marco" },
-            { id: "565c4af6e4b030fba33dd459", team: "home_team", name: "polo" },
-            { id: "565c4af6e4b030fba33dd459", team: "home_team", name: "christopher" },
-            { id: "565c4af6e4b030fba33dd459", team: "away_team", name: "colombo" },
-            { id: "565c4af6e4b030fba33dd459", team: "away_team", name: "jekhis" },
-            { id: "565c4af6e4b030fba33dd459", team: "home_team", name: "marlon" },
-            { id: "565c4af6e4b030fba33dd459", team: "home_team", name: "jones" },
-            { id: "565c4af6e4b030fba33dd459", team: "away_team", name: "indiana" },
-            { id: "565c4af6e4b030fba33dd459", team: "home_team", name: "brando" },
-            { id: "565c4af6e4b030fba33dd459", team: "away_team", name: "han" },
-            { id: "565c4af6e4b030fba33dd459", team: "home_team", name: "indiana" },
-            { id: "565c4af6e4b030fba33dd459", team: "home_team", name: "chackie" }
+            { id: "565c4af6e4b0ba33dd459", team: "home_team", name: "marco" },
+            { id: "565c4af6e4b0ba33dd459", team: "home_team", name: "polo" },
+            { id: "565c4af6e4b0ba33dd459", team: "home_team", name: "christopher" },
+            { id: "565c4af6e4b0a33dd459", team: "away_team", name: "colombo" },
+            { id: "565c4af6e4b0ba33dd459", team: "away_team", name: "jekhis" },
+            { id: "565c4af6e4b0ba33dd459", team: "home_team", name: "marlon" },
+            { id: "565c4af6e4b0a33dd459", team: "home_team", name: "jones" },
+            { id: "565c4af6e4b0a33dd459", team: "away_team", name: "indiana" },
+            { id: "565c4af6e4b0a33dd459", team: "home_team", name: "brando" },
+            { id: "565c4af6e4b0a33dd459", team: "away_team", name: "han" },
+            { id: "565c4af6e4b0ba33dd459", team: "home_team", name: "indiana" },
+            { id: "565c4af6e4b0a33dd459", team: "home_team", name: "chackie" }
         ]
 
 
@@ -4152,14 +4152,18 @@
             });
         }
 
+        $scope.GetStat = function(statId, statkey){
+            return _.result(_.findWhere($scope.match.data.stats,{id: statId}), statkey);
+        }
+
         $scope.createEvent = function (eventType) {
-
+            console.log($scope.match);
             $scope.eventDrawer = 1;
-
+            var event_id = $scope.GetStat($scope.match.id, 'events_sent' ) || 0;
             $scope.playerSelected = "";
             $scope.complete = false;
             $scope.event = {
-                id: $scope.match.data.matchstats.events_sent || 0,
+                id: event_id,
                 match_id: $scope.match.id,
                 type: eventType,
                 playerscount: 1,
