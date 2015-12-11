@@ -4030,7 +4030,7 @@
 
             var evt = JSON.parse(message.data);
 
-            if (!evt.users)
+            //if (!evt.users)
                 console.log(evt);
 
             if (evt.match_id == $scope.match.id) {
@@ -4049,13 +4049,19 @@
             }
         });
 
+
+        $scope.readable = function(obj){
+
+            return JSON.stringify(obj,null,4);
+        }
+
         $scope.loadMatchData = function (id) {
             $http({
                 method: 'GET',
                 url: 'http://localhost:3030/v1/live/match/' + id
 
             }).then(function successCallback(response) {
-                //console.log(response.data);
+
                 $scope.match = AddHooks(response.data);
                 vm.pushLoading = false;
             }, function errorCallback(response) {
@@ -4156,8 +4162,8 @@
             return _.result(_.findWhere($scope.match.data.stats,{id: statId}), statkey);
         }
 
-        $scope.createEvent = function (eventType) {
-            console.log($scope.match);
+        $scope.createEvent = function (eventType, stats) {
+            //console.log($scope.match);
             $scope.eventDrawer = 1;
             var event_id = $scope.GetStat($scope.match.id, 'events_sent' ) || 0;
             $scope.playerSelected = "";
@@ -4166,6 +4172,7 @@
                 id: event_id,
                 match_id: $scope.match.id,
                 type: eventType,
+                stats: stats || null,
                 playerscount: 1,
                 status: "active",
                 timeline_event: true,
@@ -4311,7 +4318,7 @@
             url: 'http://localhost:3030/v1/live/match',
             data: { id: $stateParams.id }
         }).then(function successCallback(response) {
-            //console.log(response.data);
+            console.log(response);
             $scope.match = AddHooks(response.data);
 
         }, function errorCallback(response) {
