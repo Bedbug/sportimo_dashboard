@@ -4030,7 +4030,7 @@
 
             var evt = JSON.parse(message.data);
 
-            //if (!evt.users)
+            if (!evt.users)
                 console.log(evt);
 
             if (evt.match_id == $scope.match.id) {

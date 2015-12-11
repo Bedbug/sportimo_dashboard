@@ -13,7 +13,7 @@
                 <div class="col-sm-4">
                     <div ng-show="match.data.state > 0" class="match-info">
                         <small class="text-muted"></small>
-                        <div class="score">{{match.data.home_score}} - {{match.data.away_score}}</div>
+                        <div class="score" ng->{{match.data?(GetStat(match.data.home_team._id,'g') || 0) +" - "+ (GetStat(match.data.away_team._id,'g') || 0): ''}}</div>
 
                     </div>
                     <div ng-show="match.data.state == 0" class="match-info">
@@ -429,17 +429,17 @@
                                             <li><a ng-click="createEvent('substitution');">Substitution</a>
                                             </li>
                                             <li class="divider"></li>
-                                            <li><a ng-click="createEvent('foul');">Foul</a>
+                                            <li><a ng-click="createEvent('foul',{fc:1});">Foul</a>
                                             </li>
-                                            <li><a ng-click="createEvent('corner');">Corner</a>
+                                            <li><a ng-click="createEvent('corner',{cr:1});">Corner</a>
                                             </li>
                                             <li class="divider"></li>
                                             <li><a ng-click="createEvent('yellow',{yc:1});">Yellow Card</a>
                                             </li>
-                                            <li><a ng-click="createEvent('red');">Red Card</a>
+                                            <li><a ng-click="createEvent('red',{rc:1});">Red Card</a>
                                             </li>
                                             <li class="divider"></li>
-                                            <li><a ng-click="createEvent('goal');">Goal</a>
+                                            <li><a ng-click="createEvent('goal',{g:1});">Goal</a>
                                             </li>
                                         </ul>
                                     </div>
