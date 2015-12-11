@@ -875,7 +875,7 @@ border: 2px dashed #F1F1F1;
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 992px) {
     .type-banner-vertical{
         display:    none;
     }
@@ -886,6 +886,13 @@ border: 2px dashed #F1F1F1;
     .timeline-options-side{
         display: none;
     }
+}
+
+
+@media (max-width: 768px) {
+
+
+
 }
 
 @media (max-width: 375px) {
