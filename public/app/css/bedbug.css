@@ -31,6 +31,11 @@ img.desaturate {
     padding: 0 8px 22px !important;
 }
 
+.footer-wrapper .fa{
+    width: 17px;
+    margin-left: 10px;
+}
+
 @media (min-width: 768px)
 {
     /*#orangeBox {*/
@@ -919,7 +924,6 @@ border: 2px dashed #F1F1F1;
     border-top: 1px solid #eeeeee;
     border-bottom-right-radius: 3px;
     border-bottom-left-radius: 3px;
-    height: 63px;
     overflow: hidden;
 }
 

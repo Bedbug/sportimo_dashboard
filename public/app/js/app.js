@@ -76,7 +76,7 @@
     'use strict';
 
     angular
-        .module('app.match-moderation-soccer', []);
+        .module('app.match-moderation-soccer', ['ngDialog']);
 })();
 
 (function () {
@@ -2691,9 +2691,22 @@
         var messageCount = 0;
         $rootScope.dataset = [{ data: [], yaxis: 1, label: 'Users', color: "#1ba3cd" }];
 
-
+        $rootScope.reconnectSocket = function(){
+            $rootScope.dataStream = $websocket('ws://localhost:8080/');
+        }
         //$rootScope.dataStream = $websocket('wss://sportimosocketinstance-56448.onmodulus.net/');
         $rootScope.dataStream = $websocket('ws://localhost:8080/');
+
+        $rootScope.socketConnection = false;
+        $rootScope.dataStream.onOpen(function(){
+            $rootScope.socketConnection = true;
+        });
+        $rootScope.dataStream.onClose(function(){
+            $rootScope.socketConnection = false;
+        });
+        $rootScope.dataStream.onError(function(){
+            $rootScope.socketConnection = false;
+        });
 
         $rootScope.dataStream.onMessage(function (message) {
             messageCount++;
@@ -4020,9 +4033,10 @@
         });
 
 
-    SportimoModerationSoccerController.$inject = ['$scope', 'Restangular', 'toaster', '$stateParams', '$http', '$rootScope', 'ngDialog', '$timeout'];
-    function SportimoModerationSoccerController($scope, Restangular, toaster, $stateParams, $http, $rootScope, ngDialog, $timeout) {
+    SportimoModerationSoccerController.$inject = ['$scope','ngDialog', 'Restangular', 'toaster', '$stateParams', '$http', '$rootScope', '$timeout'];
+    function SportimoModerationSoccerController($scope, ngDialog, Restangular, toaster, $stateParams, $http, $rootScope, $timeout) {
         var vm = this;
+
 
         $scope.filterTeamPlayers = true;
         $scope.event = {};
@@ -4072,18 +4086,18 @@
         }
 
         $scope.players = [
-            { id: "565c4af6e4b0ba33dd459", team: "home_team", name: "marco" },
-            { id: "565c4af6e4b0ba33dd459", team: "home_team", name: "polo" },
-            { id: "565c4af6e4b0ba33dd459", team: "home_team", name: "christopher" },
-            { id: "565c4af6e4b0a33dd459", team: "away_team", name: "colombo" },
-            { id: "565c4af6e4b0ba33dd459", team: "away_team", name: "jekhis" },
-            { id: "565c4af6e4b0ba33dd459", team: "home_team", name: "marlon" },
-            { id: "565c4af6e4b0a33dd459", team: "home_team", name: "jones" },
-            { id: "565c4af6e4b0a33dd459", team: "away_team", name: "indiana" },
-            { id: "565c4af6e4b0a33dd459", team: "home_team", name: "brando" },
-            { id: "565c4af6e4b0a33dd459", team: "away_team", name: "han" },
-            { id: "565c4af6e4b0ba33dd459", team: "home_team", name: "indiana" },
-            { id: "565c4af6e4b0a33dd459", team: "home_team", name: "chackie" }
+            { id: "565c4", team: "home_team", name: "marco" },
+            { id: "565c4a", team: "home_team", name: "polo" },
+            { id: "565c4af", team: "home_team", name: "christopher" },
+            { id: "565c4af6", team: "away_team", name: "colombo" },
+            { id: "565c4af6e", team: "away_team", name: "jekhis" },
+            { id: "565c4af6e4", team: "home_team", name: "marlon" },
+            { id: "565c4af6e4b", team: "home_team", name: "jones" },
+            { id: "565c4af6e4b0", team: "away_team", name: "indiana" },
+            { id: "565c4af6e4b0a", team: "home_team", name: "brando" },
+            { id: "565c4af6e4b0a3", team: "away_team", name: "han" },
+            { id: "565c4af6e4b0ba33", team: "home_team", name: "indiana" },
+            { id: "565c4af6e4b0a33dd", team: "home_team", name: "chackie" }
         ]
 
 

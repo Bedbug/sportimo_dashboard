@@ -1,8 +1,18 @@
 <!--<span>&copy; {{app.year}} - {{ app.name }}</span>-->
-<!--<div class="p-lg text-center">-->
+<div class="pull-left">
+    <em class="fa  fa-users"> </em> {{usersCount}}
+</div>
+<div class="pull-left" ng-show="socketConnection">
+    <em class="fa  fa-rocket"> </em>
+</div>
+<div ng-click="reconnectSocket()" class="pull-left" ng-hide="socketConnection">
+    <em class="fa  fa-thumbs-o-down"> </em>
+</div>
+
+<div class="pull-right">
     <span>©</span>
     <span>2015</span>
     <span>-</span>
     <img src="app/img/bedbug/logo-single.png" style="lmax-width:25px; max-height: 25px; padding-bottom: 5px">
     <span>Bedbug</span><span> v0.1.0</span>
-<!--</div>-->
+</div>
