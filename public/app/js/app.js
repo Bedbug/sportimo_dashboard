@@ -133,7 +133,8 @@
             'ngAria',
             'ngMessages',
             'ngWebSocket',
-            'ngTouch'
+            'ngTouch',
+            'ngStorage'
 
         ]);
 })();
@@ -304,12 +305,12 @@
 
         function activate() {
             vm.alerts = [
-                { type: 'danger', msg: 'Oh snap! Change a few things up and try submitting again.' },
-                { type: 'warning', msg: 'Well done! You successfully read this important alert message.' }
+                {type: 'danger', msg: 'Oh snap! Change a few things up and try submitting again.'},
+                {type: 'warning', msg: 'Well done! You successfully read this important alert message.'}
             ];
 
             vm.addAlert = function () {
-                vm.alerts.push({ msg: 'Another alert!' });
+                vm.alerts.push({msg: 'Another alert!'});
             };
 
             vm.closeAlert = function (index) {
@@ -328,7 +329,7 @@
 
     bootstrapuiConfig.$inject = ['$tooltipProvider'];
     function bootstrapuiConfig($tooltipProvider) {
-        $tooltipProvider.options({ appendToBody: true });
+        $tooltipProvider.options({appendToBody: true});
     }
 })();
 /**=========================================================
@@ -671,11 +672,11 @@
             };
 
             vm.ratingStates = [
-                { stateOn: 'fa fa-check', stateOff: 'fa fa-check-circle' },
-                { stateOn: 'fa fa-star', stateOff: 'fa fa-star-o' },
-                { stateOn: 'fa fa-heart', stateOff: 'fa fa-ban' },
-                { stateOn: 'fa fa-heart' },
-                { stateOff: 'fa fa-power-off' }
+                {stateOn: 'fa fa-check', stateOff: 'fa fa-check-circle'},
+                {stateOn: 'fa fa-star', stateOff: 'fa fa-star-o'},
+                {stateOn: 'fa fa-heart', stateOff: 'fa fa-ban'},
+                {stateOn: 'fa fa-heart'},
+                {stateOff: 'fa fa-power-off'}
             ];
         }
     }
@@ -841,127 +842,127 @@
             vm.statesWithFlags = [{
                 'name': 'Alabama',
                 'flag': '5/5c/Flag_of_Alabama.svg/45px-Flag_of_Alabama.svg.png'
-            }, { 'name': 'Alaska', 'flag': 'e/e6/Flag_of_Alaska.svg/43px-Flag_of_Alaska.svg.png' }, {
-                    'name': 'Arizona',
-                    'flag': '9/9d/Flag_of_Arizona.svg/45px-Flag_of_Arizona.svg.png'
-                }, {
-                    'name': 'Arkansas',
-                    'flag': '9/9d/Flag_of_Arkansas.svg/45px-Flag_of_Arkansas.svg.png'
-                }, {
-                    'name': 'California',
-                    'flag': '0/01/Flag_of_California.svg/45px-Flag_of_California.svg.png'
-                }, {
-                    'name': 'Colorado',
-                    'flag': '4/46/Flag_of_Colorado.svg/45px-Flag_of_Colorado.svg.png'
-                }, {
-                    'name': 'Connecticut',
-                    'flag': '9/96/Flag_of_Connecticut.svg/39px-Flag_of_Connecticut.svg.png'
-                }, {
-                    'name': 'Delaware',
-                    'flag': 'c/c6/Flag_of_Delaware.svg/45px-Flag_of_Delaware.svg.png'
-                }, { 'name': 'Florida', 'flag': 'f/f7/Flag_of_Florida.svg/45px-Flag_of_Florida.svg.png' }, {
-                    'name': 'Georgia',
-                    'flag': '5/54/Flag_of_Georgia_%28U.S._state%29.svg/46px-Flag_of_Georgia_%28U.S._state%29.svg.png'
-                }, { 'name': 'Hawaii', 'flag': 'e/ef/Flag_of_Hawaii.svg/46px-Flag_of_Hawaii.svg.png' }, {
-                    'name': 'Idaho',
-                    'flag': 'a/a4/Flag_of_Idaho.svg/38px-Flag_of_Idaho.svg.png'
-                }, {
-                    'name': 'Illinois',
-                    'flag': '0/01/Flag_of_Illinois.svg/46px-Flag_of_Illinois.svg.png'
-                }, { 'name': 'Indiana', 'flag': 'a/ac/Flag_of_Indiana.svg/45px-Flag_of_Indiana.svg.png' }, {
-                    'name': 'Iowa',
-                    'flag': 'a/aa/Flag_of_Iowa.svg/44px-Flag_of_Iowa.svg.png'
-                }, { 'name': 'Kansas', 'flag': 'd/da/Flag_of_Kansas.svg/46px-Flag_of_Kansas.svg.png' }, {
-                    'name': 'Kentucky',
-                    'flag': '8/8d/Flag_of_Kentucky.svg/46px-Flag_of_Kentucky.svg.png'
-                }, {
-                    'name': 'Louisiana',
-                    'flag': 'e/e0/Flag_of_Louisiana.svg/46px-Flag_of_Louisiana.svg.png'
-                }, { 'name': 'Maine', 'flag': '3/35/Flag_of_Maine.svg/45px-Flag_of_Maine.svg.png' }, {
-                    'name': 'Maryland',
-                    'flag': 'a/a0/Flag_of_Maryland.svg/45px-Flag_of_Maryland.svg.png'
-                }, {
-                    'name': 'Massachusetts',
-                    'flag': 'f/f2/Flag_of_Massachusetts.svg/46px-Flag_of_Massachusetts.svg.png'
-                }, {
-                    'name': 'Michigan',
-                    'flag': 'b/b5/Flag_of_Michigan.svg/45px-Flag_of_Michigan.svg.png'
-                }, {
-                    'name': 'Minnesota',
-                    'flag': 'b/b9/Flag_of_Minnesota.svg/46px-Flag_of_Minnesota.svg.png'
-                }, {
-                    'name': 'Mississippi',
-                    'flag': '4/42/Flag_of_Mississippi.svg/45px-Flag_of_Mississippi.svg.png'
-                }, {
-                    'name': 'Missouri',
-                    'flag': '5/5a/Flag_of_Missouri.svg/46px-Flag_of_Missouri.svg.png'
-                }, {
-                    'name': 'Montana',
-                    'flag': 'c/cb/Flag_of_Montana.svg/45px-Flag_of_Montana.svg.png'
-                }, {
-                    'name': 'Nebraska',
-                    'flag': '4/4d/Flag_of_Nebraska.svg/46px-Flag_of_Nebraska.svg.png'
-                }, {
-                    'name': 'Nevada',
-                    'flag': 'f/f1/Flag_of_Nevada.svg/45px-Flag_of_Nevada.svg.png'
-                }, {
-                    'name': 'New Hampshire',
-                    'flag': '2/28/Flag_of_New_Hampshire.svg/45px-Flag_of_New_Hampshire.svg.png'
-                }, {
-                    'name': 'New Jersey',
-                    'flag': '9/92/Flag_of_New_Jersey.svg/45px-Flag_of_New_Jersey.svg.png'
-                }, {
-                    'name': 'New Mexico',
-                    'flag': 'c/c3/Flag_of_New_Mexico.svg/45px-Flag_of_New_Mexico.svg.png'
-                }, {
-                    'name': 'New York',
-                    'flag': '1/1a/Flag_of_New_York.svg/46px-Flag_of_New_York.svg.png'
-                }, {
-                    'name': 'North Carolina',
-                    'flag': 'b/bb/Flag_of_North_Carolina.svg/45px-Flag_of_North_Carolina.svg.png'
-                }, {
-                    'name': 'North Dakota',
-                    'flag': 'e/ee/Flag_of_North_Dakota.svg/38px-Flag_of_North_Dakota.svg.png'
-                }, { 'name': 'Ohio', 'flag': '4/4c/Flag_of_Ohio.svg/46px-Flag_of_Ohio.svg.png' }, {
-                    'name': 'Oklahoma',
-                    'flag': '6/6e/Flag_of_Oklahoma.svg/45px-Flag_of_Oklahoma.svg.png'
-                }, {
-                    'name': 'Oregon',
-                    'flag': 'b/b9/Flag_of_Oregon.svg/46px-Flag_of_Oregon.svg.png'
-                }, {
-                    'name': 'Pennsylvania',
-                    'flag': 'f/f7/Flag_of_Pennsylvania.svg/45px-Flag_of_Pennsylvania.svg.png'
-                }, {
-                    'name': 'Rhode Island',
-                    'flag': 'f/f3/Flag_of_Rhode_Island.svg/32px-Flag_of_Rhode_Island.svg.png'
-                }, {
-                    'name': 'South Carolina',
-                    'flag': '6/69/Flag_of_South_Carolina.svg/45px-Flag_of_South_Carolina.svg.png'
-                }, {
-                    'name': 'South Dakota',
-                    'flag': '1/1a/Flag_of_South_Dakota.svg/46px-Flag_of_South_Dakota.svg.png'
-                }, {
-                    'name': 'Tennessee',
-                    'flag': '9/9e/Flag_of_Tennessee.svg/46px-Flag_of_Tennessee.svg.png'
-                }, { 'name': 'Texas', 'flag': 'f/f7/Flag_of_Texas.svg/45px-Flag_of_Texas.svg.png' }, {
-                    'name': 'Utah',
-                    'flag': 'f/f6/Flag_of_Utah.svg/45px-Flag_of_Utah.svg.png'
-                }, {
-                    'name': 'Vermont',
-                    'flag': '4/49/Flag_of_Vermont.svg/46px-Flag_of_Vermont.svg.png'
-                }, {
-                    'name': 'Virginia',
-                    'flag': '4/47/Flag_of_Virginia.svg/44px-Flag_of_Virginia.svg.png'
-                }, {
-                    'name': 'Washington',
-                    'flag': '5/54/Flag_of_Washington.svg/46px-Flag_of_Washington.svg.png'
-                }, {
-                    'name': 'West Virginia',
-                    'flag': '2/22/Flag_of_West_Virginia.svg/46px-Flag_of_West_Virginia.svg.png'
-                }, {
-                    'name': 'Wisconsin',
-                    'flag': '2/22/Flag_of_Wisconsin.svg/45px-Flag_of_Wisconsin.svg.png'
-                }, { 'name': 'Wyoming', 'flag': 'b/bc/Flag_of_Wyoming.svg/43px-Flag_of_Wyoming.svg.png' }];
+            }, {'name': 'Alaska', 'flag': 'e/e6/Flag_of_Alaska.svg/43px-Flag_of_Alaska.svg.png'}, {
+                'name': 'Arizona',
+                'flag': '9/9d/Flag_of_Arizona.svg/45px-Flag_of_Arizona.svg.png'
+            }, {
+                'name': 'Arkansas',
+                'flag': '9/9d/Flag_of_Arkansas.svg/45px-Flag_of_Arkansas.svg.png'
+            }, {
+                'name': 'California',
+                'flag': '0/01/Flag_of_California.svg/45px-Flag_of_California.svg.png'
+            }, {
+                'name': 'Colorado',
+                'flag': '4/46/Flag_of_Colorado.svg/45px-Flag_of_Colorado.svg.png'
+            }, {
+                'name': 'Connecticut',
+                'flag': '9/96/Flag_of_Connecticut.svg/39px-Flag_of_Connecticut.svg.png'
+            }, {
+                'name': 'Delaware',
+                'flag': 'c/c6/Flag_of_Delaware.svg/45px-Flag_of_Delaware.svg.png'
+            }, {'name': 'Florida', 'flag': 'f/f7/Flag_of_Florida.svg/45px-Flag_of_Florida.svg.png'}, {
+                'name': 'Georgia',
+                'flag': '5/54/Flag_of_Georgia_%28U.S._state%29.svg/46px-Flag_of_Georgia_%28U.S._state%29.svg.png'
+            }, {'name': 'Hawaii', 'flag': 'e/ef/Flag_of_Hawaii.svg/46px-Flag_of_Hawaii.svg.png'}, {
+                'name': 'Idaho',
+                'flag': 'a/a4/Flag_of_Idaho.svg/38px-Flag_of_Idaho.svg.png'
+            }, {
+                'name': 'Illinois',
+                'flag': '0/01/Flag_of_Illinois.svg/46px-Flag_of_Illinois.svg.png'
+            }, {'name': 'Indiana', 'flag': 'a/ac/Flag_of_Indiana.svg/45px-Flag_of_Indiana.svg.png'}, {
+                'name': 'Iowa',
+                'flag': 'a/aa/Flag_of_Iowa.svg/44px-Flag_of_Iowa.svg.png'
+            }, {'name': 'Kansas', 'flag': 'd/da/Flag_of_Kansas.svg/46px-Flag_of_Kansas.svg.png'}, {
+                'name': 'Kentucky',
+                'flag': '8/8d/Flag_of_Kentucky.svg/46px-Flag_of_Kentucky.svg.png'
+            }, {
+                'name': 'Louisiana',
+                'flag': 'e/e0/Flag_of_Louisiana.svg/46px-Flag_of_Louisiana.svg.png'
+            }, {'name': 'Maine', 'flag': '3/35/Flag_of_Maine.svg/45px-Flag_of_Maine.svg.png'}, {
+                'name': 'Maryland',
+                'flag': 'a/a0/Flag_of_Maryland.svg/45px-Flag_of_Maryland.svg.png'
+            }, {
+                'name': 'Massachusetts',
+                'flag': 'f/f2/Flag_of_Massachusetts.svg/46px-Flag_of_Massachusetts.svg.png'
+            }, {
+                'name': 'Michigan',
+                'flag': 'b/b5/Flag_of_Michigan.svg/45px-Flag_of_Michigan.svg.png'
+            }, {
+                'name': 'Minnesota',
+                'flag': 'b/b9/Flag_of_Minnesota.svg/46px-Flag_of_Minnesota.svg.png'
+            }, {
+                'name': 'Mississippi',
+                'flag': '4/42/Flag_of_Mississippi.svg/45px-Flag_of_Mississippi.svg.png'
+            }, {
+                'name': 'Missouri',
+                'flag': '5/5a/Flag_of_Missouri.svg/46px-Flag_of_Missouri.svg.png'
+            }, {
+                'name': 'Montana',
+                'flag': 'c/cb/Flag_of_Montana.svg/45px-Flag_of_Montana.svg.png'
+            }, {
+                'name': 'Nebraska',
+                'flag': '4/4d/Flag_of_Nebraska.svg/46px-Flag_of_Nebraska.svg.png'
+            }, {
+                'name': 'Nevada',
+                'flag': 'f/f1/Flag_of_Nevada.svg/45px-Flag_of_Nevada.svg.png'
+            }, {
+                'name': 'New Hampshire',
+                'flag': '2/28/Flag_of_New_Hampshire.svg/45px-Flag_of_New_Hampshire.svg.png'
+            }, {
+                'name': 'New Jersey',
+                'flag': '9/92/Flag_of_New_Jersey.svg/45px-Flag_of_New_Jersey.svg.png'
+            }, {
+                'name': 'New Mexico',
+                'flag': 'c/c3/Flag_of_New_Mexico.svg/45px-Flag_of_New_Mexico.svg.png'
+            }, {
+                'name': 'New York',
+                'flag': '1/1a/Flag_of_New_York.svg/46px-Flag_of_New_York.svg.png'
+            }, {
+                'name': 'North Carolina',
+                'flag': 'b/bb/Flag_of_North_Carolina.svg/45px-Flag_of_North_Carolina.svg.png'
+            }, {
+                'name': 'North Dakota',
+                'flag': 'e/ee/Flag_of_North_Dakota.svg/38px-Flag_of_North_Dakota.svg.png'
+            }, {'name': 'Ohio', 'flag': '4/4c/Flag_of_Ohio.svg/46px-Flag_of_Ohio.svg.png'}, {
+                'name': 'Oklahoma',
+                'flag': '6/6e/Flag_of_Oklahoma.svg/45px-Flag_of_Oklahoma.svg.png'
+            }, {
+                'name': 'Oregon',
+                'flag': 'b/b9/Flag_of_Oregon.svg/46px-Flag_of_Oregon.svg.png'
+            }, {
+                'name': 'Pennsylvania',
+                'flag': 'f/f7/Flag_of_Pennsylvania.svg/45px-Flag_of_Pennsylvania.svg.png'
+            }, {
+                'name': 'Rhode Island',
+                'flag': 'f/f3/Flag_of_Rhode_Island.svg/32px-Flag_of_Rhode_Island.svg.png'
+            }, {
+                'name': 'South Carolina',
+                'flag': '6/69/Flag_of_South_Carolina.svg/45px-Flag_of_South_Carolina.svg.png'
+            }, {
+                'name': 'South Dakota',
+                'flag': '1/1a/Flag_of_South_Dakota.svg/46px-Flag_of_South_Dakota.svg.png'
+            }, {
+                'name': 'Tennessee',
+                'flag': '9/9e/Flag_of_Tennessee.svg/46px-Flag_of_Tennessee.svg.png'
+            }, {'name': 'Texas', 'flag': 'f/f7/Flag_of_Texas.svg/45px-Flag_of_Texas.svg.png'}, {
+                'name': 'Utah',
+                'flag': 'f/f6/Flag_of_Utah.svg/45px-Flag_of_Utah.svg.png'
+            }, {
+                'name': 'Vermont',
+                'flag': '4/49/Flag_of_Vermont.svg/46px-Flag_of_Vermont.svg.png'
+            }, {
+                'name': 'Virginia',
+                'flag': '4/47/Flag_of_Virginia.svg/44px-Flag_of_Virginia.svg.png'
+            }, {
+                'name': 'Washington',
+                'flag': '5/54/Flag_of_Washington.svg/46px-Flag_of_Washington.svg.png'
+            }, {
+                'name': 'West Virginia',
+                'flag': '2/22/Flag_of_West_Virginia.svg/46px-Flag_of_West_Virginia.svg.png'
+            }, {
+                'name': 'Wisconsin',
+                'flag': '2/22/Flag_of_Wisconsin.svg/45px-Flag_of_Wisconsin.svg.png'
+            }, {'name': 'Wyoming', 'flag': 'b/bc/Flag_of_Wyoming.svg/43px-Flag_of_Wyoming.svg.png'}];
 
         }
     }
@@ -1474,7 +1475,7 @@
 
     angular
         .module('app.charts')
-    /* Aliases for various chart types */
+        /* Aliases for various chart types */
         .directive('linechart', chartJS('Line'))
         .directive('barchart', chartJS('Bar'))
         .directive('radarchart', chartJS('Radar'))
@@ -1625,7 +1626,7 @@
             function checkLoaderInVIew(element, options) {
                 var offset = -20;
                 if (!element.hasClass(inViewFlagClass) &&
-                    Utils.isInView(element, { topoffset: offset })) {
+                    Utils.isInView(element, {topoffset: offset})) {
                     startLoader(element, options);
                 }
             }
@@ -1652,7 +1653,7 @@
         ////////////////
 
         var opts = {
-            get: { method: 'GET', isArray: true }
+            get: {method: 'GET', isArray: true}
         };
 
         function load(source) {
@@ -1896,7 +1897,7 @@
                             radius: 0.8,
                             formatter: function (label, series) {
                                 return '<div class="flot-pie-label">' +
-                                    //label + ' : ' +
+                                        //label + ' : ' +
                                     Math.round(series.percent) +
                                     '%</div>';
                             },
@@ -1925,7 +1926,7 @@
             // ----------------------------------- 
             vm.realTimeOptions = {
                 series: {
-                    lines: { show: true, fill: true, fillColor: { colors: ['#a0e0f3', '#23b7e5'] } },
+                    lines: {show: true, fill: true, fillColor: {colors: ['#a0e0f3', '#23b7e5']}},
                     shadowSize: 0 // Drawing is faster without shadows
                 },
                 grid: {
@@ -2168,13 +2169,13 @@
 
         function activate() {
             vm.chartdata = [
-                { y: '2006', a: 100, b: 90 },
-                { y: '2007', a: 75, b: 65 },
-                { y: '2008', a: 50, b: 40 },
-                { y: '2009', a: 75, b: 65 },
-                { y: '2010', a: 50, b: 40 },
-                { y: '2011', a: 75, b: 65 },
-                { y: '2012', a: 100, b: 90 }
+                {y: '2006', a: 100, b: 90},
+                {y: '2007', a: 75, b: 65},
+                {y: '2008', a: 50, b: 40},
+                {y: '2009', a: 75, b: 65},
+                {y: '2010', a: 50, b: 40},
+                {y: '2011', a: 75, b: 65},
+                {y: '2012', a: 100, b: 90}
             ];
 
             /* test data update
@@ -2184,9 +2185,9 @@
              }, 3000); */
 
             vm.donutdata = [
-                { label: 'Download Sales', value: 12 },
-                { label: 'In-Store Sales', value: 30 },
-                { label: 'Mail-Order Sales', value: 20 }
+                {label: 'Download Sales', value: 12},
+                {label: 'In-Store Sales', value: 30},
+                {label: 'Mail-Order Sales', value: 20}
             ];
 
             vm.donutOptions = {
@@ -2431,15 +2432,15 @@
                 id: 'area',
                 name: 'Area'
             }, {
-                    id: 'line',
-                    name: 'Line'
-                }, {
-                    id: 'bar',
-                    name: 'Bar'
-                }, {
-                    id: 'scatterplot',
-                    name: 'Scatterplot'
-                }];
+                id: 'line',
+                name: 'Line'
+            }, {
+                id: 'bar',
+                name: 'Bar'
+            }, {
+                id: 'scatterplot',
+                name: 'Scatterplot'
+            }];
 
             vm.palettes = [
                 'spectrum14',
@@ -2471,7 +2472,7 @@
                         data: []
                     };
                     for (var j = 0; j < 10; j++) {
-                        series.data.push({ x: j, y: Math.random() * 20 });
+                        series.data.push({x: j, y: Math.random() * 20});
                     }
                     seriesList.push(series);
                     vm['series' + id][i] = series;
@@ -2689,22 +2690,22 @@
 
 
         var messageCount = 0;
-        $rootScope.dataset = [{ data: [], yaxis: 1, label: 'Users', color: "#1ba3cd" }];
+        $rootScope.dataset = [{data: [], yaxis: 1, label: 'Users', color: "#1ba3cd"}];
 
-        $rootScope.reconnectSocket = function(){
+        $rootScope.reconnectSocket = function () {
             $rootScope.dataStream = $websocket('ws://localhost:8080/');
         }
         //$rootScope.dataStream = $websocket('wss://sportimosocketinstance-56448.onmodulus.net/');
         $rootScope.dataStream = $websocket('ws://localhost:8080/');
 
         $rootScope.socketConnection = false;
-        $rootScope.dataStream.onOpen(function(){
+        $rootScope.dataStream.onOpen(function () {
             $rootScope.socketConnection = true;
         });
-        $rootScope.dataStream.onClose(function(){
+        $rootScope.dataStream.onClose(function () {
             $rootScope.socketConnection = false;
         });
-        $rootScope.dataStream.onError(function(){
+        $rootScope.dataStream.onError(function () {
             $rootScope.socketConnection = false;
         });
 
@@ -2784,15 +2785,19 @@
         // keep user logged in after page refresh
         $rootScope.globals = $cookieStore.get('globals') || {};
 
+
         if ($rootScope.globals.currentUser) {
             $rootScope.user = $rootScope.globals.currentUser;
             //$http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata; // jshint ignore:line
         }
 
+        if ($rootScope.$storage.currentUser)
+            $rootScope.user = $rootScope.$storage.currentUser;
+
         $rootScope.$on('$locationChangeStart', function (event, next, current) {
             // redirect to login page if not logged in and trying to access a restricted page
             //var restrictedPage = $.inArray($location.path(), ['/login', '/register']) === -1;
-            var loggedIn = $rootScope.globals.currentUser;
+            var loggedIn = $rootScope.globals.currentUser || $rootScope.$storage.currentUser;
             if (!loggedIn) {
                 $location.path('/page/login');
             }
@@ -2816,7 +2821,7 @@
         });
 
 
-    SportimoPollsController.$inject = ['$scope', 'Restangular', 'toaster', '$state', ];
+    SportimoPollsController.$inject = ['$scope', 'Restangular', 'toaster', '$state',];
     function SportimoPollsController($scope, Restangular, toaster, $state) {
 
         'use strict';
@@ -2849,7 +2854,7 @@
         Restangular.setBaseUrl('http://sportimo_api.mod.bz/api/');
         //Restangular.setBaseUrl('http://127.0.0.1:8080/api/');
 
-        Restangular.setRestangularFields({ id: "_id" });
+        Restangular.setRestangularFields({id: "_id"});
         //Restangular.setDefaultRequestParams({ apiKey: '4f847ad3e4b08a2eed5f3b54' })
 
 
@@ -2887,13 +2892,13 @@
 
 
             Items.post(newquest).then(function (poll) {
-                $scope.allItems.push(newquest);
-                $scope.activeItem = null;
-                $scope.composeItem = false;
-                toaster.pop("success", "Success", "Successfuly added a new poll");
+                    $scope.allItems.push(newquest);
+                    $scope.activeItem = null;
+                    $scope.composeItem = false;
+                    toaster.pop("success", "Success", "Successfuly added a new poll");
 
-            }
-                );
+                }
+            );
         }
 
         $scope.delete = function (item) {
@@ -2909,7 +2914,7 @@
                 // if (index > -1) $scope.Users.splice(index, 1);
                 toaster.pop("success", "Task Completed", "Poll deleted succsesfuly");
                 $scope.activeItem = null;
-                $state.go($state.current, {}, { reload: true });
+                $state.go($state.current, {}, {reload: true});
 
                 //    var message = JSON.stringify({screen:"users",method:"update"});
                 //   ws.send(message);
@@ -2952,7 +2957,7 @@
         Restangular.setBaseUrl('http://sportimo_api.mod.bz/api/');
         //Restangular.setBaseUrl('http://127.0.0.1:4242/api/');
         //
-        Restangular.setRestangularFields({ id: "_id" });
+        Restangular.setRestangularFields({id: "_id"});
         //Restangular.setDefaultRequestParams({ apiKey: '4f847ad3e4b08a2eed5f3b54' })
 
 
@@ -2997,13 +3002,13 @@
             console.log(newquest);
 
             Items.post(newquest).then(function (poll) {
-                $scope.allItems.push(newquest);
-                $scope.activeItem = null;
-                $scope.composeItem = false;
-                toaster.pop("success", "Success", "Successfuly added a new item");
+                    $scope.allItems.push(newquest);
+                    $scope.activeItem = null;
+                    $scope.composeItem = false;
+                    toaster.pop("success", "Success", "Successfuly added a new item");
 
-            }
-                );
+                }
+            );
         }
 
         $scope.delete = function (item) {
@@ -3018,7 +3023,7 @@
                 // if (index > -1) $scope.Users.splice(index, 1);
                 toaster.pop("success", "Task Completed", "Poll deleted succsesfuly");
                 $scope.activeItem = null;
-                $state.go($state.current, {}, { reload: true });
+                $state.go($state.current, {}, {reload: true});
 
                 //    var message = JSON.stringify({screen:"users",method:"update"});
                 //   ws.send(message);
@@ -3177,7 +3182,7 @@
 
         function GetById(id) {
             var deferred = $q.defer();
-            var filtered = $filter('filter')(getUsers(), { id: id });
+            var filtered = $filter('filter')(getUsers(), {id: id});
             var user = filtered.length ? filtered[0] : null;
             deferred.resolve(user);
             return deferred.promise;
@@ -3186,7 +3191,7 @@
         function GetByUsername(username) {
 
             var deferred = $q.defer();
-            var filtered = $filter('filter')(getUsers(), { username: username });
+            var filtered = $filter('filter')(getUsers(), {username: username});
             var user = filtered.length ? filtered[0] : null;
             deferred.resolve(user);
             return deferred.promise;
@@ -3209,14 +3214,14 @@
                             var users = getUsers();
 
                             // assign id
-                            var lastUser = users[users.length - 1] || { id: 0 };
+                            var lastUser = users[users.length - 1] || {id: 0};
                             user.id = lastUser.id + 1;
 
                             // save to local storage
                             users.push(user);
                             setUsers(users);
 
-                            deferred.resolve({ success: true });
+                            deferred.resolve({success: true});
                         }
                     });
             }, 1000);
@@ -3326,9 +3331,9 @@
                                 job: user.job,
                                 picture: user.picture
                             }
-                            response = { success: true };
+                            response = {success: true};
                         } else {
-                            response = { success: false, message: 'Username or password is incorrect' };
+                            response = {success: false, message: 'Username or password is incorrect'};
                         }
                         callback(response, user.name, user.job, user.picture);
                     });
@@ -3356,8 +3361,19 @@
                 }
             };
 
+            $rootScope.$storage.currentUser = {
+
+                username: username,
+                authdata: authdata,
+                name: name,
+                job: job,
+                picture: picture
+
+            };
+
             //$http.defaults.headers.common['Authorization'] = 'Basic ' + authdata; // jshint ignore:line
             $cookieStore.put('globals', $rootScope.globals);
+
         }
 
         function ClearCredentials() {
@@ -3395,10 +3411,10 @@
                 }
 
                 output = output +
-                this.keyStr.charAt(enc1) +
-                this.keyStr.charAt(enc2) +
-                this.keyStr.charAt(enc3) +
-                this.keyStr.charAt(enc4);
+                    this.keyStr.charAt(enc1) +
+                    this.keyStr.charAt(enc2) +
+                    this.keyStr.charAt(enc3) +
+                    this.keyStr.charAt(enc4);
                 chr1 = chr2 = chr3 = "";
                 enc1 = enc2 = enc3 = enc4 = "";
             } while (i < input.length);
@@ -3496,7 +3512,7 @@
 
         Restangular.setBaseUrl('http://sportimo_cardsserver.mod.bz/v1/notifications/');
         //Restangular.setBaseUrl('http://localhost:3030/v1/notifications/');
-        Restangular.setRestangularFields({ id: "_id" });
+        Restangular.setRestangularFields({id: "_id"});
 
 
         function loadItems() {
@@ -3612,8 +3628,8 @@
         $scope.selectedService = "";
         $scope.pushService = {};
         $scope.pushServices = [
-            { name: 'Production', id: "F18C2-2FBDB" },
-            { name: 'Development', id: "CDE00-B154C" }
+            {name: 'Production', id: "F18C2-2FBDB"},
+            {name: 'Development', id: "CDE00-B154C"}
         ];
 
         $scope.pushService.selected = $scope.pushServices[0];
@@ -3635,7 +3651,7 @@
 
         $scope.template = {};
         $scope.templates = [
-            { name: 'Blank', message: { "en": "_message_", "ru": "_message_" } },
+            {name: 'Blank', message: {"en": "_message_", "ru": "_message_"}},
             {
                 name: 'New question',
                 message: {
@@ -3647,8 +3663,8 @@
 
         $scope.templateData = {};
         $scope.templatesData = [
-            { name: 'Blank Key/Value', message: { "_key_": "_value_" } },
-            { name: 'Set Match Screen', message: { "screen": "match", "match_id": "_message_" } }
+            {name: 'Blank Key/Value', message: {"_key_": "_value_"}},
+            {name: 'Set Match Screen', message: {"screen": "match", "match_id": "_message_"}}
         ];
 
 
@@ -3666,7 +3682,7 @@
         $scope.counter = 0;
         $scope.someFunction = function (item, model) {
             $scope.counter++;
-            $scope.eventResult = { item: item, model: model };
+            $scope.eventResult = {item: item, model: model};
         };
 
         $scope.availableColors = ['Red', 'Green', 'Blue', 'Yellow', 'Magenta', 'Maroon', 'Umbra', 'Turquoise'];
@@ -3709,7 +3725,7 @@
         Restangular.setBaseUrl('http://sportimo_api.mod.bz/api/');
         //Restangular.setBaseUrl('http://127.0.0.1:4242/api/');
         //
-        Restangular.setRestangularFields({ id: "_id" });
+        Restangular.setRestangularFields({id: "_id"});
         //Restangular.setDefaultRequestParams({ apiKey: '4f847ad3e4b08a2eed5f3b54' })
 
 
@@ -3750,13 +3766,13 @@
 
 
             Items.post(newquest).then(function (poll) {
-                $scope.allItems.push(newquest);
-                $scope.activeItem = null;
-                $scope.composeItem = false;
-                toaster.pop("success", "Success", "Successfuly added a new item");
+                    $scope.allItems.push(newquest);
+                    $scope.activeItem = null;
+                    $scope.composeItem = false;
+                    toaster.pop("success", "Success", "Successfuly added a new item");
 
-            }
-                );
+                }
+            );
         }
 
         $scope.delete = function (item) {
@@ -3771,7 +3787,7 @@
                 // if (index > -1) $scope.Users.splice(index, 1);
                 toaster.pop("success", "Task Completed", "Poll deleted succsesfuly");
                 $scope.activeItem = null;
-                $state.go($state.current, {}, { reload: true });
+                $state.go($state.current, {}, {reload: true});
 
                 //    var message = JSON.stringify({screen:"users",method:"update"});
                 //   ws.send(message);
@@ -3842,14 +3858,14 @@
                 return items.slice().reverse();
             };
         })
-    //.filter('dateToISO', function() {
-    //    return function(input) {
-    //        if (input[0]) {
-    //            input[0].date = moment(new Date(input[0].date)).toISOString();
-    //        }
-    //        return input;
-    //    };
-    //});
+        //.filter('dateToISO', function() {
+        //    return function(input) {
+        //        if (input[0]) {
+        //            input[0].date = moment(new Date(input[0].date)).toISOString();
+        //        }
+        //        return input;
+        //    };
+        //});
     ;
 
     SportimoInterviewsController.$inject = ['$scope', 'Restangular', 'toaster', '$state'];
@@ -3866,7 +3882,7 @@
         Restangular.setBaseUrl('http://sportimo_api.mod.bz/api/');
         //Restangular.setBaseUrl('http://127.0.0.1:4242/api/');
         //
-        Restangular.setRestangularFields({ id: "_id" });
+        Restangular.setRestangularFields({id: "_id"});
         //Restangular.setDefaultRequestParams({ apiKey: '4f847ad3e4b08a2eed5f3b54' })
 
 
@@ -3912,13 +3928,13 @@
 
 
             Items.post(newquest).then(function (poll) {
-                $scope.allItems.push(newquest);
-                $scope.activeItem = null;
-                $scope.composeItem = false;
-                toaster.pop("success", "Success", "Successfuly added a new item");
+                    $scope.allItems.push(newquest);
+                    $scope.activeItem = null;
+                    $scope.composeItem = false;
+                    toaster.pop("success", "Success", "Successfuly added a new item");
 
-            }
-                );
+                }
+            );
         }
 
         $scope.delete = function (item) {
@@ -3933,7 +3949,7 @@
                 // if (index > -1) $scope.Users.splice(index, 1);
                 toaster.pop("success", "Task Completed", "Poll deleted succsesfuly");
                 $scope.activeItem = null;
-                $state.go($state.current, {}, { reload: true });
+                $state.go($state.current, {}, {reload: true});
 
                 //    var message = JSON.stringify({screen:"users",method:"update"});
                 //   ws.send(message);
@@ -4033,8 +4049,8 @@
         });
 
 
-    SportimoModerationSoccerController.$inject = ['$scope','ngDialog', 'Restangular', 'toaster', '$stateParams', '$http', '$rootScope', '$timeout'];
-    function SportimoModerationSoccerController($scope, ngDialog, Restangular, toaster, $stateParams, $http, $rootScope, $timeout) {
+    SportimoModerationSoccerController.$inject = ['$scope', 'ngDialog', 'Restangular', 'toaster', '$stateParams', '$http', '$rootScope', '$timeout', '$interval'];
+    function SportimoModerationSoccerController($scope, ngDialog, Restangular, toaster, $stateParams, $http, $rootScope, $timeout, $interval) {
         var vm = this;
 
 
@@ -4051,22 +4067,27 @@
                 console.log("Event is for this match");
                 if (evt.timeline_event) {
                     console.log("Adding Event");
-                    $scope.match.data.timeline[evt.state].push(evt);
+                    $scope.match.data.timeline[evt.state].events.push(evt);
                 }
 
                 if (evt.type == "removeEvent") {
-                    _.findWhere($scope.match.data.timeline[evt.data.event_segment], { id: evt.data.event_id, match_id: evt.match_id }).status = "removed";
+                    _.findWhere($scope.match.data.timeline[evt.data.event_segment].events, {
+                        id: evt.data.event_id,
+                        match_id: evt.match_id
+                    }).status = "removed";
                 }
 
-                $timeout(function () { $scope.loadMatchData(evt.match_id) }, 1500)
+                $timeout(function () {
+                    $scope.loadMatchData(evt.match_id)
+                }, 1500)
 
             }
         });
 
 
-        $scope.readable = function(obj){
+        $scope.readable = function (obj) {
 
-            return JSON.stringify(obj,null,4);
+            return JSON.stringify(obj, null, 4);
         }
 
         $scope.loadMatchData = function (id) {
@@ -4086,22 +4107,46 @@
         }
 
         $scope.players = [
-            { id: "565c4", team: "home_team", name: "marco" },
-            { id: "565c4a", team: "home_team", name: "polo" },
-            { id: "565c4af", team: "home_team", name: "christopher" },
-            { id: "565c4af6", team: "away_team", name: "colombo" },
-            { id: "565c4af6e", team: "away_team", name: "jekhis" },
-            { id: "565c4af6e4", team: "home_team", name: "marlon" },
-            { id: "565c4af6e4b", team: "home_team", name: "jones" },
-            { id: "565c4af6e4b0", team: "away_team", name: "indiana" },
-            { id: "565c4af6e4b0a", team: "home_team", name: "brando" },
-            { id: "565c4af6e4b0a3", team: "away_team", name: "han" },
-            { id: "565c4af6e4b0ba33", team: "home_team", name: "indiana" },
-            { id: "565c4af6e4b0a33dd", team: "home_team", name: "chackie" }
+            {id: "565c4", team: "home_team", name: "marco"},
+            {id: "565c4a", team: "home_team", name: "polo"},
+            {id: "565c4af", team: "home_team", name: "christopher"},
+            {id: "565c4af6", team: "away_team", name: "colombo"},
+            {id: "565c4af6e", team: "away_team", name: "jekhis"},
+            {id: "565c4af6e4", team: "home_team", name: "marlon"},
+            {id: "565c4af6e4b", team: "home_team", name: "jones"},
+            {id: "565c4af6e4b0", team: "away_team", name: "indiana"},
+            {id: "565c4af6e4b0a", team: "home_team", name: "brando"},
+            {id: "565c4af6e4b0a3", team: "away_team", name: "han"},
+            {id: "565c4af6e4b0ba33", team: "home_team", name: "indiana"},
+            {id: "565c4af6e4b0a33dd", team: "home_team", name: "chackie"}
         ]
 
 
         $scope.checkSelection = function ($item, $model) {
+
+        }
+
+        $scope.advanceSegment = function () {
+                console.log($scope.match);
+            var EventData = {
+                type: "AdvanceSegment",
+                match_id:  $scope.match.id,
+            }
+
+            EventData.created = moment().utc();
+
+
+            $http({
+                method: 'POST',
+                url: 'http://localhost:3030/v1/moderation/' + $stateParams.id + '/event',
+                data: EventData
+            }).then(function successCallback(response) {
+                $scope.match = AddHooks(response.data);
+            }, function errorCallback(response) {
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+            });
+
 
         }
 
@@ -4172,14 +4217,14 @@
             });
         }
 
-        $scope.GetStat = function(statId, statkey){
-            return _.result(_.findWhere($scope.match.data.stats,{id: statId}), statkey);
+        $scope.GetStat = function (statId, statkey) {
+            return _.result(_.findWhere($scope.match.data.stats, {id: statId}), statkey);
         }
 
         $scope.createEvent = function (eventType, stats) {
             //console.log($scope.match);
             $scope.eventDrawer = 1;
-            var event_id = $scope.GetStat($scope.match.id, 'events_sent' ) || 0;
+            var event_id = $scope.GetStat($scope.match.id, 'events_sent') || 0;
             $scope.playerSelected = "";
             $scope.complete = false;
             $scope.event = {
@@ -4208,7 +4253,7 @@
 
         function validateEvent(event) {
 
-            if (event.timeline_event && event.state == 0) return false;
+            if (event.timeline_event && $scope.match.sport.segments[$scope.match.data.state].timed) return false;
 
             return true;
         }
@@ -4253,7 +4298,7 @@
         //{"id":43,"data":"{"event":"message","data":{"message":".","match_id":421}}"}
         $scope.complete = false;
         $scope.humanizedEvent = "";
-        
+
         $scope.$watch('event', function (now, then) {
 
             $scope.humanizedEvent = "";
@@ -4266,7 +4311,7 @@
 
             switch (now.type) {
                 case "substitution":
-                
+
                     if (now.team && now.players.length == 2) {
                         $scope.complete = true;
                         $scope.humanizedEvent = "<strong>" + now.data.time + "'</strong> " + teamlogo + $scope.capitalize(now.type) + ": <strong>Out:</strong> " + $scope.capitalize(now.players[0].name) + " <strong>In:</strong> " + $scope.capitalize(now.players[1].name);
@@ -4313,24 +4358,50 @@
         }
 
         'use strict';
+        var match_timer;
 
         function AddHooks(match) {
             //console.log(match);
+            if (angular.isDefined(match_timer)) {
+                $interval.cancel(match_timer);
+                match_timer = undefined;
+            }
+
             match.data.state = match.data.state || 0;
 
             match.GetCurrentSegment = function () {
                 // We assign the name of the segment to the currentSegment var
-                return match.sport.segments[match.data.state].name;
+                if (match.sport.segments[match.data.state])
+                    return match.sport.segments[match.data.state].name;
+                else
+                    return "Unknown State";
+            }
+
+            // Adding Timer hooks
+            if (match.sport.segments[match.data.state]) {
+                if (match.sport.segments[match.data.state].timed) {
+
+                    if (!match.sport.time_dependant) {                                   //  Is Time controlled?
+                        match_timer = $interval(function () {
+                            var now = moment().utc().format();
+                            var then = match.data.timeline[match.data.state].start;
+                            var ms = moment(now, "DD/MM/YYYY HH:mm:ss").diff(moment(then, "DD/MM/YYYY HH:mm:ss"));
+                            var d = moment.duration(ms);
+                            match.Match_timer = d.format("mm:ss", {trim: false});
+
+                            match.data.time = (match.sport.segments[match.data.state].initialTime || 0) + parseInt(d.add(1, "minute").format("m")) + "";
+                        }, 1000);
+                    }
+                }
             }
             return match;
         };
 
 
-
         $http({
             method: 'POST',
             url: 'http://localhost:3030/v1/live/match',
-            data: { id: $stateParams.id }
+            data: {id: $stateParams.id}
         }).then(function successCallback(response) {
             console.log(response);
             $scope.match = AddHooks(response.data);
@@ -4372,7 +4443,7 @@
 
         $scope.ModerateMatch = function (matchid, sport) {
 
-            $state.go("app.match-moderation-" + (sport || 'soccer'), { id: (matchid || "565c4af6e4b030fba33dd459") });
+            $state.go("app.match-moderation-" + (sport || 'soccer'), {id: (matchid || "565c4af6e4b030fba33dd459")});
 
         };
 
@@ -4753,21 +4824,21 @@
             };
 
             vm.markersData = [
-                { latLng: [41.90, 12.45], name: 'Vatican City' },
-                { latLng: [43.73, 7.41], name: 'Monaco' },
-                { latLng: [-0.52, 166.93], name: 'Nauru' },
-                { latLng: [-8.51, 179.21], name: 'Tuvalu' },
-                { latLng: [7.11, 171.06], name: 'Marshall Islands' },
-                { latLng: [17.3, -62.73], name: 'Saint Kitts and Nevis' },
-                { latLng: [3.2, 73.22], name: 'Maldives' },
-                { latLng: [35.88, 14.5], name: 'Malta' },
-                { latLng: [41.0, -71.06], name: 'New England' },
-                { latLng: [12.05, -61.75], name: 'Grenada' },
-                { latLng: [13.16, -59.55], name: 'Barbados' },
-                { latLng: [17.11, -61.85], name: 'Antigua and Barbuda' },
-                { latLng: [-4.61, 55.45], name: 'Seychelles' },
-                { latLng: [7.35, 134.46], name: 'Palau' },
-                { latLng: [42.5, 1.51], name: 'Andorra' }
+                {latLng: [41.90, 12.45], name: 'Vatican City'},
+                {latLng: [43.73, 7.41], name: 'Monaco'},
+                {latLng: [-0.52, 166.93], name: 'Nauru'},
+                {latLng: [-8.51, 179.21], name: 'Tuvalu'},
+                {latLng: [7.11, 171.06], name: 'Marshall Islands'},
+                {latLng: [17.3, -62.73], name: 'Saint Kitts and Nevis'},
+                {latLng: [3.2, 73.22], name: 'Maldives'},
+                {latLng: [35.88, 14.5], name: 'Malta'},
+                {latLng: [41.0, -71.06], name: 'New England'},
+                {latLng: [12.05, -61.75], name: 'Grenada'},
+                {latLng: [13.16, -59.55], name: 'Barbados'},
+                {latLng: [17.11, -61.85], name: 'Antigua and Barbuda'},
+                {latLng: [-4.61, 55.45], name: 'Seychelles'},
+                {latLng: [7.35, 134.46], name: 'Palau'},
+                {latLng: [42.5, 1.51], name: 'Andorra'}
             ];
         }
     }
@@ -4913,7 +4984,7 @@
             };
 
             $scope.open = function () {
-                ngDialog.open({ template: 'firstDialogId', controller: 'InsideCtrl', data: { foo: 'some data' } });
+                ngDialog.open({template: 'firstDialogId', controller: 'InsideCtrl', data: {foo: 'some data'}});
             };
 
             $scope.openDefault = function () {
@@ -5203,24 +5274,24 @@
             vm.basepath = RouteHelpers.basepath;
 
             vm.photos = [
-                { id: 'photo-1', name: 'Awesome photo', src: 'http://lorempixel.com/400/300/abstract' },
-                { id: 'photo-2', name: 'Great photo', src: 'http://lorempixel.com/450/400/city' },
-                { id: 'photo-3', name: 'Strange photo', src: 'http://lorempixel.com/400/300/people' },
-                { id: 'photo-4', name: 'A photo?', src: 'http://lorempixel.com/400/300/transport' },
-                { id: 'photo-5', name: 'What a photo', src: 'http://lorempixel.com/450/300/fashion' },
-                { id: 'photo-6', name: 'Silly photo', src: 'http://lorempixel.com/400/300/technics' },
-                { id: 'photo-7', name: 'Weird photo', src: 'http://lorempixel.com/410/350/sports' },
-                { id: 'photo-8', name: 'Modern photo', src: 'http://lorempixel.com/400/300/nightlife' },
-                { id: 'photo-9', name: 'Classical photo', src: 'http://lorempixel.com/400/300/nature' },
-                { id: 'photo-10', name: 'Dynamic photo', src: 'http://lorempixel.com/420/300/abstract' },
-                { id: 'photo-11', name: 'Neat photo', src: 'http://lorempixel.com/400/300/sports' },
-                { id: 'photo-12', name: 'Bumpy photo', src: 'http://lorempixel.com/400/300/nightlife' },
-                { id: 'photo-13', name: 'Brilliant photo', src: 'http://lorempixel.com/400/380/nature' },
-                { id: 'photo-14', name: 'Excellent photo', src: 'http://lorempixel.com/480/300/technics' },
-                { id: 'photo-15', name: 'Gorgeous photo', src: 'http://lorempixel.com/400/300/sports' },
-                { id: 'photo-16', name: 'Lovely photo', src: 'http://lorempixel.com/400/300/nightlife' },
-                { id: 'photo-17', name: 'A "wow" photo', src: 'http://lorempixel.com/400/300/nature' },
-                { id: 'photo-18', name: 'Bodacious photo', src: 'http://lorempixel.com/400/300/abstract' }
+                {id: 'photo-1', name: 'Awesome photo', src: 'http://lorempixel.com/400/300/abstract'},
+                {id: 'photo-2', name: 'Great photo', src: 'http://lorempixel.com/450/400/city'},
+                {id: 'photo-3', name: 'Strange photo', src: 'http://lorempixel.com/400/300/people'},
+                {id: 'photo-4', name: 'A photo?', src: 'http://lorempixel.com/400/300/transport'},
+                {id: 'photo-5', name: 'What a photo', src: 'http://lorempixel.com/450/300/fashion'},
+                {id: 'photo-6', name: 'Silly photo', src: 'http://lorempixel.com/400/300/technics'},
+                {id: 'photo-7', name: 'Weird photo', src: 'http://lorempixel.com/410/350/sports'},
+                {id: 'photo-8', name: 'Modern photo', src: 'http://lorempixel.com/400/300/nightlife'},
+                {id: 'photo-9', name: 'Classical photo', src: 'http://lorempixel.com/400/300/nature'},
+                {id: 'photo-10', name: 'Dynamic photo', src: 'http://lorempixel.com/420/300/abstract'},
+                {id: 'photo-11', name: 'Neat photo', src: 'http://lorempixel.com/400/300/sports'},
+                {id: 'photo-12', name: 'Bumpy photo', src: 'http://lorempixel.com/400/300/nightlife'},
+                {id: 'photo-13', name: 'Brilliant photo', src: 'http://lorempixel.com/400/380/nature'},
+                {id: 'photo-14', name: 'Excellent photo', src: 'http://lorempixel.com/480/300/technics'},
+                {id: 'photo-15', name: 'Gorgeous photo', src: 'http://lorempixel.com/400/300/sports'},
+                {id: 'photo-16', name: 'Lovely photo', src: 'http://lorempixel.com/400/300/nightlife'},
+                {id: 'photo-17', name: 'A "wow" photo', src: 'http://lorempixel.com/400/300/nature'},
+                {id: 'photo-18', name: 'Bodacious photo', src: 'http://lorempixel.com/400/300/abstract'}
             ];
         }
     }
@@ -5471,56 +5542,56 @@
         function activate() {
             vm.items = [
                 {
-                    item: { text: 'a' },
+                    item: {text: 'a'},
                     children: []
                 },
                 {
-                    item: { text: 'b' },
+                    item: {text: 'b'},
                     children: [
                         {
-                            item: { text: 'c' },
+                            item: {text: 'c'},
                             children: []
                         },
                         {
-                            item: { text: 'd' },
+                            item: {text: 'd'},
                             children: []
                         }
                     ]
                 },
                 {
-                    item: { text: 'e' },
+                    item: {text: 'e'},
                     children: []
                 },
                 {
-                    item: { text: 'f' },
+                    item: {text: 'f'},
                     children: []
                 }
             ];
 
             vm.items2 = [
                 {
-                    item: { text: '1' },
+                    item: {text: '1'},
                     children: []
                 },
                 {
-                    item: { text: '2' },
+                    item: {text: '2'},
                     children: [
                         {
-                            item: { text: '3' },
+                            item: {text: '3'},
                             children: []
                         },
                         {
-                            item: { text: '4' },
+                            item: {text: '4'},
                             children: []
                         }
                     ]
                 },
                 {
-                    item: { text: '5' },
+                    item: {text: '5'},
                     children: []
                 },
                 {
-                    item: { text: '6' },
+                    item: {text: '6'},
                     children: []
                 }
             ];
@@ -5580,14 +5651,14 @@
         function activate() {
             // Single List
             $scope.data1 = [
-                { id: 1, name: 'Donald Hoffman' },
-                { id: 2, name: 'Wallace Barrett' },
-                { id: 3, name: 'Marsha Hicks' },
-                { id: 4, name: 'Roland Brown' }
+                {id: 1, name: 'Donald Hoffman'},
+                {id: 2, name: 'Wallace Barrett'},
+                {id: 3, name: 'Marsha Hicks'},
+                {id: 4, name: 'Roland Brown'}
             ];
 
             $scope.add = function () {
-                $scope.data1.push({ id: $scope.data1.length + 1, name: 'Earl Knight' });
+                $scope.data1.push({id: $scope.data1.length + 1, name: 'Earl Knight'});
             };
 
             $scope.sortableCallback = function (sourceModel, destModel, start, end) {
@@ -5737,10 +5808,10 @@
             // so adding position:static for this case makes the browser
             // to ignore the property
             var section = angular.element('.wrapper > section');
-            section.css({ 'position': 'static' });
+            section.css({'position': 'static'});
             // finally restore on destroy and reuse the value declared in stylesheet
             $scope.$on('$destroy', function () {
-                section.css({ 'position': '' });
+                section.css({'position': ''});
             });
         }
     }
@@ -5773,14 +5844,14 @@
             vm.availableCategories = ['JAVASCRIPT', 'WEB', 'BOOTSTRAP', 'SERVER', 'HTML5', 'CSS'];
 
             vm.reviewers = [
-                { name: 'Adam', email: 'adam@email.com', age: 10 },
-                { name: 'Amalie', email: 'amalie@email.com', age: 12 },
-                { name: 'Wladimir', email: 'wladimir@email.com', age: 30 },
-                { name: 'Samantha', email: 'samantha@email.com', age: 31 },
-                { name: 'Estefanía', email: 'estefanía@email.com', age: 16 },
-                { name: 'Natasha', email: 'natasha@email.com', age: 54 },
-                { name: 'Nicole', email: 'nicole@email.com', age: 43 },
-                { name: 'Adrian', email: 'adrian@email.com', age: 21 }
+                {name: 'Adam', email: 'adam@email.com', age: 10},
+                {name: 'Amalie', email: 'amalie@email.com', age: 12},
+                {name: 'Wladimir', email: 'wladimir@email.com', age: 30},
+                {name: 'Samantha', email: 'samantha@email.com', age: 31},
+                {name: 'Estefanía', email: 'estefanía@email.com', age: 16},
+                {name: 'Natasha', email: 'natasha@email.com', age: 54},
+                {name: 'Nicole', email: 'nicole@email.com', age: 43},
+                {name: 'Adrian', email: 'adrian@email.com', age: 21}
             ];
 
 
@@ -5900,7 +5971,7 @@
             drop: function (date, allDay) { // this function is called when something is dropped
 
                 var $this = $(this),
-                    // retrieve the dropped element's stored Event Object
+                // retrieve the dropped element's stored Event Object
                     originalEventObject = $this.data('calendarEventObject');
 
                 // if something went wrong, abort
@@ -6153,8 +6224,8 @@
             vm.loadTheme(vm.editorOpts.theme);
             // Add some initial text
             vm.code = '// Open a file from the left menu \n' +
-            '// It will be requested to the server and loaded into the editor\n' +
-            '// Also try adding a New File from the toolbar\n';
+                '// It will be requested to the server and loaded into the editor\n' +
+                '// Also try adding a New File from the toolbar\n';
 
 
             // Tree
@@ -6247,11 +6318,11 @@
                     complete: true
                 },
                 {
-                    todo: { title: 'Call Sonya. Talk about the new project.', description: '' },
+                    todo: {title: 'Call Sonya. Talk about the new project.', description: ''},
                     complete: false
                 },
                 {
-                    todo: { title: 'Find a new place for vacations', description: '' },
+                    todo: {title: 'Find a new place for vacations', description: ''},
                     complete: false
                 }
             ];
@@ -6269,7 +6340,7 @@
                     vm.editingTodo = false;
                 }
                 else {
-                    vm.items.push({ todo: angular.copy(vm.todo), complete: false });
+                    vm.items.push({todo: angular.copy(vm.todo), complete: false});
                     vm.todo.title = '';
                     vm.todo.description = '';
                 }
@@ -6710,8 +6781,8 @@
             editableThemes.bs3.buttonsClass = 'btn-sm';
             editableThemes.bs3.submitTpl = '<button type="submit" class="btn btn-success"><span class="fa fa-check"></span></button>';
             editableThemes.bs3.cancelTpl = '<button type="button" class="btn btn-default" ng-click="$form.$cancel()">' +
-            '<span class="fa fa-times text-muted"></span>' +
-            '</button>';
+                '<span class="fa fa-times text-muted"></span>' +
+                '</button>';
 
             vm.user = {
                 email: 'email@example.com',
@@ -6737,14 +6808,14 @@
             };
 
             vm.statuses = [
-                { value: 1, text: 'status1' },
-                { value: 2, text: 'status2' },
-                { value: 3, text: 'status3' },
-                { value: 4, text: 'status4' }
+                {value: 1, text: 'status1'},
+                {value: 2, text: 'status2'},
+                {value: 3, text: 'status3'},
+                {value: 4, text: 'status4'}
             ];
 
             vm.showStatus = function () {
-                var selected = $filter('filter')(vm.statuses, { value: vm.user2.status });
+                var selected = $filter('filter')(vm.statuses, {value: vm.user2.status});
                 return (vm.user2.status && selected.length) ? selected[0].text : 'Not set';
             };
 
@@ -6766,7 +6837,7 @@
 
             $scope.$watch('user3.id', function (newVal, oldVal) {
                 if (newVal !== oldVal) {
-                    var selected = $filter('filter')(vm.groups, { id: vm.user3.id });
+                    var selected = $filter('filter')(vm.groups, {id: vm.user3.id});
                     vm.user3.text = selected.length ? selected[0].text : null;
                 }
             });
@@ -6802,7 +6873,7 @@
 
         function activate() {
             // the following allow to request array $resource instead of object (default)
-            var actions = { 'get': { method: 'GET', isArray: true } };
+            var actions = {'get': {method: 'GET', isArray: true}};
 
             // Tags inputs
             // ----------------------------------- 
@@ -6829,7 +6900,7 @@
             // Chosen data
             // ----------------------------------- 
 
-            var States = $resource('server/chosen-states.json', {}, { 'query': { method: 'GET', isArray: true } });
+            var States = $resource('server/chosen-states.json', {}, {'query': {method: 'GET', isArray: true}});
 
             vm.states = States.query();
 
@@ -7010,272 +7081,272 @@
 
             vm.person = {};
             vm.people = [
-                { name: 'Adam', email: 'adam@email.com', age: 10 },
-                { name: 'Amalie', email: 'amalie@email.com', age: 12 },
-                { name: 'Wladimir', email: 'wladimir@email.com', age: 30 },
-                { name: 'Samantha', email: 'samantha@email.com', age: 31 },
-                { name: 'Estefanía', email: 'estefanía@email.com', age: 16 },
-                { name: 'Natasha', email: 'natasha@email.com', age: 54 },
-                { name: 'Nicole', email: 'nicole@email.com', age: 43 },
-                { name: 'Adrian', email: 'adrian@email.com', age: 21 }
+                {name: 'Adam', email: 'adam@email.com', age: 10},
+                {name: 'Amalie', email: 'amalie@email.com', age: 12},
+                {name: 'Wladimir', email: 'wladimir@email.com', age: 30},
+                {name: 'Samantha', email: 'samantha@email.com', age: 31},
+                {name: 'Estefanía', email: 'estefanía@email.com', age: 16},
+                {name: 'Natasha', email: 'natasha@email.com', age: 54},
+                {name: 'Nicole', email: 'nicole@email.com', age: 43},
+                {name: 'Adrian', email: 'adrian@email.com', age: 21}
             ];
 
             vm.address = {};
             vm.refreshAddresses = function (address) {
-                var params = { address: address, sensor: false };
+                var params = {address: address, sensor: false};
                 return $http.get(
                     '//maps.googleapis.com/maps/api/geocode/json',
-                    { params: params }
-                    ).then(function (response) {
+                    {params: params}
+                ).then(function (response) {
                         vm.addresses = response.data.results;
                     });
             };
 
             vm.country = {};
             vm.countries = [ // Taken from https://gist.github.com/unceus/6501985
-                { name: 'Afghanistan', code: 'AF' },
-                { name: 'Åland Islands', code: 'AX' },
-                { name: 'Albania', code: 'AL' },
-                { name: 'Algeria', code: 'DZ' },
-                { name: 'American Samoa', code: 'AS' },
-                { name: 'Andorra', code: 'AD' },
-                { name: 'Angola', code: 'AO' },
-                { name: 'Anguilla', code: 'AI' },
-                { name: 'Antarctica', code: 'AQ' },
-                { name: 'Antigua and Barbuda', code: 'AG' },
-                { name: 'Argentina', code: 'AR' },
-                { name: 'Armenia', code: 'AM' },
-                { name: 'Aruba', code: 'AW' },
-                { name: 'Australia', code: 'AU' },
-                { name: 'Austria', code: 'AT' },
-                { name: 'Azerbaijan', code: 'AZ' },
-                { name: 'Bahamas', code: 'BS' },
-                { name: 'Bahrain', code: 'BH' },
-                { name: 'Bangladesh', code: 'BD' },
-                { name: 'Barbados', code: 'BB' },
-                { name: 'Belarus', code: 'BY' },
-                { name: 'Belgium', code: 'BE' },
-                { name: 'Belize', code: 'BZ' },
-                { name: 'Benin', code: 'BJ' },
-                { name: 'Bermuda', code: 'BM' },
-                { name: 'Bhutan', code: 'BT' },
-                { name: 'Bolivia', code: 'BO' },
-                { name: 'Bosnia and Herzegovina', code: 'BA' },
-                { name: 'Botswana', code: 'BW' },
-                { name: 'Bouvet Island', code: 'BV' },
-                { name: 'Brazil', code: 'BR' },
-                { name: 'British Indian Ocean Territory', code: 'IO' },
-                { name: 'Brunei Darussalam', code: 'BN' },
-                { name: 'Bulgaria', code: 'BG' },
-                { name: 'Burkina Faso', code: 'BF' },
-                { name: 'Burundi', code: 'BI' },
-                { name: 'Cambodia', code: 'KH' },
-                { name: 'Cameroon', code: 'CM' },
-                { name: 'Canada', code: 'CA' },
-                { name: 'Cape Verde', code: 'CV' },
-                { name: 'Cayman Islands', code: 'KY' },
-                { name: 'Central African Republic', code: 'CF' },
-                { name: 'Chad', code: 'TD' },
-                { name: 'Chile', code: 'CL' },
-                { name: 'China', code: 'CN' },
-                { name: 'Christmas Island', code: 'CX' },
-                { name: 'Cocos (Keeling) Islands', code: 'CC' },
-                { name: 'Colombia', code: 'CO' },
-                { name: 'Comoros', code: 'KM' },
-                { name: 'Congo', code: 'CG' },
-                { name: 'Congo, The Democratic Republic of the', code: 'CD' },
-                { name: 'Cook Islands', code: 'CK' },
-                { name: 'Costa Rica', code: 'CR' },
-                { name: 'Cote D\'Ivoire', code: 'CI' },
-                { name: 'Croatia', code: 'HR' },
-                { name: 'Cuba', code: 'CU' },
-                { name: 'Cyprus', code: 'CY' },
-                { name: 'Czech Republic', code: 'CZ' },
-                { name: 'Denmark', code: 'DK' },
-                { name: 'Djibouti', code: 'DJ' },
-                { name: 'Dominica', code: 'DM' },
-                { name: 'Dominican Republic', code: 'DO' },
-                { name: 'Ecuador', code: 'EC' },
-                { name: 'Egypt', code: 'EG' },
-                { name: 'El Salvador', code: 'SV' },
-                { name: 'Equatorial Guinea', code: 'GQ' },
-                { name: 'Eritrea', code: 'ER' },
-                { name: 'Estonia', code: 'EE' },
-                { name: 'Ethiopia', code: 'ET' },
-                { name: 'Falkland Islands (Malvinas)', code: 'FK' },
-                { name: 'Faroe Islands', code: 'FO' },
-                { name: 'Fiji', code: 'FJ' },
-                { name: 'Finland', code: 'FI' },
-                { name: 'France', code: 'FR' },
-                { name: 'French Guiana', code: 'GF' },
-                { name: 'French Polynesia', code: 'PF' },
-                { name: 'French Southern Territories', code: 'TF' },
-                { name: 'Gabon', code: 'GA' },
-                { name: 'Gambia', code: 'GM' },
-                { name: 'Georgia', code: 'GE' },
-                { name: 'Germany', code: 'DE' },
-                { name: 'Ghana', code: 'GH' },
-                { name: 'Gibraltar', code: 'GI' },
-                { name: 'Greece', code: 'GR' },
-                { name: 'Greenland', code: 'GL' },
-                { name: 'Grenada', code: 'GD' },
-                { name: 'Guadeloupe', code: 'GP' },
-                { name: 'Guam', code: 'GU' },
-                { name: 'Guatemala', code: 'GT' },
-                { name: 'Guernsey', code: 'GG' },
-                { name: 'Guinea', code: 'GN' },
-                { name: 'Guinea-Bissau', code: 'GW' },
-                { name: 'Guyana', code: 'GY' },
-                { name: 'Haiti', code: 'HT' },
-                { name: 'Heard Island and Mcdonald Islands', code: 'HM' },
-                { name: 'Holy See (Vatican City State)', code: 'VA' },
-                { name: 'Honduras', code: 'HN' },
-                { name: 'Hong Kong', code: 'HK' },
-                { name: 'Hungary', code: 'HU' },
-                { name: 'Iceland', code: 'IS' },
-                { name: 'India', code: 'IN' },
-                { name: 'Indonesia', code: 'ID' },
-                { name: 'Iran, Islamic Republic Of', code: 'IR' },
-                { name: 'Iraq', code: 'IQ' },
-                { name: 'Ireland', code: 'IE' },
-                { name: 'Isle of Man', code: 'IM' },
-                { name: 'Israel', code: 'IL' },
-                { name: 'Italy', code: 'IT' },
-                { name: 'Jamaica', code: 'JM' },
-                { name: 'Japan', code: 'JP' },
-                { name: 'Jersey', code: 'JE' },
-                { name: 'Jordan', code: 'JO' },
-                { name: 'Kazakhstan', code: 'KZ' },
-                { name: 'Kenya', code: 'KE' },
-                { name: 'Kiribati', code: 'KI' },
-                { name: 'Korea, Democratic People\'s Republic of', code: 'KP' },
-                { name: 'Korea, Republic of', code: 'KR' },
-                { name: 'Kuwait', code: 'KW' },
-                { name: 'Kyrgyzstan', code: 'KG' },
-                { name: 'Lao People\'s Democratic Republic', code: 'LA' },
-                { name: 'Latvia', code: 'LV' },
-                { name: 'Lebanon', code: 'LB' },
-                { name: 'Lesotho', code: 'LS' },
-                { name: 'Liberia', code: 'LR' },
-                { name: 'Libyan Arab Jamahiriya', code: 'LY' },
-                { name: 'Liechtenstein', code: 'LI' },
-                { name: 'Lithuania', code: 'LT' },
-                { name: 'Luxembourg', code: 'LU' },
-                { name: 'Macao', code: 'MO' },
-                { name: 'Macedonia, The Former Yugoslav Republic of', code: 'MK' },
-                { name: 'Madagascar', code: 'MG' },
-                { name: 'Malawi', code: 'MW' },
-                { name: 'Malaysia', code: 'MY' },
-                { name: 'Maldives', code: 'MV' },
-                { name: 'Mali', code: 'ML' },
-                { name: 'Malta', code: 'MT' },
-                { name: 'Marshall Islands', code: 'MH' },
-                { name: 'Martinique', code: 'MQ' },
-                { name: 'Mauritania', code: 'MR' },
-                { name: 'Mauritius', code: 'MU' },
-                { name: 'Mayotte', code: 'YT' },
-                { name: 'Mexico', code: 'MX' },
-                { name: 'Micronesia, Federated States of', code: 'FM' },
-                { name: 'Moldova, Republic of', code: 'MD' },
-                { name: 'Monaco', code: 'MC' },
-                { name: 'Mongolia', code: 'MN' },
-                { name: 'Montserrat', code: 'MS' },
-                { name: 'Morocco', code: 'MA' },
-                { name: 'Mozambique', code: 'MZ' },
-                { name: 'Myanmar', code: 'MM' },
-                { name: 'Namibia', code: 'NA' },
-                { name: 'Nauru', code: 'NR' },
-                { name: 'Nepal', code: 'NP' },
-                { name: 'Netherlands', code: 'NL' },
-                { name: 'Netherlands Antilles', code: 'AN' },
-                { name: 'New Caledonia', code: 'NC' },
-                { name: 'New Zealand', code: 'NZ' },
-                { name: 'Nicaragua', code: 'NI' },
-                { name: 'Niger', code: 'NE' },
-                { name: 'Nigeria', code: 'NG' },
-                { name: 'Niue', code: 'NU' },
-                { name: 'Norfolk Island', code: 'NF' },
-                { name: 'Northern Mariana Islands', code: 'MP' },
-                { name: 'Norway', code: 'NO' },
-                { name: 'Oman', code: 'OM' },
-                { name: 'Pakistan', code: 'PK' },
-                { name: 'Palau', code: 'PW' },
-                { name: 'Palestinian Territory, Occupied', code: 'PS' },
-                { name: 'Panama', code: 'PA' },
-                { name: 'Papua New Guinea', code: 'PG' },
-                { name: 'Paraguay', code: 'PY' },
-                { name: 'Peru', code: 'PE' },
-                { name: 'Philippines', code: 'PH' },
-                { name: 'Pitcairn', code: 'PN' },
-                { name: 'Poland', code: 'PL' },
-                { name: 'Portugal', code: 'PT' },
-                { name: 'Puerto Rico', code: 'PR' },
-                { name: 'Qatar', code: 'QA' },
-                { name: 'Reunion', code: 'RE' },
-                { name: 'Romania', code: 'RO' },
-                { name: 'Russian Federation', code: 'RU' },
-                { name: 'Rwanda', code: 'RW' },
-                { name: 'Saint Helena', code: 'SH' },
-                { name: 'Saint Kitts and Nevis', code: 'KN' },
-                { name: 'Saint Lucia', code: 'LC' },
-                { name: 'Saint Pierre and Miquelon', code: 'PM' },
-                { name: 'Saint Vincent and the Grenadines', code: 'VC' },
-                { name: 'Samoa', code: 'WS' },
-                { name: 'San Marino', code: 'SM' },
-                { name: 'Sao Tome and Principe', code: 'ST' },
-                { name: 'Saudi Arabia', code: 'SA' },
-                { name: 'Senegal', code: 'SN' },
-                { name: 'Serbia and Montenegro', code: 'CS' },
-                { name: 'Seychelles', code: 'SC' },
-                { name: 'Sierra Leone', code: 'SL' },
-                { name: 'Singapore', code: 'SG' },
-                { name: 'Slovakia', code: 'SK' },
-                { name: 'Slovenia', code: 'SI' },
-                { name: 'Solomon Islands', code: 'SB' },
-                { name: 'Somalia', code: 'SO' },
-                { name: 'South Africa', code: 'ZA' },
-                { name: 'South Georgia and the South Sandwich Islands', code: 'GS' },
-                { name: 'Spain', code: 'ES' },
-                { name: 'Sri Lanka', code: 'LK' },
-                { name: 'Sudan', code: 'SD' },
-                { name: 'Suriname', code: 'SR' },
-                { name: 'Svalbard and Jan Mayen', code: 'SJ' },
-                { name: 'Swaziland', code: 'SZ' },
-                { name: 'Sweden', code: 'SE' },
-                { name: 'Switzerland', code: 'CH' },
-                { name: 'Syrian Arab Republic', code: 'SY' },
-                { name: 'Taiwan, Province of China', code: 'TW' },
-                { name: 'Tajikistan', code: 'TJ' },
-                { name: 'Tanzania, United Republic of', code: 'TZ' },
-                { name: 'Thailand', code: 'TH' },
-                { name: 'Timor-Leste', code: 'TL' },
-                { name: 'Togo', code: 'TG' },
-                { name: 'Tokelau', code: 'TK' },
-                { name: 'Tonga', code: 'TO' },
-                { name: 'Trinidad and Tobago', code: 'TT' },
-                { name: 'Tunisia', code: 'TN' },
-                { name: 'Turkey', code: 'TR' },
-                { name: 'Turkmenistan', code: 'TM' },
-                { name: 'Turks and Caicos Islands', code: 'TC' },
-                { name: 'Tuvalu', code: 'TV' },
-                { name: 'Uganda', code: 'UG' },
-                { name: 'Ukraine', code: 'UA' },
-                { name: 'United Arab Emirates', code: 'AE' },
-                { name: 'United Kingdom', code: 'GB' },
-                { name: 'United States', code: 'US' },
-                { name: 'United States Minor Outlying Islands', code: 'UM' },
-                { name: 'Uruguay', code: 'UY' },
-                { name: 'Uzbekistan', code: 'UZ' },
-                { name: 'Vanuatu', code: 'VU' },
-                { name: 'Venezuela', code: 'VE' },
-                { name: 'Vietnam', code: 'VN' },
-                { name: 'Virgin Islands, British', code: 'VG' },
-                { name: 'Virgin Islands, U.S.', code: 'VI' },
-                { name: 'Wallis and Futuna', code: 'WF' },
-                { name: 'Western Sahara', code: 'EH' },
-                { name: 'Yemen', code: 'YE' },
-                { name: 'Zambia', code: 'ZM' },
-                { name: 'Zimbabwe', code: 'ZW' }
+                {name: 'Afghanistan', code: 'AF'},
+                {name: 'Åland Islands', code: 'AX'},
+                {name: 'Albania', code: 'AL'},
+                {name: 'Algeria', code: 'DZ'},
+                {name: 'American Samoa', code: 'AS'},
+                {name: 'Andorra', code: 'AD'},
+                {name: 'Angola', code: 'AO'},
+                {name: 'Anguilla', code: 'AI'},
+                {name: 'Antarctica', code: 'AQ'},
+                {name: 'Antigua and Barbuda', code: 'AG'},
+                {name: 'Argentina', code: 'AR'},
+                {name: 'Armenia', code: 'AM'},
+                {name: 'Aruba', code: 'AW'},
+                {name: 'Australia', code: 'AU'},
+                {name: 'Austria', code: 'AT'},
+                {name: 'Azerbaijan', code: 'AZ'},
+                {name: 'Bahamas', code: 'BS'},
+                {name: 'Bahrain', code: 'BH'},
+                {name: 'Bangladesh', code: 'BD'},
+                {name: 'Barbados', code: 'BB'},
+                {name: 'Belarus', code: 'BY'},
+                {name: 'Belgium', code: 'BE'},
+                {name: 'Belize', code: 'BZ'},
+                {name: 'Benin', code: 'BJ'},
+                {name: 'Bermuda', code: 'BM'},
+                {name: 'Bhutan', code: 'BT'},
+                {name: 'Bolivia', code: 'BO'},
+                {name: 'Bosnia and Herzegovina', code: 'BA'},
+                {name: 'Botswana', code: 'BW'},
+                {name: 'Bouvet Island', code: 'BV'},
+                {name: 'Brazil', code: 'BR'},
+                {name: 'British Indian Ocean Territory', code: 'IO'},
+                {name: 'Brunei Darussalam', code: 'BN'},
+                {name: 'Bulgaria', code: 'BG'},
+                {name: 'Burkina Faso', code: 'BF'},
+                {name: 'Burundi', code: 'BI'},
+                {name: 'Cambodia', code: 'KH'},
+                {name: 'Cameroon', code: 'CM'},
+                {name: 'Canada', code: 'CA'},
+                {name: 'Cape Verde', code: 'CV'},
+                {name: 'Cayman Islands', code: 'KY'},
+                {name: 'Central African Republic', code: 'CF'},
+                {name: 'Chad', code: 'TD'},
+                {name: 'Chile', code: 'CL'},
+                {name: 'China', code: 'CN'},
+                {name: 'Christmas Island', code: 'CX'},
+                {name: 'Cocos (Keeling) Islands', code: 'CC'},
+                {name: 'Colombia', code: 'CO'},
+                {name: 'Comoros', code: 'KM'},
+                {name: 'Congo', code: 'CG'},
+                {name: 'Congo, The Democratic Republic of the', code: 'CD'},
+                {name: 'Cook Islands', code: 'CK'},
+                {name: 'Costa Rica', code: 'CR'},
+                {name: 'Cote D\'Ivoire', code: 'CI'},
+                {name: 'Croatia', code: 'HR'},
+                {name: 'Cuba', code: 'CU'},
+                {name: 'Cyprus', code: 'CY'},
+                {name: 'Czech Republic', code: 'CZ'},
+                {name: 'Denmark', code: 'DK'},
+                {name: 'Djibouti', code: 'DJ'},
+                {name: 'Dominica', code: 'DM'},
+                {name: 'Dominican Republic', code: 'DO'},
+                {name: 'Ecuador', code: 'EC'},
+                {name: 'Egypt', code: 'EG'},
+                {name: 'El Salvador', code: 'SV'},
+                {name: 'Equatorial Guinea', code: 'GQ'},
+                {name: 'Eritrea', code: 'ER'},
+                {name: 'Estonia', code: 'EE'},
+                {name: 'Ethiopia', code: 'ET'},
+                {name: 'Falkland Islands (Malvinas)', code: 'FK'},
+                {name: 'Faroe Islands', code: 'FO'},
+                {name: 'Fiji', code: 'FJ'},
+                {name: 'Finland', code: 'FI'},
+                {name: 'France', code: 'FR'},
+                {name: 'French Guiana', code: 'GF'},
+                {name: 'French Polynesia', code: 'PF'},
+                {name: 'French Southern Territories', code: 'TF'},
+                {name: 'Gabon', code: 'GA'},
+                {name: 'Gambia', code: 'GM'},
+                {name: 'Georgia', code: 'GE'},
+                {name: 'Germany', code: 'DE'},
+                {name: 'Ghana', code: 'GH'},
+                {name: 'Gibraltar', code: 'GI'},
+                {name: 'Greece', code: 'GR'},
+                {name: 'Greenland', code: 'GL'},
+                {name: 'Grenada', code: 'GD'},
+                {name: 'Guadeloupe', code: 'GP'},
+                {name: 'Guam', code: 'GU'},
+                {name: 'Guatemala', code: 'GT'},
+                {name: 'Guernsey', code: 'GG'},
+                {name: 'Guinea', code: 'GN'},
+                {name: 'Guinea-Bissau', code: 'GW'},
+                {name: 'Guyana', code: 'GY'},
+                {name: 'Haiti', code: 'HT'},
+                {name: 'Heard Island and Mcdonald Islands', code: 'HM'},
+                {name: 'Holy See (Vatican City State)', code: 'VA'},
+                {name: 'Honduras', code: 'HN'},
+                {name: 'Hong Kong', code: 'HK'},
+                {name: 'Hungary', code: 'HU'},
+                {name: 'Iceland', code: 'IS'},
+                {name: 'India', code: 'IN'},
+                {name: 'Indonesia', code: 'ID'},
+                {name: 'Iran, Islamic Republic Of', code: 'IR'},
+                {name: 'Iraq', code: 'IQ'},
+                {name: 'Ireland', code: 'IE'},
+                {name: 'Isle of Man', code: 'IM'},
+                {name: 'Israel', code: 'IL'},
+                {name: 'Italy', code: 'IT'},
+                {name: 'Jamaica', code: 'JM'},
+                {name: 'Japan', code: 'JP'},
+                {name: 'Jersey', code: 'JE'},
+                {name: 'Jordan', code: 'JO'},
+                {name: 'Kazakhstan', code: 'KZ'},
+                {name: 'Kenya', code: 'KE'},
+                {name: 'Kiribati', code: 'KI'},
+                {name: 'Korea, Democratic People\'s Republic of', code: 'KP'},
+                {name: 'Korea, Republic of', code: 'KR'},
+                {name: 'Kuwait', code: 'KW'},
+                {name: 'Kyrgyzstan', code: 'KG'},
+                {name: 'Lao People\'s Democratic Republic', code: 'LA'},
+                {name: 'Latvia', code: 'LV'},
+                {name: 'Lebanon', code: 'LB'},
+                {name: 'Lesotho', code: 'LS'},
+                {name: 'Liberia', code: 'LR'},
+                {name: 'Libyan Arab Jamahiriya', code: 'LY'},
+                {name: 'Liechtenstein', code: 'LI'},
+                {name: 'Lithuania', code: 'LT'},
+                {name: 'Luxembourg', code: 'LU'},
+                {name: 'Macao', code: 'MO'},
+                {name: 'Macedonia, The Former Yugoslav Republic of', code: 'MK'},
+                {name: 'Madagascar', code: 'MG'},
+                {name: 'Malawi', code: 'MW'},
+                {name: 'Malaysia', code: 'MY'},
+                {name: 'Maldives', code: 'MV'},
+                {name: 'Mali', code: 'ML'},
+                {name: 'Malta', code: 'MT'},
+                {name: 'Marshall Islands', code: 'MH'},
+                {name: 'Martinique', code: 'MQ'},
+                {name: 'Mauritania', code: 'MR'},
+                {name: 'Mauritius', code: 'MU'},
+                {name: 'Mayotte', code: 'YT'},
+                {name: 'Mexico', code: 'MX'},
+                {name: 'Micronesia, Federated States of', code: 'FM'},
+                {name: 'Moldova, Republic of', code: 'MD'},
+                {name: 'Monaco', code: 'MC'},
+                {name: 'Mongolia', code: 'MN'},
+                {name: 'Montserrat', code: 'MS'},
+                {name: 'Morocco', code: 'MA'},
+                {name: 'Mozambique', code: 'MZ'},
+                {name: 'Myanmar', code: 'MM'},
+                {name: 'Namibia', code: 'NA'},
+                {name: 'Nauru', code: 'NR'},
+                {name: 'Nepal', code: 'NP'},
+                {name: 'Netherlands', code: 'NL'},
+                {name: 'Netherlands Antilles', code: 'AN'},
+                {name: 'New Caledonia', code: 'NC'},
+                {name: 'New Zealand', code: 'NZ'},
+                {name: 'Nicaragua', code: 'NI'},
+                {name: 'Niger', code: 'NE'},
+                {name: 'Nigeria', code: 'NG'},
+                {name: 'Niue', code: 'NU'},
+                {name: 'Norfolk Island', code: 'NF'},
+                {name: 'Northern Mariana Islands', code: 'MP'},
+                {name: 'Norway', code: 'NO'},
+                {name: 'Oman', code: 'OM'},
+                {name: 'Pakistan', code: 'PK'},
+                {name: 'Palau', code: 'PW'},
+                {name: 'Palestinian Territory, Occupied', code: 'PS'},
+                {name: 'Panama', code: 'PA'},
+                {name: 'Papua New Guinea', code: 'PG'},
+                {name: 'Paraguay', code: 'PY'},
+                {name: 'Peru', code: 'PE'},
+                {name: 'Philippines', code: 'PH'},
+                {name: 'Pitcairn', code: 'PN'},
+                {name: 'Poland', code: 'PL'},
+                {name: 'Portugal', code: 'PT'},
+                {name: 'Puerto Rico', code: 'PR'},
+                {name: 'Qatar', code: 'QA'},
+                {name: 'Reunion', code: 'RE'},
+                {name: 'Romania', code: 'RO'},
+                {name: 'Russian Federation', code: 'RU'},
+                {name: 'Rwanda', code: 'RW'},
+                {name: 'Saint Helena', code: 'SH'},
+                {name: 'Saint Kitts and Nevis', code: 'KN'},
+                {name: 'Saint Lucia', code: 'LC'},
+                {name: 'Saint Pierre and Miquelon', code: 'PM'},
+                {name: 'Saint Vincent and the Grenadines', code: 'VC'},
+                {name: 'Samoa', code: 'WS'},
+                {name: 'San Marino', code: 'SM'},
+                {name: 'Sao Tome and Principe', code: 'ST'},
+                {name: 'Saudi Arabia', code: 'SA'},
+                {name: 'Senegal', code: 'SN'},
+                {name: 'Serbia and Montenegro', code: 'CS'},
+                {name: 'Seychelles', code: 'SC'},
+                {name: 'Sierra Leone', code: 'SL'},
+                {name: 'Singapore', code: 'SG'},
+                {name: 'Slovakia', code: 'SK'},
+                {name: 'Slovenia', code: 'SI'},
+                {name: 'Solomon Islands', code: 'SB'},
+                {name: 'Somalia', code: 'SO'},
+                {name: 'South Africa', code: 'ZA'},
+                {name: 'South Georgia and the South Sandwich Islands', code: 'GS'},
+                {name: 'Spain', code: 'ES'},
+                {name: 'Sri Lanka', code: 'LK'},
+                {name: 'Sudan', code: 'SD'},
+                {name: 'Suriname', code: 'SR'},
+                {name: 'Svalbard and Jan Mayen', code: 'SJ'},
+                {name: 'Swaziland', code: 'SZ'},
+                {name: 'Sweden', code: 'SE'},
+                {name: 'Switzerland', code: 'CH'},
+                {name: 'Syrian Arab Republic', code: 'SY'},
+                {name: 'Taiwan, Province of China', code: 'TW'},
+                {name: 'Tajikistan', code: 'TJ'},
+                {name: 'Tanzania, United Republic of', code: 'TZ'},
+                {name: 'Thailand', code: 'TH'},
+                {name: 'Timor-Leste', code: 'TL'},
+                {name: 'Togo', code: 'TG'},
+                {name: 'Tokelau', code: 'TK'},
+                {name: 'Tonga', code: 'TO'},
+                {name: 'Trinidad and Tobago', code: 'TT'},
+                {name: 'Tunisia', code: 'TN'},
+                {name: 'Turkey', code: 'TR'},
+                {name: 'Turkmenistan', code: 'TM'},
+                {name: 'Turks and Caicos Islands', code: 'TC'},
+                {name: 'Tuvalu', code: 'TV'},
+                {name: 'Uganda', code: 'UG'},
+                {name: 'Ukraine', code: 'UA'},
+                {name: 'United Arab Emirates', code: 'AE'},
+                {name: 'United Kingdom', code: 'GB'},
+                {name: 'United States', code: 'US'},
+                {name: 'United States Minor Outlying Islands', code: 'UM'},
+                {name: 'Uruguay', code: 'UY'},
+                {name: 'Uzbekistan', code: 'UZ'},
+                {name: 'Vanuatu', code: 'VU'},
+                {name: 'Venezuela', code: 'VE'},
+                {name: 'Vietnam', code: 'VN'},
+                {name: 'Virgin Islands, British', code: 'VG'},
+                {name: 'Virgin Islands, U.S.', code: 'VI'},
+                {name: 'Wallis and Futuna', code: 'WF'},
+                {name: 'Western Sahara', code: 'EH'},
+                {name: 'Yemen', code: 'YE'},
+                {name: 'Zambia', code: 'ZM'},
+                {name: 'Zimbabwe', code: 'ZW'}
             ];
 
 
@@ -7293,7 +7364,7 @@
             vm.counter = 0;
             vm.someFunction = function (item, model) {
                 vm.counter++;
-                vm.eventResult = { item: item, model: model };
+                vm.eventResult = {item: item, model: model};
             };
 
             vm.availableColors = ['Red', 'Green', 'Blue', 'Yellow', 'Magenta', 'Maroon', 'Umbra', 'Turquoise'];
@@ -7431,7 +7502,7 @@
         return directive;
 
         function link(scope, element, attrs) {
-            var skycons = new Skycons({ 'color': (attrs.color || 'white') });
+            var skycons = new Skycons({'color': (attrs.color || 'white')});
 
             element.html('<canvas width="' + attrs.width + '" height="' + attrs.height + '"></canvas>');
 
@@ -7509,6 +7580,7 @@
                     'vendor/jquery-ui/ui/sortable.js',
                     'vendor/jqueryui-touch-punch/jquery.ui.touch-punch.min.js'],
                 'moment': ['vendor/moment/min/moment-with-locales.min.js'],
+                'moment-format': ['app/js/moment-duration-format.js'],
                 'inputmask': ['vendor/jquery.inputmask/dist/jquery.inputmask.bundle.min.js'],
                 'flatdoc': ['vendor/flatdoc/flatdoc.js'],
                 'codemirror': ['vendor/codemirror/lib/codemirror.js',
@@ -7536,9 +7608,9 @@
             modules: [
                 {
                     name: 'angular-ladda', files: ["vendor/ladda/dist/ladda-themeless.min.css",
-                        "vendor/ladda/js/spin.js",
-                        "vendor/ladda/js/ladda.js",
-                        "vendor/angular-ladda/dist/angular-ladda.min.js"]
+                    "vendor/ladda/js/spin.js",
+                    "vendor/ladda/js/ladda.js",
+                    "vendor/angular-ladda/dist/angular-ladda.min.js"]
                 },
                 {
                     name: 'ngWebSocket', files: ['vendor/angular-websocket/angular-websocket.min.js']
@@ -7552,24 +7624,24 @@
 
                 {
                     name: 'toaster', files: ['vendor/angularjs-toaster/toaster.js',
-                        'vendor/angularjs-toaster/toaster.css']
+                    'vendor/angularjs-toaster/toaster.css']
                 },
                 {
                     name: 'localytics.directives', files: ['vendor/chosen_v1.2.0/chosen.jquery.min.js',
-                        'vendor/chosen_v1.2.0/chosen.min.css',
-                        'vendor/angular-chosen-localytics/chosen.js']
+                    'vendor/chosen_v1.2.0/chosen.min.css',
+                    'vendor/angular-chosen-localytics/chosen.js']
                 },
                 {
                     name: 'ngDialog', files: ['vendor/ngDialog/js/ngDialog.min.js',
-                        'vendor/ngDialog/css/ngDialog.min.css',
-                        'vendor/ngDialog/css/ngDialog-theme-default.min.css']
+                    'vendor/ngDialog/css/ngDialog.min.css',
+                    'vendor/ngDialog/css/ngDialog-theme-default.min.css']
                 },
-                { name: 'ngWig', files: ['vendor/ngWig/dist/ng-wig.min.js'] },
+                {name: 'ngWig', files: ['vendor/ngWig/dist/ng-wig.min.js']},
                 {
                     name: 'ngTable', files: ['vendor/ng-table/dist/ng-table.min.js',
-                        'vendor/ng-table/dist/ng-table.min.css']
+                    'vendor/ng-table/dist/ng-table.min.css']
                 },
-                { name: 'ngTableExport', files: ['vendor/ng-table-export/ng-table-export.js'] },
+                {name: 'ngTableExport', files: ['vendor/ng-table-export/ng-table-export.js']},
                 {
                     name: 'angularBootstrapNavTree',
                     files: ['vendor/angular-bootstrap-nav-tree/dist/abn_tree_directive.js',
@@ -7577,104 +7649,104 @@
                 },
                 {
                     name: 'htmlSortable', files: ['vendor/html.sortable/dist/html.sortable.js',
-                        'vendor/html.sortable/dist/html.sortable.angular.js']
+                    'vendor/html.sortable/dist/html.sortable.angular.js']
                 },
                 {
                     name: 'xeditable', files: ['vendor/angular-xeditable/dist/js/xeditable.js',
-                        'vendor/angular-xeditable/dist/css/xeditable.css']
+                    'vendor/angular-xeditable/dist/css/xeditable.css']
                 },
-                { name: 'angularFileUpload', files: ['vendor/angular-file-upload/angular-file-upload.js'] },
+                {name: 'angularFileUpload', files: ['vendor/angular-file-upload/angular-file-upload.js']},
                 {
                     name: 'ngImgCrop', files: ['vendor/ng-img-crop/compile/unminified/ng-img-crop.js',
-                        'vendor/ng-img-crop/compile/unminified/ng-img-crop.css']
+                    'vendor/ng-img-crop/compile/unminified/ng-img-crop.css']
                 },
                 {
                     name: 'ui.select', files: ['vendor/angular-ui-select/dist/select.js',
-                        'vendor/angular-ui-select/dist/select.css']
+                    'vendor/angular-ui-select/dist/select.css']
                 },
-                { name: 'ui.codemirror', files: ['vendor/angular-ui-codemirror/ui-codemirror.js'] },
+                {name: 'ui.codemirror', files: ['vendor/angular-ui-codemirror/ui-codemirror.js']},
                 {
                     name: 'angular-carousel', files: ['vendor/angular-carousel/dist/angular-carousel.css',
-                        'vendor/angular-carousel/dist/angular-carousel.js']
+                    'vendor/angular-carousel/dist/angular-carousel.js']
                 },
                 {
                     name: 'ngGrid', files: ['vendor/ng-grid/build/ng-grid.min.js',
-                        'vendor/ng-grid/ng-grid.css']
+                    'vendor/ng-grid/ng-grid.css']
                 },
-                { name: 'infinite-scroll', files: ['vendor/ngInfiniteScroll/build/ng-infinite-scroll.js'] },
+                {name: 'infinite-scroll', files: ['vendor/ngInfiniteScroll/build/ng-infinite-scroll.js']},
                 {
                     name: 'ui.bootstrap-slider', files: ['vendor/seiyria-bootstrap-slider/dist/bootstrap-slider.min.js',
-                        'vendor/seiyria-bootstrap-slider/dist/css/bootstrap-slider.min.css',
-                        'vendor/angular-bootstrap-slider/slider.js']
+                    'vendor/seiyria-bootstrap-slider/dist/css/bootstrap-slider.min.css',
+                    'vendor/angular-bootstrap-slider/slider.js']
                 },
                 {
                     name: 'ui.grid', files: ['vendor/angular-ui-grid/ui-grid.min.css',
-                        'vendor/angular-ui-grid/ui-grid.min.js']
+                    'vendor/angular-ui-grid/ui-grid.min.js']
                 },
                 {
                     name: 'textAngular', files: ['vendor/textAngular/dist/textAngular.css',
-                        'vendor/textAngular/dist/textAngular-rangy.min.js',
-                        'vendor/textAngular/dist/textAngular-sanitize.js',
-                        'vendor/textAngular/src/globals.js',
-                        'vendor/textAngular/src/factories.js',
-                        'vendor/textAngular/src/DOM.js',
-                        'vendor/textAngular/src/validators.js',
-                        'vendor/textAngular/src/taBind.js',
-                        'vendor/textAngular/src/main.js',
-                        'vendor/textAngular/dist/textAngularSetup.js'
-                    ], serie: true
+                    'vendor/textAngular/dist/textAngular-rangy.min.js',
+                    'vendor/textAngular/dist/textAngular-sanitize.js',
+                    'vendor/textAngular/src/globals.js',
+                    'vendor/textAngular/src/factories.js',
+                    'vendor/textAngular/src/DOM.js',
+                    'vendor/textAngular/src/validators.js',
+                    'vendor/textAngular/src/taBind.js',
+                    'vendor/textAngular/src/main.js',
+                    'vendor/textAngular/dist/textAngularSetup.js'
+                ], serie: true
                 },
                 {
                     name: 'angular-rickshaw', files: ['vendor/d3/d3.min.js',
-                        'vendor/rickshaw/rickshaw.js',
-                        'vendor/rickshaw/rickshaw.min.css',
-                        'vendor/angular-rickshaw/rickshaw.js'], serie: true
+                    'vendor/rickshaw/rickshaw.js',
+                    'vendor/rickshaw/rickshaw.min.css',
+                    'vendor/angular-rickshaw/rickshaw.js'], serie: true
                 },
                 {
                     name: 'angular-chartist', files: ['vendor/chartist/dist/chartist.min.css',
-                        'vendor/chartist/dist/chartist.js',
-                        'vendor/angular-chartist.js/dist/angular-chartist.js'], serie: true
+                    'vendor/chartist/dist/chartist.js',
+                    'vendor/angular-chartist.js/dist/angular-chartist.js'], serie: true
                 },
-                { name: 'ui.map', files: ['vendor/angular-ui-map/ui-map.js'] },
+                {name: 'ui.map', files: ['vendor/angular-ui-map/ui-map.js']},
                 {
                     name: 'datatables', files: ['vendor/datatables/media/css/jquery.dataTables.css',
-                        'vendor/datatables/media/js/jquery.dataTables.js',
-                        'vendor/angular-datatables/dist/angular-datatables.js'], serie: true
+                    'vendor/datatables/media/js/jquery.dataTables.js',
+                    'vendor/angular-datatables/dist/angular-datatables.js'], serie: true
                 },
                 {
                     name: 'angular-jqcloud', files: ['vendor/jqcloud2/dist/jqcloud.css',
-                        'vendor/jqcloud2/dist/jqcloud.js',
-                        'vendor/angular-jqcloud/angular-jqcloud.js']
+                    'vendor/jqcloud2/dist/jqcloud.js',
+                    'vendor/angular-jqcloud/angular-jqcloud.js']
                 },
                 {
                     name: 'angularGrid', files: ['vendor/ag-grid/dist/angular-grid.css',
-                        'vendor/ag-grid/dist/angular-grid.js',
-                        'vendor/ag-grid/dist/theme-dark.css',
-                        'vendor/ag-grid/dist/theme-fresh.css']
+                    'vendor/ag-grid/dist/angular-grid.js',
+                    'vendor/ag-grid/dist/theme-dark.css',
+                    'vendor/ag-grid/dist/theme-fresh.css']
                 },
                 {
                     name: 'ng-nestable', files: ['vendor/ng-nestable/src/angular-nestable.js',
-                        'vendor/nestable/jquery.nestable.js']
+                    'vendor/nestable/jquery.nestable.js']
                 },
-                { name: 'akoenig.deckgrid', files: ['vendor/angular-deckgrid/angular-deckgrid.js'] },
+                {name: 'akoenig.deckgrid', files: ['vendor/angular-deckgrid/angular-deckgrid.js']},
                 {
                     name: 'oitozero.ngSweetAlert', files: ['vendor/sweetalert/dist/sweetalert.css',
-                        'vendor/sweetalert/dist/sweetalert.min.js',
-                        'vendor/angular-sweetalert/SweetAlert.js']
+                    'vendor/sweetalert/dist/sweetalert.min.js',
+                    'vendor/angular-sweetalert/SweetAlert.js']
                 },
                 {
                     name: 'bm.bsTour', files: ['vendor/bootstrap-tour/build/css/bootstrap-tour.css',
-                        'vendor/bootstrap-tour/build/js/bootstrap-tour-standalone.js',
-                        'vendor/angular-bootstrap-tour/dist/angular-bootstrap-tour.js'], serie: true
+                    'vendor/bootstrap-tour/build/js/bootstrap-tour-standalone.js',
+                    'vendor/angular-bootstrap-tour/dist/angular-bootstrap-tour.js'], serie: true
                 },
                 {
                     name: 'ui.knob', files: ['vendor/angular-knob/src/angular-knob.js',
-                        'vendor/jquery-knob/dist/jquery.knob.min.js']
+                    'vendor/jquery-knob/dist/jquery.knob.min.js']
                 },
-                { name: 'easypiechart', files: ['vendor/jquery.easy-pie-chart/dist/angular.easypiechart.min.js'] },
+                {name: 'easypiechart', files: ['vendor/jquery.easy-pie-chart/dist/angular.easypiechart.min.js']},
                 {
                     name: 'colorpicker.module', files: ['vendor/angular-bootstrap-colorpicker/css/colorpicker.css',
-                        'vendor/angular-bootstrap-colorpicker/js/bootstrap-colorpicker-module.js']
+                    'vendor/angular-bootstrap-colorpicker/js/bootstrap-colorpicker-module.js']
                 }
             ]
         })
@@ -7771,7 +7843,7 @@
                 'zh': 'Chinese'
             };
 
-            $rootScope.model = { selectedLocale: 'en' };
+            $rootScope.model = {selectedLocale: 'en'};
 
             $rootScope.$locale = $locale;
 
@@ -7801,18 +7873,18 @@
 
         function activate() {
             vm.folders = [
-                { name: 'Inbox', folder: 'inbox', alert: 42, icon: 'fa-inbox' },
-                { name: 'Starred', folder: 'starred', alert: 10, icon: 'fa-star' },
-                { name: 'Sent', folder: 'sent', alert: 0, icon: 'fa-paper-plane-o' },
-                { name: 'Draft', folder: 'draft', alert: 5, icon: 'fa-edit' },
-                { name: 'Trash', folder: 'trash', alert: 0, icon: 'fa-trash' }
+                {name: 'Inbox', folder: 'inbox', alert: 42, icon: 'fa-inbox'},
+                {name: 'Starred', folder: 'starred', alert: 10, icon: 'fa-star'},
+                {name: 'Sent', folder: 'sent', alert: 0, icon: 'fa-paper-plane-o'},
+                {name: 'Draft', folder: 'draft', alert: 5, icon: 'fa-edit'},
+                {name: 'Trash', folder: 'trash', alert: 0, icon: 'fa-trash'}
             ];
 
             vm.labels = [
-                { name: 'Red', color: 'danger' },
-                { name: 'Pink', color: 'pink' },
-                { name: 'Blue', color: 'info' },
-                { name: 'Yellow', color: 'warning' }
+                {name: 'Red', color: 'danger'},
+                {name: 'Pink', color: 'pink'},
+                {name: 'Blue', color: 'info'},
+                {name: 'Yellow', color: 'warning'}
             ];
 
             vm.mail = {
@@ -8063,35 +8135,35 @@
             // custom map style
             var MapStyles = [{
                 'featureType': 'water',
-                'stylers': [{ 'visibility': 'on' }, { 'color': '#bdd1f9' }]
+                'stylers': [{'visibility': 'on'}, {'color': '#bdd1f9'}]
             }, {
-                    'featureType': 'all',
-                    'elementType': 'labels.text.fill',
-                    'stylers': [{ 'color': '#334165' }]
-                }, { featureType: 'landscape', stylers: [{ color: '#e9ebf1' }] }, {
-                    featureType: 'road.highway',
-                    elementType: 'geometry',
-                    stylers: [{ color: '#c5c6c6' }]
-                }, {
-                    featureType: 'road.arterial',
-                    elementType: 'geometry',
-                    stylers: [{ color: '#fff' }]
-                }, {
-                    featureType: 'road.local',
-                    elementType: 'geometry',
-                    stylers: [{ color: '#fff' }]
-                }, { featureType: 'transit', elementType: 'geometry', stylers: [{ color: '#d8dbe0' }] }, {
-                    featureType: 'poi',
-                    elementType: 'geometry',
-                    stylers: [{ color: '#cfd5e0' }]
-                }, {
-                    featureType: 'administrative',
-                    stylers: [{ visibility: 'on' }, { lightness: 33 }]
-                }, {
-                    featureType: 'poi.park',
-                    elementType: 'labels',
-                    stylers: [{ visibility: 'on' }, { lightness: 20 }]
-                }, { featureType: 'road', stylers: [{ color: '#d8dbe0', lightness: 20 }] }];
+                'featureType': 'all',
+                'elementType': 'labels.text.fill',
+                'stylers': [{'color': '#334165'}]
+            }, {featureType: 'landscape', stylers: [{color: '#e9ebf1'}]}, {
+                featureType: 'road.highway',
+                elementType: 'geometry',
+                stylers: [{color: '#c5c6c6'}]
+            }, {
+                featureType: 'road.arterial',
+                elementType: 'geometry',
+                stylers: [{color: '#fff'}]
+            }, {
+                featureType: 'road.local',
+                elementType: 'geometry',
+                stylers: [{color: '#fff'}]
+            }, {featureType: 'transit', elementType: 'geometry', stylers: [{color: '#d8dbe0'}]}, {
+                featureType: 'poi',
+                elementType: 'geometry',
+                stylers: [{color: '#cfd5e0'}]
+            }, {
+                featureType: 'administrative',
+                stylers: [{visibility: 'on'}, {lightness: 33}]
+            }, {
+                featureType: 'poi.park',
+                elementType: 'labels',
+                stylers: [{visibility: 'on'}, {lightness: 20}]
+            }, {featureType: 'road', stylers: [{color: '#d8dbe0', lightness: 20}]}];
             vm.mapOptions5 = {
                 zoom: 14,
                 center: position[3],
@@ -8204,7 +8276,7 @@
                     },
                     selectedHover: {}
                 },
-                focusOn: { x: 0.4, y: 0.6, scale: opts.scale },
+                focusOn: {x: 0.4, y: 0.6, scale: opts.scale},
                 markerStyle: {
                     initial: {
                         fill: opts.markerColor,
@@ -8263,21 +8335,21 @@
             };
 
             vm.markersData = [
-                { latLng: [41.90, 12.45], name: 'Vatican City' },
-                { latLng: [43.73, 7.41], name: 'Monaco' },
-                { latLng: [-0.52, 166.93], name: 'Nauru' },
-                { latLng: [-8.51, 179.21], name: 'Tuvalu' },
-                { latLng: [7.11, 171.06], name: 'Marshall Islands' },
-                { latLng: [17.3, -62.73], name: 'Saint Kitts and Nevis' },
-                { latLng: [3.2, 73.22], name: 'Maldives' },
-                { latLng: [35.88, 14.5], name: 'Malta' },
-                { latLng: [41.0, -71.06], name: 'New England' },
-                { latLng: [12.05, -61.75], name: 'Grenada' },
-                { latLng: [13.16, -59.55], name: 'Barbados' },
-                { latLng: [17.11, -61.85], name: 'Antigua and Barbuda' },
-                { latLng: [-4.61, 55.45], name: 'Seychelles' },
-                { latLng: [7.35, 134.46], name: 'Palau' },
-                { latLng: [42.5, 1.51], name: 'Andorra' }
+                {latLng: [41.90, 12.45], name: 'Vatican City'},
+                {latLng: [43.73, 7.41], name: 'Monaco'},
+                {latLng: [-0.52, 166.93], name: 'Nauru'},
+                {latLng: [-8.51, 179.21], name: 'Tuvalu'},
+                {latLng: [7.11, 171.06], name: 'Marshall Islands'},
+                {latLng: [17.3, -62.73], name: 'Saint Kitts and Nevis'},
+                {latLng: [3.2, 73.22], name: 'Maldives'},
+                {latLng: [35.88, 14.5], name: 'Malta'},
+                {latLng: [41.0, -71.06], name: 'New England'},
+                {latLng: [12.05, -61.75], name: 'Grenada'},
+                {latLng: [13.16, -59.55], name: 'Barbados'},
+                {latLng: [17.11, -61.85], name: 'Antigua and Barbuda'},
+                {latLng: [-4.61, 55.45], name: 'Seychelles'},
+                {latLng: [7.35, 134.46], name: 'Palau'},
+                {latLng: [42.5, 1.51], name: 'Andorra'}
             ];
         }
     }
@@ -8425,10 +8497,10 @@
     function MDListBottomSheetCtrl($scope, $mdBottomSheet) {
 
         $scope.items = [
-            { name: 'Share', icon: 'share' },
-            { name: 'Upload', icon: 'upload' },
-            { name: 'Copy', icon: 'copy' },
-            { name: 'Print this page', icon: 'print' },
+            {name: 'Share', icon: 'share'},
+            {name: 'Upload', icon: 'upload'},
+            {name: 'Copy', icon: 'copy'},
+            {name: 'Print this page', icon: 'print'},
         ];
 
         $scope.listItemClick = function ($index) {
@@ -8444,12 +8516,12 @@
     function MDGridBottomSheetCtrl($scope, $mdBottomSheet) {
 
         $scope.items = [
-            { name: 'Hangout', icon: 'hangout' },
-            { name: 'Mail', icon: 'mail' },
-            { name: 'Message', icon: 'message' },
-            { name: 'Copy', icon: 'copy' },
-            { name: 'Facebook', icon: 'facebook' },
-            { name: 'Twitter', icon: 'twitter' },
+            {name: 'Hangout', icon: 'hangout'},
+            {name: 'Mail', icon: 'mail'},
+            {name: 'Message', icon: 'message'},
+            {name: 'Copy', icon: 'copy'},
+            {name: 'Facebook', icon: 'facebook'},
+            {name: 'Twitter', icon: 'twitter'},
         ];
 
         $scope.listItemClick = function ($index) {
@@ -8489,19 +8561,19 @@
             title: 'avatar 1',
             value: 'avatar-1'
         }, {
-                id: 'svg-2',
-                title: 'avatar 2',
-                value: 'avatar-2'
-            }, {
-                id: 'svg-3',
-                title: 'avatar 3',
-                value: 'avatar-3'
-            }];
+            id: 'svg-2',
+            title: 'avatar 2',
+            value: 'avatar-2'
+        }, {
+            id: 'svg-3',
+            title: 'avatar 3',
+            value: 'avatar-3'
+        }];
 
         $scope.radioData = [
-            { label: 'Apple', value: 1 },
-            { label: 'Banana', value: 2 },
-            { label: 'Mango', value: '3', isDisabled: true }
+            {label: 'Apple', value: 1},
+            {label: 'Banana', value: 2},
+            {label: 'Mango', value: '3', isDisabled: true}
         ];
 
 
@@ -8512,7 +8584,7 @@
         var vals = ['Apple', 'Banana', 'Mango', 'Grape', 'Melon', 'Strawberry', 'Kiwi'];
         $scope.addItem = function () {
             var rval = vals[Math.floor(Math.random() * vals.length)];
-            $scope.radioData.push({ label: rval, value: rval });
+            $scope.radioData.push({label: rval, value: rval});
         };
 
         $scope.removeItem = function () {
@@ -8550,7 +8622,7 @@
                     .ariaLabel('Password notification')
                     .ok('Got it!')
                     .targetEvent(ev)
-                );
+            );
         };
 
         $scope.showConfirm = function (ev) {
@@ -8626,9 +8698,9 @@
 
         vm.userState = '';
         vm.states = ('AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS ' +
-            'MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI ' +
-            'WY').split(' ').map(function (state) {
-                return { abbrev: state };
+        'MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI ' +
+        'WY').split(' ').map(function (state) {
+                return {abbrev: state};
             });
 
         vm.sizes = [
@@ -8638,14 +8710,14 @@
             'insane (42-inch)'
         ];
         vm.toppings = [
-            { category: 'meat', name: 'Pepperoni' },
-            { category: 'meat', name: 'Sausage' },
-            { category: 'meat', name: 'Ground Beef' },
-            { category: 'meat', name: 'Bacon' },
-            { category: 'veg', name: 'Mushrooms' },
-            { category: 'veg', name: 'Onion' },
-            { category: 'veg', name: 'Green Pepper' },
-            { category: 'veg', name: 'Green Olives' }
+            {category: 'meat', name: 'Pepperoni'},
+            {category: 'meat', name: 'Sausage'},
+            {category: 'meat', name: 'Ground Beef'},
+            {category: 'meat', name: 'Bacon'},
+            {category: 'veg', name: 'Mushrooms'},
+            {category: 'veg', name: 'Onion'},
+            {category: 'veg', name: 'Green Pepper'},
+            {category: 'veg', name: 'Green Olives'}
         ];
     }
 
@@ -8851,7 +8923,7 @@
                     .content('Simple Toast!')
                     .position($scope.getToastPosition())
                     .hideDelay(30000)
-                );
+            );
         };
 
         $scope.showActionToast = function () {
@@ -8924,10 +8996,10 @@
     function ListBottomSheetCtrl($scope, $mdBottomSheet) {
 
         $scope.items = [
-            { name: 'Share', icon: 'share-arrow' },
-            { name: 'Upload', icon: 'upload' },
-            { name: 'Copy', icon: 'copy' },
-            { name: 'Print this page', icon: 'print' },
+            {name: 'Share', icon: 'share-arrow'},
+            {name: 'Upload', icon: 'upload'},
+            {name: 'Copy', icon: 'copy'},
+            {name: 'Print this page', icon: 'print'},
         ];
 
         $scope.listItemClick = function ($index) {
@@ -8942,12 +9014,12 @@
     GridBottomSheetCtrl.$inject = ['$scope', '$mdBottomSheet'];
     function GridBottomSheetCtrl($scope, $mdBottomSheet) {
         $scope.items = [
-            { name: 'Hangout', icon: 'hangout' },
-            { name: 'Mail', icon: 'mail' },
-            { name: 'Message', icon: 'message' },
-            { name: 'Copy', icon: 'copy2' },
-            { name: 'Facebook', icon: 'facebook' },
-            { name: 'Twitter', icon: 'twitter' },
+            {name: 'Hangout', icon: 'hangout'},
+            {name: 'Mail', icon: 'mail'},
+            {name: 'Message', icon: 'message'},
+            {name: 'Copy', icon: 'copy2'},
+            {name: 'Facebook', icon: 'facebook'},
+            {name: 'Twitter', icon: 'twitter'},
         ];
 
         $scope.listItemClick = function ($index) {
@@ -8982,7 +9054,7 @@
         ];
 
         angular.forEach(urls, function (url) {
-            $http.get(url, { cache: $templateCache });
+            $http.get(url, {cache: $templateCache});
         });
 
     }
@@ -9185,8 +9257,8 @@
 
                 Notify.alert(
                     'This is a custom message from notify..',
-                    { status: 'success' }
-                    );
+                    {status: 'success'}
+                );
 
             }, 500);
         }
@@ -9272,10 +9344,10 @@
         messages = {},
         notify = function (options) {
             if ($.type(options) === 'string') {
-                options = { message: options };
+                options = {message: options};
             }
             if (arguments[1]) {
-                options = $.extend(options, $.type(arguments[1]) === 'string' ? { status: arguments[1] } : arguments[1]);
+                options = $.extend(options, $.type(arguments[1]) === 'string' ? {status: arguments[1]} : arguments[1]);
             }
             return (new Message(options)).show();
         },
@@ -9296,7 +9368,7 @@
         this.options = $.extend({}, Message.defaults, options);
         this.uuid = 'ID' + (new Date().getTime()) + 'RAND' + (Math.ceil(Math.random() * 100000));
         this.element = $([
-        // @geedmo: alert-dismissable enables bs close icon
+            // @geedmo: alert-dismissable enables bs close icon
             '<div class="uk-notify-message alert-dismissable">',
             '<a class="close">&times;</a>',
             '<div>' + this.options.message + '</div>',
@@ -9330,7 +9402,7 @@
                 'opacity': 0,
                 'margin-top': -1 * this.element.outerHeight(),
                 'margin-bottom': 0
-            }).animate({ 'opacity': 1, 'margin-top': 0, 'margin-bottom': marginbottom }, function () {
+            }).animate({'opacity': 1, 'margin-top': 0, 'margin-bottom': marginbottom}, function () {
                 if ($this.options.timeout) {
                     var closefn = function () {
                         $this.close();
@@ -9343,7 +9415,7 @@
                         function () {
                             $this.timeout = setTimeout(closefn, $this.options.timeout);
                         }
-                        );
+                    );
                 }
             });
             return this;
@@ -9400,7 +9472,7 @@
     $.notify.closeAll = closeAll;
 
     return notify;
-} (jQuery));
+}(jQuery));
 
 /**=========================================================
  * Module: access-login.js
@@ -9434,7 +9506,7 @@
                 if (vm.loginForm.$valid) {
 
                     $http
-                        .post('api/account/login', { email: vm.account.email, password: vm.account.password })
+                        .post('api/account/login', {email: vm.account.email, password: vm.account.password})
                         .then(function (response) {
                             // assumes if ok, response is an object with some data, if not, a string with error
                             // customize according to your api
@@ -9490,7 +9562,7 @@
                 if (vm.registerForm.$valid) {
 
                     $http
-                        .post('api/account/register', { email: vm.account.email, password: vm.account.password })
+                        .post('api/account/register', {email: vm.account.email, password: vm.account.password})
                         .then(function (response) {
                             // assumes if ok, response is an object with some data, if not, a string with error
                             // customize according to your api
@@ -9548,8 +9620,8 @@
         var currentState = loadPanelState(panelId);
         if (typeof currentState !== 'undefined') {
             $timeout(function () {
-                $scope[panelId] = currentState;
-            },
+                    $scope[panelId] = currentState;
+                },
                 10);
         }
 
@@ -9628,7 +9700,7 @@
             // Run the animation before destroy the panel
             function destroyMiddleware() {
                 if (Utils.support.animation) {
-                    parent.animo({ animation: 'bounceOut' }, destroyPanel);
+                    parent.animo({animation: 'bounceOut'}, destroyPanel);
                 }
                 else destroyPanel();
             }
@@ -10044,7 +10116,7 @@
 
                     // we know there are at least two views to be loaded 
                     // before the app is ready (1-index.html 2-app*.html)
-                    if (viewsLoaded === 1 && !$rootScope.globals.currentUser) {
+                    if (viewsLoaded === 1 && (!$rootScope.globals.currentUser || !$rootScope.$storage.currentUser)) {
                         // with resolve this fires only once
                         $timeout(function () {
                             deferred.resolve();
@@ -10197,13 +10269,13 @@
                 url: '/dashboard',
                 title: 'Dashboard',
                 templateUrl: helper.basepath('sportimo-dashboard.html'),
-                resolve: helper.resolveFor('flot-chart', 'flot-chart-plugins', 'weather-icons', 'ngWebSocket', 'moment')
+                resolve: helper.resolveFor('flot-chart', 'flot-chart-plugins', 'weather-icons', 'ngWebSocket', 'moment', 'moment-format')
             })
             .state('app.match-moderation-soccer', {
                 url: '/match-moderation/soccer/:id',
                 title: 'Mathces Administration',
                 templateUrl: helper.basepath('sportimo_moderation_soccer.html'),
-                resolve: helper.resolveFor('restangular', 'toaster', 'dirPagination', 'moment', 'ui.select', 'angular-ladda', 'ngDialog'),
+                resolve: helper.resolveFor('restangular', 'toaster', 'dirPagination', 'moment', 'moment-format', 'ui.select', 'angular-ladda', 'ngDialog'),
                 controller: 'SportimoModerationSoccerController',
                 controllerAs: 'modCtrl',
             })
@@ -10322,7 +10394,7 @@
                 templateUrl: helper.basepath('ngdialog.html'),
                 resolve: angular.extend(helper.resolveFor('ngDialog'), {
                     tpl: function () {
-                        return { path: helper.basepath('ngdialog-template.html') };
+                        return {path: helper.basepath('ngdialog-template.html')};
                     }
                 }),
                 controller: 'DialogIntroCtrl'
@@ -10606,8 +10678,8 @@
                 templateUrl: helper.basepath('documentation.html'),
                 resolve: helper.resolveFor('flatdoc')
             })
-        // Forum
-        // -----------------------------------
+            // Forum
+            // -----------------------------------
             .state('app.forum', {
                 url: '/forum',
                 title: 'Forum',
@@ -10623,8 +10695,8 @@
                 title: 'Forum Discussion',
                 templateUrl: helper.basepath('forum-discussion.html')
             })
-        // Blog
-        // -----------------------------------
+            // Blog
+            // -----------------------------------
             .state('app.blog', {
                 url: '/blog',
                 title: 'Blog',
@@ -10649,8 +10721,8 @@
                 templateUrl: helper.basepath('blog-article-view.html'),
                 resolve: helper.resolveFor('ui.select', 'textAngular')
             })
-        // eCommerce
-        // -----------------------------------
+            // eCommerce
+            // -----------------------------------
             .state('app.orders', {
                 url: '/orders',
                 title: 'Orders',
@@ -10673,8 +10745,8 @@
                 title: 'Product View',
                 templateUrl: helper.basepath('ecommerce-product-view.html')
             })
-        // Mailbox
-        // -----------------------------------
+            // Mailbox
+            // -----------------------------------
             .state('app.mailbox', {
                 url: '/mailbox',
                 title: 'Mailbox',
@@ -10698,9 +10770,9 @@
                 templateUrl: helper.basepath('mailbox-compose.html'),
                 resolve: helper.resolveFor('ngWig')
             })
-        //
-        // Multiple level example
-        // -----------------------------------
+            //
+            // Multiple level example
+            // -----------------------------------
             .state('app.multilevel', {
                 url: '/multilevel',
                 title: 'Multilevel',
@@ -10731,9 +10803,9 @@
                 title: 'Multilevel - Level3 Item',
                 template: '<div class="lead ba p"> Menu item @ Level 3</div>'
             })
-        //
-        // Single Page Routes
-        // -----------------------------------
+            //
+            // Single Page Routes
+            // -----------------------------------
             .state('page', {
                 url: '/page',
                 templateUrl: 'app/pages/page.html',
@@ -10769,9 +10841,9 @@
                 title: 'Not Found',
                 templateUrl: 'app/pages/404.html'
             })
-        //
-        // Horizontal layout
-        // -----------------------------------
+            //
+            // Horizontal layout
+            // -----------------------------------
             .state('app-h', {
                 url: '/app-h',
                 abstract: true,
@@ -10786,9 +10858,9 @@
                 controllerAs: 'dash2',
                 resolve: helper.resolveFor('flot-chart', 'flot-chart-plugins')
             })
-        //
-        // Material 
-        // ----------------------------------- 
+            //
+            // Material
+            // -----------------------------------
             .state('app.cards', {
                 url: '/cards',
                 title: 'Material Cards',
@@ -10832,22 +10904,22 @@
                 title: 'ngMaterial',
                 templateUrl: helper.basepath('material.ngmaterial.html')
             })
-        // 
-        // CUSTOM RESOLVES
-        //   Add your own resolves properties
-        //   following this object extend
-        //   method
-        // -----------------------------------
-        // .state('app.someroute', {
-        //   url: '/some_url',
-        //   templateUrl: 'path_to_template.html',
-        //   controller: 'someController',
-        //   resolve: angular.extend(
-        //     helper.resolveFor(), {
-        //     // YOUR RESOLVES GO HERE
-        //     }
-        //   )
-        // })
+            //
+            // CUSTOM RESOLVES
+            //   Add your own resolves properties
+            //   following this object extend
+            //   method
+            // -----------------------------------
+            // .state('app.someroute', {
+            //   url: '/some_url',
+            //   templateUrl: 'path_to_template.html',
+            //   controller: 'someController',
+            //   resolve: angular.extend(
+            //     helper.resolveFor(), {
+            //     // YOUR RESOLVES GO HERE
+            //     }
+            //   )
+            // })
         ;
 
     } // routesConfig
@@ -11134,7 +11206,7 @@
         ///////
 
         function sidebarAddBackdrop() {
-            var $backdrop = $('<div/>', { 'class': 'dropdown-backdrop' });
+            var $backdrop = $('<div/>', {'class': 'dropdown-backdrop'});
             $backdrop.insertAfter('.aside-inner').on('click mouseenter', function () {
                 removeFloatingNav();
             });
@@ -11220,8 +11292,8 @@
                 menuURL = menuJson + '?v=' + (new Date().getTime()); // jumps cache
 
             onError = onError || function () {
-                alert('Failure loading menu');
-            };
+                    alert('Failure loading menu');
+                };
 
             $http
                 .get(menuURL)
@@ -11294,16 +11366,16 @@
 
             // Basic
             var columnDefs = [
-                { displayName: 'Athlete', field: 'athlete', width: 150 },
-                { displayName: 'Age', field: 'age', width: 90 },
-                { displayName: 'Country', field: 'country', width: 120 },
-                { displayName: 'Year', field: 'year', width: 90 },
-                { displayName: 'Date', field: 'date', width: 110 },
-                { displayName: 'Sport', field: 'sport', width: 110 },
-                { displayName: 'Gold', field: 'gold', width: 100 },
-                { displayName: 'Silver', field: 'silver', width: 100 },
-                { displayName: 'Bronze', field: 'bronze', width: 100 },
-                { displayName: 'Total', field: 'total', width: 100 }
+                {displayName: 'Athlete', field: 'athlete', width: 150},
+                {displayName: 'Age', field: 'age', width: 90},
+                {displayName: 'Country', field: 'country', width: 120},
+                {displayName: 'Year', field: 'year', width: 90},
+                {displayName: 'Date', field: 'date', width: 110},
+                {displayName: 'Sport', field: 'sport', width: 110},
+                {displayName: 'Gold', field: 'gold', width: 100},
+                {displayName: 'Silver', field: 'silver', width: 100},
+                {displayName: 'Bronze', field: 'bronze', width: 100},
+                {displayName: 'Total', field: 'total', width: 100}
             ];
 
             vm.gridOptions = {
@@ -11320,17 +11392,17 @@
             var columnDefsFilter = [
                 {
                     displayName: 'Athlete', field: 'athlete', width: 150, filter: 'set',
-                    filterParams: { cellHeight: 20, values: irishAthletes }
+                    filterParams: {cellHeight: 20, values: irishAthletes}
                 },
-                { displayName: 'Age', field: 'age', width: 90, filter: 'number' },
-                { displayName: 'Country', field: 'country', width: 120 },
-                { displayName: 'Year', field: 'year', width: 90 },
-                { displayName: 'Date', field: 'date', width: 110 },
-                { displayName: 'Sport', field: 'sport', width: 110 },
-                { displayName: 'Gold', field: 'gold', width: 100, filter: 'number' },
-                { displayName: 'Silver', field: 'silver', width: 100, filter: 'number' },
-                { displayName: 'Bronze', field: 'bronze', width: 100, filter: 'number' },
-                { displayName: 'Total', field: 'total', width: 100, filter: 'number' }
+                {displayName: 'Age', field: 'age', width: 90, filter: 'number'},
+                {displayName: 'Country', field: 'country', width: 120},
+                {displayName: 'Year', field: 'year', width: 90},
+                {displayName: 'Date', field: 'date', width: 110},
+                {displayName: 'Sport', field: 'sport', width: 110},
+                {displayName: 'Gold', field: 'gold', width: 100, filter: 'number'},
+                {displayName: 'Silver', field: 'silver', width: 100, filter: 'number'},
+                {displayName: 'Bronze', field: 'bronze', width: 100, filter: 'number'},
+                {displayName: 'Total', field: 'total', width: 100, filter: 'number'}
             ];
 
             vm.gridOptions1 = {
@@ -11411,18 +11483,18 @@
                 'firstName': 'Superman',
                 'lastName': 'Yoda'
             }, {
-                    'id': 870,
-                    'firstName': 'Ace',
-                    'lastName': 'Ventura'
-                }, {
-                    'id': 590,
-                    'firstName': 'Flash',
-                    'lastName': 'Gordon'
-                }, {
-                    'id': 803,
-                    'firstName': 'Luke',
-                    'lastName': 'Skywalker'
-                }
+                'id': 870,
+                'firstName': 'Ace',
+                'lastName': 'Ventura'
+            }, {
+                'id': 590,
+                'firstName': 'Flash',
+                'lastName': 'Gordon'
+            }, {
+                'id': 803,
+                'firstName': 'Luke',
+                'lastName': 'Skywalker'
+            }
             ];
 
             vm.dtOptions = DTOptionsBuilder.newOptions().withPaginationType('full_numbers');
@@ -11623,23 +11695,23 @@
 
         function activate() {
             var data = [
-                { name: 'Moroni', age: 50, money: -10 },
-                { name: 'Tiancum', age: 43, money: 120 },
-                { name: 'Jacob', age: 27, money: 5.5 },
-                { name: 'Nephi', age: 29, money: -54 },
-                { name: 'Enos', age: 34, money: 110 },
-                { name: 'Tiancum', age: 43, money: 1000 },
-                { name: 'Jacob', age: 27, money: -201 },
-                { name: 'Nephi', age: 29, money: 100 },
-                { name: 'Enos', age: 34, money: -52.5 },
-                { name: 'Tiancum', age: 43, money: 52.1 },
-                { name: 'Jacob', age: 27, money: 110 },
-                { name: 'Nephi', age: 29, money: -55 },
-                { name: 'Enos', age: 34, money: 551 },
-                { name: 'Tiancum', age: 43, money: -1410 },
-                { name: 'Jacob', age: 27, money: 410 },
-                { name: 'Nephi', age: 29, money: 100 },
-                { name: 'Enos', age: 34, money: -100 }
+                {name: 'Moroni', age: 50, money: -10},
+                {name: 'Tiancum', age: 43, money: 120},
+                {name: 'Jacob', age: 27, money: 5.5},
+                {name: 'Nephi', age: 29, money: -54},
+                {name: 'Enos', age: 34, money: 110},
+                {name: 'Tiancum', age: 43, money: 1000},
+                {name: 'Jacob', age: 27, money: -201},
+                {name: 'Nephi', age: 29, money: 100},
+                {name: 'Enos', age: 34, money: -52.5},
+                {name: 'Tiancum', age: 43, money: 52.1},
+                {name: 'Jacob', age: 27, money: 110},
+                {name: 'Nephi', age: 29, money: -55},
+                {name: 'Enos', age: 34, money: 551},
+                {name: 'Tiancum', age: 43, money: -1410},
+                {name: 'Jacob', age: 27, money: 410},
+                {name: 'Nephi', age: 29, money: 100},
+                {name: 'Enos', age: 34, money: -100}
             ];
 
             // SELECT ROWS
@@ -11651,20 +11723,20 @@
                 page: 1,            // show first page
                 count: 10          // count per page
             }, {
-                    total: data.length, // length of data
-                    getData: function ($defer, params) {
-                        // use build-in angular filter
-                        var filteredData = params.filter() ?
-                            $filter('filter')(data, params.filter()) :
-                            data;
-                        var orderedData = params.sorting() ?
-                            $filter('orderBy')(filteredData, params.orderBy()) :
-                            data;
+                total: data.length, // length of data
+                getData: function ($defer, params) {
+                    // use build-in angular filter
+                    var filteredData = params.filter() ?
+                        $filter('filter')(data, params.filter()) :
+                        data;
+                    var orderedData = params.sorting() ?
+                        $filter('orderBy')(filteredData, params.orderBy()) :
+                        data;
 
-                        params.total(orderedData.length); // set total for recalc pagination
-                        $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
-                    }
-                });
+                    params.total(orderedData.length); // set total for recalc pagination
+                    $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+                }
+            });
 
             vm.changeSelection = function (user) {
                 console.info(user);
@@ -11673,33 +11745,33 @@
             // EXPORT CSV
             // -----------------------------------  
 
-            var data4 = [{ name: 'Moroni', age: 50 },
-                { name: 'Tiancum', age: 43 },
-                { name: 'Jacob', age: 27 },
-                { name: 'Nephi', age: 29 },
-                { name: 'Enos', age: 34 },
-                { name: 'Tiancum', age: 43 },
-                { name: 'Jacob', age: 27 },
-                { name: 'Nephi', age: 29 },
-                { name: 'Enos', age: 34 },
-                { name: 'Tiancum', age: 43 },
-                { name: 'Jacob', age: 27 },
-                { name: 'Nephi', age: 29 },
-                { name: 'Enos', age: 34 },
-                { name: 'Tiancum', age: 43 },
-                { name: 'Jacob', age: 27 },
-                { name: 'Nephi', age: 29 },
-                { name: 'Enos', age: 34 }];
+            var data4 = [{name: 'Moroni', age: 50},
+                {name: 'Tiancum', age: 43},
+                {name: 'Jacob', age: 27},
+                {name: 'Nephi', age: 29},
+                {name: 'Enos', age: 34},
+                {name: 'Tiancum', age: 43},
+                {name: 'Jacob', age: 27},
+                {name: 'Nephi', age: 29},
+                {name: 'Enos', age: 34},
+                {name: 'Tiancum', age: 43},
+                {name: 'Jacob', age: 27},
+                {name: 'Nephi', age: 29},
+                {name: 'Enos', age: 34},
+                {name: 'Tiancum', age: 43},
+                {name: 'Jacob', age: 27},
+                {name: 'Nephi', age: 29},
+                {name: 'Enos', age: 34}];
 
             vm.tableParams4 = new ngTableParams({
                 page: 1,            // show first page
                 count: 10           // count per page
             }, {
-                    total: data4.length, // length of data4
-                    getData: function ($defer, params) {
-                        $defer.resolve(data4.slice((params.page() - 1) * params.count(), params.page() * params.count()));
-                    }
-                });
+                total: data4.length, // length of data4
+                getData: function ($defer, params) {
+                    $defer.resolve(data4.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+                }
+            });
 
 
             // SORTING
@@ -11713,16 +11785,16 @@
                     name: 'asc'     // initial sorting
                 }
             }, {
-                    total: data.length, // length of data
-                    getData: function ($defer, params) {
-                        // use build-in angular filter
-                        var orderedData = params.sorting() ?
-                            $filter('orderBy')(data, params.orderBy()) :
-                            data;
+                total: data.length, // length of data
+                getData: function ($defer, params) {
+                    // use build-in angular filter
+                    var orderedData = params.sorting() ?
+                        $filter('orderBy')(data, params.orderBy()) :
+                        data;
 
-                        $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
-                    }
-                });
+                    $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+                }
+            });
 
             // FILTERS
             // ----------------------------------- 
@@ -11736,19 +11808,19 @@
                     // name: 'M'       // initial filter
                 }
             }, {
-                    total: data.length, // length of data
-                    getData: function ($defer, params) {
-                        // use build-in angular filter
-                        var orderedData = params.filter() ?
-                            $filter('filter')(data, params.filter()) :
-                            data;
+                total: data.length, // length of data
+                getData: function ($defer, params) {
+                    // use build-in angular filter
+                    var orderedData = params.filter() ?
+                        $filter('filter')(data, params.filter()) :
+                        data;
 
-                        vm.users = orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count());
+                    vm.users = orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count());
 
-                        params.total(orderedData.length); // set total for recalc pagination
-                        $defer.resolve(vm.users);
-                    }
-                });
+                    params.total(orderedData.length); // set total for recalc pagination
+                    $defer.resolve(vm.users);
+                }
+            });
 
             // AJAX
 
@@ -11758,25 +11830,25 @@
                 page: 1,            // show first page
                 count: 10           // count per page
             }, {
-                    total: 0,           // length of data
-                    counts: [],         // hide page counts control
-                    getData: function ($defer, params) {
+                total: 0,           // length of data
+                counts: [],         // hide page counts control
+                getData: function ($defer, params) {
 
-                        // Service using cache to avoid mutiple requests
-                        ngTableDataService.getData($defer, params, Api);
+                    // Service using cache to avoid mutiple requests
+                    ngTableDataService.getData($defer, params, Api);
 
-                        /* direct ajax request to api (perform result pagination on the server)
-                         Api.get(params.url(), function(data) {
-                         $timeout(function() {
-                         // update table params
-                         params.total(data.total);
-                         // set new data
-                         $defer.resolve(data.result);
-                         }, 500);
-                         });
-                         */
-                    }
-                });
+                    /* direct ajax request to api (perform result pagination on the server)
+                     Api.get(params.url(), function(data) {
+                     $timeout(function() {
+                     // update table params
+                     params.total(data.total);
+                     // set new data
+                     $defer.resolve(data.result);
+                     }, 500);
+                     });
+                     */
+                }
+            });
         }
     }
 })();
@@ -11807,16 +11879,16 @@
             // editable row
             // ----------------------------------- 
             vm.users = [
-                { id: 1, name: 'awesome user1', status: 2, group: 4, groupName: 'admin' },
-                { id: 2, name: 'awesome user2', status: undefined, group: 3, groupName: 'vip' },
-                { id: 3, name: 'awesome user3', status: 2, group: null }
+                {id: 1, name: 'awesome user1', status: 2, group: 4, groupName: 'admin'},
+                {id: 2, name: 'awesome user2', status: undefined, group: 3, groupName: 'vip'},
+                {id: 3, name: 'awesome user3', status: 2, group: null}
             ];
 
             vm.statuses = [
-                { value: 1, text: 'status1' },
-                { value: 2, text: 'status2' },
-                { value: 3, text: 'status3' },
-                { value: 4, text: 'status4' }
+                {value: 1, text: 'status1'},
+                {value: 2, text: 'status2'},
+                {value: 3, text: 'status3'},
+                {value: 4, text: 'status4'}
             ];
 
             vm.groups = [];
@@ -11828,7 +11900,7 @@
 
             vm.showGroup = function (user) {
                 if (user.group && vm.groups.length) {
-                    var selected = $filter('filter')(vm.groups, { id: user.group });
+                    var selected = $filter('filter')(vm.groups, {id: user.group});
                     return selected.length ? selected[0].text : 'Not set';
                 } else {
                     return user.groupName || 'Not set';
@@ -11838,7 +11910,7 @@
             vm.showStatus = function (user) {
                 var selected = [];
                 if (user.status) {
-                    selected = $filter('filter')(vm.statuses, { value: user.status });
+                    selected = $filter('filter')(vm.statuses, {value: user.status});
                 }
                 return selected.length ? selected[0].text : 'Not set';
             };
@@ -11851,7 +11923,7 @@
 
             vm.saveUser = function (data, id) {
                 //vm.user not updated yet
-                angular.extend(data, { id: id });
+                angular.extend(data, {id: id});
                 console.log('Saving user: ' + id);
                 // return $http.post('/saveUser', data);
             };
@@ -11896,7 +11968,7 @@
 
             // mark user as deleted
             vm.deleteUser = function (id) {
-                var filtered = $filter('filter')(vm.users, { id: id });
+                var filtered = $filter('filter')(vm.users, {id: id});
                 if (filtered.length) {
                     filtered[0].isDeleted = true;
                 }
@@ -12083,8 +12155,8 @@
                 showColumnFooter: true,
                 enableFiltering: true,
                 columnDefs: [
-                    { field: 'name', width: '13%' },
-                    { field: 'address.street', aggregationType: uiGridConstants.aggregationTypes.sum, width: '13%' },
+                    {field: 'name', width: '13%'},
+                    {field: 'address.street', aggregationType: uiGridConstants.aggregationTypes.sum, width: '13%'},
                     {
                         field: 'age',
                         aggregationType: uiGridConstants.aggregationTypes.avg,
@@ -12139,9 +12211,9 @@
                 paginationPageSizes: [25, 50, 75],
                 paginationPageSize: 25,
                 columnDefs: [
-                    { name: 'name' },
-                    { name: 'gender' },
-                    { name: 'company' }
+                    {name: 'name'},
+                    {name: 'gender'},
+                    {name: 'company'}
                 ]
             };
 
@@ -12297,7 +12369,7 @@
 
                 if (scope.resetKey) {
                     delete $localStorage[scope.resetKey];
-                    $state.go($state.current, {}, { reload: true });
+                    $state.go($state.current, {}, {reload: true});
                 }
                 else {
                     $.error('No storage key specified for reset.');
@@ -12557,9 +12629,9 @@
                         for (name in transEndEventNames) {
                             if (element.style[name] !== undefined) return transEndEventNames[name];
                         }
-                    } ());
+                    }());
 
-                    return transitionEnd && { end: transitionEnd };
+                    return transitionEnd && {end: transitionEnd};
                 })(),
                 animation: (function () {
 
@@ -12576,9 +12648,9 @@
                         for (name in animEndEventNames) {
                             if (element.style[name] !== undefined) return animEndEventNames[name];
                         }
-                    } ());
+                    }());
 
-                    return animationEnd && { end: animationEnd };
+                    return animationEnd && {end: animationEnd};
                 })(),
                 requestAnimationFrame: window.requestAnimationFrame ||
                 window.webkitRequestAnimationFrame ||
@@ -12595,7 +12667,7 @@
                     (window.navigator['msPointerEnabled'] && window.navigator['msMaxTouchPoints'] > 0) || //IE 10
                     (window.navigator['pointerEnabled'] && window.navigator['maxTouchPoints'] > 0) || //IE >=11
                     false
-                    ),
+                ),
                 mutationobserver: (window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver || null)
             },
             // UTILITIES
@@ -12613,7 +12685,7 @@
                     left = offset.left,
                     top = offset.top;
 
-                options = $.extend({ topoffset: 0, leftoffset: 0 }, options);
+                options = $.extend({topoffset: 0, leftoffset: 0}, options);
 
                 if (top + $element.height() >= window_top && top - options.topoffset <= window_top + $win.height() &&
                     left + $element.width() >= window_left && left - options.leftoffset <= window_left + $win.width()) {
@@ -12650,9 +12722,9 @@
 
     angular
         .module('custom', [
-        // request the the entire framework
+            // request the the entire framework
             'angle',
-        // or just modules
+            // or just modules
             'app.core',
             'app.sidebar'
             /*...*/

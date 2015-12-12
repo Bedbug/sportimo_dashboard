@@ -346,7 +346,15 @@ border: 2px dashed #F1F1F1;
 }
 
 .match-time{
-    font-size: 3vw;
+    margin-bottom: -50px;
+    font-weight: bold;
+    font-size: 27px;
+}
+
+.match-segment-title{
+    font-size: medium;
+    font-weight: bolder;
+    text-transform: capitalize;
 }
 
 .event-card{

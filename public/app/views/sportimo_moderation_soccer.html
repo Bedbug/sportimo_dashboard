@@ -11,9 +11,10 @@
                     <p>{{match.data.home_team.name}}</p>
                 </div>
                 <div class="col-sm-4">
+                    <div ng-show="match.sport.segments[ match.data.timeline.length - 1].timed" class="match-time">{{match.data.time}}'</div>
                     <div ng-show="match.data.state > 0" class="match-info">
                         <small class="text-muted"></small>
-                        <div class="score" ng->{{match.data?(GetStat(match.data.home_team._id,'g') || 0) +" - "+ (GetStat(match.data.away_team._id,'g') || 0): ''}}</div>
+                        <div class="score">{{match.data?(GetStat(match.data.home_team._id,'g') || 0) +" - "+ (GetStat(match.data.away_team._id,'g') || 0): ''}}</div>
 
                     </div>
                     <div ng-show="match.data.state == 0" class="match-info">
@@ -41,11 +42,12 @@
                 <!--</p>-->
             </div>
             <div class="col-xs-4 br">
-                <h3 class="m0">{{match.data.time}}'</h3>
+                <h3 class="m0">{{match.Match_timer}}</h3>
 
-                <p class="m0">{{match.sport.segments[ match.data.timeline.length - 1 - $index].name}}</p>
+                <p class="m0 match-segment-title">{{match.GetCurrentSegment()}}</p>
             </div>
             <div class="col-xs-4">
+                <button ng-click="advanceSegment()"> Advance Segment</button>
                 <!--<h3 class="m0">100</h3>-->
 
                 <!--<p class="m0">Following</p>-->
@@ -368,7 +370,7 @@
                                                     class="timeline-separator"></li>
                                                 <!-- START timeline item-->
 
-                                                <li    ng-repeat="event in segment | reverse | filter: {status:'!removed'}" class="custom"
+                                                <li    ng-repeat="event in segment.events | reverse | filter: {status:'!removed'}" class="custom"
                                                     ng-class="$index%2==0?'timeline-inverted':'timeline-left'">
 
                                                     <div class="timeline-badge">

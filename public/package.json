@@ -1,8 +1,9 @@
 {
-    "name": "sound_machine",
+    "name": "Sportimo",
     "version": "0.1.0",
     "main": "./main.js",
     "scripts": {
-        "start": "electron ."
+        "start": "electron .",
+        "package": "electron-packager ./ Sportimo --all  --version 0.34.3 --overwrite --icon=./app-icon.ico"
     }
 }
