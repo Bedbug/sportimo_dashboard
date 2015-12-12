@@ -2688,15 +2688,33 @@
 
     function appRun($rootScope, $state, $stateParams, $window, $templateCache, Colors, $location, $cookieStore, $http, $websocket) {
 
+        // Set reference to access them from any scope
+        $rootScope.$state = $state;
+        $rootScope.$stateParams = $stateParams;
+        $rootScope.$storage = $window.localStorage;
 
         var messageCount = 0;
         $rootScope.dataset = [{data: [], yaxis: 1, label: 'Users', color: "#1ba3cd"}];
 
-        $rootScope.reconnectSocket = function () {
-            $rootScope.dataStream = $websocket('ws://localhost:8080/');
+        $rootScope.serverEnvironment = $rootScope.$storage.environment || 'development';
+
+        $rootScope.servers = {
+            production: {
+                game_server: 'http://gameserverv2-56657.onmodulus.net/v1/',
+                sockets: 'wss://socketserverv2-56658.onmodulus.net/'
+            },
+            development: {
+                game_server: 'http://localhost:3030/v1/',
+                sockets: 'ws://localhost:8080/'
+            }
         }
-        //$rootScope.dataStream = $websocket('wss://sportimosocketinstance-56448.onmodulus.net/');
-        $rootScope.dataStream = $websocket('ws://localhost:8080/');
+
+        $rootScope.reconnectSocket = function () {
+            $rootScope.dataStream = $websocket($rootScope.servers[$rootScope.serverEnvironment].sockets);
+        }
+
+
+        $rootScope.dataStream = $websocket($rootScope.servers[$rootScope.serverEnvironment].sockets);
 
         $rootScope.socketConnection = false;
         $rootScope.dataStream.onOpen(function () {
@@ -2728,11 +2746,6 @@
             //activate();
         });
 
-
-        // Set reference to access them from any scope
-        $rootScope.$state = $state;
-        $rootScope.$stateParams = $stateParams;
-        $rootScope.$storage = $window.localStorage;
 
         // Uncomment this to disable template cache
         /*$rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
@@ -4049,10 +4062,49 @@
         });
 
 
-    SportimoModerationSoccerController.$inject = ['$scope', 'ngDialog', 'Restangular', 'toaster', '$stateParams', '$http', '$rootScope', '$timeout', '$interval'];
-    function SportimoModerationSoccerController($scope, ngDialog, Restangular, toaster, $stateParams, $http, $rootScope, $timeout, $interval) {
+    SportimoModerationSoccerController.$inject = ['$scope', 'ngDialog', 'Restangular', '$stateParams', '$http', '$rootScope', '$timeout', '$interval','$mdToast','$mdBottomSheet','$window'];
+    function SportimoModerationSoccerController( $scope, ngDialog, Restangular, $stateParams, $http, $rootScope, $timeout, $interval, $mdToast,  $mdBottomSheet, $window) {
         var vm = this;
 
+            $scope.items = ["one","two","three"];
+
+        $rootScope.toggleEnvironment = function () {
+            if ($rootScope.serverEnvironment == 'production')
+                $rootScope.serverEnvironment = $rootScope.$storage.environment = 'development';
+            else
+                $rootScope.serverEnvironment = $rootScope.$storage.environment = 'production';
+
+            toast('Environment: ' + $rootScope.serverEnvironment);
+console.log("click");
+            $timeout(function(){$window.location.reload()},2000);
+
+        }
+
+        function toast(message){
+            $mdToast.show({
+                template: '<md-toast class="sportimo-toast">'+
+                '<div class="sportimo-toast-heading text-center">'+
+                '<img src="app/img/sportimo/icon_sportimo-white_64.png" alt="App Logo" class="pull-left">'+
+                '</div>'+
+                '<div>' + message+
+                '</div>'+
+                '</md-toast>',
+                hideDelay: 3000,
+                position: 'top right'
+            });
+        }
+
+        $scope.showGridBottomSheet = function ($event) {
+            $scope.alert = '';
+            $mdBottomSheet.show({
+                templateUrl: 'bottom-sheet-grid-template.html',
+                controller: 'GridBottomSheetCtrl',
+
+                targetEvent: $event
+            }).then(function (clickedItem) {
+                $scope.alert = clickedItem.name + ' clicked!';
+            });
+        };
 
         $scope.filterTeamPlayers = true;
         $scope.event = {};
@@ -4093,7 +4145,7 @@
         $scope.loadMatchData = function (id) {
             $http({
                 method: 'GET',
-                url: 'http://localhost:3030/v1/live/match/' + id
+                url: $rootScope.servers[$rootScope.serverEnvironment].game_server + 'live/match/' + id
 
             }).then(function successCallback(response) {
 
@@ -4127,10 +4179,10 @@
         }
 
         $scope.advanceSegment = function () {
-                console.log($scope.match);
+            console.log($scope.match);
             var EventData = {
                 type: "AdvanceSegment",
-                match_id:  $scope.match.id,
+                match_id: $scope.match.id,
             }
 
             EventData.created = moment().utc();
@@ -4138,7 +4190,7 @@
 
             $http({
                 method: 'POST',
-                url: 'http://localhost:3030/v1/moderation/' + $stateParams.id + '/event',
+                url: $rootScope.servers[$rootScope.serverEnvironment].game_server + 'moderation/' + $stateParams.id + '/event',
                 data: EventData
             }).then(function successCallback(response) {
                 $scope.match = AddHooks(response.data);
@@ -4278,7 +4330,7 @@
 
             $http({
                 method: 'POST',
-                url: 'http://localhost:3030/v1/moderation/' + $stateParams.id + '/event',
+                url: $rootScope.servers[$rootScope.serverEnvironment].game_server + 'moderation/' + $stateParams.id + '/event',
                 data: event
             }).then(function successCallback(response) {
                 //console.log(response);
@@ -4346,7 +4398,7 @@
 
             $http({
                 method: 'POST',
-                url: 'http://localhost:3030/v1/moderation/' + $stateParams.id + '/event',
+                url: $rootScope.servers[$rootScope.serverEnvironment].game_server + 'moderation/' + $stateParams.id + '/event',
                 data: data
             }).then(function successCallback(response) {
                 console.log(response.data);
@@ -4400,7 +4452,7 @@
 
         $http({
             method: 'POST',
-            url: 'http://localhost:3030/v1/live/match',
+            url: $rootScope.servers[$rootScope.serverEnvironment].game_server + 'live/match',
             data: {id: $stateParams.id}
         }).then(function successCallback(response) {
             console.log(response);

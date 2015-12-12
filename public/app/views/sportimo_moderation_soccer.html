@@ -1,7 +1,7 @@
 <!--<h3>Match Moderation-->
 <!--<small>Administration and Moderation of matches</small>-->
 <!--</h3>-->
-<div class="unwrap">
+<div id="tabone" class="unwrap">
     <div class="match-profile bg-cover bg-gray-darker">
         <div class="match-profile-heading p-xl text-center text-white col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
             <div class="match-logos">
@@ -60,11 +60,36 @@
         <div id="matchData" class="panel panel-default">
             <div class="panel-body">
 
-                <tabset>
-                    <tab heading="Timeline">
+                <tabset >
+                    <tab  heading="Timeline">
 
-                        <div class="grid col-xs-12">
-
+                        <div  class="grid col-xs-12">
+                            <md-button flex="50" ng-click="showGridBottomSheet($event)" class="md-primary md-raised">Show as Grid</md-button>
+                            <script type="text/ng-template" id="bottom-sheet-grid-template.html">
+                                <md-bottom-sheet class="md-grid">
+                                    <md-list>
+                                        <md-list-item ng-repeat="item in items">
+                                            <md-button class="md-grid-item-content" ng-click="listItemClick($index)">
+                                                <md-icon md-svg-src="{{item.icon}}"></md-icon>
+                                                <div class="md-grid-text"> {{ item.name }} </div>
+                                            </md-button>
+                                        </md-list-item>
+                                    </md-list>
+                                </md-bottom-sheet>
+                            </script>
+                            <script type="text/ng-template" id="bottom-sheet-list-template.html">
+                                <md-bottom-sheet class="md-list md-has-header">
+                                    <md-subheader>Comment Actions</md-subheader>
+                                    <md-list>
+                                        <md-list-item ng-repeat="item in items">
+                                            <md-button class="md-list-item-content" ng-click="listItemClick($index)">
+                                                <md-icon md-svg-src="{{item.icon}}"></md-icon>
+                                                <span class="md-inline-list-icon-label">{{ item.name }}</span>
+                                            </md-button>
+                                        </md-list-item>
+                                    </md-list>
+                                </md-bottom-sheet>
+                            </script>
                             <div class="row">
 
                                 <div class="col-md-9">
@@ -523,7 +548,7 @@
 
 
 <script type="text/ng-template" id="firstDialogId">
-    <!--<div>-->
+
         <div class="sportimo-dialog">
             <div class="sportimo-dialog-heading text-center">
                  <img src="app/img/sportimo/icon_sportimo-white_64.png" alt="App Logo" class="pull-left"> {{ngDialogData.title}}
@@ -537,6 +562,7 @@
         </div>
         <!--<h3 class="mt0">ngDialog template</h3><p ng-show="theme">Test content for<code>{{theme}}</code></p><p ng-show="ngDialogData.foo">Data passed through:<code>{{ngDialogData.foo}}</code></p><button type="button" ng-dialog="secondDialogId" ng-dialog-class="ngdialog-theme-default" ng-dialog-controller="SecondModalCtrl" ng-dialog-close-previous="ng-dialog-close-previous" class="btn btn-default mr">Close and open</button><button type="button" ng-click="openSecond()" class="btn btn-primary">Open next</button></div>-->
 </script>
+
 
 <script type="text/ng-template" id="deleteEventDialog">
     <!--<div>-->

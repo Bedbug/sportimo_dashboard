@@ -9,6 +9,15 @@
     <em class="fa  fa-thumbs-o-down"> </em>
 </div>
 
+    <div ng-click="toggleEnvironment()" class="pull-left" ng-show="serverEnvironment == 'production'">
+        <em class="fa fa-cloud"> </em>
+    </div>
+<div ng-click="toggleEnvironment()" class="pull-left" ng-show="serverEnvironment == 'development'">
+    <em class="fa  fa-circle-o"> </em>
+</div>
+
+
+
 <div class="pull-right">
     <span>©</span>
     <span>2015</span>

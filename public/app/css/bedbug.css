@@ -31,9 +31,25 @@ img.desaturate {
     padding: 0 8px 22px !important;
 }
 
+
 .footer-wrapper .fa{
     width: 17px;
     margin-left: 10px;
+}
+
+.sportimo-toast{
+    background-color: #2196f3;
+}
+
+.sportimo-toast-heading{
+    margin: 0;
+}
+
+.sportimo-toast-heading img {
+    display: block;
+    position: relative;
+    left: -12px;
+    height: 25px;
 }
 
 @media (min-width: 768px)
