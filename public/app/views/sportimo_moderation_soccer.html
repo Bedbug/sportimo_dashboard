@@ -1,6 +1,7 @@
 <!--<h3>Match Moderation-->
 <!--<small>Administration and Moderation of matches</small>-->
 <!--</h3>-->
+
 <div id="tabone" class="unwrap">
     <div class="match-profile bg-cover bg-gray-darker">
         <div class="match-profile-heading p-xl text-center text-white col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
@@ -42,8 +43,8 @@
                 <!--</p>-->
             </div>
             <div  ng-click="advanceSegment()" class="col-xs-4 br">
-                <div class="stopwatch"><i class="glyphicon-stopwatch"></i></div>
-                <h3 class="m0">{{match.Match_timer}}</h3>
+
+                <h3 class="m0"> <span class="stopwatch"><i class="glyphicon-stopwatch"></i></span>{{match.Match_timer}}</h3>
                 <p class="m0 match-segment-title">{{match.GetCurrentSegment()}}</p>
             </div>
             <div class="col-xs-4">
@@ -64,32 +65,32 @@
                     <tab  heading="Timeline">
 
                         <div  class="grid col-xs-12">
-                            <md-button flex="50" ng-click="showGridBottomSheet($event)" class="md-primary md-raised">Show as Grid</md-button>
-                            <script type="text/ng-template" id="bottom-sheet-grid-template.html">
-                                <md-bottom-sheet class="md-grid">
-                                    <md-list>
-                                        <md-list-item ng-repeat="item in items">
-                                            <md-button class="md-grid-item-content" ng-click="listItemClick($index)">
-                                                <md-icon md-svg-src="{{item.icon}}"></md-icon>
-                                                <div class="md-grid-text"> {{ item.name }} </div>
-                                            </md-button>
-                                        </md-list-item>
-                                    </md-list>
-                                </md-bottom-sheet>
-                            </script>
-                            <script type="text/ng-template" id="bottom-sheet-list-template.html">
-                                <md-bottom-sheet class="md-list md-has-header">
-                                    <md-subheader>Comment Actions</md-subheader>
-                                    <md-list>
-                                        <md-list-item ng-repeat="item in items">
-                                            <md-button class="md-list-item-content" ng-click="listItemClick($index)">
-                                                <md-icon md-svg-src="{{item.icon}}"></md-icon>
-                                                <span class="md-inline-list-icon-label">{{ item.name }}</span>
-                                            </md-button>
-                                        </md-list-item>
-                                    </md-list>
-                                </md-bottom-sheet>
-                            </script>
+                            <!--<md-button flex="50" ng-click="showGridBottomSheet($event)" class="md-primary md-raised">Show as Grid</md-button>-->
+                            <!--<script type="text/ng-template" id="bottom-sheet-grid-template.html">-->
+                                <!--<md-bottom-sheet class="md-grid">-->
+                                    <!--<md-list>-->
+                                        <!--<md-list-item ng-repeat="item in items">-->
+                                            <!--<md-button class="md-grid-item-content" ng-click="listItemClick($index)">-->
+                                                <!--<md-icon md-svg-src="{{item.icon}}"></md-icon>-->
+                                                <!--<div class="md-grid-text"> {{ item.name }} </div>-->
+                                            <!--</md-button>-->
+                                        <!--</md-list-item>-->
+                                    <!--</md-list>-->
+                                <!--</md-bottom-sheet>-->
+                            <!--</script>-->
+                            <!--<script type="text/ng-template" id="bottom-sheet-list-template.html">-->
+                                <!--<md-bottom-sheet class="md-list md-has-header">-->
+                                    <!--<md-subheader>Comment Actions</md-subheader>-->
+                                    <!--<md-list>-->
+                                        <!--<md-list-item ng-repeat="item in items">-->
+                                            <!--<md-button class="md-list-item-content" ng-click="listItemClick($index)">-->
+                                                <!--<md-icon md-svg-src="{{item.icon}}"></md-icon>-->
+                                                <!--<span class="md-inline-list-icon-label">{{ item.name }}</span>-->
+                                            <!--</md-button>-->
+                                        <!--</md-list-item>-->
+                                    <!--</md-list>-->
+                                <!--</md-bottom-sheet>-->
+                            <!--</script>-->
                             <div class="row">
 
                                 <div class="col-md-9">
@@ -392,7 +393,7 @@
                                             <ul ng-repeat="segment in match.data.timeline | reverse " class="timeline">
 
                                                 <li data-datetime="{{match.sport.segments[ match.data.timeline.length - 1 - $index].name}}"
-                                                    class="timeline-separator"></li>
+                                                    class="timeline-separator"><div ng-click="EditSegmentTimes()" class="segment-watch"><i class="glyphicon-stopwatch"></i></div></li>
                                                 <!-- START timeline item-->
 
                                                 <li    ng-repeat="event in segment.events | reverse | filter: {status:'!removed'}" class="custom"
@@ -505,9 +506,13 @@
                                         </div>
 
                                     </div>
-                                    <button  ladda="modCtrl.pushLoading" data-style="expand-left" ng-click="modCtrl.pushLoading = true;loadMatchData(match.id)" type="button" class="moderation btn btn-labeled  btn-group btn-inverse">
+                                    <button  ladda="pushLoading" data-style="zoom-in" ng-click="loadMatchData(match.id)" type="button" class="moderation btn btn-labeled  btn-group btn-inverse">
                                       <span class="btn-label"><i class="fa fa-refresh"></i>
                                     </span>Reload Data</button>
+
+                                        <button ladda="reloadingServer" data-style="zoom-in" ng-click="reloadMatch(match.id)" type="button" class="moderation btn btn-labeled  btn-group btn-inverse">
+                                      <span class="btn-label"><i class="fa fa-refresh"></i>
+                                    </span>Reload Server</button>
 
 </div>
                                 </div>

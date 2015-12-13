@@ -3517,6 +3517,7 @@
     function SportimoPushesController($scope, Restangular, toaster) {
 
         $scope.pushLoading = false;
+        $scope.reloadingServer = false;
         $scope.allItems = [];
         $scope.push = {};
 
@@ -4447,12 +4448,13 @@
 
                     if (!match.sport.time_dependant) {                                   //  Is Time controlled?
                         match_timer = $interval(function () {
-                            var now = moment().utc().format();
-                            var then = match.data.timeline[match.data.state].start;
+                            var now = moment().utc();
+                            var then =  moment(match.data.timeline[match.data.state].start);
                             var ms = moment(now, "DD/MM/YYYY HH:mm:ss").diff(moment(then, "DD/MM/YYYY HH:mm:ss"));
                             var d = moment.duration(ms);
                             match.Match_timer = d.format("mm:ss", {trim: false});
-
+                            //console.log(d.minutes());
+                            //console.log(d.format());
                             match.data.time = (match.sport.segments[match.data.state].initialTime || 0) + parseInt(d.add(1, "minute").format("m")) + "";
                         }, 1000);
                     }
@@ -4461,6 +4463,24 @@
             return match;
         };
 
+        $scope.reloadMatch = function(){
+            $scope.reloadingServer = true;
+            $http({
+                method: 'POST',
+                url: $rootScope.servers[$rootScope.serverEnvironment].game_server + 'live/match/reload',
+                data: {id: $stateParams.id}
+            }).then(function successCallback(response) {
+                $scope.reloadingServer = false;
+                console.log("[Reloaded Match]");
+                $scope.match = AddHooks(response.data);
+
+
+            }, function errorCallback(response) {
+                $scope.reloadingServer = false;
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+            });
+        }
 
         $http({
             method: 'POST',
@@ -7670,6 +7690,7 @@
             },
             // Angular based script (use the right module name)
             modules: [
+
                 {
                     name: 'angular-ladda', files: ["vendor/ladda/dist/ladda-themeless.min.css",
                     "vendor/ladda/js/spin.js",
