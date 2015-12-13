@@ -41,13 +41,13 @@
                 <!--<span>Users</span>-->
                 <!--</p>-->
             </div>
-            <div class="col-xs-4 br">
+            <div  ng-click="advanceSegment()" class="col-xs-4 br">
+                <div class="stopwatch"><i class="glyphicon-stopwatch"></i></div>
                 <h3 class="m0">{{match.Match_timer}}</h3>
-
                 <p class="m0 match-segment-title">{{match.GetCurrentSegment()}}</p>
             </div>
             <div class="col-xs-4">
-                <button ng-click="advanceSegment()"> Advance Segment</button>
+                <!--<button ng-click="advanceSegment()"> Advance Segment</button>-->
                 <!--<h3 class="m0">100</h3>-->
 
                 <!--<p class="m0">Following</p>-->

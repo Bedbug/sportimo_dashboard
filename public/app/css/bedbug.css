@@ -1007,3 +1007,8 @@ border: 2px dashed #F1F1F1;
     top: 3px;
     width: 30px;
 }
+
+.stopwatch{
+    /*background-image: url(../img/glyphicons/glyphicons-56-stopwatch.png);*/
+    /*background-size: contain;*/
+}

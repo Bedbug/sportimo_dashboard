@@ -4075,7 +4075,7 @@
                 $rootScope.serverEnvironment = $rootScope.$storage.environment = 'production';
 
             toast('Environment: ' + $rootScope.serverEnvironment);
-console.log("click");
+
             $timeout(function(){$window.location.reload()},2000);
 
         }
@@ -4179,25 +4179,37 @@ console.log("click");
         }
 
         $scope.advanceSegment = function () {
-            console.log($scope.match);
-            var EventData = {
-                type: "AdvanceSegment",
-                match_id: $scope.match.id,
-            }
 
-            EventData.created = moment().utc();
+            ngDialog.openConfirm({
+                template: 'deleteEventDialog', data: {
+                    title: 'Warning',
+                    message: 'This action will advance the match to its next segment as it is defined in the sports atributes.<br/><br/> <p>Do you still want to continue?</p><br/>'
+                }
+            }).then(function (value) {
+                var EventData = {
+                    type: "AdvanceSegment",
+                    match_id: $scope.match.id,
+                }
+
+                EventData.created = moment().utc();
 
 
-            $http({
-                method: 'POST',
-                url: $rootScope.servers[$rootScope.serverEnvironment].game_server + 'moderation/' + $stateParams.id + '/event',
-                data: EventData
-            }).then(function successCallback(response) {
-                $scope.match = AddHooks(response.data);
-            }, function errorCallback(response) {
-                // called asynchronously if an error occurs
-                // or server returns response with an error status.
+                $http({
+                    method: 'POST',
+                    url: $rootScope.servers[$rootScope.serverEnvironment].game_server + 'moderation/' + $stateParams.id + '/event',
+                    data: EventData
+                }).then(function successCallback(response) {
+                    $scope.match = AddHooks(response.data);
+                }, function errorCallback(response) {
+                    // called asynchronously if an error occurs
+                    // or server returns response with an error status.
+                });
+
+            }, function (reason) {
+
+                console.log('Modal promise rejected. Reason: ', reason);
             });
+
 
 
         }

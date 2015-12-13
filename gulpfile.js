@@ -29,6 +29,7 @@ gulp.task('webserver', function () {
 
 
 gulp.task('all', function (cb) {
+
     gulp.src('')
         .pipe(server({
             livereload: {
@@ -54,18 +55,12 @@ gulp.task('all', function (cb) {
 
     gameserver.listen( { path: '../sportimo_gameserver/server.js' } );
 
-
-    var watcher = gulp.watch( [ '../sportimo_gameserver/sportimo-_modules/**/*.js' ], gameserver.restart );
+    var watcher = gulp.watch( [ '../sportimo_gameserver/sportimo_modules/**/*.js' ], gameserver.restart );
     watcher.on('change', function(event) {
-        console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
+
+        console.log('File ' + event + ' was ' + event.type + ', Reloading Game_server.');
     });
 
-
-    //exec('node ../sportimo_gameserver/server.js', function (err, stdout, stderr) {
-    //    console.log(stdout);
-    //    console.log(stderr);
-    //    cb(err);
-    //});
 
     exec('node ../sportimo_socketinstance_scaleable/app.js', function (err, stdout, stderr) {
         console.log(stdout);
@@ -74,3 +69,12 @@ gulp.task('all', function (cb) {
     });
 });
 
+//// run server
+//gulp.task( 'server:start', function() {
+//    gameserver.listen( { path: '../sportimo_gameserver/server.js' } );
+//});
+//
+//// restart server if app.js changed
+//gulp.task( 'server:restart', function() {
+//    var watcher =  gulp.watch( [ '../sportimo_gameserver/sportimo_modules/**/*.js' ], gameserver.restart );
+//});
