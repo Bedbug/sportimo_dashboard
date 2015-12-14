@@ -27,6 +27,16 @@ gulp.task('webserver', function () {
         }));
 });
 
+gulp.task('icon',function(){
+    // Replace Electron icon for your own.
+    var rcedit = require('rcedit');
+    
+    rcedit('./public/Sportimo-win32-x64/Sportimo.exe', {icon: './public/app-icon.ico'}, function (err) {
+        if (!err) {
+           console.log(err);
+        } });
+    
+});
 
 gulp.task('all', function (cb) {
 

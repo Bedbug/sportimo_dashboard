@@ -13,7 +13,7 @@ var mainWindow = null;
 
 app.on('ready', function() {
     mainWindow = new BrowserWindow({
-        height: 768,
+        height: 840,
         width: 1360
     });
 
