@@ -417,9 +417,13 @@
 
                                                 <li data-datetime="{{match.sport.segments[ match.data.timeline.length - 1 - $index].name}}"
                                                     class="timeline-separator">
-                                                    <div ng-click="EditSegmentTimes(match.data.timeline.length - 1 - $index)" class="segment-watch"><i
+                                                    <div ng-show="(match.data.timeline.length - 1 - $index)>0" ng-click="EditSegmentTimes(match.data.timeline.length - 1 - $index)" class="segment-watch"><i
                                                             class="glyph-stopwatch"></i></div>
                                                     <div ng-show="editingSegmentTime.index == (match.data.timeline.length - 1 - $index)" class="segment-time-editor">
+                                                        
+                                                        
+                                                      
+                                                        
                                                         <div ng-show="match.data.timeline[match.data.timeline.length - 1 - $index].start" class="col-xs-6"><div class="edit-segment-container"><span class="edit-segment-title pull-left">Start:</span>
                                                             <timepicker name="timepickr" required=""
                                                                         ng-model="match.data.timeline[match.data.timeline.length - 1 - $index].start"
@@ -427,14 +431,21 @@
                                                                         minute-step="1"
                                                                         show-meridian="false"></timepicker>
                                                         </div></div>
-                                                        <div ng-show="match.data.timeline[match.data.timeline.length - 1 - $index].end" class="col-xs-6"><div class="edit-segment-container"><span class="edit-segment-title pull-left">End:</span>
+                                                        <div ng-show="match.data.timeline[match.data.timeline.length - 1 - $index].end" class="col-xs-5"><div class="edit-segment-container"><span class="edit-segment-title pull-left">End:</span>
                                                             <timepicker name="timepickr" required=""
                                                                         ng-model="match.data.timeline[match.data.timeline.length - 1 - $index].end"
                                                                         ng-change="changed()" hour-step="1"
                                                                         minute-step="1"
                                                                         show-meridian="false"></timepicker>
                                                         </div></div>
-                                                        <pre class="alert alert-info">{{match.data.timeline[match.data.timeline.length - 1 - $index]}}</pre>
+                                                        
+                                                          <div class="segment-delete">
+                                                            <!--<button class="btn btn-sm btn-danger btn-delete"> <i class="fa fa-trash"></i></button>-->
+                                                            <button ng-show="(match.data.timeline.length - 1 - $index)>0" ng-click="removeSegment(match.data.timeline.length - 1 - $index)" class="delete btn btn-danger"><i class="fa fa-trash"></i></button>
+                                                            
+                                                        </div>
+                                                        
+                                                        <!--<pre class="alert alert-info">{{match.data.timeline[match.data.timeline.length - 1 - $index]}}</pre>-->
                                                     </div>
                                                 </li>
                                                 <!-- START timeline item-->
@@ -613,7 +624,7 @@
             {{ngDialogData.title}}
         </div>
         <div class="sportimo-dialog-body text-center">
-            <p ng-show="ngDialogData.message"><code>{{ngDialogData.message}}</code></p>
+            <p ng-show="ngDialogData.message">{{ngDialogData.message}}</p>
         </div>
         <div class="sportimo-dialog-footer text-center">
             <button type="button" ng-click="closeThisDialog(0)" class="btn btn-info btn-large">Ok, Got It!</button>

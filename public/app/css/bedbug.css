@@ -395,6 +395,20 @@ border: 2px dashed #F1F1F1;
     margin: auto;
 }
 
+.segment-delete{
+    position: relative;
+    top: 2px;
+    right: 3px;
+    float: right;
+}
+
+.btn-delete{
+    font-size: 20px;
+    padding: 4px;
+    margin: 0;
+    line-height: 1;
+}
+
 .segment-time-editor.ng-hide-add {
     animation:  .5s fadeOutUp  ease;
 }

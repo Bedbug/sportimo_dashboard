@@ -4214,7 +4214,97 @@
                 console.log('Modal promise rejected. Reason: ', reason);
             });
 
+        };
+        
+         $scope.removeSegment = function (index) {
+            
+            if(index !=  $scope.match.data.state)
+            {
+                   ngDialog.open({
+                    template: 'firstDialogId', data: {
+                        title: 'Warning',
+                        message: 'You can only remove the last segment of the match.'
+                    }
+                });
+                
+                return;
+            }else
+            {
+                  ngDialog.openConfirm({
+                template: 'deleteEventDialog', data: {
+                    title: 'Warning',
+                    message: 'This action will destroy the current segment. It is here for testing purposes or extreme conditions. It will not affect stats or anything else apart remove the segment from the timeline.<br/><br/> <p>Do you still want to continue?</p><br/>'
+                }
+            }).then(function (value) {
+                var EventData = {
+                    type: "DeleteSegment",
+                    id: $scope.match.id,
+                    index: index
+                };
 
+                $http({
+                    method: 'POST',
+                    url: $rootScope.servers[$rootScope.serverEnvironment].game_server + 'live/match/time/remove',
+                    data: EventData
+                }).then(function successCallback(response) {
+                    console.log(response);
+                    $scope.match = AddHooks(response.data);
+                    toast("Removal succesful.");
+                }, function errorCallback(response) {
+                    // called asynchronously if an error occurs
+                    // or server returns response with an error status.
+                });
+
+            }, function (reason) {
+
+                console.log('Modal promise rejected. Reason: ', reason);
+            });
+            }
+            
+            
+          
+
+        };
+        
+        // Edit Time segments
+        $scope.editingSegmentTime = {index: null, edited: false};
+
+        $scope.EditSegmentTimes = function (index) {
+            if ($scope.editingSegmentTime.index == index) {
+
+                if ($scope.editingSegmentTime.edited) {
+
+                    console.log("We need to update.")
+                    $http({
+                        method: 'POST',
+                        url: $rootScope.servers[$rootScope.serverEnvironment].game_server + 'live/match/time',
+                        data: {
+                            id: $stateParams.id,
+                            index: index,
+                            data: $scope.match.data.timeline[index]
+                        }
+                    }).then(function successCallback(response) {
+                        toast("Segment time updated on server.");
+
+                    }, function errorCallback(response) {
+                        // called asynchronously if an error occurs
+                        // or server returns response with an error status.
+                    });
+
+                }
+                $scope.editingSegmentTime.index = null;
+                $scope.editingSegmentTime.edited = false;
+            }
+            else {
+                $scope.editingSegmentTime.index = index;
+                $scope.editingSegmentTime.edited = false;
+            }
+
+        };
+
+
+        $scope.changed = function () {
+            $scope.editingSegmentTime.edited = true;
         };
 
         $scope.selectedEvent = {};
@@ -4461,6 +4551,10 @@
                         }, 1000);
                     }
                 }
+                else
+                {
+                    match.Match_timer = "00:00";
+                }
             }
             return match;
         }
@@ -4485,46 +4579,7 @@
         };
 
 
-        // Edit Time segments
-        $scope.editingSegmentTime = {index: null, edited: false};
-
-        $scope.EditSegmentTimes = function (index) {
-            if ($scope.editingSegmentTime.index == index) {
-               
-                if ($scope.editingSegmentTime.edited) {
-
-                    console.log("We need to update.")
-                    $http({
-                        method: 'POST',
-                        url: $rootScope.servers[$rootScope.serverEnvironment].game_server + 'live/match/time',
-                        data: {
-                            id: $stateParams.id,
-                            index: index,
-                            data: $scope.match.data.timeline[index]
-                        }
-                    }).then(function successCallback(response) {
-                        toast("Segment time updated on server.");
-
-                    }, function errorCallback(response) {
-                        // called asynchronously if an error occurs
-                        // or server returns response with an error status.
-                    });
-
-                }
-                $scope.editingSegmentTime.index = null;
-                $scope.editingSegmentTime.edited = false;
-            }
-            else {
-                $scope.editingSegmentTime.index = index;
-                $scope.editingSegmentTime.edited = false;
-            }
-
-        };
-
-
-        $scope.changed = function () {
-            $scope.editingSegmentTime.edited = true;
-        };
+        
 
         $http({
             method: 'POST',
