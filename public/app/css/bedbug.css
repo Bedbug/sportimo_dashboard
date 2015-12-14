@@ -374,6 +374,35 @@ border: 2px dashed #F1F1F1;
     text-transform: capitalize;
 }
 
+.segment-time-editor{
+    height: 105px;
+    border-radius: 5px;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+.edit-segment-title{
+    display: block;
+    height: 100px;
+    line-height: 100px;
+    padding: 0 10px 0 5px;
+    font-weight: bold;
+}
+
+.edit-segment-container{
+    width: 160px;
+    position: relative;
+    margin: auto;
+}
+
+.segment-time-editor.ng-hide-add {
+    animation:  .5s fadeOutUp  ease;
+}
+
+.segment-time-editor.ng-hide-remove{
+    animation: .5s  fadeInDown ease;
+}
+
 .segment-watch{
     position: absolute;
     top: 2px;

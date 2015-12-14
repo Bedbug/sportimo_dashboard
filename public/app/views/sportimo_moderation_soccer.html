@@ -8,14 +8,19 @@
             <div class="match-logos">
                 <div class="team-logo col-sm-4">
                     <img ng-src="{{match.data.home_team.logo}}"/>
+
                     <div></div>
                     <p>{{match.data.home_team.name}}</p>
                 </div>
                 <div class="col-sm-4">
-                    <div ng-show="match.sport.segments[ match.data.timeline.length - 1].timed" class="match-time">{{match.data.time}}'</div>
+                    <div ng-show="match.sport.segments[ match.data.timeline.length - 1].timed" class="match-time">
+                        {{match.data.time}}'
+                    </div>
                     <div ng-show="match.data.state > 0" class="match-info">
                         <small class="text-muted"></small>
-                        <div class="score">{{match.data?(GetStat(match.data.home_team._id,'g') || 0) +" - "+ (GetStat(match.data.away_team._id,'g') || 0): ''}}</div>
+                        <div class="score">{{match.data?(GetStat(match.data.home_team._id,'g') || 0) +" - "+
+                            (GetStat(match.data.away_team._id,'g') || 0): ''}}
+                        </div>
 
                     </div>
                     <div ng-show="match.data.state == 0" class="match-info">
@@ -26,6 +31,7 @@
                 </div>
                 <div class="team-logo  col-sm-4">
                     <img ng-src="{{match.data.away_team.logo}}"/>
+
                     <div></div>
                     <p> {{match.data.away_team.name}}</p>
                 </div>
@@ -42,9 +48,10 @@
                 <!--<span>Users</span>-->
                 <!--</p>-->
             </div>
-            <div  ng-click="advanceSegment()" class="col-xs-4 br">
+            <div ng-click="advanceSegment()" class="col-xs-4 br">
 
-                <h3 class="m0"> <span class="stopwatch"><i class="glyphicon-stopwatch"></i></span>{{match.Match_timer}}</h3>
+                <h3 class="m0"><span class="stopwatch"><i class="glyph-stopwatch"></i></span>{{match.Match_timer}}</h3>
+
                 <p class="m0 match-segment-title">{{match.GetCurrentSegment()}}</p>
             </div>
             <div class="col-xs-4">
@@ -61,35 +68,35 @@
         <div id="matchData" class="panel panel-default">
             <div class="panel-body">
 
-                <tabset >
-                    <tab  heading="Timeline">
+                <tabset>
+                    <tab heading="Timeline">
 
-                        <div  class="grid col-xs-12">
+                        <div class="grid col-xs-12">
                             <!--<md-button flex="50" ng-click="showGridBottomSheet($event)" class="md-primary md-raised">Show as Grid</md-button>-->
                             <!--<script type="text/ng-template" id="bottom-sheet-grid-template.html">-->
-                                <!--<md-bottom-sheet class="md-grid">-->
-                                    <!--<md-list>-->
-                                        <!--<md-list-item ng-repeat="item in items">-->
-                                            <!--<md-button class="md-grid-item-content" ng-click="listItemClick($index)">-->
-                                                <!--<md-icon md-svg-src="{{item.icon}}"></md-icon>-->
-                                                <!--<div class="md-grid-text"> {{ item.name }} </div>-->
-                                            <!--</md-button>-->
-                                        <!--</md-list-item>-->
-                                    <!--</md-list>-->
-                                <!--</md-bottom-sheet>-->
+                            <!--<md-bottom-sheet class="md-grid">-->
+                            <!--<md-list>-->
+                            <!--<md-list-item ng-repeat="item in items">-->
+                            <!--<md-button class="md-grid-item-content" ng-click="listItemClick($index)">-->
+                            <!--<md-icon md-svg-src="{{item.icon}}"></md-icon>-->
+                            <!--<div class="md-grid-text"> {{ item.name }} </div>-->
+                            <!--</md-button>-->
+                            <!--</md-list-item>-->
+                            <!--</md-list>-->
+                            <!--</md-bottom-sheet>-->
                             <!--</script>-->
                             <!--<script type="text/ng-template" id="bottom-sheet-list-template.html">-->
-                                <!--<md-bottom-sheet class="md-list md-has-header">-->
-                                    <!--<md-subheader>Comment Actions</md-subheader>-->
-                                    <!--<md-list>-->
-                                        <!--<md-list-item ng-repeat="item in items">-->
-                                            <!--<md-button class="md-list-item-content" ng-click="listItemClick($index)">-->
-                                                <!--<md-icon md-svg-src="{{item.icon}}"></md-icon>-->
-                                                <!--<span class="md-inline-list-icon-label">{{ item.name }}</span>-->
-                                            <!--</md-button>-->
-                                        <!--</md-list-item>-->
-                                    <!--</md-list>-->
-                                <!--</md-bottom-sheet>-->
+                            <!--<md-bottom-sheet class="md-list md-has-header">-->
+                            <!--<md-subheader>Comment Actions</md-subheader>-->
+                            <!--<md-list>-->
+                            <!--<md-list-item ng-repeat="item in items">-->
+                            <!--<md-button class="md-list-item-content" ng-click="listItemClick($index)">-->
+                            <!--<md-icon md-svg-src="{{item.icon}}"></md-icon>-->
+                            <!--<span class="md-inline-list-icon-label">{{ item.name }}</span>-->
+                            <!--</md-button>-->
+                            <!--</md-list-item>-->
+                            <!--</md-list>-->
+                            <!--</md-bottom-sheet>-->
                             <!--</script>-->
                             <div class="row">
 
@@ -119,10 +126,15 @@
                                                 </li>
                                             </ul>
                                         </div>
-                                        <button  ng-click="openDrawer(2)" type="button" class="moderation btn btn-labeled  btn-group btn-inverse">
-                                             <span class="btn-label"><i class="fa fa-bullhorn"></i></span>Send Message</button>
-                                        <button  ladda="modCtrl.pushLoading" data-style="expand-left" ng-click="modCtrl.pushLoading = true;loadMatchData(match.id)" type="button" class="moderation btn btn-labeled  btn-group btn-inverse">
-                                      <span class="btn-label"><i class="fa fa-refresh"></i></span>Reload Data</button>
+                                        <button ng-click="openDrawer(2)" type="button"
+                                                class="moderation btn btn-labeled  btn-group btn-inverse">
+                                            <span class="btn-label"><i class="fa fa-bullhorn"></i></span>Send Message
+                                        </button>
+                                        <button ladda="modCtrl.pushLoading" data-style="expand-left"
+                                                ng-click="modCtrl.pushLoading = true;loadMatchData(match.id)"
+                                                type="button" class="moderation btn btn-labeled  btn-group btn-inverse">
+                                            <span class="btn-label"><i class="fa fa-refresh"></i></span>Reload Data
+                                        </button>
                                     </div>
                                     <br/>
 
@@ -160,9 +172,10 @@
                                                              ng-class="event.type+'-text'" class="moving-self-heading">
                                                             Event player name:
                                                         </div>
-                                                        <ui-select ng-hide="event.playerscount == 2" limit=1 on-select="checkSelection($item,$model)"
+                                                        <ui-select ng-hide="event.playerscount == 2" limit=1
+                                                                   on-select="checkSelection($item,$model)"
                                                                    multiple
-                                                                   reset-search-input = "true"
+                                                                   reset-search-input="true"
                                                                    ng-model="event.players" theme="bootstrap"
                                                                    ng-disabled="event.chooseplayer.disabled">
                                                             <ui-select-match placeholder="Select player name"><img
@@ -186,9 +199,10 @@
                                                              ng-class="event.type+'-text'" class="moving-self-heading">
                                                             Event player names:
                                                         </div>
-                                                        <ui-select ng-hide="event.playerscount == 1" limit=2 on-select="checkSelection"
+                                                        <ui-select ng-hide="event.playerscount == 1" limit=2
+                                                                   on-select="checkSelection"
                                                                    multiple
-                                                                   reset-search-input = "true"
+                                                                   reset-search-input="true"
                                                                    ng-model="event.players" theme="bootstrap"
                                                                    ng-disabled="event.chooseplayer.disabled">
                                                             <ui-select-match placeholder="Select player name"><img
@@ -209,8 +223,9 @@
                                                         </ui-select>
                                                         <div class="mb">
                                                             <label class="mda-checkbox">
-                                                                <input type="checkbox"  ng-model="filterTeamPlayers" />
-                                                                <em class="subtle-checkbox"></em>Only selected team players</label>
+                                                                <input type="checkbox" ng-model="filterTeamPlayers"/>
+                                                                <em class="subtle-checkbox"></em>Only selected team
+                                                                players</label>
                                                         </div>
                                                     </div>
                                                     <!--<div class="player-input col-sm-4 col-xs-6">-->
@@ -235,7 +250,8 @@
                                                     <!--</div>-->
                                                     <!--</div>-->
                                                 </div>
-                                                <div  ng-show="humanizedEvent" ng-class="event.type" class="humanized-event" ng-bind-html="humanizedEvent"> </div>
+                                                <div ng-show="humanizedEvent" ng-class="event.type"
+                                                     class="humanized-event" ng-bind-html="humanizedEvent"></div>
                                             </div>
                                             <div class="panel-footer">
 
@@ -287,12 +303,14 @@
                                                     <div class="col-sm-8 col-xs-12">
                                                         <!-- For single player events -->
                                                         <div ng-hide="selectedEvent.playerscount == 2"
-                                                             ng-class="selectedEvent.type+'-text'" class="moving-self-heading">
+                                                             ng-class="selectedEvent.type+'-text'"
+                                                             class="moving-self-heading">
                                                             Event player name:
                                                         </div>
-                                                        <ui-select ng-hide="selectedEvent.playerscount == 2" limit=1 on-select="checkSelection($item,$model)"
+                                                        <ui-select ng-hide="selectedEvent.playerscount == 2" limit=1
+                                                                   on-select="checkSelection($item,$model)"
                                                                    multiple
-                                                                   reset-search-input = "true"
+                                                                   reset-search-input="true"
                                                                    ng-model="selectedEvent.players" theme="bootstrap"
                                                                    ng-disabled="selectedEvent.chooseplayer.disabled">
                                                             <ui-select-match placeholder="Select player name"><img
@@ -313,12 +331,14 @@
                                                         </ui-select>
                                                         <!-- For multi player events -->
                                                         <div ng-hide="selectedEvent.playerscount == 1"
-                                                             ng-class="selectedEvent.type+'-text'" class="moving-self-heading">
+                                                             ng-class="selectedEvent.type+'-text'"
+                                                             class="moving-self-heading">
                                                             Event player names:
                                                         </div>
-                                                        <ui-select ng-hide="selectedEvent.playerscount == 1" limit=2 on-select="checkSelection"
+                                                        <ui-select ng-hide="selectedEvent.playerscount == 1" limit=2
+                                                                   on-select="checkSelection"
                                                                    multiple
-                                                                   reset-search-input = "true"
+                                                                   reset-search-input="true"
                                                                    ng-model="selectedEvent.players" theme="bootstrap"
                                                                    ng-disabled="selectedEvent.chooseplayer.disabled">
                                                             <ui-select-match placeholder="Select player name"><img
@@ -339,8 +359,9 @@
                                                         </ui-select>
                                                         <div class="mb">
                                                             <label class="mda-checkbox">
-                                                                <input type="checkbox"  ng-model="filterTeamPlayers" />
-                                                                <em class="subtle-checkbox"></em>Only selected team players</label>
+                                                                <input type="checkbox" ng-model="filterTeamPlayers"/>
+                                                                <em class="subtle-checkbox"></em>Only selected team
+                                                                players</label>
                                                         </div>
                                                     </div>
                                                     <!--<div class="player-input col-sm-4 col-xs-6">-->
@@ -365,7 +386,8 @@
                                                     <!--</div>-->
                                                     <!--</div>-->
                                                 </div>
-                                                <div  ng-show="humanizedEvent" ng-class="selectedEvent.type" class="humanized-event" ng-bind-html="humanizedEvent"> </div>
+                                                <div ng-show="humanizedEvent" ng-class="selectedEvent.type"
+                                                     class="humanized-event" ng-bind-html="humanizedEvent"></div>
                                             </div>
                                             <div class="panel-footer">
 
@@ -374,7 +396,8 @@
                                                 </button>
                                                 <button ng-click="updateEvent(selectedEvent)" disable-animation
                                                         type="button"
-                                                        class="btn btn-square btn-pill-left pull-right btn-success">Update
+                                                        class="btn btn-square btn-pill-left pull-right btn-success">
+                                                    Update
                                                     Event
                                                 </button>
                                             </div>
@@ -385,18 +408,39 @@
                                     <div id="timeline-card" class="">
                                         <div class="">
                                             <!--<paneltool tool-refresh="line back-and-forth grow" class="pull-right"><a-->
-                                                    <!--href="#" panel-refresh="" data-spinner="line back-and-forth grow"-->
-                                                    <!--tooltip="Refresh"> <em-->
-                                                    <!--class="fa fa-refresh"></em> </a></paneltool>-->
+                                            <!--href="#" panel-refresh="" data-spinner="line back-and-forth grow"-->
+                                            <!--tooltip="Refresh"> <em-->
+                                            <!--class="fa fa-refresh"></em> </a></paneltool>-->
                                         </div>
                                         <div class="">
                                             <ul ng-repeat="segment in match.data.timeline | reverse " class="timeline">
 
                                                 <li data-datetime="{{match.sport.segments[ match.data.timeline.length - 1 - $index].name}}"
-                                                    class="timeline-separator"><div ng-click="EditSegmentTimes()" class="segment-watch"><i class="glyphicon-stopwatch"></i></div></li>
+                                                    class="timeline-separator">
+                                                    <div ng-click="EditSegmentTimes(match.data.timeline.length - 1 - $index)" class="segment-watch"><i
+                                                            class="glyph-stopwatch"></i></div>
+                                                    <div ng-show="editingSegmentTime.index == (match.data.timeline.length - 1 - $index)" class="segment-time-editor">
+                                                        <div ng-show="match.data.timeline[match.data.timeline.length - 1 - $index].start" class="col-xs-6"><div class="edit-segment-container"><span class="edit-segment-title pull-left">Start:</span>
+                                                            <timepicker name="timepickr" required=""
+                                                                        ng-model="match.data.timeline[match.data.timeline.length - 1 - $index].start"
+                                                                        ng-change="changed()" hour-step="1"
+                                                                        minute-step="1"
+                                                                        show-meridian="false"></timepicker>
+                                                        </div></div>
+                                                        <div ng-show="match.data.timeline[match.data.timeline.length - 1 - $index].end" class="col-xs-6"><div class="edit-segment-container"><span class="edit-segment-title pull-left">End:</span>
+                                                            <timepicker name="timepickr" required=""
+                                                                        ng-model="match.data.timeline[match.data.timeline.length - 1 - $index].end"
+                                                                        ng-change="changed()" hour-step="1"
+                                                                        minute-step="1"
+                                                                        show-meridian="false"></timepicker>
+                                                        </div></div>
+                                                        <pre class="alert alert-info">{{match.data.timeline[match.data.timeline.length - 1 - $index]}}</pre>
+                                                    </div>
+                                                </li>
                                                 <!-- START timeline item-->
 
-                                                <li    ng-repeat="event in segment.events | reverse | filter: {status:'!removed'}" class="custom"
+                                                <li ng-repeat="event in segment.events | reverse | filter: {status:'!removed'}"
+                                                    class="custom"
                                                     ng-class="$index%2==0?'timeline-inverted':'timeline-left'">
 
                                                     <div class="timeline-badge">
@@ -408,7 +452,8 @@
                                                              ng-class="($index%2==0?'right':'left') +' '+ event.trigger">
                                                             <div class="arrow"></div>
 
-                                                            <ng-include src="'app/views/partials/events/'+event.type+'.html'"></ng-include>
+                                                            <ng-include
+                                                                    src="'app/views/partials/events/'+event.type+'.html'"></ng-include>
 
                                                             <!--<div class="popover-content" ng-class="event.trigger">-->
                                                             <!--<div class="table-grid table-grid-align-middle mb">-->
@@ -446,75 +491,83 @@
 
                                 <div class="col-sm-3 panel timeline-options-side">
                                     <div class="panel-body">
-                                    <!-- Message Option-->
-                                    <div dropdown="dropdown" class="moderation btn-group" style="">
-                                        <button type="button" ng-disabled="disabled" dropdown-toggle=""
-                                                class="btn dropdown-toggle btn-inverse" aria-haspopup="true"
-                                                aria-expanded="false" aria-disabled="false">Events
-                                            <span class="caret"></span>
-                                        </button>
-                                        <ul role="menu" class="dropdown-menu">
-                                            <li><a ng-click="createEvent('substitution');">Substitution</a>
-                                            </li>
-                                            <li class="divider"></li>
-                                            <li><a ng-click="createEvent('foul',{fc:1});">Foul</a>
-                                            </li>
-                                            <li><a ng-click="createEvent('corner',{cr:1});">Corner</a>
-                                            </li>
-                                            <li class="divider"></li>
-                                            <li><a ng-click="createEvent('yellow',{yc:1});">Yellow Card</a>
-                                            </li>
-                                            <li><a ng-click="createEvent('red',{rc:1});">Red Card</a>
-                                            </li>
-                                            <li class="divider"></li>
-                                            <li><a ng-click="createEvent('goal',{g:1});">Goal</a>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                        <!-- Message Option-->
+                                        <div dropdown="dropdown" class="moderation btn-group" style="">
+                                            <button type="button" ng-disabled="disabled" dropdown-toggle=""
+                                                    class="btn dropdown-toggle btn-inverse" aria-haspopup="true"
+                                                    aria-expanded="false" aria-disabled="false">Events
+                                                <span class="caret"></span>
+                                            </button>
+                                            <ul role="menu" class="dropdown-menu">
+                                                <li><a ng-click="createEvent('substitution');">Substitution</a>
+                                                </li>
+                                                <li class="divider"></li>
+                                                <li><a ng-click="createEvent('foul',{fc:1});">Foul</a>
+                                                </li>
+                                                <li><a ng-click="createEvent('corner',{cr:1});">Corner</a>
+                                                </li>
+                                                <li class="divider"></li>
+                                                <li><a ng-click="createEvent('yellow',{yc:1});">Yellow Card</a>
+                                                </li>
+                                                <li><a ng-click="createEvent('red',{rc:1});">Red Card</a>
+                                                </li>
+                                                <li class="divider"></li>
+                                                <li><a ng-click="createEvent('goal',{g:1});">Goal</a>
+                                                </li>
+                                            </ul>
+                                        </div>
 
-                                    <div ng-show="eventDrawer == 1" class="panel" style="margin-top: 18px;">
-                                        <h3 class="m0 pb-lg panel-heading">Event data:</h3>
+                                        <div ng-show="eventDrawer == 1" class="panel" style="margin-top: 18px;">
+                                            <h3 class="m0 pb-lg panel-heading">Event data:</h3>
 
                                         <textarea style="width:100%; height:350px;"
                                                   class="panel-body">{{readable(event)}}</textarea>
-                                    </div>
+                                        </div>
 
-                                    <button  ng-click="openDrawer(2)" type="button" class="moderation btn btn-labeled  btn-group btn-inverse">
+                                        <button ng-click="openDrawer(2)" type="button"
+                                                class="moderation btn btn-labeled  btn-group btn-inverse">
                                       <span class="btn-label"><i class="fa fa-bullhorn"></i>
-                                    </span>Send Message</button>
-                                    <!-- Message Option-->
-                                    <div ng-show="eventDrawer == 2"class="panel" style="margin-top: 18px;">
-                                    <div  class="form-group mb-xl panel-body">
+                                    </span>Send Message
+                                        </button>
+                                        <!-- Message Option-->
+                                        <div ng-show="eventDrawer == 2" class="panel" style="margin-top: 18px;">
+                                            <div class="form-group mb-xl panel-body">
 
-                                            <div class="mda-form-group ">
+                                                <div class="mda-form-group ">
                                     <textarea ng-model="push.message" style="height: 180px;"
                                               placeholder="{{demomessage}}" rows="7"
                                               aria-multiline="true" tabindex="0" aria-invalid="false"
                                               class="mda-form-control ng-pristine ng-valid ng-touched"
                                               style="margin-top: 0px; margin-bottom: 0px; height: 139px;"></textarea>
-                                                <label>Message</label>
-                                                <span class="mda-form-msg right">Any message here</span>
+                                                    <label>Message</label>
+                                                    <span class="mda-form-msg right">Any message here</span>
+                                                </div>
+                                                <div class="">
+                                                    <br/>
+                                                    <button ladda="pushLoading" data-style="expand-left"
+                                                            ng-click="sendMessage(match.id, push.message)"
+                                                            class="btn btn-success pull-right btn-lg">
+                                                        Send Message
+                                                    </button>
+                                                </div>
                                             </div>
-                                            <div class="">
-                                                <br/>
-                                                <button ladda="pushLoading" data-style="expand-left"
-                                                        ng-click="sendMessage(match.id, push.message)"
-                                                        class="btn btn-success pull-right btn-lg">
-                                                    Send Message
-                                                </button>
-                                            </div>
+
                                         </div>
+                                        <button ladda="pushLoading" data-style="zoom-in"
+                                                ng-click="loadMatchData(match.id)" type="button"
+                                                class="moderation btn btn-labeled  btn-group btn-inverse">
+                                      <span class="btn-label"><i class="fa fa-refresh"></i>
+                                    </span>Reload Data
+                                        </button>
+
+                                        <button ladda="reloadingServer" data-style="zoom-in"
+                                                ng-click="reloadMatch(match.id)" type="button"
+                                                class="moderation btn btn-labeled  btn-group btn-inverse">
+                                      <span class="btn-label"><i class="fa fa-refresh"></i>
+                                    </span>Reload Server
+                                        </button>
 
                                     </div>
-                                    <button  ladda="pushLoading" data-style="zoom-in" ng-click="loadMatchData(match.id)" type="button" class="moderation btn btn-labeled  btn-group btn-inverse">
-                                      <span class="btn-label"><i class="fa fa-refresh"></i>
-                                    </span>Reload Data</button>
-
-                                        <button ladda="reloadingServer" data-style="zoom-in" ng-click="reloadMatch(match.id)" type="button" class="moderation btn btn-labeled  btn-group btn-inverse">
-                                      <span class="btn-label"><i class="fa fa-refresh"></i>
-                                    </span>Reload Server</button>
-
-</div>
                                 </div>
                             </div>
                         </div>
@@ -528,7 +581,7 @@
                             <div class="panel-heading">
                                 <h3>Stats</h3>
                             </div>
-                            <div class="panel-body" >
+                            <div class="panel-body">
                                 <pre>{{readable(match.data.stats)}}</pre>
                             </div>
                         </div>
@@ -554,18 +607,19 @@
 
 <script type="text/ng-template" id="firstDialogId">
 
-        <div class="sportimo-dialog">
-            <div class="sportimo-dialog-heading text-center">
-                 <img src="app/img/sportimo/icon_sportimo-white_64.png" alt="App Logo" class="pull-left"> {{ngDialogData.title}}
-            </div>
-            <div class="sportimo-dialog-body text-center">
-                <p ng-show="ngDialogData.message"><code>{{ngDialogData.message}}</code></p>
-            </div>
-            <div class="sportimo-dialog-footer text-center">
-                <button type="button" ng-click="closeThisDialog(0)" class="btn btn-info btn-large">Ok, Got It!</button>
-            </div>
+    <div class="sportimo-dialog">
+        <div class="sportimo-dialog-heading text-center">
+            <img src="app/img/sportimo/icon_sportimo-white_64.png" alt="App Logo" class="pull-left">
+            {{ngDialogData.title}}
         </div>
-        <!--<h3 class="mt0">ngDialog template</h3><p ng-show="theme">Test content for<code>{{theme}}</code></p><p ng-show="ngDialogData.foo">Data passed through:<code>{{ngDialogData.foo}}</code></p><button type="button" ng-dialog="secondDialogId" ng-dialog-class="ngdialog-theme-default" ng-dialog-controller="SecondModalCtrl" ng-dialog-close-previous="ng-dialog-close-previous" class="btn btn-default mr">Close and open</button><button type="button" ng-click="openSecond()" class="btn btn-primary">Open next</button></div>-->
+        <div class="sportimo-dialog-body text-center">
+            <p ng-show="ngDialogData.message"><code>{{ngDialogData.message}}</code></p>
+        </div>
+        <div class="sportimo-dialog-footer text-center">
+            <button type="button" ng-click="closeThisDialog(0)" class="btn btn-info btn-large">Ok, Got It!</button>
+        </div>
+    </div>
+    <!--<h3 class="mt0">ngDialog template</h3><p ng-show="theme">Test content for<code>{{theme}}</code></p><p ng-show="ngDialogData.foo">Data passed through:<code>{{ngDialogData.foo}}</code></p><button type="button" ng-dialog="secondDialogId" ng-dialog-class="ngdialog-theme-default" ng-dialog-controller="SecondModalCtrl" ng-dialog-close-previous="ng-dialog-close-previous" class="btn btn-default mr">Close and open</button><button type="button" ng-click="openSecond()" class="btn btn-primary">Open next</button></div>-->
 </script>
 
 
@@ -573,7 +627,8 @@
     <!--<div>-->
     <div class="sportimo-dialog">
         <div class="sportimo-dialog-danger-heading text-center">
-            <img src="app/img/sportimo/icon_sportimo-white_64.png" alt="App Logo" class="pull-left"> {{ngDialogData.title}}
+            <img src="app/img/sportimo/icon_sportimo-white_64.png" alt="App Logo" class="pull-left">
+            {{ngDialogData.title}}
         </div>
         <div class="sportimo-dialog-body text-center">
             <p ng-show="ngDialogData.message" ng-bind-html="ngDialogData.message"></p>

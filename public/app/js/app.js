@@ -2398,7 +2398,7 @@
                     vm.knobLoaderData3 = random();
                     vm.knobLoaderData4 = random();
                 }
-            }
+            };
 
             function random() {
                 return Math.floor((Math.random() * 100) + 1);
@@ -2707,11 +2707,11 @@
                 game_server: 'http://localhost:3030/v1/',
                 sockets: 'ws://localhost:8080/'
             }
-        }
+        };
 
         $rootScope.reconnectSocket = function () {
             $rootScope.dataStream = $websocket($rootScope.servers[$rootScope.serverEnvironment].sockets);
-        }
+        };
 
 
         $rootScope.dataStream = $websocket($rootScope.servers[$rootScope.serverEnvironment].sockets);
@@ -2848,7 +2848,7 @@
             var percentage = Math.round(((results[index] / sum) * 10000) / 100);
 
             return percentage;
-        }
+        };
 
         //$scope.knobLoaderData1 = 80;
         $scope.knobLoaderOptions1 = {
@@ -2875,7 +2875,7 @@
             Items.getList().then(function (data) {
                 $scope.allItems = data;
             });
-        };
+        }
 
         loadItems();
 
@@ -2885,7 +2885,7 @@
 
         $scope.newPoll = function () {
             $scope.composeItem = true;
-        }
+        };
 
         $scope.updateItem = function (item) {
             item.save().then(function (res) {
@@ -2912,7 +2912,7 @@
 
                 }
             );
-        }
+        };
 
         $scope.delete = function (item) {
             $scope.loading = true;
@@ -2978,7 +2978,7 @@
             Items.getList().then(function (data) {
                 $scope.allItems = data;
             });
-        };
+        }
 
         loadItems();
 
@@ -2991,7 +2991,7 @@
 
             $scope.composeItem = true;
             setnow();
-        }
+        };
 
         $scope.updateItem = function (item) {
 
@@ -3022,7 +3022,7 @@
 
                 }
             );
-        }
+        };
 
         $scope.delete = function (item) {
             $scope.loading = true;
@@ -3045,7 +3045,7 @@
                 //    //console.log('Modal promise rejected. Reason: ', reason);
             });
 
-        }
+        };
 
         function setnow() {
             var now = new Date();
@@ -3093,8 +3093,7 @@
         $scope.format = $scope.formats[0];
 
 
-    };
-
+    }
 })();
 
 
@@ -3128,7 +3127,7 @@
                     vm.dataLoading = false;
                 }
             })
-        };
+        }
     }
 
 })();
@@ -3343,7 +3342,7 @@
                                 name: user.name,
                                 job: user.job,
                                 picture: user.picture
-                            }
+                            };
                             response = {success: true};
                         } else {
                             response = {success: false, message: 'Username or password is incorrect'};
@@ -3508,7 +3507,7 @@
                 return result;
             };
         })
-        .controller('SportimoPushesController', SportimoPushesController)
+        .controller('SportimoPushesController', SportimoPushesController);
 
 
     SportimoPushesController.$inject = ['$scope', 'Restangular', 'toaster'];
@@ -3533,7 +3532,7 @@
             Items.getList().then(function (data) {
                 $scope.allItems = data;
             });
-        };
+        }
 
         loadItems();
 
@@ -3573,7 +3572,7 @@
                 d.getFullYear() + " " + ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2);
 
             return d_string;
-        }
+        };
 
 
         $scope.pushRequest = function (Users, message, data) {
@@ -3590,7 +3589,7 @@
                 tokens: _.pluck(Users, 'pushtoken'),
                 message: JSON.parse(message),
                 data: data != undefined ? JSON.parse(JSON.stringify(data)) : data
-            }
+            };
 
             Push.post(Request).then(function (res) {
                 $scope.pushLoading = false;
@@ -3601,7 +3600,7 @@
                 console.log("There was an error saving");
             });
 
-        }
+        };
 
         $scope.demomessage = "Message can be multilingual. You can send them as objects like the Data format. \n ex. \n";
         $scope.demomessage += JSON.stringify({
@@ -3623,20 +3622,20 @@
             $scope.selectedService = item.id;
 
 
-        }
+        };
 
         $scope.onSelected = function (item, model) {
 
             $scope.push.message = JSON.stringify(item.message, null, 4);
 
-        }
+        };
 
         $scope.onDataSelected = function (item) {
 
             item.message.match_id = $scope.matchIdFilter;
             $scope.push.data = JSON.stringify(item.message, null, 4);
 
-        }
+        };
 
         ////////////////
         $scope.selectedService = "";
@@ -3723,8 +3722,6 @@
                 return items.slice().reverse();
             };
         });
-    ;
-
     SportimoActivitiesController.$inject = ['$scope', 'Restangular', 'toaster'];
     function SportimoActivitiesController($scope, Restangular, toaster) {
 
@@ -3747,7 +3744,7 @@
             Items.getList().then(function (data) {
                 $scope.allItems = data;
             });
-        };
+        }
 
         loadItems();
 
@@ -3760,7 +3757,7 @@
 
             $scope.composeItem = true;
             setnow();
-        }
+        };
 
         $scope.updateItem = function (item) {
             item.save().then(function (res) {
@@ -3787,7 +3784,7 @@
 
                 }
             );
-        }
+        };
 
         $scope.delete = function (item) {
             $scope.loading = true;
@@ -3810,7 +3807,7 @@
                 //    //console.log('Modal promise rejected. Reason: ', reason);
             });
 
-        }
+        };
 
         function setnow() {
             var now = new Date();
@@ -3904,7 +3901,7 @@
             Items.getList().then(function (data) {
                 $scope.allItems = data;
             });
-        };
+        }
 
         loadItems();
 
@@ -3917,7 +3914,7 @@
 
             $scope.composeItem = true;
             setnow();
-        }
+        };
 
         $scope.updateItem = function (item) {
             console.log(item.date);
@@ -3949,7 +3946,7 @@
 
                 }
             );
-        }
+        };
 
         $scope.delete = function (item) {
             $scope.loading = true;
@@ -3972,7 +3969,7 @@
                 //    //console.log('Modal promise rejected. Reason: ', reason);
             });
 
-        }
+        };
 
         function setnow() {
             var now = new Date();
@@ -4063,11 +4060,13 @@
         });
 
 
-    SportimoModerationSoccerController.$inject = ['$scope', 'ngDialog', 'Restangular', '$stateParams', '$http', '$rootScope', '$timeout', '$interval','$mdToast','$mdBottomSheet','$window'];
-    function SportimoModerationSoccerController( $scope, ngDialog, Restangular, $stateParams, $http, $rootScope, $timeout, $interval, $mdToast,  $mdBottomSheet, $window) {
+    SportimoModerationSoccerController.$inject = ['$scope', 'ngDialog', 'Restangular', '$stateParams', '$http', '$rootScope', '$timeout', '$interval', '$mdToast', '$mdBottomSheet', '$window'];
+    function SportimoModerationSoccerController($scope, ngDialog, Restangular, $stateParams, $http, $rootScope, $timeout, $interval, $mdToast, $mdBottomSheet, $window) {
+
+
         var vm = this;
 
-            $scope.items = ["one","two","three"];
+        $scope.items = ["one", "two", "three"];
 
         $rootScope.toggleEnvironment = function () {
             if ($rootScope.serverEnvironment == 'production')
@@ -4077,18 +4076,20 @@
 
             toast('Environment: ' + $rootScope.serverEnvironment);
 
-            $timeout(function(){$window.location.reload()},2000);
+            $timeout(function () {
+                $window.location.reload()
+            }, 2000);
 
-        }
+        };
 
-        function toast(message){
+        function toast(message) {
             $mdToast.show({
-                template: '<md-toast class="sportimo-toast">'+
-                '<div class="sportimo-toast-heading text-center">'+
-                '<img src="app/img/sportimo/icon_sportimo-white_64.png" alt="App Logo" class="pull-left">'+
-                '</div>'+
-                '<div>' + message+
-                '</div>'+
+                template: '<md-toast class="sportimo-toast">' +
+                '<div class="sportimo-toast-heading text-center">' +
+                '<img src="app/img/sportimo/icon_sportimo-white_64.png" alt="App Logo" class="pull-left">' +
+                '</div>' +
+                '<div>' + message +
+                '</div>' +
                 '</md-toast>',
                 hideDelay: 3000,
                 position: 'top right'
@@ -4143,7 +4144,7 @@
         $scope.readable = function (obj) {
 
             return JSON.stringify(obj, null, 4);
-        }
+        };
 
         $scope.loadMatchData = function (id) {
             $http({
@@ -4159,7 +4160,7 @@
                 // called asynchronously if an error occurs
                 // or server returns response with an error status.
             });
-        }
+        };
 
         $scope.players = [
             {id: "565c4", team: "home_team", name: "marco"},
@@ -4174,12 +4175,12 @@
             {id: "565c4af6e4b0a3", team: "away_team", name: "han"},
             {id: "565c4af6e4b0ba33", team: "home_team", name: "indiana"},
             {id: "565c4af6e4b0a33dd", team: "home_team", name: "chackie"}
-        ]
+        ];
 
 
         $scope.checkSelection = function ($item, $model) {
 
-        }
+        };
 
         $scope.advanceSegment = function () {
 
@@ -4192,7 +4193,7 @@
                 var EventData = {
                     type: "AdvanceSegment",
                     match_id: $scope.match.id,
-                }
+                };
 
                 EventData.created = moment().utc();
 
@@ -4214,14 +4215,13 @@
             });
 
 
-
-        }
+        };
 
         $scope.selectedEvent = {};
         $scope.editEvent = function (event) {
             $scope.selectedEvent = event;
             $scope.eventDrawer = 3;
-        }
+        };
 
         $scope.clickedEvent = -1;
 
@@ -4231,10 +4231,10 @@
                 type: "Add",
                 match_id: event.match_id,
                 data: event
-            }
+            };
 
             $scope.sendEvent(addEventData);
-        }
+        };
 
 
         $scope.updateEvent = function (event) {
@@ -4252,7 +4252,7 @@
                     type: "Update",
                     match_id: event.match_id,
                     data: event
-                }
+                };
 
                 $scope.sendEvent(updateEventData);
 
@@ -4260,7 +4260,7 @@
 
                 console.log('Modal promise rejected. Reason: ', reason);
             });
-        }
+        };
 
         $scope.removeEvent = function (event) {
             ngDialog.openConfirm({
@@ -4274,7 +4274,7 @@
                     type: "Delete",
                     match_id: event.match_id,
                     data: event
-                }
+                };
 
                 $scope.sendEvent(removeEventData);
 
@@ -4282,11 +4282,11 @@
 
                 console.log('Modal promise rejected. Reason: ', reason);
             });
-        }
+        };
 
         $scope.GetStat = function (statId, statkey) {
             return _.result(_.findWhere($scope.match.data.stats, {id: statId}), statkey);
-        }
+        };
 
         $scope.createEvent = function (eventType, stats) {
             //console.log($scope.match);
@@ -4306,17 +4306,17 @@
                 sender: "Moderator",
                 time: $scope.match.data.time
 
-            }
+            };
 
             if (eventType == "substitution") $scope.event.playerscount = 2;
-        }
+        };
 
         $scope.openDrawer = function (drawer) {
             $scope.eventDrawer = drawer;
-        }
+        };
         $scope.closeDrawer = function () {
             $scope.eventDrawer = 0;
-        }
+        };
 
         function validateEvent(event) {
 
@@ -4354,7 +4354,7 @@
                 // called asynchronously if an error occurs
                 // or server returns response with an error status.
             });
-        }
+        };
 
         $scope.capitalize = function (str) {
             return str.replace(/(?:^|\s)\S/g, function (a) {
@@ -4409,7 +4409,7 @@
                     match_id: matchid,
                 }
 
-            }
+            };
 
             $http({
                 method: 'POST',
@@ -4422,7 +4422,7 @@
                 // called asynchronously if an error occurs
                 // or server returns response with an error status.
             });
-        }
+        };
 
         'use strict';
         var match_timer;
@@ -4442,7 +4442,7 @@
                     return match.sport.segments[match.data.state].name;
                 else
                     return "Unknown State";
-            }
+            };
 
             // Adding Timer hooks
             if (match.sport.segments[match.data.state]) {
@@ -4451,7 +4451,7 @@
                     if (!match.sport.time_dependant) {                                   //  Is Time controlled?
                         match_timer = $interval(function () {
                             var now = moment().utc();
-                            var then =  moment(match.data.timeline[match.data.state].start);
+                            var then = moment(match.data.timeline[match.data.state].start);
                             var ms = moment(now, "DD/MM/YYYY HH:mm:ss").diff(moment(then, "DD/MM/YYYY HH:mm:ss"));
                             var d = moment.duration(ms);
                             match.Match_timer = d.format("mm:ss", {trim: false});
@@ -4463,9 +4463,9 @@
                 }
             }
             return match;
-        };
+        }
 
-        $scope.reloadMatch = function(){
+        $scope.reloadMatch = function () {
             $scope.reloadingServer = true;
             $http({
                 method: 'POST',
@@ -4482,7 +4482,49 @@
                 // called asynchronously if an error occurs
                 // or server returns response with an error status.
             });
-        }
+        };
+
+
+        // Edit Time segments
+        $scope.editingSegmentTime = {index: null, edited: false};
+
+        $scope.EditSegmentTimes = function (index) {
+            if ($scope.editingSegmentTime.index == index) {
+               
+                if ($scope.editingSegmentTime.edited) {
+
+                    console.log("We need to update.")
+                    $http({
+                        method: 'POST',
+                        url: $rootScope.servers[$rootScope.serverEnvironment].game_server + 'live/match/time',
+                        data: {
+                            id: $stateParams.id,
+                            index: index,
+                            data: $scope.match.data.timeline[index]
+                        }
+                    }).then(function successCallback(response) {
+                        toast("Segment time updated on server.");
+
+                    }, function errorCallback(response) {
+                        // called asynchronously if an error occurs
+                        // or server returns response with an error status.
+                    });
+
+                }
+                $scope.editingSegmentTime.index = null;
+                $scope.editingSegmentTime.edited = false;
+            }
+            else {
+                $scope.editingSegmentTime.index = index;
+                $scope.editingSegmentTime.edited = false;
+            }
+
+        };
+
+
+        $scope.changed = function () {
+            $scope.editingSegmentTime.edited = true;
+        };
 
         $http({
             method: 'POST',
@@ -4502,8 +4544,7 @@
         };
 
 
-    };
-
+    }
 })();
 
 (function () {
@@ -4592,7 +4633,7 @@
 
         $rootScope.DataUpdate = setInterval(function () {
             vm.splineData = angular.copy($rootScope.dataset);
-        }, 5000)
+        }, 5000);
 
 
         ////////////////
