@@ -4118,14 +4118,16 @@
 
             if (evt.match_id == $scope.match.id) {
                 console.log("Event is for this match");
-                if (evt.timeline_event) {
+                if (evt.type == "Add" && evt.data.timeline_event) {
                     console.log("Adding Event");
-                    $scope.match.data.timeline[evt.state].events.push(evt);
+                    $scope.match.data.timeline[evt.data.state].events.push(evt.data);
                 }
 
-                if (evt.type == "removeEvent") {
-                    _.findWhere($scope.match.data.timeline[evt.data.event_segment].events, {
-                        id: evt.data.event_id,
+
+                if (evt.type == "Delete") {
+                    console.log("Removing Event");
+                    _.findWhere($scope.match.data.timeline[evt.data.state].events, {
+                        id: evt.data.id,
                         match_id: evt.match_id
                     }).status = "removed";
                 }
