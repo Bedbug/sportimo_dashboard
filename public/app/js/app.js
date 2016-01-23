@@ -4116,7 +4116,7 @@
 
             if (!evt.users)
                 console.log(evt);
-
+                    
             if (evt.match_id == $scope.match.id) {
                 console.log("Event is for this match");
                 if (evt.type == "Add" && evt.data.timeline_event) {
@@ -4145,8 +4145,11 @@
 
             return JSON.stringify(obj, null, 4);
         };
-
+        
+        
+          
         $scope.loadMatchData = function (id) {
+          
             $http({
                 method: 'GET',
                 url: $rootScope.servers[$rootScope.serverEnvironment].game_server + 'live/match/' + id
@@ -4580,19 +4583,23 @@
 
 
         
+        /** Replacing with this  */
+         $scope.loadMatchData($stateParams.id);
+         
+        /** No need for Post method to load match  */
+        
+        // $http({
+        //     method: 'POST',
+        //     url: $rootScope.servers[$rootScope.serverEnvironment].game_server + 'live/match',
+        //     data: {id: $stateParams.id}
+        // }).then(function successCallback(response) {
+        //     console.log(response);
+        //     $scope.match = AddHooks(response.data);
 
-        $http({
-            method: 'POST',
-            url: $rootScope.servers[$rootScope.serverEnvironment].game_server + 'live/match',
-            data: {id: $stateParams.id}
-        }).then(function successCallback(response) {
-            console.log(response);
-            $scope.match = AddHooks(response.data);
-
-        }, function errorCallback(response) {
-            // called asynchronously if an error occurs
-            // or server returns response with an error status.
-        });
+        // }, function errorCallback(response) {
+        //     // called asynchronously if an error occurs
+        //     // or server returns response with an error status.
+        // });
 
         $scope.formatDate = function (stringDate) {
             return moment(stringDate).calendar(); //format("dddd, MMMM Do YYYY, h:mm:ss a");
