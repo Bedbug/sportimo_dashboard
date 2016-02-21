@@ -1,0 +1,19 @@
+[{
+    "_id": {
+        "$oid": "565c492fe4b030fba33dd435"
+    },
+    "name_en": "FC Lokomotiv",
+    "name": "ЛОКОМОТИВ",
+    "logo": "http://162.13.157.7/soccerapp/images/teams_logos/lokomotiv-logo2.png",
+    "league": "Russian Premier League"
+    
+},
+{
+    "_id": {
+        "$oid": "565c4907e4b030fba33dd433"
+    },
+     "name_en": "FC Dynamo Kyiv",
+    "name": "ДИНАМО",
+    "logo": "http://162.13.157.7/soccerapp/images/teams_logos/dynamo.png",
+    "league": "Ukrainian Premier League"
+}]

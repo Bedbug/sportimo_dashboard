@@ -47,9 +47,12 @@
             'app.interviews',
             'app.welcomes',
             'app.polls',
-            'app.match-moderation-soccer'
+            'app.match-moderation-soccer',
+            'app.teams'
         ]);
 })();
+
+
 
 (function () {
     'use strict';
@@ -77,6 +80,13 @@
 
     angular
         .module('app.match-moderation-soccer', ['ngDialog']);
+})();
+
+(function () {
+    'use strict';
+
+    angular
+        .module('app.teams', ['ngDialog']);
 })();
 
 (function () {
@@ -305,12 +315,20 @@
 
         function activate() {
             vm.alerts = [
-                {type: 'danger', msg: 'Oh snap! Change a few things up and try submitting again.'},
-                {type: 'warning', msg: 'Well done! You successfully read this important alert message.'}
+                {
+                    type: 'danger',
+                    msg: 'Oh snap! Change a few things up and try submitting again.'
+                },
+                {
+                    type: 'warning',
+                    msg: 'Well done! You successfully read this important alert message.'
+                }
             ];
 
             vm.addAlert = function () {
-                vm.alerts.push({msg: 'Another alert!'});
+                vm.alerts.push({
+                    msg: 'Another alert!'
+                });
             };
 
             vm.closeAlert = function (index) {
@@ -328,8 +346,11 @@
         .config(bootstrapuiConfig);
 
     bootstrapuiConfig.$inject = ['$tooltipProvider'];
+
     function bootstrapuiConfig($tooltipProvider) {
-        $tooltipProvider.options({appendToBody: true});
+        $tooltipProvider.options({
+            appendToBody: true
+        });
     }
 })();
 /**=========================================================
@@ -391,8 +412,7 @@
                 var newWidth = 800 + slides.length;
                 slides.push({
                     image: '//placekitten.com/' + newWidth + '/300',
-                    text: ['More', 'Extra', 'Lots of', 'Surplus'][slides.length % 2] + ' ' +
-                    ['Cats', 'Kittys', 'Felines', 'Cutes'][slides.length % 2]
+                    text: ['More', 'Extra', 'Lots of', 'Surplus'][slides.length % 2] + ' ' + ['Cats', 'Kittys', 'Felines', 'Cutes'][slides.length % 2]
                 });
             };
 
@@ -475,6 +495,7 @@
         .controller('ModalController', ModalController);
 
     ModalController.$inject = ['$modal'];
+
     function ModalController($modal) {
         var vm = this;
 
@@ -504,6 +525,7 @@
             // It is not the same as the $modal service used above.
 
             ModalInstanceCtrl.$inject = ['$scope', '$modalInstance'];
+
             function ModalInstanceCtrl($scope, $modalInstance) {
 
                 $scope.ok = function () {
@@ -672,11 +694,24 @@
             };
 
             vm.ratingStates = [
-                {stateOn: 'fa fa-check', stateOff: 'fa fa-check-circle'},
-                {stateOn: 'fa fa-star', stateOff: 'fa fa-star-o'},
-                {stateOn: 'fa fa-heart', stateOff: 'fa fa-ban'},
-                {stateOn: 'fa fa-heart'},
-                {stateOff: 'fa fa-power-off'}
+                {
+                    stateOn: 'fa fa-check',
+                    stateOff: 'fa fa-check-circle'
+                },
+                {
+                    stateOn: 'fa fa-star',
+                    stateOff: 'fa fa-star-o'
+                },
+                {
+                    stateOn: 'fa fa-heart',
+                    stateOff: 'fa fa-ban'
+                },
+                {
+                    stateOn: 'fa fa-heart'
+                },
+                {
+                    stateOff: 'fa fa-power-off'
+                }
             ];
         }
     }
@@ -810,6 +845,7 @@
         .controller('TypeaheadCtrl', TypeaheadCtrl);
 
     TypeaheadCtrl.$inject = ['$http'];
+
     function TypeaheadCtrl($http) {
         var vm = this;
 
@@ -842,7 +878,10 @@
             vm.statesWithFlags = [{
                 'name': 'Alabama',
                 'flag': '5/5c/Flag_of_Alabama.svg/45px-Flag_of_Alabama.svg.png'
-            }, {'name': 'Alaska', 'flag': 'e/e6/Flag_of_Alaska.svg/43px-Flag_of_Alaska.svg.png'}, {
+            }, {
+                'name': 'Alaska',
+                'flag': 'e/e6/Flag_of_Alaska.svg/43px-Flag_of_Alaska.svg.png'
+            }, {
                 'name': 'Arizona',
                 'flag': '9/9d/Flag_of_Arizona.svg/45px-Flag_of_Arizona.svg.png'
             }, {
@@ -860,25 +899,40 @@
             }, {
                 'name': 'Delaware',
                 'flag': 'c/c6/Flag_of_Delaware.svg/45px-Flag_of_Delaware.svg.png'
-            }, {'name': 'Florida', 'flag': 'f/f7/Flag_of_Florida.svg/45px-Flag_of_Florida.svg.png'}, {
+            }, {
+                'name': 'Florida',
+                'flag': 'f/f7/Flag_of_Florida.svg/45px-Flag_of_Florida.svg.png'
+            }, {
                 'name': 'Georgia',
                 'flag': '5/54/Flag_of_Georgia_%28U.S._state%29.svg/46px-Flag_of_Georgia_%28U.S._state%29.svg.png'
-            }, {'name': 'Hawaii', 'flag': 'e/ef/Flag_of_Hawaii.svg/46px-Flag_of_Hawaii.svg.png'}, {
+            }, {
+                'name': 'Hawaii',
+                'flag': 'e/ef/Flag_of_Hawaii.svg/46px-Flag_of_Hawaii.svg.png'
+            }, {
                 'name': 'Idaho',
                 'flag': 'a/a4/Flag_of_Idaho.svg/38px-Flag_of_Idaho.svg.png'
             }, {
                 'name': 'Illinois',
                 'flag': '0/01/Flag_of_Illinois.svg/46px-Flag_of_Illinois.svg.png'
-            }, {'name': 'Indiana', 'flag': 'a/ac/Flag_of_Indiana.svg/45px-Flag_of_Indiana.svg.png'}, {
+            }, {
+                'name': 'Indiana',
+                'flag': 'a/ac/Flag_of_Indiana.svg/45px-Flag_of_Indiana.svg.png'
+            }, {
                 'name': 'Iowa',
                 'flag': 'a/aa/Flag_of_Iowa.svg/44px-Flag_of_Iowa.svg.png'
-            }, {'name': 'Kansas', 'flag': 'd/da/Flag_of_Kansas.svg/46px-Flag_of_Kansas.svg.png'}, {
+            }, {
+                'name': 'Kansas',
+                'flag': 'd/da/Flag_of_Kansas.svg/46px-Flag_of_Kansas.svg.png'
+            }, {
                 'name': 'Kentucky',
                 'flag': '8/8d/Flag_of_Kentucky.svg/46px-Flag_of_Kentucky.svg.png'
             }, {
                 'name': 'Louisiana',
                 'flag': 'e/e0/Flag_of_Louisiana.svg/46px-Flag_of_Louisiana.svg.png'
-            }, {'name': 'Maine', 'flag': '3/35/Flag_of_Maine.svg/45px-Flag_of_Maine.svg.png'}, {
+            }, {
+                'name': 'Maine',
+                'flag': '3/35/Flag_of_Maine.svg/45px-Flag_of_Maine.svg.png'
+            }, {
                 'name': 'Maryland',
                 'flag': 'a/a0/Flag_of_Maryland.svg/45px-Flag_of_Maryland.svg.png'
             }, {
@@ -923,7 +977,10 @@
             }, {
                 'name': 'North Dakota',
                 'flag': 'e/ee/Flag_of_North_Dakota.svg/38px-Flag_of_North_Dakota.svg.png'
-            }, {'name': 'Ohio', 'flag': '4/4c/Flag_of_Ohio.svg/46px-Flag_of_Ohio.svg.png'}, {
+            }, {
+                'name': 'Ohio',
+                'flag': '4/4c/Flag_of_Ohio.svg/46px-Flag_of_Ohio.svg.png'
+            }, {
                 'name': 'Oklahoma',
                 'flag': '6/6e/Flag_of_Oklahoma.svg/45px-Flag_of_Oklahoma.svg.png'
             }, {
@@ -944,7 +1001,10 @@
             }, {
                 'name': 'Tennessee',
                 'flag': '9/9e/Flag_of_Tennessee.svg/46px-Flag_of_Tennessee.svg.png'
-            }, {'name': 'Texas', 'flag': 'f/f7/Flag_of_Texas.svg/45px-Flag_of_Texas.svg.png'}, {
+            }, {
+                'name': 'Texas',
+                'flag': 'f/f7/Flag_of_Texas.svg/45px-Flag_of_Texas.svg.png'
+            }, {
                 'name': 'Utah',
                 'flag': 'f/f6/Flag_of_Utah.svg/45px-Flag_of_Utah.svg.png'
             }, {
@@ -962,7 +1022,10 @@
             }, {
                 'name': 'Wisconsin',
                 'flag': '2/22/Flag_of_Wisconsin.svg/45px-Flag_of_Wisconsin.svg.png'
-            }, {'name': 'Wyoming', 'flag': 'b/bc/Flag_of_Wyoming.svg/43px-Flag_of_Wyoming.svg.png'}];
+            }, {
+                'name': 'Wyoming',
+                'flag': 'b/bc/Flag_of_Wyoming.svg/43px-Flag_of_Wyoming.svg.png'
+            }];
 
         }
     }
@@ -1199,6 +1262,7 @@
         .controller('ChartJSController', ChartJSController);
 
     ChartJSController.$inject = ['Colors'];
+
     function ChartJSController(Colors) {
         var vm = this;
 
@@ -1482,8 +1546,7 @@
         .directive('polarchart', chartJS('PolarArea'))
         .directive('piechart', chartJS('Pie'))
         .directive('doughnutchart', chartJS('Doughnut'))
-        .directive('donutchart', chartJS('Doughnut'))
-    ;
+        .directive('donutchart', chartJS('Doughnut'));
 
     function chartJS(type) {
         return function () {
@@ -1590,6 +1653,7 @@
         .directive('classyloader', classyloader);
 
     classyloader.$inject = ['$timeout', 'Utils', '$window'];
+
     function classyloader($timeout, Utils, $window) {
         var directive = {
             link: link,
@@ -1616,8 +1680,7 @@
                         });
                         // if the element starts already in view
                         checkLoaderInVIew($element, options);
-                    }
-                    else
+                    } else
                         startLoader($element, options);
                 }
 
@@ -1626,7 +1689,9 @@
             function checkLoaderInVIew(element, options) {
                 var offset = -20;
                 if (!element.hasClass(inViewFlagClass) &&
-                    Utils.isInView(element, {topoffset: offset})) {
+                    Utils.isInView(element, {
+                        topoffset: offset
+                    })) {
                     startLoader(element, options);
                 }
             }
@@ -1647,13 +1712,17 @@
         .service('ChartData', ChartData);
 
     ChartData.$inject = ['$resource'];
+
     function ChartData($resource) {
         this.load = load;
 
         ////////////////
 
         var opts = {
-            get: {method: 'GET', isArray: true}
+            get: {
+                method: 'GET',
+                isArray: true
+            }
         };
 
         function load(source) {
@@ -1675,6 +1744,7 @@
         .controller('FlotChartController', FlotChartController);
 
     FlotChartController.$inject = ['$scope', 'ChartData', '$timeout'];
+
     function FlotChartController($scope, ChartData, $timeout) {
         var vm = this;
 
@@ -1800,7 +1870,7 @@
                     tickColor: '#eee',
                     position: ($scope.app.layout.isRTL ? 'right' : 'left'),
                     tickFormatter: function (v) {
-                        return v/* + ' visitors'*/;
+                        return v /* + ' visitors'*/ ;
                     }
                 },
                 shadowSize: 0
@@ -1897,7 +1967,7 @@
                             radius: 0.8,
                             formatter: function (label, series) {
                                 return '<div class="flot-pie-label">' +
-                                        //label + ' : ' +
+                                    //label + ' : ' +
                                     Math.round(series.percent) +
                                     '%</div>';
                             },
@@ -1926,7 +1996,13 @@
             // ----------------------------------- 
             vm.realTimeOptions = {
                 series: {
-                    lines: {show: true, fill: true, fillColor: {colors: ['#a0e0f3', '#23b7e5']}},
+                    lines: {
+                        show: true,
+                        fill: true,
+                        fillColor: {
+                            colors: ['#a0e0f3', '#23b7e5']
+                        }
+                    },
                     shadowSize: 0 // Drawing is faster without shadows
                 },
                 grid: {
@@ -1951,7 +2027,8 @@
             };
 
             // Generate random data for realtime demo
-            var data = [], totalPoints = 300;
+            var data = [],
+                totalPoints = 300;
 
             update();
 
@@ -2045,6 +2122,7 @@
         .directive('flot', flot);
 
     flot.$inject = ['$http', '$timeout'];
+
     function flot($http, $timeout) {
 
         var directive = {
@@ -2160,6 +2238,7 @@
         .controller('ChartMorrisController', ChartMorrisController);
 
     ChartMorrisController.$inject = ['$timeout', 'Colors'];
+
     function ChartMorrisController($timeout, Colors) {
         var vm = this;
 
@@ -2169,13 +2248,41 @@
 
         function activate() {
             vm.chartdata = [
-                {y: '2006', a: 100, b: 90},
-                {y: '2007', a: 75, b: 65},
-                {y: '2008', a: 50, b: 40},
-                {y: '2009', a: 75, b: 65},
-                {y: '2010', a: 50, b: 40},
-                {y: '2011', a: 75, b: 65},
-                {y: '2012', a: 100, b: 90}
+                {
+                    y: '2006',
+                    a: 100,
+                    b: 90
+                },
+                {
+                    y: '2007',
+                    a: 75,
+                    b: 65
+                },
+                {
+                    y: '2008',
+                    a: 50,
+                    b: 40
+                },
+                {
+                    y: '2009',
+                    a: 75,
+                    b: 65
+                },
+                {
+                    y: '2010',
+                    a: 50,
+                    b: 40
+                },
+                {
+                    y: '2011',
+                    a: 75,
+                    b: 65
+                },
+                {
+                    y: '2012',
+                    a: 100,
+                    b: 90
+                }
             ];
 
             /* test data update
@@ -2185,9 +2292,18 @@
              }, 3000); */
 
             vm.donutdata = [
-                {label: 'Download Sales', value: 12},
-                {label: 'In-Store Sales', value: 30},
-                {label: 'Mail-Order Sales', value: 20}
+                {
+                    label: 'Download Sales',
+                    value: 12
+                },
+                {
+                    label: 'In-Store Sales',
+                    value: 30
+                },
+                {
+                    label: 'Mail-Order Sales',
+                    value: 20
+                }
             ];
 
             vm.donutOptions = {
@@ -2472,7 +2588,10 @@
                         data: []
                     };
                     for (var j = 0; j < 10; j++) {
-                        series.data.push({x: j, y: Math.random() * 20});
+                        series.data.push({
+                            x: j,
+                            y: Math.random() * 20
+                        });
                     }
                     seriesList.push(series);
                     vm['series' + id][i] = series;
@@ -2551,6 +2670,7 @@
     }
 
     Controller.$inject = ['$scope', '$element', '$timeout', '$window'];
+
     function Controller($scope, $element, $timeout, $window) {
         var runSL = function () {
             initSparLine();
@@ -2606,8 +2726,7 @@
             'gray': '#dde6e9',
             'gray-light': '#e4eaec',
             'gray-lighter': '#edf1f2'
-        })
-    ;
+        });
 })();
 /**=========================================================
  * Module: colors.js
@@ -2622,6 +2741,7 @@
         .service('Colors', Colors);
 
     Colors.$inject = ['APP_COLORS'];
+
     function Colors(APP_COLORS) {
         this.byName = byName;
 
@@ -2642,6 +2762,7 @@
         .config(coreConfig);
 
     coreConfig.$inject = ['$controllerProvider', '$compileProvider', '$filterProvider', '$provide'];
+
     function coreConfig($controllerProvider, $compileProvider, $filterProvider, $provide) {
 
         var core = angular.module('app.core');
@@ -2673,8 +2794,7 @@
             'desktop': 992,
             'tablet': 768,
             'mobile': 480
-        })
-    ;
+        });
 
 })();
 (function () {
@@ -2694,9 +2814,14 @@
         $rootScope.$storage = $window.localStorage;
 
         var messageCount = 0;
-        $rootScope.dataset = [{data: [], yaxis: 1, label: 'Users', color: "#1ba3cd"}];
+        $rootScope.dataset = [{
+            data: [],
+            yaxis: 1,
+            label: 'Users',
+            color: "#1ba3cd"
+        }];
 
-        $rootScope.serverEnvironment = $rootScope.$storage.environment || 'development';
+
 
         $rootScope.servers = {
             production: {
@@ -2708,6 +2833,8 @@
                 sockets: 'ws://localhost:8080/'
             }
         };
+
+        $rootScope.serverEnvironment = $rootScope.$storage.environment || 'production';
 
         $rootScope.reconnectSocket = function () {
             $rootScope.dataStream = $websocket($rootScope.servers[$rootScope.serverEnvironment].sockets);
@@ -2768,7 +2895,7 @@
 
         // Hook not found
         $rootScope.$on('$stateNotFound',
-            function (event, unfoundState/*, fromState, fromParams*/) {
+            function (event, unfoundState /*, fromState, fromParams*/ ) {
                 console.log(unfoundState.to); // "lazy.state"
                 console.log(unfoundState.toParams); // {a:1, b:2}
                 console.log(unfoundState.options); // {inherit:false} + default options
@@ -2780,7 +2907,7 @@
             });
         // Hook success
         $rootScope.$on('$stateChangeSuccess',
-            function (/*event, toState, toParams, fromState, fromParams*/) {
+            function ( /*event, toState, toParams, fromState, fromParams*/ ) {
                 // display new view from top
                 $window.scrollTo(0, 0);
                 // Save the route title
@@ -2834,7 +2961,8 @@
         });
 
 
-    SportimoPollsController.$inject = ['$scope', 'Restangular', 'toaster', '$state',];
+    SportimoPollsController.$inject = ['$scope', 'Restangular', 'toaster', '$state', ];
+
     function SportimoPollsController($scope, Restangular, toaster, $state) {
 
         'use strict';
@@ -2867,7 +2995,9 @@
         Restangular.setBaseUrl('http://sportimo_api.mod.bz/api/');
         //Restangular.setBaseUrl('http://127.0.0.1:8080/api/');
 
-        Restangular.setRestangularFields({id: "_id"});
+        Restangular.setRestangularFields({
+            id: "_id"
+        });
         //Restangular.setDefaultRequestParams({ apiKey: '4f847ad3e4b08a2eed5f3b54' })
 
 
@@ -2905,13 +3035,12 @@
 
 
             Items.post(newquest).then(function (poll) {
-                    $scope.allItems.push(newquest);
-                    $scope.activeItem = null;
-                    $scope.composeItem = false;
-                    toaster.pop("success", "Success", "Successfuly added a new poll");
+                $scope.allItems.push(newquest);
+                $scope.activeItem = null;
+                $scope.composeItem = false;
+                toaster.pop("success", "Success", "Successfuly added a new poll");
 
-                }
-            );
+            });
         };
 
         $scope.delete = function (item) {
@@ -2927,7 +3056,9 @@
                 // if (index > -1) $scope.Users.splice(index, 1);
                 toaster.pop("success", "Task Completed", "Poll deleted succsesfuly");
                 $scope.activeItem = null;
-                $state.go($state.current, {}, {reload: true});
+                $state.go($state.current, {}, {
+                    reload: true
+                });
 
                 //    var message = JSON.stringify({screen:"users",method:"update"});
                 //   ws.send(message);
@@ -2956,6 +3087,7 @@
 
 
     SportimoWelcomesController.$inject = ['$scope', 'Restangular', 'toaster'];
+
     function SportimoWelcomesController($scope, Restangular, toaster) {
 
 
@@ -2970,7 +3102,9 @@
         Restangular.setBaseUrl('http://sportimo_api.mod.bz/api/');
         //Restangular.setBaseUrl('http://127.0.0.1:4242/api/');
         //
-        Restangular.setRestangularFields({id: "_id"});
+        Restangular.setRestangularFields({
+            id: "_id"
+        });
         //Restangular.setDefaultRequestParams({ apiKey: '4f847ad3e4b08a2eed5f3b54' })
 
 
@@ -3015,13 +3149,12 @@
             console.log(newquest);
 
             Items.post(newquest).then(function (poll) {
-                    $scope.allItems.push(newquest);
-                    $scope.activeItem = null;
-                    $scope.composeItem = false;
-                    toaster.pop("success", "Success", "Successfuly added a new item");
+                $scope.allItems.push(newquest);
+                $scope.activeItem = null;
+                $scope.composeItem = false;
+                toaster.pop("success", "Success", "Successfuly added a new item");
 
-                }
-            );
+            });
         };
 
         $scope.delete = function (item) {
@@ -3036,7 +3169,9 @@
                 // if (index > -1) $scope.Users.splice(index, 1);
                 toaster.pop("success", "Task Completed", "Poll deleted succsesfuly");
                 $scope.activeItem = null;
-                $state.go($state.current, {}, {reload: true});
+                $state.go($state.current, {}, {
+                    reload: true
+                });
 
                 //    var message = JSON.stringify({screen:"users",method:"update"});
                 //   ws.send(message);
@@ -3105,6 +3240,7 @@
         .controller('LoginController', LoginController);
 
     LoginController.$inject = ['$location', 'AuthenticationService'];
+
     function LoginController($location, AuthenticationService) {
         var vm = this;
 
@@ -3173,6 +3309,7 @@
         .factory('UserService', UserService);
 
     UserService.$inject = ['$timeout', '$filter', '$q'];
+
     function UserService($timeout, $filter, $q) {
 
         var service = {};
@@ -3194,7 +3331,9 @@
 
         function GetById(id) {
             var deferred = $q.defer();
-            var filtered = $filter('filter')(getUsers(), {id: id});
+            var filtered = $filter('filter')(getUsers(), {
+                id: id
+            });
             var user = filtered.length ? filtered[0] : null;
             deferred.resolve(user);
             return deferred.promise;
@@ -3203,7 +3342,9 @@
         function GetByUsername(username) {
 
             var deferred = $q.defer();
-            var filtered = $filter('filter')(getUsers(), {username: username});
+            var filtered = $filter('filter')(getUsers(), {
+                username: username
+            });
             var user = filtered.length ? filtered[0] : null;
             deferred.resolve(user);
             return deferred.promise;
@@ -3226,14 +3367,18 @@
                             var users = getUsers();
 
                             // assign id
-                            var lastUser = users[users.length - 1] || {id: 0};
+                            var lastUser = users[users.length - 1] || {
+                                id: 0
+                            };
                             user.id = lastUser.id + 1;
 
                             // save to local storage
                             users.push(user);
                             setUsers(users);
 
-                            deferred.resolve({success: true});
+                            deferred.resolve({
+                                success: true
+                            });
                         }
                     });
             }, 1000);
@@ -3317,6 +3462,7 @@
         .factory('AuthenticationService', AuthenticationService);
 
     AuthenticationService.$inject = ['$http', '$cookieStore', '$rootScope', '$timeout', 'UserService'];
+
     function AuthenticationService($http, $cookieStore, $rootScope, $timeout, UserService) {
         var service = {};
 
@@ -3343,9 +3489,14 @@
                                 job: user.job,
                                 picture: user.picture
                             };
-                            response = {success: true};
+                            response = {
+                                success: true
+                            };
                         } else {
-                            response = {success: false, message: 'Username or password is incorrect'};
+                            response = {
+                                success: false,
+                                message: 'Username or password is incorrect'
+                            };
                         }
                         callback(response, user.name, user.job, user.picture);
                     });
@@ -3525,7 +3676,9 @@
 
         Restangular.setBaseUrl('http://sportimo_cardsserver.mod.bz/v1/notifications/');
         //Restangular.setBaseUrl('http://localhost:3030/v1/notifications/');
-        Restangular.setRestangularFields({id: "_id"});
+        Restangular.setRestangularFields({
+            id: "_id"
+        });
 
 
         function loadItems() {
@@ -3641,8 +3794,14 @@
         $scope.selectedService = "";
         $scope.pushService = {};
         $scope.pushServices = [
-            {name: 'Production', id: "F18C2-2FBDB"},
-            {name: 'Development', id: "CDE00-B154C"}
+            {
+                name: 'Production',
+                id: "F18C2-2FBDB"
+            },
+            {
+                name: 'Development',
+                id: "CDE00-B154C"
+            }
         ];
 
         $scope.pushService.selected = $scope.pushServices[0];
@@ -3664,7 +3823,13 @@
 
         $scope.template = {};
         $scope.templates = [
-            {name: 'Blank', message: {"en": "_message_", "ru": "_message_"}},
+            {
+                name: 'Blank',
+                message: {
+                    "en": "_message_",
+                    "ru": "_message_"
+                }
+            },
             {
                 name: 'New question',
                 message: {
@@ -3676,8 +3841,19 @@
 
         $scope.templateData = {};
         $scope.templatesData = [
-            {name: 'Blank Key/Value', message: {"_key_": "_value_"}},
-            {name: 'Set Match Screen', message: {"screen": "match", "match_id": "_message_"}}
+            {
+                name: 'Blank Key/Value',
+                message: {
+                    "_key_": "_value_"
+                }
+            },
+            {
+                name: 'Set Match Screen',
+                message: {
+                    "screen": "match",
+                    "match_id": "_message_"
+                }
+            }
         ];
 
 
@@ -3695,7 +3871,10 @@
         $scope.counter = 0;
         $scope.someFunction = function (item, model) {
             $scope.counter++;
-            $scope.eventResult = {item: item, model: model};
+            $scope.eventResult = {
+                item: item,
+                model: model
+            };
         };
 
         $scope.availableColors = ['Red', 'Green', 'Blue', 'Yellow', 'Magenta', 'Maroon', 'Umbra', 'Turquoise'];
@@ -3723,6 +3902,7 @@
             };
         });
     SportimoActivitiesController.$inject = ['$scope', 'Restangular', 'toaster'];
+
     function SportimoActivitiesController($scope, Restangular, toaster) {
 
 
@@ -3736,7 +3916,9 @@
         Restangular.setBaseUrl('http://sportimo_api.mod.bz/api/');
         //Restangular.setBaseUrl('http://127.0.0.1:4242/api/');
         //
-        Restangular.setRestangularFields({id: "_id"});
+        Restangular.setRestangularFields({
+            id: "_id"
+        });
         //Restangular.setDefaultRequestParams({ apiKey: '4f847ad3e4b08a2eed5f3b54' })
 
 
@@ -3777,13 +3959,12 @@
 
 
             Items.post(newquest).then(function (poll) {
-                    $scope.allItems.push(newquest);
-                    $scope.activeItem = null;
-                    $scope.composeItem = false;
-                    toaster.pop("success", "Success", "Successfuly added a new item");
+                $scope.allItems.push(newquest);
+                $scope.activeItem = null;
+                $scope.composeItem = false;
+                toaster.pop("success", "Success", "Successfuly added a new item");
 
-                }
-            );
+            });
         };
 
         $scope.delete = function (item) {
@@ -3798,7 +3979,9 @@
                 // if (index > -1) $scope.Users.splice(index, 1);
                 toaster.pop("success", "Task Completed", "Poll deleted succsesfuly");
                 $scope.activeItem = null;
-                $state.go($state.current, {}, {reload: true});
+                $state.go($state.current, {}, {
+                    reload: true
+                });
 
                 //    var message = JSON.stringify({screen:"users",method:"update"});
                 //   ws.send(message);
@@ -3880,6 +4063,7 @@
     ;
 
     SportimoInterviewsController.$inject = ['$scope', 'Restangular', 'toaster', '$state'];
+
     function SportimoInterviewsController($scope, Restangular, toaster, $state) {
 
 
@@ -3893,7 +4077,9 @@
         Restangular.setBaseUrl('http://sportimo_api.mod.bz/api/');
         //Restangular.setBaseUrl('http://127.0.0.1:4242/api/');
         //
-        Restangular.setRestangularFields({id: "_id"});
+        Restangular.setRestangularFields({
+            id: "_id"
+        });
         //Restangular.setDefaultRequestParams({ apiKey: '4f847ad3e4b08a2eed5f3b54' })
 
 
@@ -3939,13 +4125,12 @@
 
 
             Items.post(newquest).then(function (poll) {
-                    $scope.allItems.push(newquest);
-                    $scope.activeItem = null;
-                    $scope.composeItem = false;
-                    toaster.pop("success", "Success", "Successfuly added a new item");
+                $scope.allItems.push(newquest);
+                $scope.activeItem = null;
+                $scope.composeItem = false;
+                toaster.pop("success", "Success", "Successfuly added a new item");
 
-                }
-            );
+            });
         };
 
         $scope.delete = function (item) {
@@ -3960,7 +4145,9 @@
                 // if (index > -1) $scope.Users.splice(index, 1);
                 toaster.pop("success", "Task Completed", "Poll deleted succsesfuly");
                 $scope.activeItem = null;
-                $state.go($state.current, {}, {reload: true});
+                $state.go($state.current, {}, {
+                    reload: true
+                });
 
                 //    var message = JSON.stringify({screen:"users",method:"update"});
                 //   ws.send(message);
@@ -4028,6 +4215,73 @@
     'use strict';
 
     angular
+        .module('app.teams')
+        .service('TeamsService', TeamsService)
+        .service('PlayersService', PlayersService)
+        .controller('TeamsController', TeamsController);
+
+    PlayersService.$inject = ['$resource'];
+    TeamsService.$inject = ['$resource'];
+    TeamsController.$inject = ['$scope','TeamsService', 'PlayersService', 'DTOptionsBuilder', 'DTColumnDefBuilder'];
+
+    function TeamsController($scope,TeamsService, PlayersService, DTOptionsBuilder, DTColumnDefBuilder) {
+        
+        var vm = $scope;
+        
+        vm.Players = [];
+        vm.Teams = [];
+        
+        TeamsService.getAllTeams().$promise.then(function (teams) {
+            console.log(teams);
+            vm.Teams = teams;
+        }, function (error) {});
+        
+        PlayersService.getAllPlayers().$promise.then(function (players) {
+           $scope.Players = players;
+        }, function (error) {});
+        
+        
+        // Table creation
+        
+        
+//        vm.dtOptions = DTOptionsBuilder.newOptions().withPaginationType('full_numbers');
+//        vm.dtColumnDefs = [
+//                DTColumnDefBuilder.newColumnDef(0).notSortable(),
+//                DTColumnDefBuilder.newColumnDef(1),
+//                DTColumnDefBuilder.newColumnDef(2),
+//                DTColumnDefBuilder.newColumnDef(3).notSortable()
+//            ];
+        
+    }
+
+    function TeamsService($resource) {
+         var teams = $resource('server/mockdata/teams.json');
+        return {
+            getAllTeams: function () {
+                return teams.query({}, function (res) {
+                    return res;
+                });
+            }
+        }
+    }
+
+    function PlayersService($resource) {
+        var players = $resource('server/mockdata/players.json');
+        return {
+            getAllPlayers: function () {
+                return players.query({}, function (res) {
+                    return res;
+                });
+            }
+        }
+    }
+
+})();
+
+(function () {
+    'use strict';
+
+    angular
         .module('app.match-moderation-soccer')
         .controller('SportimoModerationSoccerController', SportimoModerationSoccerController)
         .directive('disableAnimation', function ($animate) {
@@ -4049,18 +4303,19 @@
             };
         })
 
-        .filter('reverse', function () {
-            return function (items) {
+    .filter('reverse', function () {
+        return function (items) {
 
-                if (!angular.isArray(items)) {
-                    return items;
-                }
-                return items.slice().reverse();
-            };
-        });
+            if (!angular.isArray(items)) {
+                return items;
+            }
+            return items.slice().reverse();
+        };
+    });
 
 
     SportimoModerationSoccerController.$inject = ['$scope', 'ngDialog', 'Restangular', '$stateParams', '$http', '$rootScope', '$timeout', '$interval', '$mdToast', '$mdBottomSheet', '$window'];
+
     function SportimoModerationSoccerController($scope, ngDialog, Restangular, $stateParams, $http, $rootScope, $timeout, $interval, $mdToast, $mdBottomSheet, $window) {
 
 
@@ -4085,12 +4340,12 @@
         function toast(message) {
             $mdToast.show({
                 template: '<md-toast class="sportimo-toast">' +
-                '<div class="sportimo-toast-heading text-center">' +
-                '<img src="app/img/sportimo/icon_sportimo-white_64.png" alt="App Logo" class="pull-left">' +
-                '</div>' +
-                '<div>' + message +
-                '</div>' +
-                '</md-toast>',
+                    '<div class="sportimo-toast-heading text-center">' +
+                    '<img src="app/img/sportimo/icon_sportimo-white_64.png" alt="App Logo" class="pull-left">' +
+                    '</div>' +
+                    '<div>' + message +
+                    '</div>' +
+                    '</md-toast>',
                 hideDelay: 3000,
                 position: 'top right'
             });
@@ -4116,7 +4371,7 @@
 
             if (!evt.users)
                 console.log(evt);
-                    
+
             if (evt.match_id == $scope.match.id) {
                 console.log("Event is for this match");
                 if (evt.type == "Add" && evt.data.timeline_event) {
@@ -4145,11 +4400,11 @@
 
             return JSON.stringify(obj, null, 4);
         };
-        
-        
-          
+
+
+
         $scope.loadMatchData = function (id) {
-          
+
             $http({
                 method: 'GET',
                 url: $rootScope.servers[$rootScope.serverEnvironment].game_server + 'live/match/' + id
@@ -4166,18 +4421,66 @@
         };
 
         $scope.players = [
-            {id: "565c4", team: "home_team", name: "marco"},
-            {id: "565c4a", team: "home_team", name: "polo"},
-            {id: "565c4af", team: "home_team", name: "christopher"},
-            {id: "565c4af6", team: "away_team", name: "colombo"},
-            {id: "565c4af6e", team: "away_team", name: "jekhis"},
-            {id: "565c4af6e4", team: "home_team", name: "marlon"},
-            {id: "565c4af6e4b", team: "home_team", name: "jones"},
-            {id: "565c4af6e4b0", team: "away_team", name: "indiana"},
-            {id: "565c4af6e4b0a", team: "home_team", name: "brando"},
-            {id: "565c4af6e4b0a3", team: "away_team", name: "han"},
-            {id: "565c4af6e4b0ba33", team: "home_team", name: "indiana"},
-            {id: "565c4af6e4b0a33dd", team: "home_team", name: "chackie"}
+            {
+                id: "565c4",
+                team: "home_team",
+                name: "marco"
+            },
+            {
+                id: "565c4a",
+                team: "home_team",
+                name: "polo"
+            },
+            {
+                id: "565c4af",
+                team: "home_team",
+                name: "christopher"
+            },
+            {
+                id: "565c4af6",
+                team: "away_team",
+                name: "colombo"
+            },
+            {
+                id: "565c4af6e",
+                team: "away_team",
+                name: "jekhis"
+            },
+            {
+                id: "565c4af6e4",
+                team: "home_team",
+                name: "marlon"
+            },
+            {
+                id: "565c4af6e4b",
+                team: "home_team",
+                name: "jones"
+            },
+            {
+                id: "565c4af6e4b0",
+                team: "away_team",
+                name: "indiana"
+            },
+            {
+                id: "565c4af6e4b0a",
+                team: "home_team",
+                name: "brando"
+            },
+            {
+                id: "565c4af6e4b0a3",
+                team: "away_team",
+                name: "han"
+            },
+            {
+                id: "565c4af6e4b0ba33",
+                team: "home_team",
+                name: "indiana"
+            },
+            {
+                id: "565c4af6e4b0a33dd",
+                team: "home_team",
+                name: "chackie"
+            }
         ];
 
 
@@ -4188,7 +4491,8 @@
         $scope.advanceSegment = function () {
 
             ngDialog.openConfirm({
-                template: 'deleteEventDialog', data: {
+                template: 'deleteEventDialog',
+                data: {
                     title: 'Warning',
                     message: 'This action will advance the match to its next segment as it is defined in the sports atributes.<br/><br/> <p>Do you still want to continue?</p><br/>'
                 }
@@ -4218,59 +4522,62 @@
             });
 
         };
-        
-         $scope.removeSegment = function (index) {
-            
-            if(index !=  $scope.match.data.state)
-            {
-                   ngDialog.open({
-                    template: 'firstDialogId', data: {
+
+        $scope.removeSegment = function (index) {
+
+            if (index != $scope.match.data.state) {
+                ngDialog.open({
+                    template: 'firstDialogId',
+                    data: {
                         title: 'Warning',
                         message: 'You can only remove the last segment of the match.'
                     }
                 });
-                
+
                 return;
-            }else
-            {
-                  ngDialog.openConfirm({
-                template: 'deleteEventDialog', data: {
-                    title: 'Warning',
-                    message: 'This action will destroy the current segment. It is here for testing purposes or extreme conditions. It will not affect stats or anything else apart remove the segment from the timeline.<br/><br/> <p>Do you still want to continue?</p><br/>'
-                }
-            }).then(function (value) {
-                var EventData = {
-                    type: "DeleteSegment",
-                    id: $scope.match.id,
-                    index: index
-                };
+            } else {
+                ngDialog.openConfirm({
+                    template: 'deleteEventDialog',
+                    data: {
+                        title: 'Warning',
+                        message: 'This action will destroy the current segment. It is here for testing purposes or extreme conditions. It will not affect stats or anything else apart remove the segment from the timeline.<br/><br/> <p>Do you still want to continue?</p><br/>'
+                    }
+                }).then(function (value) {
+                    var EventData = {
+                        type: "DeleteSegment",
+                        id: $scope.match.id,
+                        index: index
+                    };
 
-                $http({
-                    method: 'POST',
-                    url: $rootScope.servers[$rootScope.serverEnvironment].game_server + 'live/match/time/remove',
-                    data: EventData
-                }).then(function successCallback(response) {
-                    console.log(response);
-                    $scope.match = AddHooks(response.data);
-                    toast("Removal succesful.");
-                }, function errorCallback(response) {
-                    // called asynchronously if an error occurs
-                    // or server returns response with an error status.
+                    $http({
+                        method: 'POST',
+                        url: $rootScope.servers[$rootScope.serverEnvironment].game_server + 'live/match/time/remove',
+                        data: EventData
+                    }).then(function successCallback(response) {
+                        console.log(response);
+                        $scope.match = AddHooks(response.data);
+                        toast("Removal succesful.");
+                    }, function errorCallback(response) {
+                        // called asynchronously if an error occurs
+                        // or server returns response with an error status.
+                    });
+
+                }, function (reason) {
+
+                    console.log('Modal promise rejected. Reason: ', reason);
                 });
-
-            }, function (reason) {
-
-                console.log('Modal promise rejected. Reason: ', reason);
-            });
             }
-            
-            
-          
+
+
+
 
         };
-        
+
         // Edit Time segments
-        $scope.editingSegmentTime = {index: null, edited: false};
+        $scope.editingSegmentTime = {
+            index: null,
+            edited: false
+        };
 
         $scope.EditSegmentTimes = function (index) {
             if ($scope.editingSegmentTime.index == index) {
@@ -4297,8 +4604,7 @@
                 }
                 $scope.editingSegmentTime.index = null;
                 $scope.editingSegmentTime.edited = false;
-            }
-            else {
+            } else {
                 $scope.editingSegmentTime.index = index;
                 $scope.editingSegmentTime.edited = false;
             }
@@ -4332,10 +4638,11 @@
 
         $scope.updateEvent = function (event) {
 
-            delete (event.clicked);
+            delete(event.clicked);
 
             ngDialog.openConfirm({
-                template: 'deleteEventDialog', data: {
+                template: 'deleteEventDialog',
+                data: {
                     title: 'DANGER',
                     message: 'This action will destroy the selected event. It will remove points from users and re-calculate new points and leaderboards.<br/> Will also cause floods and earthquakes in a poor distant country.<br/> There is also a high probability that it kill a few unborn babies somewhere too.<p>Do you still want to continue?</p>'
                 }
@@ -4357,7 +4664,8 @@
 
         $scope.removeEvent = function (event) {
             ngDialog.openConfirm({
-                template: 'deleteEventDialog', data: {
+                template: 'deleteEventDialog',
+                data: {
                     title: 'DANGER',
                     message: 'This action will destroy the selected event. It will remove points from users and re-calculate new points and leaderboards.<br/> Will also cause floods and earthquakes in a poor distant country.<br/> There is also a high probability that it kill a few unborn babies somewhere too.<p>Do you still want to continue?</p>'
                 }
@@ -4378,7 +4686,9 @@
         };
 
         $scope.GetStat = function (statId, statkey) {
-            return _.result(_.findWhere($scope.match.data.stats, {id: statId}), statkey);
+            return _.result(_.findWhere($scope.match.data.stats, {
+                id: statId
+            }), statkey);
         };
 
         $scope.createEvent = function (eventType, stats) {
@@ -4423,7 +4733,8 @@
             if (!validateEvent(event)) {
 
                 ngDialog.open({
-                    template: 'firstDialogId', data: {
+                    template: 'firstDialogId',
+                    data: {
                         title: 'Warning',
                         message: 'You can only play timeline events while the match is in session.'
                     }
@@ -4541,21 +4852,21 @@
             if (match.sport.segments[match.data.state]) {
                 if (match.sport.segments[match.data.state].timed) {
 
-                    if (!match.sport.time_dependant) {                                   //  Is Time controlled?
+                    if (!match.sport.time_dependant) { //  Is Time controlled?
                         match_timer = $interval(function () {
                             var now = moment().utc();
                             var then = moment(match.data.timeline[match.data.state].start);
                             var ms = moment(now, "DD/MM/YYYY HH:mm:ss").diff(moment(then, "DD/MM/YYYY HH:mm:ss"));
                             var d = moment.duration(ms);
-                            match.Match_timer = d.format("mm:ss", {trim: false});
+                            match.Match_timer = d.format("mm:ss", {
+                                trim: false
+                            });
                             //console.log(d.minutes());
                             //console.log(d.format());
                             match.data.time = (match.sport.segments[match.data.state].initialTime || 0) + parseInt(d.add(1, "minute").format("m")) + "";
                         }, 1000);
                     }
-                }
-                else
-                {
+                } else {
                     match.Match_timer = "00:00";
                 }
             }
@@ -4567,7 +4878,9 @@
             $http({
                 method: 'POST',
                 url: $rootScope.servers[$rootScope.serverEnvironment].game_server + 'live/match/reload',
-                data: {id: $stateParams.id}
+                data: {
+                    id: $stateParams.id
+                }
             }).then(function successCallback(response) {
                 $scope.reloadingServer = false;
                 console.log("[Reloaded Match]");
@@ -4582,12 +4895,12 @@
         };
 
 
-        
+
         /** Replacing with this  */
-         $scope.loadMatchData($stateParams.id);
-         
+        $scope.loadMatchData($stateParams.id);
+
         /** No need for Post method to load match  */
-        
+
         // $http({
         //     method: 'POST',
         //     url: $rootScope.servers[$rootScope.serverEnvironment].game_server + 'live/match',
@@ -4627,12 +4940,14 @@
         };
 
         $scope.formatDate = function (stringDate) {
-            return moment(stringDate).calendar();//format("dddd, MMMM Do YYYY, h:mm:ss a");
+            return moment(stringDate).calendar(); //format("dddd, MMMM Do YYYY, h:mm:ss a");
         };
 
         $scope.ModerateMatch = function (matchid, sport) {
 
-            $state.go("app.match-moderation-" + (sport || 'soccer'), {id: (matchid || "565c4af6e4b030fba33dd459")});
+            $state.go("app.match-moderation-" + (sport || 'soccer'), {
+                id: (matchid || "565c4af6e4b030fba33dd459")
+            });
 
         };
 
@@ -4759,7 +5074,7 @@
                     tickColor: '#eee',
                     position: ($scope.app.layout.isRTL ? 'right' : 'left'),
                     tickFormatter: function (v) {
-                        return v/* + ' visitors'*/;
+                        return v /* + ' visitors'*/ ;
                     }
                 },
                 shadowSize: 0
@@ -4823,6 +5138,7 @@
 
 
     DashboardV2Controller.$inject = ['$rootScope', '$scope', '$state'];
+
     function DashboardV2Controller($rootScope, $scope, $state, wsData) {
         var vm = this;
 
@@ -4841,8 +5157,7 @@
                 $scope.$on('$destroy', function () {
                     $rootScope.app.layout.horizontal = false;
                 });
-            }
-            else {
+            } else {
                 $rootScope.app.layout.isCollapsed = true;
             }
 
@@ -4925,7 +5240,7 @@
                     tickColor: '#eee',
                     position: ($rootScope.app.layout.isRTL ? 'right' : 'left'),
                     tickFormatter: function (v) {
-                        return v/* + ' visitors'*/;
+                        return v /* + ' visitors'*/ ;
                     }
                 },
                 shadowSize: 0
@@ -4941,6 +5256,7 @@
         .controller('DashboardV3Controller', DashboardV3Controller);
 
     DashboardV3Controller.$inject = ['$rootScope'];
+
     function DashboardV3Controller($rootScope) {
         var vm = this;
 
@@ -4991,7 +5307,7 @@
                     tickColor: '#eee',
                     position: ($rootScope.app.layout.isRTL ? 'right' : 'left'),
                     tickFormatter: function (v) {
-                        return v/* + ' visitors'*/;
+                        return v /* + ' visitors'*/ ;
                     }
                 },
                 shadowSize: 0
@@ -4999,35 +5315,80 @@
 
 
             vm.seriesData = {
-                'CA': 11100,   // Canada
-                'DE': 2510,    // Germany
-                'FR': 3710,    // France
-                'AU': 5710,    // Australia
-                'GB': 8310,    // Great Britain
-                'RU': 9310,    // Russia
-                'BR': 6610,    // Brazil
-                'IN': 7810,    // India
-                'CN': 4310,    // China
-                'US': 839,     // USA
-                'SA': 410      // Saudi Arabia
+                'CA': 11100, // Canada
+                'DE': 2510, // Germany
+                'FR': 3710, // France
+                'AU': 5710, // Australia
+                'GB': 8310, // Great Britain
+                'RU': 9310, // Russia
+                'BR': 6610, // Brazil
+                'IN': 7810, // India
+                'CN': 4310, // China
+                'US': 839, // USA
+                'SA': 410 // Saudi Arabia
             };
 
             vm.markersData = [
-                {latLng: [41.90, 12.45], name: 'Vatican City'},
-                {latLng: [43.73, 7.41], name: 'Monaco'},
-                {latLng: [-0.52, 166.93], name: 'Nauru'},
-                {latLng: [-8.51, 179.21], name: 'Tuvalu'},
-                {latLng: [7.11, 171.06], name: 'Marshall Islands'},
-                {latLng: [17.3, -62.73], name: 'Saint Kitts and Nevis'},
-                {latLng: [3.2, 73.22], name: 'Maldives'},
-                {latLng: [35.88, 14.5], name: 'Malta'},
-                {latLng: [41.0, -71.06], name: 'New England'},
-                {latLng: [12.05, -61.75], name: 'Grenada'},
-                {latLng: [13.16, -59.55], name: 'Barbados'},
-                {latLng: [17.11, -61.85], name: 'Antigua and Barbuda'},
-                {latLng: [-4.61, 55.45], name: 'Seychelles'},
-                {latLng: [7.35, 134.46], name: 'Palau'},
-                {latLng: [42.5, 1.51], name: 'Andorra'}
+                {
+                    latLng: [41.90, 12.45],
+                    name: 'Vatican City'
+                },
+                {
+                    latLng: [43.73, 7.41],
+                    name: 'Monaco'
+                },
+                {
+                    latLng: [-0.52, 166.93],
+                    name: 'Nauru'
+                },
+                {
+                    latLng: [-8.51, 179.21],
+                    name: 'Tuvalu'
+                },
+                {
+                    latLng: [7.11, 171.06],
+                    name: 'Marshall Islands'
+                },
+                {
+                    latLng: [17.3, -62.73],
+                    name: 'Saint Kitts and Nevis'
+                },
+                {
+                    latLng: [3.2, 73.22],
+                    name: 'Maldives'
+                },
+                {
+                    latLng: [35.88, 14.5],
+                    name: 'Malta'
+                },
+                {
+                    latLng: [41.0, -71.06],
+                    name: 'New England'
+                },
+                {
+                    latLng: [12.05, -61.75],
+                    name: 'Grenada'
+                },
+                {
+                    latLng: [13.16, -59.55],
+                    name: 'Barbados'
+                },
+                {
+                    latLng: [17.11, -61.85],
+                    name: 'Antigua and Barbuda'
+                },
+                {
+                    latLng: [-4.61, 55.45],
+                    name: 'Seychelles'
+                },
+                {
+                    latLng: [7.35, 134.46],
+                    name: 'Palau'
+                },
+                {
+                    latLng: [42.5, 1.51],
+                    name: 'Andorra'
+                }
             ];
         }
     }
@@ -5173,7 +5534,13 @@
             };
 
             $scope.open = function () {
-                ngDialog.open({template: 'firstDialogId', controller: 'InsideCtrl', data: {foo: 'some data'}});
+                ngDialog.open({
+                    template: 'firstDialogId',
+                    controller: 'InsideCtrl',
+                    data: {
+                        foo: 'some data'
+                    }
+                });
             };
 
             $scope.openDefault = function () {
@@ -5224,24 +5591,24 @@
 
             $scope.openConfirmWithPreCloseCallbackInlinedWithNestedConfirm = function () {
                 ngDialog.openConfirm({
-                    template: 'dialogWithNestedConfirmDialogId',
-                    className: 'ngdialog-theme-default',
-                    preCloseCallback: function (/*value*/) {
+                        template: 'dialogWithNestedConfirmDialogId',
+                        className: 'ngdialog-theme-default',
+                        preCloseCallback: function ( /*value*/ ) {
 
-                        var nestedConfirmDialog = ngDialog.openConfirm({
-                            template: '<p>Are you sure you want to close the parent dialog?</p>' +
-                            '<div>' +
-                            '<button type="button" class="btn btn-default" ng-click="closeThisDialog(0)">No' +
-                            '<button type="button" class="btn btn-primary" ng-click="confirm(1)">Yes' +
-                            '</button></div>',
-                            plain: true,
-                            className: 'ngdialog-theme-default'
-                        });
+                            var nestedConfirmDialog = ngDialog.openConfirm({
+                                template: '<p>Are you sure you want to close the parent dialog?</p>' +
+                                    '<div>' +
+                                    '<button type="button" class="btn btn-default" ng-click="closeThisDialog(0)">No' +
+                                    '<button type="button" class="btn btn-primary" ng-click="confirm(1)">Yes' +
+                                    '</button></div>',
+                                plain: true,
+                                className: 'ngdialog-theme-default'
+                            });
 
-                        return nestedConfirmDialog;
-                    },
-                    scope: $scope
-                })
+                            return nestedConfirmDialog;
+                        },
+                        scope: $scope
+                    })
                     .then(function (value) {
                         console.log('resolved:' + value);
                         // Perform the save here
@@ -5310,7 +5677,7 @@
             $scope.openNotify = function () {
                 var dialog = ngDialog.open({
                     template: '<p>You can do whatever you want when I close, however that happens.</p>' +
-                    '<div><button type="button" class="btn btn-primary" ng-click="closeThisDialog(1)">Close Me</button></div>',
+                        '<div><button type="button" class="btn btn-primary" ng-click="closeThisDialog(1)">Close Me</button></div>',
                     plain: true
                 });
                 dialog.closePromise.then(function (data) {
@@ -5344,6 +5711,7 @@
 
 
     InsideCtrl.$inject = ['$scope', 'ngDialog'];
+
     function InsideCtrl($scope, ngDialog) {
 
         activate();
@@ -5366,6 +5734,7 @@
     }
 
     SecondModalCtrl.$inject = ['$scope', 'ngDialog'];
+
     function SecondModalCtrl($scope, ngDialog) {
 
         activate();
@@ -5418,6 +5787,7 @@
     }
 
     datasource.$inject = ['$log', '$timeout'];
+
     function datasource(console, $timeout) {
 
         var get = function (index, count, success) {
@@ -5451,6 +5821,7 @@
         .directive('imageloaded', imageloaded); // required by demo
 
     MasonryDeckController.$inejct = ['RouteHelpers'];
+
     function MasonryDeckController(RouteHelpers) {
         var vm = this;
 
@@ -5463,24 +5834,96 @@
             vm.basepath = RouteHelpers.basepath;
 
             vm.photos = [
-                {id: 'photo-1', name: 'Awesome photo', src: 'http://lorempixel.com/400/300/abstract'},
-                {id: 'photo-2', name: 'Great photo', src: 'http://lorempixel.com/450/400/city'},
-                {id: 'photo-3', name: 'Strange photo', src: 'http://lorempixel.com/400/300/people'},
-                {id: 'photo-4', name: 'A photo?', src: 'http://lorempixel.com/400/300/transport'},
-                {id: 'photo-5', name: 'What a photo', src: 'http://lorempixel.com/450/300/fashion'},
-                {id: 'photo-6', name: 'Silly photo', src: 'http://lorempixel.com/400/300/technics'},
-                {id: 'photo-7', name: 'Weird photo', src: 'http://lorempixel.com/410/350/sports'},
-                {id: 'photo-8', name: 'Modern photo', src: 'http://lorempixel.com/400/300/nightlife'},
-                {id: 'photo-9', name: 'Classical photo', src: 'http://lorempixel.com/400/300/nature'},
-                {id: 'photo-10', name: 'Dynamic photo', src: 'http://lorempixel.com/420/300/abstract'},
-                {id: 'photo-11', name: 'Neat photo', src: 'http://lorempixel.com/400/300/sports'},
-                {id: 'photo-12', name: 'Bumpy photo', src: 'http://lorempixel.com/400/300/nightlife'},
-                {id: 'photo-13', name: 'Brilliant photo', src: 'http://lorempixel.com/400/380/nature'},
-                {id: 'photo-14', name: 'Excellent photo', src: 'http://lorempixel.com/480/300/technics'},
-                {id: 'photo-15', name: 'Gorgeous photo', src: 'http://lorempixel.com/400/300/sports'},
-                {id: 'photo-16', name: 'Lovely photo', src: 'http://lorempixel.com/400/300/nightlife'},
-                {id: 'photo-17', name: 'A "wow" photo', src: 'http://lorempixel.com/400/300/nature'},
-                {id: 'photo-18', name: 'Bodacious photo', src: 'http://lorempixel.com/400/300/abstract'}
+                {
+                    id: 'photo-1',
+                    name: 'Awesome photo',
+                    src: 'http://lorempixel.com/400/300/abstract'
+                },
+                {
+                    id: 'photo-2',
+                    name: 'Great photo',
+                    src: 'http://lorempixel.com/450/400/city'
+                },
+                {
+                    id: 'photo-3',
+                    name: 'Strange photo',
+                    src: 'http://lorempixel.com/400/300/people'
+                },
+                {
+                    id: 'photo-4',
+                    name: 'A photo?',
+                    src: 'http://lorempixel.com/400/300/transport'
+                },
+                {
+                    id: 'photo-5',
+                    name: 'What a photo',
+                    src: 'http://lorempixel.com/450/300/fashion'
+                },
+                {
+                    id: 'photo-6',
+                    name: 'Silly photo',
+                    src: 'http://lorempixel.com/400/300/technics'
+                },
+                {
+                    id: 'photo-7',
+                    name: 'Weird photo',
+                    src: 'http://lorempixel.com/410/350/sports'
+                },
+                {
+                    id: 'photo-8',
+                    name: 'Modern photo',
+                    src: 'http://lorempixel.com/400/300/nightlife'
+                },
+                {
+                    id: 'photo-9',
+                    name: 'Classical photo',
+                    src: 'http://lorempixel.com/400/300/nature'
+                },
+                {
+                    id: 'photo-10',
+                    name: 'Dynamic photo',
+                    src: 'http://lorempixel.com/420/300/abstract'
+                },
+                {
+                    id: 'photo-11',
+                    name: 'Neat photo',
+                    src: 'http://lorempixel.com/400/300/sports'
+                },
+                {
+                    id: 'photo-12',
+                    name: 'Bumpy photo',
+                    src: 'http://lorempixel.com/400/300/nightlife'
+                },
+                {
+                    id: 'photo-13',
+                    name: 'Brilliant photo',
+                    src: 'http://lorempixel.com/400/380/nature'
+                },
+                {
+                    id: 'photo-14',
+                    name: 'Excellent photo',
+                    src: 'http://lorempixel.com/480/300/technics'
+                },
+                {
+                    id: 'photo-15',
+                    name: 'Gorgeous photo',
+                    src: 'http://lorempixel.com/400/300/sports'
+                },
+                {
+                    id: 'photo-16',
+                    name: 'Lovely photo',
+                    src: 'http://lorempixel.com/400/300/nightlife'
+                },
+                {
+                    id: 'photo-17',
+                    name: 'A "wow" photo',
+                    src: 'http://lorempixel.com/400/300/nature'
+                },
+                {
+                    id: 'photo-18',
+                    name: 'Bodacious photo',
+                    src: 'http://lorempixel.com/400/300/abstract'
+                }
             ];
         }
     }
@@ -5522,6 +5965,7 @@
         .controller('AbnTestController', AbnTestController);
 
     AbnTestController.$inject = ['$timeout', '$resource'];
+
     function AbnTestController($timeout, $resource) {
         var vm = this;
 
@@ -5731,56 +6175,80 @@
         function activate() {
             vm.items = [
                 {
-                    item: {text: 'a'},
+                    item: {
+                        text: 'a'
+                    },
                     children: []
                 },
                 {
-                    item: {text: 'b'},
+                    item: {
+                        text: 'b'
+                    },
                     children: [
                         {
-                            item: {text: 'c'},
+                            item: {
+                                text: 'c'
+                            },
                             children: []
                         },
                         {
-                            item: {text: 'd'},
+                            item: {
+                                text: 'd'
+                            },
                             children: []
                         }
                     ]
                 },
                 {
-                    item: {text: 'e'},
+                    item: {
+                        text: 'e'
+                    },
                     children: []
                 },
                 {
-                    item: {text: 'f'},
+                    item: {
+                        text: 'f'
+                    },
                     children: []
                 }
             ];
 
             vm.items2 = [
                 {
-                    item: {text: '1'},
+                    item: {
+                        text: '1'
+                    },
                     children: []
                 },
                 {
-                    item: {text: '2'},
+                    item: {
+                        text: '2'
+                    },
                     children: [
                         {
-                            item: {text: '3'},
+                            item: {
+                                text: '3'
+                            },
                             children: []
                         },
                         {
-                            item: {text: '4'},
+                            item: {
+                                text: '4'
+                            },
                             children: []
                         }
                     ]
                 },
                 {
-                    item: {text: '5'},
+                    item: {
+                        text: '5'
+                    },
                     children: []
                 },
                 {
-                    item: {text: '6'},
+                    item: {
+                        text: '6'
+                    },
                     children: []
                 }
             ];
@@ -5830,6 +6298,7 @@
         .controller('SortableController', SortableController);
 
     SortableController.$inject = ['$scope'];
+
     function SortableController($scope) {
         // doesn't support controllerAs syntax https://github.com/voidberg/html5sortable/issues/86
 
@@ -5840,14 +6309,29 @@
         function activate() {
             // Single List
             $scope.data1 = [
-                {id: 1, name: 'Donald Hoffman'},
-                {id: 2, name: 'Wallace Barrett'},
-                {id: 3, name: 'Marsha Hicks'},
-                {id: 4, name: 'Roland Brown'}
+                {
+                    id: 1,
+                    name: 'Donald Hoffman'
+                },
+                {
+                    id: 2,
+                    name: 'Wallace Barrett'
+                },
+                {
+                    id: 3,
+                    name: 'Marsha Hicks'
+                },
+                {
+                    id: 4,
+                    name: 'Roland Brown'
+                }
             ];
 
             $scope.add = function () {
-                $scope.data1.push({id: $scope.data1.length + 1, name: 'Earl Knight'});
+                $scope.data1.push({
+                    id: $scope.data1.length + 1,
+                    name: 'Earl Knight'
+                });
             };
 
             $scope.sortableCallback = function (sourceModel, destModel, start, end) {
@@ -5875,6 +6359,7 @@
         .controller('SweetAlertController', SweetAlertController);
 
     SweetAlertController.$inject = ['SweetAlert'];
+
     function SweetAlertController(SweetAlert) {
         var vm = this;
 
@@ -5953,6 +6438,7 @@
         .controller('ToasterDemoCtrl', ToasterDemoCtrl);
 
     ToasterDemoCtrl.$inject = ['toaster'];
+
     function ToasterDemoCtrl(toaster) {
         var vm = this;
 
@@ -5986,6 +6472,7 @@
         .controller('TourCtrl', TourCtrl);
 
     TourCtrl.$inject = ['$scope'];
+
     function TourCtrl($scope) {
 
         activate();
@@ -5997,10 +6484,14 @@
             // so adding position:static for this case makes the browser
             // to ignore the property
             var section = angular.element('.wrapper > section');
-            section.css({'position': 'static'});
+            section.css({
+                'position': 'static'
+            });
             // finally restore on destroy and reuse the value declared in stylesheet
             $scope.$on('$destroy', function () {
-                section.css({'position': ''});
+                section.css({
+                    'position': ''
+                });
             });
         }
     }
@@ -6033,14 +6524,46 @@
             vm.availableCategories = ['JAVASCRIPT', 'WEB', 'BOOTSTRAP', 'SERVER', 'HTML5', 'CSS'];
 
             vm.reviewers = [
-                {name: 'Adam', email: 'adam@email.com', age: 10},
-                {name: 'Amalie', email: 'amalie@email.com', age: 12},
-                {name: 'Wladimir', email: 'wladimir@email.com', age: 30},
-                {name: 'Samantha', email: 'samantha@email.com', age: 31},
-                {name: 'Estefanía', email: 'estefanía@email.com', age: 16},
-                {name: 'Natasha', email: 'natasha@email.com', age: 54},
-                {name: 'Nicole', email: 'nicole@email.com', age: 43},
-                {name: 'Adrian', email: 'adrian@email.com', age: 21}
+                {
+                    name: 'Adam',
+                    email: 'adam@email.com',
+                    age: 10
+                },
+                {
+                    name: 'Amalie',
+                    email: 'amalie@email.com',
+                    age: 12
+                },
+                {
+                    name: 'Wladimir',
+                    email: 'wladimir@email.com',
+                    age: 30
+                },
+                {
+                    name: 'Samantha',
+                    email: 'samantha@email.com',
+                    age: 31
+                },
+                {
+                    name: 'Estefanía',
+                    email: 'estefanía@email.com',
+                    age: 16
+                },
+                {
+                    name: 'Natasha',
+                    email: 'natasha@email.com',
+                    age: 54
+                },
+                {
+                    name: 'Nicole',
+                    email: 'nicole@email.com',
+                    age: 43
+                },
+                {
+                    name: 'Adrian',
+                    email: 'adrian@email.com',
+                    age: 21
+                }
             ];
 
 
@@ -6072,6 +6595,7 @@
         .directive('calendar', calendar);
 
     calendar.$inject = ['$rootScope'];
+
     function calendar($rootScope) {
         var directive = {
             link: link,
@@ -6122,7 +6646,7 @@
             $this.draggable({
                 zIndex: 1070,
                 revert: true, // will cause the event to go back to its
-                revertDuration: 0  //  original position after the drag
+                revertDuration: 0 //  original position after the drag
             });
 
         });
@@ -6160,7 +6684,7 @@
             drop: function (date, allDay) { // this function is called when something is dropped
 
                 var $this = $(this),
-                // retrieve the dropped element's stored Event Object
+                    // retrieve the dropped element's stored Event Object
                     originalEventObject = $this.data('calendarEventObject');
 
                 // if something went wrong, abort
@@ -6185,7 +6709,7 @@
                     $this.remove();
                 }
             },
-            eventDragStart: function (event/*, js, ui*/) {
+            eventDragStart: function (event /*, js, ui*/ ) {
                 draggingEvent = event;
             },
             // This array is the events sources
@@ -6257,10 +6781,10 @@
 
             // Create new event element
             var newEvent = $('<div/>').css({
-                'background-color': currColor,
-                'border-color': currColor,
-                'color': '#fff'
-            })
+                    'background-color': currColor,
+                    'border-color': currColor,
+                    'color': '#fff'
+                })
                 .html(val);
 
             // Prepends to the external events list
@@ -6342,6 +6866,7 @@
         .service('LoadTreeService', LoadTreeService);
 
     LoadTreeService.$inject = ['$resource'];
+
     function LoadTreeService($resource) {
         // Loads the list of files to populate the treeview
         return $resource('server/editor/filetree.json');
@@ -6361,6 +6886,7 @@
         .controller('CodeEditorController', CodeEditorController);
 
     CodeEditorController.$inject = ['$rootScope', '$scope', '$http', '$ocLazyLoad', 'filetree'];
+
     function CodeEditorController($rootScope, $scope, $http, $ocLazyLoad, filetree) {
         var vm = this;
 
@@ -6490,6 +7016,7 @@
         .controller('TodoController', TodoController);
 
     TodoController.$inject = ['$filter'];
+
     function TodoController($filter) {
         var vm = this;
 
@@ -6507,11 +7034,17 @@
                     complete: true
                 },
                 {
-                    todo: {title: 'Call Sonya. Talk about the new project.', description: ''},
+                    todo: {
+                        title: 'Call Sonya. Talk about the new project.',
+                        description: ''
+                    },
                     complete: false
                 },
                 {
-                    todo: {title: 'Find a new place for vacations', description: ''},
+                    todo: {
+                        title: 'Find a new place for vacations',
+                        description: ''
+                    },
                     complete: false
                 }
             ];
@@ -6527,9 +7060,11 @@
                 if (vm.editingTodo) {
                     vm.todo = {};
                     vm.editingTodo = false;
-                }
-                else {
-                    vm.items.push({todo: angular.copy(vm.todo), complete: false});
+                } else {
+                    vm.items.push({
+                        todo: angular.copy(vm.todo),
+                        complete: false
+                    });
                     vm.todo.title = '';
                     vm.todo.description = '';
                 }
@@ -6542,7 +7077,7 @@
                 vm.editingTodo = true;
             };
 
-            vm.removeTodo = function (index/*, $event*/) {
+            vm.removeTodo = function (index /*, $event*/ ) {
                 vm.items.splice(index, 1);
             };
 
@@ -6591,7 +7126,7 @@
                 {
                     text: 'Lorem',
                     weight: 13
-                    //link: 'http://themicon.co'
+                        //link: 'http://themicon.co'
                 }, {
                     text: 'Ipsum',
                     weight: 10.5
@@ -6779,6 +7314,7 @@
         .controller('ImageCropController', ImageCropController);
 
     ImageCropController.$inject = ['$scope'];
+
     function ImageCropController($scope) {
         var vm = this;
 
@@ -6799,7 +7335,7 @@
                 var file = evt.currentTarget.files[0];
                 var reader = new FileReader();
                 reader.onload = function (evt) {
-                    $scope.$apply(function (/*$scope*/) {
+                    $scope.$apply(function ( /*$scope*/ ) {
                         vm.myImage = evt.target.result;
                     });
                 };
@@ -6875,6 +7411,7 @@
         .directive('formWizard', formWizard);
 
     formWizard.$inject = ['$parse'];
+
     function formWizard($parse) {
         var directive = {
             link: link,
@@ -6954,6 +7491,7 @@
         .controller('FormxEditableController', FormxEditableController);
 
     FormxEditableController.$inject = ['$scope', 'editableOptions', 'editableThemes', '$filter', '$http'];
+
     function FormxEditableController($scope, editableOptions, editableThemes, $filter, $http) {
         var vm = this;
         vm.title = 'Controller';
@@ -6997,14 +7535,28 @@
             };
 
             vm.statuses = [
-                {value: 1, text: 'status1'},
-                {value: 2, text: 'status2'},
-                {value: 3, text: 'status3'},
-                {value: 4, text: 'status4'}
+                {
+                    value: 1,
+                    text: 'status1'
+                },
+                {
+                    value: 2,
+                    text: 'status2'
+                },
+                {
+                    value: 3,
+                    text: 'status3'
+                },
+                {
+                    value: 4,
+                    text: 'status4'
+                }
             ];
 
             vm.showStatus = function () {
-                var selected = $filter('filter')(vm.statuses, {value: vm.user2.status});
+                var selected = $filter('filter')(vm.statuses, {
+                    value: vm.user2.status
+                });
                 return (vm.user2.status && selected.length) ? selected[0].text : 'Not set';
             };
 
@@ -7026,7 +7578,9 @@
 
             $scope.$watch('user3.id', function (newVal, oldVal) {
                 if (newVal !== oldVal) {
-                    var selected = $filter('filter')(vm.groups, {id: vm.user3.id});
+                    var selected = $filter('filter')(vm.groups, {
+                        id: vm.user3.id
+                    });
                     vm.user3.text = selected.length ? selected[0].text : null;
                 }
             });
@@ -7053,6 +7607,7 @@
         .controller('FormDemoCtrl', FormDemoCtrl);
 
     FormDemoCtrl.$inject = ['$resource'];
+
     function FormDemoCtrl($resource) {
         var vm = this;
 
@@ -7062,7 +7617,12 @@
 
         function activate() {
             // the following allow to request array $resource instead of object (default)
-            var actions = {'get': {method: 'GET', isArray: true}};
+            var actions = {
+                'get': {
+                    method: 'GET',
+                    isArray: true
+                }
+            };
 
             // Tags inputs
             // ----------------------------------- 
@@ -7089,7 +7649,12 @@
             // Chosen data
             // ----------------------------------- 
 
-            var States = $resource('server/chosen-states.json', {}, {'query': {method: 'GET', isArray: true}});
+            var States = $resource('server/chosen-states.json', {}, {
+                'query': {
+                    method: 'GET',
+                    isArray: true
+                }
+            });
 
             vm.states = States.query();
 
@@ -7203,6 +7768,7 @@
         .directive('tagsinput', tagsinput);
 
     tagsinput.$inject = ['$timeout'];
+
     function tagsinput($timeout) {
         var directive = {
             link: link,
@@ -7242,6 +7808,7 @@
         .controller('uiSelectController', uiSelectController);
 
     uiSelectController.$inject = ['$scope', '$http'];
+
     function uiSelectController($scope, $http) {
         /* jshint validthis:true */
         var vm = this;
@@ -7270,272 +7837,1037 @@
 
             vm.person = {};
             vm.people = [
-                {name: 'Adam', email: 'adam@email.com', age: 10},
-                {name: 'Amalie', email: 'amalie@email.com', age: 12},
-                {name: 'Wladimir', email: 'wladimir@email.com', age: 30},
-                {name: 'Samantha', email: 'samantha@email.com', age: 31},
-                {name: 'Estefanía', email: 'estefanía@email.com', age: 16},
-                {name: 'Natasha', email: 'natasha@email.com', age: 54},
-                {name: 'Nicole', email: 'nicole@email.com', age: 43},
-                {name: 'Adrian', email: 'adrian@email.com', age: 21}
+                {
+                    name: 'Adam',
+                    email: 'adam@email.com',
+                    age: 10
+                },
+                {
+                    name: 'Amalie',
+                    email: 'amalie@email.com',
+                    age: 12
+                },
+                {
+                    name: 'Wladimir',
+                    email: 'wladimir@email.com',
+                    age: 30
+                },
+                {
+                    name: 'Samantha',
+                    email: 'samantha@email.com',
+                    age: 31
+                },
+                {
+                    name: 'Estefanía',
+                    email: 'estefanía@email.com',
+                    age: 16
+                },
+                {
+                    name: 'Natasha',
+                    email: 'natasha@email.com',
+                    age: 54
+                },
+                {
+                    name: 'Nicole',
+                    email: 'nicole@email.com',
+                    age: 43
+                },
+                {
+                    name: 'Adrian',
+                    email: 'adrian@email.com',
+                    age: 21
+                }
             ];
 
             vm.address = {};
             vm.refreshAddresses = function (address) {
-                var params = {address: address, sensor: false};
+                var params = {
+                    address: address,
+                    sensor: false
+                };
                 return $http.get(
-                    '//maps.googleapis.com/maps/api/geocode/json',
-                    {params: params}
+                    '//maps.googleapis.com/maps/api/geocode/json', {
+                        params: params
+                    }
                 ).then(function (response) {
-                        vm.addresses = response.data.results;
-                    });
+                    vm.addresses = response.data.results;
+                });
             };
 
             vm.country = {};
             vm.countries = [ // Taken from https://gist.github.com/unceus/6501985
-                {name: 'Afghanistan', code: 'AF'},
-                {name: 'Åland Islands', code: 'AX'},
-                {name: 'Albania', code: 'AL'},
-                {name: 'Algeria', code: 'DZ'},
-                {name: 'American Samoa', code: 'AS'},
-                {name: 'Andorra', code: 'AD'},
-                {name: 'Angola', code: 'AO'},
-                {name: 'Anguilla', code: 'AI'},
-                {name: 'Antarctica', code: 'AQ'},
-                {name: 'Antigua and Barbuda', code: 'AG'},
-                {name: 'Argentina', code: 'AR'},
-                {name: 'Armenia', code: 'AM'},
-                {name: 'Aruba', code: 'AW'},
-                {name: 'Australia', code: 'AU'},
-                {name: 'Austria', code: 'AT'},
-                {name: 'Azerbaijan', code: 'AZ'},
-                {name: 'Bahamas', code: 'BS'},
-                {name: 'Bahrain', code: 'BH'},
-                {name: 'Bangladesh', code: 'BD'},
-                {name: 'Barbados', code: 'BB'},
-                {name: 'Belarus', code: 'BY'},
-                {name: 'Belgium', code: 'BE'},
-                {name: 'Belize', code: 'BZ'},
-                {name: 'Benin', code: 'BJ'},
-                {name: 'Bermuda', code: 'BM'},
-                {name: 'Bhutan', code: 'BT'},
-                {name: 'Bolivia', code: 'BO'},
-                {name: 'Bosnia and Herzegovina', code: 'BA'},
-                {name: 'Botswana', code: 'BW'},
-                {name: 'Bouvet Island', code: 'BV'},
-                {name: 'Brazil', code: 'BR'},
-                {name: 'British Indian Ocean Territory', code: 'IO'},
-                {name: 'Brunei Darussalam', code: 'BN'},
-                {name: 'Bulgaria', code: 'BG'},
-                {name: 'Burkina Faso', code: 'BF'},
-                {name: 'Burundi', code: 'BI'},
-                {name: 'Cambodia', code: 'KH'},
-                {name: 'Cameroon', code: 'CM'},
-                {name: 'Canada', code: 'CA'},
-                {name: 'Cape Verde', code: 'CV'},
-                {name: 'Cayman Islands', code: 'KY'},
-                {name: 'Central African Republic', code: 'CF'},
-                {name: 'Chad', code: 'TD'},
-                {name: 'Chile', code: 'CL'},
-                {name: 'China', code: 'CN'},
-                {name: 'Christmas Island', code: 'CX'},
-                {name: 'Cocos (Keeling) Islands', code: 'CC'},
-                {name: 'Colombia', code: 'CO'},
-                {name: 'Comoros', code: 'KM'},
-                {name: 'Congo', code: 'CG'},
-                {name: 'Congo, The Democratic Republic of the', code: 'CD'},
-                {name: 'Cook Islands', code: 'CK'},
-                {name: 'Costa Rica', code: 'CR'},
-                {name: 'Cote D\'Ivoire', code: 'CI'},
-                {name: 'Croatia', code: 'HR'},
-                {name: 'Cuba', code: 'CU'},
-                {name: 'Cyprus', code: 'CY'},
-                {name: 'Czech Republic', code: 'CZ'},
-                {name: 'Denmark', code: 'DK'},
-                {name: 'Djibouti', code: 'DJ'},
-                {name: 'Dominica', code: 'DM'},
-                {name: 'Dominican Republic', code: 'DO'},
-                {name: 'Ecuador', code: 'EC'},
-                {name: 'Egypt', code: 'EG'},
-                {name: 'El Salvador', code: 'SV'},
-                {name: 'Equatorial Guinea', code: 'GQ'},
-                {name: 'Eritrea', code: 'ER'},
-                {name: 'Estonia', code: 'EE'},
-                {name: 'Ethiopia', code: 'ET'},
-                {name: 'Falkland Islands (Malvinas)', code: 'FK'},
-                {name: 'Faroe Islands', code: 'FO'},
-                {name: 'Fiji', code: 'FJ'},
-                {name: 'Finland', code: 'FI'},
-                {name: 'France', code: 'FR'},
-                {name: 'French Guiana', code: 'GF'},
-                {name: 'French Polynesia', code: 'PF'},
-                {name: 'French Southern Territories', code: 'TF'},
-                {name: 'Gabon', code: 'GA'},
-                {name: 'Gambia', code: 'GM'},
-                {name: 'Georgia', code: 'GE'},
-                {name: 'Germany', code: 'DE'},
-                {name: 'Ghana', code: 'GH'},
-                {name: 'Gibraltar', code: 'GI'},
-                {name: 'Greece', code: 'GR'},
-                {name: 'Greenland', code: 'GL'},
-                {name: 'Grenada', code: 'GD'},
-                {name: 'Guadeloupe', code: 'GP'},
-                {name: 'Guam', code: 'GU'},
-                {name: 'Guatemala', code: 'GT'},
-                {name: 'Guernsey', code: 'GG'},
-                {name: 'Guinea', code: 'GN'},
-                {name: 'Guinea-Bissau', code: 'GW'},
-                {name: 'Guyana', code: 'GY'},
-                {name: 'Haiti', code: 'HT'},
-                {name: 'Heard Island and Mcdonald Islands', code: 'HM'},
-                {name: 'Holy See (Vatican City State)', code: 'VA'},
-                {name: 'Honduras', code: 'HN'},
-                {name: 'Hong Kong', code: 'HK'},
-                {name: 'Hungary', code: 'HU'},
-                {name: 'Iceland', code: 'IS'},
-                {name: 'India', code: 'IN'},
-                {name: 'Indonesia', code: 'ID'},
-                {name: 'Iran, Islamic Republic Of', code: 'IR'},
-                {name: 'Iraq', code: 'IQ'},
-                {name: 'Ireland', code: 'IE'},
-                {name: 'Isle of Man', code: 'IM'},
-                {name: 'Israel', code: 'IL'},
-                {name: 'Italy', code: 'IT'},
-                {name: 'Jamaica', code: 'JM'},
-                {name: 'Japan', code: 'JP'},
-                {name: 'Jersey', code: 'JE'},
-                {name: 'Jordan', code: 'JO'},
-                {name: 'Kazakhstan', code: 'KZ'},
-                {name: 'Kenya', code: 'KE'},
-                {name: 'Kiribati', code: 'KI'},
-                {name: 'Korea, Democratic People\'s Republic of', code: 'KP'},
-                {name: 'Korea, Republic of', code: 'KR'},
-                {name: 'Kuwait', code: 'KW'},
-                {name: 'Kyrgyzstan', code: 'KG'},
-                {name: 'Lao People\'s Democratic Republic', code: 'LA'},
-                {name: 'Latvia', code: 'LV'},
-                {name: 'Lebanon', code: 'LB'},
-                {name: 'Lesotho', code: 'LS'},
-                {name: 'Liberia', code: 'LR'},
-                {name: 'Libyan Arab Jamahiriya', code: 'LY'},
-                {name: 'Liechtenstein', code: 'LI'},
-                {name: 'Lithuania', code: 'LT'},
-                {name: 'Luxembourg', code: 'LU'},
-                {name: 'Macao', code: 'MO'},
-                {name: 'Macedonia, The Former Yugoslav Republic of', code: 'MK'},
-                {name: 'Madagascar', code: 'MG'},
-                {name: 'Malawi', code: 'MW'},
-                {name: 'Malaysia', code: 'MY'},
-                {name: 'Maldives', code: 'MV'},
-                {name: 'Mali', code: 'ML'},
-                {name: 'Malta', code: 'MT'},
-                {name: 'Marshall Islands', code: 'MH'},
-                {name: 'Martinique', code: 'MQ'},
-                {name: 'Mauritania', code: 'MR'},
-                {name: 'Mauritius', code: 'MU'},
-                {name: 'Mayotte', code: 'YT'},
-                {name: 'Mexico', code: 'MX'},
-                {name: 'Micronesia, Federated States of', code: 'FM'},
-                {name: 'Moldova, Republic of', code: 'MD'},
-                {name: 'Monaco', code: 'MC'},
-                {name: 'Mongolia', code: 'MN'},
-                {name: 'Montserrat', code: 'MS'},
-                {name: 'Morocco', code: 'MA'},
-                {name: 'Mozambique', code: 'MZ'},
-                {name: 'Myanmar', code: 'MM'},
-                {name: 'Namibia', code: 'NA'},
-                {name: 'Nauru', code: 'NR'},
-                {name: 'Nepal', code: 'NP'},
-                {name: 'Netherlands', code: 'NL'},
-                {name: 'Netherlands Antilles', code: 'AN'},
-                {name: 'New Caledonia', code: 'NC'},
-                {name: 'New Zealand', code: 'NZ'},
-                {name: 'Nicaragua', code: 'NI'},
-                {name: 'Niger', code: 'NE'},
-                {name: 'Nigeria', code: 'NG'},
-                {name: 'Niue', code: 'NU'},
-                {name: 'Norfolk Island', code: 'NF'},
-                {name: 'Northern Mariana Islands', code: 'MP'},
-                {name: 'Norway', code: 'NO'},
-                {name: 'Oman', code: 'OM'},
-                {name: 'Pakistan', code: 'PK'},
-                {name: 'Palau', code: 'PW'},
-                {name: 'Palestinian Territory, Occupied', code: 'PS'},
-                {name: 'Panama', code: 'PA'},
-                {name: 'Papua New Guinea', code: 'PG'},
-                {name: 'Paraguay', code: 'PY'},
-                {name: 'Peru', code: 'PE'},
-                {name: 'Philippines', code: 'PH'},
-                {name: 'Pitcairn', code: 'PN'},
-                {name: 'Poland', code: 'PL'},
-                {name: 'Portugal', code: 'PT'},
-                {name: 'Puerto Rico', code: 'PR'},
-                {name: 'Qatar', code: 'QA'},
-                {name: 'Reunion', code: 'RE'},
-                {name: 'Romania', code: 'RO'},
-                {name: 'Russian Federation', code: 'RU'},
-                {name: 'Rwanda', code: 'RW'},
-                {name: 'Saint Helena', code: 'SH'},
-                {name: 'Saint Kitts and Nevis', code: 'KN'},
-                {name: 'Saint Lucia', code: 'LC'},
-                {name: 'Saint Pierre and Miquelon', code: 'PM'},
-                {name: 'Saint Vincent and the Grenadines', code: 'VC'},
-                {name: 'Samoa', code: 'WS'},
-                {name: 'San Marino', code: 'SM'},
-                {name: 'Sao Tome and Principe', code: 'ST'},
-                {name: 'Saudi Arabia', code: 'SA'},
-                {name: 'Senegal', code: 'SN'},
-                {name: 'Serbia and Montenegro', code: 'CS'},
-                {name: 'Seychelles', code: 'SC'},
-                {name: 'Sierra Leone', code: 'SL'},
-                {name: 'Singapore', code: 'SG'},
-                {name: 'Slovakia', code: 'SK'},
-                {name: 'Slovenia', code: 'SI'},
-                {name: 'Solomon Islands', code: 'SB'},
-                {name: 'Somalia', code: 'SO'},
-                {name: 'South Africa', code: 'ZA'},
-                {name: 'South Georgia and the South Sandwich Islands', code: 'GS'},
-                {name: 'Spain', code: 'ES'},
-                {name: 'Sri Lanka', code: 'LK'},
-                {name: 'Sudan', code: 'SD'},
-                {name: 'Suriname', code: 'SR'},
-                {name: 'Svalbard and Jan Mayen', code: 'SJ'},
-                {name: 'Swaziland', code: 'SZ'},
-                {name: 'Sweden', code: 'SE'},
-                {name: 'Switzerland', code: 'CH'},
-                {name: 'Syrian Arab Republic', code: 'SY'},
-                {name: 'Taiwan, Province of China', code: 'TW'},
-                {name: 'Tajikistan', code: 'TJ'},
-                {name: 'Tanzania, United Republic of', code: 'TZ'},
-                {name: 'Thailand', code: 'TH'},
-                {name: 'Timor-Leste', code: 'TL'},
-                {name: 'Togo', code: 'TG'},
-                {name: 'Tokelau', code: 'TK'},
-                {name: 'Tonga', code: 'TO'},
-                {name: 'Trinidad and Tobago', code: 'TT'},
-                {name: 'Tunisia', code: 'TN'},
-                {name: 'Turkey', code: 'TR'},
-                {name: 'Turkmenistan', code: 'TM'},
-                {name: 'Turks and Caicos Islands', code: 'TC'},
-                {name: 'Tuvalu', code: 'TV'},
-                {name: 'Uganda', code: 'UG'},
-                {name: 'Ukraine', code: 'UA'},
-                {name: 'United Arab Emirates', code: 'AE'},
-                {name: 'United Kingdom', code: 'GB'},
-                {name: 'United States', code: 'US'},
-                {name: 'United States Minor Outlying Islands', code: 'UM'},
-                {name: 'Uruguay', code: 'UY'},
-                {name: 'Uzbekistan', code: 'UZ'},
-                {name: 'Vanuatu', code: 'VU'},
-                {name: 'Venezuela', code: 'VE'},
-                {name: 'Vietnam', code: 'VN'},
-                {name: 'Virgin Islands, British', code: 'VG'},
-                {name: 'Virgin Islands, U.S.', code: 'VI'},
-                {name: 'Wallis and Futuna', code: 'WF'},
-                {name: 'Western Sahara', code: 'EH'},
-                {name: 'Yemen', code: 'YE'},
-                {name: 'Zambia', code: 'ZM'},
-                {name: 'Zimbabwe', code: 'ZW'}
+                {
+                    name: 'Afghanistan',
+                    code: 'AF'
+                },
+                {
+                    name: 'Åland Islands',
+                    code: 'AX'
+                },
+                {
+                    name: 'Albania',
+                    code: 'AL'
+                },
+                {
+                    name: 'Algeria',
+                    code: 'DZ'
+                },
+                {
+                    name: 'American Samoa',
+                    code: 'AS'
+                },
+                {
+                    name: 'Andorra',
+                    code: 'AD'
+                },
+                {
+                    name: 'Angola',
+                    code: 'AO'
+                },
+                {
+                    name: 'Anguilla',
+                    code: 'AI'
+                },
+                {
+                    name: 'Antarctica',
+                    code: 'AQ'
+                },
+                {
+                    name: 'Antigua and Barbuda',
+                    code: 'AG'
+                },
+                {
+                    name: 'Argentina',
+                    code: 'AR'
+                },
+                {
+                    name: 'Armenia',
+                    code: 'AM'
+                },
+                {
+                    name: 'Aruba',
+                    code: 'AW'
+                },
+                {
+                    name: 'Australia',
+                    code: 'AU'
+                },
+                {
+                    name: 'Austria',
+                    code: 'AT'
+                },
+                {
+                    name: 'Azerbaijan',
+                    code: 'AZ'
+                },
+                {
+                    name: 'Bahamas',
+                    code: 'BS'
+                },
+                {
+                    name: 'Bahrain',
+                    code: 'BH'
+                },
+                {
+                    name: 'Bangladesh',
+                    code: 'BD'
+                },
+                {
+                    name: 'Barbados',
+                    code: 'BB'
+                },
+                {
+                    name: 'Belarus',
+                    code: 'BY'
+                },
+                {
+                    name: 'Belgium',
+                    code: 'BE'
+                },
+                {
+                    name: 'Belize',
+                    code: 'BZ'
+                },
+                {
+                    name: 'Benin',
+                    code: 'BJ'
+                },
+                {
+                    name: 'Bermuda',
+                    code: 'BM'
+                },
+                {
+                    name: 'Bhutan',
+                    code: 'BT'
+                },
+                {
+                    name: 'Bolivia',
+                    code: 'BO'
+                },
+                {
+                    name: 'Bosnia and Herzegovina',
+                    code: 'BA'
+                },
+                {
+                    name: 'Botswana',
+                    code: 'BW'
+                },
+                {
+                    name: 'Bouvet Island',
+                    code: 'BV'
+                },
+                {
+                    name: 'Brazil',
+                    code: 'BR'
+                },
+                {
+                    name: 'British Indian Ocean Territory',
+                    code: 'IO'
+                },
+                {
+                    name: 'Brunei Darussalam',
+                    code: 'BN'
+                },
+                {
+                    name: 'Bulgaria',
+                    code: 'BG'
+                },
+                {
+                    name: 'Burkina Faso',
+                    code: 'BF'
+                },
+                {
+                    name: 'Burundi',
+                    code: 'BI'
+                },
+                {
+                    name: 'Cambodia',
+                    code: 'KH'
+                },
+                {
+                    name: 'Cameroon',
+                    code: 'CM'
+                },
+                {
+                    name: 'Canada',
+                    code: 'CA'
+                },
+                {
+                    name: 'Cape Verde',
+                    code: 'CV'
+                },
+                {
+                    name: 'Cayman Islands',
+                    code: 'KY'
+                },
+                {
+                    name: 'Central African Republic',
+                    code: 'CF'
+                },
+                {
+                    name: 'Chad',
+                    code: 'TD'
+                },
+                {
+                    name: 'Chile',
+                    code: 'CL'
+                },
+                {
+                    name: 'China',
+                    code: 'CN'
+                },
+                {
+                    name: 'Christmas Island',
+                    code: 'CX'
+                },
+                {
+                    name: 'Cocos (Keeling) Islands',
+                    code: 'CC'
+                },
+                {
+                    name: 'Colombia',
+                    code: 'CO'
+                },
+                {
+                    name: 'Comoros',
+                    code: 'KM'
+                },
+                {
+                    name: 'Congo',
+                    code: 'CG'
+                },
+                {
+                    name: 'Congo, The Democratic Republic of the',
+                    code: 'CD'
+                },
+                {
+                    name: 'Cook Islands',
+                    code: 'CK'
+                },
+                {
+                    name: 'Costa Rica',
+                    code: 'CR'
+                },
+                {
+                    name: 'Cote D\'Ivoire',
+                    code: 'CI'
+                },
+                {
+                    name: 'Croatia',
+                    code: 'HR'
+                },
+                {
+                    name: 'Cuba',
+                    code: 'CU'
+                },
+                {
+                    name: 'Cyprus',
+                    code: 'CY'
+                },
+                {
+                    name: 'Czech Republic',
+                    code: 'CZ'
+                },
+                {
+                    name: 'Denmark',
+                    code: 'DK'
+                },
+                {
+                    name: 'Djibouti',
+                    code: 'DJ'
+                },
+                {
+                    name: 'Dominica',
+                    code: 'DM'
+                },
+                {
+                    name: 'Dominican Republic',
+                    code: 'DO'
+                },
+                {
+                    name: 'Ecuador',
+                    code: 'EC'
+                },
+                {
+                    name: 'Egypt',
+                    code: 'EG'
+                },
+                {
+                    name: 'El Salvador',
+                    code: 'SV'
+                },
+                {
+                    name: 'Equatorial Guinea',
+                    code: 'GQ'
+                },
+                {
+                    name: 'Eritrea',
+                    code: 'ER'
+                },
+                {
+                    name: 'Estonia',
+                    code: 'EE'
+                },
+                {
+                    name: 'Ethiopia',
+                    code: 'ET'
+                },
+                {
+                    name: 'Falkland Islands (Malvinas)',
+                    code: 'FK'
+                },
+                {
+                    name: 'Faroe Islands',
+                    code: 'FO'
+                },
+                {
+                    name: 'Fiji',
+                    code: 'FJ'
+                },
+                {
+                    name: 'Finland',
+                    code: 'FI'
+                },
+                {
+                    name: 'France',
+                    code: 'FR'
+                },
+                {
+                    name: 'French Guiana',
+                    code: 'GF'
+                },
+                {
+                    name: 'French Polynesia',
+                    code: 'PF'
+                },
+                {
+                    name: 'French Southern Territories',
+                    code: 'TF'
+                },
+                {
+                    name: 'Gabon',
+                    code: 'GA'
+                },
+                {
+                    name: 'Gambia',
+                    code: 'GM'
+                },
+                {
+                    name: 'Georgia',
+                    code: 'GE'
+                },
+                {
+                    name: 'Germany',
+                    code: 'DE'
+                },
+                {
+                    name: 'Ghana',
+                    code: 'GH'
+                },
+                {
+                    name: 'Gibraltar',
+                    code: 'GI'
+                },
+                {
+                    name: 'Greece',
+                    code: 'GR'
+                },
+                {
+                    name: 'Greenland',
+                    code: 'GL'
+                },
+                {
+                    name: 'Grenada',
+                    code: 'GD'
+                },
+                {
+                    name: 'Guadeloupe',
+                    code: 'GP'
+                },
+                {
+                    name: 'Guam',
+                    code: 'GU'
+                },
+                {
+                    name: 'Guatemala',
+                    code: 'GT'
+                },
+                {
+                    name: 'Guernsey',
+                    code: 'GG'
+                },
+                {
+                    name: 'Guinea',
+                    code: 'GN'
+                },
+                {
+                    name: 'Guinea-Bissau',
+                    code: 'GW'
+                },
+                {
+                    name: 'Guyana',
+                    code: 'GY'
+                },
+                {
+                    name: 'Haiti',
+                    code: 'HT'
+                },
+                {
+                    name: 'Heard Island and Mcdonald Islands',
+                    code: 'HM'
+                },
+                {
+                    name: 'Holy See (Vatican City State)',
+                    code: 'VA'
+                },
+                {
+                    name: 'Honduras',
+                    code: 'HN'
+                },
+                {
+                    name: 'Hong Kong',
+                    code: 'HK'
+                },
+                {
+                    name: 'Hungary',
+                    code: 'HU'
+                },
+                {
+                    name: 'Iceland',
+                    code: 'IS'
+                },
+                {
+                    name: 'India',
+                    code: 'IN'
+                },
+                {
+                    name: 'Indonesia',
+                    code: 'ID'
+                },
+                {
+                    name: 'Iran, Islamic Republic Of',
+                    code: 'IR'
+                },
+                {
+                    name: 'Iraq',
+                    code: 'IQ'
+                },
+                {
+                    name: 'Ireland',
+                    code: 'IE'
+                },
+                {
+                    name: 'Isle of Man',
+                    code: 'IM'
+                },
+                {
+                    name: 'Israel',
+                    code: 'IL'
+                },
+                {
+                    name: 'Italy',
+                    code: 'IT'
+                },
+                {
+                    name: 'Jamaica',
+                    code: 'JM'
+                },
+                {
+                    name: 'Japan',
+                    code: 'JP'
+                },
+                {
+                    name: 'Jersey',
+                    code: 'JE'
+                },
+                {
+                    name: 'Jordan',
+                    code: 'JO'
+                },
+                {
+                    name: 'Kazakhstan',
+                    code: 'KZ'
+                },
+                {
+                    name: 'Kenya',
+                    code: 'KE'
+                },
+                {
+                    name: 'Kiribati',
+                    code: 'KI'
+                },
+                {
+                    name: 'Korea, Democratic People\'s Republic of',
+                    code: 'KP'
+                },
+                {
+                    name: 'Korea, Republic of',
+                    code: 'KR'
+                },
+                {
+                    name: 'Kuwait',
+                    code: 'KW'
+                },
+                {
+                    name: 'Kyrgyzstan',
+                    code: 'KG'
+                },
+                {
+                    name: 'Lao People\'s Democratic Republic',
+                    code: 'LA'
+                },
+                {
+                    name: 'Latvia',
+                    code: 'LV'
+                },
+                {
+                    name: 'Lebanon',
+                    code: 'LB'
+                },
+                {
+                    name: 'Lesotho',
+                    code: 'LS'
+                },
+                {
+                    name: 'Liberia',
+                    code: 'LR'
+                },
+                {
+                    name: 'Libyan Arab Jamahiriya',
+                    code: 'LY'
+                },
+                {
+                    name: 'Liechtenstein',
+                    code: 'LI'
+                },
+                {
+                    name: 'Lithuania',
+                    code: 'LT'
+                },
+                {
+                    name: 'Luxembourg',
+                    code: 'LU'
+                },
+                {
+                    name: 'Macao',
+                    code: 'MO'
+                },
+                {
+                    name: 'Macedonia, The Former Yugoslav Republic of',
+                    code: 'MK'
+                },
+                {
+                    name: 'Madagascar',
+                    code: 'MG'
+                },
+                {
+                    name: 'Malawi',
+                    code: 'MW'
+                },
+                {
+                    name: 'Malaysia',
+                    code: 'MY'
+                },
+                {
+                    name: 'Maldives',
+                    code: 'MV'
+                },
+                {
+                    name: 'Mali',
+                    code: 'ML'
+                },
+                {
+                    name: 'Malta',
+                    code: 'MT'
+                },
+                {
+                    name: 'Marshall Islands',
+                    code: 'MH'
+                },
+                {
+                    name: 'Martinique',
+                    code: 'MQ'
+                },
+                {
+                    name: 'Mauritania',
+                    code: 'MR'
+                },
+                {
+                    name: 'Mauritius',
+                    code: 'MU'
+                },
+                {
+                    name: 'Mayotte',
+                    code: 'YT'
+                },
+                {
+                    name: 'Mexico',
+                    code: 'MX'
+                },
+                {
+                    name: 'Micronesia, Federated States of',
+                    code: 'FM'
+                },
+                {
+                    name: 'Moldova, Republic of',
+                    code: 'MD'
+                },
+                {
+                    name: 'Monaco',
+                    code: 'MC'
+                },
+                {
+                    name: 'Mongolia',
+                    code: 'MN'
+                },
+                {
+                    name: 'Montserrat',
+                    code: 'MS'
+                },
+                {
+                    name: 'Morocco',
+                    code: 'MA'
+                },
+                {
+                    name: 'Mozambique',
+                    code: 'MZ'
+                },
+                {
+                    name: 'Myanmar',
+                    code: 'MM'
+                },
+                {
+                    name: 'Namibia',
+                    code: 'NA'
+                },
+                {
+                    name: 'Nauru',
+                    code: 'NR'
+                },
+                {
+                    name: 'Nepal',
+                    code: 'NP'
+                },
+                {
+                    name: 'Netherlands',
+                    code: 'NL'
+                },
+                {
+                    name: 'Netherlands Antilles',
+                    code: 'AN'
+                },
+                {
+                    name: 'New Caledonia',
+                    code: 'NC'
+                },
+                {
+                    name: 'New Zealand',
+                    code: 'NZ'
+                },
+                {
+                    name: 'Nicaragua',
+                    code: 'NI'
+                },
+                {
+                    name: 'Niger',
+                    code: 'NE'
+                },
+                {
+                    name: 'Nigeria',
+                    code: 'NG'
+                },
+                {
+                    name: 'Niue',
+                    code: 'NU'
+                },
+                {
+                    name: 'Norfolk Island',
+                    code: 'NF'
+                },
+                {
+                    name: 'Northern Mariana Islands',
+                    code: 'MP'
+                },
+                {
+                    name: 'Norway',
+                    code: 'NO'
+                },
+                {
+                    name: 'Oman',
+                    code: 'OM'
+                },
+                {
+                    name: 'Pakistan',
+                    code: 'PK'
+                },
+                {
+                    name: 'Palau',
+                    code: 'PW'
+                },
+                {
+                    name: 'Palestinian Territory, Occupied',
+                    code: 'PS'
+                },
+                {
+                    name: 'Panama',
+                    code: 'PA'
+                },
+                {
+                    name: 'Papua New Guinea',
+                    code: 'PG'
+                },
+                {
+                    name: 'Paraguay',
+                    code: 'PY'
+                },
+                {
+                    name: 'Peru',
+                    code: 'PE'
+                },
+                {
+                    name: 'Philippines',
+                    code: 'PH'
+                },
+                {
+                    name: 'Pitcairn',
+                    code: 'PN'
+                },
+                {
+                    name: 'Poland',
+                    code: 'PL'
+                },
+                {
+                    name: 'Portugal',
+                    code: 'PT'
+                },
+                {
+                    name: 'Puerto Rico',
+                    code: 'PR'
+                },
+                {
+                    name: 'Qatar',
+                    code: 'QA'
+                },
+                {
+                    name: 'Reunion',
+                    code: 'RE'
+                },
+                {
+                    name: 'Romania',
+                    code: 'RO'
+                },
+                {
+                    name: 'Russian Federation',
+                    code: 'RU'
+                },
+                {
+                    name: 'Rwanda',
+                    code: 'RW'
+                },
+                {
+                    name: 'Saint Helena',
+                    code: 'SH'
+                },
+                {
+                    name: 'Saint Kitts and Nevis',
+                    code: 'KN'
+                },
+                {
+                    name: 'Saint Lucia',
+                    code: 'LC'
+                },
+                {
+                    name: 'Saint Pierre and Miquelon',
+                    code: 'PM'
+                },
+                {
+                    name: 'Saint Vincent and the Grenadines',
+                    code: 'VC'
+                },
+                {
+                    name: 'Samoa',
+                    code: 'WS'
+                },
+                {
+                    name: 'San Marino',
+                    code: 'SM'
+                },
+                {
+                    name: 'Sao Tome and Principe',
+                    code: 'ST'
+                },
+                {
+                    name: 'Saudi Arabia',
+                    code: 'SA'
+                },
+                {
+                    name: 'Senegal',
+                    code: 'SN'
+                },
+                {
+                    name: 'Serbia and Montenegro',
+                    code: 'CS'
+                },
+                {
+                    name: 'Seychelles',
+                    code: 'SC'
+                },
+                {
+                    name: 'Sierra Leone',
+                    code: 'SL'
+                },
+                {
+                    name: 'Singapore',
+                    code: 'SG'
+                },
+                {
+                    name: 'Slovakia',
+                    code: 'SK'
+                },
+                {
+                    name: 'Slovenia',
+                    code: 'SI'
+                },
+                {
+                    name: 'Solomon Islands',
+                    code: 'SB'
+                },
+                {
+                    name: 'Somalia',
+                    code: 'SO'
+                },
+                {
+                    name: 'South Africa',
+                    code: 'ZA'
+                },
+                {
+                    name: 'South Georgia and the South Sandwich Islands',
+                    code: 'GS'
+                },
+                {
+                    name: 'Spain',
+                    code: 'ES'
+                },
+                {
+                    name: 'Sri Lanka',
+                    code: 'LK'
+                },
+                {
+                    name: 'Sudan',
+                    code: 'SD'
+                },
+                {
+                    name: 'Suriname',
+                    code: 'SR'
+                },
+                {
+                    name: 'Svalbard and Jan Mayen',
+                    code: 'SJ'
+                },
+                {
+                    name: 'Swaziland',
+                    code: 'SZ'
+                },
+                {
+                    name: 'Sweden',
+                    code: 'SE'
+                },
+                {
+                    name: 'Switzerland',
+                    code: 'CH'
+                },
+                {
+                    name: 'Syrian Arab Republic',
+                    code: 'SY'
+                },
+                {
+                    name: 'Taiwan, Province of China',
+                    code: 'TW'
+                },
+                {
+                    name: 'Tajikistan',
+                    code: 'TJ'
+                },
+                {
+                    name: 'Tanzania, United Republic of',
+                    code: 'TZ'
+                },
+                {
+                    name: 'Thailand',
+                    code: 'TH'
+                },
+                {
+                    name: 'Timor-Leste',
+                    code: 'TL'
+                },
+                {
+                    name: 'Togo',
+                    code: 'TG'
+                },
+                {
+                    name: 'Tokelau',
+                    code: 'TK'
+                },
+                {
+                    name: 'Tonga',
+                    code: 'TO'
+                },
+                {
+                    name: 'Trinidad and Tobago',
+                    code: 'TT'
+                },
+                {
+                    name: 'Tunisia',
+                    code: 'TN'
+                },
+                {
+                    name: 'Turkey',
+                    code: 'TR'
+                },
+                {
+                    name: 'Turkmenistan',
+                    code: 'TM'
+                },
+                {
+                    name: 'Turks and Caicos Islands',
+                    code: 'TC'
+                },
+                {
+                    name: 'Tuvalu',
+                    code: 'TV'
+                },
+                {
+                    name: 'Uganda',
+                    code: 'UG'
+                },
+                {
+                    name: 'Ukraine',
+                    code: 'UA'
+                },
+                {
+                    name: 'United Arab Emirates',
+                    code: 'AE'
+                },
+                {
+                    name: 'United Kingdom',
+                    code: 'GB'
+                },
+                {
+                    name: 'United States',
+                    code: 'US'
+                },
+                {
+                    name: 'United States Minor Outlying Islands',
+                    code: 'UM'
+                },
+                {
+                    name: 'Uruguay',
+                    code: 'UY'
+                },
+                {
+                    name: 'Uzbekistan',
+                    code: 'UZ'
+                },
+                {
+                    name: 'Vanuatu',
+                    code: 'VU'
+                },
+                {
+                    name: 'Venezuela',
+                    code: 'VE'
+                },
+                {
+                    name: 'Vietnam',
+                    code: 'VN'
+                },
+                {
+                    name: 'Virgin Islands, British',
+                    code: 'VG'
+                },
+                {
+                    name: 'Virgin Islands, U.S.',
+                    code: 'VI'
+                },
+                {
+                    name: 'Wallis and Futuna',
+                    code: 'WF'
+                },
+                {
+                    name: 'Western Sahara',
+                    code: 'EH'
+                },
+                {
+                    name: 'Yemen',
+                    code: 'YE'
+                },
+                {
+                    name: 'Zambia',
+                    code: 'ZM'
+                },
+                {
+                    name: 'Zimbabwe',
+                    code: 'ZW'
+                }
             ];
 
 
@@ -7553,7 +8885,10 @@
             vm.counter = 0;
             vm.someFunction = function (item, model) {
                 vm.counter++;
-                vm.eventResult = {item: item, model: model};
+                vm.eventResult = {
+                    item: item,
+                    model: model
+                };
             };
 
             vm.availableColors = ['Red', 'Green', 'Blue', 'Yellow', 'Magenta', 'Maroon', 'Umbra', 'Turquoise'];
@@ -7580,6 +8915,7 @@
         .controller('FileUploadController', FileUploadController);
 
     FileUploadController.$inject = ['FileUploader'];
+
     function FileUploadController(FileUploader) {
         var vm = this;
 
@@ -7596,14 +8932,14 @@
 
             uploader.filters.push({
                 name: 'customFilter',
-                fn: function (/*item, options*/) {
+                fn: function ( /*item, options*/ ) {
                     return this.queue.length < 10;
                 }
             });
 
             // CALLBACKS
 
-            uploader.onWhenAddingFileFailed = function (item /*{File|FileLikeObject}*/, filter, options) {
+            uploader.onWhenAddingFileFailed = function (item /*{File|FileLikeObject}*/ , filter, options) {
                 console.info('onWhenAddingFileFailed', item, filter, options);
             };
             uploader.onAfterAddingFile = function (fileItem) {
@@ -7691,7 +9027,9 @@
         return directive;
 
         function link(scope, element, attrs) {
-            var skycons = new Skycons({'color': (attrs.color || 'white')});
+            var skycons = new Skycons({
+                'color': (attrs.color || 'white')
+            });
 
             element.html('<canvas width="' + attrs.width + '" height="' + attrs.height + '"></canvas>');
 
@@ -7711,6 +9049,7 @@
         .config(lazyloadConfig);
 
     lazyloadConfig.$inject = ['$ocLazyLoadProvider', 'APP_REQUIRES'];
+
     function lazyloadConfig($ocLazyLoadProvider, APP_REQUIRES) {
 
         // Lazy Load modules configuration
@@ -7797,84 +9136,116 @@
             modules: [
 
                 {
-                    name: 'angular-ladda', files: ["vendor/ladda/dist/ladda-themeless.min.css",
+                    name: 'angular-ladda',
+                    files: ["vendor/ladda/dist/ladda-themeless.min.css",
                     "vendor/ladda/js/spin.js",
                     "vendor/ladda/js/ladda.js",
                     "vendor/angular-ladda/dist/angular-ladda.min.js"]
                 },
                 {
-                    name: 'ngWebSocket', files: ['vendor/angular-websocket/angular-websocket.min.js']
+                    name: 'ngWebSocket',
+                    files: ['vendor/angular-websocket/angular-websocket.min.js']
                 },
                 {
-                    name: 'dirPagination', files: ['vendor/pagination/dirPagination.js']
+                    name: 'dirPagination',
+                    files: ['vendor/pagination/dirPagination.js']
                 },
                 {
-                    name: 'restangular', files: ['vendor/restangular/dist/restangular.min.js']
+                    name: 'restangular',
+                    files: ['vendor/restangular/dist/restangular.min.js']
                 },
 
                 {
-                    name: 'toaster', files: ['vendor/angularjs-toaster/toaster.js',
+                    name: 'toaster',
+                    files: ['vendor/angularjs-toaster/toaster.js',
                     'vendor/angularjs-toaster/toaster.css']
                 },
                 {
-                    name: 'localytics.directives', files: ['vendor/chosen_v1.2.0/chosen.jquery.min.js',
+                    name: 'localytics.directives',
+                    files: ['vendor/chosen_v1.2.0/chosen.jquery.min.js',
                     'vendor/chosen_v1.2.0/chosen.min.css',
                     'vendor/angular-chosen-localytics/chosen.js']
                 },
                 {
-                    name: 'ngDialog', files: ['vendor/ngDialog/js/ngDialog.min.js',
+                    name: 'ngDialog',
+                    files: ['vendor/ngDialog/js/ngDialog.min.js',
                     'vendor/ngDialog/css/ngDialog.min.css',
                     'vendor/ngDialog/css/ngDialog-theme-default.min.css']
                 },
-                {name: 'ngWig', files: ['vendor/ngWig/dist/ng-wig.min.js']},
                 {
-                    name: 'ngTable', files: ['vendor/ng-table/dist/ng-table.min.js',
+                    name: 'ngWig',
+                    files: ['vendor/ngWig/dist/ng-wig.min.js']
+                },
+                {
+                    name: 'ngTable',
+                    files: ['vendor/ng-table/dist/ng-table.min.js',
                     'vendor/ng-table/dist/ng-table.min.css']
                 },
-                {name: 'ngTableExport', files: ['vendor/ng-table-export/ng-table-export.js']},
+                {
+                    name: 'ngTableExport',
+                    files: ['vendor/ng-table-export/ng-table-export.js']
+                },
                 {
                     name: 'angularBootstrapNavTree',
                     files: ['vendor/angular-bootstrap-nav-tree/dist/abn_tree_directive.js',
                         'vendor/angular-bootstrap-nav-tree/dist/abn_tree.css']
                 },
                 {
-                    name: 'htmlSortable', files: ['vendor/html.sortable/dist/html.sortable.js',
+                    name: 'htmlSortable',
+                    files: ['vendor/html.sortable/dist/html.sortable.js',
                     'vendor/html.sortable/dist/html.sortable.angular.js']
                 },
                 {
-                    name: 'xeditable', files: ['vendor/angular-xeditable/dist/js/xeditable.js',
+                    name: 'xeditable',
+                    files: ['vendor/angular-xeditable/dist/js/xeditable.js',
                     'vendor/angular-xeditable/dist/css/xeditable.css']
                 },
-                {name: 'angularFileUpload', files: ['vendor/angular-file-upload/angular-file-upload.js']},
                 {
-                    name: 'ngImgCrop', files: ['vendor/ng-img-crop/compile/unminified/ng-img-crop.js',
+                    name: 'angularFileUpload',
+                    files: ['vendor/angular-file-upload/angular-file-upload.js']
+                },
+                {
+                    name: 'ngImgCrop',
+                    files: ['vendor/ng-img-crop/compile/unminified/ng-img-crop.js',
                     'vendor/ng-img-crop/compile/unminified/ng-img-crop.css']
                 },
                 {
-                    name: 'ui.select', files: ['vendor/angular-ui-select/dist/select.js',
+                    name: 'ui.select',
+                    files: ['vendor/angular-ui-select/dist/select.js',
                     'vendor/angular-ui-select/dist/select.css']
                 },
-                {name: 'ui.codemirror', files: ['vendor/angular-ui-codemirror/ui-codemirror.js']},
                 {
-                    name: 'angular-carousel', files: ['vendor/angular-carousel/dist/angular-carousel.css',
+                    name: 'ui.codemirror',
+                    files: ['vendor/angular-ui-codemirror/ui-codemirror.js']
+                },
+                {
+                    name: 'angular-carousel',
+                    files: ['vendor/angular-carousel/dist/angular-carousel.css',
                     'vendor/angular-carousel/dist/angular-carousel.js']
                 },
                 {
-                    name: 'ngGrid', files: ['vendor/ng-grid/build/ng-grid.min.js',
+                    name: 'ngGrid',
+                    files: ['vendor/ng-grid/build/ng-grid.min.js',
                     'vendor/ng-grid/ng-grid.css']
                 },
-                {name: 'infinite-scroll', files: ['vendor/ngInfiniteScroll/build/ng-infinite-scroll.js']},
                 {
-                    name: 'ui.bootstrap-slider', files: ['vendor/seiyria-bootstrap-slider/dist/bootstrap-slider.min.js',
+                    name: 'infinite-scroll',
+                    files: ['vendor/ngInfiniteScroll/build/ng-infinite-scroll.js']
+                },
+                {
+                    name: 'ui.bootstrap-slider',
+                    files: ['vendor/seiyria-bootstrap-slider/dist/bootstrap-slider.min.js',
                     'vendor/seiyria-bootstrap-slider/dist/css/bootstrap-slider.min.css',
                     'vendor/angular-bootstrap-slider/slider.js']
                 },
                 {
-                    name: 'ui.grid', files: ['vendor/angular-ui-grid/ui-grid.min.css',
+                    name: 'ui.grid',
+                    files: ['vendor/angular-ui-grid/ui-grid.min.css',
                     'vendor/angular-ui-grid/ui-grid.min.js']
                 },
                 {
-                    name: 'textAngular', files: ['vendor/textAngular/dist/textAngular.css',
+                    name: 'textAngular',
+                    files: ['vendor/textAngular/dist/textAngular.css',
                     'vendor/textAngular/dist/textAngular-rangy.min.js',
                     'vendor/textAngular/dist/textAngular-sanitize.js',
                     'vendor/textAngular/src/globals.js',
@@ -7884,63 +9255,86 @@
                     'vendor/textAngular/src/taBind.js',
                     'vendor/textAngular/src/main.js',
                     'vendor/textAngular/dist/textAngularSetup.js'
-                ], serie: true
+                ],
+                    serie: true
                 },
                 {
-                    name: 'angular-rickshaw', files: ['vendor/d3/d3.min.js',
+                    name: 'angular-rickshaw',
+                    files: ['vendor/d3/d3.min.js',
                     'vendor/rickshaw/rickshaw.js',
                     'vendor/rickshaw/rickshaw.min.css',
-                    'vendor/angular-rickshaw/rickshaw.js'], serie: true
+                    'vendor/angular-rickshaw/rickshaw.js'],
+                    serie: true
                 },
                 {
-                    name: 'angular-chartist', files: ['vendor/chartist/dist/chartist.min.css',
+                    name: 'angular-chartist',
+                    files: ['vendor/chartist/dist/chartist.min.css',
                     'vendor/chartist/dist/chartist.js',
-                    'vendor/angular-chartist.js/dist/angular-chartist.js'], serie: true
+                    'vendor/angular-chartist.js/dist/angular-chartist.js'],
+                    serie: true
                 },
-                {name: 'ui.map', files: ['vendor/angular-ui-map/ui-map.js']},
                 {
-                    name: 'datatables', files: ['vendor/datatables/media/css/jquery.dataTables.css',
+                    name: 'ui.map',
+                    files: ['vendor/angular-ui-map/ui-map.js']
+                },
+                {
+                    name: 'datatables',
+                    files: ['vendor/datatables/media/css/jquery.dataTables.css',
                     'vendor/datatables/media/js/jquery.dataTables.js',
-                    'vendor/angular-datatables/dist/angular-datatables.js'], serie: true
+                    'vendor/angular-datatables/dist/angular-datatables.js'],
+                    serie: true
                 },
                 {
-                    name: 'angular-jqcloud', files: ['vendor/jqcloud2/dist/jqcloud.css',
+                    name: 'angular-jqcloud',
+                    files: ['vendor/jqcloud2/dist/jqcloud.css',
                     'vendor/jqcloud2/dist/jqcloud.js',
                     'vendor/angular-jqcloud/angular-jqcloud.js']
                 },
                 {
-                    name: 'angularGrid', files: ['vendor/ag-grid/dist/angular-grid.css',
+                    name: 'angularGrid',
+                    files: ['vendor/ag-grid/dist/angular-grid.css',
                     'vendor/ag-grid/dist/angular-grid.js',
                     'vendor/ag-grid/dist/theme-dark.css',
                     'vendor/ag-grid/dist/theme-fresh.css']
                 },
                 {
-                    name: 'ng-nestable', files: ['vendor/ng-nestable/src/angular-nestable.js',
+                    name: 'ng-nestable',
+                    files: ['vendor/ng-nestable/src/angular-nestable.js',
                     'vendor/nestable/jquery.nestable.js']
                 },
-                {name: 'akoenig.deckgrid', files: ['vendor/angular-deckgrid/angular-deckgrid.js']},
                 {
-                    name: 'oitozero.ngSweetAlert', files: ['vendor/sweetalert/dist/sweetalert.css',
+                    name: 'akoenig.deckgrid',
+                    files: ['vendor/angular-deckgrid/angular-deckgrid.js']
+                },
+                {
+                    name: 'oitozero.ngSweetAlert',
+                    files: ['vendor/sweetalert/dist/sweetalert.css',
                     'vendor/sweetalert/dist/sweetalert.min.js',
                     'vendor/angular-sweetalert/SweetAlert.js']
                 },
                 {
-                    name: 'bm.bsTour', files: ['vendor/bootstrap-tour/build/css/bootstrap-tour.css',
+                    name: 'bm.bsTour',
+                    files: ['vendor/bootstrap-tour/build/css/bootstrap-tour.css',
                     'vendor/bootstrap-tour/build/js/bootstrap-tour-standalone.js',
-                    'vendor/angular-bootstrap-tour/dist/angular-bootstrap-tour.js'], serie: true
+                    'vendor/angular-bootstrap-tour/dist/angular-bootstrap-tour.js'],
+                    serie: true
                 },
                 {
-                    name: 'ui.knob', files: ['vendor/angular-knob/src/angular-knob.js',
+                    name: 'ui.knob',
+                    files: ['vendor/angular-knob/src/angular-knob.js',
                     'vendor/jquery-knob/dist/jquery.knob.min.js']
                 },
-                {name: 'easypiechart', files: ['vendor/jquery.easy-pie-chart/dist/angular.easypiechart.min.js']},
                 {
-                    name: 'colorpicker.module', files: ['vendor/angular-bootstrap-colorpicker/css/colorpicker.css',
+                    name: 'easypiechart',
+                    files: ['vendor/jquery.easy-pie-chart/dist/angular.easypiechart.min.js']
+                },
+                {
+                    name: 'colorpicker.module',
+                    files: ['vendor/angular-bootstrap-colorpicker/css/colorpicker.css',
                     'vendor/angular-bootstrap-colorpicker/js/bootstrap-colorpicker-module.js']
                 }
             ]
-        })
-    ;
+        });
 
 })();
 
@@ -7949,9 +9343,9 @@
 
     angular
         .module('app.loadingbar')
-        .config(loadingbarConfig)
-    ;
+        .config(loadingbarConfig);
     loadingbarConfig.$inject = ['cfpLoadingBarProvider'];
+
     function loadingbarConfig(cfpLoadingBarProvider) {
         cfpLoadingBarProvider.includeBar = true;
         cfpLoadingBarProvider.includeSpinner = false;
@@ -7964,9 +9358,9 @@
 
     angular
         .module('app.loadingbar')
-        .run(loadingbarRun)
-    ;
+        .run(loadingbarRun);
     loadingbarRun.$inject = ['$rootScope', '$timeout', 'cfpLoadingBar'];
+
     function loadingbarRun($rootScope, $timeout, cfpLoadingBar) {
 
         // Loading bar transition
@@ -7975,8 +9369,8 @@
         $rootScope.$on('$stateChangeStart', function () {
             if ($('.wrapper > section').length) // check if bar container exists
                 thBar = $timeout(function () {
-                    cfpLoadingBar.start();
-                }, 0); // sets a latency Threshold
+                cfpLoadingBar.start();
+            }, 0); // sets a latency Threshold
         });
         $rootScope.$on('$stateChangeSuccess', function (event) {
             event.targetScope.$watch('$viewContentLoaded', function () {
@@ -7993,9 +9387,9 @@
 
     angular
         .module('app.locale')
-        .config(localeConfig)
-    ;
+        .config(localeConfig);
     localeConfig.$inject = ['tmhDynamicLocaleProvider'];
+
     function localeConfig(tmhDynamicLocaleProvider) {
 
         tmhDynamicLocaleProvider.localeLocationPattern('vendor/angular-i18n/angular-locale_{{locale}}.js');
@@ -8015,6 +9409,7 @@
         .controller('LocalizationController', LocalizationController);
 
     LocalizationController.$inject = ['$rootScope', 'tmhDynamicLocale', '$locale'];
+
     function LocalizationController($rootScope, tmhDynamicLocale, $locale) {
 
         activate();
@@ -8033,7 +9428,9 @@
                 'zh': 'Chinese'
             };
 
-            $rootScope.model = {selectedLocale: 'en'};
+            $rootScope.model = {
+                selectedLocale: 'en'
+            };
 
             $rootScope.$locale = $locale;
 
@@ -8063,18 +9460,55 @@
 
         function activate() {
             vm.folders = [
-                {name: 'Inbox', folder: 'inbox', alert: 42, icon: 'fa-inbox'},
-                {name: 'Starred', folder: 'starred', alert: 10, icon: 'fa-star'},
-                {name: 'Sent', folder: 'sent', alert: 0, icon: 'fa-paper-plane-o'},
-                {name: 'Draft', folder: 'draft', alert: 5, icon: 'fa-edit'},
-                {name: 'Trash', folder: 'trash', alert: 0, icon: 'fa-trash'}
+                {
+                    name: 'Inbox',
+                    folder: 'inbox',
+                    alert: 42,
+                    icon: 'fa-inbox'
+                },
+                {
+                    name: 'Starred',
+                    folder: 'starred',
+                    alert: 10,
+                    icon: 'fa-star'
+                },
+                {
+                    name: 'Sent',
+                    folder: 'sent',
+                    alert: 0,
+                    icon: 'fa-paper-plane-o'
+                },
+                {
+                    name: 'Draft',
+                    folder: 'draft',
+                    alert: 5,
+                    icon: 'fa-edit'
+                },
+                {
+                    name: 'Trash',
+                    folder: 'trash',
+                    alert: 0,
+                    icon: 'fa-trash'
+                }
             ];
 
             vm.labels = [
-                {name: 'Red', color: 'danger'},
-                {name: 'Pink', color: 'pink'},
-                {name: 'Blue', color: 'info'},
-                {name: 'Yellow', color: 'warning'}
+                {
+                    name: 'Red',
+                    color: 'danger'
+                },
+                {
+                    name: 'Pink',
+                    color: 'pink'
+                },
+                {
+                    name: 'Blue',
+                    color: 'info'
+                },
+                {
+                    name: 'Yellow',
+                    color: 'warning'
+                }
             ];
 
             vm.mail = {
@@ -8095,6 +9529,7 @@
         .controller('MailFolderController', MailFolderController);
 
     MailFolderController.$inject = ['mails', '$stateParams'];
+
     function MailFolderController(mails, $stateParams) {
         var vm = this;
 
@@ -8125,6 +9560,7 @@
         .factory('mails', mails);
 
     mails.$inject = ['$http'];
+
     function mails($http) {
         var service = {
             all: all,
@@ -8165,6 +9601,7 @@
         .controller('MailViewController', MailViewController);
 
     MailViewController.$inject = ['mails', '$stateParams'];
+
     function MailViewController(mails, $stateParams) {
         var vm = this;
 
@@ -8193,6 +9630,7 @@
         .controller('ModalGmapController', ModalGmapController);
 
     ModalGmapController.$inject = ['$modal'];
+
     function ModalGmapController($modal) {
         var vm = this;
 
@@ -8216,6 +9654,7 @@
             // It is not the same as the $modal service used above.
 
             ModalInstanceCtrl.$inject = ['$scope', '$modalInstance', '$timeout'];
+
             function ModalInstanceCtrl($scope, $modalInstance, $timeout) {
 
                 $modalInstance.opened.then(function () {
@@ -8266,6 +9705,7 @@
         .controller('GMapController', GMapController);
 
     GMapController.$inject = ['$timeout'];
+
     function GMapController($timeout) {
         var vm = this;
 
@@ -8325,35 +9765,74 @@
             // custom map style
             var MapStyles = [{
                 'featureType': 'water',
-                'stylers': [{'visibility': 'on'}, {'color': '#bdd1f9'}]
+                'stylers': [{
+                    'visibility': 'on'
+                }, {
+                    'color': '#bdd1f9'
+                }]
             }, {
                 'featureType': 'all',
                 'elementType': 'labels.text.fill',
-                'stylers': [{'color': '#334165'}]
-            }, {featureType: 'landscape', stylers: [{color: '#e9ebf1'}]}, {
+                'stylers': [{
+                    'color': '#334165'
+                }]
+            }, {
+                featureType: 'landscape',
+                stylers: [{
+                    color: '#e9ebf1'
+                }]
+            }, {
                 featureType: 'road.highway',
                 elementType: 'geometry',
-                stylers: [{color: '#c5c6c6'}]
+                stylers: [{
+                    color: '#c5c6c6'
+                }]
             }, {
                 featureType: 'road.arterial',
                 elementType: 'geometry',
-                stylers: [{color: '#fff'}]
+                stylers: [{
+                    color: '#fff'
+                }]
             }, {
                 featureType: 'road.local',
                 elementType: 'geometry',
-                stylers: [{color: '#fff'}]
-            }, {featureType: 'transit', elementType: 'geometry', stylers: [{color: '#d8dbe0'}]}, {
+                stylers: [{
+                    color: '#fff'
+                }]
+            }, {
+                featureType: 'transit',
+                elementType: 'geometry',
+                stylers: [{
+                    color: '#d8dbe0'
+                }]
+            }, {
                 featureType: 'poi',
                 elementType: 'geometry',
-                stylers: [{color: '#cfd5e0'}]
+                stylers: [{
+                    color: '#cfd5e0'
+                }]
             }, {
                 featureType: 'administrative',
-                stylers: [{visibility: 'on'}, {lightness: 33}]
+                stylers: [{
+                    visibility: 'on'
+                }, {
+                    lightness: 33
+                }]
             }, {
                 featureType: 'poi.park',
                 elementType: 'labels',
-                stylers: [{visibility: 'on'}, {lightness: 20}]
-            }, {featureType: 'road', stylers: [{color: '#d8dbe0', lightness: 20}]}];
+                stylers: [{
+                    visibility: 'on'
+                }, {
+                    lightness: 20
+                }]
+            }, {
+                featureType: 'road',
+                stylers: [{
+                    color: '#d8dbe0',
+                    lightness: 20
+                }]
+            }];
             vm.mapOptions5 = {
                 zoom: 14,
                 center: position[3],
@@ -8388,6 +9867,7 @@
         .directive('vectorMap', vectorMap);
 
     vectorMap.$inject = ['VectorMap'];
+
     function vectorMap(VectorMap) {
         var directive = {
             link: link,
@@ -8402,10 +9882,10 @@
         function link(scope, element, attrs) {
 
             var defaultColors = {
-                markerColor: '#23b7e5',      // the marker points
-                bgColor: 'transparent',      // the background
-                scaleColors: ['#878c9a'],    // the color of the region in the serie
-                regionFill: '#bbbec6'       // the base region color
+                markerColor: '#23b7e5', // the marker points
+                bgColor: 'transparent', // the background
+                scaleColors: ['#878c9a'], // the color of the region in the serie
+                regionFill: '#bbbec6' // the base region color
             };
 
             var mapHeight = attrs.height || '300',
@@ -8466,7 +9946,11 @@
                     },
                     selectedHover: {}
                 },
-                focusOn: {x: 0.4, y: 0.6, scale: opts.scale},
+                focusOn: {
+                    x: 0.4,
+                    y: 0.6,
+                    scale: opts.scale
+                },
                 markerStyle: {
                     initial: {
                         fill: opts.markerColor,
@@ -8511,35 +9995,80 @@
 
         function activate() {
             vm.seriesData = {
-                'CA': 11100,   // Canada
-                'DE': 2510,    // Germany
-                'FR': 3710,    // France
-                'AU': 5710,    // Australia
-                'GB': 8310,    // Great Britain
-                'RU': 9310,    // Russia
-                'BR': 6610,    // Brazil
-                'IN': 7810,    // India
-                'CN': 4310,    // China
-                'US': 839,     // USA
-                'SA': 410      // Saudi Arabia
+                'CA': 11100, // Canada
+                'DE': 2510, // Germany
+                'FR': 3710, // France
+                'AU': 5710, // Australia
+                'GB': 8310, // Great Britain
+                'RU': 9310, // Russia
+                'BR': 6610, // Brazil
+                'IN': 7810, // India
+                'CN': 4310, // China
+                'US': 839, // USA
+                'SA': 410 // Saudi Arabia
             };
 
             vm.markersData = [
-                {latLng: [41.90, 12.45], name: 'Vatican City'},
-                {latLng: [43.73, 7.41], name: 'Monaco'},
-                {latLng: [-0.52, 166.93], name: 'Nauru'},
-                {latLng: [-8.51, 179.21], name: 'Tuvalu'},
-                {latLng: [7.11, 171.06], name: 'Marshall Islands'},
-                {latLng: [17.3, -62.73], name: 'Saint Kitts and Nevis'},
-                {latLng: [3.2, 73.22], name: 'Maldives'},
-                {latLng: [35.88, 14.5], name: 'Malta'},
-                {latLng: [41.0, -71.06], name: 'New England'},
-                {latLng: [12.05, -61.75], name: 'Grenada'},
-                {latLng: [13.16, -59.55], name: 'Barbados'},
-                {latLng: [17.11, -61.85], name: 'Antigua and Barbuda'},
-                {latLng: [-4.61, 55.45], name: 'Seychelles'},
-                {latLng: [7.35, 134.46], name: 'Palau'},
-                {latLng: [42.5, 1.51], name: 'Andorra'}
+                {
+                    latLng: [41.90, 12.45],
+                    name: 'Vatican City'
+                },
+                {
+                    latLng: [43.73, 7.41],
+                    name: 'Monaco'
+                },
+                {
+                    latLng: [-0.52, 166.93],
+                    name: 'Nauru'
+                },
+                {
+                    latLng: [-8.51, 179.21],
+                    name: 'Tuvalu'
+                },
+                {
+                    latLng: [7.11, 171.06],
+                    name: 'Marshall Islands'
+                },
+                {
+                    latLng: [17.3, -62.73],
+                    name: 'Saint Kitts and Nevis'
+                },
+                {
+                    latLng: [3.2, 73.22],
+                    name: 'Maldives'
+                },
+                {
+                    latLng: [35.88, 14.5],
+                    name: 'Malta'
+                },
+                {
+                    latLng: [41.0, -71.06],
+                    name: 'New England'
+                },
+                {
+                    latLng: [12.05, -61.75],
+                    name: 'Grenada'
+                },
+                {
+                    latLng: [13.16, -59.55],
+                    name: 'Barbados'
+                },
+                {
+                    latLng: [17.11, -61.85],
+                    name: 'Antigua and Barbuda'
+                },
+                {
+                    latLng: [-4.61, 55.45],
+                    name: 'Seychelles'
+                },
+                {
+                    latLng: [7.35, 134.46],
+                    name: 'Palau'
+                },
+                {
+                    latLng: [42.5, 1.51],
+                    name: 'Andorra'
+                }
             ];
         }
     }
@@ -8551,9 +10080,9 @@
     // Used only for the BottomSheetExample
     angular
         .module('app.material')
-        .config(materialConfig)
-    ;
+        .config(materialConfig);
     materialConfig.$inject = ['$mdIconProvider'];
+
     function materialConfig($mdIconProvider) {
         $mdIconProvider
             .icon('share-arrow', 'app/img/icons/share-arrow.svg', 24)
@@ -8594,13 +10123,13 @@
         .controller('MDTooltipCtrl', MDTooltipCtrl)
         .controller('BottomSheetExample', BottomSheetExample)
         .controller('ListBottomSheetCtrl', ListBottomSheetCtrl)
-        .controller('GridBottomSheetCtrl', GridBottomSheetCtrl)
-    ;
+        .controller('GridBottomSheetCtrl', GridBottomSheetCtrl);
 
     /*
      MDAutocompleteCtrl
      */
     MDAutocompleteCtrl.$inject = ['$scope', '$timeout', '$q'];
+
     function MDAutocompleteCtrl($scope, $timeout, $q) {
         var self = this;
 
@@ -8654,6 +10183,7 @@
      MDBottomSheetCtrl
      */
     MDBottomSheetCtrl.$inject = ['$scope', '$timeout', '$mdBottomSheet'];
+
     function MDBottomSheetCtrl($scope, $timeout, $mdBottomSheet) {
         $scope.alert = '';
 
@@ -8684,13 +10214,26 @@
      MDListBottomSheetCtrl
      */
     MDListBottomSheetCtrl.$inject = ['$scope', '$mdBottomSheet'];
+
     function MDListBottomSheetCtrl($scope, $mdBottomSheet) {
 
         $scope.items = [
-            {name: 'Share', icon: 'share'},
-            {name: 'Upload', icon: 'upload'},
-            {name: 'Copy', icon: 'copy'},
-            {name: 'Print this page', icon: 'print'},
+            {
+                name: 'Share',
+                icon: 'share'
+            },
+            {
+                name: 'Upload',
+                icon: 'upload'
+            },
+            {
+                name: 'Copy',
+                icon: 'copy'
+            },
+            {
+                name: 'Print this page',
+                icon: 'print'
+            },
         ];
 
         $scope.listItemClick = function ($index) {
@@ -8703,15 +10246,34 @@
      MDGridBottomSheetCtrl
      */
     MDGridBottomSheetCtrl.$inject = ['$scope', '$mdBottomSheet'];
+
     function MDGridBottomSheetCtrl($scope, $mdBottomSheet) {
 
         $scope.items = [
-            {name: 'Hangout', icon: 'hangout'},
-            {name: 'Mail', icon: 'mail'},
-            {name: 'Message', icon: 'message'},
-            {name: 'Copy', icon: 'copy'},
-            {name: 'Facebook', icon: 'facebook'},
-            {name: 'Twitter', icon: 'twitter'},
+            {
+                name: 'Hangout',
+                icon: 'hangout'
+            },
+            {
+                name: 'Mail',
+                icon: 'mail'
+            },
+            {
+                name: 'Message',
+                icon: 'message'
+            },
+            {
+                name: 'Copy',
+                icon: 'copy'
+            },
+            {
+                name: 'Facebook',
+                icon: 'facebook'
+            },
+            {
+                name: 'Twitter',
+                icon: 'twitter'
+            },
         ];
 
         $scope.listItemClick = function ($index) {
@@ -8724,6 +10286,7 @@
      MDCheckboxCtrl
      */
     MDCheckboxCtrl.$inject = ['$scope'];
+
     function MDCheckboxCtrl($scope) {
 
         $scope.data = {};
@@ -8738,6 +10301,7 @@
      MDRadioCtrl
      */
     MDRadioCtrl.$inject = ['$scope'];
+
     function MDRadioCtrl($scope) {
 
         $scope.data = {
@@ -8761,9 +10325,19 @@
         }];
 
         $scope.radioData = [
-            {label: 'Apple', value: 1},
-            {label: 'Banana', value: 2},
-            {label: 'Mango', value: '3', isDisabled: true}
+            {
+                label: 'Apple',
+                value: 1
+            },
+            {
+                label: 'Banana',
+                value: 2
+            },
+            {
+                label: 'Mango',
+                value: '3',
+                isDisabled: true
+            }
         ];
 
 
@@ -8774,7 +10348,10 @@
         var vals = ['Apple', 'Banana', 'Mango', 'Grape', 'Melon', 'Strawberry', 'Kiwi'];
         $scope.addItem = function () {
             var rval = vals[Math.floor(Math.random() * vals.length)];
-            $scope.radioData.push({label: rval, value: rval});
+            $scope.radioData.push({
+                label: rval,
+                value: rval
+            });
         };
 
         $scope.removeItem = function () {
@@ -8786,6 +10363,7 @@
      MDSwitchCtrl
      */
     MDSwitchCtrl.$inject = ['$scope'];
+
     function MDSwitchCtrl($scope) {
         $scope.data = {
             cb1: true,
@@ -8801,17 +10379,18 @@
      MDDialogCtrl
      */
     MDDialogCtrl.$inject = ['$scope', '$mdDialog'];
+
     function MDDialogCtrl($scope, $mdDialog) {
         $scope.alert = '';
 
         $scope.showAlert = function (ev) {
             $mdDialog.show(
                 $mdDialog.alert()
-                    .title('This is an alert title')
-                    .content('You can specify some description text in here.')
-                    .ariaLabel('Password notification')
-                    .ok('Got it!')
-                    .targetEvent(ev)
+                .title('This is an alert title')
+                .content('You can specify some description text in here.')
+                .ariaLabel('Password notification')
+                .ok('Got it!')
+                .targetEvent(ev)
             );
         };
 
@@ -8833,10 +10412,10 @@
 
         $scope.showAdvanced = function (ev) {
             $mdDialog.show({
-                controller: DialogController,
-                templateUrl: 'dialog1.tmpl.html',
-                targetEvent: ev,
-            })
+                    controller: DialogController,
+                    templateUrl: 'dialog1.tmpl.html',
+                    targetEvent: ev,
+                })
                 .then(function (answer) {
                     $scope.alert = 'You said the information was \'' + answer + '\'.';
                 }, function () {
@@ -8844,6 +10423,7 @@
                 });
         };
         DialogController.$inject = ['$scope', '$mdDialog'];
+
         function DialogController($scope, $mdDialog) {
             $scope.hide = function () {
                 $mdDialog.hide();
@@ -8863,6 +10443,7 @@
      MDSliderCtrl
      */
     MDSliderCtrl.$inject = ['$scope'];
+
     function MDSliderCtrl($scope) {
 
         $scope.color = {
@@ -8888,10 +10469,12 @@
 
         vm.userState = '';
         vm.states = ('AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS ' +
-        'MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI ' +
-        'WY').split(' ').map(function (state) {
-                return {abbrev: state};
-            });
+            'MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI ' +
+            'WY').split(' ').map(function (state) {
+            return {
+                abbrev: state
+            };
+        });
 
         vm.sizes = [
             'small (12-inch)',
@@ -8900,14 +10483,38 @@
             'insane (42-inch)'
         ];
         vm.toppings = [
-            {category: 'meat', name: 'Pepperoni'},
-            {category: 'meat', name: 'Sausage'},
-            {category: 'meat', name: 'Ground Beef'},
-            {category: 'meat', name: 'Bacon'},
-            {category: 'veg', name: 'Mushrooms'},
-            {category: 'veg', name: 'Onion'},
-            {category: 'veg', name: 'Green Pepper'},
-            {category: 'veg', name: 'Green Olives'}
+            {
+                category: 'meat',
+                name: 'Pepperoni'
+            },
+            {
+                category: 'meat',
+                name: 'Sausage'
+            },
+            {
+                category: 'meat',
+                name: 'Ground Beef'
+            },
+            {
+                category: 'meat',
+                name: 'Bacon'
+            },
+            {
+                category: 'veg',
+                name: 'Mushrooms'
+            },
+            {
+                category: 'veg',
+                name: 'Onion'
+            },
+            {
+                category: 'veg',
+                name: 'Green Pepper'
+            },
+            {
+                category: 'veg',
+                name: 'Green Olives'
+            }
         ];
     }
 
@@ -8915,6 +10522,7 @@
      MDInputCtrl
      */
     MDInputCtrl.$inject = ['$scope'];
+
     function MDInputCtrl($scope) {
         $scope.user = {
             title: 'Developer',
@@ -8939,6 +10547,7 @@
      MDProgressCtrl
      */
     MDProgressCtrl.$inject = ['$scope', '$interval'];
+
     function MDProgressCtrl($scope, $interval) {
         $scope.mode = 'query';
         $scope.determinateValue = 30;
@@ -8962,6 +10571,7 @@
      MDSidenavCtrl
      */
     MDSidenavCtrl.$inject = ['$scope', '$timeout', '$mdSidenav', '$log'];
+
     function MDSidenavCtrl($scope, $timeout, $mdSidenav, $log) {
         $scope.toggleLeft = function () {
             $mdSidenav('left').toggle()
@@ -8994,6 +10604,7 @@
      MDSubheaderCtrl
      */
     MDSubheaderCtrl.$inject = ['$scope'];
+
     function MDSubheaderCtrl($scope) {
         $scope.messages = [
             {
@@ -9080,6 +10691,7 @@
      MDToastCtrl
      */
     MDToastCtrl.$inject = ['$scope', '$mdToast'];
+
     function MDToastCtrl($scope, $mdToast) {
 
         $scope.toastPosition = {
@@ -9110,9 +10722,9 @@
         $scope.showSimpleToast = function () {
             $mdToast.show(
                 $mdToast.simple()
-                    .content('Simple Toast!')
-                    .position($scope.getToastPosition())
-                    .hideDelay(30000)
+                .content('Simple Toast!')
+                .position($scope.getToastPosition())
+                .hideDelay(30000)
             );
         };
 
@@ -9133,6 +10745,7 @@
      ToastCtrl
      */
     ToastCtrl.$inject = ['$scope', '$mdToast'];
+
     function ToastCtrl($scope, $mdToast) {
         $scope.closeToast = function () {
             $mdToast.hide();
@@ -9143,6 +10756,7 @@
      MDTooltipCtrl
      */
     MDTooltipCtrl.$inject = ['$scope'];
+
     function MDTooltipCtrl($scope) {
         $scope.demo = {};
     }
@@ -9151,6 +10765,7 @@
      BottomSheetExample
      */
     BottomSheetExample.$inject = ['$scope', '$timeout', '$mdBottomSheet'];
+
     function BottomSheetExample($scope, $timeout, $mdBottomSheet) {
         $scope.alert = '';
 
@@ -9183,13 +10798,26 @@
      ListBottomSheetCtrl
      */
     ListBottomSheetCtrl.$inject = ['$scope', '$mdBottomSheet'];
+
     function ListBottomSheetCtrl($scope, $mdBottomSheet) {
 
         $scope.items = [
-            {name: 'Share', icon: 'share-arrow'},
-            {name: 'Upload', icon: 'upload'},
-            {name: 'Copy', icon: 'copy'},
-            {name: 'Print this page', icon: 'print'},
+            {
+                name: 'Share',
+                icon: 'share-arrow'
+            },
+            {
+                name: 'Upload',
+                icon: 'upload'
+            },
+            {
+                name: 'Copy',
+                icon: 'copy'
+            },
+            {
+                name: 'Print this page',
+                icon: 'print'
+            },
         ];
 
         $scope.listItemClick = function ($index) {
@@ -9202,14 +10830,33 @@
      GridBottomSheetCtrl
      */
     GridBottomSheetCtrl.$inject = ['$scope', '$mdBottomSheet'];
+
     function GridBottomSheetCtrl($scope, $mdBottomSheet) {
         $scope.items = [
-            {name: 'Hangout', icon: 'hangout'},
-            {name: 'Mail', icon: 'mail'},
-            {name: 'Message', icon: 'message'},
-            {name: 'Copy', icon: 'copy2'},
-            {name: 'Facebook', icon: 'facebook'},
-            {name: 'Twitter', icon: 'twitter'},
+            {
+                name: 'Hangout',
+                icon: 'hangout'
+            },
+            {
+                name: 'Mail',
+                icon: 'mail'
+            },
+            {
+                name: 'Message',
+                icon: 'message'
+            },
+            {
+                name: 'Copy',
+                icon: 'copy2'
+            },
+            {
+                name: 'Facebook',
+                icon: 'facebook'
+            },
+            {
+                name: 'Twitter',
+                icon: 'twitter'
+            },
         ];
 
         $scope.listItemClick = function ($index) {
@@ -9226,9 +10873,9 @@
     // Used only for the BottomSheetExample
     angular
         .module('app.material')
-        .run(materialRun)
-    ;
+        .run(materialRun);
     materialRun.$inject = ['$http', '$templateCache'];
+
     function materialRun($http, $templateCache) {
         var urls = [
             'app/img/icons/share-arrow.svg',
@@ -9244,7 +10891,9 @@
         ];
 
         angular.forEach(urls, function (url) {
-            $http.get(url, {cache: $templateCache});
+            $http.get(url, {
+                cache: $templateCache
+            });
         });
 
     }
@@ -9259,6 +10908,7 @@
         .controller('MaterialWidgetsController', MaterialWidgetsController);
 
     MaterialWidgetsController.$inject = ['Colors'];
+
     function MaterialWidgetsController(Colors) {
         var vm = this;
 
@@ -9339,6 +10989,7 @@
     // 
 
     searchOpenController.$inject = ['$scope', '$element', 'NavSearch'];
+
     function searchOpenController($scope, $element, NavSearch) {
         $element
             .on('click', function (e) {
@@ -9348,6 +10999,7 @@
     }
 
     searchDismissController.$inject = ['$scope', '$element', 'NavSearch'];
+
     function searchDismissController($scope, $element, NavSearch) {
 
         var inputSelector = '.navbar-form input[type="text"]';
@@ -9426,6 +11078,7 @@
         .controller('NotifyDemoCtrl', NotifyDemoCtrl);
 
     NotifyDemoCtrl.$inject = ['Notify', '$timeout'];
+
     function NotifyDemoCtrl(Notify, $timeout) {
         var vm = this;
 
@@ -9446,8 +11099,9 @@
             $timeout(function () {
 
                 Notify.alert(
-                    'This is a custom message from notify..',
-                    {status: 'success'}
+                    'This is a custom message from notify..', {
+                        status: 'success'
+                    }
                 );
 
             }, 500);
@@ -9468,6 +11122,7 @@
         .directive('notify', notify);
 
     notify.$inject = ['$window', 'Notify'];
+
     function notify($window, Notify) {
 
         var directive = {
@@ -9506,6 +11161,7 @@
         .service('Notify', Notify);
 
     Notify.$inject = ['$timeout'];
+
     function Notify($timeout) {
 
         this.alert = notifyAlert;
@@ -9534,10 +11190,14 @@
         messages = {},
         notify = function (options) {
             if ($.type(options) === 'string') {
-                options = {message: options};
+                options = {
+                    message: options
+                };
             }
             if (arguments[1]) {
-                options = $.extend(options, $.type(arguments[1]) === 'string' ? {status: arguments[1]} : arguments[1]);
+                options = $.extend(options, $.type(arguments[1]) === 'string' ? {
+                    status: arguments[1]
+                } : arguments[1]);
             }
             return (new Message(options)).show();
         },
@@ -9592,7 +11252,11 @@
                 'opacity': 0,
                 'margin-top': -1 * this.element.outerHeight(),
                 'margin-bottom': 0
-            }).animate({'opacity': 1, 'margin-top': 0, 'margin-bottom': marginbottom}, function () {
+            }).animate({
+                'opacity': 1,
+                'margin-top': 0,
+                'margin-bottom': marginbottom
+            }, function () {
                 if ($this.options.timeout) {
                     var closefn = function () {
                         $this.close();
@@ -9677,6 +11341,7 @@
         .controller('LoginFormController', LoginFormController);
 
     LoginFormController.$inject = ['$http', '$state'];
+
     function LoginFormController($http, $state) {
         var vm = this;
 
@@ -9696,7 +11361,10 @@
                 if (vm.loginForm.$valid) {
 
                     $http
-                        .post('api/account/login', {email: vm.account.email, password: vm.account.password})
+                        .post('api/account/login', {
+                            email: vm.account.email,
+                            password: vm.account.password
+                        })
                         .then(function (response) {
                             // assumes if ok, response is an object with some data, if not, a string with error
                             // customize according to your api
@@ -9708,8 +11376,7 @@
                         }, function () {
                             vm.authMsg = 'Server Request Error';
                         });
-                }
-                else {
+                } else {
                     // set as dirty if the user click directly to login so we show the validation messages
                     /*jshint -W106*/
                     vm.loginForm.account_email.$dirty = true;
@@ -9733,6 +11400,7 @@
         .controller('RegisterFormController', RegisterFormController);
 
     RegisterFormController.$inject = ['$http', '$state'];
+
     function RegisterFormController($http, $state) {
         var vm = this;
 
@@ -9752,7 +11420,10 @@
                 if (vm.registerForm.$valid) {
 
                     $http
-                        .post('api/account/register', {email: vm.account.email, password: vm.account.password})
+                        .post('api/account/register', {
+                            email: vm.account.email,
+                            password: vm.account.password
+                        })
                         .then(function (response) {
                             // assumes if ok, response is an object with some data, if not, a string with error
                             // customize according to your api
@@ -9764,8 +11435,7 @@
                         }, function () {
                             vm.authMsg = 'Server Request Error';
                         });
-                }
-                else {
+                } else {
                     // set as dirty if the user click directly to login so we show the validation messages
                     /*jshint -W106*/
                     vm.registerForm.account_email.$dirty = true;
@@ -9798,6 +11468,7 @@
     }
 
     Controller.$inject = ['$scope', '$element', '$timeout', '$localStorage'];
+
     function Controller($scope, $element, $timeout, $localStorage) {
         var storageKeyName = 'panelState';
 
@@ -9866,6 +11537,7 @@
     }
 
     Controller.$inject = ['$scope', '$element', '$q', 'Utils'];
+
     function Controller($scope, $element, $q, Utils) {
         var removeEvent = 'panel-remove',
             removedEvent = 'panel-removed';
@@ -9890,9 +11562,10 @@
             // Run the animation before destroy the panel
             function destroyMiddleware() {
                 if (Utils.support.animation) {
-                    parent.animo({animation: 'bounceOut'}, destroyPanel);
-                }
-                else destroyPanel();
+                    parent.animo({
+                        animation: 'bounceOut'
+                    }, destroyPanel);
+                } else destroyPanel();
             }
 
             function destroyPanel() {
@@ -9939,6 +11612,7 @@
     }
 
     Controller.$inject = ['$scope', '$element'];
+
     function Controller($scope, $element) {
         var refreshEvent = 'panel-refresh',
             whirlClass = 'whirl',
@@ -9950,8 +11624,7 @@
 
             var $this = $(this),
                 panel = $this.parents('.panel').eq(0),
-                spinner = $this.data('spinner') || defaultSpinner
-                ;
+                spinner = $this.data('spinner') || defaultSpinner;
 
             // start showing the spinner
             panel.addClass(whirlClass + ' ' + spinner);
@@ -9991,6 +11664,7 @@
         .directive('paneltool', paneltool);
 
     paneltool.$inject = ['$compile', '$timeout'];
+
     function paneltool($compile, $timeout) {
         var directive = {
             link: link,
@@ -10035,7 +11709,7 @@
                     temp += templates.refresh.replace(/{{spinner}}/g, attrs.toolRefresh);
                 return temp;
             }
-        }// link
+        } // link
     }
 
 })();
@@ -10053,6 +11727,7 @@
         .controller('PanelsCtrl', PanelsCtrl);
 
     PanelsCtrl.$inject = ['$scope', '$timeout'];
+
     function PanelsCtrl($scope, $timeout) {
 
         activate();
@@ -10153,6 +11828,7 @@
         .directive('portlet', portlet);
 
     portlet.$inject = ['$timeout', '$localStorage'];
+
     function portlet($timeout, $localStorage) {
         var storageKeyName = 'portletState';
 
@@ -10188,7 +11864,7 @@
         }
 
 
-        function savePortletOrder(event/*, ui*/) {
+        function savePortletOrder(event /*, ui*/ ) {
             var self = event.target;
             var data = angular.fromJson($localStorage[storageKeyName]);
 
@@ -10237,15 +11913,15 @@
         .directive('preloader', preloader);
 
     preloader.$inject = ['$animate', '$timeout', '$q', '$rootScope'];
+
     function preloader($animate, $timeout, $q, $rootScope) {
 
         var directive = {
             restrict: 'EAC',
             template: '<div class="preloader-progress">' +
-            '<div class="preloader-progress-bar" ' +
-            'ng-style="{width: loadCounter + \'%\'}"></div>' +
-            '</div>'
-            ,
+                '<div class="preloader-progress-bar" ' +
+                'ng-style="{width: loadCounter + \'%\'}"></div>' +
+                '</div>',
             link: link
         };
         return directive;
@@ -10341,10 +12017,10 @@
 
     angular
         .module('app.routes')
-        .provider('RouteHelpers', RouteHelpersProvider)
-    ;
+        .provider('RouteHelpers', RouteHelpersProvider);
 
     RouteHelpersProvider.$inject = ['APP_REQUIRES'];
+
     function RouteHelpersProvider(APP_REQUIRES) {
 
         /* jshint validthis:true */
@@ -10431,6 +12107,7 @@
         .config(routesConfig);
 
     routesConfig.$inject = ['$stateProvider', '$locationProvider', '$urlRouterProvider', 'RouteHelpersProvider'];
+
     function routesConfig($stateProvider, $locationProvider, $urlRouterProvider, helper) {
 
         // Set the following to true to enable the HTML5 Mode
@@ -10461,7 +12138,33 @@
                 templateUrl: helper.basepath('sportimo-dashboard.html'),
                 resolve: helper.resolveFor('flot-chart', 'flot-chart-plugins', 'weather-icons', 'ngWebSocket', 'moment', 'moment-format')
             })
-            .state('app.match-moderation-soccer', {
+
+        /* START MATCHES SCHEDULE */
+        .state('app.schedule', {
+                url: '/schedule',
+                title: 'Schedule',
+                templateUrl: helper.basepath('database/schedule.html'),
+                controller: 'ScheduleController'
+            })
+            .state('app.teams', {
+                url: '/teams',
+                title: 'Teams',
+                //                templateUrl: helper.basepath('database/teams.html'),
+                //                controller: 'TeamsController'
+                templateUrl: helper.basepath('database/teams.html'),
+                resolve: helper.resolveFor('restangular', 'toaster', 'dirPagination', 'moment','datatables'),
+                controller: 'TeamsController'
+            })
+            .state('app.players', {
+                url: '/players',
+                title: 'players',
+
+                templateUrl: helper.basepath('database/teams.html'),
+                controller: 'PlayersController'
+            })
+            /* END MATCHES SCHEDULE */
+
+        .state('app.match-moderation-soccer', {
                 url: '/match-moderation/soccer/:id',
                 title: 'Mathces Administration',
                 templateUrl: helper.basepath('sportimo_moderation_soccer.html'),
@@ -10584,7 +12287,9 @@
                 templateUrl: helper.basepath('ngdialog.html'),
                 resolve: angular.extend(helper.resolveFor('ngDialog'), {
                     tpl: function () {
-                        return {path: helper.basepath('ngdialog-template.html')};
+                        return {
+                            path: helper.basepath('ngdialog-template.html')
+                        };
                     }
                 }),
                 controller: 'DialogIntroCtrl'
@@ -11187,6 +12892,7 @@
         .controller('SidebarController', SidebarController);
 
     SidebarController.$inject = ['$rootScope', '$scope', '$state', 'SidebarLoader', 'Utils'];
+
     function SidebarController($rootScope, $scope, $state, SidebarLoader, Utils) {
 
         activate();
@@ -11240,8 +12946,7 @@
                         collapseList[$index] = !collapseList[$index];
                         closeAllBut($index);
                     }
-                }
-                else if (isParentItem) {
+                } else if (isParentItem) {
                     closeAllBut(-1);
                 }
 
@@ -11265,8 +12970,7 @@
                         if (isActive(value)) foundActive = true;
                     });
                     return foundActive;
-                }
-                else
+                } else
                     return $state.is(item.sref) || $state.includes(item.sref);
             }
 
@@ -11301,6 +13005,7 @@
         .directive('sidebar', sidebar);
 
     sidebar.$inject = ['$rootScope', '$timeout', '$window', 'Utils'];
+
     function sidebar($rootScope, $timeout, $window, Utils) {
         var $win = angular.element($window);
         var directive = {
@@ -11312,7 +13017,7 @@
             template: '<nav class="sidebar" ng-transclude></nav>',
             transclude: true,
             replace: true
-            // scope: {}
+                // scope: {}
         };
         return directive;
 
@@ -11380,8 +13085,7 @@
                             }
                         });
                     });
-                }
-                else {
+                } else {
                     // dettach event
                     wrapper.off(sbclickEvent);
                 }
@@ -11396,7 +13100,9 @@
         ///////
 
         function sidebarAddBackdrop() {
-            var $backdrop = $('<div/>', {'class': 'dropdown-backdrop'});
+            var $backdrop = $('<div/>', {
+                'class': 'dropdown-backdrop'
+            });
             $backdrop.insertAfter('.aside-inner').on('click mouseenter', function () {
                 removeFloatingNav();
             });
@@ -11472,6 +13178,7 @@
         .service('SidebarLoader', SidebarLoader);
 
     SidebarLoader.$inject = ['$http'];
+
     function SidebarLoader($http) {
         this.getMenu = getMenu;
 
@@ -11482,8 +13189,8 @@
                 menuURL = menuJson + '?v=' + (new Date().getTime()); // jumps cache
 
             onError = onError || function () {
-                    alert('Failure loading menu');
-                };
+                alert('Failure loading menu');
+            };
 
             $http
                 .get(menuURL)
@@ -11500,6 +13207,7 @@
         .controller('UserBlockController', UserBlockController);
 
     UserBlockController.$inject = ['$rootScope'];
+
     function UserBlockController($rootScope) {
 
         activate();
@@ -11523,7 +13231,7 @@
 
             $rootScope.userBlockVisible = true;
 
-            $rootScope.$on('toggleUserBlock', function (/*event, args*/) {
+            $rootScope.$on('toggleUserBlock', function ( /*event, args*/ ) {
 
                 $rootScope.userBlockVisible = !$rootScope.userBlockVisible;
 
@@ -11545,6 +13253,7 @@
         .controller('AngularGridController', AngularGridController);
 
     AngularGridController.$inject = ['$http'];
+
     function AngularGridController($http) {
         var vm = this;
 
@@ -11556,16 +13265,56 @@
 
             // Basic
             var columnDefs = [
-                {displayName: 'Athlete', field: 'athlete', width: 150},
-                {displayName: 'Age', field: 'age', width: 90},
-                {displayName: 'Country', field: 'country', width: 120},
-                {displayName: 'Year', field: 'year', width: 90},
-                {displayName: 'Date', field: 'date', width: 110},
-                {displayName: 'Sport', field: 'sport', width: 110},
-                {displayName: 'Gold', field: 'gold', width: 100},
-                {displayName: 'Silver', field: 'silver', width: 100},
-                {displayName: 'Bronze', field: 'bronze', width: 100},
-                {displayName: 'Total', field: 'total', width: 100}
+                {
+                    displayName: 'Athlete',
+                    field: 'athlete',
+                    width: 150
+                },
+                {
+                    displayName: 'Age',
+                    field: 'age',
+                    width: 90
+                },
+                {
+                    displayName: 'Country',
+                    field: 'country',
+                    width: 120
+                },
+                {
+                    displayName: 'Year',
+                    field: 'year',
+                    width: 90
+                },
+                {
+                    displayName: 'Date',
+                    field: 'date',
+                    width: 110
+                },
+                {
+                    displayName: 'Sport',
+                    field: 'sport',
+                    width: 110
+                },
+                {
+                    displayName: 'Gold',
+                    field: 'gold',
+                    width: 100
+                },
+                {
+                    displayName: 'Silver',
+                    field: 'silver',
+                    width: 100
+                },
+                {
+                    displayName: 'Bronze',
+                    field: 'bronze',
+                    width: 100
+                },
+                {
+                    displayName: 'Total',
+                    field: 'total',
+                    width: 100
+                }
             ];
 
             vm.gridOptions = {
@@ -11581,18 +13330,65 @@
 
             var columnDefsFilter = [
                 {
-                    displayName: 'Athlete', field: 'athlete', width: 150, filter: 'set',
-                    filterParams: {cellHeight: 20, values: irishAthletes}
+                    displayName: 'Athlete',
+                    field: 'athlete',
+                    width: 150,
+                    filter: 'set',
+                    filterParams: {
+                        cellHeight: 20,
+                        values: irishAthletes
+                    }
                 },
-                {displayName: 'Age', field: 'age', width: 90, filter: 'number'},
-                {displayName: 'Country', field: 'country', width: 120},
-                {displayName: 'Year', field: 'year', width: 90},
-                {displayName: 'Date', field: 'date', width: 110},
-                {displayName: 'Sport', field: 'sport', width: 110},
-                {displayName: 'Gold', field: 'gold', width: 100, filter: 'number'},
-                {displayName: 'Silver', field: 'silver', width: 100, filter: 'number'},
-                {displayName: 'Bronze', field: 'bronze', width: 100, filter: 'number'},
-                {displayName: 'Total', field: 'total', width: 100, filter: 'number'}
+                {
+                    displayName: 'Age',
+                    field: 'age',
+                    width: 90,
+                    filter: 'number'
+                },
+                {
+                    displayName: 'Country',
+                    field: 'country',
+                    width: 120
+                },
+                {
+                    displayName: 'Year',
+                    field: 'year',
+                    width: 90
+                },
+                {
+                    displayName: 'Date',
+                    field: 'date',
+                    width: 110
+                },
+                {
+                    displayName: 'Sport',
+                    field: 'sport',
+                    width: 110
+                },
+                {
+                    displayName: 'Gold',
+                    field: 'gold',
+                    width: 100,
+                    filter: 'number'
+                },
+                {
+                    displayName: 'Silver',
+                    field: 'silver',
+                    width: 100,
+                    filter: 'number'
+                },
+                {
+                    displayName: 'Bronze',
+                    field: 'bronze',
+                    width: 100,
+                    filter: 'number'
+                },
+                {
+                    displayName: 'Total',
+                    field: 'total',
+                    width: 100,
+                    filter: 'number'
+                }
             ];
 
             vm.gridOptions1 = {
@@ -11651,6 +13447,7 @@
         .controller('DataTableController', DataTableController);
 
     DataTableController.$inject = ['$resource', 'DTOptionsBuilder', 'DTColumnDefBuilder'];
+
     function DataTableController($resource, DTOptionsBuilder, DTColumnDefBuilder) {
         var vm = this;
 
@@ -11669,21 +13466,21 @@
             // Changing data
 
             vm.heroes = [{
-                'id': 860,
-                'firstName': 'Superman',
-                'lastName': 'Yoda'
+                    'id': 860,
+                    'firstName': 'Superman',
+                    'lastName': 'Yoda'
             }, {
-                'id': 870,
-                'firstName': 'Ace',
-                'lastName': 'Ventura'
+                    'id': 870,
+                    'firstName': 'Ace',
+                    'lastName': 'Ventura'
             }, {
-                'id': 590,
-                'firstName': 'Flash',
-                'lastName': 'Gordon'
+                    'id': 590,
+                    'firstName': 'Flash',
+                    'lastName': 'Gordon'
             }, {
-                'id': 803,
-                'firstName': 'Luke',
-                'lastName': 'Skywalker'
+                    'id': 803,
+                    'firstName': 'Luke',
+                    'lastName': 'Skywalker'
             }
             ];
 
@@ -11738,6 +13535,7 @@
         .controller('NGGridController', NGGridController);
 
     NGGridController.$inject = ['$scope', '$http', '$timeout'];
+
     function NGGridController($scope, $http, $timeout) {
 
         activate();
@@ -11752,9 +13550,9 @@
             };
             $scope.totalServerItems = 0;
             $scope.pagingOptions = {
-                pageSizes: [250, 500, 1000],  // page size options
-                pageSize: 250,              // default page size
-                currentPage: 1                 // initial page
+                pageSizes: [250, 500, 1000], // page size options
+                pageSize: 250, // default page size
+                currentPage: 1 // initial page
             };
 
             $scope.gridOptions = {
@@ -11844,8 +13642,7 @@
                         filterdata($defer, params);
                     });
                 }
-            }
-            else {
+            } else {
                 filterdata($defer, params);
             }
 
@@ -11875,6 +13672,7 @@
         .controller('NGTableCtrl', NGTableCtrl);
     /*jshint -W055 */
     NGTableCtrl.$inject = ['$filter', 'ngTableParams', '$resource', '$timeout', 'ngTableDataService'];
+
     function NGTableCtrl($filter, ngTableParams, $resource, $timeout, ngTableDataService) {
         var vm = this;
         vm.title = 'Controller';
@@ -11885,23 +13683,91 @@
 
         function activate() {
             var data = [
-                {name: 'Moroni', age: 50, money: -10},
-                {name: 'Tiancum', age: 43, money: 120},
-                {name: 'Jacob', age: 27, money: 5.5},
-                {name: 'Nephi', age: 29, money: -54},
-                {name: 'Enos', age: 34, money: 110},
-                {name: 'Tiancum', age: 43, money: 1000},
-                {name: 'Jacob', age: 27, money: -201},
-                {name: 'Nephi', age: 29, money: 100},
-                {name: 'Enos', age: 34, money: -52.5},
-                {name: 'Tiancum', age: 43, money: 52.1},
-                {name: 'Jacob', age: 27, money: 110},
-                {name: 'Nephi', age: 29, money: -55},
-                {name: 'Enos', age: 34, money: 551},
-                {name: 'Tiancum', age: 43, money: -1410},
-                {name: 'Jacob', age: 27, money: 410},
-                {name: 'Nephi', age: 29, money: 100},
-                {name: 'Enos', age: 34, money: -100}
+                {
+                    name: 'Moroni',
+                    age: 50,
+                    money: -10
+                },
+                {
+                    name: 'Tiancum',
+                    age: 43,
+                    money: 120
+                },
+                {
+                    name: 'Jacob',
+                    age: 27,
+                    money: 5.5
+                },
+                {
+                    name: 'Nephi',
+                    age: 29,
+                    money: -54
+                },
+                {
+                    name: 'Enos',
+                    age: 34,
+                    money: 110
+                },
+                {
+                    name: 'Tiancum',
+                    age: 43,
+                    money: 1000
+                },
+                {
+                    name: 'Jacob',
+                    age: 27,
+                    money: -201
+                },
+                {
+                    name: 'Nephi',
+                    age: 29,
+                    money: 100
+                },
+                {
+                    name: 'Enos',
+                    age: 34,
+                    money: -52.5
+                },
+                {
+                    name: 'Tiancum',
+                    age: 43,
+                    money: 52.1
+                },
+                {
+                    name: 'Jacob',
+                    age: 27,
+                    money: 110
+                },
+                {
+                    name: 'Nephi',
+                    age: 29,
+                    money: -55
+                },
+                {
+                    name: 'Enos',
+                    age: 34,
+                    money: 551
+                },
+                {
+                    name: 'Tiancum',
+                    age: 43,
+                    money: -1410
+                },
+                {
+                    name: 'Jacob',
+                    age: 27,
+                    money: 410
+                },
+                {
+                    name: 'Nephi',
+                    age: 29,
+                    money: 100
+                },
+                {
+                    name: 'Enos',
+                    age: 34,
+                    money: -100
+                }
             ];
 
             // SELECT ROWS
@@ -11910,8 +13776,8 @@
             vm.data = data;
 
             vm.tableParams3 = new ngTableParams({
-                page: 1,            // show first page
-                count: 10          // count per page
+                page: 1, // show first page
+                count: 10 // count per page
             }, {
                 total: data.length, // length of data
                 getData: function ($defer, params) {
@@ -11935,27 +13801,78 @@
             // EXPORT CSV
             // -----------------------------------  
 
-            var data4 = [{name: 'Moroni', age: 50},
-                {name: 'Tiancum', age: 43},
-                {name: 'Jacob', age: 27},
-                {name: 'Nephi', age: 29},
-                {name: 'Enos', age: 34},
-                {name: 'Tiancum', age: 43},
-                {name: 'Jacob', age: 27},
-                {name: 'Nephi', age: 29},
-                {name: 'Enos', age: 34},
-                {name: 'Tiancum', age: 43},
-                {name: 'Jacob', age: 27},
-                {name: 'Nephi', age: 29},
-                {name: 'Enos', age: 34},
-                {name: 'Tiancum', age: 43},
-                {name: 'Jacob', age: 27},
-                {name: 'Nephi', age: 29},
-                {name: 'Enos', age: 34}];
+            var data4 = [{
+                    name: 'Moroni',
+                    age: 50
+                },
+                {
+                    name: 'Tiancum',
+                    age: 43
+                },
+                {
+                    name: 'Jacob',
+                    age: 27
+                },
+                {
+                    name: 'Nephi',
+                    age: 29
+                },
+                {
+                    name: 'Enos',
+                    age: 34
+                },
+                {
+                    name: 'Tiancum',
+                    age: 43
+                },
+                {
+                    name: 'Jacob',
+                    age: 27
+                },
+                {
+                    name: 'Nephi',
+                    age: 29
+                },
+                {
+                    name: 'Enos',
+                    age: 34
+                },
+                {
+                    name: 'Tiancum',
+                    age: 43
+                },
+                {
+                    name: 'Jacob',
+                    age: 27
+                },
+                {
+                    name: 'Nephi',
+                    age: 29
+                },
+                {
+                    name: 'Enos',
+                    age: 34
+                },
+                {
+                    name: 'Tiancum',
+                    age: 43
+                },
+                {
+                    name: 'Jacob',
+                    age: 27
+                },
+                {
+                    name: 'Nephi',
+                    age: 29
+                },
+                {
+                    name: 'Enos',
+                    age: 34
+                }];
 
             vm.tableParams4 = new ngTableParams({
-                page: 1,            // show first page
-                count: 10           // count per page
+                page: 1, // show first page
+                count: 10 // count per page
             }, {
                 total: data4.length, // length of data4
                 getData: function ($defer, params) {
@@ -11969,10 +13886,10 @@
 
 
             vm.tableParams = new ngTableParams({
-                page: 1,            // show first page
-                count: 10,          // count per page
+                page: 1, // show first page
+                count: 10, // count per page
                 sorting: {
-                    name: 'asc'     // initial sorting
+                    name: 'asc' // initial sorting
                 }
             }, {
                 total: data.length, // length of data
@@ -11990,12 +13907,12 @@
             // ----------------------------------- 
 
             vm.tableParams2 = new ngTableParams({
-                page: 1,            // show first page
-                count: 10,          // count per page
+                page: 1, // show first page
+                count: 10, // count per page
                 filter: {
                     name: '',
                     age: ''
-                    // name: 'M'       // initial filter
+                        // name: 'M'       // initial filter
                 }
             }, {
                 total: data.length, // length of data
@@ -12017,11 +13934,11 @@
             var Api = $resource('server/table-data.json');
 
             vm.tableParams5 = new ngTableParams({
-                page: 1,            // show first page
-                count: 10           // count per page
+                page: 1, // show first page
+                count: 10 // count per page
             }, {
-                total: 0,           // length of data
-                counts: [],         // hide page counts control
+                total: 0, // length of data
+                counts: [], // hide page counts control
                 getData: function ($defer, params) {
 
                     // Service using cache to avoid mutiple requests
@@ -12057,6 +13974,7 @@
         .controller('TablexEditableController', TablexEditableController);
 
     TablexEditableController.$inject = ['$filter', '$http', 'editableOptions', 'editableThemes', '$q'];
+
     function TablexEditableController($filter, $http, editableOptions, editableThemes, $q) {
         var vm = this;
 
@@ -12069,16 +13987,45 @@
             // editable row
             // ----------------------------------- 
             vm.users = [
-                {id: 1, name: 'awesome user1', status: 2, group: 4, groupName: 'admin'},
-                {id: 2, name: 'awesome user2', status: undefined, group: 3, groupName: 'vip'},
-                {id: 3, name: 'awesome user3', status: 2, group: null}
+                {
+                    id: 1,
+                    name: 'awesome user1',
+                    status: 2,
+                    group: 4,
+                    groupName: 'admin'
+                },
+                {
+                    id: 2,
+                    name: 'awesome user2',
+                    status: undefined,
+                    group: 3,
+                    groupName: 'vip'
+                },
+                {
+                    id: 3,
+                    name: 'awesome user3',
+                    status: 2,
+                    group: null
+                }
             ];
 
             vm.statuses = [
-                {value: 1, text: 'status1'},
-                {value: 2, text: 'status2'},
-                {value: 3, text: 'status3'},
-                {value: 4, text: 'status4'}
+                {
+                    value: 1,
+                    text: 'status1'
+                },
+                {
+                    value: 2,
+                    text: 'status2'
+                },
+                {
+                    value: 3,
+                    text: 'status3'
+                },
+                {
+                    value: 4,
+                    text: 'status4'
+                }
             ];
 
             vm.groups = [];
@@ -12090,7 +14037,9 @@
 
             vm.showGroup = function (user) {
                 if (user.group && vm.groups.length) {
-                    var selected = $filter('filter')(vm.groups, {id: user.group});
+                    var selected = $filter('filter')(vm.groups, {
+                        id: user.group
+                    });
                     return selected.length ? selected[0].text : 'Not set';
                 } else {
                     return user.groupName || 'Not set';
@@ -12100,7 +14049,9 @@
             vm.showStatus = function (user) {
                 var selected = [];
                 if (user.status) {
-                    selected = $filter('filter')(vm.statuses, {value: user.status});
+                    selected = $filter('filter')(vm.statuses, {
+                        value: user.status
+                    });
                 }
                 return selected.length ? selected[0].text : 'Not set';
             };
@@ -12113,7 +14064,9 @@
 
             vm.saveUser = function (data, id) {
                 //vm.user not updated yet
-                angular.extend(data, {id: id});
+                angular.extend(data, {
+                    id: id
+                });
                 console.log('Saving user: ' + id);
                 // return $http.post('/saveUser', data);
             };
@@ -12141,7 +14094,7 @@
 
             vm.saveColumn = function (column) {
                 var results = [];
-                angular.forEach(vm.users, function (/*user*/) {
+                angular.forEach(vm.users, function ( /*user*/ ) {
                     // results.push($http.post('/saveColumn', {column: column, value: user[column], id: user.id}));
                     console.log('Saving column: ' + column);
                 });
@@ -12158,7 +14111,9 @@
 
             // mark user as deleted
             vm.deleteUser = function (id) {
-                var filtered = $filter('filter')(vm.users, {id: id});
+                var filtered = $filter('filter')(vm.users, {
+                    id: id
+                });
                 if (filtered.length) {
                     filtered[0].isDeleted = true;
                 }
@@ -12217,6 +14172,7 @@
         .controller('UIGridController', UIGridController);
 
     UIGridController.$inject = ['uiGridConstants', '$http'];
+
     function UIGridController(uiGridConstants, $http) {
         var vm = this;
 
@@ -12345,8 +14301,15 @@
                 showColumnFooter: true,
                 enableFiltering: true,
                 columnDefs: [
-                    {field: 'name', width: '13%'},
-                    {field: 'address.street', aggregationType: uiGridConstants.aggregationTypes.sum, width: '13%'},
+                    {
+                        field: 'name',
+                        width: '13%'
+                    },
+                    {
+                        field: 'address.street',
+                        aggregationType: uiGridConstants.aggregationTypes.sum,
+                        width: '13%'
+                    },
                     {
                         field: 'age',
                         aggregationType: uiGridConstants.aggregationTypes.avg,
@@ -12401,9 +14364,15 @@
                 paginationPageSizes: [25, 50, 75],
                 paginationPageSize: 25,
                 columnDefs: [
-                    {name: 'name'},
-                    {name: 'gender'},
-                    {name: 'company'}
+                    {
+                        name: 'name'
+                    },
+                    {
+                        name: 'gender'
+                    },
+                    {
+                        name: 'company'
+                    }
                 ]
             };
 
@@ -12421,9 +14390,9 @@
 
     angular
         .module('app.translate')
-        .config(translateConfig)
-    ;
+        .config(translateConfig);
     translateConfig.$inject = ['$translateProvider'];
+
     function translateConfig($translateProvider) {
 
         $translateProvider.useStaticFilesLoader({
@@ -12443,8 +14412,7 @@
 
     angular
         .module('app.translate')
-        .run(translateRun)
-    ;
+        .run(translateRun);
     translateRun.$inject = ['$rootScope', '$translate'];
 
     function translateRun($rootScope, $translate) {
@@ -12493,6 +14461,7 @@
         .directive('animateEnabled', animateEnabled);
 
     animateEnabled.$inject = ['$animate'];
+
     function animateEnabled($animate) {
         var directive = {
             link: link,
@@ -12524,6 +14493,7 @@
         .service('Browser', Browser);
 
     Browser.$inject = ['$window'];
+
     function Browser($window) {
         return $window.jQBrowser;
     }
@@ -12543,6 +14513,7 @@
         .directive('resetKey', resetKey);
 
     resetKey.$inject = ['$state', '$localStorage'];
+
     function resetKey($state, $localStorage) {
         var directive = {
             link: link,
@@ -12559,9 +14530,10 @@
 
                 if (scope.resetKey) {
                     delete $localStorage[scope.resetKey];
-                    $state.go($state.current, {}, {reload: true});
-                }
-                else {
+                    $state.go($state.current, {}, {
+                        reload: true
+                    });
+                } else {
                     $.error('No storage key specified for reset.');
                 }
             });
@@ -12583,6 +14555,7 @@
         .directive('toggleFullscreen', toggleFullscreen);
 
     toggleFullscreen.$inject = ['Browser'];
+
     function toggleFullscreen(Browser) {
         var directive = {
             link: link,
@@ -12594,8 +14567,7 @@
             // Not supported under IE
             if (Browser.msie) {
                 element.addClass('hide');
-            }
-            else {
+            } else {
                 element.on('click', function (e) {
                     e.preventDefault();
 
@@ -12651,8 +14623,7 @@
                     if (!link) {
                         $.error('Error creating stylesheet link element.');
                     }
-                }
-                else {
+                } else {
                     $.error('No stylesheet location defined.');
                 }
 
@@ -12692,6 +14663,7 @@
         .directive('now', now);
 
     now.$inject = ['dateFilter', '$interval'];
+
     function now(dateFilter, $interval) {
         var directive = {
             link: link,
@@ -12765,6 +14737,7 @@
         .directive('triggerResize', triggerResize);
 
     triggerResize.$inject = ['$window', '$timeout'];
+
     function triggerResize($window, $timeout) {
         var directive = {
             link: link,
@@ -12796,6 +14769,7 @@
         .service('Utils', Utils);
 
     Utils.$inject = ['$window', 'APP_MEDIAQUERY'];
+
     function Utils($window, APP_MEDIAQUERY) {
 
         var $html = angular.element('html'),
@@ -12814,14 +14788,17 @@
                                 MozTransition: 'transitionend',
                                 OTransition: 'oTransitionEnd otransitionend',
                                 transition: 'transitionend'
-                            }, name;
+                            },
+                            name;
 
                         for (name in transEndEventNames) {
                             if (element.style[name] !== undefined) return transEndEventNames[name];
                         }
                     }());
 
-                    return transitionEnd && {end: transitionEnd};
+                    return transitionEnd && {
+                        end: transitionEnd
+                    };
                 })(),
                 animation: (function () {
 
@@ -12833,23 +14810,26 @@
                                 MozAnimation: 'animationend',
                                 OAnimation: 'oAnimationEnd oanimationend',
                                 animation: 'animationend'
-                            }, name;
+                            },
+                            name;
 
                         for (name in animEndEventNames) {
                             if (element.style[name] !== undefined) return animEndEventNames[name];
                         }
                     }());
 
-                    return animationEnd && {end: animationEnd};
+                    return animationEnd && {
+                        end: animationEnd
+                    };
                 })(),
                 requestAnimationFrame: window.requestAnimationFrame ||
-                window.webkitRequestAnimationFrame ||
-                window.mozRequestAnimationFrame ||
-                window.msRequestAnimationFrame ||
-                window.oRequestAnimationFrame ||
-                function (callback) {
-                    window.setTimeout(callback, 1000 / 60);
-                },
+                    window.webkitRequestAnimationFrame ||
+                    window.mozRequestAnimationFrame ||
+                    window.msRequestAnimationFrame ||
+                    window.oRequestAnimationFrame ||
+                    function (callback) {
+                        window.setTimeout(callback, 1000 / 60);
+                    },
                 /*jshint -W069*/
                 touch: (
                     ('ontouchstart' in window && navigator.userAgent.toLowerCase().match(/mobile|tablet/)) ||
@@ -12875,7 +14855,10 @@
                     left = offset.left,
                     top = offset.top;
 
-                options = $.extend({topoffset: 0, leftoffset: 0}, options);
+                options = $.extend({
+                    topoffset: 0,
+                    leftoffset: 0
+                }, options);
 
                 if (top + $element.height() >= window_top && top - options.topoffset <= window_top + $win.height() &&
                     left + $element.width() >= window_left && left - options.leftoffset <= window_left + $win.width()) {
@@ -12933,6 +14916,7 @@
         .controller('Controller', Controller);
 
     Controller.$inject = ['$log'];
+
     function Controller($log) {
         // for controllerAs syntax
         // var vm = this;

@@ -1,0 +1,31 @@
+<div class="panel panel-default">
+    <div class="panel-heading">Sportimo |
+        <small>Available Teams</small>
+    </div>
+    <div class="panel-body">
+        <div>
+            <table datatable="ng" class="row-border hover">
+                <thead>
+                    <tr>
+                        <th>Logo</th>
+                        <th>Name</th>
+                        <th>League</th>
+                        <th >ID</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="team in Teams">
+                        <td>
+                            <div class="center">
+                                <img ng-src="http://ep7t6ae.cloudimg.io/s/height/50/{{team.logo}}">
+                            </div>
+                        </td>
+                        <td><strong>{{ team.name_en }}</strong></td>
+                        <td>{{ team.league}}</td>
+                        <td><small>{{ team._id }}</small></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
