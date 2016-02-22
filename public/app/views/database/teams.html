@@ -1,9 +1,133 @@
-<div class="panel panel-default">
-    <div class="panel-heading">Sportimo |
-        <small>Available Teams</small>
+ 
+                                   
+
+                                           <!-- START Create EVENT DRAWER -->
+                                    <div ng-show="drawer == 1" class="events-self ">
+                                       
+                                        <div class="events-self panel">
+                                            <div class="moving-self panel-body">
+                                                <div class="row">
+
+                                                    <div class="match-logos col-sm-4 col-xs-12">
+                                                        <div class="event-team-logo col-xs-6 col-sm-12 col-md-6">
+                                                            <img class="moving-self-img"
+                                                                 ng-click="event.team = 'home_team'"
+                                                                 ng-class="event.team != 'home_team'? 'desaturate':'zoom'"
+                                                                 ng-src="{{match.data.home_team.logo}}"/>
+                                                            <br/>
+                                                            {{match.data.home_team.name}}
+                                                        </div>
+                                                        <div class="event-team-logo col-xs-6 col-sm-12 col-md-6">
+                                                            <img class="moving-self-img"
+                                                                 ng-click="event.team ='away_team'"
+                                                                 ng-class="event.team != 'away_team'? 'desaturate':'zoom'"
+                                                                 ng-src="{{match.data.away_team.logo}}"/>
+                                                            <br/>
+                                                            {{match.data.away_team.name}}
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-8 col-xs-12">
+                                                        <!-- For single player events -->
+                                                        <div ng-hide="event.playerscount == 2"
+                                                             ng-class="event.type+'-text'" class="moving-self-heading">
+                                                            Event player name:
+                                                        </div>
+                                                        <ui-select ng-hide="event.playerscount == 2" limit=1
+                                                                   on-select="checkSelection($item,$model)"
+                                                                   multiple
+                                                                   reset-search-input="true"
+                                                                   ng-model="event.players" theme="bootstrap"
+                                                                   ng-disabled="event.chooseplayer.disabled">
+                                                            <ui-select-match placeholder="Select player name"><img
+                                                                    class="ui-select-match-img" alt="$item.team"
+                                                                    ng-src="{{match.data[$item.team].logo}}">
+                                                                {{$item.name}}
+                                                            </ui-select-match>
+                                                            <ui-select-choices
+                                                                    repeat="player in players | filter: (filterTeamPlayers || '') && {team: event.team} | propsFilter: {name: $select.search, team: $select.search}">
+                                                                <img class="ui-select-match-img" alt='{{player.team}}'
+                                                                     ng-src='{{match.data[player.team].logo}}'>
+
+                                                                <div ng-bind-html=" player.name | highlight: $select.search"></div>
+                                                                <!--<small>-->
+                                                                <!--<span ng-bind-html="''+player.team | highlight: $select.search"></span>-->
+                                                                <!--</small>-->
+                                                            </ui-select-choices>
+                                                        </ui-select>
+                                                        <!-- For multi player events -->
+                                                        <div ng-hide="event.playerscount == 1"
+                                                             ng-class="event.type+'-text'" class="moving-self-heading">
+                                                            Event player names:
+                                                        </div>
+                                                        <ui-select ng-hide="event.playerscount == 1" limit=2
+                                                                   on-select="checkSelection"
+                                                                   multiple
+                                                                   reset-search-input="true"
+                                                                   ng-model="event.players" theme="bootstrap"
+                                                                   ng-disabled="event.chooseplayer.disabled">
+                                                            <ui-select-match placeholder="Select player name"><img
+                                                                    class="ui-select-match-img" alt="$item.team"
+                                                                    ng-src="{{match.data[$item.team].logo}}">
+                                                                {{$item.name}}
+                                                            </ui-select-match>
+                                                            <ui-select-choices
+                                                                    repeat="player in players | filter: (filterTeamPlayers || '') && {team: event.team} | propsFilter: {name: $select.search, team: $select.search}">
+                                                                <img class="ui-select-match-img" alt='{{player.team}}'
+                                                                     ng-src='{{match.data[player.team].logo}}'>
+
+                                                                <div ng-bind-html=" player.name | highlight: $select.search"></div>
+                                                                
+                                                            </ui-select-choices>
+                                                        </ui-select>
+                                                        <div class="mb">
+                                                            <label class="mda-checkbox">
+                                                                <input type="checkbox" ng-model="filterTeamPlayers"/>
+                                                                <em class="subtle-checkbox"></em>Only selected team
+                                                                players</label>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </div>
+                                                <div ng-show="humanizedEvent" ng-class="event.type"
+                                                     class="humanized-event" ng-bind-html="humanizedEvent"></div>
+                                            </div>
+                                            <div class="panel-footer">
+
+                                                <button ng-click="drawer = 0" type="button"
+                                                        class="mb-sm btn btn-pill-right btn-default pull-right">Cancel
+                                                </button>
+                                                <button ng-click="addEvent(event)" disable-animation
+                                                        ng-show="complete == true" type="button"
+                                                        class="btn btn-square btn-pill-left pull-right btn-success">Send
+                                                    Event
+                                                </button>
+                                                <button ng-click="addEvent(event)" disable-animation
+                                                        ng-show="complete == false" type="button"
+                                                        class="mb-sm btn btn-pill-left btn-warning pull-right">
+                                                    Send and Update later
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- END Create EVENT DRAWER -->
+   
+
+   
+   
+   <div class="panel panel-default">
+   
+   
+    <div class="panel-heading">
+     <button ng-click="drawer=1" type="button" class="mb-sm btn btn-success pull-right"><strong>New Match</strong></button>
+   
     </div>
+    
+    
+ 
+    
     <div class="panel-body">
-        <div>
+    
+               <div>
             <table datatable="ng" class="row-border hover">
                 <thead>
                     <tr>
