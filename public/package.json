@@ -10,5 +10,9 @@
   "devDependencies": {
     "electron-packager": "^5.1.1",
     "rcedit": "^0.3.0"
+  },
+  "dependencies": {
+    "angular-bootstrap-datetimepicker": "^1.0.1",
+    "angular-date-time-input": "^1.0.0"
   }
 }

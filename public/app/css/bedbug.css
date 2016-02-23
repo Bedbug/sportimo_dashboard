@@ -33,6 +33,39 @@ img.desaturate {
     padding: 0 8px 22px !important;
 }
 
+.fc-basic-view .fc-week-number, .fc-basic-view .fc-day-number {
+    padding: 0 2px;
+    cursor: pointer;
+}
+
+body .dataTables_wrapper .dataTables_paginate .paginate_button.current, body .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+    background-color: #2196f3 !important;
+    color: #fff !important;
+    border-color: #2196f3 !important;
+}
+
+.btn-primary {
+    color: #ffffff;
+    background-color: #2196f3;
+    border-color: #218DDE;
+}
+
+.btn-primary:active:hover, .btn-primary.active:hover, .open > .dropdown-toggle.btn-primary:hover, .btn-primary:active:focus, .btn-primary.active:focus, .open > .dropdown-toggle.btn-primary:focus, .btn-primary:active.focus, .btn-primary.active.focus, .open > .dropdown-toggle.btn-primary.focus {
+    color: #ffffff;
+    background-color: #ffffff;
+    border-color: #2196f3;
+}
+
+.btn-primary:hover {
+    color: #ffffff;
+    background-color: #2196f3;
+    border-color: #218DDE;
+}
+.btn-primary:focus, .btn-primary.focus {
+    color: #ffffff;
+    background-color: #2196f3;
+    border-color: #218DDE;
+}
 
 .footer-wrapper .fa{
     width: 17px;
@@ -696,7 +729,7 @@ border: 2px dashed #F1F1F1;
 .moving-self{
     min-height:  180px;;
     position: relative;
-    overflow: hidden;
+/*    overflow: hidden;*/
     /*height: 198px;*/
     /*background-color: green;*/
 

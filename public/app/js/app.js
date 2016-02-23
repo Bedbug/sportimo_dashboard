@@ -48,7 +48,8 @@
             'app.welcomes',
             'app.polls',
             'app.match-moderation-soccer',
-            'app.teams'
+            'app.teams',
+        "app.schedule"
         ]);
 })();
 
@@ -87,6 +88,13 @@
 
     angular
         .module('app.teams', ['ngDialog']);
+})();
+
+(function () {
+    'use strict';
+
+    angular
+        .module('app.schedule', ['ngDialog', 'ui.bootstrap.datetimepicker', 'ui.dateTimeInput']);
 })();
 
 (function () {
@@ -2825,11 +2833,13 @@
 
         $rootScope.servers = {
             production: {
-                game_server: 'http://gameserverv2-56657.onmodulus.net/v1/',
+                data_server: '',
+                game_server: 'http://gameserverv2-56657.onmodulus.net/',
                 sockets: 'wss://socketserverv2-56658.onmodulus.net/'
             },
             development: {
-                game_server: 'http://localhost:3030/v1/',
+                data_server: '',
+                game_server: 'http://localhost:3030/',
                 sockets: 'ws://localhost:8080/'
             }
         };
@@ -2989,10 +2999,11 @@
 
         $scope.allItems = [];
 
-        var Items = Restangular.all('polls');
+        var Items = Restangular.all('v1/polls');
 
 
-        Restangular.setBaseUrl('http://sportimo_api.mod.bz/api/');
+        Restangular.setBaseUrl($rootScope.servers[$rootScope.serverEnvironment].game_server);
+        //        Restangular.setBaseUrl('http://sportimo_api.mod.bz/api/');
         //Restangular.setBaseUrl('http://127.0.0.1:8080/api/');
 
         Restangular.setRestangularFields({
@@ -3096,10 +3107,11 @@
 
         $scope.allItems = [];
 
-        var Items = Restangular.all('welcomepanels');
+        var Items = Restangular.all('v1/welcomepanels');
 
 
-        Restangular.setBaseUrl('http://sportimo_api.mod.bz/api/');
+        Restangular.setBaseUrl($rootScope.servers[$rootScope.serverEnvironment].game_server);
+        //        Restangular.setBaseUrl('http://sportimo_api.mod.bz/api/');
         //Restangular.setBaseUrl('http://127.0.0.1:4242/api/');
         //
         Restangular.setRestangularFields({
@@ -3674,7 +3686,8 @@
         var Items = Restangular.all('users');
         var Push = Restangular.all('push');
 
-        Restangular.setBaseUrl('http://sportimo_cardsserver.mod.bz/v1/notifications/');
+        Restangular.setBaseUrl($rootScope.servers[$rootScope.serverEnvironment].game_server + 'v1/notifications/');
+        //        Restangular.setBaseUrl('http://sportimo_cardsserver.mod.bz/v1/notifications/');
         //Restangular.setBaseUrl('http://localhost:3030/v1/notifications/');
         Restangular.setRestangularFields({
             id: "_id"
@@ -3910,10 +3923,11 @@
 
         $scope.allItems = [];
 
-        var Items = Restangular.all('activities');
+        var Items = Restangular.all('v1/activities');
 
 
-        Restangular.setBaseUrl('http://sportimo_api.mod.bz/api/');
+        Restangular.setBaseUrl($rootScope.servers[$rootScope.serverEnvironment].game_server);
+        //        Restangular.setBaseUrl('http://sportimo_api.mod.bz/api/');
         //Restangular.setBaseUrl('http://127.0.0.1:4242/api/');
         //
         Restangular.setRestangularFields({
@@ -4071,10 +4085,11 @@
 
         $scope.allItems = [];
 
-        var Items = Restangular.all('interviews');
+        var Items = Restangular.all('v1/interviews');
 
 
-        Restangular.setBaseUrl('http://sportimo_api.mod.bz/api/');
+        Restangular.setBaseUrl($rootScope.servers[$rootScope.serverEnvironment].game_server);
+        //        Restangular.setBaseUrl('http://sportimo_api.mod.bz/api/');
         //Restangular.setBaseUrl('http://127.0.0.1:4242/api/');
         //
         Restangular.setRestangularFields({
@@ -4211,6 +4226,305 @@
  * ***********************************************
  * ***********************************************
  */
+/**=========================================================
+ * Module: calendar-ui.js
+ * This script handle the calendar demo with draggable
+ * events and events creations
+ =========================================================*/
+
+(function () {
+    'use strict';
+
+    angular
+        .module('app.extras')
+        .directive('calendar', calendar);
+
+    calendar.$inject = ['$rootScope', ];
+
+    function calendar($rootScope) {
+        var directive = {
+            link: link,
+            restrict: 'EA'
+        };
+        return directive;
+
+        function link(scope, element) {
+
+            if (!$.fn.fullCalendar) return;
+
+            // The element that will display the calendar
+            var calendar = element;
+
+            scope.myCalendar = calendar;
+
+            initCalendar(calendar, $rootScope.app.layout.isRTL, scope);
+        }
+    }
+
+
+    // global shared var to know what we are dragging
+    var draggingEvent = null;
+
+    /**
+     * Invoke full calendar plugin and attach behavior
+     * @param  jQuery [calElement] The calendar dom element wrapped into jQuery
+     * @param  EventObject [events] An object with the event list to load when the calendar displays
+     */
+    function initCalendar(calElement, isRTL, scope) {
+
+        // check to remove elements from the list
+        var removeAfterDrop = $('#remove-after-drop');
+
+        calElement.fullCalendar({
+            isRTL: isRTL,
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,agendaWeek,agendaDay'
+            },
+            buttonIcons: { // note the space at the beginning
+                prev: ' fa fa-caret-left',
+                next: ' fa fa-caret-right'
+            },
+            buttonText: {
+                today: 'today',
+                month: 'month',
+                week: 'week',
+                day: 'day'
+            },
+
+            eventStartEditable: true,
+            eventDrop: function (event, delta, revertFunc) {
+
+
+                var hookedEvent = _.findWhere(scope.events, {
+                    "_id": event._id
+                });
+
+                if (hookedEvent) {
+                    hookedEvent.start = event.start.format();
+                    //                    scope.LoadedDT.rerender();
+                    hookedEvent.save();
+                }
+
+
+            },
+            droppable: false, // this allows things to be dropped onto the calendar 
+            drop: function (date, allDay) { // this function is called when something is dropped
+
+                var $this = $(this),
+                    // retrieve the dropped element's stored Event Object
+                    originalEventObject = $this.data('calendarEventObject');
+
+                // if something went wrong, abort
+                if (!originalEventObject) return;
+
+                // clone the object to avoid multiple events with reference to the same object
+                var clonedEventObject = $.extend({}, originalEventObject);
+
+                // assign the reported date
+                clonedEventObject.start = date;
+                clonedEventObject.allDay = allDay;
+                clonedEventObject.backgroundColor = $this.css('background-color');
+                clonedEventObject.borderColor = $this.css('border-color');
+
+                // render the event on the calendar
+                // the last `true` argument determines if the event "sticks" 
+                // (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
+                calElement.fullCalendar('renderEvent', clonedEventObject, true);
+
+                // if necessary remove the element from the list
+                if (removeAfterDrop.is(':checked')) {
+                    $this.remove();
+                }
+            },
+            dayClick: function (date, jsEvent, view) {
+                scope.showDaySchedule(date, calElement);
+            },
+            eventColor: '#2196f3',
+            eventBorderColor: '#3c8dbc',
+            eventRender: function (event, element) {
+
+                element.find(".fc-title").remove();
+                element.find(".fc-time").remove();
+                var new_description =
+                    '<div style="height:30px; text-align: center; line-height: 30px;">' +
+                    '<img style="padding-top:2px;" class="pull-left" src="http://ep7t6ae.cloudimg.io/s/height/25/' + event.home_team.logo + '">' +
+                    '<img style="padding-top:2px;" class="pull-right" src="http://ep7t6ae.cloudimg.io/s/height/25/' + event.away_team.logo + '">' +
+                    moment(event.start).format("H:mm a") +
+                    +'</div>';
+                element.append(new_description);
+            },
+            eventDragStart: function (event /*, js, ui*/ ) {
+                draggingEvent = event;
+            },
+            // This array is the events sources
+            // events: scope.events
+        });
+    }
+
+
+
+})();
+
+(function () {
+    'use strict';
+
+    angular
+        .module('app.schedule')
+        .service('ScheduleService', ScheduleService)
+        .controller('ScheduleController', ScheduleController);
+
+    ScheduleService.$inject = ['$resource', 'Restangular', '$rootScope', '$q'];
+    ScheduleController.$inject = ['$scope', 'TeamsService', 'PlayersService', 'ScheduleService', 'DTOptionsBuilder', 'DTColumnDefBuilder'];
+
+    function ScheduleController($scope, TeamsService, PlayersService, ScheduleService, DTOptionsBuilder, DTColumnDefBuilder) {
+
+        var vm = $scope;
+
+        vm.scheduledMatch = {};
+
+        vm.Teams = [];
+
+        vm.OnSet = function (newDate, oldDate) {
+            vm.openedCalendar = 0;
+
+            console.log(vm.scheduledMatch);
+
+            if (vm.scheduledMatch.home_team != undefined && vm.scheduledMatch.away_team != undefined && vm.scheduledMatch.start != undefined && vm.scheduledMatch.competition != undefined)
+                vm.scheduledMatch.finalized = true;
+
+
+            //vm.scheduledMatch.title = vm.scheduledMatch.home_team.name_en + " - " + vm.scheduledMatch.away_team.name_en;
+        }
+
+        vm.competitions = [
+            {
+                "name": "Champions League",
+                "logo": "./app/img/sportimo/competitions/UEFA_Champions_League_Logo.png"
+            },
+            {
+                "name": "Europa League",
+                "logo": "./app/img/sportimo/competitions/uefa-europa-league-logo.jpg"
+            },
+            {
+                "name": "Greek Super League",
+                "logo": "./app/img/sportimo/competitions/profile_superleague_greece.gif"
+            }
+
+        ]
+
+        TeamsService.getAllTeams().$promise.then(function (teams) {
+            vm.Teams = teams;
+        }, function (error) {});
+
+        vm.dtOptions = DTOptionsBuilder.newOptions()
+            .withPaginationType('full_numbers');
+
+        vm.dtColumnDefs = [
+                DTColumnDefBuilder.newColumnDef(4).notSortable()
+            ];
+
+        ScheduleService.getSchedule().then(function (schedule) {
+            $scope.events = schedule;
+            RefreshCalendar();
+        }, function (error) {});
+
+        vm.LoadedDT = null;
+
+        vm.CreateMatchEvent = function () {
+            var match = {};
+
+            match.home_team = vm.scheduledMatch.home_team._id.$oid;
+            match.away_team = vm.scheduledMatch.away_team._id.$oid;
+            match.competition = vm.scheduledMatch.competition;
+            match.start = vm.scheduledMatch.start;
+
+            ScheduleService.addMatch(match).then(function (res) {
+                $scope.events.push(vm.scheduledMatch);
+                 vm.scheduledMatch = {};
+                RefreshCalendar();
+                vm.LoadedDT.DataTable.draw();
+
+            })
+
+        }
+
+        $scope.showDaySchedule = function (newdate, calendar) {
+            var tableFilter = vm.formatDate(newdate, "DD") + "/" + vm.formatDate(newdate, "MM");
+            vm.LoadedDT.DataTable.search(tableFilter).draw();
+        }
+
+        $scope.formatDate = function (date, style) {
+            return moment(date).utc().format(style);
+        }
+
+        function RefreshCalendar(calendar) {
+            $scope.myCalendar.fullCalendar('removeEvents');
+            $scope.myCalendar.fullCalendar('addEventSource', $scope.events);
+            $scope.myCalendar.fullCalendar('rerenderEvents');
+        }
+
+
+
+    }
+
+    function ScheduleService($resource, Restangular, $rootScope, $q) {
+
+        var mock = false;
+
+        if (mock) {
+            /* MOCK */
+            var schedule = $resource('server/mockdata/schedule.json');
+
+            return {
+                getSchedule: function () {
+                    return schedule.query({}, function (res) {
+                        return res;
+                    });
+                }
+            }
+        } else {
+
+
+            var Schedule = Restangular.all('v1/schedule');
+
+            Restangular.setBaseUrl($rootScope.servers[$rootScope.serverEnvironment].game_server);
+            Restangular.setRestangularFields({
+                id: "_id"
+            });
+
+            return {
+                getSchedule: function () {
+                    var Defer = $q.defer();
+
+                    Schedule.getList().then(function (schedule) {
+                        Defer.resolve(schedule);
+                    });
+
+                    return Defer.promise;
+                },
+
+                addMatch: function (newMatch) {
+                    var Defer = $q.defer();
+
+                    Schedule.post(newMatch).then(function (match) {
+                        console.log(match);
+                        Defer.resolve(match);
+                    }, function () {
+                        console.log("There was an error saving");
+                    });
+
+                    return Defer.promise;
+                }
+            }
+
+        }
+    }
+
+
+})();
+
 (function () {
     'use strict';
 
@@ -4222,40 +4536,31 @@
 
     PlayersService.$inject = ['$resource'];
     TeamsService.$inject = ['$resource'];
-    TeamsController.$inject = ['$scope','TeamsService', 'PlayersService', 'DTOptionsBuilder', 'DTColumnDefBuilder'];
+    TeamsController.$inject = ['$scope', 'TeamsService', 'PlayersService', 'DTOptionsBuilder', 'DTColumnDefBuilder'];
 
-    function TeamsController($scope,TeamsService, PlayersService, DTOptionsBuilder, DTColumnDefBuilder) {
-        
+    function TeamsController($scope, TeamsService, PlayersService, DTOptionsBuilder, DTColumnDefBuilder) {
+
         var vm = $scope;
-        
+
         vm.Players = [];
         vm.Teams = [];
-        
+
         TeamsService.getAllTeams().$promise.then(function (teams) {
             console.log(teams);
             vm.Teams = teams;
         }, function (error) {});
-        
+
         PlayersService.getAllPlayers().$promise.then(function (players) {
-           $scope.Players = players;
+            $scope.Players = players;
         }, function (error) {});
-        
-        
-        // Table creation
-        
-        
-//        vm.dtOptions = DTOptionsBuilder.newOptions().withPaginationType('full_numbers');
-//        vm.dtColumnDefs = [
-//                DTColumnDefBuilder.newColumnDef(0).notSortable(),
-//                DTColumnDefBuilder.newColumnDef(1),
-//                DTColumnDefBuilder.newColumnDef(2),
-//                DTColumnDefBuilder.newColumnDef(3).notSortable()
-//            ];
-        
+
+
+
+
     }
 
     function TeamsService($resource) {
-         var teams = $resource('server/mockdata/teams.json');
+        var teams = $resource('server/mockdata/teams.json');
         return {
             getAllTeams: function () {
                 return teams.query({}, function (res) {
@@ -4407,7 +4712,7 @@
 
             $http({
                 method: 'GET',
-                url: $rootScope.servers[$rootScope.serverEnvironment].game_server + 'live/match/' + id
+                url: $rootScope.servers[$rootScope.serverEnvironment].game_server + 'v1/live/match/' + id
 
             }).then(function successCallback(response) {
 
@@ -4507,7 +4812,7 @@
 
                 $http({
                     method: 'POST',
-                    url: $rootScope.servers[$rootScope.serverEnvironment].game_server + 'moderation/' + $stateParams.id + '/event',
+                    url: $rootScope.servers[$rootScope.serverEnvironment].game_server + 'v1/moderation/' + $stateParams.id + '/event',
                     data: EventData
                 }).then(function successCallback(response) {
                     $scope.match = AddHooks(response.data);
@@ -4551,7 +4856,7 @@
 
                     $http({
                         method: 'POST',
-                        url: $rootScope.servers[$rootScope.serverEnvironment].game_server + 'live/match/time/remove',
+                        url: $rootScope.servers[$rootScope.serverEnvironment].game_server + 'v1/live/match/time/remove',
                         data: EventData
                     }).then(function successCallback(response) {
                         console.log(response);
@@ -4587,7 +4892,7 @@
                     console.log("We need to update.")
                     $http({
                         method: 'POST',
-                        url: $rootScope.servers[$rootScope.serverEnvironment].game_server + 'live/match/time',
+                        url: $rootScope.servers[$rootScope.serverEnvironment].game_server + 'v1/live/match/time',
                         data: {
                             id: $stateParams.id,
                             index: index,
@@ -4749,7 +5054,7 @@
 
             $http({
                 method: 'POST',
-                url: $rootScope.servers[$rootScope.serverEnvironment].game_server + 'moderation/' + $stateParams.id + '/event',
+                url: $rootScope.servers[$rootScope.serverEnvironment].game_server + 'v1/moderation/' + $stateParams.id + '/event',
                 data: event
             }).then(function successCallback(response) {
                 //console.log(response);
@@ -4817,7 +5122,7 @@
 
             $http({
                 method: 'POST',
-                url: $rootScope.servers[$rootScope.serverEnvironment].game_server + 'moderation/' + $stateParams.id + '/event',
+                url: $rootScope.servers[$rootScope.serverEnvironment].game_server + 'v1/moderation/' + $stateParams.id + '/event',
                 data: data
             }).then(function successCallback(response) {
                 console.log(response.data);
@@ -4877,7 +5182,7 @@
             $scope.reloadingServer = true;
             $http({
                 method: 'POST',
-                url: $rootScope.servers[$rootScope.serverEnvironment].game_server + 'live/match/reload',
+                url: $rootScope.servers[$rootScope.serverEnvironment].game_server + 'v1/live/match/reload',
                 data: {
                     id: $stateParams.id
                 }
@@ -6581,282 +6886,7 @@
     }
 })();
 
-/**=========================================================
- * Module: calendar-ui.js
- * This script handle the calendar demo with draggable
- * events and events creations
- =========================================================*/
 
-(function () {
-    'use strict';
-
-    angular
-        .module('app.extras')
-        .directive('calendar', calendar);
-
-    calendar.$inject = ['$rootScope'];
-
-    function calendar($rootScope) {
-        var directive = {
-            link: link,
-            restrict: 'EA'
-        };
-        return directive;
-
-        function link(scope, element) {
-
-            if (!$.fn.fullCalendar) return;
-
-            // The element that will display the calendar
-            var calendar = element;
-
-            var demoEvents = createDemoEvents();
-
-            initExternalEvents(calendar);
-
-            initCalendar(calendar, demoEvents, $rootScope.app.layout.isRTL);
-        }
-    }
-
-
-    // global shared var to know what we are dragging
-    var draggingEvent = null;
-
-
-    /**
-     * ExternalEvent object
-     * @param jQuery Object elements Set of element as jQuery objects
-     */
-    function ExternalEvent(elements) {
-
-        if (!elements) return;
-
-        elements.each(function () {
-            var $this = $(this);
-            // create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
-            // it doesn't need to have a start or end
-            var calendarEventObject = {
-                title: $.trim($this.text()) // use the element's text as the event title
-            };
-
-            // store the Event Object in the DOM element so we can get to it later
-            $this.data('calendarEventObject', calendarEventObject);
-
-            // make the event draggable using jQuery UI
-            $this.draggable({
-                zIndex: 1070,
-                revert: true, // will cause the event to go back to its
-                revertDuration: 0 //  original position after the drag
-            });
-
-        });
-    }
-
-    /**
-     * Invoke full calendar plugin and attach behavior
-     * @param  jQuery [calElement] The calendar dom element wrapped into jQuery
-     * @param  EventObject [events] An object with the event list to load when the calendar displays
-     */
-    function initCalendar(calElement, events, isRTL) {
-
-        // check to remove elements from the list
-        var removeAfterDrop = $('#remove-after-drop');
-
-        calElement.fullCalendar({
-            isRTL: isRTL,
-            header: {
-                left: 'prev,next today',
-                center: 'title',
-                right: 'month,agendaWeek,agendaDay'
-            },
-            buttonIcons: { // note the space at the beginning
-                prev: ' fa fa-caret-left',
-                next: ' fa fa-caret-right'
-            },
-            buttonText: {
-                today: 'today',
-                month: 'month',
-                week: 'week',
-                day: 'day'
-            },
-            editable: true,
-            droppable: true, // this allows things to be dropped onto the calendar 
-            drop: function (date, allDay) { // this function is called when something is dropped
-
-                var $this = $(this),
-                    // retrieve the dropped element's stored Event Object
-                    originalEventObject = $this.data('calendarEventObject');
-
-                // if something went wrong, abort
-                if (!originalEventObject) return;
-
-                // clone the object to avoid multiple events with reference to the same object
-                var clonedEventObject = $.extend({}, originalEventObject);
-
-                // assign the reported date
-                clonedEventObject.start = date;
-                clonedEventObject.allDay = allDay;
-                clonedEventObject.backgroundColor = $this.css('background-color');
-                clonedEventObject.borderColor = $this.css('border-color');
-
-                // render the event on the calendar
-                // the last `true` argument determines if the event "sticks" 
-                // (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
-                calElement.fullCalendar('renderEvent', clonedEventObject, true);
-
-                // if necessary remove the element from the list
-                if (removeAfterDrop.is(':checked')) {
-                    $this.remove();
-                }
-            },
-            eventDragStart: function (event /*, js, ui*/ ) {
-                draggingEvent = event;
-            },
-            // This array is the events sources
-            events: events
-        });
-    }
-
-    /**
-     * Inits the external events panel
-     * @param  jQuery [calElement] The calendar dom element wrapped into jQuery
-     */
-    function initExternalEvents(calElement) {
-        // Panel with the external events list
-        var externalEvents = $('.external-events');
-
-        // init the external events in the panel
-        new ExternalEvent(externalEvents.children('div'));
-
-        // External event color is danger-red by default
-        var currColor = '#f6504d';
-        // Color selector button
-        var eventAddBtn = $('.external-event-add-btn');
-        // New external event name input
-        var eventNameInput = $('.external-event-name');
-        // Color switchers
-        var eventColorSelector = $('.external-event-color-selector .circle');
-
-        // Trash events Droparea 
-        $('.external-events-trash').droppable({
-            accept: '.fc-event',
-            activeClass: 'active',
-            hoverClass: 'hovered',
-            tolerance: 'touch',
-            drop: function (event, ui) {
-
-                // You can use this function to send an ajax request
-                // to remove the event from the repository
-
-                if (draggingEvent) {
-                    var eid = draggingEvent.id || draggingEvent._id;
-                    // Remove the event
-                    calElement.fullCalendar('removeEvents', eid);
-                    // Remove the dom element
-                    ui.draggable.remove();
-                    // clear
-                    draggingEvent = null;
-                }
-            }
-        });
-
-        eventColorSelector.click(function (e) {
-            e.preventDefault();
-            var $this = $(this);
-
-            // Save color
-            currColor = $this.css('background-color');
-            // De-select all and select the current one
-            eventColorSelector.removeClass('selected');
-            $this.addClass('selected');
-        });
-
-        eventAddBtn.click(function (e) {
-            e.preventDefault();
-
-            // Get event name from input
-            var val = eventNameInput.val();
-            // Dont allow empty values
-            if ($.trim(val) === '') return;
-
-            // Create new event element
-            var newEvent = $('<div/>').css({
-                    'background-color': currColor,
-                    'border-color': currColor,
-                    'color': '#fff'
-                })
-                .html(val);
-
-            // Prepends to the external events list
-            externalEvents.prepend(newEvent);
-            // Initialize the new event element
-            new ExternalEvent(newEvent);
-            // Clear input
-            eventNameInput.val('');
-        });
-    }
-
-    /**
-     * Creates an array of events to display in the first load of the calendar
-     * Wrap into this function a request to a source to get via ajax the stored events
-     * @return Array The array with the events
-     */
-    function createDemoEvents() {
-        // Date for the calendar events (dummy data)
-        var date = new Date();
-        var d = date.getDate(),
-            m = date.getMonth(),
-            y = date.getFullYear();
-
-        return [
-            {
-                title: 'All Day Event',
-                start: new Date(y, m, 1),
-                backgroundColor: '#f56954', //red 
-                borderColor: '#f56954' //red
-            },
-            {
-                title: 'Long Event',
-                start: new Date(y, m, d - 5),
-                end: new Date(y, m, d - 2),
-                backgroundColor: '#f39c12', //yellow
-                borderColor: '#f39c12' //yellow
-            },
-            {
-                title: 'Meeting',
-                start: new Date(y, m, d, 10, 30),
-                allDay: false,
-                backgroundColor: '#0073b7', //Blue
-                borderColor: '#0073b7' //Blue
-            },
-            {
-                title: 'Lunch',
-                start: new Date(y, m, d, 12, 0),
-                end: new Date(y, m, d, 14, 0),
-                allDay: false,
-                backgroundColor: '#00c0ef', //Info (aqua)
-                borderColor: '#00c0ef' //Info (aqua)
-            },
-            {
-                title: 'Birthday Party',
-                start: new Date(y, m, d + 1, 19, 0),
-                end: new Date(y, m, d + 1, 22, 30),
-                allDay: false,
-                backgroundColor: '#00a65a', //Success (green)
-                borderColor: '#00a65a' //Success (green)
-            },
-            {
-                title: 'Open Google',
-                start: new Date(y, m, 28),
-                end: new Date(y, m, 29),
-                url: '//google.com/',
-                backgroundColor: '#3c8dbc', //Primary (light-blue)
-                borderColor: '#3c8dbc' //Primary (light-blue)
-            }
-        ];
-    }
-
-})();
 
 (function () {
     'use strict';
@@ -12144,15 +12174,14 @@
                 url: '/schedule',
                 title: 'Schedule',
                 templateUrl: helper.basepath('database/schedule.html'),
+                resolve: helper.resolveFor('restangular', 'toaster', 'dirPagination', 'moment', 'datatables', 'fullcalendar', 'jquery-ui', 'jquery-ui-widgets', 'ui.select'),
                 controller: 'ScheduleController'
             })
             .state('app.teams', {
                 url: '/teams',
                 title: 'Teams',
-                //                templateUrl: helper.basepath('database/teams.html'),
-                //                controller: 'TeamsController'
                 templateUrl: helper.basepath('database/teams.html'),
-                resolve: helper.resolveFor('restangular', 'toaster', 'dirPagination', 'moment','datatables'),
+                resolve: helper.resolveFor('restangular', 'toaster', 'dirPagination', 'moment', 'datatables'),
                 controller: 'TeamsController'
             })
             .state('app.players', {

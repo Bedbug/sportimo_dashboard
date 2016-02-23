@@ -1,0 +1,176 @@
+<h3>Match Schedule
+   <small>Drag and Drop events and tasks</small>
+</h3>
+
+
+
+<!-- START row -->
+<div class="calendar-app">
+    <div class="row">
+
+        <div class="col-lg-6 col-md-12">
+            <!-- START panel-->
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <!-- START calendar-->
+                    <div calendar=""></div>
+                    <!-- END calendar-->
+                </div>
+            </div>
+            <!-- END panel-->
+        </div>
+
+        <!--START ADD && TABLE-->
+        <div class="col-lg-6 col-md-12">
+
+            <!-- START Create EVENT DRAWER -->
+            <div ng-show="drawer == 1" class="events-self ">
+
+                <div class="events-self panel">
+                    <div class="moving-self panel-body">
+                        <div class="row">
+                            <!-- START of Preview -->
+                            <div class="match-logos col-sm-4 col-xs-12">
+                                <div class="event-team-logo col-xs-6 col-sm-12 col-md-6">
+                                    <img class="moving-self-img" ng-class="!scheduledMatch.finalized? 'desaturate':'zoom'" ng-src="http://ep7t6ae.cloudimg.io/s/height/100/{{scheduledMatch.home_team.logo}}" />
+                                    <br/> {{scheduledMatch.home_team.name_en}}
+                                </div>
+                                <div class="event-team-logo col-xs-6 col-sm-12 col-md-6">
+                                    <img class="moving-self-img" ng-class="!scheduledMatch.finalized? 'desaturate':'zoom'" ng-src="http://ep7t6ae.cloudimg.io/s/height/100/{{scheduledMatch.away_team.logo}}" />
+                                    <br/> {{scheduledMatch.away_team.name_en}}
+                                </div>
+                            </div>
+                            <!-- END of Preview -->
+
+                            <div class="col-sm-8 col-xs-12">
+                                <div >
+                                    {{$select.selected.logo}}
+                                    <div class="moving-self-heading">Home Team</div>
+                                    <ui-select limit=1 on-select="OnSet()" reset-search-input="true" ng-model="scheduledMatch.home_team" theme="bootstrap" ng-disabled="event.chooseplayer.disabled">
+                                        <ui-select-match placeholder="Select team name">
+                                            <img class="ui-select-match-img" alt="$item.name_en" ng-src="http://ep7t6ae.cloudimg.io/s/height/25/{{$select.selected.logo}}"> {{$select.selected.name_en}}
+                                        </ui-select-match>
+
+                                        <!--                                    <ui-select-choices repeat="team in Teams | filter: (filterTeamPlayers || '') && {team: event.team} | propsFilter: {name: $select.search, team: $select.search}">-->
+
+                                        <ui-select-choices repeat="team in Teams | filter: {name_en: $select.search}">
+                                            <img class="ui-select-match-img" alt='{{team.logo}}' ng-src='http://ep7t6ae.cloudimg.io/s/height/25/{{team.logo}}'>
+                                            <div ng-bind-html="team.name_en | highlight: $select.search"></div>
+                                        </ui-select-choices>
+
+                                    </ui-select>
+
+                                    <div class="moving-self-heading">Away Team</div>
+                                    <ui-select limit=1 on-select="OnSet()" reset-search-input="true" ng-model="scheduledMatch.away_team" theme="bootstrap" ng-disabled="event.chooseplayer.disabled">
+                                        <ui-select-match placeholder="Select team name">
+                                            <img class="ui-select-match-img" alt="$item.name_en" ng-src="http://ep7t6ae.cloudimg.io/s/height/25/{{$select.selected.logo}}"> {{$select.selected.name_en}}
+                                        </ui-select-match>
+                                        <!--                                    <ui-select-choices repeat="team in Teams | filter: (filterTeamPlayers || '') && {team: event.team} | propsFilter: {name: $select.search, team: $select.search}">-->
+                                        <ui-select-choices repeat="team in Teams | filter: {name_en: $select.search}">
+                                            <img class="ui-select-match-img" alt='{{team.logo}}' ng-src='http://ep7t6ae.cloudimg.io/s/height/25/{{team.logo}}'>
+                                            <div ng-bind-html="team.name_en | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+
+                                    <div class="moving-self-heading">Competition</div>
+                                    <ui-select limit=1 on-select="OnSet()" reset-search-input="true" ng-model="scheduledMatch.competition" theme="bootstrap" ng-disabled="event.chooseplayer.disabled">
+                                        <ui-select-match placeholder="Select Competition">
+                                            <img class="ui-select-match-img" alt="$item.name" ng-src="{{$select.selected.logo}}"> {{$select.selected.name}}
+                                        </ui-select-match>
+                                        <!--                                    <ui-select-choices repeat="team in Teams | filter: (filterTeamPlayers || '') && {team: event.team} | propsFilter: {name: $select.search, team: $select.search}">-->
+                                        <ui-select-choices repeat="team.name as team in competitions | filter: {name: $select.search}">
+                                            <img class="ui-select-match-img" alt='{{team.logo}}' ng-src='{{team.logo}}'>
+                                            <div ng-bind-html="team.name | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+
+                                    <div class="moving-self-heading">Match DateTime</div>
+
+                                    <p class="input-group">
+                                        <input class="form-control" data-ng-model="scheduledMatch.start" data-date-time-input="DD/MM/YYYY H:mm" />
+                                        <!-- ngIf: isOpen -->
+                                        <span class="input-group-btn">
+                                        <button type="button" ng-click="openedCalendar = 1" class="btn btn-default"><em class="fa fa-calendar"></em></button>
+                                    </span>
+                                    </p>
+                                </div>
+                                <datetimepicker style="position:absolute; top:0px; right: 13px; z-index: 99;" class="card events-self pull-right" data-on-set-time="OnSet(newDate, oldDate)" ng-show="openedCalendar==1" data-ng-model="scheduledMatch.start"></datetimepicker>
+
+                                <!--
+                                <div class="mb">
+                                    <label class="mda-checkbox">
+                                        <input type="checkbox" ng-model="filterTeamPlayers" />
+                                        <em class="subtle-checkbox"></em>Only selected team players
+                                    </label>
+                                </div>
+-->
+                            </div>
+
+                        </div>
+                        <div ng-show="humanizedEvent" ng-class="event.type" class="humanized-event" ng-bind-html="humanizedEvent"></div>
+                    </div>
+                    <div class="panel-footer">
+
+                        <button ng-click="drawer = 0" type="button" class="mb-sm btn btn-pill-right btn-default pull-right">Cancel
+                        </button>
+                        <button ng-click="drawer = 0; CreateMatchEvent()" disable-animation ng-show="scheduledMatch.finalized == true" type="button" class="btn btn-square btn-pill-left pull-right btn-success">Schedule Match
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+            <!-- END Create EVENT DRAWER -->
+
+            <!-- START Table -->
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <button ng-click="drawer=1" type="button" class="mb-sm btn btn-default pull-left"><strong>Show All Upcoming</strong></button>
+                    <button ng-click="drawer=1" type="button" class="mb-sm btn btn-primary pull-right"><strong>Schedule Match</strong></button>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div>
+                        <table dt-instance="LoadedDT" dt-column-defs="dtColumnDefs" dt-options="dtOptions" datatable="ng" class="row-border hover">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                    <th>Match</th>
+                                    <th>Competition</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr ng-repeat="event in events">
+
+                                    <td>{{formatDate(event.start, "DD/MM")}}</td>
+                                    <td>{{formatDate(event.start,"H:mm")}}</td>
+                                    <td style="line-height:25px;">
+                                        <img style="padding-bottom: 5px;" ng-src="http://ep7t6ae.cloudimg.io/s/height/25/{{event.home_team.logo}}"> {{event.home_team.name_en}}
+                                        <br>
+                                        <img style="padding-bottom: 5px;" ng-src="http://ep7t6ae.cloudimg.io/s/height/25/{{event.away_team.logo}}"> {{event.away_team.name_en}}
+
+                                    </td>
+                                    <td>{{ event.competition}}</td>
+                                    <td>
+                                        <span on-toggle="toggled(open)" class="dropdown"><a href="" dropdown-toggle=""><i class="fa fa-cog"></i></a>
+                           </span>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- END Table -->
+        </div>
+        <!--END ADD && TABLE-->
+
+
+
+    </div>
+    <!-- END row-->
+</div>

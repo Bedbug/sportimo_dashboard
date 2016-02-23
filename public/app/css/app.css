@@ -118,6 +118,11 @@
 .glyphicon.pull-right {
   margin-left: 0.3em;
 }
+
+.glyphicon.glyphicon-arrow-left:before {
+ content:"\e091";
+}
+
 .glyphicon.glyphicon-chevron-left:before {
   content: "\f053";
 }
@@ -9043,7 +9048,7 @@ table.dataTable thead td {
 .dataTables_wrapper .dataTables_filter input,
 .dataTables_wrapper select {
   box-shadow: none;
-  height: 30px;
+/*  height: 30px;*/
   padding: 5px 10px;
   font-size: 12px;
   line-height: 1.5;

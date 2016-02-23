@@ -1,0 +1,72 @@
+[
+    {
+        "_id": {
+            "$oid": "565c4af6e4b030fba33dd459"
+        },
+        "sport": "soccer",
+        "competition": "Europa League",
+        "home_team": {
+            "_id": "565c4907e4b030fba33dd433",
+            "logo": "http://162.13.157.7/soccerapp/images/teams_logos/lokomotiv-logo2.png",
+            "name_en": "FC Lokomotiv"
+        },
+        "away_team": {
+            "_id": "565c492fe4b030fba33dd435",
+            "logo": "http://162.13.157.7/soccerapp/images/teams_logos/dynamo.png",
+            "name_en": "FC Dynamo Kyiv"
+        },
+        "start": "2016-02-22T19:47:10+00:00",
+        "home_score": 0,
+        "away_score": 0,
+        "time": "1",
+        "moderation": [
+            {
+                "type": "rss-feed",
+                "eventid": "15253",
+                "feedurl": "http://feed-somewhere.com?event-id=",
+                "interval": 500,
+                "parsername": "Stats"
+        }
+    ],
+        "stats": [
+            {
+                "events_sent": 10,
+                "name": "match",
+                "yc": 0,
+                "id": "565c4af6e4b030fba33dd459"
+        },
+            {
+                "name": "away_team",
+                "yc": 0,
+                "id": "565c492fe4b030fba33dd435"
+        },
+            {
+                "name": "jekhis",
+                "yc": 0,
+                "id": "565c4af6e"
+        },
+            {
+                "id": "565c4af6e4b0",
+                "yc": 0,
+                "name": "indiana"
+        },
+            {
+                "id": "565c4af6e4b0a3",
+                "yc": 0,
+                "name": "han"
+        }
+    ],
+        "timeline": [
+            {
+                "start": null,
+                "end": "2016-02-22T11:47:33+00:00",
+                "events": []
+        }
+    ],
+        "settings": {
+            "destroyOnDelete": true
+        },
+        "state": 0,
+        "__v": 159
+}
+]

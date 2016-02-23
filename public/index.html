@@ -2,54 +2,62 @@
 <html lang="en" data-ng-app="angle">
 
 <head>
-   <meta charset="utf-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-   <meta name="description" content="{{app.description}}">
-   <meta name="keywords" content="app, responsive, angular, bootstrap, dashboard, admin">
-   <title data-ng-bind="::pageTitle()">Sportimo Dashboard</title>
-   <!-- Bootstrap styles-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="{{app.description}}">
+    <meta name="keywords" content="app, responsive, angular, bootstrap, dashboard, admin">
+    <title data-ng-bind="::pageTitle()">Sportimo Dashboard</title>
+    <!-- Bootstrap styles-->
 
-   <link rel="stylesheet" href="app/css/bootstrap.css" data-ng-if="!app.layout.isRTL">
-   <link rel="stylesheet" href="app/css/bootstrap-rtl.css" data-ng-if="app.layout.isRTL">
+    <link rel="stylesheet" href="app/css/bootstrap.css" data-ng-if="!app.layout.isRTL">
+    <link rel="stylesheet" href="app/css/bootstrap-rtl.css" data-ng-if="app.layout.isRTL">
 
-   <link rel="stylesheet" href="app/css/animate.css">
-   <!-- ngMaterial styles-->
-   <link rel="stylesheet" href="app/vendor/angular-material/angular-material.css">
-   <!-- Application styles-->
-   <link rel="stylesheet" href="app/css/app.css" data-ng-if="!app.layout.isRTL">
-   <link rel="stylesheet" href="app/css/app-rtl.css" data-ng-if="app.layout.isRTL">
-   <link rel="stylesheet" href="app/css/glyphicons.css" data-ng-if="!app.layout.isRTL">
+    <link rel="stylesheet" href="app/css/animate.css">
+    <!--DatePicker CSS-->
+    <link rel="stylesheet" href="node_modules/angular-bootstrap-datetimepicker/src/css/datetimepicker.css" />
+    <!-- ngMaterial styles-->
+    <link rel="stylesheet" href="app/vendor/angular-material/angular-material.css">
+    <!-- Application styles-->
+    <link rel="stylesheet" href="app/css/app.css" data-ng-if="!app.layout.isRTL">
+    <link rel="stylesheet" href="app/css/app-rtl.css" data-ng-if="app.layout.isRTL">
+    <link rel="stylesheet" href="app/css/glyphicons.css" data-ng-if="!app.layout.isRTL">
 
-   <link rel="stylesheet" href="app/css/bedbug.css" data-ng-if="!app.layout.isRTL">
-   <!--<link rel="stylesheet" href="app/css/fclm.css" data-ng-if="!app.layout.isRTL">-->
-   <link rel="shortcut icon" href="app/img/specfavicon.ico" type="image/x-icon" />
-   <!-- Themes-->
-   <link rel="stylesheet" ng-href="{{app.layout.theme}}" data-ng-if="app.layout.theme">
+    <link rel="stylesheet" href="app/css/bedbug.css" data-ng-if="!app.layout.isRTL">
+    <!--<link rel="stylesheet" href="app/css/fclm.css" data-ng-if="!app.layout.isRTL">-->
+    <link rel="shortcut icon" href="app/img/specfavicon.ico" type="image/x-icon" />
+    <!-- Themes-->
+    <link rel="stylesheet" ng-href="{{app.layout.theme}}" data-ng-if="app.layout.theme">
 </head>
 
 <body data-ng-class="{ 'layout-fixed' : app.layout.isFixed, 'aside-collapsed' : app.layout.isCollapsed, 'layout-boxed' : app.layout.isBoxed, 'layout-fs': app.useFullLayout, 'hidden-footer': app.hiddenFooter, 'layout-h': app.layout.horizontal, 'aside-float': app.layout.isFloat, 'offsidebar-open': app.offsidebarOpen, 'aside-toggled': app.asideToggled}">
-   <div data-preloader></div>
-   <div data-ui-view="" data-autoscroll="false" class="wrapper"></div>
-   <script src="vendor/lodash/lodash.min.js"></script>
+    <div data-preloader></div>
+    <div data-ui-view="" data-autoscroll="false" class="wrapper"></div>
+    <script src="vendor/lodash/lodash.min.js"></script>
 
-   <!-- Electron Stuff -->
-   <script>window.$ = window.jQuery = require('./app/js/jquery-2.1.4.js');</script>
-   <script src="app/js/moment-with-locales.min.js"></script>
+    <!-- Electron Stuff -->
+    <script>
+        window.$ = window.jQuery = require('./app/js/jquery-2.1.4.js');'ui.bootstrap.datetimepicker'
 
-   <script src="app/js/moment-duration-format.js"></script>
+    </script>
+    <script src="app/js/moment-with-locales.min.js"></script>
 
-   <!--<script>window.$ = window.angular = require('./app/js/base.js');</script>-->
-   <script src="app/js/base.js"></script>
+    <script src="app/js/moment-duration-format.js"></script>
 
-   <!--<script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.14.3.js"></script>-->
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.6/ngStorage.min.js"></script>
-   <script src="app/js/ngDialog.js"></script>
-   <script src="vendor/angular-touch/angular-touch.js"></script>
-   <script src="vendor/angular-websocket/angular-websocket.min.js"></script>
+    <!--<script>window.$ = window.angular = require('./app/js/base.js');</script>-->
+    <script src="app/js/base.js"></script>
 
-   
-   <script src="app/vendor/angular-material/angular-material.js"></script>
-   <script src="app/js/app.js"></script>
+    <!--<script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.14.3.js"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.6/ngStorage.min.js"></script>
+    <script src="app/js/ngDialog.js"></script>
+    <script src="vendor/angular-touch/angular-touch.js"></script>
+    <script src="vendor/angular-websocket/angular-websocket.min.js"></script>
+    <!--DatePicker JS-->
+    <script type="text/javascript" src="node_modules/angular-bootstrap-datetimepicker/src/js/datetimepicker.js"></script>
+    <script type="text/javascript" src="node_modules/angular-bootstrap-datetimepicker/src/js/datetimepicker.templates.js"></script>
+    <script type="text/javascript" src="node_modules/angular-date-time-input/src/dateTimeInput.js"></script>
+
+    <script src="app/vendor/angular-material/angular-material.js"></script>
+    <script src="app/js/app.js"></script>
 </body>
 
 </html>
