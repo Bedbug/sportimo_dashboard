@@ -755,7 +755,7 @@ border: 2px dashed #F1F1F1;
     animation:  0.5s ShrinkUp ease, 0.5s fadeOutUp ease;
 }
 .events-self.ng-hide-remove{
-    animation:0.5s  slideInRight ease, 0.5s ExpandDown ease;
+    animation:0.5s  slideInOut ease, 0.5s fadeInUp ease;
 }
 
 
