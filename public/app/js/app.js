@@ -4233,134 +4233,148 @@
  =========================================================*/
 
 (function () {
-    'use strict';
+        'use strict';
 
-    angular
-        .module('app.extras')
-        .directive('calendar', calendar);
+        angular
+            .module('app.extras')
+            .directive('calendar', calendar);
 
-    calendar.$inject = ['$rootScope', ];
+        calendar.$inject = ['$rootScope', ];
 
-    function calendar($rootScope) {
-        var directive = {
-            link: link,
-            restrict: 'EA'
-        };
-        return directive;
+        function calendar($rootScope) {
+            var directive = {
+                link: link,
+                restrict: 'EA'
+            };
+            return directive;
 
-        function link(scope, element) {
+            function link(scope, element) {
 
-            if (!$.fn.fullCalendar) return;
+                if (!$.fn.fullCalendar) return;
 
-            // The element that will display the calendar
-            var calendar = element;
+                // The element that will display the calendar
+                var calendar = element;
 
-            scope.myCalendar = calendar;
+                scope.myCalendar = calendar;
 
-            initCalendar(calendar, $rootScope.app.layout.isRTL, scope);
+                initCalendar(calendar, $rootScope.app.layout.isRTL, scope);
+            }
         }
-    }
 
 
-    // global shared var to know what we are dragging
-    var draggingEvent = null;
+        // global shared var to know what we are dragging
+        var draggingEvent = null;
 
-    /**
-     * Invoke full calendar plugin and attach behavior
-     * @param  jQuery [calElement] The calendar dom element wrapped into jQuery
-     * @param  EventObject [events] An object with the event list to load when the calendar displays
-     */
-    function initCalendar(calElement, isRTL, scope) {
+        /**
+         * Invoke full calendar plugin and attach behavior
+         * @param  jQuery [calElement] The calendar dom element wrapped into jQuery
+         * @param  EventObject [events] An object with the event list to load when the calendar displays
+         */
+        function initCalendar(calElement, isRTL, scope) {
 
-        // check to remove elements from the list
-        var removeAfterDrop = $('#remove-after-drop');
+            // check to remove elements from the list
+            var removeAfterDrop = $('#remove-after-drop');
 
-        calElement.fullCalendar({
-            isRTL: isRTL,
-            header: {
-                left: 'prev,next today',
-                center: 'title',
-                right: 'month,agendaWeek,agendaDay'
-            },
-            buttonIcons: { // note the space at the beginning
-                prev: ' fa fa-caret-left',
-                next: ' fa fa-caret-right'
-            },
-            buttonText: {
-                today: 'today',
-                month: 'month',
-                week: 'week',
-                day: 'day'
-            },
+            calElement.fullCalendar({
+                    isRTL: isRTL,
+                    header: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'month,agendaWeek,agendaDay'
+                    },
+                    buttonIcons: { // note the space at the beginning
+                        prev: ' fa fa-caret-left',
+                        next: ' fa fa-caret-right'
+                    },
+                    buttonText: {
+                        today: 'today',
+                        month: 'month',
+                        week: 'week',
+                        day: 'day'
+                    },
 
-            eventStartEditable: true,
-            eventDrop: function (event, delta, revertFunc) {
-
-
-                var hookedEvent = _.findWhere(scope.events, {
-                    "_id": event._id
-                });
-
-                if (hookedEvent) {
-                    hookedEvent.start = event.start.format();
-                    //                    scope.LoadedDT.rerender();
-                    hookedEvent.save();
-                }
+                    eventStartEditable: true,
+                    eventDrop: function (event, delta, revertFunc) {
 
 
-            },
-            droppable: false, // this allows things to be dropped onto the calendar 
-            drop: function (date, allDay) { // this function is called when something is dropped
+                        var hookedEvent = _.findWhere(scope.events, {
+                            "_id": event._id
+                        });
 
-                var $this = $(this),
-                    // retrieve the dropped element's stored Event Object
-                    originalEventObject = $this.data('calendarEventObject');
+                        if (hookedEvent) {
+                            hookedEvent.start = event.start.format();
+                            //                    scope.LoadedDT.rerender();
+                            hookedEvent.save();
+                        }
 
-                // if something went wrong, abort
-                if (!originalEventObject) return;
 
-                // clone the object to avoid multiple events with reference to the same object
-                var clonedEventObject = $.extend({}, originalEventObject);
+                    },
+                    droppable: false, // this allows things to be dropped onto the calendar 
+                    drop: function (date, allDay) { // this function is called when something is dropped
 
-                // assign the reported date
-                clonedEventObject.start = date;
-                clonedEventObject.allDay = allDay;
-                clonedEventObject.backgroundColor = $this.css('background-color');
-                clonedEventObject.borderColor = $this.css('border-color');
+                        var $this = $(this),
+                            // retrieve the dropped element's stored Event Object
+                            originalEventObject = $this.data('calendarEventObject');
 
-                // render the event on the calendar
-                // the last `true` argument determines if the event "sticks" 
-                // (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
-                calElement.fullCalendar('renderEvent', clonedEventObject, true);
+                        // if something went wrong, abort
+                        if (!originalEventObject) return;
 
-                // if necessary remove the element from the list
-                if (removeAfterDrop.is(':checked')) {
-                    $this.remove();
-                }
-            },
-            dayClick: function (date, jsEvent, view) {
-                scope.showDaySchedule(date, calElement);
-            },
-            eventColor: '#2196f3',
-            eventBorderColor: '#3c8dbc',
-            eventRender: function (event, element) {
+                        // clone the object to avoid multiple events with reference to the same object
+                        var clonedEventObject = $.extend({}, originalEventObject);
 
-                element.find(".fc-title").remove();
-                element.find(".fc-time").remove();
-                var new_description =
-                    '<div style="height:30px; text-align: center; line-height: 30px;">' +
-                    '<img style="padding-top:2px;" class="pull-left" src="http://ep7t6ae.cloudimg.io/s/height/25/' + event.home_team.logo + '">' +
-                    '<img style="padding-top:2px;" class="pull-right" src="http://ep7t6ae.cloudimg.io/s/height/25/' + event.away_team.logo + '">' +
-                    moment(event.start).format("H:mm a") +
-                    +'</div>';
-                element.append(new_description);
-            },
-            eventDragStart: function (event /*, js, ui*/ ) {
-                draggingEvent = event;
-            },
-            // This array is the events sources
-            // events: scope.events
-        });
+                        // assign the reported date
+                        clonedEventObject.start = date;
+                        clonedEventObject.allDay = allDay;
+                        clonedEventObject.backgroundColor = $this.css('background-color');
+                        clonedEventObject.borderColor = $this.css('border-color');
+
+                        // render the event on the calendar
+                        // the last `true` argument determines if the event "sticks" 
+                        // (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
+                        calElement.fullCalendar('renderEvent', clonedEventObject, true);
+
+                        // if necessary remove the element from the list
+                        if (removeAfterDrop.is(':checked')) {
+                            $this.remove();
+                        }
+                    },
+                    dayClick: function (date, jsEvent, view) {
+                        scope.showDaySchedule(date, calElement);
+                    },
+                    eventColor: '#2196f3',
+                    eventBorderColor: '#3c8dbc',
+                    eventRender: function (event, element) {
+
+                        element.find(".fc-title").remove();
+                        element.find(".fc-time").remove();
+                        var new_description =
+                            '<div style="height:30px; text-align: center; line-height: 30px;">' +
+                            '<img style="padding-top:2px;" class="pull-left" src="http://ep7t6ae.cloudimg.io/s/height/25/' + event.home_team.logo + '">' +
+                            '<img style="padding-top:2px;" class="pull-right" src="http://ep7t6ae.cloudimg.io/s/height/25/' + event.away_team.logo + '">' +
+                            moment(event.start).format("H:mm a") +
+                            +'</div>';
+                        element.append(new_description);
+                    },
+
+                    eventClick: function (calEvent, jsEvent, view) {
+
+                        var tableFilter = calEvent.start.format("DD")+"/"+calEvent.start.format("MM")+" "+calEvent.home_team.name_en +" "+calEvent.away_team.name_en;
+                        scope.LoadedDT.DataTable.search(tableFilter).draw();
+                    
+//                    alert('Event: ' + calEvent.title);
+//                    alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+//                    alert('View: ' + view.name);
+//
+//                    // change the border color just for fun
+//                    $(this).css('border-color', 'red');
+
+                },
+                eventDragStart: function (event /*, js, ui*/ ) {
+                    draggingEvent = event;
+                },
+                // This array is the events sources
+                // events: scope.events
+            });
     }
 
 
@@ -4442,7 +4456,7 @@
 
             ScheduleService.addMatch(match).then(function (res) {
                 $scope.events.push(vm.scheduledMatch);
-                 vm.scheduledMatch = {};
+                vm.scheduledMatch = {};
                 RefreshCalendar();
                 vm.LoadedDT.DataTable.draw();
 

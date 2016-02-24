@@ -13,8 +13,8 @@ var mainWindow = null;
 
 app.on('ready', function() {
     mainWindow = new BrowserWindow({
-        height: 840,
-        width: 1360
+        height: 1024,
+        width: 1600
     });
 
     mainWindow.loadUrl('file://' + __dirname + '/index.html');

@@ -6,6 +6,12 @@
     "label": "label label-info",
     "translate": "sidebar.nav.DASHBOARD"
   },
+    {
+    "text": "Schedule",
+    "sref": "app.schedule",
+    "icon": "icon-speedometer",
+    "label": "label label-info"
+  },
   {
     "text": "Manage",
     "heading": "true",
