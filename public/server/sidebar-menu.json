@@ -9,38 +9,44 @@
     {
     "text": "Schedule",
     "sref": "app.schedule",
-    "icon": "icon-speedometer",
+    "icon": "icon-calendar",
     "label": "label label-info"
   },
-  {
+    {
     "text": "Manage",
     "heading": "true",
     "translate": "Manage"
   },
-  {
+    {
+    "text": "Data",
+    "sref": "#",
+    "icon": "icon-note",
+    "submenu": [{
     "text": "Welcomes",
     "sref": "app.welcomes",
-    "icon": "icon-login",
+    
     "translate": "Welcomes"
   },
   {
     "text": "Polls",
     "sref": "app.polls",
-    "icon": "icon-bar-chart",
+   
     "translate": "Polls"
   },
   {
     "text": "Activities",
     "sref": "app.activities",
-    "icon": "icon-info",
+ 
     "translate": "Activities"
   },
   {
     "text": "Interviews",
     "sref": "app.interviews",
-    "icon": "icon-info",
+   
     "translate": "Interviews"
-  },
+  }
+    ]
+  },  
   {
     "text": "Pushes",
     "sref": "app.pushes",

@@ -1,5 +1,5 @@
 <h3>Match Schedule
-   <small>Drag and Drop events and tasks</small>
+   <small>Schedule matches to be active in the game.</small>
 </h3>
 
 
@@ -26,7 +26,7 @@
             <!-- START panel-->
             <div id="inspectorPanel" ng-show="view.inspectorPanel && !view.addPanel" class="events-self panel panel-default">
                 <div ng-class="{'panel-heading-collapsed': inspectorPanel}" class="panel-heading">Match Inspector
-                    <paneltool tool-colapse-conditions = "selectedMatch" tool-collapse="tool-collapse" tool-dismiss="tool-dismiss" ng-init="inspectorPanel = true"></paneltool>
+                    <paneltool tool-colapse-conditions="selectedMatch" tool-collapse="tool-collapse" tool-dismiss="tool-dismiss" ng-init="inspectorPanel = true"></paneltool>
                 </div>
                 <!-- .panel-wrapper is the element to be collapsed-->
                 <div collapse="!selectedMatch || inspectorPanel" class="panel-wrapper">
@@ -68,7 +68,7 @@
                                         <ui-select-match placeholder="Select team name">
                                             <img class="ui-select-match-img" alt="$item.name_en" ng-src="http://ep7t6ae.cloudimg.io/s/height/25/{{$select.selected.logo}}"> {{$select.selected.name_en}}
                                         </ui-select-match>
-                                        
+
                                         <ui-select-choices repeat="team in Teams | filter: {name_en: $select.search}">
                                             <img class="ui-select-match-img" alt='{{team.logo}}' ng-src='http://ep7t6ae.cloudimg.io/s/height/25/{{team.logo}}'>
                                             <div ng-bind-html="team.name_en | highlight: $select.search"></div>
@@ -104,10 +104,20 @@
                         </div>
                     </div>
                     <div class="panel-footer">
-                        <button ladda="view.busy" data-style="expand-right" ng-click="DeleteMatchEvent(selectedMatch)" type="button" class="mb-sm btn btn-pill-right btn-danger pull-right">Delete Match
-                        </button>
-                        <button ladda="view.busy" data-style="expand-left" ng-click="UpdateMatchEvent(selectedMatch)" disable-animation  type="button" class="btn btn-square btn-pill-left pull-right btn-success">Update Match
-                        </button>
+                        <div ng-show = "!selectedMatch.deleteConfirm">
+                            <button ladda="view.busy" data-style="expand-right" ng-click="selectedMatch.deleteConfirm = true" type="button" class="mb-sm btn btn-pill-right btn-danger pull-right">Delete
+                            </button>
+                            <button ladda="view.busy" data-style="zoom-out" ng-click="ModerateMatch(selectedMatch._id,selectedMatch.sport);" type="button" class="mb-sm btn  btn-default pull-right"><strong>MODERATE</strong>
+                            </button>
+                            <button ladda="view.busy" data-style="expand-left" ng-click="UpdateMatchEvent(selectedMatch)" disable-animation type="button" class="btn btn-square btn-pill-left pull-right btn-default">Update
+                            </button>
+                        </div>
+                        <div ng-show = "selectedMatch.deleteConfirm">
+                            <button ladda="view.busy" data-style="expand-right" ng-click="DeleteMatchEvent(selectedMatch)" type="button" class="mb-sm btn btn-pill-right btn-danger pull-right">Verify
+                            </button>
+                            <button ladda="view.busy" data-style="expand-left" ng-click="selectedMatch.deleteConfirm = false" disable-animation type="button" class="btn btn-square btn-pill-left pull-right btn-default">Cancel
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -233,7 +243,7 @@
                             </thead>
                             <tbody>
 
-                                <tr ng-repeat="event in events">
+                                <tr ng-repeat="event in events | filter: inRange()">
 
                                     <td>{{formatDate(event.start, "DD/MM")}}</td>
                                     <td>{{formatDate(event.start,"H:mm")}}</td>
@@ -249,13 +259,17 @@
                                         <!-- START button group-->
                                         <div dropdown="dropdown2" class="pull-right btn-group">
                                             <!--                 <span on-toggle="toggled(open)" class="dropdown"><a href="" dropdown-toggle=""><i class="fa fa-cog"></i></a>-->
-                                            <button type="button" dropdown-toggle="" class="btn btn-default btn-sm"><i class="fa fa-cog"></i></button>
+<!--                                            <button type="button" dropdown-toggle="" class="btn btn-default btn-sm">-->
+                                                <i ng-click="EditMatch(event);" class="fa fa-edit"></i>
+<!--                                            </button>-->
+<!--
                                             <ul role="menu" class="dropdown-menu fadeInUpShort animated">
-                                                <li><a href="#" ng-click="ModerateMatch(event.id,event.sport);">Moderate</a>
+                                                <li><a href="#" ng-click="ModerateMatch(event._id,event.sport);">Moderate</a>
                                                 </li>
                                                 <li><a href="" ng-click="EditMatch(event);">Edit</a>
                                                 </li>
                                             </ul>
+-->
                                         </div>
                                         <!-- END button group-->
                                         </span>

@@ -4258,6 +4258,9 @@
             scope.myCalendar = calendar;
 
             initCalendar(calendar, $rootScope.app.layout.isRTL, scope);
+
+            scope.startRange = calendar.fullCalendar('getView').start;
+            scope.endRange = calendar.fullCalendar('getView').end;
         }
     }
 
@@ -4292,7 +4295,18 @@
                 week: 'week',
                 day: 'day'
             },
-
+            viewRender: function (view, element) {
+                scope.startRange = view.start;
+                scope.endRange = view.end;
+                
+                if( scope.LoadedDT){
+                    scope.LoadedDT.DataTable.search('');
+                     scope.LoadedDT.rerender();
+                    
+                }
+                if(!scope.$$phase)
+                    scope.$apply();
+            },
             eventStartEditable: true,
             eventDrop: function (event, delta, revertFunc) {
 
@@ -4305,6 +4319,7 @@
                     console.log(hookedEvent);
                     hookedEvent.start = event.start.format();
                     hookedEvent.save();
+                    scope.LoadedDT.rerender();
                 }
 
 
@@ -4394,7 +4409,8 @@
 
     angular
         .module('app.schedule')
-        .service('ScheduleService', ScheduleService)
+
+    .service('ScheduleService', ScheduleService)
         .controller('ScheduleController', ScheduleController);
 
     ScheduleService.$inject = ['$resource', 'Restangular', '$rootScope', '$q'];
@@ -4468,25 +4484,25 @@
             ScheduleService.addMatch(match).then(function (res) {
                 res.home_team = vm.scheduledMatch.home_team;
                 res.away_team = vm.scheduledMatch.away_team;
-                
+
                 $scope.events.push(res);
                 vm.scheduledMatch = {};
                 RefreshCalendar();
                 vm.LoadedDT.DataTable.draw();
-                 vm.view.busy = false;
+                vm.view.busy = false;
             })
         }
 
         vm.UpdateMatchEvent = function (event) {
-             vm.view.busy = true;
+            vm.view.busy = true;
             ScheduleService.updateMatch(event).then(function (res) {
                 RefreshCalendar();
-                 vm.view.busy = false;
+                vm.view.busy = false;
             })
         }
-        
+
         vm.DeleteMatchEvent = function (event) {
-             vm.view.busy = true;
+            vm.view.busy = true;
             ScheduleService.deleteMatch(event).then(function (res) {
                 vm.events = _.without(vm.events, event);
                 RefreshCalendar();
@@ -4504,6 +4520,21 @@
             return moment(date).utc().format(style);
         }
 
+        vm.startRange = null;
+        vm.endRange = null;
+
+        //Filter Function
+        $scope.inRange = function (start, end) {
+            return function (item) {
+
+                if (moment(item['start']) > vm.startRange && moment(item['start']) < vm.endRange) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        };
+
         function RefreshCalendar(calendar) {
             $scope.myCalendar.fullCalendar('removeEvents');
             $scope.myCalendar.fullCalendar('addEventSource', $scope.events);
@@ -4513,7 +4544,7 @@
         /* START of Match Context menu*/
         /* Moderate */
         $scope.ModerateMatch = function (matchid, sport) {
-                console.log("Moderate");
+                console.log(matchid);
                 $state.go("app.match-moderation-" + (sport || 'soccer'), {
                     id: (matchid || "565c4af6e4b030fba33dd459")
                 });
@@ -4597,8 +4628,8 @@
                     })
                     return Defer.promise;
                 },
-                
-                
+
+
                 deleteMatch: function (match) {
                     var Defer = $q.defer();
                     match.remove().then(function (res) {
@@ -4804,7 +4835,7 @@
                 url: $rootScope.servers[$rootScope.serverEnvironment].game_server + 'v1/live/match/' + id
 
             }).then(function successCallback(response) {
-
+                console.log(response);
                 $scope.match = AddHooks(response.data);
                 vm.pushLoading = false;
             }, function errorCallback(response) {
@@ -11793,7 +11824,7 @@
         return directive;
 
         function link(scope, element, attrs) {
- 
+
             var templates = {
                 /* jshint multistr: true */
                 collapse: '<a href="#" panel-collapse="" tooltip="Collapse Panel" ng-click="{{panelId}} = !{{panelId}}"> \
