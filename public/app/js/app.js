@@ -2812,9 +2812,9 @@
         .module('app.core')
         .run(appRun);
 
-    appRun.$inject = ['$rootScope', '$state', '$stateParams', '$window', '$templateCache', 'Colors', '$location', '$cookieStore', '$http', '$websocket'];
+    appRun.$inject = ['$rootScope', '$state', '$stateParams', '$window', '$templateCache', 'Colors', '$location', '$cookieStore', '$http', '$websocket','$mdToast','$timeout'];
 
-    function appRun($rootScope, $state, $stateParams, $window, $templateCache, Colors, $location, $cookieStore, $http, $websocket) {
+    function appRun($rootScope, $state, $stateParams, $window, $templateCache, Colors, $location, $cookieStore, $http, $websocket, $mdToast, $timeout) {
 
         // Set reference to access them from any scope
         $rootScope.$state = $state;
@@ -2829,7 +2829,33 @@
             color: "#1ba3cd"
         }];
 
+        $rootScope.toggleEnvironment = function () {
+            if ($rootScope.serverEnvironment == 'production')
+                $rootScope.serverEnvironment = $rootScope.$storage.environment = 'development';
+            else
+                $rootScope.serverEnvironment = $rootScope.$storage.environment = 'production';
 
+            toast('Environment: ' + $rootScope.serverEnvironment);
+
+            $timeout(function () {
+                $window.location.reload()
+            }, 2000);
+
+        };
+        
+          function toast(message) {
+            $mdToast.show({
+                template: '<md-toast class="sportimo-toast">' +
+                    '<div class="sportimo-toast-heading text-center">' +
+                    '<img src="app/img/sportimo/icon_sportimo-white_64.png" alt="App Logo" class="pull-left">' +
+                    '</div>' +
+                    '<div>' + message +
+                    '</div>' +
+                    '</md-toast>',
+                hideDelay: 3000,
+                position: 'top right'
+            });
+        }
 
         $rootScope.servers = {
             production: {
@@ -4556,6 +4582,11 @@
                 vm.view.inspectorPanel = true;
                 vm.inspectorPanel = false;
             }
+            /* Change Color */
+            $scope.setColor = function (color){
+                vm.selectedMatch.color = color;
+                RefreshCalendar();
+            }
             /* Delete */
         $scope.DeleteMatch = function (match) {
                 vm.DeleteMatchEvent(match);
@@ -4748,33 +4779,33 @@
 
         $scope.items = ["one", "two", "three"];
 
-        $rootScope.toggleEnvironment = function () {
-            if ($rootScope.serverEnvironment == 'production')
-                $rootScope.serverEnvironment = $rootScope.$storage.environment = 'development';
-            else
-                $rootScope.serverEnvironment = $rootScope.$storage.environment = 'production';
+        // $rootScope.toggleEnvironment = function () {
+        //     if ($rootScope.serverEnvironment == 'production')
+        //         $rootScope.serverEnvironment = $rootScope.$storage.environment = 'development';
+        //     else
+        //         $rootScope.serverEnvironment = $rootScope.$storage.environment = 'production';
 
-            toast('Environment: ' + $rootScope.serverEnvironment);
+        //     toast('Environment: ' + $rootScope.serverEnvironment);
 
-            $timeout(function () {
-                $window.location.reload()
-            }, 2000);
+        //     $timeout(function () {
+        //         $window.location.reload()
+        //     }, 2000);
 
-        };
+        // };
 
-        function toast(message) {
-            $mdToast.show({
-                template: '<md-toast class="sportimo-toast">' +
-                    '<div class="sportimo-toast-heading text-center">' +
-                    '<img src="app/img/sportimo/icon_sportimo-white_64.png" alt="App Logo" class="pull-left">' +
-                    '</div>' +
-                    '<div>' + message +
-                    '</div>' +
-                    '</md-toast>',
-                hideDelay: 3000,
-                position: 'top right'
-            });
-        }
+        // function toast(message) {
+        //     $mdToast.show({
+        //         template: '<md-toast class="sportimo-toast">' +
+        //             '<div class="sportimo-toast-heading text-center">' +
+        //             '<img src="app/img/sportimo/icon_sportimo-white_64.png" alt="App Logo" class="pull-left">' +
+        //             '</div>' +
+        //             '<div>' + message +
+        //             '</div>' +
+        //             '</md-toast>',
+        //         hideDelay: 3000,
+        //         position: 'top right'
+        //     });
+        // }
 
         $scope.showGridBottomSheet = function ($event) {
             $scope.alert = '';
@@ -9287,9 +9318,11 @@
 
                 {
                     name: 'angular-ladda',
-                    files: ["vendor/ladda/dist/ladda-themeless.min.css",
+                    files: [
+                        "vendor/ladda/js/ladda.js",
+                        "vendor/ladda/dist/ladda-themeless.min.css",
                     "vendor/ladda/js/spin.js",
-                    "vendor/ladda/js/ladda.js",
+                    
                     "vendor/angular-ladda/dist/angular-ladda.min.js"]
                 },
                 {

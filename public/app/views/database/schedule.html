@@ -104,7 +104,40 @@
                         </div>
                     </div>
                     <div class="panel-footer">
-                        <div ng-show = "!selectedMatch.deleteConfirm">
+
+                        <!-- START button group-->
+                        <div dropdown="dropdown2" class="pull-left btn-group">
+                            <!--                 <span on-toggle="toggled(open)" class="dropdown"><a href="" dropdown-toggle=""><i class="fa fa-cog"></i></a>-->
+                            <span dropdown-toggle="" class="dropdown" style="    position: relative;
+    bottom: -20px;">
+                                <i class="fa fa-paint-brush"></i>
+                            </span>
+                            <ul role="menu" class="dropdown-menu fadeInUpShort animated" style="min-width: 112px;">
+                                <li>
+                                    <button style="margin:5px; height:10px ;width:10px;" ng-click="setColor('#009688')" class="btn btn-xs btn-green pull-left"></button>
+                                </li>
+                                <li>
+                                    <button style="margin:5px; height:10px ;width:10px;" ng-click="setColor('#f44336')" class="btn btn-xs btn-danger pull-left"></button>
+                                </li>
+                                <li>
+                                    <button style="margin:5px; height:10px ;width:10px;" ng-click="setColor('3a87ad')" class="btn btn-xs btn-info pull-left"></button>
+                                </li>
+                                <li>
+                                    <button style="margin:5px; height:10px ;width:10px;" ng-click="setColor('#ff9800')" class="btn btn-xs btn-warning pull-left"></button>
+                                </li>
+                                <li>
+                                    <button style="margin:5px; height:10px ;width:10px;" ng-click="setColor('#263238')" class="btn btn-xs btn-inverse pull-left"></button>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- END button group-->
+
+
+
+
+
+
+                        <div ng-show="!selectedMatch.deleteConfirm">
                             <button ladda="view.busy" data-style="expand-right" ng-click="selectedMatch.deleteConfirm = true" type="button" class="mb-sm btn btn-pill-right btn-danger pull-right">Delete
                             </button>
                             <button ladda="view.busy" data-style="zoom-out" ng-click="ModerateMatch(selectedMatch._id,selectedMatch.sport);" type="button" class="mb-sm btn  btn-default pull-right"><strong>MODERATE</strong>
@@ -112,7 +145,7 @@
                             <button ladda="view.busy" data-style="expand-left" ng-click="UpdateMatchEvent(selectedMatch)" disable-animation type="button" class="btn btn-square btn-pill-left pull-right btn-default">Update
                             </button>
                         </div>
-                        <div ng-show = "selectedMatch.deleteConfirm">
+                        <div ng-show="selectedMatch.deleteConfirm">
                             <button ladda="view.busy" data-style="expand-right" ng-click="DeleteMatchEvent(selectedMatch)" type="button" class="mb-sm btn btn-pill-right btn-danger pull-right">Verify
                             </button>
                             <button ladda="view.busy" data-style="expand-left" ng-click="selectedMatch.deleteConfirm = false" disable-animation type="button" class="btn btn-square btn-pill-left pull-right btn-default">Cancel
@@ -259,10 +292,10 @@
                                         <!-- START button group-->
                                         <div dropdown="dropdown2" class="pull-right btn-group">
                                             <!--                 <span on-toggle="toggled(open)" class="dropdown"><a href="" dropdown-toggle=""><i class="fa fa-cog"></i></a>-->
-<!--                                            <button type="button" dropdown-toggle="" class="btn btn-default btn-sm">-->
-                                                <i ng-click="EditMatch(event);" class="fa fa-edit"></i>
-<!--                                            </button>-->
-<!--
+                                            <!--                                            <button type="button" dropdown-toggle="" class="btn btn-default btn-sm">-->
+                                            <i ng-click="EditMatch(event);" class="fa fa-edit"></i>
+                                            <!--                                            </button>-->
+                                            <!--
                                             <ul role="menu" class="dropdown-menu fadeInUpShort animated">
                                                 <li><a href="#" ng-click="ModerateMatch(event._id,event.sport);">Moderate</a>
                                                 </li>

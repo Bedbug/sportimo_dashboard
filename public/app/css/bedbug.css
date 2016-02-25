@@ -598,7 +598,7 @@ border: 2px dashed #F1F1F1;
 }
 
 .tab-content > .active {
-    display: flex;
+    display: block;
     /*overflow-y: scroll;*/
     /*max-height: 510px;*/
 }
@@ -618,16 +618,24 @@ border: 2px dashed #F1F1F1;
     color: #fff!important;
 }
 
+.no-padding {
+   padding: 0 !important;
+   margin: 0 !important;
+}
+
 .tab-content{
-    background-color: #f0f0f0;
+/*    background-color: #f0f0f0;*/
     /*darkslategrey;*/
 }
+
+/*
 .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus{
     background-color: #f0f0f0;
-    /*darkslategrey;*/
+    darkslategrey;
     color: #3a3f51;
     border-bottom-color: #f0f0f0;
 }
+*/
 
 .timeline > li.timeline-separator:before, .timeline-alt > li.timeline-separator:before {
     content: attr(data-datetime);
