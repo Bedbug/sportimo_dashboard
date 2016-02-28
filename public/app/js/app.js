@@ -2812,7 +2812,7 @@
         .module('app.core')
         .run(appRun);
 
-    appRun.$inject = ['$rootScope', '$state', '$stateParams', '$window', '$templateCache', 'Colors', '$location', '$cookieStore', '$http', '$websocket','$mdToast','$timeout'];
+    appRun.$inject = ['$rootScope', '$state', '$stateParams', '$window', '$templateCache', 'Colors', '$location', '$cookieStore', '$http', '$websocket', '$mdToast', '$timeout'];
 
     function appRun($rootScope, $state, $stateParams, $window, $templateCache, Colors, $location, $cookieStore, $http, $websocket, $mdToast, $timeout) {
 
@@ -2842,8 +2842,8 @@
             }, 2000);
 
         };
-        
-          function toast(message) {
+
+        function toast(message) {
             $mdToast.show({
                 template: '<md-toast class="sportimo-toast">' +
                     '<div class="sportimo-toast-heading text-center">' +
@@ -4324,13 +4324,13 @@
             viewRender: function (view, element) {
                 scope.startRange = view.start;
                 scope.endRange = view.end;
-                
-                if( scope.LoadedDT){
+
+                if (scope.LoadedDT) {
                     scope.LoadedDT.DataTable.search('');
-                     scope.LoadedDT.rerender();
-                    
+                    scope.LoadedDT.rerender();
+
                 }
-                if(!scope.$$phase)
+                if (!scope.$$phase)
                     scope.$apply();
             },
             eventStartEditable: true,
@@ -4481,7 +4481,7 @@
 
         ]
 
-        TeamsService.getAllTeams().$promise.then(function (teams) {
+        TeamsService.getAllTeams().then(function (teams) {
             vm.Teams = teams;
         }, function (error) {});
 
@@ -4583,7 +4583,7 @@
                 vm.inspectorPanel = false;
             }
             /* Change Color */
-            $scope.setColor = function (color){
+        $scope.setColor = function (color) {
                 vm.selectedMatch.color = color;
                 RefreshCalendar();
             }
@@ -4685,8 +4685,8 @@
         .service('PlayersService', PlayersService)
         .controller('TeamsController', TeamsController);
 
-    PlayersService.$inject = ['$resource'];
-    TeamsService.$inject = ['$resource'];
+    PlayersService.$inject = ['$resource','Restangular','$q','$rootScope'];
+    TeamsService.$inject = ['$resource','Restangular','$q','$rootScope'];
     TeamsController.$inject = ['$scope', 'TeamsService', 'PlayersService', 'DTOptionsBuilder', 'DTColumnDefBuilder'];
 
     function TeamsController($scope, TeamsService, PlayersService, DTOptionsBuilder, DTColumnDefBuilder) {
@@ -4696,12 +4696,12 @@
         vm.Players = [];
         vm.Teams = [];
 
-        TeamsService.getAllTeams().$promise.then(function (teams) {
+        TeamsService.getAllTeams().then(function (teams) {
             console.log(teams);
             vm.Teams = teams;
         }, function (error) {});
 
-        PlayersService.getAllPlayers().$promise.then(function (players) {
+        PlayersService.getAllPlayers().then(function (players) {
             $scope.Players = players;
         }, function (error) {});
 
@@ -4710,24 +4710,64 @@
 
     }
 
-    function TeamsService($resource) {
-        var teams = $resource('server/mockdata/teams.json');
-        return {
-            getAllTeams: function () {
-                return teams.query({}, function (res) {
-                    return res;
-                });
+    function TeamsService($resource, Restangular, $q, $rootScope) {
+        var mock = false;
+
+        if (mock) {
+            var teams = $resource('server/mockdata/teams.json');
+            return {
+                getAllTeams: function () {
+                    return teams.query({}, function (res) {
+                        return res;
+                    });
+                }
+            }
+        } else {
+            var teams = Restangular.all('v1/data/teams');
+            Restangular.setBaseUrl($rootScope.servers[$rootScope.serverEnvironment].game_server);
+            Restangular.setRestangularFields({
+                id: "_id"
+            });
+
+            return {
+                getAllTeams: function () {
+                    var Defer = $q.defer();
+                    teams.getList().then(function (schedule) {
+                        Defer.resolve(schedule);
+                    });
+                    return Defer.promise;
+                }
             }
         }
     }
 
-    function PlayersService($resource) {
+    function PlayersService($resource, Restangular, $q, $rootScope) {
+           var mock = false;
+
+        if (mock) {
         var players = $resource('server/mockdata/players.json');
         return {
             getAllPlayers: function () {
                 return players.query({}, function (res) {
                     return res;
                 });
+            }
+        }
+        } else {
+            var players = Restangular.all('v1/data/players');
+            Restangular.setBaseUrl($rootScope.servers[$rootScope.serverEnvironment].game_server);
+            Restangular.setRestangularFields({
+                id: "_id"
+            });
+
+            return {
+                getAllPlayers: function () {
+                    var Defer = $q.defer();
+                    players.getList().then(function (schedule) {
+                        Defer.resolve(schedule);
+                    });
+                    return Defer.promise;
+                }
             }
         }
     }
@@ -9322,7 +9362,7 @@
                         "vendor/ladda/js/ladda.js",
                         "vendor/ladda/dist/ladda-themeless.min.css",
                     "vendor/ladda/js/spin.js",
-                    
+
                     "vendor/angular-ladda/dist/angular-ladda.min.js"]
                 },
                 {
