@@ -7,6 +7,28 @@ img.desaturate {
     filter: grayscale(100%);
 }
 
+.drop-box {
+    /*background: #F8F8F8;*/
+    border: 5px dashed #DDD;
+    /*width: 170px;*/
+    text-align: center;
+    padding: 50px 10px;
+    margin-left: 10px;
+}
+
+.chosen-container-single .chosen-single abbr {
+    top: 12px !important;
+    right: 26px !important;
+}
+
+.c-checkbox input[type=checkbox]:checked + span, .c-radio input[type=checkbox]:checked + span, .c-checkbox input[type=radio]:checked + span, .c-radio input[type=radio]:checked + span {
+    border-color: #2196f3;
+    background-color: #2196f3;
+}
+.c-checkbox:hover span, .c-radio:hover span {
+    border-color: #2196f3;
+}
+
 #xmark {
     background-image: url("../img/x_mark_red.png");
     background-size: contain;

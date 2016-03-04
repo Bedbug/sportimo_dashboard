@@ -1,69 +1,243 @@
-<!-- START Create EVENT DRAWER -->
-<div ng-show="drawer == 1" class="events-self ">
+<!-- START of Edit Team panel -->
 
+<!--<fieldset>
+    <div class="form-group mb">
+        <label class="col-sm-2 control-label">Chosen w/Input groups</label>
+        <div class="col-sm-4">
+            <div class="input-group mb">
+                <span class="input-group-addon">@</span>
+                <select chosen="" ng-model="inputg1" width="'300px'" class="chosen-select input-md">
+                    <option value=""></option>
+                    <option value="1">Nulla facilisi. Quisque in sapien et neque sodales facilisis. Proin a porta turpis.</option>
+                    <option value="2">New York Giants</option>
+                    <option value="3">Philadelphia Eagles</option>
+                    <option value="4">Washington Redskins</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</fieldset>-->
+
+<div ng-show="MassUpdateObjects.length > 0" class="events-self ">
     <div class="events-self panel">
+        <div class="panel-heading">
+            <h4>Mass Update</h4>
+        </div>
         <div class="moving-self panel-body">
             <div class="row">
 
-                <div class="match-logos col-sm-4 col-xs-12">
-                    <div class="event-team-logo col-xs-6 col-sm-12 col-md-6">
-                        <img class="moving-self-img" ng-click="event.team = 'home_team'" ng-class="event.team != 'home_team'? 'desaturate':'zoom'" ng-src="{{match.data.home_team.logo}}" />
+                <div class="col-xs-12">
+
+                    <form role="form">
+
+                        <div class="form-group">
+                            <label>Club Crest</label>
+                            <input type="text " class="form-control " ng-model="MassUpdateChanges.logo" />
+                            <label>League</label>
+                            <input type="text " class="form-control " ng-model="MassUpdateChanges.league" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer ">
+            <button type="button" ng-click="massUpdate()" class="btn btn-lg btn-success pull-right">Update</button>
+        </div>
+    </div>
+</div>
+
+<div ng-show="view.editTeam == 1" class="events-self ">
+    <div class="events-self panel">
+        <div class="panel-heading">
+            <h4>Team editor</h4>
+        </div>
+        <div class="moving-self panel-body">
+            <div class="row">
+                <!--SATRT of Logo -->
+                <div style="" class="match-logos col-xs-12 col-sm-4 col-md-4">
+
+                    <div class="event-team-logo">
+                        <h5> Drop team logo here</h5>
+                        <div ngf-drop="uploadFile($file, selectedTeam)" class="drop-box" ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-pattern="'image/*,application/pdf'">
+                            <img class="moving-self-img" ng-src="{{selectedTeam.logo}}" />
+                            <p>
+                                <label>{{selectedTeam.name_en}}</label>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- END of Logo -->
+                <div class="col-xs-12  col-sm-8 col-md-8">
+
+                    <form role="form">
+                        <div class="form-group">
+                            <label>Club Name</label>
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <select chosen disable-search="true" data-placeholder="Add new" allow-single-deselect="true" ng-model="selectedTeam.selected"
+                                    ng-options="option.lang for option in selectedTeam.name" class="form-control chosen-select">
+                                        <option value=""></option>
+                                    </select>
+                                </div>
+                                <div class="col-xs-8">
+                                    <div ng-show="selectedTeam.selected">
+                                        <div class="col-xs-10" style="padding-left:0px;">
+                                            <input type="text" class="form-control" ng-model="selectedTeam.selected.text" />
+                                        </div>
+                                        <button ng-click="delete(selectedTeam.selected)" class="col-xs-2 btn btn-default">-</button>
+                                    </div>
+                                    <div ng-show="!selectedTeam.selected">
+                                        <div class="col-xs-10" style="padding-left:0px;">
+                                            <input type="text" placeholder="Add new language key" class="form-control" ng-model="newLangKey" />
+                                        </div>
+                                        <button ng-click="view.addLanguage=false; pushLang(selectedTeam)" class="col-xs-2 btn btn-default">+</button>
+                                      
+                                    </div>
+                                </div>
+                               
+
+                            </div>
+                            <label>Club Crest</label>
+                            <input type="text " class="form-control " ng-model="selectedTeam.logo" />
+                            <label>League</label>
+                            <input type="text " class="form-control " ng-model="selectedTeam.league" />
+                             <label>Players</label>
+                            <button ladda="view.loadingPlayers == 1" data-spinner-color="#000000" data-style="zoom-in" ng-click="LoadPlayers(selectedTeam)" ng-show="!selectedTeam.playersLoaded" class="col-xs-12 btn btn-default">Load Players</button>
+                            <div ng-show="selectedTeam.playersLoaded">
+                           
+                            <div>
+                                <div class="col-xs-10" style="padding-left:0">
+                                <select chosen disable-search="false" data-placeholder="Add new player" allow-single-deselect="true" ng-model="selectedTeam.selectedPlayer"
+                                ng-options="option.name.en for option in Players" class="form-control chosen-select">
+                                    <option value=""></option>
+                                </select>
+                                </div>
+                                <button ng-click="pushPlayer(selectedTeam.selectedPlayer)" class="col-xs-2 btn btn-default">Add</button>
+                            </div>
+                            <div class="col-xs-12">
+                                <br>
+                                <table width="100%" class="row-border hover ">
+                                    <thead>
+                                        <tr>
+                                            <th>Pic</th>
+                                            <th>Name</th>
+                                            <th>Position</th>
+                                            <!--<th>ID</th>-->
+                                            <th>Edit</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="player in selectedTeam.players">
+                                            <td>
+                                                <div class="center ">
+                                                    <img ng-click="searchFor(player.name.en);" ng-src="http://ep7t6ae.cloudimg.io/s/height/50/{{player.pic}}">
+                                                </div>
+                                            </td>
+                                            <td><strong>{{player.name.en}}</strong></td>
+                                            <td>{{ player.position}}</td>
+                                            <!--<td><small>{{ player._id }}</small></td>-->
+                                            <td align="center ">
+                                                <div dropdown="dropdown2 " class="text-center btn-group ">
+                                                    <i ng-click="editTeam(team); " class="fa fa-edit "></i>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                 </table>
+                            </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer ">
+            <button type="button " ng-click="view.editTeam = 0" style="margin-left: 5px;" class="btn btn-lg btn-default pull-right">Cancel</button>
+            <button type="button" ng-click="updateTeam()" class="btn btn-lg btn-success pull-right">Update</button>
+        </div>
+    </div>
+</div>
+
+<!-- START Create EVENT DRAWER -->
+<div ng-show="drawer==1 " class="events-self ">
+
+    <div class="events-self panel ">
+        <div class="moving-self panel-body ">
+            <div class="row ">
+
+                <div class="match-logos col-sm-4 col-xs-12 ">
+                    <div class="event-team-logo col-xs-6 col-sm-12 col-md-6 ">
+
+
+                        <img class="moving-self-img " ng-click="event.team='home_team' " ng-class="event.team !='home_team'
+                                            ? 'desaturate': 'zoom' " ng-src="{{match.data.home_team.logo}} " />
                         <br/> {{match.data.home_team.name}}
                     </div>
-                    <div class="event-team-logo col-xs-6 col-sm-12 col-md-6">
-                        <img class="moving-self-img" ng-click="event.team ='away_team'" ng-class="event.team != 'away_team'? 'desaturate':'zoom'" ng-src="{{match.data.away_team.logo}}" />
+                    <div class="event-team-logo col-xs-6 col-sm-12 col-md-6 ">
+                        <img class="moving-self-img " ng-click="event.team='away_team' " ng-class="event.team !='away_team'
+                                            ? 'desaturate': 'zoom' " ng-src="{{match.data.away_team.logo}} " />
                         <br/> {{match.data.away_team.name}}
                     </div>
                 </div>
-                <div class="col-sm-8 col-xs-12">
+                <div class="col-sm-8 col-xs-12 ">
                     <!-- For single player events -->
-                    <div ng-hide="event.playerscount == 2" ng-class="event.type+'-text'" class="moving-self-heading">
+                    <div ng-hide="event.playerscount==2 " ng-class="event.type+ '-text' " class="moving-self-heading ">
                         Event player name:
                     </div>
-                    <ui-select ng-hide="event.playerscount == 2" limit=1 on-select="checkSelection($item,$model)" multiple reset-search-input="true" ng-model="event.players" theme="bootstrap" ng-disabled="event.chooseplayer.disabled">
-                        <ui-select-match placeholder="Select player name"><img class="ui-select-match-img" alt="$item.team" ng-src="{{match.data[$item.team].logo}}"> {{$item.name}}
+                    <ui-select ng-hide="event.playerscount==2 " limit=1 on-select="checkSelection($item,$model)
+                                            " multiple reset-search-input="true " ng-model="event.players " theme="bootstrap "
+                    ng-disabled="event.chooseplayer.disabled ">
+                        <ui-select-match placeholder="Select player name "><img class="ui-select-match-img " alt="$item.team
+                                            " ng-src="{{match.data[$item.team].logo}} "> {{$item.name}}
                         </ui-select-match>
-                        <ui-select-choices repeat="player in players | filter: (filterTeamPlayers || '') && {team: event.team} | propsFilter: {name: $select.search, team: $select.search}">
-                            <img class="ui-select-match-img" alt='{{player.team}}' ng-src='{{match.data[player.team].logo}}'>
+                        <ui-select-choices repeat="player in players | filter: (filterTeamPlayers || '') && {team: event.team}
+                                            | propsFilter: {name: $select.search, team: $select.search} ">
+                            <img class="ui-select-match-img " alt='{{player.team}}' ng-src='{{match.data[player.team].logo}}'>
 
-                            <div ng-bind-html=" player.name | highlight: $select.search"></div>
+                            <div ng-bind-html=" player.name | highlight: $select.search "></div>
                             <!--<small>-->
-                            <!--<span ng-bind-html="''+player.team | highlight: $select.search"></span>-->
+                            <!--<span ng-bind-html=" ''+player.team | highlight: $select.search "></span>-->
                             <!--</small>-->
                         </ui-select-choices>
                     </ui-select>
                     <!-- For multi player events -->
-                    <div ng-hide="event.playerscount == 1" ng-class="event.type+'-text'" class="moving-self-heading">
+                    <div ng-hide="event.playerscount==1 " ng-class="event.type+ '-text' " class="moving-self-heading ">
                         Event player names:
                     </div>
-                    <ui-select ng-hide="event.playerscount == 1" limit=2 on-select="checkSelection" multiple reset-search-input="true" ng-model="event.players" theme="bootstrap" ng-disabled="event.chooseplayer.disabled">
-                        <ui-select-match placeholder="Select player name"><img class="ui-select-match-img" alt="$item.team" ng-src="{{match.data[$item.team].logo}}"> {{$item.name}}
+                    <ui-select ng-hide="event.playerscount==1 " limit=2 on-select="checkSelection
+                                            " multiple reset-search-input="true " ng-model="event.players " theme="bootstrap "
+                    ng-disabled="event.chooseplayer.disabled ">
+                        <ui-select-match placeholder="Select player name "><img class="ui-select-match-img " alt="$item.team
+                                            " ng-src="{{match.data[$item.team].logo}} "> {{$item.name}}
                         </ui-select-match>
-                        <ui-select-choices repeat="player in players | filter: (filterTeamPlayers || '') && {team: event.team} | propsFilter: {name: $select.search, team: $select.search}">
-                            <img class="ui-select-match-img" alt='{{player.team}}' ng-src='{{match.data[player.team].logo}}'>
+                        <ui-select-choices repeat="player in players | filter: (filterTeamPlayers || '') && {team: event.team}
+                                            | propsFilter: {name: $select.search, team: $select.search} ">
+                            <img class="ui-select-match-img " alt='{{player.team}}' ng-src='{{match.data[player.team].logo}}'>
 
-                            <div ng-bind-html=" player.name | highlight: $select.search"></div>
+                            <div ng-bind-html=" player.name | highlight: $select.search "></div>
 
                         </ui-select-choices>
                     </ui-select>
-                    <div class="mb">
-                        <label class="mda-checkbox">
-                            <input type="checkbox" ng-model="filterTeamPlayers" />
-                            <em class="subtle-checkbox"></em>Only selected team players
+                    <div class="mb ">
+                        <label class="mda-checkbox ">
+                            <input type="checkbox " ng-model="filterTeamPlayers " />
+                            <em class="subtle-checkbox "></em>Only selected team players
                         </label>
                     </div>
                 </div>
 
             </div>
-            <div ng-show="humanizedEvent" ng-class="event.type" class="humanized-event" ng-bind-html="humanizedEvent"></div>
+            <div ng-show="humanizedEvent " ng-class="event.type " class="humanized-event " ng-bind-html="humanizedEvent "></div>
         </div>
-        <div class="panel-footer">
+        <div class="panel-footer ">
 
-            <button ng-click="drawer = 0" type="button" class="mb-sm btn btn-pill-right btn-default pull-right">Cancel
+            <button ng-click="drawer=0 " type="button " class="mb-sm btn btn-pill-right btn-default pull-right ">Cancel
             </button>
-            <button ng-click="addEvent(event)" disable-animation ng-show="complete == true" type="button" class="btn btn-square btn-pill-left pull-right btn-success">Send Event
+            <button ng-click="addEvent(event) " disable-animation ng-show="complete == true" type="button " class="btn
+                                            btn-square btn-pill-left pull-right btn-success ">Send Event
             </button>
-            <button ng-click="addEvent(event)" disable-animation ng-show="complete == false" type="button" class="mb-sm btn btn-pill-left btn-warning pull-right">
+            <button ng-click="addEvent(event) " disable-animation ng-show="complete == false" type="button " class="mb-sm
+                                            btn btn-pill-left btn-warning pull-right ">
                 Send and Update later
             </button>
         </div>
@@ -74,45 +248,70 @@
 
 
 
-<div class="panel panel-default">
-
-
-    <div class="panel-heading">
-        <button ng-click="drawer=1" type="button" class="mb-sm btn btn-success pull-right"><strong>New Team</strong></button>
-
+<div class="panel panel-default ">
+    <div class="panel-heading ">
+        <button ng-click="drawer=1" type="button " class="mb-sm btn btn-default pull-right" style="margin-left:5px"><strong>Add</strong></button>
+        <button ng-click="view.massUpdate = !view.massUpdate" type="button " style="margin-left:5px" class="mb-sm btn btn-default pull-right "><strong>Mass Update</strong></button>
+        <button ng-show="view.massUpdate && !allSelected" ng-click="selectAll()" type="button" class="mb-sm btn btn-success pull-right"><strong>All</strong></button>
+        <button ng-show="view.massUpdate && allSelected" ng-click="selectNone()" type="button" class="mb-sm btn btn-danger pull-right"><strong>None</strong></button>
     </div>
 
 
 
 
-    <div class="panel-body">
+    <div class="panel-body ">
 
         <div>
-            <table datatable="ng" class="row-border hover">
+            <table datatable="ng" dt-instance="dtInstance" class="row-border hover ">
                 <thead>
                     <tr>
+                        <th ng-show="view.massUpdate"></th>
                         <th>Logo</th>
                         <th>Name</th>
                         <th>League</th>
                         <th>ID</th>
-                         <th>Edit</th>
+                        <th>Edit</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr ng-repeat="team in Teams">
+
+                        <td ng-show="view.massUpdate">
+                            <div class="checkbox c-checkbox needsclick">
+                                <label class="needsclick">
+                                    <input ng-checked="team.isSelected" ng-click="pushMassUpdate($event, team)" type="checkbox" required="" name="checkbox" ng-model="checkbox"
+                                    class="needsclick" />
+                                    <span class="fa fa-check">
+                           </div>
+                        </td>
                         <td>
-                            <div class="center">
-                                <img ng-src="http://ep7t6ae.cloudimg.io/s/height/50/{{team.logo}}">
+                            <div class="center ">
+                                <img ng-click="searchFor(Getlang(team.name,'en')); editTeam(team);" ng-src="http://ep7t6ae.cloudimg.io/s/height/50/{{team.logo}}">
                             </div>
                         </td>
                         <td><strong>{{ team.name_en }}</strong></td>
                         <td>{{ team.league}}</td>
                         <td><small>{{ team._id }}</small></td>
-                        <td>
-                            <span on-toggle="toggled(open)" class="dropdown"><a href="" dropdown-toggle=""><i class="fa fa-cog"></i></a>
-                             
-                           </span>
-                           
+                        <td align="center ">
+                            <!-- START button group-->
+                            <div dropdown="dropdown2 " class="text-center btn-group ">
+                                <!--                 <span on-toggle="toggled(open) " class="dropdown "><a href="
+                                            " dropdown-toggle=" "><i class="fa fa-cog "></i></a>-->
+                                <!--                                            <button type="button
+                                            " dropdown-toggle=" " class="btn btn-default btn-sm ">-->
+                                <i ng-click="editTeam(team); " class="fa fa-edit "></i>
+                                <!--                                            </button>-->
+                                <!--
+                                            <ul role="menu " class="dropdown-menu fadeInUpShort animated ">
+                                                <li><a href="# " ng-click="ModerateMatch(event._id,event.sport); ">Moderate</a>
+                                                </li>
+                                                <li><a href=" " ng-click="EditMatch(event); ">Edit</a>
+                                                </li>
+                                            </ul>
+-->
+                            </div>
+                            <!-- END button group-->
+
                         </td>
                     </tr>
                 </tbody>

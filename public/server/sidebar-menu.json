@@ -1,61 +1,70 @@
 [
-  {
-    "text": "Dashboard",
-    "sref": "app.dashboard",
-    "icon": "icon-speedometer",
-    "label": "label label-info",
-    "translate": "sidebar.nav.DASHBOARD"
-  },
     {
-    "text": "Schedule",
-    "sref": "app.schedule",
-    "icon": "icon-calendar",
-    "label": "label label-info"
-  },
+        "text": "Dashboard",
+        "sref": "app.dashboard",
+        "icon": "icon-speedometer",
+        "label": "label label-info",
+        "translate": "sidebar.nav.DASHBOARD"
+    },
     {
-    "text": "Manage",
-    "heading": "true",
-    "translate": "Manage"
-  },
+        "text": "Schedule",
+        "sref": "app.schedule",
+        "icon": "icon-calendar",
+        "label": "label label-info"
+    },
     {
-    "text": "Data",
-    "sref": "#",
-    "icon": "icon-note",
-    "submenu": [{
-    "text": "Welcomes",
-    "sref": "app.welcomes",
-    
-    "translate": "Welcomes"
-  },
-  {
-    "text": "Polls",
-    "sref": "app.polls",
-   
-    "translate": "Polls"
-  },
-  {
-    "text": "Activities",
-    "sref": "app.activities",
- 
-    "translate": "Activities"
-  },
-  {
-    "text": "Interviews",
-    "sref": "app.interviews",
-   
-    "translate": "Interviews"
-  }
-    ]
-  },  
-  {
-    "text": "Pushes",
-    "sref": "app.pushes",
-    "icon": "icon-note",
-    "translate": "Push Notifications"
-  },
-  {
-    "text": "Settings",
-    "sref": "app.settings",
-    "icon": "icon-settings"
-  }
+        "text": "Manage",
+        "heading": "true",
+        "translate": "Manage"
+    },
+    {
+        "text": "Data",
+        "sref": "#",
+        "icon": "icon-note",
+        "submenu": [
+            {
+                "text": "Teams",
+                "sref": "app.teams"
+            },
+            {
+                "text": "Players",
+                "sref": "app.players"
+            },
+            {
+                "text": "Competitions",
+                "sref": "app.competitions"
+            },
+            {
+                "text": "Welcomes",
+                "sref": "app.welcomes",
+                "translate": "Welcomes"
+            },
+            {
+                "text": "Polls",
+                "sref": "app.polls",
+                "translate": "Polls"
+            },
+            {
+                "text": "Activities",
+                "sref": "app.activities",
+                "translate": "Activities"
+            },
+            {
+                "text": "Interviews",
+                "sref": "app.interviews",
+                "translate": "Interviews"
+            }
+        ]
+    },
+    {
+        "text": "Pushes",
+        "sref": "app.pushes",
+        "icon": "icon-note",
+        "translate": "Push Notifications"
+    },
+    {
+        "text": "Settings",
+        "sref": "app.settings",
+        "icon": "icon-settings"
+    }
 ]
