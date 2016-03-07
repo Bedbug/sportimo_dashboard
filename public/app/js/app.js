@@ -49,7 +49,9 @@
             'app.polls',
             'app.match-moderation-soccer',
             'app.teams',
-            "app.schedule"
+            "app.schedule",
+            "app.players",
+            "app.publications"
         ]);
 })();
 
@@ -60,6 +62,13 @@
 
     angular
         .module('app.pushes', []);
+})();
+
+(function () {
+    'use strict';
+
+    angular
+        .module('BedbugDirectives', []);
 })();
 
 (function () {
@@ -87,8 +96,23 @@
     'use strict';
 
     angular
-        .module('app.teams', ['ngDialog']);
+        .module('app.teams', []);
 })();
+
+(function () {
+    'use strict';
+
+    angular
+        .module('app.publications', []);
+})();
+
+(function () {
+    'use strict';
+
+    angular
+        .module('app.players', []);
+})();
+
 
 (function () {
     'use strict';
@@ -4435,7 +4459,6 @@
 
     angular
         .module('app.schedule')
-
         .service('ScheduleService', ScheduleService)
         .controller('ScheduleController', ScheduleController);
 
@@ -4604,8 +4627,8 @@
             vm.view[id] = false;
 
         });
-        
-        
+
+
 
     }
 
@@ -4687,36 +4710,34 @@
     'use strict';
 
     angular
-        .module('app.teams')
-        .service('TeamsService', TeamsService)
-        .service('PlayersService', PlayersService)
-        .controller('TeamsController', TeamsController);
+        .module('app.players')
+        .controller('PlayersController', PlayersController)
 
-    PlayersService.$inject = ['$resource', 'Restangular', '$q', '$rootScope'];
-    TeamsService.$inject = ['$resource', 'Restangular', '$q', '$rootScope'];
-    TeamsController.$inject = ['$scope', 'TeamsService', 'PlayersService', 'DTOptionsBuilder', 'DTColumnDefBuilder', 'Upload', '$window'];
+    PlayersController.$inject = ['$scope', 'TeamsService', 'PlayersService', 'DTOptionsBuilder', 'DTColumnDefBuilder', 'Upload', '$window'];
 
-    function TeamsController($scope, TeamsService, PlayersService, DTOptionsBuilder, DTColumnDefBuilder, Upload, $window) {
+
+
+    function PlayersController($scope, TeamsService, PlayersService, DTOptionsBuilder, DTColumnDefBuilder, Upload, $window) {
 
         var vm = $scope;
         vm.Players = [];
         vm.Teams = [];
-       
+
 
         vm.view = {
-            editTeam: 0,
+            editItem: 0,
             loadingPlayers: 0
         }
-        
+
         var bucket = 'https://s3-eu-west-1.amazonaws.com/sportimo-media/';
-        vm.uploadFile = function (file,team) {
-            console.log(file.name.substr(file.name.lastIndexOf('.')+1));
+        vm.uploadFile = function (file, player) {
+            console.log(file.name.substr(file.name.lastIndexOf('.') + 1));
             // console.log(file);
             Upload.upload({
                 url: 'https://s3-eu-west-1.amazonaws.com/sportimo-media', //S3 upload url including bucket name
                 method: 'POST',
                 data: {
-                    key: 'teams/'+team._id+'.'+file.name.substr(file.name.lastIndexOf('.')+1), // the key to store the file on S3, could be file name or customized
+                    key: 'players/' + player._id + '.' + file.name.substr(file.name.lastIndexOf('.') + 1), // the key to store the file on S3, could be file name or customized
                     AWSAccessKeyId: "AKIAJHAZLDHNWH7S45CQ",
                     acl: 'public-read', // sets the access to the uploaded file in the bucket: private, public-read, ...
                     policy: "ewogICJleHBpcmF0aW9uIjogIjIwMjAtMDEtMDFUMDA6MDA6MDBaIiwKICAiY29uZGl0aW9ucyI6IFsKICAgIHsiYnVja2V0IjogInNwb3J0aW1vLW1lZGlhIn0sCiAgICBbInN0YXJ0cy13aXRoIiwgIiRrZXkiLCAiIl0sCiAgICB7ImFjbCI6ICJwdWJsaWMtcmVhZCJ9LAogICAgWyJzdGFydHMtd2l0aCIsICIkQ29udGVudC1UeXBlIiwgIiJdLAogICAgWyJzdGFydHMtd2l0aCIsICIkZmlsZW5hbWUiLCAiIl0sCiAgICBbImNvbnRlbnQtbGVuZ3RoLXJhbmdlIiwgMCwgNTI0Mjg4MDAwXQogIF0KfQ==", // base64-encoded json policy (see article below)
@@ -4726,107 +4747,501 @@
                     file: file
                 }
             }).then(function (resp) {
-                 team.logo = bucket+'teams/'+team._id+"."+file.name.substr(file.name.lastIndexOf('.')+1);
-                console.log(team.logo);
-            team.save();
-            console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
-        }, function (resp) {
-            console.log('Error status: ' + resp.status);
-           
-        }, function (evt) {
-            var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-            // console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
-        });
+                player.pic = bucket + 'players/' + player._id + "." + file.name.substr(file.name.lastIndexOf('.') + 1);
+                console.log(player.pic);
+                player.save();
+                console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
+            }, function (resp) {
+                console.log('Error status: ' + resp.status);
+
+            }, function (evt) {
+                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                // console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+            });
         }
         
         /* Scope Methods */
-        vm.editTeam = function (team) {
-            vm.selectedTeam = team;
-            vm.selectedTeam.selected = _.findWhere(team.name,{"lang":"en"});
-            if(!vm.selectedTeam.selected) {
-                team.name.push({"lang":"en","text":""});
-                 vm.selectedTeam.selected = _.findWhere(team.name,{"lang":"en"});
+        vm.editItem = function (player) {
+            console.log(player);
+            vm.selectedItem = player;
+            if (!vm.selectedItem.name.en) {
+                vm.selectedItem.name.en = "";
+                vm.selectedItem.selected = "en";
+            } else {
+                vm.selectedItem.selected = "en";
             }
-            vm.view.editTeam = 1;
+            vm.view.editItem = 1;
         }
-        
-        vm.updateTeam = function (){
-            console.log(vm.selectedTeam);
-            vm.selectedTeam.save().then(function(res,err){
-                 vm.selectedTeam = null;
-                 vm.view.editTeam = 0;
+
+        vm.updatePlayer = function () {
+            console.log(vm.selectedItem);
+            vm.selectedItem.save().then(function (res, err) {
+                vm.selectedItem = null;
+                vm.view.editItem = 0;
             })
         }
-        
-        vm.delete = function (){
-            vm.selectedTeam.name = _.without(vm.selectedTeam.name, vm.selectedTeam.selected);
-        }
-        
-        vm.Getlang = function(array, lang){
-            return _.findWhere(array, {lang: lang}).text;
-        };
-        
-        vm.pushLang = function(team){
-            team.name.push({"lang":vm.newLangKey,"text":""});
-            vm.newLangKey = null;
-        }
-        vm.isSelected = function(team){
-            if(team.isSelected){
-                team.isSelected = false;
+
+
+        vm.isSelected = function (player) {
+            if (player.isSelected) {
+                player.isSelected = false;
                 return false;
-             }else{
-                 team.isSelected = true;
+            } else {
+                player.isSelected = true;
                 return true;
-                }
+            }
         }
-        
+
         vm.MassUpdateObjects = [];
         vm.MassUpdateChanges = {};
         vm.allSelected = null;
         vm.dtInstance = null;
-        
-        vm.pushMassUpdate = function(event, team){
-            if(vm.isSelected(team))
-            vm.MassUpdateObjects.push(team);
+
+        vm.pushMassUpdate = function (event, player) {
+            if (vm.isSelected(player))
+                vm.MassUpdateObjects.push(player);
             else
-            vm.MassUpdateObjects = _.without(vm.MassUpdateObjects, team);
-            
+                vm.MassUpdateObjects = _.without(vm.MassUpdateObjects, player);
+
             console.log(vm.MassUpdateObjects.length);
         }
-        vm.selectAll = function(){
+        vm.selectAll = function () {
             console.log(vm.dtInstance);
             //  console.log(vm.dtInstance.dataTable._('tr', {"filter":"applied"})[0]);
             
             vm.allSelected = true;
         }
-        vm.selectNone = function(){
+        vm.selectNone = function () {
             vm.allSelected = false;
             vm.MassUpdateObjects = [];
         }
-        
-        vm.massUpdate = function(){
-            vm.MassUpdateObjects.forEach(function(item){
-                if(vm.MassUpdateChanges.league != null){
+
+        vm.massUpdate = function () {
+            vm.MassUpdateObjects.forEach(function (item) {
+                if (vm.MassUpdateChanges.league != null) {
                     item.league = vm.MassUpdateChanges.league;
                     item.save();
-                    }
+                }
+            })
+        }
+
+        vm.getTeam = function (id) {
+            return _.findWhere(vm.Teams, { "_id": id });
+        }
+        
+        /* Upload Mechanics*/
+        // $scope.$watch('files', function () {
+        //     $scope.upload($scope.files);
+        // });
+        // $scope.$watch('file', function () {
+        //     if ($scope.file != null) {
+        //         $scope.files = [$scope.file];
+        //     }
+        // });
+        // $scope.log = '';
+
+      
+        vm.searchFor = function (forQuery) {
+            $window.open('https://www.google.gr/search?q=' + forQuery + '+logo&tbm=isch', '_blank');
+
+        };
+
+        TeamsService.getAllTeams().then(function (teams) {
+            vm.Teams = teams;
+        }, function (error) { });
+
+        PlayersService.getAllPlayers().then(function (players) {
+            vm.Players = players;
+        }, function (error) { });
+
+    }
+
+
+
+})();
+
+
+(function () {
+    'use strict';
+    angular
+        .module('app.publications')
+        .controller('PublicationsController', PublicationsController)
+        .service('PublicationsService', PublicationsService);
+
+    PublicationsController.$inject = ['$scope', 'PublicationsService', 'TagsService', 'RouteHelpers', 'Upload'];
+
+
+    function PublicationsController($scope, PublicationsService, TagsService, RouteHelpers, Upload) {
+        var vm = $scope;
+        vm.Tags = null;
+        vm.Articles = null;
+        vm.view= {};
+        
+        vm.onChangeCallback = function (article) {
+            article.put().then(function (res) {
+                console.log(res);
+            });
+        }
+
+        vm.onAddtag = function (article, item, model) {
+            var newTag = {
+                name: item.name,
+                _id: item._id
+            };
+
+            var index = _.findIndex(article.tags, { "_id": item._id });
+            article.tags[index] = newTag;
+
+            article.put().then(function (res) {
+                console.log(res);
+            });
+        }
+        
+        /**
+         * SEARCH */
+          vm.opened = {};
+          vm.open = function ($event, whichCal) {
+                $event.preventDefault();
+                $event.stopPropagation();  
+                vm.opened[whichCal] = true;
+            };
+
+            vm.dateOptions = {
+                formatYear: 'yy',
+                startingDay: 1
+            };
+
+            vm.initDate = new Date('2019-10-20');
+            vm.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+            vm.format = vm.formats[0];
+            vm.searchObj = {};
+            vm.searchArticles = function(searchObj){
+                if(searchObj.tags == ""){
+                    searchObj.tags = null;
+                }
+                PublicationsService.getArticles(searchObj).then(function (articles) {
+                    vm.Articles = articles;
+              })
+            }
+        
+        /* NEW ITEM */
+        vm.newItem = null;
+        
+        vm.createNew = function(){
+            vm.newItem = {"publication":{"title":{"en":""},"text":{"en":""}}};
+        }
+        
+        vm.artTypes = ["Interview","News","Welcome","Activity"];
+        
+        vm.SetToNow = function (){
+          vm.newItem.publishDate = new Date(moment.utc());  
+        }
+        
+        vm.SaveNewItem = function(newItem){
+            vm.view.busy = true;
+            PublicationsService.postItem(newItem).then(function(returnedItem){
+                vm.Articles.push(returnedItem);
+                vm.newItem = null;
+                vm.view.busy = false;
+            })
+        }
+        /* END OF NEW ITEM*/
+        
+        vm.UpdateItem = function(item){
+             vm.view.busy = true;
+              item.put().then(function (res) {
+                console.log(res);
+                vm.editItem = null;
+                 vm.view.busy = false;
+            });
+           
+        }
+        
+        PublicationsService.getArticles({ limit: 30 }).then(function (articles) {
+            vm.Articles = articles;
+        })
+        
+        
+        
+        vm.basepath = RouteHelpers.basepath;
+
+        TagsService.getAllTags().then(function (tags) {
+            vm.Tags = tags;
+        })
+        
+        /* UPLOAD MECHANICS */
+         var bucket = 'https://s3-eu-west-1.amazonaws.com/sportimo-media/';
+        vm.uploadFile = function (file, item) {
+           
+            Upload.upload({
+                url: 'https://s3-eu-west-1.amazonaws.com/sportimo-media', //S3 upload url including bucket name
+                method: 'POST',
+                data: {
+                    key: 'articles/' + item._id + '.' + file.name.substr(file.name.lastIndexOf('.') + 1), // the key to store the file on S3, could be file name or customized
+                    AWSAccessKeyId: "AKIAJHAZLDHNWH7S45CQ",
+                    acl: 'public-read', // sets the access to the uploaded file in the bucket: private, public-read, ...
+                    policy: "ewogICJleHBpcmF0aW9uIjogIjIwMjAtMDEtMDFUMDA6MDA6MDBaIiwKICAiY29uZGl0aW9ucyI6IFsKICAgIHsiYnVja2V0IjogInNwb3J0aW1vLW1lZGlhIn0sCiAgICBbInN0YXJ0cy13aXRoIiwgIiRrZXkiLCAiIl0sCiAgICB7ImFjbCI6ICJwdWJsaWMtcmVhZCJ9LAogICAgWyJzdGFydHMtd2l0aCIsICIkQ29udGVudC1UeXBlIiwgIiJdLAogICAgWyJzdGFydHMtd2l0aCIsICIkZmlsZW5hbWUiLCAiIl0sCiAgICBbImNvbnRlbnQtbGVuZ3RoLXJhbmdlIiwgMCwgNTI0Mjg4MDAwXQogIF0KfQ==", // base64-encoded json policy (see article below)
+                    signature: "22lwJf8Yl4B8qoOT6OrtHqIH6qs=", // base64-encoded signature based on policy string (see article below)
+                    "Content-Type": file.type != '' ? file.type : 'application/octet-stream', // content type of the file (NotEmpty)
+                    filename: file.name, // this is needed for Flash polyfill IE8-9
+                    file: file
+                }
+            }).then(function (resp) {
+                item.photo = bucket + 'articles/' + item._id + "." + file.name.substr(file.name.lastIndexOf('.') + 1);
+                console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
+                item.put();
+            }, function (resp) {
+                console.log('Error status: ' + resp.status);
+
+            }, function (evt) {
+                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                // console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+            });
+        }
+        
+        /* END OF UPLOAD MECHANICS */
+    };
+
+    PublicationsService.$inject = ['$resource', 'Restangular', '$q', '$rootScope'];
+
+    function PublicationsService($resource, Restangular, $q, $rootScope) {
+        var articlesSearch = Restangular.all('v1/data/articles/search');
+         var articles = Restangular.all('v1/data/articles');
+        Restangular.setBaseUrl($rootScope.servers[$rootScope.serverEnvironment].game_server);
+        Restangular.setRestangularFields({
+            id: "_id"
+        });
+
+        return {
+            getArticles: function (conditions) {
+                var Defer = $q.defer();
+                articlesSearch.post(conditions).then(function (articles) {
+                    articles = Restangular.restangularizeCollection(null, articles, 'v1/data/articles');
+                    Defer.resolve(articles);
+                });
+                return Defer.promise;
+            },
+              postItem: function (item) {
+                var Defer = $q.defer();
+                articles.post(item).then(function (returnItem) {
+                    Defer.resolve(returnItem);
+                });
+                return Defer.promise;
+            },
+        }
+
+    };
+})();
+
+(function () {
+    'use strict';
+
+    angular
+        .module('app.teams')
+        .service('TeamsService', TeamsService)
+        .service('PlayersService', PlayersService)
+        .service('TagsService', TagsService)
+        .controller('TeamsController', TeamsController)
+        .directive('multiLangText', MultiLangText)
+        .directive('multiLangTextArea', MultiLangTextArea);
+
+    PlayersService.$inject = ['$resource', 'Restangular', '$q', '$rootScope'];
+    TeamsService.$inject = ['$resource', 'Restangular', '$q', '$rootScope'];
+    TeamsController.$inject = ['$scope', 'TeamsService', 'PlayersService', 'TagsService', 'DTOptionsBuilder', 'DTColumnDefBuilder', 'Upload', '$window'];
+
+    function MultiLangText() {
+        return {
+            restrict: 'E',
+            templateUrl: './app/views/directives/multiLangInput.html',
+            scope: {
+                selected: '@default',
+                lObject: '=languageObject',
+
+            },
+            controller: ['$scope', function ($scope) {
+                
+              $scope.$watch('lObject', function(newValue, oldValue) {
+               if($scope.lObject && $scope.lObject.en)
+               $scope.selected = 'en';
+            });
+  
+                $scope.pushLangKey = function () {
+                    $scope.lObject[$scope.newLangKey] = "";
+                    $scope.selected = $scope.newLangKey;
+                    $scope.newLangKey = null;
+                };
+
+                $scope.delete = function () {
+                    delete $scope.lObject[$scope.selected];
+                }
+            }]
+        };
+    };
+    
+    function MultiLangTextArea() {
+        return {
+            restrict: 'E',
+            templateUrl: './app/views/directives/multiLangTextArea.html',
+            scope: {
+                selected: '@default',
+                lObject: '=languageObject',
+
+            },
+            controller: ['$scope', function ($scope) {
+                
+                $scope.$watch('lObject', function(newValue, oldValue) {
+               if($scope.lObject && $scope.lObject.en)
+               $scope.selected = 'en';
+            });
+                  
+                $scope.pushLangKey = function () {
+                    $scope.lObject[$scope.newLangKey] = "";
+                    $scope.selected = $scope.newLangKey;
+                    $scope.newLangKey = null;
+                };
+
+                $scope.delete = function () {
+                    delete $scope.lObject[$scope.selected];
+                }
+            }]
+        };
+    };
+
+    function TeamsController($scope, TeamsService, PlayersService, TagsService, DTOptionsBuilder, DTColumnDefBuilder, Upload, $window) {
+
+        var vm = $scope;
+        vm.Players = [];
+        vm.Teams = [];
+        vm.Tags = [];
+
+
+        vm.view = {
+            editTeam: 0,
+            loadingPlayers: 0
+        }
+
+        var bucket = 'https://s3-eu-west-1.amazonaws.com/sportimo-media/';
+        vm.uploadFile = function (file, team) {
+            console.log(file.name.substr(file.name.lastIndexOf('.') + 1));
+            // console.log(file);
+            Upload.upload({
+                url: 'https://s3-eu-west-1.amazonaws.com/sportimo-media', //S3 upload url including bucket name
+                method: 'POST',
+                data: {
+                    key: 'teams/' + team._id + '.' + file.name.substr(file.name.lastIndexOf('.') + 1), // the key to store the file on S3, could be file name or customized
+                    AWSAccessKeyId: "AKIAJHAZLDHNWH7S45CQ",
+                    acl: 'public-read', // sets the access to the uploaded file in the bucket: private, public-read, ...
+                    policy: "ewogICJleHBpcmF0aW9uIjogIjIwMjAtMDEtMDFUMDA6MDA6MDBaIiwKICAiY29uZGl0aW9ucyI6IFsKICAgIHsiYnVja2V0IjogInNwb3J0aW1vLW1lZGlhIn0sCiAgICBbInN0YXJ0cy13aXRoIiwgIiRrZXkiLCAiIl0sCiAgICB7ImFjbCI6ICJwdWJsaWMtcmVhZCJ9LAogICAgWyJzdGFydHMtd2l0aCIsICIkQ29udGVudC1UeXBlIiwgIiJdLAogICAgWyJzdGFydHMtd2l0aCIsICIkZmlsZW5hbWUiLCAiIl0sCiAgICBbImNvbnRlbnQtbGVuZ3RoLXJhbmdlIiwgMCwgNTI0Mjg4MDAwXQogIF0KfQ==", // base64-encoded json policy (see article below)
+                    signature: "22lwJf8Yl4B8qoOT6OrtHqIH6qs=", // base64-encoded signature based on policy string (see article below)
+                    "Content-Type": file.type != '' ? file.type : 'application/octet-stream', // content type of the file (NotEmpty)
+                    filename: file.name, // this is needed for Flash polyfill IE8-9
+                    file: file
+                }
+            }).then(function (resp) {
+                team.logo = bucket + 'teams/' + team._id + "." + file.name.substr(file.name.lastIndexOf('.') + 1);
+                console.log(team.logo);
+                team.save();
+                console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
+            }, function (resp) {
+                console.log('Error status: ' + resp.status);
+
+            }, function (evt) {
+                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                // console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+            });
+        }
+        
+        /* Scope Methods */
+        vm.editTeam = function (team) {
+            console.log(team);
+            vm.selectedTeam = team;
+            if (!vm.selectedTeam.name.en) {
+                vm.selectedTeam.name.en = "";
+                vm.selectedTeam.selected = "en";
+            } else {
+                vm.selectedTeam.selected = "en";
+            }
+            vm.view.editTeam = 1;
+        }
+
+        vm.updateTeam = function () {
+            console.log(vm.selectedTeam);
+            vm.selectedTeam.save().then(function (res, err) {
+                vm.selectedTeam = null;
+                vm.view.editTeam = 0;
+            })
+        }
+
+        vm.delete = function () {
+            delete vm.selectedTeam.name[vm.selectedTeam.selected];
+        }
+
+        vm.Getlang = function (array, lang) {
+            return _.findWhere(array, { lang: lang }).text;
+        };
+
+        vm.pushLang = function (team) {
+            vm.selectedTeam.name[vm.newLangKey] = "";
+            vm.selectedTeam.selected = vm.newLangKey;
+            vm.newLangKey = null;
+        }
+        vm.isSelected = function (team) {
+            if (team.isSelected) {
+                team.isSelected = false;
+                return false;
+            } else {
+                team.isSelected = true;
+                return true;
+            }
+        }
+
+        vm.MassUpdateObjects = [];
+        vm.MassUpdateChanges = {};
+        vm.allSelected = null;
+        vm.dtInstance = null;
+
+        vm.pushMassUpdate = function (event, team) {
+            if (vm.isSelected(team))
+                vm.MassUpdateObjects.push(team);
+            else
+                vm.MassUpdateObjects = _.without(vm.MassUpdateObjects, team);
+
+            console.log(vm.MassUpdateObjects.length);
+        }
+        vm.selectAll = function () {
+            console.log(vm.dtInstance);
+            //  console.log(vm.dtInstance.dataTable._('tr', {"filter":"applied"})[0]);
+            
+            vm.allSelected = true;
+        }
+        vm.selectNone = function () {
+            vm.allSelected = false;
+            vm.MassUpdateObjects = [];
+        }
+
+        vm.massUpdate = function () {
+            vm.MassUpdateObjects.forEach(function (item) {
+                if (vm.MassUpdateChanges.league != null) {
+                    item.league = vm.MassUpdateChanges.league;
+                    item.save();
+                }
             })
         }
         
         /* Players */
-        vm.LoadPlayers = function(){
+        vm.LoadPlayers = function () {
             vm.view.loadingPlayers = 1;
-            TeamsService.getFullTeam(vm.selectedTeam._id).then(function(fullTeam){
+            TeamsService.getFullTeam(vm.selectedTeam._id).then(function (fullTeam) {
                 vm.selectedTeam.players = fullTeam.players;
                 vm.selectedTeam.playersLoaded = true;
-                
+
                 vm.view.loadingPlayers = 0;
             })
         }
-        vm.pushPlayer = function(player){
-            if(player){
+        vm.pushPlayer = function (player) {
+            if (player) {
                 player.team = vm.selectedTeam._id;
-                player.save().then(function(){
+                player.save().then(function () {
                     vm.selectedTeam.players.push(player);
                     vm.selectedTeam.save().then(function () {
                         console.log("All OK!");
@@ -4875,20 +5290,24 @@
                 }
             }
         };
-        
-        vm.searchFor = function(forQuery) {
-            $window.open('https://www.google.gr/search?q='+forQuery+'+logo&tbm=isch', '_blank');
-       
-        };   
+
+        vm.searchFor = function (forQuery) {
+            $window.open('https://www.google.gr/search?q=' + forQuery + '+logo&tbm=isch', '_blank');
+
+        };
 
         TeamsService.getAllTeams().then(function (teams) {
             vm.Teams = teams;
         }, function (error) { });
 
         PlayersService.getAllPlayers().then(function (players) {
-           vm.Players = players;
+            vm.Players = players;
         }, function (error) { });
-        
+
+        TagsService.getAllTags().then(function (tags) {
+            vm.Tags = tags;
+        }, function (error) { console.log("Error loading tags") });
+
     }
 
     function TeamsService($resource, Restangular, $q, $rootScope) {
@@ -4918,8 +5337,8 @@
                     });
                     return Defer.promise;
                 },
-                
-                getFullTeam: function(id) {
+
+                getFullTeam: function (id) {
                     var Defer = $q.defer();
                     Restangular.one('v1/data/teams', id).one('full').get().then(function (team) {
                         Defer.resolve(team);
@@ -4928,6 +5347,31 @@
                 }
             }
         }
+    }
+
+    function TagsService($resource, Restangular, $q, $rootScope) {
+
+        var tags = null;
+        var tagsRoute = Restangular.all('v1/data/tags');
+
+        Restangular.setBaseUrl($rootScope.servers[$rootScope.serverEnvironment].game_server);
+        Restangular.setRestangularFields({
+            id: "_id"
+        });
+
+        return {
+            getAllTags: function () {
+                var Defer = $q.defer();
+                if (tags) Defer.resolve(tags);
+                else
+                    tagsRoute.getList().then(function (receivedTags) {
+                        tags = receivedTags;
+                        Defer.resolve(tags);
+                    });
+                return Defer.promise;
+            }
+        }
+
     }
 
     function PlayersService($resource, Restangular, $q, $rootScope) {
@@ -9545,16 +9989,22 @@
             // Angular based script (use the right module name)
             modules: [
                 {
+                    name: 'truncate',
+                    files: [
+                        "vendor/angular-truncate/src/truncate.js"
+                    ]
+                },
+                {
                     name: 'ngFileUpload',
                     files: [
-                        "vendor/ng-file-upload/dist/ng-file-upload.min.js",
+                        "vendor/ng-file-upload/dist/ng-file-upload.min.js"
                     ]
                 },
                 {
                     name: 'angular-ladda',
                     files: [
                         "vendor/ladda/dist/ladda-themeless.min.css",
-                         "vendor/ladda/js/spin.js",
+                        "vendor/ladda/js/spin.js",
                         "vendor/ladda/js/ladda.js",
                         "vendor/angular-ladda/dist/angular-ladda.min.js"]
                 },
@@ -12560,9 +13010,10 @@
                 url: '/schedule',
                 title: 'Schedule',
                 templateUrl: helper.basepath('database/schedule.html'),
-                resolve: helper.resolveFor('restangular', 'toaster', 'dirPagination', 'moment', 'datatables', 'fullcalendar', 'jquery-ui', 'jquery-ui-widgets', 'ui.select', 'angular-ladda','localytics.directives'),
+                resolve: helper.resolveFor('restangular', 'toaster', 'dirPagination', 'moment', 'datatables', 'fullcalendar', 'jquery-ui', 'jquery-ui-widgets', 'ui.select', 'angular-ladda', 'localytics.directives'),
                 controller: 'ScheduleController'
             })
+        /* END MATCHES SCHEDULE */
             .state('app.teams', {
                 url: '/teams',
                 title: 'Teams',
@@ -12573,11 +13024,17 @@
             .state('app.players', {
                 url: '/players',
                 title: 'players',
-
-                templateUrl: helper.basepath('database/teams.html'),
+                resolve: helper.resolveFor('restangular', 'toaster', 'dirPagination', 'moment', 'datatables', 'ngFileUpload', 'localytics.directives', 'angular-ladda'),
+                templateUrl: helper.basepath('database/players.html'),
                 controller: 'PlayersController'
             })
-        /* END MATCHES SCHEDULE */
+            .state('app.publications', {
+                url: '/publications',
+                title: 'Publications',
+                templateUrl: helper.basepath('database/publications.html'),
+                resolve: helper.resolveFor('akoenig.deckgrid', 'restangular', 'toaster', 'dirPagination', 'moment', 'datatables', 'ngFileUpload', 'localytics.directives', 'angular-ladda', 'ui.select', 'truncate'),
+                controller: 'PublicationsController'
+            })
 
             .state('app.match-moderation-soccer', {
                 url: '/match-moderation/soccer/:id',

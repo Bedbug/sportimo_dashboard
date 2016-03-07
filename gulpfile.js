@@ -22,7 +22,8 @@ gulp.task('webserver', function () {
 
                 }
             },
-            directoryListing: true,
+            defaultFile: "publi/index.html",
+            // directoryListing: true,
             open: true
         }));
 });
@@ -59,6 +60,13 @@ gulp.task('all', function (cb) {
                 }
             },
             directoryListing: true,
+            // proxies: [{source: '/', target: 'http://localhost:8080/public'}],
+            // directoryListing: {
+            //     enable: true,
+            //     path:"/public"
+            //     },
+                path: "/public",
+            // defaultFile: "index.html",
             open: true
         }));
 

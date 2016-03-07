@@ -1,5 +1,5 @@
 ::-webkit-scrollbar {
-    display: none;
+    /*display: none;*/
 }
 
 img.desaturate {
@@ -8,17 +8,75 @@ img.desaturate {
 }
 
 .drop-box {
-    /*background: #F8F8F8;*/
-    border: 5px dashed #DDD;
+    background: #F8F8F8;
+    border: 2px dashed #DDD;
     /*width: 170px;*/
     text-align: center;
-    padding: 50px 10px;
+    padding: 10px 10px;
     margin-left: 10px;
+    margin-bottom:10px;
+    /*min-height: 150px;*/
 }
 
 .chosen-container-single .chosen-single abbr {
     top: 12px !important;
     right: 26px !important;
+}
+
+.dragover{
+    background-color:   #23b7e5;
+    color: #fff;
+}
+
+.img-responsive {
+    display: block;
+    max-width: 100%;
+    min-width: 100%;
+}
+
+.deckgrid[deckgrid]::before {
+    /* Specifies that the grid should have a maximum of 4 columns. Each column will have the classes 'column' and 'column-1-4' */
+    content: '4 .column.column-1-4';
+    font-size: 0; /* See https://github.com/akoenig/angular-deckgrid/issues/14#issuecomment-35728861 */
+    visibility: hidden;
+}
+
+.deckgrid .column-1-4 {
+    width: 25%;
+}
+
+.Welcome{
+    color: #fff;
+    background-color: #23b7e5 !important;
+    border-color: #cfdbe2;
+    line-height: 32px;
+}
+
+.Interview{
+        color: #fff;
+    background-color: #37bc9b !important;
+    border-color: #37bc9b;
+    line-height: 32px;
+}
+
+.News{
+        color: #fff;
+    background-color: #5d9cec !important;
+    border-color: #cfdbe2;
+    line-height: 32px;
+}
+
+.Activity{
+        color: #fff;
+    background-color: #131e26 !important;
+    border-color: #131e26;
+    line-height: 32px;
+}
+
+.input-textarea{
+     overflow-y: scroll;
+     min-width: 100%;
+     min-height: 100px;
 }
 
 .c-checkbox input[type=checkbox]:checked + span, .c-radio input[type=checkbox]:checked + span, .c-checkbox input[type=radio]:checked + span, .c-radio input[type=radio]:checked + span {
@@ -28,7 +86,15 @@ img.desaturate {
 .c-checkbox:hover span, .c-radio:hover span {
     border-color: #2196f3;
 }
+.chosen-container{
+   
+    min-width: 100% !important;
+     width: auto !important;
+}
 
+.visible {
+    overflow: visible !important;
+}
 #xmark {
     background-image: url("../img/x_mark_red.png");
     background-size: contain;
@@ -765,8 +831,12 @@ border: 2px dashed #F1F1F1;
 
 }
 
+.ui-select-choices .item {
+    height: auto !important
+}
+
 .events-self{
-    overflow-y: hidden;
+    /*overflow-y: hidden;*/
     /*margin-bottom: 0 !important;*/
     /*background-color:  #1e272c;;*/
     /*color: #white;*/
@@ -908,6 +978,15 @@ border: 2px dashed #F1F1F1;
 
 }
 
+.select-input{
+    margin: 0px 0px 10px 0px;
+    padding: 0px;
+}
+.articleCard{
+        margin: 0 10px 10px 0;
+    /*width: 400px;*/
+    /*overflow: visible !important;*/
+}
 .selected{
     background-color: #46a149;
     padding-left: 5px;
@@ -923,7 +1002,7 @@ border: 2px dashed #F1F1F1;
 .ui-select-bootstrap > .ui-select-choices {
     width: 100%;
     height: auto;
-    max-height: 112px !important;
+    /*max-height: 112px !important;*/
     overflow-x: hidden;
 }
 

@@ -1,0 +1,195 @@
+<!--<h3>Publications Deck
+</h3>-->
+<!-- SEARCH -->
+<div ng-show="!editItem && !newItem" class="panel">
+    <div class="panel-body">
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Min Date</label>
+            <div class="col-sm-4">
+                <p class="input-group">
+                    <input type="text" name="date" datepicker-popup="{{format}}" ng-model="searchObj.minDate" is-open="opened['min']" datepicker-options="dateOptions"
+                    close-text="Close" class="form-control" />
+                    <span class="input-group-btn">
+                    <button type="button" ng-click="open($event,'min')" class="btn btn-default">
+                    <em class="fa fa-calendar"></em>
+                    </button>
+                </span>
+                </p>
+            </div>
+            <label class="col-sm-2 control-label">Max Date</label>
+            <div class="col-sm-4">
+                <p class="input-group">
+                    <input type="text" name="date" datepicker-popup="{{format}}" ng-model="searchObj.maxDate" is-open="opened['max']" datepicker-options="dateOptions"
+                    date-disabled="disabled(date, mode)" close-text="Close" class="form-control" />
+                    <span class="input-group-btn">
+                    <button type="button" ng-click="open($event,'max')" class="btn btn-default">
+                    <em class="fa fa-calendar"></em>
+                    </button>
+                </span>
+                </p>
+            </div>
+            <label class="col-sm-2 control-label">Article type</label>
+            <div class="col-sm-4">
+                <ui-select ng-model="searchObj.type" theme="bootstrap" ng-disabled="uisel.disabled" class="text-left">
+                    <ui-select-match placeholder="Select article type">{{$select.selected}}</ui-select-match>
+                    <ui-select-choices repeat="type in artTypes | filter: $select.search">
+                        <span ng-bind-html="type | highlight: $select.search"></span>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+            <label class="col-sm-2 control-label">Tag</label>
+            <div class="col-sm-4">
+                <p class="input-group">
+                <input type="text" class="form-control" ng-model="searchObj.tags" />
+                <span class="input-group-btn">
+                    <button type="button" ng-click="searchObj.tags = null" class="btn btn-default"><em class="fa fa-trash"></em></button>
+                </span>
+                </p>
+            </div>
+            <div class="col-sm-12">
+             <btn ladda="view.busy" ng-click="searchArticles(searchObj)" data-style="zoom-out" class="btn btn-default pull-right">Search</btn>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel-footer">
+         <span class="input-group-btn">
+        <btn ng-click="createNew()" class="btn btn-default pull-right">Add new publication</btn>
+       
+         </span>
+    </div>
+</div>
+<!-- END OF SEARCH -->
+<!-- START OF New Item -->
+<div ng-show="newItem" class="events-self animate">
+    <div class="panel widget articleCard events-self">
+        <div class="panel-body">
+            <div class="form-group">
+                <div class="col-sm-4">
+                    <div class="event-team-logo" ng-show="newItem._id">
+                        <img class="img-responsive dragover" ng-src="{{newItem.photo}}" />
+                        <div ngf-drop="uploadFile($file, newItem)" style="margin-left:0" class="drop-box" ngf-drag-over-class="'dragover'" ngf-pattern="'image/*,application/pdf'">
+                            <label><i style="font-size:29px" class="fa fa-cloud-upload"></i>
+                                <br/>Drop article image here</label>
+                        </div>
+                    </div>
+                    <div class="event-team-logo" ng-show="!newItem._id">
+                       <img class="img-responsive dragover" ng-src="{{newItem.photo}}" />
+                        <div ngf-drop="" style="margin-left:0" class="drop-box" ngf-drag-over-class="'dragover'" ngf-pattern="'image/*,application/pdf'">
+                            <label><i style="font-size:29px" class="fa fa-cloud-upload"></i>
+                                <br/>Images can only be uploaded while editing but you can use the Image input to supply a url directly.</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-8 ">
+                    <label>Tags</label>
+                    <ui-select multiple="" ng-model="newItem.tags" class="text-left" theme="bootstrap" ng-disabled="uisel.disabled">
+                        <ui-select-match placeholder="Select article tags">{{$item.name.en}}</ui-select-match>
+                        <ui-select-choices group-by="'type'" repeat="{name:tag.name,_id:tag._id} as tag in Tags | filter: $select.search">
+                            <div ng-bind-html="tag.name.en | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                    <label>Article type</label>
+                    <ui-select ng-model="newItem.type" theme="bootstrap" ng-disabled="uisel.disabled" class="text-left">
+                        <ui-select-match placeholder="Select article type">{{$select.selected}}</ui-select-match>
+                        <ui-select-choices repeat="type in artTypes | filter: $select.search">
+                            <span ng-bind-html="type | highlight: $select.search"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                    <label>Date</label>
+                    <p class="input-group">
+                        <input class="form-control" data-ng-model="newItem.publishDate" data-date-time-input="DD/MM/YYYY H:mm" />
+                        <span class="input-group-btn">
+                           <button type="button" ng-click="openedCalendar = 1" class="btn btn-default"><em class="fa fa-calendar"></em></button>
+                           <button ng-click="SetToNow(newItem.publishDate)" class="btn btn-default">Now</button>
+                        </span>
+                    </p>
+                </div>
+                <datetimepicker style="position:absolute; top:0px; right: 13px; z-index: 99;" class="card events-self pull-right" data-on-set-time="openedCalendar=0;OnSet(newDate, oldDate)"
+                ng-show="openedCalendar==1" data-ng-model="newItem.publishDate"></datetimepicker>
+                <div class="col-sm-12">
+                    <label>Image</label>
+                    <input type="text" class="form-control" ng-model="newItem.photo" />
+                    <label>Title</label>
+                    <multi-lang-text language-object="newItem.publication.title" default="en"></multi-lang-text>
+                    <label>Text</label>
+                    <multi-lang-text-area language-object="newItem.publication.text" default="en"></multi-lang-text-area>
+                </div>
+            </div>
+            <br/>
+        </div>
+        <div class="panel-footer">
+            <btn ng-click="newItem=null" class="btn btn-default pull-right">Cancel</btn>
+            <btn ladda="view.busy" ng-click="SaveNewItem(newItem)" data-style="zoom-out" class="btn btn-success pull-right">Save</btn>
+        </div>
+    </div>
+</div>
+<!-- START OF New Item -->
+
+<!-- START OF Edit Item -->
+<div ng-show="editItem" class="events-self animate">
+    <div class="panel widget articleCard events-self">
+        <div class="panel-body">
+            <div class="form-group">
+                <div class="col-sm-4">
+                    <div class="event-team-logo" ng-show="editItem._id">
+                        <img class="img-responsive dragover" ng-src="{{editItem.photo}}" />
+                        <div ngf-drop="uploadFile($file, editItem)" style="margin-left:0" class="drop-box" ngf-drag-over-class="'dragover'" ngf-pattern="'image/*,application/pdf'">
+                            <label><i style="font-size:29px" class="fa fa-cloud-upload"></i>
+                                <br/>Drop article image here</label>
+                        </div>
+                    </div>
+                    <div class="event-team-logo" ng-show="!editItem._id">
+                        <h5>Images can only be uploaded while editing.</h5>
+                        <div ngf-drop="" style="margin-left:0" class="drop-box" ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-pattern="'image/*,application/pdf'">
+                            <img class="img-responsive" ng-src="{{editItem.photo}}" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-8">
+                    <label>Tags</label>
+                    <ui-select multiple="" ng-model="editItem.tags" class="text-left" theme="bootstrap" ng-disabled="uisel.disabled">
+                        <ui-select-match placeholder="Select article tags">{{$item.name.en}}</ui-select-match>
+                        <ui-select-choices group-by="'type'" repeat="{name:tag.name,_id:tag._id} as tag in Tags | filter: $select.search">
+                            <div ng-bind-html="tag.name.en | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                    <label>Article type</label>
+                    <ui-select ng-model="editItem.type" theme="bootstrap" ng-disabled="uisel.disabled" class="text-left">
+                        <ui-select-match placeholder="Select article type">{{$select.selected}}</ui-select-match>
+                        <ui-select-choices repeat="type in artTypes | filter: $select.search">
+                            <span ng-bind-html="type | highlight: $select.search"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                    <label>Date</label>
+                    <p class="input-group">
+                        <input class="form-control" data-ng-model="editItem.publishDate" data-date-time-input="DD/MM/YYYY H:mm" />
+                        <span class="input-group-btn">
+                           <button type="button" ng-click="openedCalendar = 1" class="btn btn-default"><em class="fa fa-calendar"></em></button>
+                           <button data-ng-click="SetToNow(newItem.publishDate)" class="btn btn-default">Now</button>
+                        </span>
+                    </p>
+                    <datetimepicker ng-show="openedCalendar==1" data-ng-model="editItem.publishDate"></datetimepicker>
+                </div>
+                <div class="col-sm-12">
+                      <label>Image</label>
+                    <input type="text" class="form-control" ng-model="editItem.photo" />
+                    <label>Title</label>
+                    <multi-lang-text language-object="editItem.publication.title" default="en"></multi-lang-text>
+                    <label>Text</label>
+                    <multi-lang-text-area language-object="editItem.publication.text" default="en"></multi-lang-text-area>
+                </div>
+            </div>
+            <br/>
+        </div>
+        <div class="panel-footer">
+            <btn ng-click="editItem=null" class="btn btn-default pull-right">Cancel</btn>
+            <btn ladda="view.busy" ng-click="UpdateItem(editItem)" data-style="zoom-out" class="btn btn-success pull-right">Update</btn>
+        </div>
+    </div>
+</div>
+<!-- START OF Edit Item -->
+
+<div ng-show="!editItem && !newItem"class="container-fluid">
+    <div deckgrid="" source="Articles" cardtemplate="{{basepath('./database/article.html')}}" class="deckgrid clearfix"></div>
+</div>
