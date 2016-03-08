@@ -35,6 +35,10 @@
                 "text": "Players",
                 "sref": "app.players"
             },
+             {
+                "text": "Standings",
+                "sref": "app.standings"
+            },
             {
                 "text": "Competitions",
                 "sref": "app.competitions"

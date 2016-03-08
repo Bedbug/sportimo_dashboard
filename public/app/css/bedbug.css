@@ -36,41 +36,45 @@ img.desaturate {
 
 .deckgrid[deckgrid]::before {
     /* Specifies that the grid should have a maximum of 4 columns. Each column will have the classes 'column' and 'column-1-4' */
-    content: '4 .column.column-1-4';
-    font-size: 0; /* See https://github.com/akoenig/angular-deckgrid/issues/14#issuecomment-35728861 */
-    visibility: hidden;
+    /*content: '4 .column.column-1-4';*/
+    /*font-size: 0; */
+    /*visibility: hidden;*/
 }
 
 .deckgrid .column-1-4 {
-    width: 25%;
+    /*width: 25%;*/
 }
 
 .Welcome{
     color: #fff;
     background-color: #23b7e5 !important;
     border-color: #cfdbe2;
-    line-height: 32px;
+    line-height: 35px;
+    margin-bottom: 15px;
 }
 
 .Interview{
         color: #fff;
     background-color: #37bc9b !important;
     border-color: #37bc9b;
-    line-height: 32px;
+    line-height: 35px;
+    margin-bottom: 15px;
 }
 
 .News{
         color: #fff;
     background-color: #5d9cec !important;
     border-color: #cfdbe2;
-    line-height: 32px;
+    line-height: 35px;
+    margin-bottom: 15px;
 }
 
 .Activity{
         color: #fff;
     background-color: #131e26 !important;
     border-color: #131e26;
-    line-height: 32px;
+    line-height: 35px;
+    margin-bottom: 15px;
 }
 
 .input-textarea{

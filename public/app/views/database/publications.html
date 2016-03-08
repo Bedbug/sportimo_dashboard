@@ -2,13 +2,14 @@
 </h3>-->
 <!-- SEARCH -->
 <div ng-show="!editItem && !newItem" class="panel">
-    <div class="panel-body">
+    <!--<div class="panel-heading"></div>-->
+    <div class="panel-body" style="padding: 15px 0 0 0;">
         <div class="form-group">
-            <label class="col-sm-2 control-label">Min Date</label>
-            <div class="col-sm-4">
+
+            <div class="col-md-2">
                 <p class="input-group">
-                    <input type="text" name="date" datepicker-popup="{{format}}" ng-model="searchObj.minDate" is-open="opened['min']" datepicker-options="dateOptions"
-                    close-text="Close" class="form-control" />
+                    <input type="text" placeholder="Min Date" name="date" datepicker-popup="{{format}}" ng-model="searchObj.minDate" is-open="opened['min']"
+                    datepicker-options="dateOptions" close-text="Close" class="form-control" />
                     <span class="input-group-btn">
                     <button type="button" ng-click="open($event,'min')" class="btn btn-default">
                     <em class="fa fa-calendar"></em>
@@ -16,11 +17,12 @@
                 </span>
                 </p>
             </div>
-            <label class="col-sm-2 control-label">Max Date</label>
-            <div class="col-sm-4">
+
+            <div class="col-md-2">
                 <p class="input-group">
-                    <input type="text" name="date" datepicker-popup="{{format}}" ng-model="searchObj.maxDate" is-open="opened['max']" datepicker-options="dateOptions"
-                    date-disabled="disabled(date, mode)" close-text="Close" class="form-control" />
+                    <input type="text" placeholder="Max Date" name="date" datepicker-popup="{{format}}" ng-model="searchObj.maxDate" is-open="opened['max']"
+                    datepicker-options="dateOptions" date-disabled="disabled(date, mode)" close-text="Close" class="form-control"
+                    />
                     <span class="input-group-btn">
                     <button type="button" ng-click="open($event,'max')" class="btn btn-default">
                     <em class="fa fa-calendar"></em>
@@ -28,35 +30,32 @@
                 </span>
                 </p>
             </div>
-            <label class="col-sm-2 control-label">Article type</label>
-            <div class="col-sm-4">
+            <div class="col-md-2">
                 <ui-select ng-model="searchObj.type" theme="bootstrap" ng-disabled="uisel.disabled" class="text-left">
-                    <ui-select-match placeholder="Select article type">{{$select.selected}}</ui-select-match>
+                    <ui-select-match placeholder="Article Type">{{$select.selected}}</ui-select-match>
                     <ui-select-choices repeat="type in artTypes | filter: $select.search">
                         <span ng-bind-html="type | highlight: $select.search"></span>
                     </ui-select-choices>
                 </ui-select>
             </div>
-            <label class="col-sm-2 control-label">Tag</label>
-            <div class="col-sm-4">
+
+            <div class="col-md-2">
                 <p class="input-group">
-                <input type="text" class="form-control" ng-model="searchObj.tags" />
-                <span class="input-group-btn">
+                    <input type="text" placeholder="Tag Search" class="form-control" ng-model="searchObj.tags" />
+                    <span class="input-group-btn">
                     <button type="button" ng-click="searchObj.tags = null" class="btn btn-default"><em class="fa fa-trash"></em></button>
                 </span>
                 </p>
             </div>
-            <div class="col-sm-12">
-             <btn ladda="view.busy" ng-click="searchArticles(searchObj)" data-style="zoom-out" class="btn btn-default pull-right">Search</btn>
+            <div class="col-md-4 no-padding">
+                <div class="col-sm-6">
+                    <btn ladda="view.busy" ng-click="searchArticles(searchObj)" data-style="zoom-out" class="col-xs-12 btn btn-primary">Search</btn>
+                </div>
+                <div class="col-sm-6" style="margin-bottom: 15px;">
+                    <btn ng-click="createNew()" class="col-xs-12 btn btn-default">Create</btn>
+                </div>
             </div>
         </div>
-    </div>
-
-    <div class="panel-footer">
-         <span class="input-group-btn">
-        <btn ng-click="createNew()" class="btn btn-default pull-right">Add new publication</btn>
-       
-         </span>
     </div>
 </div>
 <!-- END OF SEARCH -->
@@ -74,10 +73,11 @@
                         </div>
                     </div>
                     <div class="event-team-logo" ng-show="!newItem._id">
-                       <img class="img-responsive dragover" ng-src="{{newItem.photo}}" />
+                        <img class="img-responsive dragover" ng-src="{{newItem.photo}}" />
                         <div ngf-drop="" style="margin-left:0" class="drop-box" ngf-drag-over-class="'dragover'" ngf-pattern="'image/*,application/pdf'">
                             <label><i style="font-size:29px" class="fa fa-cloud-upload"></i>
-                                <br/>Images can only be uploaded while editing but you can use the Image input to supply a url directly.</label>
+                                <br/>Images can only be uploaded while editing but you can use the Image input to supply a url
+                                directly.</label>
                         </div>
                     </div>
                 </div>
@@ -172,7 +172,7 @@
                     <datetimepicker ng-show="openedCalendar==1" data-ng-model="editItem.publishDate"></datetimepicker>
                 </div>
                 <div class="col-sm-12">
-                      <label>Image</label>
+                    <label>Image</label>
                     <input type="text" class="form-control" ng-model="editItem.photo" />
                     <label>Title</label>
                     <multi-lang-text language-object="editItem.publication.title" default="en"></multi-lang-text>
@@ -190,6 +190,6 @@
 </div>
 <!-- START OF Edit Item -->
 
-<div ng-show="!editItem && !newItem"class="container-fluid">
+<div ng-show="!editItem && !newItem" class="container-fluid">
     <div deckgrid="" source="Articles" cardtemplate="{{basepath('./database/article.html')}}" class="deckgrid clearfix"></div>
 </div>

@@ -39,6 +39,15 @@ gulp.task('icon',function(){
     
 });
 
+gulp.task('deploy',function(cb){
+    exec('modulus deploy -p dashboard_v2', function (err, stdout, stderr) {
+    console.log(stdout);
+    console.log(stderr);
+    cb(err);
+  });
+   
+})
+
 gulp.task('all', function (cb) {
 
     gulp.src('')
