@@ -136,7 +136,7 @@ body .dataTables_wrapper .dataTables_paginate .paginate_button.current, body .da
     border-color: #2196f3 !important;
 }
 
-.btn-primary {
+/*.btn-primary {
     color: #ffffff;
     background-color: #2196f3;
     border-color: #218DDE;
@@ -157,6 +157,73 @@ body .dataTables_wrapper .dataTables_paginate .paginate_button.current, body .da
     color: #ffffff;
     background-color: #2196f3;
     border-color: #218DDE;
+}*/
+
+.btn-primary {
+  color: #ffffff;
+  background-color: #2196f3;
+  border-color: #218DDE;
+}
+.btn-primary:focus,
+.btn-primary.focus {
+  color: #ffffff;
+  background-color: #2196f3;
+  border-color: #218DDE;
+}
+.btn-primary:hover {
+  color: #ffffff;
+  background-color: #2196f3;
+  border-color: #218DDE;
+}
+.btn-primary:active,
+.btn-primary.active,
+.open > .dropdown-toggle.btn-primary {
+  color: #ffffff;
+  background-color: #2196f3;
+  border-color: #218DDE;
+}
+.btn-primary:active:hover,
+.btn-primary.active:hover,
+.open > .dropdown-toggle.btn-primary:hover,
+.btn-primary:active:focus,
+.btn-primary.active:focus,
+.open > .dropdown-toggle.btn-primary:focus,
+.btn-primary:active.focus,
+.btn-primary.active.focus,
+.open > .dropdown-toggle.btn-primary.focus {
+  color: #ffffff;
+  background-color: #2196f3;
+  border-color: #218DDE;
+}
+.btn-primary:active,
+.btn-primary.active,
+.open > .dropdown-toggle.btn-primary {
+  background-image: none;
+}
+.btn-primary.disabled,
+.btn-primary[disabled],
+fieldset[disabled] .btn-primary,
+.btn-primary.disabled:hover,
+.btn-primary[disabled]:hover,
+fieldset[disabled] .btn-primary:hover,
+.btn-primary.disabled:focus,
+.btn-primary[disabled]:focus,
+fieldset[disabled] .btn-primary:focus,
+.btn-primary.disabled.focus,
+.btn-primary[disabled].focus,
+fieldset[disabled] .btn-primary.focus,
+.btn-primary.disabled:active,
+.btn-primary[disabled]:active,
+fieldset[disabled] .btn-primary:active,
+.btn-primary.disabled.active,
+.btn-primary[disabled].active,
+fieldset[disabled] .btn-primary.active {
+  background-color: #2196f3;
+  border-color: #218DDE;
+}
+.btn-primary .badge {
+  color: #218DDE;
+  background-color: #ffffff;
 }
 
 .footer-wrapper .fa{

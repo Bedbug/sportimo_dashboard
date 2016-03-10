@@ -35,30 +35,38 @@
 <body data-ng-class="{ 'layout-fixed' : app.layout.isFixed, 'aside-collapsed' : app.layout.isCollapsed, 'layout-boxed' : app.layout.isBoxed, 'layout-fs': app.useFullLayout, 'hidden-footer': app.hiddenFooter, 'layout-h': app.layout.horizontal, 'aside-float': app.layout.isFloat, 'offsidebar-open': app.offsidebarOpen, 'aside-toggled': app.asideToggled}">
     <div data-preloader></div>
     <div data-ui-view="" data-autoscroll="false" class="wrapper"></div>
+    
     <script src="vendor/lodash/lodash.min.js"></script>
 
     <!-- Electron Stuff -->
     <script>
-        window.$ = window.jQuery = require('./app/js/jquery-2.1.4.js');'ui.bootstrap.datetimepicker'
+        window.$ = window.jQuery = require('./app/js/jquery-2.1.4.js');
+        // 'ui.bootstrap.datetimepicker'
 
     </script>
     <script src="app/js/moment-with-locales.min.js"></script>
-
     <script src="app/js/moment-duration-format.js"></script>
 
+   
+    
     <!--<script>window.$ = window.angular = require('./app/js/base.js');</script>-->
+    
     <script src="app/js/base.js"></script>
+    
+    <script src="vendor/ladda/js/spin.js"></script>
+    <script src="vendor/ladda/js/ladda.js"></script>
+     <script src="vendor/angular-ladda/dist/angular-ladda.min.js"></script>
+     
     <script type="text/javascript" src="https://cdn.rawgit.com/auth0/angular-jwt/master/dist/angular-jwt.js"></script>
     <!--<script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.14.3.js"></script>-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.6/ngStorage.min.js"></script>
     <script src="app/js/ngDialog.js"></script>
+    
     <script src="vendor/angular-touch/angular-touch.js"></script>
     <script src="vendor/angular-websocket/angular-websocket.min.js"></script>
     <script src="vendor/restangular/dist/restangular.min.js"></script>
     
-    <script src= "vendor/ladda/js/spin.js"></script>
-    <script src="vendor/ladda/js/ladda.js"></script>
-    <script src="vendor/angular-ladda/dist/angular-ladda.min.js"></script>
+
     
     
     

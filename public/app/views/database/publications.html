@@ -31,8 +31,8 @@
                 </p>
             </div>
             <div class="col-md-2">
-                <ui-select ng-model="searchObj.type" theme="bootstrap" ng-disabled="uisel.disabled" class="text-left">
-                    <ui-select-match placeholder="Article Type">{{$select.selected}}</ui-select-match>
+                <ui-select  ng-model="searchObj.type" theme="bootstrap" ng-disabled="uisel.disabled" class="text-left">
+                    <ui-select-match allow-clear="true" placeholder="Article Type">{{$select.selected}}</ui-select-match>
                     <ui-select-choices repeat="type in artTypes | filter: $select.search">
                         <span ng-bind-html="type | highlight: $select.search"></span>
                     </ui-select-choices>
@@ -49,10 +49,10 @@
             </div>
             <div class="col-md-4 no-padding">
                 <div class="col-sm-6">
-                    <btn ladda="view.busy" ng-click="searchArticles(searchObj)" data-style="zoom-out" class="col-xs-12 btn btn-primary">Search</btn>
-                </div>
+                    <btn ladda="view.searchBusy" ng-click="searchArticles(searchObj)" data-style="expand-left" class="col-xs-12 btn btn-primary">Search</btn>
+                </div>           
                 <div class="col-sm-6" style="margin-bottom: 15px;">
-                    <btn ng-click="createNew()" class="col-xs-12 btn btn-default">Create</btn>
+                    <btn ladda="view.busy" data-spinner-color="#000" data-style="zoom-in" ng-click="createNew()" class="col-xs-12 btn btn-default">Create</btn>
                 </div>
             </div>
         </div>

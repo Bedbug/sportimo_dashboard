@@ -138,7 +138,9 @@
 .glyphicon.glyphicon-folder-open:before {
   content: "\f07c";
 }
-
+.glyphicon.glyphicon-remove:before{
+   content: "\f00d";
+}
 
 [ng\:cloak],
 [ng-cloak],

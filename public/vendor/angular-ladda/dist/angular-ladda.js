@@ -56,7 +56,7 @@
             angular.element(labelWrapper).append(element.contents());
             element.append(labelWrapper);
           }
-
+ 
           // create ladda button
           var ladda = Ladda.create( element[0] );
 

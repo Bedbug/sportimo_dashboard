@@ -51,7 +51,8 @@
             'app.teams',
             "app.schedule",
             "app.players",
-            "app.publications"
+            "app.publications",
+            "angular-ladda"
         ]);
 })();
 
@@ -103,7 +104,7 @@
     'use strict';
 
     angular
-        .module('app.publications', []);
+        .module('app.publications', ['angular-ladda']);
 })();
 
 (function() {
@@ -3032,11 +3033,12 @@
         //     //$http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata; // jshint ignore:line
         // }
 
-        if ($rootScope.$storage.currentUser){
-            $rootScope.user = JSON.parse($rootScope.$storage.currentUser);
-            if($rootScope.user)
-            $http.defaults.headers.common['X-Access-Token'] = $rootScope.user.token // jshint ignore:line
-        }
+        // if ($rootScope.$storage.currentUser){
+        //     $rootScope.user = JSON.parse($rootScope.$storage.currentUser);
+            
+        //     if($rootScope.user)
+        //         $http.defaults.headers.common['X-Access-Token'] = $rootScope.user.token // jshint ignore:line
+        // }
             
       
 
@@ -5026,12 +5028,15 @@
         vm.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
         vm.format = vm.formats[0];
         vm.searchObj = {};
+        
         vm.searchArticles = function(searchObj) {
+            vm.view.searchBusy = true;
             if (searchObj.tags == "") {
                 searchObj.tags = null;
             }
             PublicationsService.getArticles(searchObj).then(function(articles) {
                 vm.Articles = articles;
+                  vm.view.searchBusy = false;
             })
         }
 
@@ -5039,6 +5044,7 @@
         vm.newItem = null;
 
         vm.createNew = function() {
+            // vm.view.busy = true;
             vm.newItem = { "publication": { "title": { "en": "" }, "text": { "en": "" } } };
         }
 
@@ -10111,14 +10117,14 @@
                         "vendor/ng-file-upload/dist/ng-file-upload.min.js"
                     ]
                 },
-                {
-                    name: 'angular-ladda',
-                    files: [
-                        "vendor/ladda/dist/ladda-themeless.min.css",
-                        "vendor/ladda/js/spin.js",
-                        "vendor/ladda/js/ladda.js",
-                        "vendor/angular-ladda/dist/angular-ladda.min.js"]
-                },
+                // {
+                //     name: 'angular-ladda',
+                //     files: [
+                //         "vendor/ladda/dist/ladda-themeless.min.css",
+                //         "vendor/ladda/js/spin.js",
+                //         "vendor/ladda/js/ladda.js",
+                //         "vendor/angular-ladda/dist/angular-ladda.min.js"]
+                // },
                 {
                     name: 'ngWebSocket',
                     files: ['vendor/angular-websocket/angular-websocket.min.js']
@@ -13121,7 +13127,7 @@
                 url: '/schedule',
                 title: 'Schedule',
                 templateUrl: helper.basepath('database/schedule.html'),
-                resolve: helper.resolveFor('restangular', 'toaster', 'dirPagination', 'moment', 'datatables', 'fullcalendar', 'jquery-ui', 'jquery-ui-widgets', 'ui.select', 'angular-ladda', 'localytics.directives'),
+                resolve: helper.resolveFor('restangular', 'toaster', 'dirPagination', 'moment', 'datatables', 'fullcalendar', 'jquery-ui', 'jquery-ui-widgets', 'ui.select', 'localytics.directives'),
                 controller: 'ScheduleController'
             })
             /* END MATCHES SCHEDULE */
@@ -13129,13 +13135,13 @@
                 url: '/teams',
                 title: 'Teams',
                 templateUrl: helper.basepath('database/teams.html'),
-                resolve: helper.resolveFor('restangular', 'toaster', 'dirPagination', 'moment', 'datatables', 'ngFileUpload', 'localytics.directives', 'angular-ladda'),
+                resolve: helper.resolveFor('restangular', 'toaster', 'dirPagination', 'moment', 'datatables', 'ngFileUpload', 'localytics.directives'),
                 controller: 'TeamsController'
             })
             .state('app.players', {
                 url: '/players',
                 title: 'players',
-                resolve: helper.resolveFor('restangular', 'toaster', 'dirPagination', 'moment', 'datatables', 'ngFileUpload', 'localytics.directives', 'angular-ladda'),
+                resolve: helper.resolveFor('restangular', 'toaster', 'dirPagination', 'moment', 'datatables', 'ngFileUpload', 'localytics.directives'),
                 templateUrl: helper.basepath('database/players.html'),
                 controller: 'PlayersController'
             })
@@ -13143,7 +13149,7 @@
                 url: '/publications',
                 title: 'Publications',
                 templateUrl: helper.basepath('database/publications.html'),
-                resolve: helper.resolveFor('akoenig.deckgrid', 'restangular', 'toaster', 'dirPagination', 'moment', 'datatables', 'ngFileUpload', 'localytics.directives', 'angular-ladda', 'ui.select', 'truncate'),
+                resolve: helper.resolveFor('akoenig.deckgrid', 'restangular', 'toaster', 'dirPagination', 'moment', 'datatables', 'ngFileUpload', 'localytics.directives', 'ui.select', 'truncate'),
                 controller: 'PublicationsController'
             })
 
@@ -13151,7 +13157,7 @@
                 url: '/match-moderation/soccer/:id',
                 title: 'Mathces Administration',
                 templateUrl: helper.basepath('sportimo_moderation_soccer.html'),
-                resolve: helper.resolveFor('restangular', 'toaster', 'dirPagination', 'moment', 'moment-format', 'ui.select', 'angular-ladda', 'ngDialog'),
+                resolve: helper.resolveFor('restangular', 'toaster', 'dirPagination', 'moment', 'moment-format', 'ui.select', 'ngDialog'),
                 controller: 'SportimoModerationSoccerController',
                 controllerAs: 'modCtrl',
             })
@@ -13167,7 +13173,7 @@
                 title: 'Push Notifications Management',
                 templateUrl: helper.basepath('sportimo_pushes.html'),
                 controller: 'SportimoPushesController',
-                resolve: helper.resolveFor('restangular', 'toaster', 'dirPagination', 'ui.select', 'angular-ladda')
+                resolve: helper.resolveFor('restangular', 'toaster', 'dirPagination', 'ui.select')
             })
             .state('app.polls', {
                 url: '/polls',
