@@ -1,0 +1,154 @@
+<!--<h3>Match Moderation-->
+<!--<small>Administration and Moderation of matches</small>-->
+<!--</h3>-->
+
+<div id="tabone" class="unwrap">
+    <div class="match-profile bg-cover bg-gray-darker">
+        <div class="match-profile-heading p-xl text-center text-white col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+            <div class="match-logos" style="max-width: 450px;
+    margin: auto;">
+                <div class="team-logo col-sm-4">
+                    <img ng-src="{{match.data.home_team.logo}}" />
+
+                    <div></div>
+                    <p>{{match.data.home_team.name}}</p>
+                </div>
+                <div class="col-sm-4">
+                    <div ng-show="match.sport.segments[ match.data.timeline.length - 1].timed" class="match-time">
+                        {{match.data.time}}'
+                    </div>
+                    <div ng-show="match.data.state > 0" class="match-info">
+                        <small class="text-muted"></small>
+                        <div class="score">{{match.data?(GetStat(match.data.home_team._id,'g') || 0) +" - "+ (GetStat(match.data.away_team._id,'g')
+                            || 0): ''}}
+                        </div>
+
+                    </div>
+                    <div ng-show="match.data.state == 0" class="match-info">
+                        <small class="text-muted"></small>
+                        <h5><strong>{{formatDate(match.data.match_date)}}</strong></h5>
+                        <h5 class="text-muted">{{match.GetCurrentSegment()}}</h5>
+                    </div>
+                </div>
+                <div class="team-logo  col-sm-4">
+                    <img ng-src="{{match.data.away_team.logo}}" />
+
+                    <div></div>
+                    <p> {{match.data.away_team.name}}</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="text-center bg-gray-dark p-lg">
+        <div class="row row-table">
+            <div class="col-xs-4 br">
+                <!--<h3 class="m0">400</h3>-->
+                <!--<p class="m0">-->
+                <!--<span class="hidden-xs">Connected</span>-->
+                <!--<span>Users</span>-->
+                <!--</p>-->
+            </div>
+            <div ng-click="advanceSegment()" class="col-xs-4 br">
+
+                <h3 class="m0"><span class="stopwatch"><i class="glyph-stopwatch"></i></span>{{match.Match_timer}}</h3>
+
+                <p class="m0 match-segment-title">{{match.GetCurrentSegment()}}</p>
+            </div>
+            <div class="col-xs-4">
+                <!--<button ng-click="advanceSegment()"> Advance Segment</button>-->
+                <!--<h3 class="m0">100</h3>-->
+
+                <!--<p class="m0">Following</p>-->
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-lg-12 no-padding">
+        <!-- START panel tab-->
+        <div class="panel panel-transparent">
+
+            <tabset justified="true" class="bg-white p0">
+                <tab>
+                    <tab-heading>
+                        <em class="fa fa-clock-o fa-fw"></em> <strong>Timeline</strong>
+                    </tab-heading>
+                    <div ng-include="'app/views/sportimo/moderation/timeline.html'"></div>
+                </tab>
+                <tab>
+                    <tab-heading>
+                        <em class="fa fa-sitemap fa-fw"></em>Leaderboard
+                    </tab-heading>
+
+                       <div ng-include="'app/views/sportimo/moderation/leaderboard.html'"></div>
+                </tab>
+
+                <tab>
+                    <tab-heading>
+                        <em class="fa fa-gift fa-fw"></em>Prizes
+                    </tab-heading>
+
+                    <div>
+                        <div></div>
+                    </div>
+                </tab>
+
+                <tab>
+                    <tab-heading>
+                        <em class="fa fa-cogs fa-fw"></em>Settings</tab-heading>
+                    <div>
+                        <!-- START list group-->
+                        <div class="list-group mb0">
+                            <a href="#" class="list-group-item bt0" ng-repeat="setting in match.data.settings">
+                                <span class="label label-purple pull-right">just now</span>
+                                <em class="fa fa-fw fa-calendar mr"></em>{{readable(match.data.settings)}}</a>
+                        </div>
+                        <!-- END list group-->
+                        <div class="panel-footer text-right"><a href="#" class="btn btn-default btn-sm">View All Activity </a>
+                        </div>
+                    </div>
+                </tab>
+            </tabset>
+        </div>
+        <!-- END panel tab-->
+    </div>
+
+
+
+
+</div>
+<br/>
+
+
+<script type="text/ng-template" id="firstDialogId">
+
+    <div class="sportimo-dialog">
+        <div class="sportimo-dialog-heading text-center">
+            <img src="app/img/sportimo/icon_sportimo-white_64.png" alt="App Logo" class="pull-left"> {{ngDialogData.title}}
+        </div>
+        <div class="sportimo-dialog-body text-center">
+            <p ng-show="ngDialogData.message">{{ngDialogData.message}}</p>
+        </div>
+        <div class="sportimo-dialog-footer text-center">
+            <button type="button" ng-click="closeThisDialog(0)" class="btn btn-info btn-large">Ok, Got It!</button>
+        </div>
+    </div>
+    <!--<h3 class="mt0">ngDialog template</h3><p ng-show="theme">Test content for<code>{{theme}}</code></p><p ng-show="ngDialogData.foo">Data passed through:<code>{{ngDialogData.foo}}</code></p><button type="button" ng-dialog="secondDialogId" ng-dialog-class="ngdialog-theme-default" ng-dialog-controller="SecondModalCtrl" ng-dialog-close-previous="ng-dialog-close-previous" class="btn btn-default mr">Close and open</button><button type="button" ng-click="openSecond()" class="btn btn-primary">Open next</button></div>-->
+</script>
+<script type="text/ng-template" id="deleteEventDialog">
+    <!--<div>-->
+    <div class="sportimo-dialog">
+        <div class="sportimo-dialog-danger-heading text-center">
+            <img src="app/img/sportimo/icon_sportimo-white_64.png" alt="App Logo" class="pull-left"> {{ngDialogData.title}}
+        </div>
+        <div class="sportimo-dialog-body text-center">
+            <p ng-show="ngDialogData.message" ng-bind-html="ngDialogData.message"></p>
+        </div>
+        <div class="sportimo-dialog-footer text-center">
+            <button type="button" ng-click="confirm(1)" class="btn btn-danger btn-large">Yup, sure. NP!</button>
+            <button type="button" ng-click="closeThisDialog(0)" class="btn btn-default btn-large">Cancel</button>
+        </div>
+    </div>
+    <!--<h3 class="mt0">ngDialog template</h3><p ng-show="theme">Test content for<code>{{theme}}</code></p><p ng-show="ngDialogData.foo">Data passed through:<code>{{ngDialogData.foo}}</code></p><button type="button" ng-dialog="secondDialogId" ng-dialog-class="ngdialog-theme-default" ng-dialog-controller="SecondModalCtrl" ng-dialog-close-previous="ng-dialog-close-previous" class="btn btn-default mr">Close and open</button><button type="button" ng-click="openSecond()" class="btn btn-primary">Open next</button></div>-->
+</script>

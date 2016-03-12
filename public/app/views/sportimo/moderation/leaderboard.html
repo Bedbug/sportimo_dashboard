@@ -1,0 +1,67 @@
+<div ng-show="!PoolRoom && !CreatePoolRoom" class="col-xs-12 card ">
+    <div class="card-heading"></div>
+    <div class="card-body text-center">
+        There is no active prize list. Create a prize list first.
+        <br/>
+        <br/>
+        <button ng-click="CreatePoolRoom = 1" class="btn btn-success">CREATE</button>
+    </div>
+    <div class="card-footer"></div>
+</div>
+<div ng-show="CreatePoolRoom" class="col-xs-12 card">
+    <div class="card-body text-center col-xs-12 no-padding">
+
+        <div class="col-md-7 ">
+            <div class="panel-heading">
+                <label>Setup</label>
+            </div>
+             <fieldset>
+            <div class="form-group">
+               <label class="col-sm-2 control-label">With help</label>
+               <div class="col-sm-10">
+                  <input type="text" class="form-control" />
+                  <span class="help-block">A block of help text that breaks onto a new line and may extend beyond one line.</span>
+               </div>
+               <label class="col-sm-2 control-label">With help</label>
+               <div class="col-sm-10">
+                  <input type="text" class="form-control" />
+                  <span class="help-block">A block of help text that breaks onto a new line and may extend beyond one line.</span>
+               </div>
+               <label class="col-sm-2 control-label">With help</label>
+               <div class="col-sm-10">
+                  <input type="text" class="form-control" />
+                  <span class="help-block">A block of help text that breaks onto a new line and may extend beyond one line.</span>
+               </div>
+               <label class="col-sm-2 control-label">With help</label>
+               <div class="col-sm-10">
+                  <input type="text" class="form-control" />
+                  <span class="help-block">A block of help text that breaks onto a new line and may extend beyond one line.</span>
+               </div>
+               <label class="col-lg-2 control-label">Disabled</label>
+               <div class="col-lg-10">
+                  <input type="text" placeholder="Disabled input here..." disabled="" class="form-control" />
+               </div>
+            </div>
+         </fieldset>
+        </div>
+        
+        <div class="col-md-5">
+            <div class="panel-heading">
+                <label>Prizes</label>
+            </div>
+            <ul html-sortable="sortableOptions" html-sortable-callback="sortableCallback" ng-model="data1" class="columns">
+                <li ng-repeat="itm in data1" class="list-group-item">
+                    <em class="fa fa-reorder fa-fw text-muted mr-lg"></em>
+                    <div>
+                        {{itm.name}}
+                        <label>1st prize</label>
+                        <img alt="Prize image">
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-xs-12 card-footer">
+       <button ng-click="" class="col-xs-12 btn btn-primary">Create Leaderboard</button>
+    </div>
+</div>

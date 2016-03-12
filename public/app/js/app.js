@@ -5565,9 +5565,11 @@
     function SportimoModerationSoccerController($scope, ngDialog, Restangular, $stateParams, $http, $rootScope, $timeout, $interval, $mdToast, $mdBottomSheet, $window) {
 
 
-        var vm = this;
+        var vm = $scope;
 
         $scope.items = ["one", "two", "three"];
+        
+        vm.PoolRoom = null;
 
         // $rootScope.toggleEnvironment = function () {
         //     if ($rootScope.serverEnvironment == 'production')
@@ -5647,8 +5649,9 @@
             return JSON.stringify(obj, null, 4);
         };
 
-
-
+        // Get Pool
+       // https://sportimo.mod.bz/leaderpay/v1/pools/forgame/
+        
         $scope.loadMatchData = function(id) {
 
             $http({
@@ -6164,7 +6167,41 @@
             return moment(stringDate).calendar(); //format("dddd, MMMM Do YYYY, h:mm:ss a");
         };
 
+        // Moderation-PoolRoom
+         $scope.data1 = [
+                {
+                    id: 1,
+                    name: 'Donald Hoffman'
+                },
+                {
+                    id: 2,
+                    name: 'Wallace Barrett'
+                },
+                {
+                    id: 3,
+                    name: 'Marsha Hicks'
+                },
+                {
+                    id: 4,
+                    name: 'Roland Brown'
+                }
+            ];
 
+            $scope.add = function() {
+                $scope.data1.push({
+                    id: $scope.data1.length + 1,
+                    name: 'Earl Knight'
+                });
+            };
+
+            $scope.sortableCallback = function(sourceModel, destModel, start, end) {
+                console.log(start + ' -> ' + end);
+            };
+
+            $scope.sortableOptions = {
+                placeholder: '<div class="box-placeholder p0 m0"><div></div></div>',
+                forcePlaceholderSize: true
+            };
     }
 })();
 
@@ -13156,8 +13193,8 @@
             .state('app.match-moderation-soccer', {
                 url: '/match-moderation/soccer/:id',
                 title: 'Mathces Administration',
-                templateUrl: helper.basepath('sportimo_moderation_soccer.html'),
-                resolve: helper.resolveFor('restangular', 'toaster', 'dirPagination', 'moment', 'moment-format', 'ui.select', 'ngDialog'),
+                templateUrl: helper.basepath('sportimo/moderation/sportimo_moderation_soccer.html'),
+                resolve: helper.resolveFor('restangular', 'toaster', 'dirPagination', 'moment', 'moment-format', 'ui.select', 'ngDialog','htmlSortable'),
                 controller: 'SportimoModerationSoccerController',
                 controllerAs: 'modCtrl',
             })
