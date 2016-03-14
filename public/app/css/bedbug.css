@@ -159,6 +159,48 @@ body .dataTables_wrapper .dataTables_paginate .paginate_button.current, body .da
     border-color: #218DDE;
 }*/
 
+.label-primary {
+  background-color: #3f51b5;
+}
+.label-primary[href]:hover,
+.label-primary[href]:focus {
+  background-color: #32408f;
+}
+.td-isdefault{
+    background-color: #2196f3;
+    color: #FFF;
+}
+
+.label-Active {
+  background-color: #4caf50;
+}
+.label-Active[href]:hover,
+.label-Active[href]:focus {
+  background-color: #3d8b40;
+}
+.label-info {
+  background-color: #2196f3;
+}
+.label-info[href]:hover,
+.label-info[href]:focus {
+  background-color: #0c7cd5;
+}
+.label-warning {
+  background-color: #ff9800;
+}
+.label-warning[href]:hover,
+.label-warning[href]:focus {
+  background-color: #cc7a00;
+}
+.label-danger {
+  background-color: #f44336;
+}
+.label-danger[href]:hover,
+.label-danger[href]:focus {
+  background-color: #ea1c0d;
+}
+
+
 .btn-primary {
   color: #ffffff;
   background-color: #2196f3;
@@ -709,6 +751,14 @@ border: 2px dashed #F1F1F1;
     background-color: white;
     border: 1px solid #1c94f3;
 }
+.minimal,
+.minimal:hover,
+.minimal:focus{
+  color: #555;
+    background-color: white;
+    border: 1px solid #ddd;
+}
+   
 .conrtrolsSlideLeft{
     animation-name:conrtrolsSlideLeft;
 }

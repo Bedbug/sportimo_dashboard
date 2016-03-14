@@ -515,7 +515,6 @@
             vm.open = function($event) {
                 $event.preventDefault();
                 $event.stopPropagation();
-
                 vm.opened = true;
             };
 
@@ -2813,13 +2812,13 @@
 //     JWT.$inject = ['jwtHelper'];
 
 //     function JWT(jwtHelper) {
-      
+
 //         this.isTokenExpired  = isTokenExpired ;
 
 //         ////////////////
 
 //         function isTokenExpired (token) {
-            
+
 //                 return true;
 //              //jwtHelper.isTokenExpired(token);
 //         }
@@ -3025,7 +3024,7 @@
 
         // keep user logged in after page refresh
         $rootScope.globals = $cookieStore.get('globals') || {};
-        
+
         $rootScope.user = null;
 
         // if ($rootScope.globals.currentUser) {
@@ -3035,25 +3034,25 @@
 
         // if ($rootScope.$storage.currentUser){
         //     $rootScope.user = JSON.parse($rootScope.$storage.currentUser);
-            
+
         //     if($rootScope.user)
         //         $http.defaults.headers.common['X-Access-Token'] = $rootScope.user.token // jshint ignore:line
         // }
-            
-      
+
+
 
         $rootScope.$on('$locationChangeStart', function(event, next, current) {
             // redirect to login page if not logged in and trying to access a restricted page
             //var restrictedPage = $.inArray($location.path(), ['/login', '/register']) === -1;
-           var loggedIn = $rootScope.globals.currentUser || $rootScope.$storage.currentUser;
-          if(loggedIn && $rootScope.user && $rootScope.user.token){
-           var tokenHasExpired = jwtHelper.isTokenExpired($rootScope.user.token);
-        //    var tokenPayload = jwtHelper.decodeToken($rootScope.user.token);
-            var tokenExpirationDate = jwtHelper.getTokenExpirationDate($rootScope.user.token);
-        //    console.log(tokenHasExpired);
-            console.log("Login expires at: "+tokenExpirationDate);
-        //      console.log(tokenPayload);
-        }
+            var loggedIn = $rootScope.globals.currentUser || $rootScope.$storage.currentUser;
+            if (loggedIn && $rootScope.user && $rootScope.user.token) {
+                var tokenHasExpired = jwtHelper.isTokenExpired($rootScope.user.token);
+                //    var tokenPayload = jwtHelper.decodeToken($rootScope.user.token);
+                var tokenExpirationDate = jwtHelper.getTokenExpirationDate($rootScope.user.token);
+                //    console.log(tokenHasExpired);
+                console.log("Login expires at: " + tokenExpirationDate);
+                //      console.log(tokenPayload);
+            }
             if (!loggedIn || tokenHasExpired) {
                 $location.path('/page/login');
             }
@@ -3372,10 +3371,10 @@
 
             vm.dataLoading = true;
             AuthenticationService.Login(vm.username, vm.password, function(response) {
-               
-                if (response.success && response.admin) {                    
-                        AuthenticationService.SetCredentials(vm.username, vm.password, response.name, response.admin, response.pic, response.token);
-                        $location.path('/');               
+
+                if (response.success && response.admin) {
+                    AuthenticationService.SetCredentials(vm.username, vm.password, response.name, response.admin, response.pic, response.token);
+                    $location.path('/');
                 } else {
                     console.log(response.message);
                     vm.dataLoading = false;
@@ -3430,7 +3429,7 @@
 
     function UserService($timeout, $filter, $q) {
 
-      
+
         var service = {};
 
         service.GetAll = GetAll;
@@ -3629,7 +3628,7 @@
         .module('app.core')
         .factory('AuthenticationService', AuthenticationService);
 
-    AuthenticationService.$inject = ['$http', '$cookieStore', '$rootScope', '$timeout', 'UserService','Restangular'];
+    AuthenticationService.$inject = ['$http', '$cookieStore', '$rootScope', '$timeout', 'UserService', 'Restangular'];
 
     function AuthenticationService($http, $cookieStore, $rootScope, $timeout, UserService, Restangular) {
         var service = {};
@@ -3679,13 +3678,13 @@
 
             /* Use this for real authentication
              ----------------------------------------------*/
-                ServerUsers.post({ username: username, password: password }).then(function(responseUser) {
-                     callback(responseUser);
-                }, function() {
-                    console.log("There was an error saving");
-                });
-               
-            
+            ServerUsers.post({ username: username, password: password }).then(function(responseUser) {
+                callback(responseUser);
+            }, function() {
+                console.log("There was an error saving");
+            });
+
+
             // $http.post('/api/authenticate', { username: username, password: password })
             //    .success(function (response) {
             //        callback(response);
@@ -3694,8 +3693,8 @@
         }
 
         function SetCredentials(username, password, name, admin, picture, token) {
-            var authdata = Base64.encode(username + ':' + password);         
-          
+            var authdata = Base64.encode(username + ':' + password);
+
             var currentUser = {
                 username: username,
                 authdata: authdata,
@@ -3704,7 +3703,7 @@
                 picture: picture,
                 token: token
             };
-            
+
             $rootScope.$storage.currentUser = JSON.stringify(currentUser);
             $rootScope.user = JSON.parse($rootScope.$storage.currentUser);
             $rootScope.globals.currentUser = JSON.stringify(currentUser);
@@ -5028,7 +5027,7 @@
         vm.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
         vm.format = vm.formats[0];
         vm.searchObj = {};
-        
+
         vm.searchArticles = function(searchObj) {
             vm.view.searchBusy = true;
             if (searchObj.tags == "") {
@@ -5036,7 +5035,7 @@
             }
             PublicationsService.getArticles(searchObj).then(function(articles) {
                 vm.Articles = articles;
-                  vm.view.searchBusy = false;
+                vm.view.searchBusy = false;
             })
         }
 
@@ -5529,6 +5528,10 @@
 
     angular
         .module('app.match-moderation-soccer')
+        .service('PrizesService', PrizesService)
+        .service('PoolsService', PoolsService)
+        .service('SponsorsService',SponsorsService)
+        .service('CountriesService',CountriesService)
         .controller('SportimoModerationSoccerController', SportimoModerationSoccerController)
         .directive('disableAnimation', function($animate) {
             return {
@@ -5558,18 +5561,135 @@
                 return items.slice().reverse();
             };
         });
+        
+        PrizesService.$inject = ['$rootScope', '$q', 'Restangular'];
+        PoolsService.$inject = ['$rootScope', '$q', 'Restangular'];
+        SponsorsService.$inject = ['$rootScope', '$q', 'Restangular'];
+
+function SponsorsService($rootScope, $q, Restangular) {
+      var SponsorsAPI = Restangular.all('leaderpay/v1/sponsors');
+      
+        Restangular.setBaseUrl($rootScope.servers[$rootScope.serverEnvironment].game_server);
+        Restangular.setRestangularFields({
+            id: "_id"
+        });
+        
+        return {
+
+            getAll: function()   {
+                var Defer = $q.defer();
+                
+                    Defer.resolve([{
+                    "name": "Sponsored by Coca Cola",
+                    "banner": "http://static.wixstatic.com/media/86524a_8e7cf46163d10eb8ccb2ceb407085a97.jpg_1024"
+                }]);
+                    
+                // SponsorsAPI.getList().then(function(sponsors) {
+                //     Defer.resolve(sponsors);
+                // });
+                return Defer.promise;
+            }
+        }
+};
+
+function PrizesService($rootScope, $q, Restangular) {
+      var PrizesAPI = Restangular.all('leaderpay/v1/prizes');
+      
+        Restangular.setBaseUrl($rootScope.servers[$rootScope.serverEnvironment].game_server);
+        Restangular.setRestangularFields({
+            id: "_id"
+        });
+        
+        return {
+
+            getAll: function()   {
+                var Defer = $q.defer();
+
+                PrizesAPI.getList().then(function(prizes) {
+                    Defer.resolve(prizes);
+                });
+                return Defer.promise;
+            }
+        }
+};
+
+    function PoolsService($rootScope, $q, Restangular) {
 
 
-    SportimoModerationSoccerController.$inject = ['$scope', 'ngDialog', 'Restangular', '$stateParams', '$http', '$rootScope', '$timeout', '$interval', '$mdToast', '$mdBottomSheet', '$window'];
+        var PoolsAPI = Restangular.all('leaderpay/v1/pools');
 
-    function SportimoModerationSoccerController($scope, ngDialog, Restangular, $stateParams, $http, $rootScope, $timeout, $interval, $mdToast, $mdBottomSheet, $window) {
+        Restangular.setBaseUrl($rootScope.servers[$rootScope.serverEnvironment].game_server);
+        Restangular.setRestangularFields({
+            id: "_id"
+        });
+
+        return {
+
+            getPoolsFor: function(id) {
+                // Get Pool for game
+                // https://sportimo.mod.bz/leaderpay/v1/pools/forgame/
+                var Defer = $q.defer();
+                PoolsAPI.one('forgame/').getList(id).then(function(pools) {
+                    Defer.resolve(pools);
+                });
+                return Defer.promise;
+            },
+            // getSchedule: function() {
+            //     var Defer = $q.defer();
+            //     Schedule.getList().then(function(schedule) {
+            //         Defer.resolve(schedule);
+            //     });
+            //     return Defer.promise;
+            // },
+
+            addPool: function(newPool) {
+                var Defer = $q.defer();
+                PoolsAPI.post(newPool).then(function(pool) {
+                    Defer.resolve(pool);
+                }, function(err) {
+                    console.log(err);
+                });
+                return Defer.promise;
+            },
+
+            // updateMatch: function(updatedMatch) {
+            //     var Defer = $q.defer();
+            //     var match = _.cloneDeep(updatedMatch);
+            //     updatedMatch.home_team = updatedMatch.home_team._id.$oid;
+            //     updatedMatch.away_team = updatedMatch.away_team._id.$oid;
+            //     updatedMatch.save().then(function(res) {
+            //         updatedMatch.home_team = match.home_team;
+            //         updatedMatch.away_team = match.away_team
+            //         Defer.resolve(res);
+            //     })
+            //     return Defer.promise;
+            // },
+
+
+            // deleteMatch: function(match) {
+            //     var Defer = $q.defer();
+            //     match.remove().then(function(res) {
+            //         Defer.resolve(res);
+            //     })
+            //     return Defer.promise;
+            // }
+        }
+
+    }
+
+
+    SportimoModerationSoccerController.$inject = ['CountriesService','PrizesService','SponsorsService','PoolsService', '$scope', 'ngDialog', '$stateParams', '$http', '$rootScope', '$timeout', '$interval', '$mdToast', '$mdBottomSheet', '$window'];
+
+    function SportimoModerationSoccerController(CountriesService,PrizesService, SponsorsService, PoolsService, $scope, ngDialog, $stateParams, $http, $rootScope, $timeout, $interval, $mdToast, $mdBottomSheet, $window) {
 
 
         var vm = $scope;
 
         $scope.items = ["one", "two", "three"];
-        
-        vm.PoolRoom = null;
+
+        vm.PoolRooms = null;
+
+        vm.matchid = $stateParams.id;
 
         // $rootScope.toggleEnvironment = function () {
         //     if ($rootScope.serverEnvironment == 'production')
@@ -5649,9 +5769,8 @@
             return JSON.stringify(obj, null, 4);
         };
 
-        // Get Pool
-       // https://sportimo.mod.bz/leaderpay/v1/pools/forgame/
-        
+
+
         $scope.loadMatchData = function(id) {
 
             $http({
@@ -6167,41 +6286,1135 @@
             return moment(stringDate).calendar(); //format("dddd, MMMM Do YYYY, h:mm:ss a");
         };
 
-        // Moderation-PoolRoom
-         $scope.data1 = [
+        // Moderation-PoolRooms
+        $scope.data1 = [
+            {
+                id: 1,
+                name: 'Donald Hoffman'
+            },
+            {
+                id: 2,
+                name: 'Wallace Barrett'
+            },
+            {
+                id: 3,
+                name: 'Marsha Hicks'
+            },
+            {
+                id: 4,
+                name: 'Roland Brown'
+            }
+        ];
+
+        $scope.add = function() {
+            $scope.data1.push({
+                id: $scope.data1.length + 1,
+                name: 'Earl Knight'
+            });
+        };
+
+        $scope.sortableCallback = function(sourceModel, destModel, start, end) {
+            vm.updatePrizePositions(vm.NewPool, vm.prizePositions);            
+        };
+
+        $scope.sortableOptions = {
+            placeholder: '<div class="box-placeholder p0 m0"><div></div></div>',
+            forcePlaceholderSize: true
+        };
+
+        vm.PoolRooms = null;
+        PoolsService.getPoolsFor(vm.matchid).then(function(pools) {
+            vm.PoolRooms = pools;
+        });
+
+        vm.RemoveNewPool = function(){
+            vm.NewPool = null;
+        }
+        vm.AddNewPool = function() {
+            console.log(vm.NewPool);
+            vm.NewPool = {
+
+                title: {en:""},
+                // roomtype: Season, Week, Game, Custom
+                // Season And Week should always have Starting and Ending Dates, Game
+                // must have a gameid and Custom must have at least one.
+                roomtype: "Game",
+
+                // The atatched game id
+                gameid: vm.matchid,
+
+                // Starting and Ending Dates of the pool
+                starts: null,
+                ends: null,
+
+                // A sponsor object containing all sponsor's information and resources
+                sponsor: null,
+
+                isdefault: vm.PoolRooms.length == 0 ? true : false,
+
+                // Status: Open, Closed
+                status: "Active",
+
+                // prizetype: "Prizetype.Gift | Prizetype.Pool"
+                prizetype: "Prizetype.Gift",
+
+                // Entry fee is in USD currency. Only applicable if Prizetype.Pool 
+                // Used in Pool calculations
+                // hasentryfee: Number,
+
+                // Only applicable to Prizetype.Gift 
+                // prizes: [{rank:1, img:"http:imagesomewhere.png, title: {en:"Hurray!"}, text:{en:"Reward text. Yay!"}"}]
+                prizes: [],
+
+                // conditions:  "Country", value:["GR","UK","SA"]}
+                country: []
+            };
+        }
+
+            SponsorsService.getAll().then(function(sponsors){
+                vm.sponsors = sponsors;
+            });
+            
+            PrizesService.getAll().then(function(prizes){
+               vm.prizes = prizes; 
+            });
+            
+            vm.addPrize = function(prize, pool){
+                // var newprize = {
+                //     name: prize.name,
+                //     text: prize.text,
+                //     picture: prize.picture,
+                //     from: pool.prizes.length>0?pool.prizes[pool.prizes.length-1].to + 1:1,
+                //     to: pool.prizes.length>0?pool.prizes[pool.prizes.length-1].to + 1:1
+                // }
+               vm.prizePositions.push ({from: vm.prizePositions.length>0?vm.prizePositions[vm.prizePositions.length-1].to + 1:1,
+                                       to: vm.prizePositions.length>0?vm.prizePositions[vm.prizePositions.length-1].to + 1:1});
+               pool.prizes.push(prize);
+               
+            }
+            
+            vm.CreateLeaderboard = function(pool){
+                PoolsService.addPool(pool).then(function(newPool){
+                    vm.PoolRooms.push(newPool);
+                    vm.NewPool = null;
+                    vm.prizePositions = [];
+                });
+            }
+
+            vm.opened = {};
+            vm.open = function($event, whichCal) {
+                $event.preventDefault();
+                $event.stopPropagation();
+                vm.opened[whichCal] = true;
+            };
+            
+            vm.countries = CountriesService.getCountries();
+             
+            // Holds prize positions in order to pass it along the pool
+            vm.prizePositions = [];
+            
+            vm.updatePrizePositions = function (pool, prizePositions ){
+               var $index = 0;
+               pool.prizes.forEach(function(prize){
+                   prize.positions = prizePositions[$index];
+                   $index++;
+               });
+               console.log(vm.NewPool);
+               console.log(vm.NewPool.prizes);
+            }
+            
+            vm.dateOptions = {
+                formatYear: 'yy',
+                startingDay: 1
+            };
+
+            vm.initDate = new Date('2019-10-20');
+            vm.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+            vm.format = vm.formats[0];
+            vm.searchObj = {};
+        
+
+    }
+    
+    function CountriesService(){
+        return {
+            getCountries: function(){
+                return  [ // Taken from https://gist.github.com/unceus/6501985
                 {
-                    id: 1,
-                    name: 'Donald Hoffman'
+                    name: 'Afghanistan',
+                    code: 'AF'
                 },
                 {
-                    id: 2,
-                    name: 'Wallace Barrett'
+                    name: 'Åland Islands',
+                    code: 'AX'
                 },
                 {
-                    id: 3,
-                    name: 'Marsha Hicks'
+                    name: 'Albania',
+                    code: 'AL'
                 },
                 {
-                    id: 4,
-                    name: 'Roland Brown'
+                    name: 'Algeria',
+                    code: 'DZ'
+                },
+                {
+                    name: 'American Samoa',
+                    code: 'AS'
+                },
+                {
+                    name: 'Andorra',
+                    code: 'AD'
+                },
+                {
+                    name: 'Angola',
+                    code: 'AO'
+                },
+                {
+                    name: 'Anguilla',
+                    code: 'AI'
+                },
+                {
+                    name: 'Antarctica',
+                    code: 'AQ'
+                },
+                {
+                    name: 'Antigua and Barbuda',
+                    code: 'AG'
+                },
+                {
+                    name: 'Argentina',
+                    code: 'AR'
+                },
+                {
+                    name: 'Armenia',
+                    code: 'AM'
+                },
+                {
+                    name: 'Aruba',
+                    code: 'AW'
+                },
+                {
+                    name: 'Australia',
+                    code: 'AU'
+                },
+                {
+                    name: 'Austria',
+                    code: 'AT'
+                },
+                {
+                    name: 'Azerbaijan',
+                    code: 'AZ'
+                },
+                {
+                    name: 'Bahamas',
+                    code: 'BS'
+                },
+                {
+                    name: 'Bahrain',
+                    code: 'BH'
+                },
+                {
+                    name: 'Bangladesh',
+                    code: 'BD'
+                },
+                {
+                    name: 'Barbados',
+                    code: 'BB'
+                },
+                {
+                    name: 'Belarus',
+                    code: 'BY'
+                },
+                {
+                    name: 'Belgium',
+                    code: 'BE'
+                },
+                {
+                    name: 'Belize',
+                    code: 'BZ'
+                },
+                {
+                    name: 'Benin',
+                    code: 'BJ'
+                },
+                {
+                    name: 'Bermuda',
+                    code: 'BM'
+                },
+                {
+                    name: 'Bhutan',
+                    code: 'BT'
+                },
+                {
+                    name: 'Bolivia',
+                    code: 'BO'
+                },
+                {
+                    name: 'Bosnia and Herzegovina',
+                    code: 'BA'
+                },
+                {
+                    name: 'Botswana',
+                    code: 'BW'
+                },
+                {
+                    name: 'Bouvet Island',
+                    code: 'BV'
+                },
+                {
+                    name: 'Brazil',
+                    code: 'BR'
+                },
+                {
+                    name: 'British Indian Ocean Territory',
+                    code: 'IO'
+                },
+                {
+                    name: 'Brunei Darussalam',
+                    code: 'BN'
+                },
+                {
+                    name: 'Bulgaria',
+                    code: 'BG'
+                },
+                {
+                    name: 'Burkina Faso',
+                    code: 'BF'
+                },
+                {
+                    name: 'Burundi',
+                    code: 'BI'
+                },
+                {
+                    name: 'Cambodia',
+                    code: 'KH'
+                },
+                {
+                    name: 'Cameroon',
+                    code: 'CM'
+                },
+                {
+                    name: 'Canada',
+                    code: 'CA'
+                },
+                {
+                    name: 'Cape Verde',
+                    code: 'CV'
+                },
+                {
+                    name: 'Cayman Islands',
+                    code: 'KY'
+                },
+                {
+                    name: 'Central African Republic',
+                    code: 'CF'
+                },
+                {
+                    name: 'Chad',
+                    code: 'TD'
+                },
+                {
+                    name: 'Chile',
+                    code: 'CL'
+                },
+                {
+                    name: 'China',
+                    code: 'CN'
+                },
+                {
+                    name: 'Christmas Island',
+                    code: 'CX'
+                },
+                {
+                    name: 'Cocos (Keeling) Islands',
+                    code: 'CC'
+                },
+                {
+                    name: 'Colombia',
+                    code: 'CO'
+                },
+                {
+                    name: 'Comoros',
+                    code: 'KM'
+                },
+                {
+                    name: 'Congo',
+                    code: 'CG'
+                },
+                {
+                    name: 'Congo, The Democratic Republic of the',
+                    code: 'CD'
+                },
+                {
+                    name: 'Cook Islands',
+                    code: 'CK'
+                },
+                {
+                    name: 'Costa Rica',
+                    code: 'CR'
+                },
+                {
+                    name: 'Cote D\'Ivoire',
+                    code: 'CI'
+                },
+                {
+                    name: 'Croatia',
+                    code: 'HR'
+                },
+                {
+                    name: 'Cuba',
+                    code: 'CU'
+                },
+                {
+                    name: 'Cyprus',
+                    code: 'CY'
+                },
+                {
+                    name: 'Czech Republic',
+                    code: 'CZ'
+                },
+                {
+                    name: 'Denmark',
+                    code: 'DK'
+                },
+                {
+                    name: 'Djibouti',
+                    code: 'DJ'
+                },
+                {
+                    name: 'Dominica',
+                    code: 'DM'
+                },
+                {
+                    name: 'Dominican Republic',
+                    code: 'DO'
+                },
+                {
+                    name: 'Ecuador',
+                    code: 'EC'
+                },
+                {
+                    name: 'Egypt',
+                    code: 'EG'
+                },
+                {
+                    name: 'El Salvador',
+                    code: 'SV'
+                },
+                {
+                    name: 'Equatorial Guinea',
+                    code: 'GQ'
+                },
+                {
+                    name: 'Eritrea',
+                    code: 'ER'
+                },
+                {
+                    name: 'Estonia',
+                    code: 'EE'
+                },
+                {
+                    name: 'Ethiopia',
+                    code: 'ET'
+                },
+                {
+                    name: 'Falkland Islands (Malvinas)',
+                    code: 'FK'
+                },
+                {
+                    name: 'Faroe Islands',
+                    code: 'FO'
+                },
+                {
+                    name: 'Fiji',
+                    code: 'FJ'
+                },
+                {
+                    name: 'Finland',
+                    code: 'FI'
+                },
+                {
+                    name: 'France',
+                    code: 'FR'
+                },
+                {
+                    name: 'French Guiana',
+                    code: 'GF'
+                },
+                {
+                    name: 'French Polynesia',
+                    code: 'PF'
+                },
+                {
+                    name: 'French Southern Territories',
+                    code: 'TF'
+                },
+                {
+                    name: 'Gabon',
+                    code: 'GA'
+                },
+                {
+                    name: 'Gambia',
+                    code: 'GM'
+                },
+                {
+                    name: 'Georgia',
+                    code: 'GE'
+                },
+                {
+                    name: 'Germany',
+                    code: 'DE'
+                },
+                {
+                    name: 'Ghana',
+                    code: 'GH'
+                },
+                {
+                    name: 'Gibraltar',
+                    code: 'GI'
+                },
+                {
+                    name: 'Greece',
+                    code: 'GR'
+                },
+                {
+                    name: 'Greenland',
+                    code: 'GL'
+                },
+                {
+                    name: 'Grenada',
+                    code: 'GD'
+                },
+                {
+                    name: 'Guadeloupe',
+                    code: 'GP'
+                },
+                {
+                    name: 'Guam',
+                    code: 'GU'
+                },
+                {
+                    name: 'Guatemala',
+                    code: 'GT'
+                },
+                {
+                    name: 'Guernsey',
+                    code: 'GG'
+                },
+                {
+                    name: 'Guinea',
+                    code: 'GN'
+                },
+                {
+                    name: 'Guinea-Bissau',
+                    code: 'GW'
+                },
+                {
+                    name: 'Guyana',
+                    code: 'GY'
+                },
+                {
+                    name: 'Haiti',
+                    code: 'HT'
+                },
+                {
+                    name: 'Heard Island and Mcdonald Islands',
+                    code: 'HM'
+                },
+                {
+                    name: 'Holy See (Vatican City State)',
+                    code: 'VA'
+                },
+                {
+                    name: 'Honduras',
+                    code: 'HN'
+                },
+                {
+                    name: 'Hong Kong',
+                    code: 'HK'
+                },
+                {
+                    name: 'Hungary',
+                    code: 'HU'
+                },
+                {
+                    name: 'Iceland',
+                    code: 'IS'
+                },
+                {
+                    name: 'India',
+                    code: 'IN'
+                },
+                {
+                    name: 'Indonesia',
+                    code: 'ID'
+                },
+                {
+                    name: 'Iran, Islamic Republic Of',
+                    code: 'IR'
+                },
+                {
+                    name: 'Iraq',
+                    code: 'IQ'
+                },
+                {
+                    name: 'Ireland',
+                    code: 'IE'
+                },
+                {
+                    name: 'Isle of Man',
+                    code: 'IM'
+                },
+                {
+                    name: 'Israel',
+                    code: 'IL'
+                },
+                {
+                    name: 'Italy',
+                    code: 'IT'
+                },
+                {
+                    name: 'Jamaica',
+                    code: 'JM'
+                },
+                {
+                    name: 'Japan',
+                    code: 'JP'
+                },
+                {
+                    name: 'Jersey',
+                    code: 'JE'
+                },
+                {
+                    name: 'Jordan',
+                    code: 'JO'
+                },
+                {
+                    name: 'Kazakhstan',
+                    code: 'KZ'
+                },
+                {
+                    name: 'Kenya',
+                    code: 'KE'
+                },
+                {
+                    name: 'Kiribati',
+                    code: 'KI'
+                },
+                {
+                    name: 'Korea, Democratic People\'s Republic of',
+                    code: 'KP'
+                },
+                {
+                    name: 'Korea, Republic of',
+                    code: 'KR'
+                },
+                {
+                    name: 'Kuwait',
+                    code: 'KW'
+                },
+                {
+                    name: 'Kyrgyzstan',
+                    code: 'KG'
+                },
+                {
+                    name: 'Lao People\'s Democratic Republic',
+                    code: 'LA'
+                },
+                {
+                    name: 'Latvia',
+                    code: 'LV'
+                },
+                {
+                    name: 'Lebanon',
+                    code: 'LB'
+                },
+                {
+                    name: 'Lesotho',
+                    code: 'LS'
+                },
+                {
+                    name: 'Liberia',
+                    code: 'LR'
+                },
+                {
+                    name: 'Libyan Arab Jamahiriya',
+                    code: 'LY'
+                },
+                {
+                    name: 'Liechtenstein',
+                    code: 'LI'
+                },
+                {
+                    name: 'Lithuania',
+                    code: 'LT'
+                },
+                {
+                    name: 'Luxembourg',
+                    code: 'LU'
+                },
+                {
+                    name: 'Macao',
+                    code: 'MO'
+                },
+                {
+                    name: 'Macedonia, The Former Yugoslav Republic of',
+                    code: 'MK'
+                },
+                {
+                    name: 'Madagascar',
+                    code: 'MG'
+                },
+                {
+                    name: 'Malawi',
+                    code: 'MW'
+                },
+                {
+                    name: 'Malaysia',
+                    code: 'MY'
+                },
+                {
+                    name: 'Maldives',
+                    code: 'MV'
+                },
+                {
+                    name: 'Mali',
+                    code: 'ML'
+                },
+                {
+                    name: 'Malta',
+                    code: 'MT'
+                },
+                {
+                    name: 'Marshall Islands',
+                    code: 'MH'
+                },
+                {
+                    name: 'Martinique',
+                    code: 'MQ'
+                },
+                {
+                    name: 'Mauritania',
+                    code: 'MR'
+                },
+                {
+                    name: 'Mauritius',
+                    code: 'MU'
+                },
+                {
+                    name: 'Mayotte',
+                    code: 'YT'
+                },
+                {
+                    name: 'Mexico',
+                    code: 'MX'
+                },
+                {
+                    name: 'Micronesia, Federated States of',
+                    code: 'FM'
+                },
+                {
+                    name: 'Moldova, Republic of',
+                    code: 'MD'
+                },
+                {
+                    name: 'Monaco',
+                    code: 'MC'
+                },
+                {
+                    name: 'Mongolia',
+                    code: 'MN'
+                },
+                {
+                    name: 'Montserrat',
+                    code: 'MS'
+                },
+                {
+                    name: 'Morocco',
+                    code: 'MA'
+                },
+                {
+                    name: 'Mozambique',
+                    code: 'MZ'
+                },
+                {
+                    name: 'Myanmar',
+                    code: 'MM'
+                },
+                {
+                    name: 'Namibia',
+                    code: 'NA'
+                },
+                {
+                    name: 'Nauru',
+                    code: 'NR'
+                },
+                {
+                    name: 'Nepal',
+                    code: 'NP'
+                },
+                {
+                    name: 'Netherlands',
+                    code: 'NL'
+                },
+                {
+                    name: 'Netherlands Antilles',
+                    code: 'AN'
+                },
+                {
+                    name: 'New Caledonia',
+                    code: 'NC'
+                },
+                {
+                    name: 'New Zealand',
+                    code: 'NZ'
+                },
+                {
+                    name: 'Nicaragua',
+                    code: 'NI'
+                },
+                {
+                    name: 'Niger',
+                    code: 'NE'
+                },
+                {
+                    name: 'Nigeria',
+                    code: 'NG'
+                },
+                {
+                    name: 'Niue',
+                    code: 'NU'
+                },
+                {
+                    name: 'Norfolk Island',
+                    code: 'NF'
+                },
+                {
+                    name: 'Northern Mariana Islands',
+                    code: 'MP'
+                },
+                {
+                    name: 'Norway',
+                    code: 'NO'
+                },
+                {
+                    name: 'Oman',
+                    code: 'OM'
+                },
+                {
+                    name: 'Pakistan',
+                    code: 'PK'
+                },
+                {
+                    name: 'Palau',
+                    code: 'PW'
+                },
+                {
+                    name: 'Palestinian Territory, Occupied',
+                    code: 'PS'
+                },
+                {
+                    name: 'Panama',
+                    code: 'PA'
+                },
+                {
+                    name: 'Papua New Guinea',
+                    code: 'PG'
+                },
+                {
+                    name: 'Paraguay',
+                    code: 'PY'
+                },
+                {
+                    name: 'Peru',
+                    code: 'PE'
+                },
+                {
+                    name: 'Philippines',
+                    code: 'PH'
+                },
+                {
+                    name: 'Pitcairn',
+                    code: 'PN'
+                },
+                {
+                    name: 'Poland',
+                    code: 'PL'
+                },
+                {
+                    name: 'Portugal',
+                    code: 'PT'
+                },
+                {
+                    name: 'Puerto Rico',
+                    code: 'PR'
+                },
+                {
+                    name: 'Qatar',
+                    code: 'QA'
+                },
+                {
+                    name: 'Reunion',
+                    code: 'RE'
+                },
+                {
+                    name: 'Romania',
+                    code: 'RO'
+                },
+                {
+                    name: 'Russian Federation',
+                    code: 'RU'
+                },
+                {
+                    name: 'Rwanda',
+                    code: 'RW'
+                },
+                {
+                    name: 'Saint Helena',
+                    code: 'SH'
+                },
+                {
+                    name: 'Saint Kitts and Nevis',
+                    code: 'KN'
+                },
+                {
+                    name: 'Saint Lucia',
+                    code: 'LC'
+                },
+                {
+                    name: 'Saint Pierre and Miquelon',
+                    code: 'PM'
+                },
+                {
+                    name: 'Saint Vincent and the Grenadines',
+                    code: 'VC'
+                },
+                {
+                    name: 'Samoa',
+                    code: 'WS'
+                },
+                {
+                    name: 'San Marino',
+                    code: 'SM'
+                },
+                {
+                    name: 'Sao Tome and Principe',
+                    code: 'ST'
+                },
+                {
+                    name: 'Saudi Arabia',
+                    code: 'SA'
+                },
+                {
+                    name: 'Senegal',
+                    code: 'SN'
+                },
+                {
+                    name: 'Serbia and Montenegro',
+                    code: 'CS'
+                },
+                {
+                    name: 'Seychelles',
+                    code: 'SC'
+                },
+                {
+                    name: 'Sierra Leone',
+                    code: 'SL'
+                },
+                {
+                    name: 'Singapore',
+                    code: 'SG'
+                },
+                {
+                    name: 'Slovakia',
+                    code: 'SK'
+                },
+                {
+                    name: 'Slovenia',
+                    code: 'SI'
+                },
+                {
+                    name: 'Solomon Islands',
+                    code: 'SB'
+                },
+                {
+                    name: 'Somalia',
+                    code: 'SO'
+                },
+                {
+                    name: 'South Africa',
+                    code: 'ZA'
+                },
+                {
+                    name: 'South Georgia and the South Sandwich Islands',
+                    code: 'GS'
+                },
+                {
+                    name: 'Spain',
+                    code: 'ES'
+                },
+                {
+                    name: 'Sri Lanka',
+                    code: 'LK'
+                },
+                {
+                    name: 'Sudan',
+                    code: 'SD'
+                },
+                {
+                    name: 'Suriname',
+                    code: 'SR'
+                },
+                {
+                    name: 'Svalbard and Jan Mayen',
+                    code: 'SJ'
+                },
+                {
+                    name: 'Swaziland',
+                    code: 'SZ'
+                },
+                {
+                    name: 'Sweden',
+                    code: 'SE'
+                },
+                {
+                    name: 'Switzerland',
+                    code: 'CH'
+                },
+                {
+                    name: 'Syrian Arab Republic',
+                    code: 'SY'
+                },
+                {
+                    name: 'Taiwan, Province of China',
+                    code: 'TW'
+                },
+                {
+                    name: 'Tajikistan',
+                    code: 'TJ'
+                },
+                {
+                    name: 'Tanzania, United Republic of',
+                    code: 'TZ'
+                },
+                {
+                    name: 'Thailand',
+                    code: 'TH'
+                },
+                {
+                    name: 'Timor-Leste',
+                    code: 'TL'
+                },
+                {
+                    name: 'Togo',
+                    code: 'TG'
+                },
+                {
+                    name: 'Tokelau',
+                    code: 'TK'
+                },
+                {
+                    name: 'Tonga',
+                    code: 'TO'
+                },
+                {
+                    name: 'Trinidad and Tobago',
+                    code: 'TT'
+                },
+                {
+                    name: 'Tunisia',
+                    code: 'TN'
+                },
+                {
+                    name: 'Turkey',
+                    code: 'TR'
+                },
+                {
+                    name: 'Turkmenistan',
+                    code: 'TM'
+                },
+                {
+                    name: 'Turks and Caicos Islands',
+                    code: 'TC'
+                },
+                {
+                    name: 'Tuvalu',
+                    code: 'TV'
+                },
+                {
+                    name: 'Uganda',
+                    code: 'UG'
+                },
+                {
+                    name: 'Ukraine',
+                    code: 'UA'
+                },
+                {
+                    name: 'United Arab Emirates',
+                    code: 'AE'
+                },
+                {
+                    name: 'United Kingdom',
+                    code: 'GB'
+                },
+                {
+                    name: 'United States',
+                    code: 'US'
+                },
+                {
+                    name: 'United States Minor Outlying Islands',
+                    code: 'UM'
+                },
+                {
+                    name: 'Uruguay',
+                    code: 'UY'
+                },
+                {
+                    name: 'Uzbekistan',
+                    code: 'UZ'
+                },
+                {
+                    name: 'Vanuatu',
+                    code: 'VU'
+                },
+                {
+                    name: 'Venezuela',
+                    code: 'VE'
+                },
+                {
+                    name: 'Vietnam',
+                    code: 'VN'
+                },
+                {
+                    name: 'Virgin Islands, British',
+                    code: 'VG'
+                },
+                {
+                    name: 'Virgin Islands, U.S.',
+                    code: 'VI'
+                },
+                {
+                    name: 'Wallis and Futuna',
+                    code: 'WF'
+                },
+                {
+                    name: 'Western Sahara',
+                    code: 'EH'
+                },
+                {
+                    name: 'Yemen',
+                    code: 'YE'
+                },
+                {
+                    name: 'Zambia',
+                    code: 'ZM'
+                },
+                {
+                    name: 'Zimbabwe',
+                    code: 'ZW'
                 }
             ];
-
-            $scope.add = function() {
-                $scope.data1.push({
-                    id: $scope.data1.length + 1,
-                    name: 'Earl Knight'
-                });
-            };
-
-            $scope.sortableCallback = function(sourceModel, destModel, start, end) {
-                console.log(start + ' -> ' + end);
-            };
-
-            $scope.sortableOptions = {
-                placeholder: '<div class="box-placeholder p0 m0"><div></div></div>',
-                forcePlaceholderSize: true
-            };
+            }
+        }
     }
 })();
 
@@ -13194,7 +14407,7 @@
                 url: '/match-moderation/soccer/:id',
                 title: 'Mathces Administration',
                 templateUrl: helper.basepath('sportimo/moderation/sportimo_moderation_soccer.html'),
-                resolve: helper.resolveFor('restangular', 'toaster', 'dirPagination', 'moment', 'moment-format', 'ui.select', 'ngDialog','htmlSortable'),
+                resolve: helper.resolveFor('toaster', 'dirPagination', 'moment', 'moment-format', 'ui.select', 'ngDialog', 'htmlSortable'),
                 controller: 'SportimoModerationSoccerController',
                 controllerAs: 'modCtrl',
             })
@@ -14232,9 +15445,9 @@
         .module('app.sidebar')
         .controller('UserBlockController', UserBlockController);
 
-    UserBlockController.$inject = ['$rootScope','$location'];
+    UserBlockController.$inject = ['$rootScope', '$location'];
 
-    function UserBlockController($rootScope,$location) {
+    function UserBlockController($rootScope, $location) {
 
         activate();
 
@@ -14242,20 +15455,20 @@
 
         function activate() {
             // console.log($rootScope.user);
-            
+
 
             // Hides/show user avatar on sidebar
             $rootScope.toggleUserBlock = function() {
                 console.log("toggle");
                 $rootScope.$broadcast('toggleUserBlock');
             };
-            
+
             $rootScope.logout = function() {
                 console.log("logout");
                 $rootScope.$storage.currentUser = null;
                 $rootScope.user = null;
-                 $location.path('/page/login');
-              
+                $location.path('/page/login');
+
             };
 
             $rootScope.userBlockVisible = true;

@@ -8,7 +8,8 @@
     <meta name="keywords" content="app, responsive, angular, bootstrap, dashboard, admin">
     <title data-ng-bind="::pageTitle()">Sportimo Dashboard</title>
     <!-- Bootstrap styles-->
-
+    <link rel="stylesheet" href="app/css/normalize.css" data-ng-if="!app.layout.isRTL">
+    
     <link rel="stylesheet" href="app/css/bootstrap.css" data-ng-if="!app.layout.isRTL">
     <link rel="stylesheet" href="app/css/bootstrap-rtl.css" data-ng-if="app.layout.isRTL">
 
