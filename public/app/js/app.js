@@ -12,7 +12,7 @@
 // APP START
 // ----------------------------------- 
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -52,62 +52,70 @@
             "app.schedule",
             "app.players",
             "app.publications",
+        "app.leaderboards",
             "angular-ladda"
         ]);
 })();
 
 
 
-(function() {
+(function () {
     'use strict';
 
     angular
         .module('app.pushes', []);
 })();
 
-(function() {
+(function () {
     'use strict';
 
     angular
         .module('BedbugDirectives', []);
 })();
 
-(function() {
+(function () {
     'use strict';
 
     angular
         .module('app.polls', []);
 })();
 
-(function() {
+(function () {
     'use strict';
 
     angular
         .module('app.welcomes', []);
 })();
 
-(function() {
+(function () {
     'use strict';
 
     angular
         .module('app.match-moderation-soccer', ['ngDialog']);
 })();
 
-(function() {
+(function () {
     'use strict';
 
     angular
         .module('app.teams', []);
 })();
 
-(function() {
+(function () {
     'use strict';
 
     angular
         .module('app.publications', ['angular-ladda']);
 })();
 
-(function() {
+(function () {
+    'use strict';
+
+    angular
+        .module('app.leaderboards', ['angular-ladda']);
+})();
+
+(function () {
     'use strict';
 
     angular
@@ -115,41 +123,41 @@
 })();
 
 
-(function() {
+(function () {
     'use strict';
 
     angular
         .module('app.schedule', ['ngDialog', 'ui.bootstrap.datetimepicker', 'ui.dateTimeInput']);
 })();
 
-(function() {
+(function () {
     'use strict';
 
     angular
         .module('app.activities', []);
 })();
 
-(function() {
+(function () {
     'use strict';
 
     angular
         .module('app.interviews', []);
 })();
 
-(function() {
+(function () {
     'use strict';
 
     angular
         .module('app.bootstrapui', []);
 })();
-(function() {
+(function () {
     'use strict';
 
     angular
         .module('app.charts', []);
 })();
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -157,7 +165,7 @@
 })();
 
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -168,7 +176,7 @@
 
 
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -195,73 +203,73 @@
             'angular-jwt'
         ]);
 })();
-(function() {
+(function () {
     'use strict';
 
     angular
         .module('app.dashboard', []);
 })();
-(function() {
+(function () {
     'use strict';
 
     angular
         .module('app.elements', []);
 })();
-(function() {
+(function () {
     'use strict';
 
     angular
         .module('app.extras', []);
 })();
-(function() {
+(function () {
     'use strict';
 
     angular
         .module('app.flatdoc', []);
 })();
-(function() {
+(function () {
     'use strict';
 
     angular
         .module('app.forms', []);
 })();
-(function() {
+(function () {
     'use strict';
 
     angular
         .module('app.icons', []);
 })();
-(function() {
+(function () {
     'use strict';
 
     angular
         .module('app.lazyload', []);
 })();
-(function() {
+(function () {
     'use strict';
 
     angular
         .module('app.loadingbar', []);
 })();
-(function() {
+(function () {
     'use strict';
 
     angular
         .module('app.locale', []);
 })();
-(function() {
+(function () {
     'use strict';
 
     angular
         .module('app.mailbox', []);
 })();
-(function() {
+(function () {
     'use strict';
 
     angular
         .module('app.maps', []);
 })();
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -269,31 +277,31 @@
             'ngMaterial'
         ]);
 })();
-(function() {
+(function () {
     'use strict';
 
     angular
         .module('app.navsearch', []);
 })();
-(function() {
+(function () {
     'use strict';
 
     angular
         .module('app.notify', []);
 })();
-(function() {
+(function () {
     'use strict';
 
     angular
         .module('app.pages', []);
 })();
-(function() {
+(function () {
     'use strict';
 
     angular
         .module('app.panels', []);
 })();
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -301,7 +309,7 @@
 })();
 
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -309,31 +317,31 @@
             'app.lazyload'
         ]);
 })();
-(function() {
+(function () {
     'use strict';
 
     angular
         .module('app.settings', []);
 })();
-(function() {
+(function () {
     'use strict';
 
     angular
         .module('app.sidebar', []);
 })();
-(function() {
+(function () {
     'use strict';
 
     angular
         .module('app.tables', []);
 })();
-(function() {
+(function () {
     'use strict';
 
     angular
         .module('app.translate', []);
 })();
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -348,7 +356,7 @@
  * Module: demo-alerts.js
  * Provides a simple demo for pagination
  =========================================================*/
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -374,20 +382,20 @@
                 }
             ];
 
-            vm.addAlert = function() {
+            vm.addAlert = function () {
                 vm.alerts.push({
                     msg: 'Another alert!'
                 });
             };
 
-            vm.closeAlert = function(index) {
+            vm.closeAlert = function (index) {
                 vm.alerts.splice(index, 1);
             };
         }
     }
 })();
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -407,7 +415,7 @@
  * Provides a simple demo for buttons actions
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -439,7 +447,7 @@
  * Module: demo-carousel.js
  * Provides a simple demo for bootstrap ui carousel
  =========================================================*/
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -457,7 +465,7 @@
             vm.myInterval = 5000;
 
             var slides = vm.slides = [];
-            vm.addSlide = function() {
+            vm.addSlide = function () {
                 var newWidth = 800 + slides.length;
                 slides.push({
                     image: '//placekitten.com/' + newWidth + '/300',
@@ -478,7 +486,7 @@
  * Provides a simple demo for bootstrap datepicker
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -493,26 +501,26 @@
         ////////////////
 
         function activate() {
-            vm.today = function() {
+            vm.today = function () {
                 vm.dt = new Date();
             };
             vm.today();
 
-            vm.clear = function() {
+            vm.clear = function () {
                 vm.dt = null;
             };
 
             // Disable weekend selection
-            vm.disabled = function(date, mode) {
+            vm.disabled = function (date, mode) {
                 return (mode === 'day' && (date.getDay() === 0 || date.getDay() === 6));
             };
 
-            vm.toggleMin = function() {
+            vm.toggleMin = function () {
                 vm.minDate = vm.minDate ? null : new Date();
             };
             vm.toggleMin();
 
-            vm.open = function($event) {
+            vm.open = function ($event) {
                 $event.preventDefault();
                 $event.stopPropagation();
                 vm.opened = true;
@@ -535,7 +543,7 @@
  * Module: modals.js
  * Provides a simple way to implement bootstrap modals from templates
  =========================================================*/
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -553,7 +561,7 @@
 
         function activate() {
 
-            vm.open = function(size) {
+            vm.open = function (size) {
 
                 var modalInstance = $modal.open({
                     templateUrl: '/myModalContent.html',
@@ -562,9 +570,9 @@
                 });
 
                 var state = $('#modal-state');
-                modalInstance.result.then(function() {
+                modalInstance.result.then(function () {
                     state.text('Modal dismissed with OK status');
-                }, function() {
+                }, function () {
                     state.text('Modal dismissed with Cancel status');
                 });
             };
@@ -576,11 +584,11 @@
 
             function ModalInstanceCtrl($scope, $modalInstance) {
 
-                $scope.ok = function() {
+                $scope.ok = function () {
                     $modalInstance.close('closed');
                 };
 
-                $scope.cancel = function() {
+                $scope.cancel = function () {
                     $modalInstance.dismiss('cancel');
                 };
             }
@@ -593,7 +601,7 @@
  * Module: demo-pagination.js
  * Provides a simple demo for pagination
  =========================================================*/
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -612,11 +620,11 @@
             vm.totalItems = 64;
             vm.currentPage = 4;
 
-            vm.setPage = function(pageNo) {
+            vm.setPage = function (pageNo) {
                 vm.currentPage = pageNo;
             };
 
-            vm.pageChanged = function() {
+            vm.pageChanged = function () {
                 console.log('Page changed to: ' + vm.currentPage);
             };
 
@@ -632,7 +640,7 @@
  * Provides a simple demo for popovers
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -658,7 +666,7 @@
  * Provides a simple demo to animate progress bar
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -675,7 +683,7 @@
         function activate() {
             vm.max = 200;
 
-            vm.random = function() {
+            vm.random = function () {
                 var value = Math.floor((Math.random() * 100) + 1);
                 var type;
 
@@ -696,7 +704,7 @@
             };
             vm.random();
 
-            vm.randomStacked = function() {
+            vm.randomStacked = function () {
                 vm.stacked = [];
                 var types = ['success', 'info', 'warning', 'danger'];
 
@@ -717,7 +725,7 @@
  * Module: demo-rating.js
  * Provides a demo for ratings UI
  =========================================================*/
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -736,7 +744,7 @@
             vm.max = 10;
             vm.isReadonly = false;
 
-            vm.hoveringOver = function(value) {
+            vm.hoveringOver = function (value) {
                 vm.overStar = value;
                 vm.percent = 100 * (value / vm.max);
             };
@@ -770,7 +778,7 @@
  * Provides a simple demo for bootstrap ui timepicker
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -796,22 +804,22 @@
             };
 
             vm.ismeridian = true;
-            vm.toggleMode = function() {
+            vm.toggleMode = function () {
                 vm.ismeridian = !vm.ismeridian;
             };
 
-            vm.update = function() {
+            vm.update = function () {
                 var d = new Date();
                 d.setHours(14);
                 d.setMinutes(0);
                 vm.mytime = d;
             };
 
-            vm.changed = function() {
+            vm.changed = function () {
                 console.log('Time changed to: ' + vm.mytime);
             };
 
-            vm.clear = function() {
+            vm.clear = function () {
                 vm.mytime = null;
             };
         }
@@ -823,7 +831,7 @@
  * Provides a simple demo for tooltip
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -842,7 +850,7 @@
             vm.dynamicTooltipText = 'dynamic';
             vm.htmlTooltip = 'I\'ve been made <b>bold</b>!';
 
-            vm.autoplace = function(context, source) {
+            vm.autoplace = function (context, source) {
                 //return (predictTooltipTop(source) < 0) ?  "bottom": "top";
                 var pos = 'top';
                 if (predictTooltipTop(source) < 0)
@@ -885,7 +893,7 @@
  * Module: demo-typeahead.js
  * Provides a simple demo for typeahead
  =========================================================*/
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -907,15 +915,15 @@
             vm.states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Dakota', 'North Carolina', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
 
             // Any function returning a promise object can be used to load values asynchronously
-            vm.getLocation = function(val) {
+            vm.getLocation = function (val) {
                 return $http.get('//maps.googleapis.com/maps/api/geocode/json', {
                     params: {
                         address: val,
                         sensor: false
                     }
-                }).then(function(res) {
+                }).then(function (res) {
                     var addresses = [];
-                    angular.forEach(res.data.results, function(item) {
+                    angular.forEach(res.data.results, function (item) {
                         /*jshint -W106*/
                         addresses.push(item.formatted_address);
                     });
@@ -927,152 +935,152 @@
                 'name': 'Alabama',
                 'flag': '5/5c/Flag_of_Alabama.svg/45px-Flag_of_Alabama.svg.png'
             }, {
-                    'name': 'Alaska',
-                    'flag': 'e/e6/Flag_of_Alaska.svg/43px-Flag_of_Alaska.svg.png'
+                'name': 'Alaska',
+                'flag': 'e/e6/Flag_of_Alaska.svg/43px-Flag_of_Alaska.svg.png'
                 }, {
-                    'name': 'Arizona',
-                    'flag': '9/9d/Flag_of_Arizona.svg/45px-Flag_of_Arizona.svg.png'
+                'name': 'Arizona',
+                'flag': '9/9d/Flag_of_Arizona.svg/45px-Flag_of_Arizona.svg.png'
                 }, {
-                    'name': 'Arkansas',
-                    'flag': '9/9d/Flag_of_Arkansas.svg/45px-Flag_of_Arkansas.svg.png'
+                'name': 'Arkansas',
+                'flag': '9/9d/Flag_of_Arkansas.svg/45px-Flag_of_Arkansas.svg.png'
                 }, {
-                    'name': 'California',
-                    'flag': '0/01/Flag_of_California.svg/45px-Flag_of_California.svg.png'
+                'name': 'California',
+                'flag': '0/01/Flag_of_California.svg/45px-Flag_of_California.svg.png'
                 }, {
-                    'name': 'Colorado',
-                    'flag': '4/46/Flag_of_Colorado.svg/45px-Flag_of_Colorado.svg.png'
+                'name': 'Colorado',
+                'flag': '4/46/Flag_of_Colorado.svg/45px-Flag_of_Colorado.svg.png'
                 }, {
-                    'name': 'Connecticut',
-                    'flag': '9/96/Flag_of_Connecticut.svg/39px-Flag_of_Connecticut.svg.png'
+                'name': 'Connecticut',
+                'flag': '9/96/Flag_of_Connecticut.svg/39px-Flag_of_Connecticut.svg.png'
                 }, {
-                    'name': 'Delaware',
-                    'flag': 'c/c6/Flag_of_Delaware.svg/45px-Flag_of_Delaware.svg.png'
+                'name': 'Delaware',
+                'flag': 'c/c6/Flag_of_Delaware.svg/45px-Flag_of_Delaware.svg.png'
                 }, {
-                    'name': 'Florida',
-                    'flag': 'f/f7/Flag_of_Florida.svg/45px-Flag_of_Florida.svg.png'
+                'name': 'Florida',
+                'flag': 'f/f7/Flag_of_Florida.svg/45px-Flag_of_Florida.svg.png'
                 }, {
-                    'name': 'Georgia',
-                    'flag': '5/54/Flag_of_Georgia_%28U.S._state%29.svg/46px-Flag_of_Georgia_%28U.S._state%29.svg.png'
+                'name': 'Georgia',
+                'flag': '5/54/Flag_of_Georgia_%28U.S._state%29.svg/46px-Flag_of_Georgia_%28U.S._state%29.svg.png'
                 }, {
-                    'name': 'Hawaii',
-                    'flag': 'e/ef/Flag_of_Hawaii.svg/46px-Flag_of_Hawaii.svg.png'
+                'name': 'Hawaii',
+                'flag': 'e/ef/Flag_of_Hawaii.svg/46px-Flag_of_Hawaii.svg.png'
                 }, {
-                    'name': 'Idaho',
-                    'flag': 'a/a4/Flag_of_Idaho.svg/38px-Flag_of_Idaho.svg.png'
+                'name': 'Idaho',
+                'flag': 'a/a4/Flag_of_Idaho.svg/38px-Flag_of_Idaho.svg.png'
                 }, {
-                    'name': 'Illinois',
-                    'flag': '0/01/Flag_of_Illinois.svg/46px-Flag_of_Illinois.svg.png'
+                'name': 'Illinois',
+                'flag': '0/01/Flag_of_Illinois.svg/46px-Flag_of_Illinois.svg.png'
                 }, {
-                    'name': 'Indiana',
-                    'flag': 'a/ac/Flag_of_Indiana.svg/45px-Flag_of_Indiana.svg.png'
+                'name': 'Indiana',
+                'flag': 'a/ac/Flag_of_Indiana.svg/45px-Flag_of_Indiana.svg.png'
                 }, {
-                    'name': 'Iowa',
-                    'flag': 'a/aa/Flag_of_Iowa.svg/44px-Flag_of_Iowa.svg.png'
+                'name': 'Iowa',
+                'flag': 'a/aa/Flag_of_Iowa.svg/44px-Flag_of_Iowa.svg.png'
                 }, {
-                    'name': 'Kansas',
-                    'flag': 'd/da/Flag_of_Kansas.svg/46px-Flag_of_Kansas.svg.png'
+                'name': 'Kansas',
+                'flag': 'd/da/Flag_of_Kansas.svg/46px-Flag_of_Kansas.svg.png'
                 }, {
-                    'name': 'Kentucky',
-                    'flag': '8/8d/Flag_of_Kentucky.svg/46px-Flag_of_Kentucky.svg.png'
+                'name': 'Kentucky',
+                'flag': '8/8d/Flag_of_Kentucky.svg/46px-Flag_of_Kentucky.svg.png'
                 }, {
-                    'name': 'Louisiana',
-                    'flag': 'e/e0/Flag_of_Louisiana.svg/46px-Flag_of_Louisiana.svg.png'
+                'name': 'Louisiana',
+                'flag': 'e/e0/Flag_of_Louisiana.svg/46px-Flag_of_Louisiana.svg.png'
                 }, {
-                    'name': 'Maine',
-                    'flag': '3/35/Flag_of_Maine.svg/45px-Flag_of_Maine.svg.png'
+                'name': 'Maine',
+                'flag': '3/35/Flag_of_Maine.svg/45px-Flag_of_Maine.svg.png'
                 }, {
-                    'name': 'Maryland',
-                    'flag': 'a/a0/Flag_of_Maryland.svg/45px-Flag_of_Maryland.svg.png'
+                'name': 'Maryland',
+                'flag': 'a/a0/Flag_of_Maryland.svg/45px-Flag_of_Maryland.svg.png'
                 }, {
-                    'name': 'Massachusetts',
-                    'flag': 'f/f2/Flag_of_Massachusetts.svg/46px-Flag_of_Massachusetts.svg.png'
+                'name': 'Massachusetts',
+                'flag': 'f/f2/Flag_of_Massachusetts.svg/46px-Flag_of_Massachusetts.svg.png'
                 }, {
-                    'name': 'Michigan',
-                    'flag': 'b/b5/Flag_of_Michigan.svg/45px-Flag_of_Michigan.svg.png'
+                'name': 'Michigan',
+                'flag': 'b/b5/Flag_of_Michigan.svg/45px-Flag_of_Michigan.svg.png'
                 }, {
-                    'name': 'Minnesota',
-                    'flag': 'b/b9/Flag_of_Minnesota.svg/46px-Flag_of_Minnesota.svg.png'
+                'name': 'Minnesota',
+                'flag': 'b/b9/Flag_of_Minnesota.svg/46px-Flag_of_Minnesota.svg.png'
                 }, {
-                    'name': 'Mississippi',
-                    'flag': '4/42/Flag_of_Mississippi.svg/45px-Flag_of_Mississippi.svg.png'
+                'name': 'Mississippi',
+                'flag': '4/42/Flag_of_Mississippi.svg/45px-Flag_of_Mississippi.svg.png'
                 }, {
-                    'name': 'Missouri',
-                    'flag': '5/5a/Flag_of_Missouri.svg/46px-Flag_of_Missouri.svg.png'
+                'name': 'Missouri',
+                'flag': '5/5a/Flag_of_Missouri.svg/46px-Flag_of_Missouri.svg.png'
                 }, {
-                    'name': 'Montana',
-                    'flag': 'c/cb/Flag_of_Montana.svg/45px-Flag_of_Montana.svg.png'
+                'name': 'Montana',
+                'flag': 'c/cb/Flag_of_Montana.svg/45px-Flag_of_Montana.svg.png'
                 }, {
-                    'name': 'Nebraska',
-                    'flag': '4/4d/Flag_of_Nebraska.svg/46px-Flag_of_Nebraska.svg.png'
+                'name': 'Nebraska',
+                'flag': '4/4d/Flag_of_Nebraska.svg/46px-Flag_of_Nebraska.svg.png'
                 }, {
-                    'name': 'Nevada',
-                    'flag': 'f/f1/Flag_of_Nevada.svg/45px-Flag_of_Nevada.svg.png'
+                'name': 'Nevada',
+                'flag': 'f/f1/Flag_of_Nevada.svg/45px-Flag_of_Nevada.svg.png'
                 }, {
-                    'name': 'New Hampshire',
-                    'flag': '2/28/Flag_of_New_Hampshire.svg/45px-Flag_of_New_Hampshire.svg.png'
+                'name': 'New Hampshire',
+                'flag': '2/28/Flag_of_New_Hampshire.svg/45px-Flag_of_New_Hampshire.svg.png'
                 }, {
-                    'name': 'New Jersey',
-                    'flag': '9/92/Flag_of_New_Jersey.svg/45px-Flag_of_New_Jersey.svg.png'
+                'name': 'New Jersey',
+                'flag': '9/92/Flag_of_New_Jersey.svg/45px-Flag_of_New_Jersey.svg.png'
                 }, {
-                    'name': 'New Mexico',
-                    'flag': 'c/c3/Flag_of_New_Mexico.svg/45px-Flag_of_New_Mexico.svg.png'
+                'name': 'New Mexico',
+                'flag': 'c/c3/Flag_of_New_Mexico.svg/45px-Flag_of_New_Mexico.svg.png'
                 }, {
-                    'name': 'New York',
-                    'flag': '1/1a/Flag_of_New_York.svg/46px-Flag_of_New_York.svg.png'
+                'name': 'New York',
+                'flag': '1/1a/Flag_of_New_York.svg/46px-Flag_of_New_York.svg.png'
                 }, {
-                    'name': 'North Carolina',
-                    'flag': 'b/bb/Flag_of_North_Carolina.svg/45px-Flag_of_North_Carolina.svg.png'
+                'name': 'North Carolina',
+                'flag': 'b/bb/Flag_of_North_Carolina.svg/45px-Flag_of_North_Carolina.svg.png'
                 }, {
-                    'name': 'North Dakota',
-                    'flag': 'e/ee/Flag_of_North_Dakota.svg/38px-Flag_of_North_Dakota.svg.png'
+                'name': 'North Dakota',
+                'flag': 'e/ee/Flag_of_North_Dakota.svg/38px-Flag_of_North_Dakota.svg.png'
                 }, {
-                    'name': 'Ohio',
-                    'flag': '4/4c/Flag_of_Ohio.svg/46px-Flag_of_Ohio.svg.png'
+                'name': 'Ohio',
+                'flag': '4/4c/Flag_of_Ohio.svg/46px-Flag_of_Ohio.svg.png'
                 }, {
-                    'name': 'Oklahoma',
-                    'flag': '6/6e/Flag_of_Oklahoma.svg/45px-Flag_of_Oklahoma.svg.png'
+                'name': 'Oklahoma',
+                'flag': '6/6e/Flag_of_Oklahoma.svg/45px-Flag_of_Oklahoma.svg.png'
                 }, {
-                    'name': 'Oregon',
-                    'flag': 'b/b9/Flag_of_Oregon.svg/46px-Flag_of_Oregon.svg.png'
+                'name': 'Oregon',
+                'flag': 'b/b9/Flag_of_Oregon.svg/46px-Flag_of_Oregon.svg.png'
                 }, {
-                    'name': 'Pennsylvania',
-                    'flag': 'f/f7/Flag_of_Pennsylvania.svg/45px-Flag_of_Pennsylvania.svg.png'
+                'name': 'Pennsylvania',
+                'flag': 'f/f7/Flag_of_Pennsylvania.svg/45px-Flag_of_Pennsylvania.svg.png'
                 }, {
-                    'name': 'Rhode Island',
-                    'flag': 'f/f3/Flag_of_Rhode_Island.svg/32px-Flag_of_Rhode_Island.svg.png'
+                'name': 'Rhode Island',
+                'flag': 'f/f3/Flag_of_Rhode_Island.svg/32px-Flag_of_Rhode_Island.svg.png'
                 }, {
-                    'name': 'South Carolina',
-                    'flag': '6/69/Flag_of_South_Carolina.svg/45px-Flag_of_South_Carolina.svg.png'
+                'name': 'South Carolina',
+                'flag': '6/69/Flag_of_South_Carolina.svg/45px-Flag_of_South_Carolina.svg.png'
                 }, {
-                    'name': 'South Dakota',
-                    'flag': '1/1a/Flag_of_South_Dakota.svg/46px-Flag_of_South_Dakota.svg.png'
+                'name': 'South Dakota',
+                'flag': '1/1a/Flag_of_South_Dakota.svg/46px-Flag_of_South_Dakota.svg.png'
                 }, {
-                    'name': 'Tennessee',
-                    'flag': '9/9e/Flag_of_Tennessee.svg/46px-Flag_of_Tennessee.svg.png'
+                'name': 'Tennessee',
+                'flag': '9/9e/Flag_of_Tennessee.svg/46px-Flag_of_Tennessee.svg.png'
                 }, {
-                    'name': 'Texas',
-                    'flag': 'f/f7/Flag_of_Texas.svg/45px-Flag_of_Texas.svg.png'
+                'name': 'Texas',
+                'flag': 'f/f7/Flag_of_Texas.svg/45px-Flag_of_Texas.svg.png'
                 }, {
-                    'name': 'Utah',
-                    'flag': 'f/f6/Flag_of_Utah.svg/45px-Flag_of_Utah.svg.png'
+                'name': 'Utah',
+                'flag': 'f/f6/Flag_of_Utah.svg/45px-Flag_of_Utah.svg.png'
                 }, {
-                    'name': 'Vermont',
-                    'flag': '4/49/Flag_of_Vermont.svg/46px-Flag_of_Vermont.svg.png'
+                'name': 'Vermont',
+                'flag': '4/49/Flag_of_Vermont.svg/46px-Flag_of_Vermont.svg.png'
                 }, {
-                    'name': 'Virginia',
-                    'flag': '4/47/Flag_of_Virginia.svg/44px-Flag_of_Virginia.svg.png'
+                'name': 'Virginia',
+                'flag': '4/47/Flag_of_Virginia.svg/44px-Flag_of_Virginia.svg.png'
                 }, {
-                    'name': 'Washington',
-                    'flag': '5/54/Flag_of_Washington.svg/46px-Flag_of_Washington.svg.png'
+                'name': 'Washington',
+                'flag': '5/54/Flag_of_Washington.svg/46px-Flag_of_Washington.svg.png'
                 }, {
-                    'name': 'West Virginia',
-                    'flag': '2/22/Flag_of_West_Virginia.svg/46px-Flag_of_West_Virginia.svg.png'
+                'name': 'West Virginia',
+                'flag': '2/22/Flag_of_West_Virginia.svg/46px-Flag_of_West_Virginia.svg.png'
                 }, {
-                    'name': 'Wisconsin',
-                    'flag': '2/22/Flag_of_Wisconsin.svg/45px-Flag_of_Wisconsin.svg.png'
+                'name': 'Wisconsin',
+                'flag': '2/22/Flag_of_Wisconsin.svg/45px-Flag_of_Wisconsin.svg.png'
                 }, {
-                    'name': 'Wyoming',
-                    'flag': 'b/bc/Flag_of_Wyoming.svg/43px-Flag_of_Wyoming.svg.png'
+                'name': 'Wyoming',
+                'flag': 'b/bc/Flag_of_Wyoming.svg/43px-Flag_of_Wyoming.svg.png'
                 }];
 
         }
@@ -1083,7 +1091,7 @@
  * Module: chartist.js
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -1127,7 +1135,7 @@
                 low: -10,
                 height: 220,
                 axisX: {
-                    labelInterpolationFnc: function(value, index) {
+                    labelInterpolationFnc: function (value, index) {
                         return index % 2 === 0 ? value : null;
                     }
                 }
@@ -1186,10 +1194,10 @@
             };
 
             vm.smilEvents = {
-                created: function() {
+                created: function () {
                     seq = 0;
                 },
-                draw: function(data) {
+                draw: function (data) {
                     seq++;
 
                     if (data.type === 'line') {
@@ -1277,7 +1285,7 @@
             };
 
             vm.pathEvents = {
-                draw: function(data) {
+                draw: function (data) {
                     if (data.type === 'line' || data.type === 'area') {
                         data.element.animate({
                             d: {
@@ -1302,7 +1310,7 @@
  * Controller for ChartJs
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -1321,7 +1329,7 @@
         function activate() {
 
             // random values for demo
-            var rFactor = function() {
+            var rFactor = function () {
                 return Math.round(Math.random() * 100);
             };
 
@@ -1582,7 +1590,7 @@
  * Based on https://gist.github.com/AndreasHeiberg/9837868
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -1597,7 +1605,7 @@
         .directive('donutchart', chartJS('Doughnut'));
 
     function chartJS(type) {
-        return function() {
+        return function () {
             return {
                 restrict: 'A',
                 scope: {
@@ -1613,11 +1621,11 @@
                     tooltip: '=',
                     legend: '='
                 },
-                link: function($scope, $elem) {
+                link: function ($scope, $elem) {
                     var ctx = $elem[0].getContext('2d');
                     var autosize = false;
 
-                    $scope.size = function() {
+                    $scope.size = function () {
                         if ($scope.width <= 0) {
                             $elem.width($elem.parent().width());
                             ctx.canvas.width = $elem.width();
@@ -1635,7 +1643,7 @@
                         }
                     };
 
-                    $scope.$watch('data', function(newVal) {
+                    $scope.$watch('data', function (newVal) {
                         if (chartCreated)
                             chartCreated.destroy();
 
@@ -1664,7 +1672,7 @@
                             angular.element($elem[0]).parent().after(chartCreated.generateLegend());
                     }, true);
 
-                    $scope.$watch('tooltip', function(newVal) {
+                    $scope.$watch('tooltip', function (newVal) {
                         if (chartCreated)
                             chartCreated.draw();
                         if (newVal === undefined || !chartCreated.segments)
@@ -1693,7 +1701,7 @@
  * Enable use of classyloader directly from data attributes
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -1714,7 +1722,7 @@
                 inViewFlagClass = 'js-is-in-view'; // a classname to detect when a chart has been triggered after scroll
 
             // run after interpolation  
-            $timeout(function() {
+            $timeout(function () {
 
                 var $element = $(element),
                     options = $element.data();
@@ -1723,7 +1731,7 @@
                 if (options) {
                     if (options.triggerInView) {
 
-                        $scroller.scroll(function() {
+                        $scroller.scroll(function () {
                             checkLoaderInVIew($element, options);
                         });
                         // if the element starts already in view
@@ -1752,7 +1760,7 @@
 
 })();
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -1784,7 +1792,7 @@
  * Setup options and data for flot chart directive
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -1823,7 +1831,7 @@
                 },
                 tooltip: true,
                 tooltipOpts: {
-                    content: function(label, x, y) {
+                    content: function (label, x, y) {
                         return x + ' : ' + y;
                     }
                 },
@@ -1860,7 +1868,7 @@
                 },
                 tooltip: true,
                 tooltipOpts: {
-                    content: function(label, x, y) {
+                    content: function (label, x, y) {
                         return x + ' : ' + y;
                     }
                 },
@@ -1904,7 +1912,7 @@
                 },
                 tooltip: true,
                 tooltipOpts: {
-                    content: function(label, x, y) {
+                    content: function (label, x, y) {
                         return x + ' : ' + y;
                     }
                 },
@@ -1917,8 +1925,8 @@
                     max: 150, // optional: use it for a clear represetation
                     tickColor: '#eee',
                     position: ($scope.app.layout.isRTL ? 'right' : 'left'),
-                    tickFormatter: function(v) {
-                        return v /* + ' visitors'*/;
+                    tickFormatter: function (v) {
+                        return v /* + ' visitors'*/ ;
                     }
                 },
                 shadowSize: 0
@@ -1946,7 +1954,7 @@
                 },
                 tooltip: true,
                 tooltipOpts: {
-                    content: function(label, x, y) {
+                    content: function (label, x, y) {
                         return x + ' : ' + y;
                     }
                 },
@@ -1958,7 +1966,7 @@
                     min: 0,
                     tickColor: '#eee',
                     position: ($scope.app.layout.isRTL ? 'right' : 'left'),
-                    tickFormatter: function(v) {
+                    tickFormatter: function (v) {
                         return v + ' visitors';
                     }
                 },
@@ -1987,7 +1995,7 @@
                 },
                 tooltip: true,
                 tooltipOpts: {
-                    content: function(label, x, y) {
+                    content: function (label, x, y) {
                         return x + ' : ' + y;
                     }
                 },
@@ -2013,7 +2021,7 @@
                         label: {
                             show: true,
                             radius: 0.8,
-                            formatter: function(label, series) {
+                            formatter: function (label, series) {
                                 return '<div class="flot-pie-label">' +
                                     //label + ' : ' +
                                     Math.round(series.percent) +
@@ -2060,7 +2068,7 @@
                     labelMargin: 10
                 },
                 xaxis: {
-                    tickFormatter: function() {
+                    tickFormatter: function () {
                         return '';
                     }
                 },
@@ -2113,12 +2121,12 @@
             // PANEL REFRESH EVENTS
             // ----------------------------------- 
 
-            $scope.$on('panel-refresh', function(event, id) {
+            $scope.$on('panel-refresh', function (event, id) {
 
                 console.log('Simulating chart refresh during 3s on #' + id);
 
                 // Instead of timeout you can request a chart data
-                $timeout(function() {
+                $timeout(function () {
 
                     // directive listen for to remove the spinner 
                     // after we end up to perform own operations
@@ -2135,7 +2143,7 @@
             // ----------------------------------- 
 
             // Before remove panel
-            $scope.$on('panel-remove', function(event, id, deferred) {
+            $scope.$on('panel-remove', function (event, id, deferred) {
 
                 console.log('Panel #' + id + ' removing');
 
@@ -2147,7 +2155,7 @@
             });
 
             // Panel removed ( only if above was resolved() )
-            $scope.$on('panel-removed', function(event, id) {
+            $scope.$on('panel-removed', function (event, id) {
 
                 console.log('Panel #' + id + ' removed');
 
@@ -2162,7 +2170,7 @@
  * Initializes the Flot chart plugin and handles data refresh
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -2239,7 +2247,7 @@
                 plot.draw();
 
                 function toggleFor(sName) {
-                    return function(s, i) {
+                    return function (s, i) {
                         if (someData[i] && someData[i][sName])
                             someData[i][sName].show = s;
                     };
@@ -2253,13 +2261,13 @@
                 if (src) {
 
                     $http.get(src)
-                        .success(function(data) {
+                        .success(function (data) {
 
-                            $timeout(function() {
+                            $timeout(function () {
                                 scope.dataset = data;
                             });
 
-                        }).error(function() {
+                        }).error(function () {
                             $.error('Flot chart: Bad request.');
                         });
 
@@ -2278,7 +2286,7 @@
  * Module: morris.js
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -2393,7 +2401,7 @@
  * AngularJS Directives for Morris Charts
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -2404,16 +2412,16 @@
         .directive('morrisArea', morrisChart('Area'));
 
     function morrisChart(type) {
-        return function() {
+        return function () {
             return {
                 restrict: 'EA',
                 scope: {
                     morrisData: '=',
                     morrisOptions: '='
                 },
-                link: function($scope, element) {
+                link: function ($scope, element) {
                     // start ready to watch for changes in data
-                    $scope.$watch('morrisData', function(newVal) {
+                    $scope.$watch('morrisData', function (newVal) {
                         if (newVal) {
                             $scope.morrisInstance.setData(newVal);
                             $scope.morrisInstance.redraw();
@@ -2438,7 +2446,7 @@
  * Module: PieChartsController.js
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -2549,7 +2557,7 @@
                 lineCap: 'circle'
             };
 
-            vm.randomize = function(type) {
+            vm.randomize = function (type) {
                 if (type === 'easy') {
                     vm.piePercent1 = random();
                     vm.piePercent2 = random();
@@ -2576,7 +2584,7 @@
  * Module: rickshaw.js
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -2596,14 +2604,14 @@
                 id: 'area',
                 name: 'Area'
             }, {
-                    id: 'line',
-                    name: 'Line'
+                id: 'line',
+                name: 'Line'
                 }, {
-                    id: 'bar',
-                    name: 'Bar'
+                id: 'bar',
+                name: 'Bar'
                 }, {
-                    id: 'scatterplot',
-                    name: 'Scatterplot'
+                id: 'scatterplot',
+                name: 'Scatterplot'
                 }];
 
             vm.palettes = [
@@ -2616,19 +2624,19 @@
                 'munin'
             ];
 
-            vm.rendererChanged = function(id) {
+            vm.rendererChanged = function (id) {
                 vm['options' + id] = {
                     renderer: vm['renderer' + id].id
                 };
             };
 
-            vm.paletteChanged = function(id) {
+            vm.paletteChanged = function (id) {
                 vm['features' + id] = {
                     palette: vm['palette' + id]
                 };
             };
 
-            vm.changeSeriesData = function(id) {
+            vm.changeSeriesData = function (id) {
                 var seriesList = [];
                 for (var i = 0; i < 3; i++) {
                     var series = {
@@ -2698,7 +2706,7 @@
  * SparkLines Mini Charts
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -2720,7 +2728,7 @@
     Controller.$inject = ['$scope', '$element', '$timeout', '$window'];
 
     function Controller($scope, $element, $timeout, $window) {
-        var runSL = function() {
+        var runSL = function () {
             initSparLine();
         };
 
@@ -2741,7 +2749,7 @@
             $element.sparkline('html', options);
 
             if (options.resize) {
-                $($window).resize(function() {
+                $($window).resize(function () {
                     $element.sparkline('html', options);
                 });
             }
@@ -2752,7 +2760,7 @@
 
 })();
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -2781,7 +2789,7 @@
  * Services to retrieve global colors
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -2826,7 +2834,7 @@
 
 // })();
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -2856,7 +2864,7 @@
  * Define constants to inject across the application
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -2869,7 +2877,7 @@
         });
 
 })();
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -2893,7 +2901,7 @@
             color: "#1ba3cd"
         }];
 
-        $rootScope.toggleEnvironment = function() {
+        $rootScope.toggleEnvironment = function () {
             if ($rootScope.serverEnvironment == 'production')
                 $rootScope.serverEnvironment = $rootScope.$storage.environment = 'development';
             else
@@ -2901,7 +2909,7 @@
 
             toast('Environment: ' + $rootScope.serverEnvironment);
 
-            $timeout(function() {
+            $timeout(function () {
                 $window.location.reload()
             }, 2000);
 
@@ -2910,12 +2918,12 @@
         function toast(message) {
             $mdToast.show({
                 template: '<md-toast class="sportimo-toast">' +
-                '<div class="sportimo-toast-heading text-center">' +
-                '<img src="app/img/sportimo/icon_sportimo-white_64.png" alt="App Logo" class="pull-left">' +
-                '</div>' +
-                '<div>' + message +
-                '</div>' +
-                '</md-toast>',
+                    '<div class="sportimo-toast-heading text-center">' +
+                    '<img src="app/img/sportimo/icon_sportimo-white_64.png" alt="App Logo" class="pull-left">' +
+                    '</div>' +
+                    '<div>' + message +
+                    '</div>' +
+                    '</md-toast>',
                 hideDelay: 3000,
                 position: 'top right'
             });
@@ -2936,7 +2944,7 @@
 
         $rootScope.serverEnvironment = $rootScope.$storage.environment || 'production';
 
-        $rootScope.reconnectSocket = function() {
+        $rootScope.reconnectSocket = function () {
             $rootScope.dataStream = $websocket($rootScope.servers[$rootScope.serverEnvironment].sockets);
         };
 
@@ -2944,17 +2952,17 @@
         $rootScope.dataStream = $websocket($rootScope.servers[$rootScope.serverEnvironment].sockets);
 
         $rootScope.socketConnection = false;
-        $rootScope.dataStream.onOpen(function() {
+        $rootScope.dataStream.onOpen(function () {
             $rootScope.socketConnection = true;
         });
-        $rootScope.dataStream.onClose(function() {
+        $rootScope.dataStream.onClose(function () {
             $rootScope.socketConnection = false;
         });
-        $rootScope.dataStream.onError(function() {
+        $rootScope.dataStream.onError(function () {
             $rootScope.socketConnection = false;
         });
 
-        $rootScope.dataStream.onMessage(function(message) {
+        $rootScope.dataStream.onMessage(function (message) {
             messageCount++;
 
 
@@ -2986,7 +2994,7 @@
         $rootScope.colorByName = Colors.byName;
 
         // cancel click event easily
-        $rootScope.cancel = function($event) {
+        $rootScope.cancel = function ($event) {
             $event.stopPropagation();
         };
 
@@ -2995,19 +3003,19 @@
 
         // Hook not found
         $rootScope.$on('$stateNotFound',
-            function(event, unfoundState /*, fromState, fromParams*/) {
+            function (event, unfoundState /*, fromState, fromParams*/ ) {
                 console.log(unfoundState.to); // "lazy.state"
                 console.log(unfoundState.toParams); // {a:1, b:2}
                 console.log(unfoundState.options); // {inherit:false} + default options
             });
         // Hook error
         $rootScope.$on('$stateChangeError',
-            function(event, toState, toParams, fromState, fromParams, error) {
+            function (event, toState, toParams, fromState, fromParams, error) {
                 console.log(error);
             });
         // Hook success
         $rootScope.$on('$stateChangeSuccess',
-            function( /*event, toState, toParams, fromState, fromParams*/) {
+            function ( /*event, toState, toParams, fromState, fromParams*/ ) {
                 // display new view from top
                 $window.scrollTo(0, 0);
                 // Save the route title
@@ -3016,7 +3024,7 @@
 
         // Load a title dynamically
         $rootScope.currTitle = $state.current.title;
-        $rootScope.pageTitle = function() {
+        $rootScope.pageTitle = function () {
             var title = $rootScope.app.name + ' - ' + ($rootScope.currTitle || $rootScope.app.description);
             document.title = title;
             return title;
@@ -3041,7 +3049,7 @@
 
 
 
-        $rootScope.$on('$locationChangeStart', function(event, next, current) {
+        $rootScope.$on('$locationChangeStart', function (event, next, current) {
             // redirect to login page if not logged in and trying to access a restricted page
             //var restrictedPage = $.inArray($location.path(), ['/login', '/register']) === -1;
             var loggedIn = $rootScope.globals.currentUser || $rootScope.$storage.currentUser;
@@ -3063,26 +3071,26 @@
 })();
 
 
-(function() {
+(function () {
     'use strict';
 
     angular
         .module('app.polls')
         .controller('SportimoPollsController', SportimoPollsController)
-        .filter('reverse', function() {
-            return function(items) {
+        .filter('reverse', function () {
+            return function (items) {
                 return items.slice().reverse();
             };
         });
 
 
-    SportimoPollsController.$inject = ['$scope', 'Restangular', 'toaster', '$state',];
+    SportimoPollsController.$inject = ['$scope', 'Restangular', 'toaster', '$state', ];
 
     function SportimoPollsController($scope, Restangular, toaster, $state) {
 
         'use strict';
 
-        $scope.getPercentFor = function(results, index) {
+        $scope.getPercentFor = function (results, index) {
             var sum = 0;
             for (var i in results) {
                 sum += results[i];
@@ -3118,7 +3126,7 @@
 
 
         function loadItems() {
-            Items.getList().then(function(data) {
+            Items.getList().then(function (data) {
                 $scope.allItems = data;
             });
         }
@@ -3129,17 +3137,17 @@
         $scope.composeItem = false;
         $scope.activeItem;
 
-        $scope.newPoll = function() {
+        $scope.newPoll = function () {
             $scope.composeItem = true;
         };
 
-        $scope.updateItem = function(item) {
-            item.save().then(function(res) {
+        $scope.updateItem = function (item) {
+            item.save().then(function (res) {
                 toaster.pop("success", "Task Completed", res);
             })
         };
 
-        $scope.pushPoll = function(poll) {
+        $scope.pushPoll = function (poll) {
 
             console.log(poll);
             var newquest = angular.copy(poll);
@@ -3150,7 +3158,7 @@
             }
 
 
-            Items.post(newquest).then(function(poll) {
+            Items.post(newquest).then(function (poll) {
                 $scope.allItems.push(newquest);
                 $scope.activeItem = null;
                 $scope.composeItem = false;
@@ -3159,11 +3167,11 @@
             });
         };
 
-        $scope.delete = function(item) {
+        $scope.delete = function (item) {
             $scope.loading = true;
 
             console.log(item);
-            item.remove().then(function(res, err) {
+            item.remove().then(function (res, err) {
                 console.log(res);
                 console.log(err);
                 $scope.loading = false;
@@ -3189,14 +3197,14 @@
     }
 })();
 
-(function() {
+(function () {
     'use strict';
 
     angular
         .module('app.welcomes')
         .controller('SportimoWelcomesController', SportimoWelcomesController)
-        .filter('reverse', function() {
-            return function(items) {
+        .filter('reverse', function () {
+            return function (items) {
                 return items.slice().reverse();
             };
         });
@@ -3226,7 +3234,7 @@
 
 
         function loadItems() {
-            Items.getList().then(function(data) {
+            Items.getList().then(function (data) {
                 $scope.allItems = data;
             });
         }
@@ -3237,23 +3245,23 @@
         $scope.composeItem = false;
         $scope.activeItem;
 
-        $scope.newPoll = function() {
+        $scope.newPoll = function () {
 
 
             $scope.composeItem = true;
             setnow();
         };
 
-        $scope.updateItem = function(item) {
+        $scope.updateItem = function (item) {
 
             var newquest = angular.copy(item);
 
-            newquest.save().then(function(res) {
+            newquest.save().then(function (res) {
                 toaster.pop("success", "Task Completed", res);
             })
         };
 
-        $scope.pushItem = function(item) {
+        $scope.pushItem = function (item) {
 
 
             var newquest = angular.copy(item);
@@ -3265,7 +3273,7 @@
 
             console.log(newquest);
 
-            Items.post(newquest).then(function(poll) {
+            Items.post(newquest).then(function (poll) {
                 $scope.allItems.push(newquest);
                 $scope.activeItem = null;
                 $scope.composeItem = false;
@@ -3274,10 +3282,10 @@
             });
         };
 
-        $scope.delete = function(item) {
+        $scope.delete = function (item) {
             $scope.loading = true;
 
-            item.remove().then(function(res, err) {
+            item.remove().then(function (res, err) {
                 console.log(res);
                 console.log(err);
                 $scope.loading = false;
@@ -3309,26 +3317,26 @@
         }
 
 
-        $scope.today = function() {
+        $scope.today = function () {
             $scope.dt = new Date();
         };
         $scope.today();
 
-        $scope.clear = function() {
+        $scope.clear = function () {
             $scope.dt = null;
         };
 
         // Disable weekend selection
-        $scope.disabled = function(date, mode) {
+        $scope.disabled = function (date, mode) {
             return (mode === 'day' && (date.getDay() === 0 || date.getDay() === 6));
         };
 
-        $scope.toggleMin = function() {
+        $scope.toggleMin = function () {
             $scope.minDate = $scope.minDate ? null : new Date();
         };
         $scope.toggleMin();
 
-        $scope.open = function($event) {
+        $scope.open = function ($event) {
             $event.preventDefault();
             $event.stopPropagation();
 
@@ -3349,7 +3357,7 @@
 })();
 
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -3370,7 +3378,7 @@
         function login() {
 
             vm.dataLoading = true;
-            AuthenticationService.Login(vm.username, vm.password, function(response) {
+            AuthenticationService.Login(vm.username, vm.password, function (response) {
 
                 if (response.success && response.admin) {
                     AuthenticationService.SetCredentials(vm.username, vm.password, response.name, response.admin, response.pic, response.token);
@@ -3418,7 +3426,7 @@
 //        };
 //})();
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -3446,31 +3454,31 @@
 
 
         return {
-            getSchedule: function() {
+            getSchedule: function () {
                 var Defer = $q.defer();
-                Schedule.getList().then(function(schedule) {
+                Schedule.getList().then(function (schedule) {
                     Defer.resolve(schedule);
                 });
                 return Defer.promise;
             },
 
-            addMatch: function(newMatch) {
+            addMatch: function (newMatch) {
                 var Defer = $q.defer();
-                Schedule.post(newMatch).then(function(match) {
+                Schedule.post(newMatch).then(function (match) {
                     console.log(match);
                     Defer.resolve(match);
-                }, function() {
+                }, function () {
                     console.log("There was an error saving");
                 });
                 return Defer.promise;
             },
 
-            updateMatch: function(updatedMatch) {
+            updateMatch: function (updatedMatch) {
                 var Defer = $q.defer();
                 var match = _.cloneDeep(updatedMatch);
                 updatedMatch.home_team = updatedMatch.home_team._id.$oid;
                 updatedMatch.away_team = updatedMatch.away_team._id.$oid;
-                updatedMatch.save().then(function(res) {
+                updatedMatch.save().then(function (res) {
                     updatedMatch.home_team = match.home_team;
                     updatedMatch.away_team = match.away_team
                     Defer.resolve(res);
@@ -3479,9 +3487,9 @@
             },
 
 
-            deleteMatch: function(match) {
+            deleteMatch: function (match) {
                 var Defer = $q.defer();
-                match.remove().then(function(res) {
+                match.remove().then(function (res) {
                     Defer.resolve(res);
                 })
                 return Defer.promise;
@@ -3522,9 +3530,9 @@
             var deferred = $q.defer();
 
             // simulate api call with $timeout
-            $timeout(function() {
+            $timeout(function () {
                 GetByUsername(user.username)
-                    .then(function(duplicateUser) {
+                    .then(function (duplicateUser) {
                         if (duplicateUser !== null) {
                             deferred.resolve({
                                 success: false,
@@ -3621,7 +3629,7 @@
     }
 })();
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -3678,9 +3686,12 @@
 
             /* Use this for real authentication
              ----------------------------------------------*/
-            ServerUsers.post({ username: username, password: password }).then(function(responseUser) {
+            ServerUsers.post({
+                username: username,
+                password: password
+            }).then(function (responseUser) {
                 callback(responseUser);
-            }, function() {
+            }, function () {
                 console.log("There was an error saving");
             });
 
@@ -3725,7 +3736,7 @@
 
         keyStr: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=',
 
-        encode: function(input) {
+        encode: function (input) {
             var output = "";
             var chr1, chr2, chr3 = "";
             var enc1, enc2, enc3, enc4 = "";
@@ -3759,7 +3770,7 @@
             return output;
         },
 
-        decode: function(input) {
+        decode: function (input) {
             var output = "";
             var chr1, chr2, chr3 = "";
             var enc1, enc2, enc3, enc4 = "";
@@ -3805,13 +3816,13 @@
 })();
 
 
-(function() {
+(function () {
     'use strict';
 
     angular
         .module('app.pushes')
-        .filter('filterLastAction', function() {
-            return function(items, coddition) {
+        .filter('filterLastAction', function () {
+            return function (items, coddition) {
 
                 if (!coddition) return items;
 
@@ -3857,7 +3868,7 @@
 
 
         function loadItems() {
-            Items.getList().then(function(data) {
+            Items.getList().then(function (data) {
                 $scope.allItems = data;
             });
         }
@@ -3869,10 +3880,10 @@
         //}
 
 
-        $scope.$on('panel-refresh', function(event, id) {
+        $scope.$on('panel-refresh', function (event, id) {
             $scope.pushLoading = true;
             console.log('Simulating chart refresh during 3s on #' + id);
-            Items.getList().then(function(data, err) {
+            Items.getList().then(function (data, err) {
                 if (!err)
                     $scope.allItems = data;
                 $scope.$broadcast('removeSpinner', id);
@@ -3893,7 +3904,7 @@
 
         });
 
-        $scope.FormatDate = function(date) {
+        $scope.FormatDate = function (date) {
 
             var d = new Date(date);
             var d_string = ("0" + d.getDate()).slice(-2) + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" +
@@ -3903,7 +3914,7 @@
         };
 
 
-        $scope.pushRequest = function(Users, message, data) {
+        $scope.pushRequest = function (Users, message, data) {
             $scope.pushLoading = true;
 
             if (message == undefined) {
@@ -3919,11 +3930,11 @@
                 data: data != undefined ? JSON.parse(JSON.stringify(data)) : data
             };
 
-            Push.post(Request).then(function(res) {
+            Push.post(Request).then(function (res) {
                 $scope.pushLoading = false;
                 toaster.pop("success", "Success", "Successfuly sent Push Request");
                 console.log(res);
-            }, function() {
+            }, function () {
                 $scope.pushLoading = false;
                 console.log("There was an error saving");
             });
@@ -3945,20 +3956,20 @@
 
         // SELECTION
 
-        $scope.onServiceSelected = function(item, model) {
+        $scope.onServiceSelected = function (item, model) {
 
             $scope.selectedService = item.id;
 
 
         };
 
-        $scope.onSelected = function(item, model) {
+        $scope.onSelected = function (item, model) {
 
             $scope.push.message = JSON.stringify(item.message, null, 4);
 
         };
 
-        $scope.onDataSelected = function(item) {
+        $scope.onDataSelected = function (item) {
 
             item.message.match_id = $scope.matchIdFilter;
             $scope.push.data = JSON.stringify(item.message, null, 4);
@@ -3984,15 +3995,15 @@
 
         $scope.disabled = undefined;
 
-        $scope.enable = function() {
+        $scope.enable = function () {
             $scope.disabled = false;
         };
 
-        $scope.disable = function() {
+        $scope.disable = function () {
             vm.disabled = true;
         };
 
-        $scope.clear = function() {
+        $scope.clear = function () {
             vm.template.selected = undefined;
         };
 
@@ -4033,7 +4044,7 @@
 
 
         // Multiple
-        $scope.someGroupFn = function(item) {
+        $scope.someGroupFn = function (item) {
 
             if (item.name[0] >= 'A' && item.name[0] <= 'M')
                 return 'From A - M';
@@ -4044,7 +4055,7 @@
         };
 
         $scope.counter = 0;
-        $scope.someFunction = function(item, model) {
+        $scope.someFunction = function (item, model) {
             $scope.counter++;
             $scope.eventResult = {
                 item: item,
@@ -4065,14 +4076,14 @@
 })();
 
 
-(function() {
+(function () {
     'use strict';
 
     angular
         .module('app.activities')
         .controller('SportimoActivitiesController', SportimoActivitiesController)
-        .filter('reverse', function() {
-            return function(items) {
+        .filter('reverse', function () {
+            return function (items) {
                 return items.slice().reverse();
             };
         });
@@ -4099,7 +4110,7 @@
 
 
         function loadItems() {
-            Items.getList().then(function(data) {
+            Items.getList().then(function (data) {
                 $scope.allItems = data;
             });
         }
@@ -4110,20 +4121,20 @@
         $scope.composeItem = false;
         $scope.activeItem;
 
-        $scope.newPoll = function() {
+        $scope.newPoll = function () {
 
 
             $scope.composeItem = true;
             setnow();
         };
 
-        $scope.updateItem = function(item) {
-            item.save().then(function(res) {
+        $scope.updateItem = function (item) {
+            item.save().then(function (res) {
                 toaster.pop("success", "Task Completed", res);
             })
         };
 
-        $scope.pushItem = function(item) {
+        $scope.pushItem = function (item) {
 
 
             var newquest = angular.copy(item);
@@ -4134,7 +4145,7 @@
             }
 
 
-            Items.post(newquest).then(function(poll) {
+            Items.post(newquest).then(function (poll) {
                 $scope.allItems.push(newquest);
                 $scope.activeItem = null;
                 $scope.composeItem = false;
@@ -4143,10 +4154,10 @@
             });
         };
 
-        $scope.delete = function(item) {
+        $scope.delete = function (item) {
             $scope.loading = true;
 
-            item.remove().then(function(res, err) {
+            item.remove().then(function (res, err) {
                 console.log(res);
                 console.log(err);
                 $scope.loading = false;
@@ -4178,26 +4189,26 @@
         }
 
 
-        $scope.today = function() {
+        $scope.today = function () {
             $scope.dt = new Date();
         };
         $scope.today();
 
-        $scope.clear = function() {
+        $scope.clear = function () {
             $scope.dt = null;
         };
 
         // Disable weekend selection
-        $scope.disabled = function(date, mode) {
+        $scope.disabled = function (date, mode) {
             return (mode === 'day' && (date.getDay() === 0 || date.getDay() === 6));
         };
 
-        $scope.toggleMin = function() {
+        $scope.toggleMin = function () {
             $scope.minDate = $scope.minDate ? null : new Date();
         };
         $scope.toggleMin();
 
-        $scope.open = function($event) {
+        $scope.open = function ($event) {
             $event.preventDefault();
             $event.stopPropagation();
 
@@ -4217,14 +4228,14 @@
 
 })();
 
-(function() {
+(function () {
     'use strict';
 
     angular
         .module('app.interviews')
         .controller('SportimoInterviewsController', SportimoInterviewsController)
-        .filter('reverse', function() {
-            return function(items) {
+        .filter('reverse', function () {
+            return function (items) {
                 return items.slice().reverse();
             };
         })
@@ -4236,7 +4247,7 @@
         //        return input;
         //    };
         //});
-        ;
+    ;
 
     SportimoInterviewsController.$inject = ['$scope', 'Restangular', 'toaster', '$state'];
 
@@ -4261,7 +4272,7 @@
 
 
         function loadItems() {
-            Items.getList().then(function(data) {
+            Items.getList().then(function (data) {
                 $scope.allItems = data;
             });
         }
@@ -4272,21 +4283,21 @@
         $scope.composeItem = false;
         $scope.activeItem;
 
-        $scope.newPoll = function() {
+        $scope.newPoll = function () {
 
 
             $scope.composeItem = true;
             setnow();
         };
 
-        $scope.updateItem = function(item) {
+        $scope.updateItem = function (item) {
             console.log(item.date);
-            item.save().then(function(res) {
+            item.save().then(function (res) {
                 toaster.pop("success", "Task Completed", res);
             })
         };
 
-        $scope.pushItem = function(item) {
+        $scope.pushItem = function (item) {
 
 
             var newquest = angular.copy(item);
@@ -4301,7 +4312,7 @@
             }
 
 
-            Items.post(newquest).then(function(poll) {
+            Items.post(newquest).then(function (poll) {
                 $scope.allItems.push(newquest);
                 $scope.activeItem = null;
                 $scope.composeItem = false;
@@ -4310,10 +4321,10 @@
             });
         };
 
-        $scope.delete = function(item) {
+        $scope.delete = function (item) {
             $scope.loading = true;
 
-            item.remove().then(function(res, err) {
+            item.remove().then(function (res, err) {
                 console.log(res);
                 console.log(err);
                 $scope.loading = false;
@@ -4345,26 +4356,26 @@
         }
 
 
-        $scope.today = function() {
+        $scope.today = function () {
             $scope.dt = new Date();
         };
         $scope.today();
 
-        $scope.clear = function() {
+        $scope.clear = function () {
             $scope.dt = null;
         };
 
         // Disable weekend selection
-        $scope.disabled = function(date, mode) {
+        $scope.disabled = function (date, mode) {
             return (mode === 'day' && (date.getDay() === 0 || date.getDay() === 6));
         };
 
-        $scope.toggleMin = function() {
+        $scope.toggleMin = function () {
             $scope.minDate = $scope.minDate ? null : new Date();
         };
         $scope.toggleMin();
 
-        $scope.open = function($event) {
+        $scope.open = function ($event) {
             $event.preventDefault();
             $event.stopPropagation();
 
@@ -4394,14 +4405,14 @@
  * events and events creations
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
         .module('app.extras')
         .directive('calendar', calendar);
 
-    calendar.$inject = ['$rootScope',];
+    calendar.$inject = ['$rootScope', ];
 
     function calendar($rootScope) {
         var directive = {
@@ -4457,7 +4468,7 @@
                 week: 'week',
                 day: 'day'
             },
-            viewRender: function(view, element) {
+            viewRender: function (view, element) {
                 scope.startRange = view.start;
                 scope.endRange = view.end;
 
@@ -4470,7 +4481,7 @@
                     scope.$apply();
             },
             eventStartEditable: true,
-            eventDrop: function(event, delta, revertFunc) {
+            eventDrop: function (event, delta, revertFunc) {
 
 
                 var hookedEvent = _.findWhere(scope.events, {
@@ -4487,7 +4498,7 @@
 
             },
             droppable: false, // this allows things to be dropped onto the calendar 
-            drop: function(date, allDay) { // this function is called when something is dropped
+            drop: function (date, allDay) { // this function is called when something is dropped
 
                 var $this = $(this),
                     // retrieve the dropped element's stored Event Object
@@ -4515,12 +4526,12 @@
                     $this.remove();
                 }
             },
-            dayClick: function(date, jsEvent, view) {
+            dayClick: function (date, jsEvent, view) {
                 scope.showDaySchedule(date, calElement);
             },
             eventColor: '#2196f3',
             eventBorderColor: '#3c8dbc',
-            eventRender: function(event, element) {
+            eventRender: function (event, element) {
 
                 element.find(".fc-title").remove();
                 element.find(".fc-time").remove();
@@ -4533,7 +4544,7 @@
                 element.append(new_description);
             },
 
-            eventClick: function(calEvent, jsEvent, view) {
+            eventClick: function (calEvent, jsEvent, view) {
 
                 var tableFilter = calEvent.start.format("DD") + "/" + calEvent.start.format("MM") + " " + calEvent.home_team.name_en + " " + calEvent.away_team.name_en;
                 scope.LoadedDT.DataTable.search(tableFilter).draw();
@@ -4554,7 +4565,7 @@
                 //                    $(this).css('border-color', 'red');
 
             },
-            eventDragStart: function(event /*, js, ui*/) {
+            eventDragStart: function (event /*, js, ui*/ ) {
                 draggingEvent = event;
             },
             // This array is the events sources
@@ -4566,7 +4577,7 @@
 
 })();
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -4590,7 +4601,7 @@
 
         vm.Teams = [];
 
-        vm.OnSet = function(newDate, oldDate) {
+        vm.OnSet = function (newDate, oldDate) {
             vm.openedCalendar = 0;
 
             if (vm.scheduledMatch.home_team != undefined && vm.scheduledMatch.away_team != undefined && vm.scheduledMatch.start != undefined && vm.scheduledMatch.competition != undefined)
@@ -4616,9 +4627,9 @@
 
         ]
 
-        TeamsService.getAllTeams().then(function(teams) {
+        TeamsService.getAllTeams().then(function (teams) {
             vm.Teams = teams;
-        }, function(error) { });
+        }, function (error) {});
 
         vm.dtOptions = DTOptionsBuilder.newOptions()
             .withPaginationType('full_numbers');
@@ -4627,28 +4638,27 @@
             DTColumnDefBuilder.newColumnDef(4).notSortable()
         ];
 
-        ScheduleService.getSchedule().then(function(schedule) {
+        ScheduleService.getSchedule().then(function (schedule) {
             $scope.events = schedule;
             RefreshCalendar();
-        }, function(error) { });
+        }, function (error) {});
 
         vm.LoadedDT = null;
 
-        vm.CreateMatchEvent = function() {
+        vm.CreateMatchEvent = function () {
             vm.view.busy = true;
             var match = {};
             if (vm.scheduledMatch.home_team._id.$oid) {
                 match.home_team = vm.scheduledMatch.home_team._id.$oid;
                 match.away_team = vm.scheduledMatch.away_team._id.$oid;
-            }
-            else {
+            } else {
                 match.home_team = vm.scheduledMatch.home_team._id;
                 match.away_team = vm.scheduledMatch.away_team._id;
             }
             match.competition = vm.scheduledMatch.competition;
             match.start = vm.scheduledMatch.start;
 
-            ScheduleService.addMatch(match).then(function(res) {
+            ScheduleService.addMatch(match).then(function (res) {
                 res.home_team = vm.scheduledMatch.home_team;
                 res.away_team = vm.scheduledMatch.away_team;
 
@@ -4660,17 +4670,17 @@
             })
         }
 
-        vm.UpdateMatchEvent = function(event) {
+        vm.UpdateMatchEvent = function (event) {
             vm.view.busy = true;
-            ScheduleService.updateMatch(event).then(function(res) {
+            ScheduleService.updateMatch(event).then(function (res) {
                 RefreshCalendar();
                 vm.view.busy = false;
             })
         }
 
-        vm.DeleteMatchEvent = function(event) {
+        vm.DeleteMatchEvent = function (event) {
             vm.view.busy = true;
-            ScheduleService.deleteMatch(event).then(function(res) {
+            ScheduleService.deleteMatch(event).then(function (res) {
                 vm.events = _.without(vm.events, event);
                 RefreshCalendar();
                 vm.selectedMatch = null;
@@ -4678,12 +4688,12 @@
             })
         }
 
-        $scope.showDaySchedule = function(newdate, calendar) {
+        $scope.showDaySchedule = function (newdate, calendar) {
             var tableFilter = vm.formatDate(newdate, "DD") + "/" + vm.formatDate(newdate, "MM");
             vm.LoadedDT.DataTable.search(tableFilter).draw();
         }
 
-        $scope.formatDate = function(date, style) {
+        $scope.formatDate = function (date, style) {
             return moment(date).utc().format(style);
         }
 
@@ -4691,8 +4701,8 @@
         vm.endRange = null;
 
         //Filter Function
-        $scope.inRange = function(start, end) {
-            return function(item) {
+        $scope.inRange = function (start, end) {
+            return function (item) {
 
                 if (moment(item['start']) > vm.startRange && moment(item['start']) < vm.endRange) {
                     return true;
@@ -4710,30 +4720,30 @@
 
         /* START of Match Context menu*/
         /* Moderate */
-        $scope.ModerateMatch = function(matchid, sport) {
-            console.log(matchid);
-            $state.go("app.match-moderation-" + (sport || 'soccer'), {
-                id: (matchid || "565c4af6e4b030fba33dd459")
-            });
-        }
-        /* Edit */
-        $scope.EditMatch = function(match) {
-            //                console.log(match);
-            vm.selectedMatch = match;
-            vm.view.inspectorPanel = true;
-            vm.inspectorPanel = false;
-        }
-        /* Change Color */
-        $scope.setColor = function(color) {
-            vm.selectedMatch.color = color;
-            RefreshCalendar();
-        }
-        /* Delete */
-        $scope.DeleteMatch = function(match) {
-            vm.DeleteMatchEvent(match);
-        }
-        // Before remove panel
-        $scope.$on('panel-remove', function(event, id, deferred) {
+        $scope.ModerateMatch = function (matchid, sport) {
+                console.log(matchid);
+                $state.go("app.match-moderation-" + (sport || 'soccer'), {
+                    id: (matchid || "565c4af6e4b030fba33dd459")
+                });
+            }
+            /* Edit */
+        $scope.EditMatch = function (match) {
+                //                console.log(match);
+                vm.selectedMatch = match;
+                vm.view.inspectorPanel = true;
+                vm.inspectorPanel = false;
+            }
+            /* Change Color */
+        $scope.setColor = function (color) {
+                vm.selectedMatch.color = color;
+                RefreshCalendar();
+            }
+            /* Delete */
+        $scope.DeleteMatch = function (match) {
+                vm.DeleteMatchEvent(match);
+            }
+            // Before remove panel
+        $scope.$on('panel-remove', function (event, id, deferred) {
 
             console.log('Panel #' + id + ' removing');
             vm.view[id] = false;
@@ -4753,8 +4763,8 @@
             var schedule = $resource('server/mockdata/schedule.json');
 
             return {
-                getSchedule: function() {
-                    return schedule.query({}, function(res) {
+                getSchedule: function () {
+                    return schedule.query({}, function (res) {
                         return res;
                     });
                 }
@@ -4770,31 +4780,31 @@
             });
 
             return {
-                getSchedule: function() {
+                getSchedule: function () {
                     var Defer = $q.defer();
-                    Schedule.getList().then(function(schedule) {
+                    Schedule.getList().then(function (schedule) {
                         Defer.resolve(schedule);
                     });
                     return Defer.promise;
                 },
 
-                addMatch: function(newMatch) {
+                addMatch: function (newMatch) {
                     var Defer = $q.defer();
-                    Schedule.post(newMatch).then(function(match) {
+                    Schedule.post(newMatch).then(function (match) {
                         console.log(match);
                         Defer.resolve(match);
-                    }, function() {
+                    }, function () {
                         console.log("There was an error saving");
                     });
                     return Defer.promise;
                 },
 
-                updateMatch: function(updatedMatch) {
+                updateMatch: function (updatedMatch) {
                     var Defer = $q.defer();
                     var match = _.cloneDeep(updatedMatch);
                     updatedMatch.home_team = updatedMatch.home_team._id.$oid;
                     updatedMatch.away_team = updatedMatch.away_team._id.$oid;
-                    updatedMatch.save().then(function(res) {
+                    updatedMatch.save().then(function (res) {
                         updatedMatch.home_team = match.home_team;
                         updatedMatch.away_team = match.away_team
                         Defer.resolve(res);
@@ -4803,9 +4813,9 @@
                 },
 
 
-                deleteMatch: function(match) {
+                deleteMatch: function (match) {
                     var Defer = $q.defer();
-                    match.remove().then(function(res) {
+                    match.remove().then(function (res) {
                         Defer.resolve(res);
                     })
                     return Defer.promise;
@@ -4818,7 +4828,7 @@
 
 })();
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -4842,7 +4852,7 @@
         }
 
         var bucket = 'https://s3-eu-west-1.amazonaws.com/sportimo-media/';
-        vm.uploadFile = function(file, player) {
+        vm.uploadFile = function (file, player) {
             console.log(file.name.substr(file.name.lastIndexOf('.') + 1));
             // console.log(file);
             Upload.upload({
@@ -4858,22 +4868,22 @@
                     filename: file.name, // this is needed for Flash polyfill IE8-9
                     file: file
                 }
-            }).then(function(resp) {
+            }).then(function (resp) {
                 player.pic = bucket + 'players/' + player._id + "." + file.name.substr(file.name.lastIndexOf('.') + 1);
                 console.log(player.pic);
                 player.save();
                 console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
-            }, function(resp) {
+            }, function (resp) {
                 console.log('Error status: ' + resp.status);
 
-            }, function(evt) {
+            }, function (evt) {
                 var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
                 // console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
             });
         }
 
         /* Scope Methods */
-        vm.editItem = function(player) {
+        vm.editItem = function (player) {
             console.log(player);
             vm.selectedItem = player;
             if (!vm.selectedItem.name.en) {
@@ -4885,16 +4895,16 @@
             vm.view.editItem = 1;
         }
 
-        vm.updatePlayer = function() {
+        vm.updatePlayer = function () {
             console.log(vm.selectedItem);
-            vm.selectedItem.save().then(function(res, err) {
+            vm.selectedItem.save().then(function (res, err) {
                 vm.selectedItem = null;
                 vm.view.editItem = 0;
             })
         }
 
 
-        vm.isSelected = function(player) {
+        vm.isSelected = function (player) {
             if (player.isSelected) {
                 player.isSelected = false;
                 return false;
@@ -4909,7 +4919,7 @@
         vm.allSelected = null;
         vm.dtInstance = null;
 
-        vm.pushMassUpdate = function(event, player) {
+        vm.pushMassUpdate = function (event, player) {
             if (vm.isSelected(player))
                 vm.MassUpdateObjects.push(player);
             else
@@ -4917,19 +4927,19 @@
 
             console.log(vm.MassUpdateObjects.length);
         }
-        vm.selectAll = function() {
+        vm.selectAll = function () {
             console.log(vm.dtInstance);
             //  console.log(vm.dtInstance.dataTable._('tr', {"filter":"applied"})[0]);
 
             vm.allSelected = true;
         }
-        vm.selectNone = function() {
+        vm.selectNone = function () {
             vm.allSelected = false;
             vm.MassUpdateObjects = [];
         }
 
-        vm.massUpdate = function() {
-            vm.MassUpdateObjects.forEach(function(item) {
+        vm.massUpdate = function () {
+            vm.MassUpdateObjects.forEach(function (item) {
                 if (vm.MassUpdateChanges.league != null) {
                     item.league = vm.MassUpdateChanges.league;
                     item.save();
@@ -4937,8 +4947,10 @@
             })
         }
 
-        vm.getTeam = function(id) {
-            return _.findWhere(vm.Teams, { "_id": id });
+        vm.getTeam = function (id) {
+            return _.findWhere(vm.Teams, {
+                "_id": id
+            });
         }
 
         /* Upload Mechanics*/
@@ -4953,18 +4965,18 @@
         // $scope.log = '';
 
 
-        vm.searchFor = function(forQuery) {
+        vm.searchFor = function (forQuery) {
             $window.open('https://www.google.gr/search?q=' + forQuery + '+logo&tbm=isch', '_blank');
 
         };
 
-        TeamsService.getAllTeams().then(function(teams) {
+        TeamsService.getAllTeams().then(function (teams) {
             vm.Teams = teams;
-        }, function(error) { });
+        }, function (error) {});
 
-        PlayersService.getAllPlayers().then(function(players) {
+        PlayersService.getAllPlayers().then(function (players) {
             vm.Players = players;
-        }, function(error) { });
+        }, function (error) {});
 
     }
 
@@ -4973,7 +4985,7 @@
 })();
 
 
-(function() {
+(function () {
     'use strict';
     angular
         .module('app.publications')
@@ -4989,22 +5001,24 @@
         vm.Articles = null;
         vm.view = {};
 
-        vm.onChangeCallback = function(article) {
-            article.put().then(function(res) {
+        vm.onChangeCallback = function (article) {
+            article.put().then(function (res) {
                 console.log(res);
             });
         }
 
-        vm.onAddtag = function(article, item, model) {
+        vm.onAddtag = function (article, item, model) {
             var newTag = {
                 name: item.name,
                 _id: item._id
             };
 
-            var index = _.findIndex(article.tags, { "_id": item._id });
+            var index = _.findIndex(article.tags, {
+                "_id": item._id
+            });
             article.tags[index] = newTag;
 
-            article.put().then(function(res) {
+            article.put().then(function (res) {
                 console.log(res);
             });
         }
@@ -5012,7 +5026,7 @@
         /**
          * SEARCH */
         vm.opened = {};
-        vm.open = function($event, whichCal) {
+        vm.open = function ($event, whichCal) {
             $event.preventDefault();
             $event.stopPropagation();
             vm.opened[whichCal] = true;
@@ -5028,12 +5042,12 @@
         vm.format = vm.formats[0];
         vm.searchObj = {};
 
-        vm.searchArticles = function(searchObj) {
+        vm.searchArticles = function (searchObj) {
             vm.view.searchBusy = true;
             if (searchObj.tags == "") {
                 searchObj.tags = null;
             }
-            PublicationsService.getArticles(searchObj).then(function(articles) {
+            PublicationsService.getArticles(searchObj).then(function (articles) {
                 vm.Articles = articles;
                 vm.view.searchBusy = false;
             })
@@ -5042,30 +5056,39 @@
         /* NEW ITEM */
         vm.newItem = null;
 
-        vm.createNew = function() {
+        vm.createNew = function () {
             // vm.view.busy = true;
-            vm.newItem = { "publication": { "title": { "en": "" }, "text": { "en": "" } } };
+            vm.newItem = {
+                "publication": {
+                    "title": {
+                        "en": ""
+                    },
+                    "text": {
+                        "en": ""
+                    }
+                }
+            };
         }
 
         vm.artTypes = ["Interview", "News", "Welcome", "Activity"];
 
-        vm.SetToNow = function() {
+        vm.SetToNow = function () {
             vm.newItem.publishDate = new Date(moment.utc());
         }
 
-        vm.SaveNewItem = function(newItem) {
-            vm.view.busy = true;
-            PublicationsService.postItem(newItem).then(function(returnedItem) {
-                vm.Articles.push(returnedItem);
-                vm.newItem = null;
-                vm.view.busy = false;
-            })
-        }
-        /* END OF NEW ITEM*/
+        vm.SaveNewItem = function (newItem) {
+                vm.view.busy = true;
+                PublicationsService.postItem(newItem).then(function (returnedItem) {
+                    vm.Articles.push(returnedItem);
+                    vm.newItem = null;
+                    vm.view.busy = false;
+                })
+            }
+            /* END OF NEW ITEM*/
 
-        vm.UpdateItem = function(item) {
+        vm.UpdateItem = function (item) {
             vm.view.busy = true;
-            item.put().then(function(res) {
+            item.put().then(function (res) {
                 console.log(res);
                 vm.editItem = null;
                 vm.view.busy = false;
@@ -5073,7 +5096,9 @@
 
         }
 
-        PublicationsService.getArticles({ limit: 30 }).then(function(articles) {
+        PublicationsService.getArticles({
+            limit: 30
+        }).then(function (articles) {
             vm.Articles = articles;
         })
 
@@ -5081,13 +5106,13 @@
 
         vm.basepath = RouteHelpers.basepath;
 
-        TagsService.getAllTags().then(function(tags) {
+        TagsService.getAllTags().then(function (tags) {
             vm.Tags = tags;
         })
 
         /* UPLOAD MECHANICS */
         var bucket = 'https://s3-eu-west-1.amazonaws.com/sportimo-media/';
-        vm.uploadFile = function(file, item) {
+        vm.uploadFile = function (file, item) {
 
             Upload.upload({
                 url: 'https://s3-eu-west-1.amazonaws.com/sportimo-media', //S3 upload url including bucket name
@@ -5102,14 +5127,14 @@
                     filename: file.name, // this is needed for Flash polyfill IE8-9
                     file: file
                 }
-            }).then(function(resp) {
+            }).then(function (resp) {
                 item.photo = bucket + 'articles/' + item._id + "." + file.name.substr(file.name.lastIndexOf('.') + 1);
                 console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
                 item.put();
-            }, function(resp) {
+            }, function (resp) {
                 console.log('Error status: ' + resp.status);
 
-            }, function(evt) {
+            }, function (evt) {
                 var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
                 // console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
             });
@@ -5129,17 +5154,17 @@
         });
 
         return {
-            getArticles: function(conditions) {
+            getArticles: function (conditions) {
                 var Defer = $q.defer();
-                articlesSearch.post(conditions).then(function(articles) {
+                articlesSearch.post(conditions).then(function (articles) {
                     articles = Restangular.restangularizeCollection(null, articles, 'v1/data/articles');
                     Defer.resolve(articles);
                 });
                 return Defer.promise;
             },
-            postItem: function(item) {
+            postItem: function (item) {
                 var Defer = $q.defer();
-                articles.post(item).then(function(returnItem) {
+                articles.post(item).then(function (returnItem) {
                     Defer.resolve(returnItem);
                 });
                 return Defer.promise;
@@ -5149,7 +5174,7 @@
     };
 })();
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -5171,23 +5196,24 @@
             templateUrl: './app/views/directives/multiLangInput.html',
             scope: {
                 selected: '@default',
+
                 lObject: '=languageObject',
 
             },
-            controller: ['$scope', function($scope) {
+            controller: ['$scope', function ($scope) {
 
-                $scope.$watch('lObject', function(newValue, oldValue) {
+                $scope.$watch('lObject', function (newValue, oldValue) {
                     if ($scope.lObject && $scope.lObject.en)
                         $scope.selected = 'en';
                 });
 
-                $scope.pushLangKey = function() {
+                $scope.pushLangKey = function () {
                     $scope.lObject[$scope.newLangKey] = "";
                     $scope.selected = $scope.newLangKey;
                     $scope.newLangKey = null;
                 };
 
-                $scope.delete = function() {
+                $scope.delete = function () {
                     delete $scope.lObject[$scope.selected];
                 }
             }]
@@ -5203,20 +5229,20 @@
                 lObject: '=languageObject',
 
             },
-            controller: ['$scope', function($scope) {
+            controller: ['$scope', function ($scope) {
 
-                $scope.$watch('lObject', function(newValue, oldValue) {
+                $scope.$watch('lObject', function (newValue, oldValue) {
                     if ($scope.lObject && $scope.lObject.en)
                         $scope.selected = 'en';
                 });
 
-                $scope.pushLangKey = function() {
+                $scope.pushLangKey = function () {
                     $scope.lObject[$scope.newLangKey] = "";
                     $scope.selected = $scope.newLangKey;
                     $scope.newLangKey = null;
                 };
 
-                $scope.delete = function() {
+                $scope.delete = function () {
                     delete $scope.lObject[$scope.selected];
                 }
             }]
@@ -5237,7 +5263,7 @@
         }
 
         var bucket = 'https://s3-eu-west-1.amazonaws.com/sportimo-media/';
-        vm.uploadFile = function(file, team) {
+        vm.uploadFile = function (file, team) {
             console.log(file.name.substr(file.name.lastIndexOf('.') + 1));
             // console.log(file);
             Upload.upload({
@@ -5253,22 +5279,22 @@
                     filename: file.name, // this is needed for Flash polyfill IE8-9
                     file: file
                 }
-            }).then(function(resp) {
+            }).then(function (resp) {
                 team.logo = bucket + 'teams/' + team._id + "." + file.name.substr(file.name.lastIndexOf('.') + 1);
                 console.log(team.logo);
                 team.save();
                 console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
-            }, function(resp) {
+            }, function (resp) {
                 console.log('Error status: ' + resp.status);
 
-            }, function(evt) {
+            }, function (evt) {
                 var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
                 // console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
             });
         }
 
         /* Scope Methods */
-        vm.editTeam = function(team) {
+        vm.editTeam = function (team) {
             console.log(team);
             vm.selectedTeam = team;
             if (!vm.selectedTeam.name.en) {
@@ -5280,28 +5306,30 @@
             vm.view.editTeam = 1;
         }
 
-        vm.updateTeam = function() {
+        vm.updateTeam = function () {
             console.log(vm.selectedTeam);
-            vm.selectedTeam.save().then(function(res, err) {
+            vm.selectedTeam.save().then(function (res, err) {
                 vm.selectedTeam = null;
                 vm.view.editTeam = 0;
             })
         }
 
-        vm.delete = function() {
+        vm.delete = function () {
             delete vm.selectedTeam.name[vm.selectedTeam.selected];
         }
 
-        vm.Getlang = function(array, lang) {
-            return _.findWhere(array, { lang: lang }).text;
+        vm.Getlang = function (array, lang) {
+            return _.findWhere(array, {
+                lang: lang
+            }).text;
         };
 
-        vm.pushLang = function(team) {
+        vm.pushLang = function (team) {
             vm.selectedTeam.name[vm.newLangKey] = "";
             vm.selectedTeam.selected = vm.newLangKey;
             vm.newLangKey = null;
         }
-        vm.isSelected = function(team) {
+        vm.isSelected = function (team) {
             if (team.isSelected) {
                 team.isSelected = false;
                 return false;
@@ -5316,7 +5344,7 @@
         vm.allSelected = null;
         vm.dtInstance = null;
 
-        vm.pushMassUpdate = function(event, team) {
+        vm.pushMassUpdate = function (event, team) {
             if (vm.isSelected(team))
                 vm.MassUpdateObjects.push(team);
             else
@@ -5324,19 +5352,19 @@
 
             console.log(vm.MassUpdateObjects.length);
         }
-        vm.selectAll = function() {
+        vm.selectAll = function () {
             console.log(vm.dtInstance);
             //  console.log(vm.dtInstance.dataTable._('tr', {"filter":"applied"})[0]);
 
             vm.allSelected = true;
         }
-        vm.selectNone = function() {
+        vm.selectNone = function () {
             vm.allSelected = false;
             vm.MassUpdateObjects = [];
         }
 
-        vm.massUpdate = function() {
-            vm.MassUpdateObjects.forEach(function(item) {
+        vm.massUpdate = function () {
+            vm.MassUpdateObjects.forEach(function (item) {
                 if (vm.MassUpdateChanges.league != null) {
                     item.league = vm.MassUpdateChanges.league;
                     item.save();
@@ -5345,21 +5373,21 @@
         }
 
         /* Players */
-        vm.LoadPlayers = function() {
+        vm.LoadPlayers = function () {
             vm.view.loadingPlayers = 1;
-            TeamsService.getFullTeam(vm.selectedTeam._id).then(function(fullTeam) {
+            TeamsService.getFullTeam(vm.selectedTeam._id).then(function (fullTeam) {
                 vm.selectedTeam.players = fullTeam.players;
                 vm.selectedTeam.playersLoaded = true;
 
                 vm.view.loadingPlayers = 0;
             })
         }
-        vm.pushPlayer = function(player) {
+        vm.pushPlayer = function (player) {
             if (player) {
                 player.team = vm.selectedTeam._id;
-                player.save().then(function() {
+                player.save().then(function () {
                     vm.selectedTeam.players.push(player);
-                    vm.selectedTeam.save().then(function() {
+                    vm.selectedTeam.save().then(function () {
                         console.log("All OK!");
                     })
                 });
@@ -5367,17 +5395,17 @@
         }
 
         /* Upload Mechanics*/
-        $scope.$watch('files', function() {
+        $scope.$watch('files', function () {
             $scope.upload($scope.files);
         });
-        $scope.$watch('file', function() {
+        $scope.$watch('file', function () {
             if ($scope.file != null) {
                 $scope.files = [$scope.file];
             }
         });
         $scope.log = '';
 
-        $scope.upload = function(files) {
+        $scope.upload = function (files) {
             if (files && files.length) {
                 for (var i = 0; i < files.length; i++) {
                     var file = files[i];
@@ -5388,14 +5416,14 @@
                                 username: $scope.username,
                                 file: file
                             }
-                        }).then(function(resp) {
-                            $timeout(function() {
+                        }).then(function (resp) {
+                            $timeout(function () {
                                 $scope.log = 'file: ' +
                                     resp.config.data.file.name +
                                     ', Response: ' + JSON.stringify(resp.data) +
                                     '\n' + $scope.log;
                             });
-                        }, null, function(evt) {
+                        }, null, function (evt) {
                             var progressPercentage = parseInt(100.0 *
                                 evt.loaded / evt.total);
                             $scope.log = 'progress: ' + progressPercentage +
@@ -5407,22 +5435,24 @@
             }
         };
 
-        vm.searchFor = function(forQuery) {
+        vm.searchFor = function (forQuery) {
             $window.open('https://www.google.gr/search?q=' + forQuery + '+logo&tbm=isch', '_blank');
 
         };
 
-        TeamsService.getAllTeams().then(function(teams) {
+        TeamsService.getAllTeams().then(function (teams) {
             vm.Teams = teams;
-        }, function(error) { });
+        }, function (error) {});
 
-        PlayersService.getAllPlayers().then(function(players) {
+        PlayersService.getAllPlayers().then(function (players) {
             vm.Players = players;
-        }, function(error) { });
+        }, function (error) {});
 
-        TagsService.getAllTags().then(function(tags) {
+        TagsService.getAllTags().then(function (tags) {
             vm.Tags = tags;
-        }, function(error) { console.log("Error loading tags") });
+        }, function (error) {
+            console.log("Error loading tags")
+        });
 
     }
 
@@ -5432,8 +5462,8 @@
         if (mock) {
             var teams = $resource('server/mockdata/teams.json');
             return {
-                getAllTeams: function() {
-                    return teams.query({}, function(res) {
+                getAllTeams: function () {
+                    return teams.query({}, function (res) {
                         return res;
                     });
                 }
@@ -5446,17 +5476,17 @@
             });
 
             return {
-                getAllTeams: function() {
+                getAllTeams: function () {
                     var Defer = $q.defer();
-                    teams.getList().then(function(teams) {
+                    teams.getList().then(function (teams) {
                         Defer.resolve(teams);
                     });
                     return Defer.promise;
                 },
 
-                getFullTeam: function(id) {
+                getFullTeam: function (id) {
                     var Defer = $q.defer();
-                    Restangular.one('v1/data/teams', id).one('full').get().then(function(team) {
+                    Restangular.one('v1/data/teams', id).one('full').get().then(function (team) {
                         Defer.resolve(team);
                     });
                     return Defer.promise;
@@ -5476,11 +5506,11 @@
         });
 
         return {
-            getAllTags: function() {
+            getAllTags: function () {
                 var Defer = $q.defer();
                 if (tags) Defer.resolve(tags);
                 else
-                    tagsRoute.getList().then(function(receivedTags) {
+                    tagsRoute.getList().then(function (receivedTags) {
                         tags = receivedTags;
                         Defer.resolve(tags);
                     });
@@ -5496,8 +5526,8 @@
         if (mock) {
             var players = $resource('server/mockdata/players.json');
             return {
-                getAllPlayers: function() {
-                    return players.query({}, function(res) {
+                getAllPlayers: function () {
+                    return players.query({}, function (res) {
                         return res;
                     });
                 }
@@ -5510,9 +5540,9 @@
             });
 
             return {
-                getAllPlayers: function() {
+                getAllPlayers: function () {
                     var Defer = $q.defer();
-                    players.getList().then(function(schedule) {
+                    players.getList().then(function (schedule) {
                         Defer.resolve(schedule);
                     });
                     return Defer.promise;
@@ -5523,27 +5553,236 @@
 
 })();
 
-(function() {
+
+(function () {
+    'use strict';
+
+    angular
+        .module('app.leaderboards')
+        .controller('LeaderboardsController', LeaderboardsController);
+    
+LeaderboardsController.$inject = ['CountriesService', 'PrizesService', 'SponsorsService', 'PoolsService', '$scope', 'ngDialog', '$stateParams', '$http', '$rootScope', '$timeout', '$interval', '$mdToast', '$mdBottomSheet', '$window'];
+    
+    function LeaderboardsController(CountriesService, PrizesService, SponsorsService, PoolsService, $scope, ngDialog, $stateParams, $http, $rootScope, $timeout, $interval, $mdToast, $mdBottomSheet, $window) {
+
+        var vm = $scope;
+        
+         // Moderation-PoolRooms
+        
+        vm.PoolRooms = null;
+        
+        $scope.sortableCallbackNew = function (sourceModel, destModel, start, end) {
+            vm.updatePrizePositions(vm.NewPool, vm.prizePositions);
+        };
+        $scope.sortableCallbackEdit = function (sourceModel, destModel, start, end) {
+            vm.updatePrizePositions(vm.EditPool, vm.prizePositions);
+        };
+
+        $scope.sortableOptions = {
+            placeholder: '<div class="box-placeholder p0 m0"><div></div></div>',
+            forcePlaceholderSize: true
+        };
+
+        
+        PoolsService.getNonGamePools().then(function (pools) {
+            vm.PoolRooms = pools;
+        });
+        
+        vm.setDefault = function (pool) {
+            vm.PoolRooms.forEach(function (eachpool) {
+                eachpool.isdefault = false;
+                eachpool.save();
+            })
+            console.log(pool);
+            pool.isdefault = true;
+            pool.save();
+        }
+        vm.editPool = function (pool) {
+            vm.prizePositions = [];
+            var $index = 1;
+            _.forEach(pool.prizes, function (prize) {
+                var pos = {};
+               
+                if (prize.positions && prize.positions.to)
+                    pos.to = prize.positions.to;
+                if (prize.positions && prize.positions.from)
+                    pos.from = prize.positions.from;
+                else
+                    pos = {
+                        from: $index,
+                        to: $index
+                    };
+
+                $index++;
+                vm.prizePositions.push(pos);
+            })
+            vm.EditPool = pool;
+        }
+
+        vm.RemoveNewPool = function () {
+            vm.NewPool = null;
+        }
+        vm.AddNewPool = function () {
+            console.log(vm.NewPool);
+            vm.NewPool = {
+
+                title: {
+                    en: ""
+                },
+                // roomtype: Season, Week, Game, Custom
+                // Season And Week should always have Starting and Ending Dates, Game
+                // must have a gameid and Custom must have at least one.
+                roomtype: "Game",
+
+                // The atatched game id
+                gameid: vm.matchid,
+
+                // Starting and Ending Dates of the pool
+                starts: null,
+                ends: null,
+
+                // A sponsor object containing all sponsor's information and resources
+                sponsor: null,
+
+                isdefault: vm.PoolRooms.length == 0 ? true : false,
+
+                // Status: Open, Closed
+                status: "Active",
+
+                // prizetype: "Prizetype.Gift | Prizetype.Pool"
+                prizetype: "Prizetype.Gift",
+
+                // Entry fee is in USD currency. Only applicable if Prizetype.Pool 
+                // Used in Pool calculations
+                // hasentryfee: Number,
+
+                // Only applicable to Prizetype.Gift 
+                // prizes: [{rank:1, img:"http:imagesomewhere.png, title: {en:"Hurray!"}, text:{en:"Reward text. Yay!"}"}]
+                prizes: [],
+
+                // conditions:  "Country", value:["GR","UK","SA"]}
+                country: []
+            };
+        }
+
+        SponsorsService.getAll().then(function (sponsors) {
+            vm.sponsors = sponsors;
+        });
+
+        PrizesService.getAllPlain().then(function (prizes) {
+            vm.prizes = prizes;
+        });
+
+        vm.addPrize = function (prize, pool) {
+            var positions = {
+                from: vm.prizePositions.length > 0 ? vm.prizePositions[vm.prizePositions.length - 1].to + 1 : 1,
+                to: vm.prizePositions.length > 0 ? vm.prizePositions[vm.prizePositions.length - 1].to + 1 : 1
+            };
+            var newprize = {
+                name: prize.name,
+                text: prize.text,
+                picture: prize.picture,
+                positions: positions
+            }
+            vm.prizePositions.push(positions);
+            pool.prizes.push(newprize);
+        }
+
+        vm.removePrize = function (pool, prize) {
+            pool.prizes = _.without(pool.prizes, prize);
+            vm.editPrizePos = -1;
+            vm.updatePrizePositions(pool, vm.prizePositions);
+        }
+
+        vm.CreateLeaderboard = function (pool) {
+            PoolsService.addPool(pool).then(function (newPool) {
+                vm.PoolRooms.push(newPool);
+                vm.NewPool = null;
+                vm.prizePositions = [];
+            });
+        }
+
+        vm.UpdateLeaderboard = function (pool) {
+
+            pool.save().then(function (newPool) {
+                vm.EditPool = null;
+                vm.prizePositions = [];
+            });
+        }
+
+        vm.RemoveEditPool = function () {
+            vm.EditPool = null;
+            vm.prizePositions = [];
+        }
+
+        vm.opened = {};
+        vm.open = function ($event, whichCal) {
+            $event.preventDefault();
+            $event.stopPropagation();
+            vm.opened[whichCal] = true;
+        };
+
+        vm.countries = CountriesService.getCountries();
+
+        // Holds prize positions in order to pass it along the pool
+        vm.prizePositions = [];
+
+        vm.updatePrizePositions = function (pool, prizePositions) {
+            var $index = 0;
+            var lastPos = 0;
+
+            _.forEach(prizePositions, function (pos) {
+                if (lastPos >= pos.from) pos.from = lastPos + 1;
+                lastPos = pos.to;
+
+            });
+
+            pool.prizes.forEach(function (prize) {
+                prize.positions = prizePositions[$index];
+                $index++;
+            });
+
+            while (prizePositions.length > $index) {
+                prizePositions.pop();
+            }
+        }
+
+        vm.dateOptions = {
+            formatYear: 'yy',
+            startingDay: 1
+        };
+
+        vm.initDate = new Date('2019-10-20');
+        vm.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+        vm.format = vm.formats[0];
+        vm.searchObj = {};
+        
+        
+    };
+                                               
+})();
+
+(function () {
     'use strict';
 
     angular
         .module('app.match-moderation-soccer')
         .service('PrizesService', PrizesService)
         .service('PoolsService', PoolsService)
-        .service('SponsorsService',SponsorsService)
-        .service('CountriesService',CountriesService)
+        .service('SponsorsService', SponsorsService)
+        .service('CountriesService', CountriesService)
         .controller('SportimoModerationSoccerController', SportimoModerationSoccerController)
-        .directive('disableAnimation', function($animate) {
+        .directive('disableAnimation', function ($animate) {
             return {
                 restrict: 'A',
-                link: function($scope, $element) {
+                link: function ($scope, $element) {
                     $animate.enabled($element, false);
                 }
             };
-        }).directive('noSwipeClick', function() {
-            return function(scope, elm) {
+        }).directive('noSwipeClick', function () {
+            return function (scope, elm) {
                 var el = angular.element(elm);
-                el.bind('click', function(e) {
+                el.bind('click', function (e) {
                     if (scope.swipe.swiping === true) {
                         e.stopPropagation();
                         e.preventDefault();
@@ -5552,66 +5791,78 @@
             };
         })
 
-        .filter('reverse', function() {
-            return function(items) {
+    .filter('reverse', function () {
+        return function (items) {
 
-                if (!angular.isArray(items)) {
-                    return items;
-                }
-                return items.slice().reverse();
-            };
-        });
-        
-        PrizesService.$inject = ['$rootScope', '$q', 'Restangular'];
-        PoolsService.$inject = ['$rootScope', '$q', 'Restangular'];
-        SponsorsService.$inject = ['$rootScope', '$q', 'Restangular'];
+            if (!angular.isArray(items)) {
+                return items;
+            }
+            return items.slice().reverse();
+        };
+    });
 
-function SponsorsService($rootScope, $q, Restangular) {
-      var SponsorsAPI = Restangular.all('leaderpay/v1/sponsors');
-      
+    PrizesService.$inject = ['$rootScope', '$q', 'Restangular'];
+    PoolsService.$inject = ['$rootScope', '$q', 'Restangular'];
+    SponsorsService.$inject = ['$rootScope', '$q', 'Restangular'];
+
+    function SponsorsService($rootScope, $q, Restangular) {
+        var SponsorsAPI = Restangular.all('leaderpay/v1/sponsors');
+
         Restangular.setBaseUrl($rootScope.servers[$rootScope.serverEnvironment].game_server);
         Restangular.setRestangularFields({
             id: "_id"
         });
-        
+
         return {
 
-            getAll: function()   {
+            getAll: function () {
                 var Defer = $q.defer();
-                
-                    Defer.resolve([{
-                    "name": "Sponsored by Coca Cola",
-                    "banner": "http://static.wixstatic.com/media/86524a_8e7cf46163d10eb8ccb2ceb407085a97.jpg_1024"
-                }]);
-                    
+
+                Defer.resolve([{
+                        "name": "Sponsored by Coca Cola",
+                        "banner": "http://static.wixstatic.com/media/86524a_8e7cf46163d10eb8ccb2ceb407085a97.jpg_1024"
+                },
+                    {
+                        "name": "Seeing you later - Amstel",
+                        "banner": "http://2.bp.blogspot.com/-KQ4Ze7kZoEM/UYlG1Lcp9nI/AAAAAAAAH1I/dhuMMd8EFGU/s1600/amstel-lager.jpg"
+                },
+                    {
+                        "name": "Vodafone",
+                        "banner": "http://www.vodafone.gr/portal/resources/media/Vodafone_Elladas/network/network-banner-inner-en--.jpg"
+                }
+                ]);
+
                 // SponsorsAPI.getList().then(function(sponsors) {
                 //     Defer.resolve(sponsors);
                 // });
                 return Defer.promise;
             }
         }
-};
+    };
 
-function PrizesService($rootScope, $q, Restangular) {
-      var PrizesAPI = Restangular.all('leaderpay/v1/prizes');
-      
+    function PrizesService($rootScope, $q, Restangular) {
+        var PrizesAPI = Restangular.all('leaderpay/v1/prizes');
+
         Restangular.setBaseUrl($rootScope.servers[$rootScope.serverEnvironment].game_server);
         Restangular.setRestangularFields({
             id: "_id"
         });
-        
+
         return {
 
-            getAll: function()   {
+            getAllPlain: function () {
                 var Defer = $q.defer();
 
-                PrizesAPI.getList().then(function(prizes) {
+                PrizesAPI.getList().then(function (prizes) {
+                    prizes = _.forEach(prizes, function (prize) {
+                        prize = prize.plain();
+                    });
                     Defer.resolve(prizes);
                 });
                 return Defer.promise;
             }
         }
-};
+    };
 
     function PoolsService($rootScope, $q, Restangular) {
 
@@ -5625,15 +5876,34 @@ function PrizesService($rootScope, $q, Restangular) {
 
         return {
 
-            getPoolsFor: function(id) {
+            getPoolsFor: function (id) {
                 // Get Pool for game
                 // https://sportimo.mod.bz/leaderpay/v1/pools/forgame/
                 var Defer = $q.defer();
-                PoolsAPI.one('forgame/').getList(id).then(function(pools) {
+                PoolsAPI.one('forgame/').getList(id).then(function (pools) {
+                    pools = Restangular.restangularizeCollection(null, pools, 'leaderpay/v1/pools');
+                    pools = _.forEach(pools, function (pool) {
+                        pool.fromServer = true
+                    });
                     Defer.resolve(pools);
                 });
                 return Defer.promise;
             },
+            getNonGamePools: function (id) {
+                // Get Pool for game
+                // https://sportimo.mod.bz/leaderpay/v1/pools/forgame/
+                var Defer = $q.defer();
+                PoolsAPI.one('').getList('timed').then(function (pools) {
+                    pools = Restangular.restangularizeCollection(null, pools, 'leaderpay/v1/pools');
+                    pools = _.forEach(pools, function (pool) {
+                        pool.fromServer = true
+                    });
+                    Defer.resolve(pools);
+                });
+                return Defer.promise;
+            },
+            
+            
             // getSchedule: function() {
             //     var Defer = $q.defer();
             //     Schedule.getList().then(function(schedule) {
@@ -5642,11 +5912,11 @@ function PrizesService($rootScope, $q, Restangular) {
             //     return Defer.promise;
             // },
 
-            addPool: function(newPool) {
+            addPool: function (newPool) {
                 var Defer = $q.defer();
-                PoolsAPI.post(newPool).then(function(pool) {
+                PoolsAPI.post(newPool).then(function (pool) {
                     Defer.resolve(pool);
-                }, function(err) {
+                }, function (err) {
                     console.log(err);
                 });
                 return Defer.promise;
@@ -5678,9 +5948,9 @@ function PrizesService($rootScope, $q, Restangular) {
     }
 
 
-    SportimoModerationSoccerController.$inject = ['CountriesService','PrizesService','SponsorsService','PoolsService', '$scope', 'ngDialog', '$stateParams', '$http', '$rootScope', '$timeout', '$interval', '$mdToast', '$mdBottomSheet', '$window'];
+    SportimoModerationSoccerController.$inject = ['CountriesService', 'PrizesService', 'SponsorsService', 'PoolsService', '$scope', 'ngDialog', '$stateParams', '$http', '$rootScope', '$timeout', '$interval', '$mdToast', '$mdBottomSheet', '$window'];
 
-    function SportimoModerationSoccerController(CountriesService,PrizesService, SponsorsService, PoolsService, $scope, ngDialog, $stateParams, $http, $rootScope, $timeout, $interval, $mdToast, $mdBottomSheet, $window) {
+    function SportimoModerationSoccerController(CountriesService, PrizesService, SponsorsService, PoolsService, $scope, ngDialog, $stateParams, $http, $rootScope, $timeout, $interval, $mdToast, $mdBottomSheet, $window) {
 
 
         var vm = $scope;
@@ -5719,21 +5989,21 @@ function PrizesService($rootScope, $q, Restangular) {
         //     });
         // }
 
-        $scope.showGridBottomSheet = function($event) {
+        $scope.showGridBottomSheet = function ($event) {
             $scope.alert = '';
             $mdBottomSheet.show({
                 templateUrl: 'bottom-sheet-grid-template.html',
                 controller: 'GridBottomSheetCtrl',
 
                 targetEvent: $event
-            }).then(function(clickedItem) {
+            }).then(function (clickedItem) {
                 $scope.alert = clickedItem.name + ' clicked!';
             });
         };
 
         $scope.filterTeamPlayers = true;
         $scope.event = {};
-        $rootScope.dataStream.onMessage(function(message) {
+        $rootScope.dataStream.onMessage(function (message) {
 
             var evt = JSON.parse(message.data);
 
@@ -5756,7 +6026,7 @@ function PrizesService($rootScope, $q, Restangular) {
                     }).status = "removed";
                 }
 
-                $timeout(function() {
+                $timeout(function () {
                     $scope.loadMatchData(evt.match_id)
                 }, 1500)
 
@@ -5764,14 +6034,14 @@ function PrizesService($rootScope, $q, Restangular) {
         });
 
 
-        $scope.readable = function(obj) {
+        $scope.readable = function (obj) {
 
             return JSON.stringify(obj, null, 4);
         };
 
 
 
-        $scope.loadMatchData = function(id) {
+        $scope.loadMatchData = function (id) {
 
             $http({
                 method: 'GET',
@@ -5852,11 +6122,11 @@ function PrizesService($rootScope, $q, Restangular) {
         ];
 
 
-        $scope.checkSelection = function($item, $model) {
+        $scope.checkSelection = function ($item, $model) {
 
         };
 
-        $scope.advanceSegment = function() {
+        $scope.advanceSegment = function () {
 
             ngDialog.openConfirm({
                 template: 'deleteEventDialog',
@@ -5864,7 +6134,7 @@ function PrizesService($rootScope, $q, Restangular) {
                     title: 'Warning',
                     message: 'This action will advance the match to its next segment as it is defined in the sports atributes.<br/><br/> <p>Do you still want to continue?</p><br/>'
                 }
-            }).then(function(value) {
+            }).then(function (value) {
                 var EventData = {
                     type: "AdvanceSegment",
                     match_id: $scope.match.id,
@@ -5884,14 +6154,14 @@ function PrizesService($rootScope, $q, Restangular) {
                     // or server returns response with an error status.
                 });
 
-            }, function(reason) {
+            }, function (reason) {
 
                 console.log('Modal promise rejected. Reason: ', reason);
             });
 
         };
 
-        $scope.removeSegment = function(index) {
+        $scope.removeSegment = function (index) {
 
             if (index != $scope.match.data.state) {
                 ngDialog.open({
@@ -5910,7 +6180,7 @@ function PrizesService($rootScope, $q, Restangular) {
                         title: 'Warning',
                         message: 'This action will destroy the current segment. It is here for testing purposes or extreme conditions. It will not affect stats or anything else apart remove the segment from the timeline.<br/><br/> <p>Do you still want to continue?</p><br/>'
                     }
-                }).then(function(value) {
+                }).then(function (value) {
                     var EventData = {
                         type: "DeleteSegment",
                         id: $scope.match.id,
@@ -5930,7 +6200,7 @@ function PrizesService($rootScope, $q, Restangular) {
                         // or server returns response with an error status.
                     });
 
-                }, function(reason) {
+                }, function (reason) {
 
                     console.log('Modal promise rejected. Reason: ', reason);
                 });
@@ -5947,7 +6217,7 @@ function PrizesService($rootScope, $q, Restangular) {
             edited: false
         };
 
-        $scope.EditSegmentTimes = function(index) {
+        $scope.EditSegmentTimes = function (index) {
             if ($scope.editingSegmentTime.index == index) {
 
                 if ($scope.editingSegmentTime.edited) {
@@ -5980,19 +6250,19 @@ function PrizesService($rootScope, $q, Restangular) {
         };
 
 
-        $scope.changed = function() {
+        $scope.changed = function () {
             $scope.editingSegmentTime.edited = true;
         };
 
         $scope.selectedEvent = {};
-        $scope.editEvent = function(event) {
+        $scope.editEvent = function (event) {
             $scope.selectedEvent = event;
             $scope.eventDrawer = 3;
         };
 
         $scope.clickedEvent = -1;
 
-        $scope.addEvent = function(event) {
+        $scope.addEvent = function (event) {
 
             var addEventData = {
                 type: "Add",
@@ -6004,9 +6274,9 @@ function PrizesService($rootScope, $q, Restangular) {
         };
 
 
-        $scope.updateEvent = function(event) {
+        $scope.updateEvent = function (event) {
 
-            delete (event.clicked);
+            delete(event.clicked);
 
             ngDialog.openConfirm({
                 template: 'deleteEventDialog',
@@ -6014,7 +6284,7 @@ function PrizesService($rootScope, $q, Restangular) {
                     title: 'DANGER',
                     message: 'This action will destroy the selected event. It will remove points from users and re-calculate new points and leaderboards.<br/> Will also cause floods and earthquakes in a poor distant country.<br/> There is also a high probability that it kill a few unborn babies somewhere too.<p>Do you still want to continue?</p>'
                 }
-            }).then(function(value) {
+            }).then(function (value) {
                 //console.log('Modal promise resolved. Value: ', value);
                 var updateEventData = {
                     type: "Update",
@@ -6024,20 +6294,20 @@ function PrizesService($rootScope, $q, Restangular) {
 
                 $scope.sendEvent(updateEventData);
 
-            }, function(reason) {
+            }, function (reason) {
 
                 console.log('Modal promise rejected. Reason: ', reason);
             });
         };
 
-        $scope.removeEvent = function(event) {
+        $scope.removeEvent = function (event) {
             ngDialog.openConfirm({
                 template: 'deleteEventDialog',
                 data: {
                     title: 'DANGER',
                     message: 'This action will destroy the selected event. It will remove points from users and re-calculate new points and leaderboards.<br/> Will also cause floods and earthquakes in a poor distant country.<br/> There is also a high probability that it kill a few unborn babies somewhere too.<p>Do you still want to continue?</p>'
                 }
-            }).then(function(value) {
+            }).then(function (value) {
                 //console.log('Modal promise resolved. Value: ', value);
                 var removeEventData = {
                     type: "Delete",
@@ -6047,19 +6317,19 @@ function PrizesService($rootScope, $q, Restangular) {
 
                 $scope.sendEvent(removeEventData);
 
-            }, function(reason) {
+            }, function (reason) {
 
                 console.log('Modal promise rejected. Reason: ', reason);
             });
         };
 
-        $scope.GetStat = function(statId, statkey) {
+        $scope.GetStat = function (statId, statkey) {
             return _.result(_.findWhere($scope.match.data.stats, {
                 id: statId
             }), statkey);
         };
 
-        $scope.createEvent = function(eventType, stats) {
+        $scope.createEvent = function (eventType, stats) {
             //console.log($scope.match);
             $scope.eventDrawer = 1;
             var event_id = $scope.GetStat($scope.match.id, 'events_sent') || 0;
@@ -6082,10 +6352,10 @@ function PrizesService($rootScope, $q, Restangular) {
             if (eventType == "substitution") $scope.event.playerscount = 2;
         };
 
-        $scope.openDrawer = function(drawer) {
+        $scope.openDrawer = function (drawer) {
             $scope.eventDrawer = drawer;
         };
-        $scope.closeDrawer = function() {
+        $scope.closeDrawer = function () {
             $scope.eventDrawer = 0;
         };
 
@@ -6096,7 +6366,7 @@ function PrizesService($rootScope, $q, Restangular) {
             return true;
         }
 
-        $scope.sendEvent = function(event) {
+        $scope.sendEvent = function (event) {
 
             if (!validateEvent(event)) {
 
@@ -6128,8 +6398,8 @@ function PrizesService($rootScope, $q, Restangular) {
             });
         };
 
-        $scope.capitalize = function(str) {
-            return str.replace(/(?:^|\s)\S/g, function(a) {
+        $scope.capitalize = function (str) {
+            return str.replace(/(?:^|\s)\S/g, function (a) {
                 return a.toUpperCase();
             });
         };
@@ -6138,7 +6408,7 @@ function PrizesService($rootScope, $q, Restangular) {
         $scope.complete = false;
         $scope.humanizedEvent = "";
 
-        $scope.$watch('event', function(now, then) {
+        $scope.$watch('event', function (now, then) {
 
             $scope.humanizedEvent = "";
 
@@ -6167,7 +6437,7 @@ function PrizesService($rootScope, $q, Restangular) {
         }, true);
 
 
-        $scope.sendMessage = function(matchid, message) {
+        $scope.sendMessage = function (matchid, message) {
             console.log(matchid + ": " + message);
             var data = {
                 match_id: matchid,
@@ -6208,7 +6478,7 @@ function PrizesService($rootScope, $q, Restangular) {
 
             match.data.state = match.data.state || 0;
 
-            match.GetCurrentSegment = function() {
+            match.GetCurrentSegment = function () {
                 // We assign the name of the segment to the currentSegment var
                 if (match.sport.segments[match.data.state])
                     return match.sport.segments[match.data.state].name;
@@ -6221,7 +6491,7 @@ function PrizesService($rootScope, $q, Restangular) {
                 if (match.sport.segments[match.data.state].timed) {
 
                     if (!match.sport.time_dependant) { //  Is Time controlled?
-                        match_timer = $interval(function() {
+                        match_timer = $interval(function () {
                             var now = moment().utc();
                             var then = moment(match.data.timeline[match.data.state].start);
                             var ms = moment(now, "DD/MM/YYYY HH:mm:ss").diff(moment(then, "DD/MM/YYYY HH:mm:ss"));
@@ -6241,7 +6511,7 @@ function PrizesService($rootScope, $q, Restangular) {
             return match;
         }
 
-        $scope.reloadMatch = function() {
+        $scope.reloadMatch = function () {
             $scope.reloadingServer = true;
             $http({
                 method: 'POST',
@@ -6282,39 +6552,16 @@ function PrizesService($rootScope, $q, Restangular) {
         //     // or server returns response with an error status.
         // });
 
-        $scope.formatDate = function(stringDate) {
+        $scope.formatDate = function (stringDate) {
             return moment(stringDate).calendar(); //format("dddd, MMMM Do YYYY, h:mm:ss a");
         };
 
         // Moderation-PoolRooms
-        $scope.data1 = [
-            {
-                id: 1,
-                name: 'Donald Hoffman'
-            },
-            {
-                id: 2,
-                name: 'Wallace Barrett'
-            },
-            {
-                id: 3,
-                name: 'Marsha Hicks'
-            },
-            {
-                id: 4,
-                name: 'Roland Brown'
-            }
-        ];
-
-        $scope.add = function() {
-            $scope.data1.push({
-                id: $scope.data1.length + 1,
-                name: 'Earl Knight'
-            });
+        $scope.sortableCallbackNew = function (sourceModel, destModel, start, end) {
+            vm.updatePrizePositions(vm.NewPool, vm.prizePositions);
         };
-
-        $scope.sortableCallback = function(sourceModel, destModel, start, end) {
-            vm.updatePrizePositions(vm.NewPool, vm.prizePositions);            
+        $scope.sortableCallbackEdit = function (sourceModel, destModel, start, end) {
+            vm.updatePrizePositions(vm.EditPool, vm.prizePositions);
         };
 
         $scope.sortableOptions = {
@@ -6323,18 +6570,50 @@ function PrizesService($rootScope, $q, Restangular) {
         };
 
         vm.PoolRooms = null;
-        PoolsService.getPoolsFor(vm.matchid).then(function(pools) {
+        PoolsService.getPoolsFor(vm.matchid).then(function (pools) {
             vm.PoolRooms = pools;
         });
+        vm.setDefault = function (pool) {
+            vm.PoolRooms.forEach(function (eachpool) {
+                eachpool.isdefault = false;
+                eachpool.save();
+            })
+            console.log(pool);
+            pool.isdefault = true;
+            pool.save();
+        }
+        vm.editPool = function (pool) {
+            vm.prizePositions = [];
+            var $index = 1;
+            _.forEach(pool.prizes, function (prize) {
+                var pos = {};
+                console.log(prize.positions);
+                if (prize.positions.to)
+                    pos.to = prize.positions.to;
+                if (prize.positions.from)
+                    pos.from = prize.positions.from;
+                else
+                    pos = {
+                        from: $index,
+                        to: $index
+                    };
 
-        vm.RemoveNewPool = function(){
+                $index++;
+                vm.prizePositions.push(pos);
+            })
+            vm.EditPool = pool;
+        }
+
+        vm.RemoveNewPool = function () {
             vm.NewPool = null;
         }
-        vm.AddNewPool = function() {
+        vm.AddNewPool = function () {
             console.log(vm.NewPool);
             vm.NewPool = {
 
-                title: {en:""},
+                title: {
+                    en: ""
+                },
                 // roomtype: Season, Week, Game, Custom
                 // Season And Week should always have Starting and Ending Dates, Game
                 // must have a gameid and Custom must have at least one.
@@ -6371,1054 +6650,1084 @@ function PrizesService($rootScope, $q, Restangular) {
             };
         }
 
-            SponsorsService.getAll().then(function(sponsors){
-                vm.sponsors = sponsors;
-            });
-            
-            PrizesService.getAll().then(function(prizes){
-               vm.prizes = prizes; 
-            });
-            
-            vm.addPrize = function(prize, pool){
-                // var newprize = {
-                //     name: prize.name,
-                //     text: prize.text,
-                //     picture: prize.picture,
-                //     from: pool.prizes.length>0?pool.prizes[pool.prizes.length-1].to + 1:1,
-                //     to: pool.prizes.length>0?pool.prizes[pool.prizes.length-1].to + 1:1
-                // }
-               vm.prizePositions.push ({from: vm.prizePositions.length>0?vm.prizePositions[vm.prizePositions.length-1].to + 1:1,
-                                       to: vm.prizePositions.length>0?vm.prizePositions[vm.prizePositions.length-1].to + 1:1});
-               pool.prizes.push(prize);
-               
-            }
-            
-            vm.CreateLeaderboard = function(pool){
-                PoolsService.addPool(pool).then(function(newPool){
-                    vm.PoolRooms.push(newPool);
-                    vm.NewPool = null;
-                    vm.prizePositions = [];
-                });
-            }
+        SponsorsService.getAll().then(function (sponsors) {
+            vm.sponsors = sponsors;
+        });
 
-            vm.opened = {};
-            vm.open = function($event, whichCal) {
-                $event.preventDefault();
-                $event.stopPropagation();
-                vm.opened[whichCal] = true;
+        PrizesService.getAllPlain().then(function (prizes) {
+            vm.prizes = prizes;
+        });
+
+        vm.addPrize = function (prize, pool) {
+            var positions = {
+                from: vm.prizePositions.length > 0 ? vm.prizePositions[vm.prizePositions.length - 1].to + 1 : 1,
+                to: vm.prizePositions.length > 0 ? vm.prizePositions[vm.prizePositions.length - 1].to + 1 : 1
             };
-            
-            vm.countries = CountriesService.getCountries();
-             
-            // Holds prize positions in order to pass it along the pool
+            var newprize = {
+                name: prize.name,
+                text: prize.text,
+                picture: prize.picture,
+                positions: positions
+            }
+            vm.prizePositions.push(positions);
+            pool.prizes.push(newprize);
+        }
+
+        vm.removePrize = function (pool, prize) {
+            pool.prizes = _.without(pool.prizes, prize);
+            vm.editPrizePos = -1;
+            vm.updatePrizePositions(pool, vm.prizePositions);
+        }
+
+        vm.CreateLeaderboard = function (pool) {
+            PoolsService.addPool(pool).then(function (newPool) {
+                vm.PoolRooms.push(newPool);
+                vm.NewPool = null;
+                vm.prizePositions = [];
+            });
+        }
+
+        vm.UpdateLeaderboard = function (pool) {
+
+            pool.save().then(function (newPool) {
+                vm.EditPool = null;
+                vm.prizePositions = [];
+            });
+        }
+
+        vm.RemoveEditPool = function () {
+            vm.EditPool = null;
             vm.prizePositions = [];
-            
-            vm.updatePrizePositions = function (pool, prizePositions ){
-               var $index = 0;
-               pool.prizes.forEach(function(prize){
-                   prize.positions = prizePositions[$index];
-                   $index++;
-               });
-               console.log(vm.NewPool);
-               console.log(vm.NewPool.prizes);
-            }
-            
-            vm.dateOptions = {
-                formatYear: 'yy',
-                startingDay: 1
-            };
+        }
 
-            vm.initDate = new Date('2019-10-20');
-            vm.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
-            vm.format = vm.formats[0];
-            vm.searchObj = {};
-        
+        vm.opened = {};
+        vm.open = function ($event, whichCal) {
+            $event.preventDefault();
+            $event.stopPropagation();
+            vm.opened[whichCal] = true;
+        };
+
+        vm.countries = CountriesService.getCountries();
+
+        // Holds prize positions in order to pass it along the pool
+        vm.prizePositions = [];
+
+        vm.updatePrizePositions = function (pool, prizePositions) {
+            var $index = 0;
+            var lastPos = 0;
+
+            _.forEach(prizePositions, function (pos) {
+                if (lastPos >= pos.from) pos.from = lastPos + 1;
+                lastPos = pos.to;
+
+            });
+
+            pool.prizes.forEach(function (prize) {
+                prize.positions = prizePositions[$index];
+                $index++;
+            });
+
+            while (prizePositions.length > $index) {
+                prizePositions.pop();
+            }
+        }
+
+        vm.dateOptions = {
+            formatYear: 'yy',
+            startingDay: 1
+        };
+
+        vm.initDate = new Date('2019-10-20');
+        vm.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+        vm.format = vm.formats[0];
+        vm.searchObj = {};
+
 
     }
-    
-    function CountriesService(){
+
+    function CountriesService() {
         return {
-            getCountries: function(){
-                return  [ // Taken from https://gist.github.com/unceus/6501985
-                {
-                    name: 'Afghanistan',
-                    code: 'AF'
-                },
-                {
-                    name: 'Åland Islands',
-                    code: 'AX'
-                },
-                {
-                    name: 'Albania',
-                    code: 'AL'
-                },
-                {
-                    name: 'Algeria',
-                    code: 'DZ'
-                },
-                {
-                    name: 'American Samoa',
-                    code: 'AS'
-                },
-                {
-                    name: 'Andorra',
-                    code: 'AD'
-                },
-                {
-                    name: 'Angola',
-                    code: 'AO'
-                },
-                {
-                    name: 'Anguilla',
-                    code: 'AI'
-                },
-                {
-                    name: 'Antarctica',
-                    code: 'AQ'
-                },
-                {
-                    name: 'Antigua and Barbuda',
-                    code: 'AG'
-                },
-                {
-                    name: 'Argentina',
-                    code: 'AR'
-                },
-                {
-                    name: 'Armenia',
-                    code: 'AM'
-                },
-                {
-                    name: 'Aruba',
-                    code: 'AW'
-                },
-                {
-                    name: 'Australia',
-                    code: 'AU'
-                },
-                {
-                    name: 'Austria',
-                    code: 'AT'
-                },
-                {
-                    name: 'Azerbaijan',
-                    code: 'AZ'
-                },
-                {
-                    name: 'Bahamas',
-                    code: 'BS'
-                },
-                {
-                    name: 'Bahrain',
-                    code: 'BH'
-                },
-                {
-                    name: 'Bangladesh',
-                    code: 'BD'
-                },
-                {
-                    name: 'Barbados',
-                    code: 'BB'
-                },
-                {
-                    name: 'Belarus',
-                    code: 'BY'
-                },
-                {
-                    name: 'Belgium',
-                    code: 'BE'
-                },
-                {
-                    name: 'Belize',
-                    code: 'BZ'
-                },
-                {
-                    name: 'Benin',
-                    code: 'BJ'
-                },
-                {
-                    name: 'Bermuda',
-                    code: 'BM'
-                },
-                {
-                    name: 'Bhutan',
-                    code: 'BT'
-                },
-                {
-                    name: 'Bolivia',
-                    code: 'BO'
-                },
-                {
-                    name: 'Bosnia and Herzegovina',
-                    code: 'BA'
-                },
-                {
-                    name: 'Botswana',
-                    code: 'BW'
-                },
-                {
-                    name: 'Bouvet Island',
-                    code: 'BV'
-                },
-                {
-                    name: 'Brazil',
-                    code: 'BR'
-                },
-                {
-                    name: 'British Indian Ocean Territory',
-                    code: 'IO'
-                },
-                {
-                    name: 'Brunei Darussalam',
-                    code: 'BN'
-                },
-                {
-                    name: 'Bulgaria',
-                    code: 'BG'
-                },
-                {
-                    name: 'Burkina Faso',
-                    code: 'BF'
-                },
-                {
-                    name: 'Burundi',
-                    code: 'BI'
-                },
-                {
-                    name: 'Cambodia',
-                    code: 'KH'
-                },
-                {
-                    name: 'Cameroon',
-                    code: 'CM'
-                },
-                {
-                    name: 'Canada',
-                    code: 'CA'
-                },
-                {
-                    name: 'Cape Verde',
-                    code: 'CV'
-                },
-                {
-                    name: 'Cayman Islands',
-                    code: 'KY'
-                },
-                {
-                    name: 'Central African Republic',
-                    code: 'CF'
-                },
-                {
-                    name: 'Chad',
-                    code: 'TD'
-                },
-                {
-                    name: 'Chile',
-                    code: 'CL'
-                },
-                {
-                    name: 'China',
-                    code: 'CN'
-                },
-                {
-                    name: 'Christmas Island',
-                    code: 'CX'
-                },
-                {
-                    name: 'Cocos (Keeling) Islands',
-                    code: 'CC'
-                },
-                {
-                    name: 'Colombia',
-                    code: 'CO'
-                },
-                {
-                    name: 'Comoros',
-                    code: 'KM'
-                },
-                {
-                    name: 'Congo',
-                    code: 'CG'
-                },
-                {
-                    name: 'Congo, The Democratic Republic of the',
-                    code: 'CD'
-                },
-                {
-                    name: 'Cook Islands',
-                    code: 'CK'
-                },
-                {
-                    name: 'Costa Rica',
-                    code: 'CR'
-                },
-                {
-                    name: 'Cote D\'Ivoire',
-                    code: 'CI'
-                },
-                {
-                    name: 'Croatia',
-                    code: 'HR'
-                },
-                {
-                    name: 'Cuba',
-                    code: 'CU'
-                },
-                {
-                    name: 'Cyprus',
-                    code: 'CY'
-                },
-                {
-                    name: 'Czech Republic',
-                    code: 'CZ'
-                },
-                {
-                    name: 'Denmark',
-                    code: 'DK'
-                },
-                {
-                    name: 'Djibouti',
-                    code: 'DJ'
-                },
-                {
-                    name: 'Dominica',
-                    code: 'DM'
-                },
-                {
-                    name: 'Dominican Republic',
-                    code: 'DO'
-                },
-                {
-                    name: 'Ecuador',
-                    code: 'EC'
-                },
-                {
-                    name: 'Egypt',
-                    code: 'EG'
-                },
-                {
-                    name: 'El Salvador',
-                    code: 'SV'
-                },
-                {
-                    name: 'Equatorial Guinea',
-                    code: 'GQ'
-                },
-                {
-                    name: 'Eritrea',
-                    code: 'ER'
-                },
-                {
-                    name: 'Estonia',
-                    code: 'EE'
-                },
-                {
-                    name: 'Ethiopia',
-                    code: 'ET'
-                },
-                {
-                    name: 'Falkland Islands (Malvinas)',
-                    code: 'FK'
-                },
-                {
-                    name: 'Faroe Islands',
-                    code: 'FO'
-                },
-                {
-                    name: 'Fiji',
-                    code: 'FJ'
-                },
-                {
-                    name: 'Finland',
-                    code: 'FI'
-                },
-                {
-                    name: 'France',
-                    code: 'FR'
-                },
-                {
-                    name: 'French Guiana',
-                    code: 'GF'
-                },
-                {
-                    name: 'French Polynesia',
-                    code: 'PF'
-                },
-                {
-                    name: 'French Southern Territories',
-                    code: 'TF'
-                },
-                {
-                    name: 'Gabon',
-                    code: 'GA'
-                },
-                {
-                    name: 'Gambia',
-                    code: 'GM'
-                },
-                {
-                    name: 'Georgia',
-                    code: 'GE'
-                },
-                {
-                    name: 'Germany',
-                    code: 'DE'
-                },
-                {
-                    name: 'Ghana',
-                    code: 'GH'
-                },
-                {
-                    name: 'Gibraltar',
-                    code: 'GI'
-                },
-                {
-                    name: 'Greece',
-                    code: 'GR'
-                },
-                {
-                    name: 'Greenland',
-                    code: 'GL'
-                },
-                {
-                    name: 'Grenada',
-                    code: 'GD'
-                },
-                {
-                    name: 'Guadeloupe',
-                    code: 'GP'
-                },
-                {
-                    name: 'Guam',
-                    code: 'GU'
-                },
-                {
-                    name: 'Guatemala',
-                    code: 'GT'
-                },
-                {
-                    name: 'Guernsey',
-                    code: 'GG'
-                },
-                {
-                    name: 'Guinea',
-                    code: 'GN'
-                },
-                {
-                    name: 'Guinea-Bissau',
-                    code: 'GW'
-                },
-                {
-                    name: 'Guyana',
-                    code: 'GY'
-                },
-                {
-                    name: 'Haiti',
-                    code: 'HT'
-                },
-                {
-                    name: 'Heard Island and Mcdonald Islands',
-                    code: 'HM'
-                },
-                {
-                    name: 'Holy See (Vatican City State)',
-                    code: 'VA'
-                },
-                {
-                    name: 'Honduras',
-                    code: 'HN'
-                },
-                {
-                    name: 'Hong Kong',
-                    code: 'HK'
-                },
-                {
-                    name: 'Hungary',
-                    code: 'HU'
-                },
-                {
-                    name: 'Iceland',
-                    code: 'IS'
-                },
-                {
-                    name: 'India',
-                    code: 'IN'
-                },
-                {
-                    name: 'Indonesia',
-                    code: 'ID'
-                },
-                {
-                    name: 'Iran, Islamic Republic Of',
-                    code: 'IR'
-                },
-                {
-                    name: 'Iraq',
-                    code: 'IQ'
-                },
-                {
-                    name: 'Ireland',
-                    code: 'IE'
-                },
-                {
-                    name: 'Isle of Man',
-                    code: 'IM'
-                },
-                {
-                    name: 'Israel',
-                    code: 'IL'
-                },
-                {
-                    name: 'Italy',
-                    code: 'IT'
-                },
-                {
-                    name: 'Jamaica',
-                    code: 'JM'
-                },
-                {
-                    name: 'Japan',
-                    code: 'JP'
-                },
-                {
-                    name: 'Jersey',
-                    code: 'JE'
-                },
-                {
-                    name: 'Jordan',
-                    code: 'JO'
-                },
-                {
-                    name: 'Kazakhstan',
-                    code: 'KZ'
-                },
-                {
-                    name: 'Kenya',
-                    code: 'KE'
-                },
-                {
-                    name: 'Kiribati',
-                    code: 'KI'
-                },
-                {
-                    name: 'Korea, Democratic People\'s Republic of',
-                    code: 'KP'
-                },
-                {
-                    name: 'Korea, Republic of',
-                    code: 'KR'
-                },
-                {
-                    name: 'Kuwait',
-                    code: 'KW'
-                },
-                {
-                    name: 'Kyrgyzstan',
-                    code: 'KG'
-                },
-                {
-                    name: 'Lao People\'s Democratic Republic',
-                    code: 'LA'
-                },
-                {
-                    name: 'Latvia',
-                    code: 'LV'
-                },
-                {
-                    name: 'Lebanon',
-                    code: 'LB'
-                },
-                {
-                    name: 'Lesotho',
-                    code: 'LS'
-                },
-                {
-                    name: 'Liberia',
-                    code: 'LR'
-                },
-                {
-                    name: 'Libyan Arab Jamahiriya',
-                    code: 'LY'
-                },
-                {
-                    name: 'Liechtenstein',
-                    code: 'LI'
-                },
-                {
-                    name: 'Lithuania',
-                    code: 'LT'
-                },
-                {
-                    name: 'Luxembourg',
-                    code: 'LU'
-                },
-                {
-                    name: 'Macao',
-                    code: 'MO'
-                },
-                {
-                    name: 'Macedonia, The Former Yugoslav Republic of',
-                    code: 'MK'
-                },
-                {
-                    name: 'Madagascar',
-                    code: 'MG'
-                },
-                {
-                    name: 'Malawi',
-                    code: 'MW'
-                },
-                {
-                    name: 'Malaysia',
-                    code: 'MY'
-                },
-                {
-                    name: 'Maldives',
-                    code: 'MV'
-                },
-                {
-                    name: 'Mali',
-                    code: 'ML'
-                },
-                {
-                    name: 'Malta',
-                    code: 'MT'
-                },
-                {
-                    name: 'Marshall Islands',
-                    code: 'MH'
-                },
-                {
-                    name: 'Martinique',
-                    code: 'MQ'
-                },
-                {
-                    name: 'Mauritania',
-                    code: 'MR'
-                },
-                {
-                    name: 'Mauritius',
-                    code: 'MU'
-                },
-                {
-                    name: 'Mayotte',
-                    code: 'YT'
-                },
-                {
-                    name: 'Mexico',
-                    code: 'MX'
-                },
-                {
-                    name: 'Micronesia, Federated States of',
-                    code: 'FM'
-                },
-                {
-                    name: 'Moldova, Republic of',
-                    code: 'MD'
-                },
-                {
-                    name: 'Monaco',
-                    code: 'MC'
-                },
-                {
-                    name: 'Mongolia',
-                    code: 'MN'
-                },
-                {
-                    name: 'Montserrat',
-                    code: 'MS'
-                },
-                {
-                    name: 'Morocco',
-                    code: 'MA'
-                },
-                {
-                    name: 'Mozambique',
-                    code: 'MZ'
-                },
-                {
-                    name: 'Myanmar',
-                    code: 'MM'
-                },
-                {
-                    name: 'Namibia',
-                    code: 'NA'
-                },
-                {
-                    name: 'Nauru',
-                    code: 'NR'
-                },
-                {
-                    name: 'Nepal',
-                    code: 'NP'
-                },
-                {
-                    name: 'Netherlands',
-                    code: 'NL'
-                },
-                {
-                    name: 'Netherlands Antilles',
-                    code: 'AN'
-                },
-                {
-                    name: 'New Caledonia',
-                    code: 'NC'
-                },
-                {
-                    name: 'New Zealand',
-                    code: 'NZ'
-                },
-                {
-                    name: 'Nicaragua',
-                    code: 'NI'
-                },
-                {
-                    name: 'Niger',
-                    code: 'NE'
-                },
-                {
-                    name: 'Nigeria',
-                    code: 'NG'
-                },
-                {
-                    name: 'Niue',
-                    code: 'NU'
-                },
-                {
-                    name: 'Norfolk Island',
-                    code: 'NF'
-                },
-                {
-                    name: 'Northern Mariana Islands',
-                    code: 'MP'
-                },
-                {
-                    name: 'Norway',
-                    code: 'NO'
-                },
-                {
-                    name: 'Oman',
-                    code: 'OM'
-                },
-                {
-                    name: 'Pakistan',
-                    code: 'PK'
-                },
-                {
-                    name: 'Palau',
-                    code: 'PW'
-                },
-                {
-                    name: 'Palestinian Territory, Occupied',
-                    code: 'PS'
-                },
-                {
-                    name: 'Panama',
-                    code: 'PA'
-                },
-                {
-                    name: 'Papua New Guinea',
-                    code: 'PG'
-                },
-                {
-                    name: 'Paraguay',
-                    code: 'PY'
-                },
-                {
-                    name: 'Peru',
-                    code: 'PE'
-                },
-                {
-                    name: 'Philippines',
-                    code: 'PH'
-                },
-                {
-                    name: 'Pitcairn',
-                    code: 'PN'
-                },
-                {
-                    name: 'Poland',
-                    code: 'PL'
-                },
-                {
-                    name: 'Portugal',
-                    code: 'PT'
-                },
-                {
-                    name: 'Puerto Rico',
-                    code: 'PR'
-                },
-                {
-                    name: 'Qatar',
-                    code: 'QA'
-                },
-                {
-                    name: 'Reunion',
-                    code: 'RE'
-                },
-                {
-                    name: 'Romania',
-                    code: 'RO'
-                },
-                {
-                    name: 'Russian Federation',
-                    code: 'RU'
-                },
-                {
-                    name: 'Rwanda',
-                    code: 'RW'
-                },
-                {
-                    name: 'Saint Helena',
-                    code: 'SH'
-                },
-                {
-                    name: 'Saint Kitts and Nevis',
-                    code: 'KN'
-                },
-                {
-                    name: 'Saint Lucia',
-                    code: 'LC'
-                },
-                {
-                    name: 'Saint Pierre and Miquelon',
-                    code: 'PM'
-                },
-                {
-                    name: 'Saint Vincent and the Grenadines',
-                    code: 'VC'
-                },
-                {
-                    name: 'Samoa',
-                    code: 'WS'
-                },
-                {
-                    name: 'San Marino',
-                    code: 'SM'
-                },
-                {
-                    name: 'Sao Tome and Principe',
-                    code: 'ST'
-                },
-                {
-                    name: 'Saudi Arabia',
-                    code: 'SA'
-                },
-                {
-                    name: 'Senegal',
-                    code: 'SN'
-                },
-                {
-                    name: 'Serbia and Montenegro',
-                    code: 'CS'
-                },
-                {
-                    name: 'Seychelles',
-                    code: 'SC'
-                },
-                {
-                    name: 'Sierra Leone',
-                    code: 'SL'
-                },
-                {
-                    name: 'Singapore',
-                    code: 'SG'
-                },
-                {
-                    name: 'Slovakia',
-                    code: 'SK'
-                },
-                {
-                    name: 'Slovenia',
-                    code: 'SI'
-                },
-                {
-                    name: 'Solomon Islands',
-                    code: 'SB'
-                },
-                {
-                    name: 'Somalia',
-                    code: 'SO'
-                },
-                {
-                    name: 'South Africa',
-                    code: 'ZA'
-                },
-                {
-                    name: 'South Georgia and the South Sandwich Islands',
-                    code: 'GS'
-                },
-                {
-                    name: 'Spain',
-                    code: 'ES'
-                },
-                {
-                    name: 'Sri Lanka',
-                    code: 'LK'
-                },
-                {
-                    name: 'Sudan',
-                    code: 'SD'
-                },
-                {
-                    name: 'Suriname',
-                    code: 'SR'
-                },
-                {
-                    name: 'Svalbard and Jan Mayen',
-                    code: 'SJ'
-                },
-                {
-                    name: 'Swaziland',
-                    code: 'SZ'
-                },
-                {
-                    name: 'Sweden',
-                    code: 'SE'
-                },
-                {
-                    name: 'Switzerland',
-                    code: 'CH'
-                },
-                {
-                    name: 'Syrian Arab Republic',
-                    code: 'SY'
-                },
-                {
-                    name: 'Taiwan, Province of China',
-                    code: 'TW'
-                },
-                {
-                    name: 'Tajikistan',
-                    code: 'TJ'
-                },
-                {
-                    name: 'Tanzania, United Republic of',
-                    code: 'TZ'
-                },
-                {
-                    name: 'Thailand',
-                    code: 'TH'
-                },
-                {
-                    name: 'Timor-Leste',
-                    code: 'TL'
-                },
-                {
-                    name: 'Togo',
-                    code: 'TG'
-                },
-                {
-                    name: 'Tokelau',
-                    code: 'TK'
-                },
-                {
-                    name: 'Tonga',
-                    code: 'TO'
-                },
-                {
-                    name: 'Trinidad and Tobago',
-                    code: 'TT'
-                },
-                {
-                    name: 'Tunisia',
-                    code: 'TN'
-                },
-                {
-                    name: 'Turkey',
-                    code: 'TR'
-                },
-                {
-                    name: 'Turkmenistan',
-                    code: 'TM'
-                },
-                {
-                    name: 'Turks and Caicos Islands',
-                    code: 'TC'
-                },
-                {
-                    name: 'Tuvalu',
-                    code: 'TV'
-                },
-                {
-                    name: 'Uganda',
-                    code: 'UG'
-                },
-                {
-                    name: 'Ukraine',
-                    code: 'UA'
-                },
-                {
-                    name: 'United Arab Emirates',
-                    code: 'AE'
-                },
-                {
-                    name: 'United Kingdom',
-                    code: 'GB'
-                },
-                {
-                    name: 'United States',
-                    code: 'US'
-                },
-                {
-                    name: 'United States Minor Outlying Islands',
-                    code: 'UM'
-                },
-                {
-                    name: 'Uruguay',
-                    code: 'UY'
-                },
-                {
-                    name: 'Uzbekistan',
-                    code: 'UZ'
-                },
-                {
-                    name: 'Vanuatu',
-                    code: 'VU'
-                },
-                {
-                    name: 'Venezuela',
-                    code: 'VE'
-                },
-                {
-                    name: 'Vietnam',
-                    code: 'VN'
-                },
-                {
-                    name: 'Virgin Islands, British',
-                    code: 'VG'
-                },
-                {
-                    name: 'Virgin Islands, U.S.',
-                    code: 'VI'
-                },
-                {
-                    name: 'Wallis and Futuna',
-                    code: 'WF'
-                },
-                {
-                    name: 'Western Sahara',
-                    code: 'EH'
-                },
-                {
-                    name: 'Yemen',
-                    code: 'YE'
-                },
-                {
-                    name: 'Zambia',
-                    code: 'ZM'
-                },
-                {
-                    name: 'Zimbabwe',
-                    code: 'ZW'
-                }
-            ];
+            getCountries: function () {
+                return [ // Taken from https://gist.github.com/unceus/6501985
+                    {
+                        name: 'Afghanistan',
+                        code: 'AF'
+                    },
+                    {
+                        name: 'Åland Islands',
+                        code: 'AX'
+                    },
+                    {
+                        name: 'Albania',
+                        code: 'AL'
+                    },
+                    {
+                        name: 'Algeria',
+                        code: 'DZ'
+                    },
+                    {
+                        name: 'American Samoa',
+                        code: 'AS'
+                    },
+                    {
+                        name: 'Andorra',
+                        code: 'AD'
+                    },
+                    {
+                        name: 'Angola',
+                        code: 'AO'
+                    },
+                    {
+                        name: 'Anguilla',
+                        code: 'AI'
+                    },
+                    {
+                        name: 'Antarctica',
+                        code: 'AQ'
+                    },
+                    {
+                        name: 'Antigua and Barbuda',
+                        code: 'AG'
+                    },
+                    {
+                        name: 'Argentina',
+                        code: 'AR'
+                    },
+                    {
+                        name: 'Armenia',
+                        code: 'AM'
+                    },
+                    {
+                        name: 'Aruba',
+                        code: 'AW'
+                    },
+                    {
+                        name: 'Australia',
+                        code: 'AU'
+                    },
+                    {
+                        name: 'Austria',
+                        code: 'AT'
+                    },
+                    {
+                        name: 'Azerbaijan',
+                        code: 'AZ'
+                    },
+                    {
+                        name: 'Bahamas',
+                        code: 'BS'
+                    },
+                    {
+                        name: 'Bahrain',
+                        code: 'BH'
+                    },
+                    {
+                        name: 'Bangladesh',
+                        code: 'BD'
+                    },
+                    {
+                        name: 'Barbados',
+                        code: 'BB'
+                    },
+                    {
+                        name: 'Belarus',
+                        code: 'BY'
+                    },
+                    {
+                        name: 'Belgium',
+                        code: 'BE'
+                    },
+                    {
+                        name: 'Belize',
+                        code: 'BZ'
+                    },
+                    {
+                        name: 'Benin',
+                        code: 'BJ'
+                    },
+                    {
+                        name: 'Bermuda',
+                        code: 'BM'
+                    },
+                    {
+                        name: 'Bhutan',
+                        code: 'BT'
+                    },
+                    {
+                        name: 'Bolivia',
+                        code: 'BO'
+                    },
+                    {
+                        name: 'Bosnia and Herzegovina',
+                        code: 'BA'
+                    },
+                    {
+                        name: 'Botswana',
+                        code: 'BW'
+                    },
+                    {
+                        name: 'Bouvet Island',
+                        code: 'BV'
+                    },
+                    {
+                        name: 'Brazil',
+                        code: 'BR'
+                    },
+                    {
+                        name: 'British Indian Ocean Territory',
+                        code: 'IO'
+                    },
+                    {
+                        name: 'Brunei Darussalam',
+                        code: 'BN'
+                    },
+                    {
+                        name: 'Bulgaria',
+                        code: 'BG'
+                    },
+                    {
+                        name: 'Burkina Faso',
+                        code: 'BF'
+                    },
+                    {
+                        name: 'Burundi',
+                        code: 'BI'
+                    },
+                    {
+                        name: 'Cambodia',
+                        code: 'KH'
+                    },
+                    {
+                        name: 'Cameroon',
+                        code: 'CM'
+                    },
+                    {
+                        name: 'Canada',
+                        code: 'CA'
+                    },
+                    {
+                        name: 'Cape Verde',
+                        code: 'CV'
+                    },
+                    {
+                        name: 'Cayman Islands',
+                        code: 'KY'
+                    },
+                    {
+                        name: 'Central African Republic',
+                        code: 'CF'
+                    },
+                    {
+                        name: 'Chad',
+                        code: 'TD'
+                    },
+                    {
+                        name: 'Chile',
+                        code: 'CL'
+                    },
+                    {
+                        name: 'China',
+                        code: 'CN'
+                    },
+                    {
+                        name: 'Christmas Island',
+                        code: 'CX'
+                    },
+                    {
+                        name: 'Cocos (Keeling) Islands',
+                        code: 'CC'
+                    },
+                    {
+                        name: 'Colombia',
+                        code: 'CO'
+                    },
+                    {
+                        name: 'Comoros',
+                        code: 'KM'
+                    },
+                    {
+                        name: 'Congo',
+                        code: 'CG'
+                    },
+                    {
+                        name: 'Congo, The Democratic Republic of the',
+                        code: 'CD'
+                    },
+                    {
+                        name: 'Cook Islands',
+                        code: 'CK'
+                    },
+                    {
+                        name: 'Costa Rica',
+                        code: 'CR'
+                    },
+                    {
+                        name: 'Cote D\'Ivoire',
+                        code: 'CI'
+                    },
+                    {
+                        name: 'Croatia',
+                        code: 'HR'
+                    },
+                    {
+                        name: 'Cuba',
+                        code: 'CU'
+                    },
+                    {
+                        name: 'Cyprus',
+                        code: 'CY'
+                    },
+                    {
+                        name: 'Czech Republic',
+                        code: 'CZ'
+                    },
+                    {
+                        name: 'Denmark',
+                        code: 'DK'
+                    },
+                    {
+                        name: 'Djibouti',
+                        code: 'DJ'
+                    },
+                    {
+                        name: 'Dominica',
+                        code: 'DM'
+                    },
+                    {
+                        name: 'Dominican Republic',
+                        code: 'DO'
+                    },
+                    {
+                        name: 'Ecuador',
+                        code: 'EC'
+                    },
+                    {
+                        name: 'Egypt',
+                        code: 'EG'
+                    },
+                    {
+                        name: 'El Salvador',
+                        code: 'SV'
+                    },
+                    {
+                        name: 'Equatorial Guinea',
+                        code: 'GQ'
+                    },
+                    {
+                        name: 'Eritrea',
+                        code: 'ER'
+                    },
+                    {
+                        name: 'Estonia',
+                        code: 'EE'
+                    },
+                    {
+                        name: 'Ethiopia',
+                        code: 'ET'
+                    },
+                    {
+                        name: 'Falkland Islands (Malvinas)',
+                        code: 'FK'
+                    },
+                    {
+                        name: 'Faroe Islands',
+                        code: 'FO'
+                    },
+                    {
+                        name: 'Fiji',
+                        code: 'FJ'
+                    },
+                    {
+                        name: 'Finland',
+                        code: 'FI'
+                    },
+                    {
+                        name: 'France',
+                        code: 'FR'
+                    },
+                    {
+                        name: 'French Guiana',
+                        code: 'GF'
+                    },
+                    {
+                        name: 'French Polynesia',
+                        code: 'PF'
+                    },
+                    {
+                        name: 'French Southern Territories',
+                        code: 'TF'
+                    },
+                    {
+                        name: 'Gabon',
+                        code: 'GA'
+                    },
+                    {
+                        name: 'Gambia',
+                        code: 'GM'
+                    },
+                    {
+                        name: 'Georgia',
+                        code: 'GE'
+                    },
+                    {
+                        name: 'Germany',
+                        code: 'DE'
+                    },
+                    {
+                        name: 'Ghana',
+                        code: 'GH'
+                    },
+                    {
+                        name: 'Gibraltar',
+                        code: 'GI'
+                    },
+                    {
+                        name: 'Greece',
+                        code: 'GR'
+                    },
+                    {
+                        name: 'Greenland',
+                        code: 'GL'
+                    },
+                    {
+                        name: 'Grenada',
+                        code: 'GD'
+                    },
+                    {
+                        name: 'Guadeloupe',
+                        code: 'GP'
+                    },
+                    {
+                        name: 'Guam',
+                        code: 'GU'
+                    },
+                    {
+                        name: 'Guatemala',
+                        code: 'GT'
+                    },
+                    {
+                        name: 'Guernsey',
+                        code: 'GG'
+                    },
+                    {
+                        name: 'Guinea',
+                        code: 'GN'
+                    },
+                    {
+                        name: 'Guinea-Bissau',
+                        code: 'GW'
+                    },
+                    {
+                        name: 'Guyana',
+                        code: 'GY'
+                    },
+                    {
+                        name: 'Haiti',
+                        code: 'HT'
+                    },
+                    {
+                        name: 'Heard Island and Mcdonald Islands',
+                        code: 'HM'
+                    },
+                    {
+                        name: 'Holy See (Vatican City State)',
+                        code: 'VA'
+                    },
+                    {
+                        name: 'Honduras',
+                        code: 'HN'
+                    },
+                    {
+                        name: 'Hong Kong',
+                        code: 'HK'
+                    },
+                    {
+                        name: 'Hungary',
+                        code: 'HU'
+                    },
+                    {
+                        name: 'Iceland',
+                        code: 'IS'
+                    },
+                    {
+                        name: 'India',
+                        code: 'IN'
+                    },
+                    {
+                        name: 'Indonesia',
+                        code: 'ID'
+                    },
+                    {
+                        name: 'Iran, Islamic Republic Of',
+                        code: 'IR'
+                    },
+                    {
+                        name: 'Iraq',
+                        code: 'IQ'
+                    },
+                    {
+                        name: 'Ireland',
+                        code: 'IE'
+                    },
+                    {
+                        name: 'Isle of Man',
+                        code: 'IM'
+                    },
+                    {
+                        name: 'Israel',
+                        code: 'IL'
+                    },
+                    {
+                        name: 'Italy',
+                        code: 'IT'
+                    },
+                    {
+                        name: 'Jamaica',
+                        code: 'JM'
+                    },
+                    {
+                        name: 'Japan',
+                        code: 'JP'
+                    },
+                    {
+                        name: 'Jersey',
+                        code: 'JE'
+                    },
+                    {
+                        name: 'Jordan',
+                        code: 'JO'
+                    },
+                    {
+                        name: 'Kazakhstan',
+                        code: 'KZ'
+                    },
+                    {
+                        name: 'Kenya',
+                        code: 'KE'
+                    },
+                    {
+                        name: 'Kiribati',
+                        code: 'KI'
+                    },
+                    {
+                        name: 'Korea, Democratic People\'s Republic of',
+                        code: 'KP'
+                    },
+                    {
+                        name: 'Korea, Republic of',
+                        code: 'KR'
+                    },
+                    {
+                        name: 'Kuwait',
+                        code: 'KW'
+                    },
+                    {
+                        name: 'Kyrgyzstan',
+                        code: 'KG'
+                    },
+                    {
+                        name: 'Lao People\'s Democratic Republic',
+                        code: 'LA'
+                    },
+                    {
+                        name: 'Latvia',
+                        code: 'LV'
+                    },
+                    {
+                        name: 'Lebanon',
+                        code: 'LB'
+                    },
+                    {
+                        name: 'Lesotho',
+                        code: 'LS'
+                    },
+                    {
+                        name: 'Liberia',
+                        code: 'LR'
+                    },
+                    {
+                        name: 'Libyan Arab Jamahiriya',
+                        code: 'LY'
+                    },
+                    {
+                        name: 'Liechtenstein',
+                        code: 'LI'
+                    },
+                    {
+                        name: 'Lithuania',
+                        code: 'LT'
+                    },
+                    {
+                        name: 'Luxembourg',
+                        code: 'LU'
+                    },
+                    {
+                        name: 'Macao',
+                        code: 'MO'
+                    },
+                    {
+                        name: 'Macedonia, The Former Yugoslav Republic of',
+                        code: 'MK'
+                    },
+                    {
+                        name: 'Madagascar',
+                        code: 'MG'
+                    },
+                    {
+                        name: 'Malawi',
+                        code: 'MW'
+                    },
+                    {
+                        name: 'Malaysia',
+                        code: 'MY'
+                    },
+                    {
+                        name: 'Maldives',
+                        code: 'MV'
+                    },
+                    {
+                        name: 'Mali',
+                        code: 'ML'
+                    },
+                    {
+                        name: 'Malta',
+                        code: 'MT'
+                    },
+                    {
+                        name: 'Marshall Islands',
+                        code: 'MH'
+                    },
+                    {
+                        name: 'Martinique',
+                        code: 'MQ'
+                    },
+                    {
+                        name: 'Mauritania',
+                        code: 'MR'
+                    },
+                    {
+                        name: 'Mauritius',
+                        code: 'MU'
+                    },
+                    {
+                        name: 'Mayotte',
+                        code: 'YT'
+                    },
+                    {
+                        name: 'Mexico',
+                        code: 'MX'
+                    },
+                    {
+                        name: 'Micronesia, Federated States of',
+                        code: 'FM'
+                    },
+                    {
+                        name: 'Moldova, Republic of',
+                        code: 'MD'
+                    },
+                    {
+                        name: 'Monaco',
+                        code: 'MC'
+                    },
+                    {
+                        name: 'Mongolia',
+                        code: 'MN'
+                    },
+                    {
+                        name: 'Montserrat',
+                        code: 'MS'
+                    },
+                    {
+                        name: 'Morocco',
+                        code: 'MA'
+                    },
+                    {
+                        name: 'Mozambique',
+                        code: 'MZ'
+                    },
+                    {
+                        name: 'Myanmar',
+                        code: 'MM'
+                    },
+                    {
+                        name: 'Namibia',
+                        code: 'NA'
+                    },
+                    {
+                        name: 'Nauru',
+                        code: 'NR'
+                    },
+                    {
+                        name: 'Nepal',
+                        code: 'NP'
+                    },
+                    {
+                        name: 'Netherlands',
+                        code: 'NL'
+                    },
+                    {
+                        name: 'Netherlands Antilles',
+                        code: 'AN'
+                    },
+                    {
+                        name: 'New Caledonia',
+                        code: 'NC'
+                    },
+                    {
+                        name: 'New Zealand',
+                        code: 'NZ'
+                    },
+                    {
+                        name: 'Nicaragua',
+                        code: 'NI'
+                    },
+                    {
+                        name: 'Niger',
+                        code: 'NE'
+                    },
+                    {
+                        name: 'Nigeria',
+                        code: 'NG'
+                    },
+                    {
+                        name: 'Niue',
+                        code: 'NU'
+                    },
+                    {
+                        name: 'Norfolk Island',
+                        code: 'NF'
+                    },
+                    {
+                        name: 'Northern Mariana Islands',
+                        code: 'MP'
+                    },
+                    {
+                        name: 'Norway',
+                        code: 'NO'
+                    },
+                    {
+                        name: 'Oman',
+                        code: 'OM'
+                    },
+                    {
+                        name: 'Pakistan',
+                        code: 'PK'
+                    },
+                    {
+                        name: 'Palau',
+                        code: 'PW'
+                    },
+                    {
+                        name: 'Palestinian Territory, Occupied',
+                        code: 'PS'
+                    },
+                    {
+                        name: 'Panama',
+                        code: 'PA'
+                    },
+                    {
+                        name: 'Papua New Guinea',
+                        code: 'PG'
+                    },
+                    {
+                        name: 'Paraguay',
+                        code: 'PY'
+                    },
+                    {
+                        name: 'Peru',
+                        code: 'PE'
+                    },
+                    {
+                        name: 'Philippines',
+                        code: 'PH'
+                    },
+                    {
+                        name: 'Pitcairn',
+                        code: 'PN'
+                    },
+                    {
+                        name: 'Poland',
+                        code: 'PL'
+                    },
+                    {
+                        name: 'Portugal',
+                        code: 'PT'
+                    },
+                    {
+                        name: 'Puerto Rico',
+                        code: 'PR'
+                    },
+                    {
+                        name: 'Qatar',
+                        code: 'QA'
+                    },
+                    {
+                        name: 'Reunion',
+                        code: 'RE'
+                    },
+                    {
+                        name: 'Romania',
+                        code: 'RO'
+                    },
+                    {
+                        name: 'Russian Federation',
+                        code: 'RU'
+                    },
+                    {
+                        name: 'Rwanda',
+                        code: 'RW'
+                    },
+                    {
+                        name: 'Saint Helena',
+                        code: 'SH'
+                    },
+                    {
+                        name: 'Saint Kitts and Nevis',
+                        code: 'KN'
+                    },
+                    {
+                        name: 'Saint Lucia',
+                        code: 'LC'
+                    },
+                    {
+                        name: 'Saint Pierre and Miquelon',
+                        code: 'PM'
+                    },
+                    {
+                        name: 'Saint Vincent and the Grenadines',
+                        code: 'VC'
+                    },
+                    {
+                        name: 'Samoa',
+                        code: 'WS'
+                    },
+                    {
+                        name: 'San Marino',
+                        code: 'SM'
+                    },
+                    {
+                        name: 'Sao Tome and Principe',
+                        code: 'ST'
+                    },
+                    {
+                        name: 'Saudi Arabia',
+                        code: 'SA'
+                    },
+                    {
+                        name: 'Senegal',
+                        code: 'SN'
+                    },
+                    {
+                        name: 'Serbia and Montenegro',
+                        code: 'CS'
+                    },
+                    {
+                        name: 'Seychelles',
+                        code: 'SC'
+                    },
+                    {
+                        name: 'Sierra Leone',
+                        code: 'SL'
+                    },
+                    {
+                        name: 'Singapore',
+                        code: 'SG'
+                    },
+                    {
+                        name: 'Slovakia',
+                        code: 'SK'
+                    },
+                    {
+                        name: 'Slovenia',
+                        code: 'SI'
+                    },
+                    {
+                        name: 'Solomon Islands',
+                        code: 'SB'
+                    },
+                    {
+                        name: 'Somalia',
+                        code: 'SO'
+                    },
+                    {
+                        name: 'South Africa',
+                        code: 'ZA'
+                    },
+                    {
+                        name: 'South Georgia and the South Sandwich Islands',
+                        code: 'GS'
+                    },
+                    {
+                        name: 'Spain',
+                        code: 'ES'
+                    },
+                    {
+                        name: 'Sri Lanka',
+                        code: 'LK'
+                    },
+                    {
+                        name: 'Sudan',
+                        code: 'SD'
+                    },
+                    {
+                        name: 'Suriname',
+                        code: 'SR'
+                    },
+                    {
+                        name: 'Svalbard and Jan Mayen',
+                        code: 'SJ'
+                    },
+                    {
+                        name: 'Swaziland',
+                        code: 'SZ'
+                    },
+                    {
+                        name: 'Sweden',
+                        code: 'SE'
+                    },
+                    {
+                        name: 'Switzerland',
+                        code: 'CH'
+                    },
+                    {
+                        name: 'Syrian Arab Republic',
+                        code: 'SY'
+                    },
+                    {
+                        name: 'Taiwan, Province of China',
+                        code: 'TW'
+                    },
+                    {
+                        name: 'Tajikistan',
+                        code: 'TJ'
+                    },
+                    {
+                        name: 'Tanzania, United Republic of',
+                        code: 'TZ'
+                    },
+                    {
+                        name: 'Thailand',
+                        code: 'TH'
+                    },
+                    {
+                        name: 'Timor-Leste',
+                        code: 'TL'
+                    },
+                    {
+                        name: 'Togo',
+                        code: 'TG'
+                    },
+                    {
+                        name: 'Tokelau',
+                        code: 'TK'
+                    },
+                    {
+                        name: 'Tonga',
+                        code: 'TO'
+                    },
+                    {
+                        name: 'Trinidad and Tobago',
+                        code: 'TT'
+                    },
+                    {
+                        name: 'Tunisia',
+                        code: 'TN'
+                    },
+                    {
+                        name: 'Turkey',
+                        code: 'TR'
+                    },
+                    {
+                        name: 'Turkmenistan',
+                        code: 'TM'
+                    },
+                    {
+                        name: 'Turks and Caicos Islands',
+                        code: 'TC'
+                    },
+                    {
+                        name: 'Tuvalu',
+                        code: 'TV'
+                    },
+                    {
+                        name: 'Uganda',
+                        code: 'UG'
+                    },
+                    {
+                        name: 'Ukraine',
+                        code: 'UA'
+                    },
+                    {
+                        name: 'United Arab Emirates',
+                        code: 'AE'
+                    },
+                    {
+                        name: 'United Kingdom',
+                        code: 'GB'
+                    },
+                    {
+                        name: 'United States',
+                        code: 'US'
+                    },
+                    {
+                        name: 'United States Minor Outlying Islands',
+                        code: 'UM'
+                    },
+                    {
+                        name: 'Uruguay',
+                        code: 'UY'
+                    },
+                    {
+                        name: 'Uzbekistan',
+                        code: 'UZ'
+                    },
+                    {
+                        name: 'Vanuatu',
+                        code: 'VU'
+                    },
+                    {
+                        name: 'Venezuela',
+                        code: 'VE'
+                    },
+                    {
+                        name: 'Vietnam',
+                        code: 'VN'
+                    },
+                    {
+                        name: 'Virgin Islands, British',
+                        code: 'VG'
+                    },
+                    {
+                        name: 'Virgin Islands, U.S.',
+                        code: 'VI'
+                    },
+                    {
+                        name: 'Wallis and Futuna',
+                        code: 'WF'
+                    },
+                    {
+                        name: 'Western Sahara',
+                        code: 'EH'
+                    },
+                    {
+                        name: 'Yemen',
+                        code: 'YE'
+                    },
+                    {
+                        name: 'Zambia',
+                        code: 'ZM'
+                    },
+                    {
+                        name: 'Zimbabwe',
+                        code: 'ZW'
+                    }
+                ];
             }
         }
     }
 })();
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -7430,16 +7739,16 @@ function PrizesService($rootScope, $q, Restangular) {
 
     function DashboardController($rootScope, $scope, ChartData, $timeout, $websocket, $http, $state) {
 
-        $scope.getMatchStatus = function(status) {
+        $scope.getMatchStatus = function (status) {
 
             if (status == "0") return "Pre Game";
         };
 
-        $scope.formatDate = function(stringDate) {
+        $scope.formatDate = function (stringDate) {
             return moment(stringDate).calendar(); //format("dddd, MMMM Do YYYY, h:mm:ss a");
         };
 
-        $scope.ModerateMatch = function(matchid, sport) {
+        $scope.ModerateMatch = function (matchid, sport) {
 
             $state.go("app.match-moderation-" + (sport || 'soccer'), {
                 id: (matchid || "565c4af6e4b030fba33dd459")
@@ -7504,7 +7813,7 @@ function PrizesService($rootScope, $q, Restangular) {
 
         clearInterval($rootScope.DataUpdate);
 
-        $rootScope.DataUpdate = setInterval(function() {
+        $rootScope.DataUpdate = setInterval(function () {
             vm.splineData = angular.copy($rootScope.dataset);
         }, 5000);
 
@@ -7556,7 +7865,7 @@ function PrizesService($rootScope, $q, Restangular) {
                 },
                 tooltip: true,
                 tooltipOpts: {
-                    content: function(label, x, y) {
+                    content: function (label, x, y) {
                         return x + ' : ' + y;
                     }
                 },
@@ -7569,8 +7878,8 @@ function PrizesService($rootScope, $q, Restangular) {
                     max: 300, // optional: use it for a clear represetation
                     tickColor: '#eee',
                     position: ($scope.app.layout.isRTL ? 'right' : 'left'),
-                    tickFormatter: function(v) {
-                        return v /* + ' visitors'*/;
+                    tickFormatter: function (v) {
+                        return v /* + ' visitors'*/ ;
                     }
                 },
                 shadowSize: 0
@@ -7580,12 +7889,12 @@ function PrizesService($rootScope, $q, Restangular) {
             // PANEL REFRESH EVENTS
             // -----------------------------------
 
-            $scope.$on('panel-refresh', function(event, id) {
+            $scope.$on('panel-refresh', function (event, id) {
 
                 //console.log('Simulating chart refresh during 3s on #' + id);
 
                 // Instead of timeout you can request a chart data
-                $timeout(function() {
+                $timeout(function () {
                     vm.splineData = angular.copy($rootScope.dataset);
                     // directive listen for to remove the spinner
                     // after we end up to perform own operations
@@ -7602,7 +7911,7 @@ function PrizesService($rootScope, $q, Restangular) {
             // -----------------------------------
 
             // Before remove panel
-            $scope.$on('panel-remove', function(event, id, deferred) {
+            $scope.$on('panel-remove', function (event, id, deferred) {
 
                 console.log('Panel #' + id + ' removing');
 
@@ -7614,7 +7923,7 @@ function PrizesService($rootScope, $q, Restangular) {
             });
 
             // Panel removed ( only if above was resolved() )
-            $scope.$on('panel-removed', function(event, id) {
+            $scope.$on('panel-removed', function (event, id) {
 
                 console.log('Panel #' + id + ' removed');
 
@@ -7625,7 +7934,7 @@ function PrizesService($rootScope, $q, Restangular) {
 })();
 
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -7650,7 +7959,7 @@ function PrizesService($rootScope, $q, Restangular) {
             if ($state.includes('app-h')) {
                 // Setup layout horizontal for demo
                 $rootScope.app.layout.horizontal = true;
-                $scope.$on('$destroy', function() {
+                $scope.$on('$destroy', function () {
                     $rootScope.app.layout.horizontal = false;
                 });
             } else {
@@ -7678,7 +7987,7 @@ function PrizesService($rootScope, $q, Restangular) {
                 },
                 tooltip: true,
                 tooltipOpts: {
-                    content: function(label, x, y) {
+                    content: function (label, x, y) {
                         return x + ' : ' + y;
                     }
                 },
@@ -7722,7 +8031,7 @@ function PrizesService($rootScope, $q, Restangular) {
                 },
                 tooltip: true,
                 tooltipOpts: {
-                    content: function(label, x, y) {
+                    content: function (label, x, y) {
                         return x + ' : ' + y;
                     }
                 },
@@ -7735,8 +8044,8 @@ function PrizesService($rootScope, $q, Restangular) {
                     max: 150, // optional: use it for a clear represetation
                     tickColor: '#eee',
                     position: ($rootScope.app.layout.isRTL ? 'right' : 'left'),
-                    tickFormatter: function(v) {
-                        return v /* + ' visitors'*/;
+                    tickFormatter: function (v) {
+                        return v /* + ' visitors'*/ ;
                     }
                 },
                 shadowSize: 0
@@ -7744,7 +8053,7 @@ function PrizesService($rootScope, $q, Restangular) {
         }
     }
 })();
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -7789,7 +8098,7 @@ function PrizesService($rootScope, $q, Restangular) {
                 },
                 tooltip: true,
                 tooltipOpts: {
-                    content: function(label, x, y) {
+                    content: function (label, x, y) {
                         return x + ' : ' + y;
                     }
                 },
@@ -7802,8 +8111,8 @@ function PrizesService($rootScope, $q, Restangular) {
                     max: 150, // optional: use it for a clear represetation
                     tickColor: '#eee',
                     position: ($rootScope.app.layout.isRTL ? 'right' : 'left'),
-                    tickFormatter: function(v) {
-                        return v /* + ' visitors'*/;
+                    tickFormatter: function (v) {
+                        return v /* + ' visitors'*/ ;
                     }
                 },
                 shadowSize: 0
@@ -7890,7 +8199,7 @@ function PrizesService($rootScope, $q, Restangular) {
     }
 })();
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -7955,7 +8264,7 @@ function PrizesService($rootScope, $q, Restangular) {
             vm.slides6 = [];
             vm.carouselIndex6 = 0;
             addSlides(vm.slides6, 'sports', 10);
-            vm.addSlide = function(at) {
+            vm.addSlide = function (at) {
                 if (at === 'head') {
                     vm.slides6.unshift(getSlide(vm.slides6, 'people'));
                 } else {
@@ -7973,7 +8282,7 @@ function PrizesService($rootScope, $q, Restangular) {
  *   using lazy loader. Include plugin in base.js instead.
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -8015,21 +8324,21 @@ function PrizesService($rootScope, $q, Restangular) {
             $rootScope.jsonData = '{"foo": "bar"}';
             $rootScope.theme = 'ngdialog-theme-default';
 
-            $scope.directivePreCloseCallback = function(value) {
+            $scope.directivePreCloseCallback = function (value) {
                 if (confirm('Close it? MainCtrl.Directive. (Value = ' + value + ')')) {
                     return true;
                 }
                 return false;
             };
 
-            $scope.preCloseCallbackOnScope = function(value) {
+            $scope.preCloseCallbackOnScope = function (value) {
                 if (confirm('Close it? MainCtrl.OnScope (Value = ' + value + ')')) {
                     return true;
                 }
                 return false;
             };
 
-            $scope.open = function() {
+            $scope.open = function () {
                 ngDialog.open({
                     template: 'firstDialogId',
                     controller: 'InsideCtrl',
@@ -8039,7 +8348,7 @@ function PrizesService($rootScope, $q, Restangular) {
                 });
             };
 
-            $scope.openDefault = function() {
+            $scope.openDefault = function () {
                 ngDialog.open({
                     template: 'firstDialogId',
                     controller: 'InsideCtrl',
@@ -8047,12 +8356,12 @@ function PrizesService($rootScope, $q, Restangular) {
                 });
             };
 
-            $scope.openDefaultWithPreCloseCallbackInlined = function() {
+            $scope.openDefaultWithPreCloseCallbackInlined = function () {
                 ngDialog.open({
                     template: 'firstDialogId',
                     controller: 'InsideCtrl',
                     className: 'ngdialog-theme-default',
-                    preCloseCallback: function(value) {
+                    preCloseCallback: function (value) {
                         if (confirm('Close it?  (Value = ' + value + ')')) {
                             return true;
                         }
@@ -8061,65 +8370,65 @@ function PrizesService($rootScope, $q, Restangular) {
                 });
             };
 
-            $scope.openConfirm = function() {
+            $scope.openConfirm = function () {
                 ngDialog.openConfirm({
                     template: 'modalDialogId',
                     className: 'ngdialog-theme-default'
-                }).then(function(value) {
+                }).then(function (value) {
                     console.log('Modal promise resolved. Value: ', value);
-                }, function(reason) {
+                }, function (reason) {
                     console.log('Modal promise rejected. Reason: ', reason);
                 });
             };
 
-            $scope.openConfirmWithPreCloseCallbackOnScope = function() {
+            $scope.openConfirmWithPreCloseCallbackOnScope = function () {
                 ngDialog.openConfirm({
                     template: 'modalDialogId',
                     className: 'ngdialog-theme-default',
                     preCloseCallback: 'preCloseCallbackOnScope',
                     scope: $scope
-                }).then(function(value) {
+                }).then(function (value) {
                     console.log('Modal promise resolved. Value: ', value);
-                }, function(reason) {
+                }, function (reason) {
                     console.log('Modal promise rejected. Reason: ', reason);
                 });
             };
 
-            $scope.openConfirmWithPreCloseCallbackInlinedWithNestedConfirm = function() {
+            $scope.openConfirmWithPreCloseCallbackInlinedWithNestedConfirm = function () {
                 ngDialog.openConfirm({
-                    template: 'dialogWithNestedConfirmDialogId',
-                    className: 'ngdialog-theme-default',
-                    preCloseCallback: function( /*value*/) {
+                        template: 'dialogWithNestedConfirmDialogId',
+                        className: 'ngdialog-theme-default',
+                        preCloseCallback: function ( /*value*/ ) {
 
-                        var nestedConfirmDialog = ngDialog.openConfirm({
-                            template: '<p>Are you sure you want to close the parent dialog?</p>' +
-                            '<div>' +
-                            '<button type="button" class="btn btn-default" ng-click="closeThisDialog(0)">No' +
-                            '<button type="button" class="btn btn-primary" ng-click="confirm(1)">Yes' +
-                            '</button></div>',
-                            plain: true,
-                            className: 'ngdialog-theme-default'
-                        });
+                            var nestedConfirmDialog = ngDialog.openConfirm({
+                                template: '<p>Are you sure you want to close the parent dialog?</p>' +
+                                    '<div>' +
+                                    '<button type="button" class="btn btn-default" ng-click="closeThisDialog(0)">No' +
+                                    '<button type="button" class="btn btn-primary" ng-click="confirm(1)">Yes' +
+                                    '</button></div>',
+                                plain: true,
+                                className: 'ngdialog-theme-default'
+                            });
 
-                        return nestedConfirmDialog;
-                    },
-                    scope: $scope
-                })
-                    .then(function(value) {
+                            return nestedConfirmDialog;
+                        },
+                        scope: $scope
+                    })
+                    .then(function (value) {
                         console.log('resolved:' + value);
                         // Perform the save here
-                    }, function(value) {
+                    }, function (value) {
                         console.log('rejected:' + value);
 
                     });
             };
 
-            $scope.openInlineController = function() {
+            $scope.openInlineController = function () {
                 $rootScope.theme = 'ngdialog-theme-default';
 
                 ngDialog.open({
                     template: 'withInlineController',
-                    controller: ['$scope', '$timeout', function($scope, $timeout) {
+                    controller: ['$scope', '$timeout', function ($scope, $timeout) {
                         var counter = 0;
                         var timeout;
 
@@ -8129,7 +8438,7 @@ function PrizesService($rootScope, $q, Restangular) {
                         }
 
                         count();
-                        $scope.$on('$destroy', function() {
+                        $scope.$on('$destroy', function () {
                             $timeout.cancel(timeout);
                         });
                     }],
@@ -8137,7 +8446,7 @@ function PrizesService($rootScope, $q, Restangular) {
                 });
             };
 
-            $scope.openTemplate = function() {
+            $scope.openTemplate = function () {
                 $scope.value = true;
 
                 ngDialog.open({
@@ -8147,7 +8456,7 @@ function PrizesService($rootScope, $q, Restangular) {
                 });
             };
 
-            $scope.openTemplateNoCache = function() {
+            $scope.openTemplateNoCache = function () {
                 $scope.value = true;
 
                 ngDialog.open({
@@ -8158,30 +8467,30 @@ function PrizesService($rootScope, $q, Restangular) {
                 });
             };
 
-            $scope.openTimed = function() {
+            $scope.openTimed = function () {
                 var dialog = ngDialog.open({
                     template: '<p>Just passing through!</p>',
                     plain: true,
                     closeByDocument: false,
                     closeByEscape: false
                 });
-                setTimeout(function() {
+                setTimeout(function () {
                     dialog.close();
                 }, 2000);
             };
 
-            $scope.openNotify = function() {
+            $scope.openNotify = function () {
                 var dialog = ngDialog.open({
                     template: '<p>You can do whatever you want when I close, however that happens.</p>' +
-                    '<div><button type="button" class="btn btn-primary" ng-click="closeThisDialog(1)">Close Me</button></div>',
+                        '<div><button type="button" class="btn btn-primary" ng-click="closeThisDialog(1)">Close Me</button></div>',
                     plain: true
                 });
-                dialog.closePromise.then(function(data) {
+                dialog.closePromise.then(function (data) {
                     console.log('ngDialog closed' + (data.value === 1 ? ' using the button' : '') + ' and notified by promise: ' + data.id);
                 });
             };
 
-            $scope.openWithoutOverlay = function() {
+            $scope.openWithoutOverlay = function () {
                 ngDialog.open({
                     template: '<h2>Notice that there is no overlay!</h2>',
                     className: 'ngdialog-theme-default',
@@ -8190,15 +8499,15 @@ function PrizesService($rootScope, $q, Restangular) {
                 });
             };
 
-            $rootScope.$on('ngDialog.opened', function(e, $dialog) {
+            $rootScope.$on('ngDialog.opened', function (e, $dialog) {
                 console.log('ngDialog opened: ' + $dialog.attr('id'));
             });
 
-            $rootScope.$on('ngDialog.closed', function(e, $dialog) {
+            $rootScope.$on('ngDialog.closed', function (e, $dialog) {
                 console.log('ngDialog closed: ' + $dialog.attr('id'));
             });
 
-            $rootScope.$on('ngDialog.closing', function(e, $dialog) {
+            $rootScope.$on('ngDialog.closing', function (e, $dialog) {
                 console.log('ngDialog closing: ' + $dialog.attr('id'));
             });
         }
@@ -8218,7 +8527,7 @@ function PrizesService($rootScope, $q, Restangular) {
             $scope.dialogModel = {
                 message: 'message from passed scope'
             };
-            $scope.openSecond = function() {
+            $scope.openSecond = function () {
                 ngDialog.open({
                     template: '<p class="lead m0"><a href="" ng-click="closeSecond()">Close all by click here!</a></h3>',
                     plain: true,
@@ -8238,7 +8547,7 @@ function PrizesService($rootScope, $q, Restangular) {
         ////////////////
 
         function activate() {
-            $scope.closeSecond = function() {
+            $scope.closeSecond = function () {
                 ngDialog.close();
             };
         }
@@ -8255,7 +8564,7 @@ function PrizesService($rootScope, $q, Restangular) {
  * events and events creations
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -8273,7 +8582,7 @@ function PrizesService($rootScope, $q, Restangular) {
         function activate() {
             vm.images = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-            vm.loadMore = function() {
+            vm.loadMore = function () {
                 var last = vm.images[vm.images.length - 1];
                 for (var i = 1; i <= 10; i++) {
                     vm.images.push(last + i);
@@ -8286,8 +8595,8 @@ function PrizesService($rootScope, $q, Restangular) {
 
     function datasource(console, $timeout) {
 
-        var get = function(index, count, success) {
-            return $timeout(function() {
+        var get = function (index, count, success) {
+            return $timeout(function () {
                 var i, result, _i, _ref;
                 result = [];
                 for (i = _i = index, _ref = index + count - 1; index <= _ref ? _i <= _ref : _i >= _ref; i = index <= _ref ? ++_i : --_i) {
@@ -8308,7 +8617,7 @@ function PrizesService($rootScope, $q, Restangular) {
  * Demo for Angular Deck
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -8439,7 +8748,7 @@ function PrizesService($rootScope, $q, Restangular) {
         function link(scope, element, attrs) {
             var cssClass = attrs.loadedclass;
 
-            element.bind('load', function() {
+            element.bind('load', function () {
                 angular.element(element).addClass(cssClass);
             });
         }
@@ -8453,7 +8762,7 @@ function PrizesService($rootScope, $q, Restangular) {
  * Demo for login api
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -8471,7 +8780,7 @@ function PrizesService($rootScope, $q, Restangular) {
 
         /*jshint -W106*/
         function activate() {
-            vm.my_tree_handler = function(branch) {
+            vm.my_tree_handler = function (branch) {
 
                 vm.output = 'You selected: ' + branch.label;
 
@@ -8482,7 +8791,7 @@ function PrizesService($rootScope, $q, Restangular) {
             };
 
             // onSelect event handlers
-            var apple_selected = function(branch) {
+            var apple_selected = function (branch) {
                 vm.output = 'APPLE! : ' + branch.label;
                 return vm.output;
             };
@@ -8517,7 +8826,7 @@ function PrizesService($rootScope, $q, Restangular) {
                         definition: 'A plant or part of a plant used as food, typically as accompaniment to meat or fish, such as a cabbage, potato, carrot, or bean.',
                         data_can_contain_anything: true
                     },
-                    onSelect: function(branch) {
+                    onSelect: function (branch) {
                         vm.output = 'Vegetable: ' + branch.data.definition;
                         return vm.output;
                     },
@@ -8598,7 +8907,7 @@ function PrizesService($rootScope, $q, Restangular) {
             ];
 
             vm.my_data = treedata_avm;
-            vm.try_changing_the_tree_data = function() {
+            vm.try_changing_the_tree_data = function () {
                 if (vm.my_data === treedata_avm) {
                     vm.my_data = treedata_geography;
                 } else {
@@ -8610,7 +8919,7 @@ function PrizesService($rootScope, $q, Restangular) {
             var tree;
             // This is our API control variable
             vm.my_tree = tree = {};
-            vm.try_async_load = function() {
+            vm.try_async_load = function () {
 
                 vm.my_data = [];
                 vm.doing_async = true;
@@ -8618,7 +8927,7 @@ function PrizesService($rootScope, $q, Restangular) {
                 // Request tree data via $resource
                 var remoteTree = $resource('server/treedata.json');
 
-                return remoteTree.get(function(res) {
+                return remoteTree.get(function (res) {
 
                     vm.my_data = res.data;
 
@@ -8632,7 +8941,7 @@ function PrizesService($rootScope, $q, Restangular) {
             };
 
             // Adds a new branch to the tree
-            vm.try_adding_a_branch = function() {
+            vm.try_adding_a_branch = function () {
                 var b;
                 b = tree.get_selected_branch();
                 return tree.add_branch(b, {
@@ -8654,7 +8963,7 @@ function PrizesService($rootScope, $q, Restangular) {
  * Nestable controller
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -8758,7 +9067,7 @@ function PrizesService($rootScope, $q, Restangular) {
  * Make a content box scrollable
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -8786,7 +9095,7 @@ function PrizesService($rootScope, $q, Restangular) {
  * Module: sortable.js
  * Sortable controller
  =========================================================*/
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -8823,14 +9132,14 @@ function PrizesService($rootScope, $q, Restangular) {
                 }
             ];
 
-            $scope.add = function() {
+            $scope.add = function () {
                 $scope.data1.push({
                     id: $scope.data1.length + 1,
                     name: 'Earl Knight'
                 });
             };
 
-            $scope.sortableCallback = function(sourceModel, destModel, start, end) {
+            $scope.sortableCallback = function (sourceModel, destModel, start, end) {
                 console.log(start + ' -> ' + end);
             };
 
@@ -8847,7 +9156,7 @@ function PrizesService($rootScope, $q, Restangular) {
  * Module: sweetalert.js
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -8864,19 +9173,19 @@ function PrizesService($rootScope, $q, Restangular) {
         ////////////////
 
         function activate() {
-            vm.demo1 = function() {
+            vm.demo1 = function () {
                 SweetAlert.swal('Here\'s a message');
             };
 
-            vm.demo2 = function() {
+            vm.demo2 = function () {
                 SweetAlert.swal('Here\'s a message!', 'It\'s pretty, isn\'t it?');
             };
 
-            vm.demo3 = function() {
+            vm.demo3 = function () {
                 SweetAlert.swal('Good job!', 'You clicked the button!', 'success');
             };
 
-            vm.demo4 = function() {
+            vm.demo4 = function () {
                 SweetAlert.swal({
                     title: 'Are you sure?',
                     text: 'Your will not be able to recover this imaginary file!',
@@ -8885,12 +9194,12 @@ function PrizesService($rootScope, $q, Restangular) {
                     confirmButtonColor: '#DD6B55',
                     confirmButtonText: 'Yes, delete it!',
                     closeOnConfirm: false
-                }, function() {
+                }, function () {
                     SweetAlert.swal('Booyah!');
                 });
             };
 
-            vm.demo5 = function() {
+            vm.demo5 = function () {
                 SweetAlert.swal({
                     title: 'Are you sure?',
                     text: 'Your will not be able to recover this imaginary file!',
@@ -8901,7 +9210,7 @@ function PrizesService($rootScope, $q, Restangular) {
                     cancelButtonText: 'No, cancel plx!',
                     closeOnConfirm: false,
                     closeOnCancel: false
-                }, function(isConfirm) {
+                }, function (isConfirm) {
                     if (isConfirm) {
                         SweetAlert.swal('Deleted!', 'Your imaginary file has been deleted.', 'success');
                     } else {
@@ -8910,7 +9219,7 @@ function PrizesService($rootScope, $q, Restangular) {
                 });
             };
 
-            vm.demo6 = function() {
+            vm.demo6 = function () {
                 SweetAlert.swal({
                     title: 'Sweet!',
                     text: 'Here\'s a custom image.',
@@ -8926,7 +9235,7 @@ function PrizesService($rootScope, $q, Restangular) {
  * Demos for toaster notifications
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -8949,7 +9258,7 @@ function PrizesService($rootScope, $q, Restangular) {
                 text: 'Message'
             };
 
-            vm.pop = function() {
+            vm.pop = function () {
                 toaster.pop(vm.toaster.type, vm.toaster.title, vm.toaster.text);
             };
         }
@@ -8960,7 +9269,7 @@ function PrizesService($rootScope, $q, Restangular) {
  * Module: tour.js
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -8984,7 +9293,7 @@ function PrizesService($rootScope, $q, Restangular) {
                 'position': 'static'
             });
             // finally restore on destroy and reuse the value declared in stylesheet
-            $scope.$on('$destroy', function() {
+            $scope.$on('$destroy', function () {
                 section.css({
                     'position': ''
                 });
@@ -8996,7 +9305,7 @@ function PrizesService($rootScope, $q, Restangular) {
 /**=========================================================
  * Module: article.js
  =========================================================*/
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -9070,7 +9379,7 @@ function PrizesService($rootScope, $q, Restangular) {
                 }
             ];
 
-            vm.closeAlert = function(index) {
+            vm.closeAlert = function (index) {
                 vm.alerts.splice(index, 1);
             };
         }
@@ -9079,7 +9388,7 @@ function PrizesService($rootScope, $q, Restangular) {
 
 
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -9099,7 +9408,7 @@ function PrizesService($rootScope, $q, Restangular) {
  * Codemirror code editor controller
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -9123,7 +9432,7 @@ function PrizesService($rootScope, $q, Restangular) {
             $rootScope.app.layout.isCollapsed = true;
 
             // Restore layout for demo
-            $scope.$on('$destroy', function() {
+            $scope.$on('$destroy', function () {
                 $rootScope.app.useFullLayout = false;
                 $rootScope.app.hiddenFooter = false;
             });
@@ -9151,7 +9460,7 @@ function PrizesService($rootScope, $q, Restangular) {
             // Load dinamically the stylesheet for the selected theme
             // You can use ozLazyLoad to load also the mode js based 
             // on the file extension that is loaded (see handle_filetree)
-            vm.loadTheme = function() {
+            vm.loadTheme = function () {
                 var BASE = 'vendor/codemirror/theme/';
                 $ocLazyLoad.load(BASE + vm.editorOpts.theme + '.css');
                 vm.refreshEditor = !vm.refreshEditor;
@@ -9167,7 +9476,7 @@ function PrizesService($rootScope, $q, Restangular) {
             // Tree
 
             var selectedBranch;
-            vm.handle_filetree = function(branch) {
+            vm.handle_filetree = function (branch) {
 
                 selectedBranch = branch;
 
@@ -9180,7 +9489,7 @@ function PrizesService($rootScope, $q, Restangular) {
 
                     $http
                         .get(basePath + branch.path)
-                        .success(function(response) {
+                        .success(function (response) {
 
                             console.log('Loaded.. ' + branch.path);
                             // set the new code into the editor
@@ -9210,7 +9519,7 @@ function PrizesService($rootScope, $q, Restangular) {
             tree = vm.filetree = {};
 
             // Adds a new branch to the tree
-            vm.new_filetree = function() {
+            vm.new_filetree = function () {
                 var b;
                 b = tree.get_selected_branch();
 
@@ -9229,7 +9538,7 @@ function PrizesService($rootScope, $q, Restangular) {
 })();
 
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -9273,7 +9582,7 @@ function PrizesService($rootScope, $q, Restangular) {
             vm.editingTodo = false;
             vm.todo = {};
 
-            vm.addTodo = function() {
+            vm.addTodo = function () {
 
                 if (vm.todo.title === '') return;
                 if (!vm.todo.description) vm.todo.description = '';
@@ -9291,29 +9600,29 @@ function PrizesService($rootScope, $q, Restangular) {
                 }
             };
 
-            vm.editTodo = function(index, $event) {
+            vm.editTodo = function (index, $event) {
                 $event.preventDefault();
                 $event.stopPropagation();
                 vm.todo = vm.items[index].todo;
                 vm.editingTodo = true;
             };
 
-            vm.removeTodo = function(index /*, $event*/) {
+            vm.removeTodo = function (index /*, $event*/ ) {
                 vm.items.splice(index, 1);
             };
 
-            vm.clearAll = function() {
+            vm.clearAll = function () {
                 vm.items = [];
             };
 
-            vm.totalCompleted = function() {
-                return $filter('filter')(vm.items, function(item) {
+            vm.totalCompleted = function () {
+                return $filter('filter')(vm.items, function (item) {
                     return item.complete;
                 }).length;
             };
 
-            vm.totalPending = function() {
-                return $filter('filter')(vm.items, function(item) {
+            vm.totalPending = function () {
+                return $filter('filter')(vm.items, function (item) {
                     return !item.complete;
                 }).length;
             };
@@ -9327,7 +9636,7 @@ function PrizesService($rootScope, $q, Restangular) {
  * Controller for jqCloud
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -9347,7 +9656,7 @@ function PrizesService($rootScope, $q, Restangular) {
                 {
                     text: 'Lorem',
                     weight: 13
-                    //link: 'http://themicon.co'
+                        //link: 'http://themicon.co'
                 }, {
                     text: 'Ipsum',
                     weight: 10.5
@@ -9389,7 +9698,7 @@ function PrizesService($rootScope, $q, Restangular) {
  * Creates the flatdoc markup and initializes the plugin
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -9411,9 +9720,9 @@ function PrizesService($rootScope, $q, Restangular) {
             });
 
             var $root = $('html, body');
-            $(document).on('flatdoc:ready', function() {
+            $(document).on('flatdoc:ready', function () {
                 var docMenu = $('[role="flatdoc-menu"]');
-                docMenu.find('a').on('click', function(e) {
+                docMenu.find('a').on('click', function (e) {
                     e.preventDefault();
                     e.stopPropagation();
 
@@ -9434,7 +9743,7 @@ function PrizesService($rootScope, $q, Restangular) {
 
 })();
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -9465,25 +9774,25 @@ function PrizesService($rootScope, $q, Restangular) {
                 color: ''
             };
 
-            vm.resetColor = function() {
+            vm.resetColor = function () {
                 vm.hexPicker = {
                     color: '#ff0000'
                 };
             };
 
-            vm.resetRBGColor = function() {
+            vm.resetRBGColor = function () {
                 vm.rgbPicker = {
                     color: 'rgb(255,255,255)'
                 };
             };
 
-            vm.resetRBGAColor = function() {
+            vm.resetRBGAColor = function () {
                 vm.rgbaPicker = {
                     color: 'rgb(255,255,255, 0.25)'
                 };
             };
 
-            vm.resetNonInputColor = function() {
+            vm.resetNonInputColor = function () {
                 vm.nonInput = {
                     color: '#ffffff'
                 };
@@ -9496,7 +9805,7 @@ function PrizesService($rootScope, $q, Restangular) {
  * Initializes the fielstyle plugin
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -9527,7 +9836,7 @@ function PrizesService($rootScope, $q, Restangular) {
  * Image crop controller
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -9544,7 +9853,7 @@ function PrizesService($rootScope, $q, Restangular) {
         ////////////////
 
         function activate() {
-            vm.reset = function() {
+            vm.reset = function () {
                 vm.myImage = '';
                 vm.myCroppedImage = '';
                 vm.imgcropType = 'square';
@@ -9552,11 +9861,11 @@ function PrizesService($rootScope, $q, Restangular) {
 
             vm.reset();
 
-            var handleFileSelect = function(evt) {
+            var handleFileSelect = function (evt) {
                 var file = evt.currentTarget.files[0];
                 var reader = new FileReader();
-                reader.onload = function(evt) {
-                    $scope.$apply(function( /*$scope*/) {
+                reader.onload = function (evt) {
+                    $scope.$apply(function ( /*$scope*/ ) {
                         vm.myImage = evt.target.result;
                     });
                 };
@@ -9574,7 +9883,7 @@ function PrizesService($rootScope, $q, Restangular) {
  * Input validation with UI Validate
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -9589,23 +9898,23 @@ function PrizesService($rootScope, $q, Restangular) {
         ////////////////
 
         function activate() {
-            vm.notBlackListed = function(value) {
+            vm.notBlackListed = function (value) {
                 var blacklist = ['some@mail.com', 'another@email.com'];
                 return blacklist.indexOf(value) === -1;
             };
 
-            vm.words = function(value) {
+            vm.words = function (value) {
                 return value && value.split(' ').length;
             };
 
             vm.submitted = false;
-            vm.validateInput = function(name, type) {
+            vm.validateInput = function (name, type) {
                 var input = vm.formValidate[name];
                 return (input.$dirty || vm.submitted) && input.$error[type];
             };
 
             // Submit form
-            vm.submitForm = function() {
+            vm.submitForm = function () {
                 vm.submitted = true;
                 if (vm.formValidate.$valid) {
                     console.log('Submitted!!');
@@ -9624,7 +9933,7 @@ function PrizesService($rootScope, $q, Restangular) {
  =========================================================*/
 
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -9654,13 +9963,13 @@ function PrizesService($rootScope, $q, Restangular) {
             self.validate = validate;
             self.element = element;
 
-            self.init = function() {
+            self.init = function () {
                 self.createsteps(self.quantity);
                 self.go(1); // always start at fist step
                 return self;
             };
 
-            self.go = function(step) {
+            self.go = function (step) {
 
                 if (angular.isDefined(self.steps[step])) {
 
@@ -9678,17 +9987,17 @@ function PrizesService($rootScope, $q, Restangular) {
                 }
             };
 
-            self.active = function(step) {
+            self.active = function (step) {
                 return !!self.steps[step];
             };
 
-            self.cleanall = function() {
+            self.cleanall = function () {
                 for (var i in self.steps) {
                     self.steps[i] = false;
                 }
             };
 
-            self.createsteps = function(q) {
+            self.createsteps = function (q) {
                 self.steps = [];
                 for (var i = 1; i <= q; i++) self.steps[i] = false;
             };
@@ -9704,7 +10013,7 @@ function PrizesService($rootScope, $q, Restangular) {
  * Form xEditable controller
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -9774,7 +10083,7 @@ function PrizesService($rootScope, $q, Restangular) {
                 }
             ];
 
-            vm.showStatus = function() {
+            vm.showStatus = function () {
                 var selected = $filter('filter')(vm.statuses, {
                     value: vm.user2.status
                 });
@@ -9791,13 +10100,13 @@ function PrizesService($rootScope, $q, Restangular) {
 
             vm.groups = [];
 
-            vm.loadGroups = function() {
-                return vm.groups.length ? null : $http.get('server/xeditable-groups.json').success(function(data) {
+            vm.loadGroups = function () {
+                return vm.groups.length ? null : $http.get('server/xeditable-groups.json').success(function (data) {
                     vm.groups = data;
                 });
             };
 
-            $scope.$watch('user3.id', function(newVal, oldVal) {
+            $scope.$watch('user3.id', function (newVal, oldVal) {
                 if (newVal !== oldVal) {
                     var selected = $filter('filter')(vm.groups, {
                         id: vm.user3.id
@@ -9820,7 +10129,7 @@ function PrizesService($rootScope, $q, Restangular) {
 })();
 
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -9849,7 +10158,7 @@ function PrizesService($rootScope, $q, Restangular) {
             // ----------------------------------- 
             var Cities = $resource('server/cities.json', {}, actions);
 
-            Cities.get(function(data) {
+            Cities.get(function (data) {
 
                 vm.cities = data;
 
@@ -9880,7 +10189,7 @@ function PrizesService($rootScope, $q, Restangular) {
             vm.states = States.query();
 
 
-            vm.alertSubmit = function() {
+            vm.alertSubmit = function () {
                 alert('Form submitted!');
                 return false;
             };
@@ -9904,7 +10213,7 @@ function PrizesService($rootScope, $q, Restangular) {
  * Initializes the masked inputs
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -9934,7 +10243,7 @@ function PrizesService($rootScope, $q, Restangular) {
  * We want to perform a OR.
  */
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -9949,7 +10258,7 @@ function PrizesService($rootScope, $q, Restangular) {
             var out = [];
 
             if (angular.isArray(items)) {
-                items.forEach(function(item) {
+                items.forEach(function (item) {
                     var itemMatches = false;
 
                     var keys = Object.keys(props);
@@ -9981,7 +10290,7 @@ function PrizesService($rootScope, $q, Restangular) {
  * Initializes the tag inputs plugin
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -9999,7 +10308,7 @@ function PrizesService($rootScope, $q, Restangular) {
         return directive;
 
         function link(scope, element, attrs, ngModel) {
-            element.on('itemAdded itemRemoved', function() {
+            element.on('itemAdded itemRemoved', function () {
                 // check if view value is not empty and is a string
                 // and update the view from string to an array of tags
                 if (ngModel.$viewValue && ngModel.$viewValue.split) {
@@ -10008,7 +10317,7 @@ function PrizesService($rootScope, $q, Restangular) {
                 }
             });
 
-            $timeout(function() {
+            $timeout(function () {
                 element.tagsinput();
             });
         }
@@ -10021,7 +10330,7 @@ function PrizesService($rootScope, $q, Restangular) {
  * uiSelect controller
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -10042,15 +10351,15 @@ function PrizesService($rootScope, $q, Restangular) {
 
             vm.disabled = undefined;
 
-            vm.enable = function() {
+            vm.enable = function () {
                 vm.disabled = false;
             };
 
-            vm.disable = function() {
+            vm.disable = function () {
                 vm.disabled = true;
             };
 
-            vm.clear = function() {
+            vm.clear = function () {
                 vm.person.selected = undefined;
                 vm.address.selected = undefined;
                 vm.country.selected = undefined;
@@ -10101,7 +10410,7 @@ function PrizesService($rootScope, $q, Restangular) {
             ];
 
             vm.address = {};
-            vm.refreshAddresses = function(address) {
+            vm.refreshAddresses = function (address) {
                 var params = {
                     address: address,
                     sensor: false
@@ -10110,7 +10419,7 @@ function PrizesService($rootScope, $q, Restangular) {
                     '//maps.googleapis.com/maps/api/geocode/json', {
                         params: params
                     }
-                ).then(function(response) {
+                ).then(function (response) {
                     vm.addresses = response.data.results;
                 });
             };
@@ -11093,7 +11402,7 @@ function PrizesService($rootScope, $q, Restangular) {
 
 
             // Multiple
-            vm.someGroupFn = function(item) {
+            vm.someGroupFn = function (item) {
 
                 if (item.name[0] >= 'A' && item.name[0] <= 'M')
                     return 'From A - M';
@@ -11104,7 +11413,7 @@ function PrizesService($rootScope, $q, Restangular) {
             };
 
             vm.counter = 0;
-            vm.someFunction = function(item, model) {
+            vm.someFunction = function (item, model) {
                 vm.counter++;
                 vm.eventResult = {
                     item: item,
@@ -11128,7 +11437,7 @@ function PrizesService($rootScope, $q, Restangular) {
  * Module: upload.js
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -11153,44 +11462,44 @@ function PrizesService($rootScope, $q, Restangular) {
 
             uploader.filters.push({
                 name: 'customFilter',
-                fn: function( /*item, options*/) {
+                fn: function ( /*item, options*/ ) {
                     return this.queue.length < 10;
                 }
             });
 
             // CALLBACKS
 
-            uploader.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/, filter, options) {
+            uploader.onWhenAddingFileFailed = function (item /*{File|FileLikeObject}*/ , filter, options) {
                 console.info('onWhenAddingFileFailed', item, filter, options);
             };
-            uploader.onAfterAddingFile = function(fileItem) {
+            uploader.onAfterAddingFile = function (fileItem) {
                 console.info('onAfterAddingFile', fileItem);
             };
-            uploader.onAfterAddingAll = function(addedFileItems) {
+            uploader.onAfterAddingAll = function (addedFileItems) {
                 console.info('onAfterAddingAll', addedFileItems);
             };
-            uploader.onBeforeUploadItem = function(item) {
+            uploader.onBeforeUploadItem = function (item) {
                 console.info('onBeforeUploadItem', item);
             };
-            uploader.onProgressItem = function(fileItem, progress) {
+            uploader.onProgressItem = function (fileItem, progress) {
                 console.info('onProgressItem', fileItem, progress);
             };
-            uploader.onProgressAll = function(progress) {
+            uploader.onProgressAll = function (progress) {
                 console.info('onProgressAll', progress);
             };
-            uploader.onSuccessItem = function(fileItem, response, status, headers) {
+            uploader.onSuccessItem = function (fileItem, response, status, headers) {
                 console.info('onSuccessItem', fileItem, response, status, headers);
             };
-            uploader.onErrorItem = function(fileItem, response, status, headers) {
+            uploader.onErrorItem = function (fileItem, response, status, headers) {
                 console.info('onErrorItem', fileItem, response, status, headers);
             };
-            uploader.onCancelItem = function(fileItem, response, status, headers) {
+            uploader.onCancelItem = function (fileItem, response, status, headers) {
                 console.info('onCancelItem', fileItem, response, status, headers);
             };
-            uploader.onCompleteItem = function(fileItem, response, status, headers) {
+            uploader.onCompleteItem = function (fileItem, response, status, headers) {
                 console.info('onCompleteItem', fileItem, response, status, headers);
             };
-            uploader.onCompleteAll = function() {
+            uploader.onCompleteAll = function () {
                 console.info('onCompleteAll');
             };
 
@@ -11204,7 +11513,7 @@ function PrizesService($rootScope, $q, Restangular) {
  * Initializes the validation plugin Parsley
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -11232,7 +11541,7 @@ function PrizesService($rootScope, $q, Restangular) {
  * Include any animated weather icon from Skycons
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -11262,7 +11571,7 @@ function PrizesService($rootScope, $q, Restangular) {
 
 })();
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -11282,7 +11591,7 @@ function PrizesService($rootScope, $q, Restangular) {
 
     }
 })();
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -11571,7 +11880,7 @@ function PrizesService($rootScope, $q, Restangular) {
 
 })();
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -11586,7 +11895,7 @@ function PrizesService($rootScope, $q, Restangular) {
         cfpLoadingBarProvider.parentSelector = '.wrapper > section';
     }
 })();
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -11599,14 +11908,14 @@ function PrizesService($rootScope, $q, Restangular) {
         // Loading bar transition
         // ----------------------------------- 
         var thBar;
-        $rootScope.$on('$stateChangeStart', function() {
+        $rootScope.$on('$stateChangeStart', function () {
             if ($('.wrapper > section').length) // check if bar container exists
-                thBar = $timeout(function() {
-                    cfpLoadingBar.start();
-                }, 0); // sets a latency Threshold
+                thBar = $timeout(function () {
+                cfpLoadingBar.start();
+            }, 0); // sets a latency Threshold
         });
-        $rootScope.$on('$stateChangeSuccess', function(event) {
-            event.targetScope.$watch('$viewContentLoaded', function() {
+        $rootScope.$on('$stateChangeSuccess', function (event) {
+            event.targetScope.$watch('$viewContentLoaded', function () {
                 $timeout.cancel(thBar);
                 cfpLoadingBar.complete();
             });
@@ -11615,7 +11924,7 @@ function PrizesService($rootScope, $q, Restangular) {
     }
 
 })();
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -11634,7 +11943,7 @@ function PrizesService($rootScope, $q, Restangular) {
  * Module: locale.js
  * Demo for locale settings
  =========================================================*/
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -11677,7 +11986,7 @@ function PrizesService($rootScope, $q, Restangular) {
  * Provides a simple demo for pagination
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -11754,7 +12063,7 @@ function PrizesService($rootScope, $q, Restangular) {
     }
 })();
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -11776,7 +12085,7 @@ function PrizesService($rootScope, $q, Restangular) {
             // no filter for inbox
             vm.folder.folder = $stateParams.folder === 'inbox' ? '' : $stateParams.folder;
 
-            mails.all().then(function(mails) {
+            mails.all().then(function (mails) {
                 vm.mails = mails;
             });
         }
@@ -11785,7 +12094,7 @@ function PrizesService($rootScope, $q, Restangular) {
 
 // A RESTful factory for retrieving mails from json file
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -11805,7 +12114,7 @@ function PrizesService($rootScope, $q, Restangular) {
 
         function readMails() {
             var path = 'server/mails.json';
-            return $http.get(path).then(function(resp) {
+            return $http.get(path).then(function (resp) {
                 return resp.data.mails;
             });
         }
@@ -11815,7 +12124,7 @@ function PrizesService($rootScope, $q, Restangular) {
         }
 
         function get(id) {
-            return readMails().then(function(mails) {
+            return readMails().then(function (mails) {
                 for (var i = 0; i < mails.length; i++) {
                     if (+mails[i].id === +id) return mails[i];
                 }
@@ -11826,7 +12135,7 @@ function PrizesService($rootScope, $q, Restangular) {
 })();
 
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -11843,7 +12152,7 @@ function PrizesService($rootScope, $q, Restangular) {
         ////////////////
 
         function activate() {
-            mails.get($stateParams.mid).then(function(mail) {
+            mails.get($stateParams.mid).then(function (mail) {
                 vm.mail = mail;
             });
         }
@@ -11855,7 +12164,7 @@ function PrizesService($rootScope, $q, Restangular) {
  * Provides a simple way to implement bootstrap modals from templates
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -11873,7 +12182,7 @@ function PrizesService($rootScope, $q, Restangular) {
 
         function activate() {
 
-            vm.open = function(size) {
+            vm.open = function (size) {
 
                 //var modalInstance = 
                 $modal.open({
@@ -11890,7 +12199,7 @@ function PrizesService($rootScope, $q, Restangular) {
 
             function ModalInstanceCtrl($scope, $modalInstance, $timeout) {
 
-                $modalInstance.opened.then(function() {
+                $modalInstance.opened.then(function () {
                     var position = new google.maps.LatLng(33.790807, -117.835734);
 
                     $scope.mapOptionsModal = {
@@ -11900,7 +12209,7 @@ function PrizesService($rootScope, $q, Restangular) {
                     };
 
                     // we use timeout to wait maps to be ready before add a markers
-                    $timeout(function() {
+                    $timeout(function () {
                         // 1. Add a marker at the position it was initialized
                         new google.maps.Marker({
                             map: $scope.myMapModal,
@@ -11914,11 +12223,11 @@ function PrizesService($rootScope, $q, Restangular) {
 
                 });
 
-                $scope.ok = function() {
+                $scope.ok = function () {
                     $modalInstance.close('closed');
                 };
 
-                $scope.cancel = function() {
+                $scope.cancel = function () {
                     $modalInstance.dismiss('cancel');
                 };
 
@@ -11930,7 +12239,7 @@ function PrizesService($rootScope, $q, Restangular) {
 })();
 
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -11957,7 +12266,7 @@ function PrizesService($rootScope, $q, Restangular) {
 
             vm.addMarker = addMarker;
             // we use timeout to wait maps to be ready before add a markers
-            $timeout(function() {
+            $timeout(function () {
                 addMarker(vm.myMap1, position[0]);
                 addMarker(vm.myMap2, position[1]);
                 addMarker(vm.myMap3, position[2]);
@@ -11990,7 +12299,7 @@ function PrizesService($rootScope, $q, Restangular) {
             };
 
             // for multiple markers
-            $timeout(function() {
+            $timeout(function () {
                 addMarker(vm.myMap4, position[3]);
                 addMarker(vm.myMap4, position[4]);
             });
@@ -12001,69 +12310,69 @@ function PrizesService($rootScope, $q, Restangular) {
                 'stylers': [{
                     'visibility': 'on'
                 }, {
-                        'color': '#bdd1f9'
+                    'color': '#bdd1f9'
                     }]
             }, {
-                    'featureType': 'all',
-                    'elementType': 'labels.text.fill',
-                    'stylers': [{
-                        'color': '#334165'
+                'featureType': 'all',
+                'elementType': 'labels.text.fill',
+                'stylers': [{
+                    'color': '#334165'
                     }]
                 }, {
-                    featureType: 'landscape',
-                    stylers: [{
-                        color: '#e9ebf1'
+                featureType: 'landscape',
+                stylers: [{
+                    color: '#e9ebf1'
                     }]
                 }, {
-                    featureType: 'road.highway',
-                    elementType: 'geometry',
-                    stylers: [{
-                        color: '#c5c6c6'
+                featureType: 'road.highway',
+                elementType: 'geometry',
+                stylers: [{
+                    color: '#c5c6c6'
                     }]
                 }, {
-                    featureType: 'road.arterial',
-                    elementType: 'geometry',
-                    stylers: [{
-                        color: '#fff'
+                featureType: 'road.arterial',
+                elementType: 'geometry',
+                stylers: [{
+                    color: '#fff'
                     }]
                 }, {
-                    featureType: 'road.local',
-                    elementType: 'geometry',
-                    stylers: [{
-                        color: '#fff'
+                featureType: 'road.local',
+                elementType: 'geometry',
+                stylers: [{
+                    color: '#fff'
                     }]
                 }, {
-                    featureType: 'transit',
-                    elementType: 'geometry',
-                    stylers: [{
-                        color: '#d8dbe0'
+                featureType: 'transit',
+                elementType: 'geometry',
+                stylers: [{
+                    color: '#d8dbe0'
                     }]
                 }, {
-                    featureType: 'poi',
-                    elementType: 'geometry',
-                    stylers: [{
-                        color: '#cfd5e0'
+                featureType: 'poi',
+                elementType: 'geometry',
+                stylers: [{
+                    color: '#cfd5e0'
                     }]
                 }, {
-                    featureType: 'administrative',
-                    stylers: [{
-                        visibility: 'on'
+                featureType: 'administrative',
+                stylers: [{
+                    visibility: 'on'
                     }, {
-                            lightness: 33
+                    lightness: 33
                         }]
                 }, {
-                    featureType: 'poi.park',
-                    elementType: 'labels',
-                    stylers: [{
-                        visibility: 'on'
+                featureType: 'poi.park',
+                elementType: 'labels',
+                stylers: [{
+                    visibility: 'on'
                     }, {
-                            lightness: 20
+                    lightness: 20
                         }]
                 }, {
-                    featureType: 'road',
-                    stylers: [{
-                        color: '#d8dbe0',
-                        lightness: 20
+                featureType: 'road',
+                stylers: [{
+                    color: '#d8dbe0',
+                    lightness: 20
                     }]
                 }];
             vm.mapOptions5 = {
@@ -12092,7 +12401,7 @@ function PrizesService($rootScope, $q, Restangular) {
  * Init jQuery Vector Map plugin
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -12144,7 +12453,7 @@ function PrizesService($rootScope, $q, Restangular) {
  * Services to initialize vector map plugin
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -12190,7 +12499,7 @@ function PrizesService($rootScope, $q, Restangular) {
                         stroke: opts.markerColor
                     }
                 },
-                onRegionLabelShow: function(e, el, code) {
+                onRegionLabelShow: function (e, el, code) {
                     if (series && series[code])
                         el.html(el.html() + ': ' + series[code] + ' visitors');
                 },
@@ -12212,7 +12521,7 @@ function PrizesService($rootScope, $q, Restangular) {
  * jVector Maps support
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -12308,7 +12617,7 @@ function PrizesService($rootScope, $q, Restangular) {
 })();
 
 
-(function() {
+(function () {
     'use strict';
     // Used only for the BottomSheetExample
     angular
@@ -12332,7 +12641,7 @@ function PrizesService($rootScope, $q, Restangular) {
 })();
 
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -12379,7 +12688,7 @@ function PrizesService($rootScope, $q, Restangular) {
                 deferred;
             if (self.simulateQuery) {
                 deferred = $q.defer();
-                $timeout(function() {
+                $timeout(function () {
                     deferred.resolve(results);
                 }, Math.random() * 1000, false);
                 return deferred.promise;
@@ -12391,7 +12700,7 @@ function PrizesService($rootScope, $q, Restangular) {
         function loadAll() {
             var allStates = 'Alabama, Alaska, Arizona, Arkansas, California, Colorado, Connecticut, Delaware, Florida, Georgia, Hawaii, Idaho, Illinois, Indiana, Iowa, Kansas, Kentucky, Louisiana, Maine, Maryland, Massachusetts, Michigan, Minnesota, Mississippi, Missouri, Montana, Nebraska, Nevada, New Hampshire, New Jersey, New Mexico, New York, North Carolina, North Dakota, Ohio, Oklahoma, Oregon, Pennsylvania, Rhode Island, South Carolina, South Dakota, Tennessee, Texas, Utah, Vermont, Virginia, Washington, West Virginia, Wisconsin, Wyoming';
 
-            return allStates.split(/, +/g).map(function(state) {
+            return allStates.split(/, +/g).map(function (state) {
                 return {
                     value: state.toLowerCase(),
                     display: state
@@ -12420,24 +12729,24 @@ function PrizesService($rootScope, $q, Restangular) {
     function MDBottomSheetCtrl($scope, $timeout, $mdBottomSheet) {
         $scope.alert = '';
 
-        $scope.showListBottomSheet = function($event) {
+        $scope.showListBottomSheet = function ($event) {
             $scope.alert = '';
             $mdBottomSheet.show({
                 templateUrl: 'bottom-sheet-list-template.html',
                 controller: 'ListBottomSheetCtrl',
                 targetEvent: $event
-            }).then(function(clickedItem) {
+            }).then(function (clickedItem) {
                 $scope.alert = clickedItem.name + ' clicked!';
             });
         };
 
-        $scope.showGridBottomSheet = function($event) {
+        $scope.showGridBottomSheet = function ($event) {
             $scope.alert = '';
             $mdBottomSheet.show({
                 templateUrl: 'bottom-sheet-grid-template.html',
                 controller: 'GridBottomSheetCtrl',
                 targetEvent: $event
-            }).then(function(clickedItem) {
+            }).then(function (clickedItem) {
                 $scope.alert = clickedItem.name + ' clicked!';
             });
         };
@@ -12469,7 +12778,7 @@ function PrizesService($rootScope, $q, Restangular) {
             },
         ];
 
-        $scope.listItemClick = function($index) {
+        $scope.listItemClick = function ($index) {
             var clickedItem = $scope.items[$index];
             $mdBottomSheet.hide(clickedItem);
         };
@@ -12509,7 +12818,7 @@ function PrizesService($rootScope, $q, Restangular) {
             },
         ];
 
-        $scope.listItemClick = function($index) {
+        $scope.listItemClick = function ($index) {
             var clickedItem = $scope.items[$index];
             $mdBottomSheet.hide(clickedItem);
         };
@@ -12548,13 +12857,13 @@ function PrizesService($rootScope, $q, Restangular) {
             title: 'avatar 1',
             value: 'avatar-1'
         }, {
-                id: 'svg-2',
-                title: 'avatar 2',
-                value: 'avatar-2'
+            id: 'svg-2',
+            title: 'avatar 2',
+            value: 'avatar-2'
             }, {
-                id: 'svg-3',
-                title: 'avatar 3',
-                value: 'avatar-3'
+            id: 'svg-3',
+            title: 'avatar 3',
+            value: 'avatar-3'
             }];
 
         $scope.radioData = [
@@ -12574,12 +12883,12 @@ function PrizesService($rootScope, $q, Restangular) {
         ];
 
 
-        $scope.submit = function() {
+        $scope.submit = function () {
             alert('submit');
         };
 
         var vals = ['Apple', 'Banana', 'Mango', 'Grape', 'Melon', 'Strawberry', 'Kiwi'];
-        $scope.addItem = function() {
+        $scope.addItem = function () {
             var rval = vals[Math.floor(Math.random() * vals.length)];
             $scope.radioData.push({
                 label: rval,
@@ -12587,7 +12896,7 @@ function PrizesService($rootScope, $q, Restangular) {
             });
         };
 
-        $scope.removeItem = function() {
+        $scope.removeItem = function () {
             $scope.radioData.pop();
         };
     }
@@ -12603,7 +12912,7 @@ function PrizesService($rootScope, $q, Restangular) {
             cb4: true
         };
 
-        $scope.onChange = function(cbState) {
+        $scope.onChange = function (cbState) {
             $scope.message = 'The switch is now: ' + cbState;
         };
     }
@@ -12616,18 +12925,18 @@ function PrizesService($rootScope, $q, Restangular) {
     function MDDialogCtrl($scope, $mdDialog) {
         $scope.alert = '';
 
-        $scope.showAlert = function(ev) {
+        $scope.showAlert = function (ev) {
             $mdDialog.show(
                 $mdDialog.alert()
-                    .title('This is an alert title')
-                    .content('You can specify some description text in here.')
-                    .ariaLabel('Password notification')
-                    .ok('Got it!')
-                    .targetEvent(ev)
+                .title('This is an alert title')
+                .content('You can specify some description text in here.')
+                .ariaLabel('Password notification')
+                .ok('Got it!')
+                .targetEvent(ev)
             );
         };
 
-        $scope.showConfirm = function(ev) {
+        $scope.showConfirm = function (ev) {
             var confirm = $mdDialog.confirm()
                 .title('Would you like to delete your debt?')
                 .content('All of the banks have agreed to forgive you your debts.')
@@ -12636,37 +12945,37 @@ function PrizesService($rootScope, $q, Restangular) {
                 .cancel('Sounds like a scam')
                 .targetEvent(ev);
 
-            $mdDialog.show(confirm).then(function() {
+            $mdDialog.show(confirm).then(function () {
                 $scope.alert = 'You decided to get rid of your debt.';
-            }, function() {
+            }, function () {
                 $scope.alert = 'You decided to keep your debt.';
             });
         };
 
-        $scope.showAdvanced = function(ev) {
+        $scope.showAdvanced = function (ev) {
             $mdDialog.show({
-                controller: DialogController,
-                templateUrl: 'dialog1.tmpl.html',
-                targetEvent: ev,
-            })
-                .then(function(answer) {
+                    controller: DialogController,
+                    templateUrl: 'dialog1.tmpl.html',
+                    targetEvent: ev,
+                })
+                .then(function (answer) {
                     $scope.alert = 'You said the information was \'' + answer + '\'.';
-                }, function() {
+                }, function () {
                     $scope.alert = 'You cancelled the dialog.';
                 });
         };
         DialogController.$inject = ['$scope', '$mdDialog'];
 
         function DialogController($scope, $mdDialog) {
-            $scope.hide = function() {
+            $scope.hide = function () {
                 $mdDialog.hide();
             };
 
-            $scope.cancel = function() {
+            $scope.cancel = function () {
                 $mdDialog.cancel();
             };
 
-            $scope.answer = function(answer) {
+            $scope.answer = function (answer) {
                 $mdDialog.hide(answer);
             };
         }
@@ -12703,11 +13012,11 @@ function PrizesService($rootScope, $q, Restangular) {
         vm.userState = '';
         vm.states = ('AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS ' +
             'MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI ' +
-            'WY').split(' ').map(function(state) {
-                return {
-                    abbrev: state
-                };
-            });
+            'WY').split(' ').map(function (state) {
+            return {
+                abbrev: state
+            };
+        });
 
         vm.sizes = [
             'small (12-inch)',
@@ -12786,7 +13095,7 @@ function PrizesService($rootScope, $q, Restangular) {
         $scope.determinateValue = 30;
         $scope.determinateValue2 = 30;
 
-        $interval(function() {
+        $interval(function () {
             $scope.determinateValue += 1;
             $scope.determinateValue2 += 1.5;
             if ($scope.determinateValue > 100) {
@@ -12795,7 +13104,7 @@ function PrizesService($rootScope, $q, Restangular) {
             }
         }, 100, 0, true);
 
-        $interval(function() {
+        $interval(function () {
             $scope.mode = ($scope.mode === 'query' ? 'determinate' : 'query');
         }, 7200, 0, true);
     }
@@ -12806,28 +13115,28 @@ function PrizesService($rootScope, $q, Restangular) {
     MDSidenavCtrl.$inject = ['$scope', '$timeout', '$mdSidenav', '$log'];
 
     function MDSidenavCtrl($scope, $timeout, $mdSidenav, $log) {
-        $scope.toggleLeft = function() {
+        $scope.toggleLeft = function () {
             $mdSidenav('left').toggle()
-                .then(function() {
+                .then(function () {
                     $log.debug('toggle left is done');
                 });
         };
-        $scope.toggleRight = function() {
+        $scope.toggleRight = function () {
             $mdSidenav('right').toggle()
-                .then(function() {
+                .then(function () {
                     $log.debug('toggle RIGHT is done');
                 });
         };
-        $scope.closeLeft = function() {
+        $scope.closeLeft = function () {
             $mdSidenav('left').close()
-                .then(function() {
+                .then(function () {
                     $log.debug('close LEFT is done');
                 });
 
         };
-        $scope.closeRight = function() {
+        $scope.closeRight = function () {
             $mdSidenav('right').close()
-                .then(function() {
+                .then(function () {
                     $log.debug('close RIGHT is done');
                 });
         };
@@ -12934,15 +13243,15 @@ function PrizesService($rootScope, $q, Restangular) {
             right: true
         };
 
-        $scope.getToastPosition = function() {
+        $scope.getToastPosition = function () {
             return Object.keys($scope.toastPosition)
-                .filter(function(pos) {
+                .filter(function (pos) {
                     return $scope.toastPosition[pos];
                 })
                 .join(' ');
         };
 
-        $scope.showCustomToast = function() {
+        $scope.showCustomToast = function () {
             $mdToast.show({
                 controller: 'ToastCtrl',
                 templateUrl: 'toast-template.html',
@@ -12952,23 +13261,23 @@ function PrizesService($rootScope, $q, Restangular) {
             });
         };
 
-        $scope.showSimpleToast = function() {
+        $scope.showSimpleToast = function () {
             $mdToast.show(
                 $mdToast.simple()
-                    .content('Simple Toast!')
-                    .position($scope.getToastPosition())
-                    .hideDelay(30000)
+                .content('Simple Toast!')
+                .position($scope.getToastPosition())
+                .hideDelay(30000)
             );
         };
 
-        $scope.showActionToast = function() {
+        $scope.showActionToast = function () {
             var toast = $mdToast.simple()
                 .content('Action Toast!')
                 .action('OK')
                 .highlightAction(false)
                 .position($scope.getToastPosition());
 
-            $mdToast.show(toast).then(function() {
+            $mdToast.show(toast).then(function () {
                 alert('You clicked \'OK\'.');
             });
         };
@@ -12980,7 +13289,7 @@ function PrizesService($rootScope, $q, Restangular) {
     ToastCtrl.$inject = ['$scope', '$mdToast'];
 
     function ToastCtrl($scope, $mdToast) {
-        $scope.closeToast = function() {
+        $scope.closeToast = function () {
             $mdToast.hide();
         };
     }
@@ -13002,26 +13311,26 @@ function PrizesService($rootScope, $q, Restangular) {
     function BottomSheetExample($scope, $timeout, $mdBottomSheet) {
         $scope.alert = '';
 
-        $scope.showListBottomSheet = function($event) {
+        $scope.showListBottomSheet = function ($event) {
             $scope.alert = '';
             $mdBottomSheet.show({
                 templateUrl: 'bottom-sheet-list-template.html',
                 controller: 'ListBottomSheetCtrl',
                 targetEvent: $event,
                 parent: '#bottomsheetcontainer'
-            }).then(function(clickedItem) {
+            }).then(function (clickedItem) {
                 $scope.alert = clickedItem.name + ' clicked!';
             });
         };
 
-        $scope.showGridBottomSheet = function($event) {
+        $scope.showGridBottomSheet = function ($event) {
             $scope.alert = '';
             $mdBottomSheet.show({
                 templateUrl: 'bottom-sheet-grid-template.html',
                 controller: 'GridBottomSheetCtrl',
                 targetEvent: $event,
                 parent: '#bottomsheetcontainer'
-            }).then(function(clickedItem) {
+            }).then(function (clickedItem) {
                 $scope.alert = clickedItem.name + ' clicked!';
             });
         };
@@ -13053,7 +13362,7 @@ function PrizesService($rootScope, $q, Restangular) {
             },
         ];
 
-        $scope.listItemClick = function($index) {
+        $scope.listItemClick = function ($index) {
             var clickedItem = $scope.items[$index];
             $mdBottomSheet.hide(clickedItem);
         };
@@ -13092,7 +13401,7 @@ function PrizesService($rootScope, $q, Restangular) {
             },
         ];
 
-        $scope.listItemClick = function($index) {
+        $scope.listItemClick = function ($index) {
             var clickedItem = $scope.items[$index];
             $mdBottomSheet.hide(clickedItem);
         };
@@ -13101,7 +13410,7 @@ function PrizesService($rootScope, $q, Restangular) {
 
 })();
 
-(function() {
+(function () {
     'use strict';
     // Used only for the BottomSheetExample
     angular
@@ -13123,7 +13432,7 @@ function PrizesService($rootScope, $q, Restangular) {
             'app/img/icons/twitter.svg'
         ];
 
-        angular.forEach(urls, function(url) {
+        angular.forEach(urls, function (url) {
             $http.get(url, {
                 cache: $templateCache
             });
@@ -13133,7 +13442,7 @@ function PrizesService($rootScope, $q, Restangular) {
 
 })();
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -13187,7 +13496,7 @@ function PrizesService($rootScope, $q, Restangular) {
  * Navbar search toggler * Auto dismiss on ESC key
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -13225,7 +13534,7 @@ function PrizesService($rootScope, $q, Restangular) {
 
     function searchOpenController($scope, $element, NavSearch) {
         $element
-            .on('click', function(e) {
+            .on('click', function (e) {
                 e.stopPropagation();
             })
             .on('click', NavSearch.toggle);
@@ -13238,10 +13547,10 @@ function PrizesService($rootScope, $q, Restangular) {
         var inputSelector = '.navbar-form input[type="text"]';
 
         $(inputSelector)
-            .on('click', function(e) {
+            .on('click', function (e) {
                 e.stopPropagation();
             })
-            .on('keyup', function(e) {
+            .on('keyup', function (e) {
                 if (e.keyCode === 27) // ESC
                     NavSearch.dismiss();
             });
@@ -13250,7 +13559,7 @@ function PrizesService($rootScope, $q, Restangular) {
         $(document).on('click', NavSearch.dismiss);
         // dismissable options
         $element
-            .on('click', function(e) {
+            .on('click', function (e) {
                 e.stopPropagation();
             })
             .on('click', NavSearch.dismiss);
@@ -13264,7 +13573,7 @@ function PrizesService($rootScope, $q, Restangular) {
  * Services to share navbar search functions
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -13294,7 +13603,7 @@ function PrizesService($rootScope, $q, Restangular) {
                 .removeClass('open') // Close control
                 .find('input[type="text"]').blur() // remove focus
                 .val('') // Empty input
-                ;
+            ;
         }
     }
 })();
@@ -13303,7 +13612,7 @@ function PrizesService($rootScope, $q, Restangular) {
  * Module: demo-notify.js
  * Provides a simple demo for notify
  =========================================================*/
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -13329,7 +13638,7 @@ function PrizesService($rootScope, $q, Restangular) {
             };
 
             // Service usage example
-            $timeout(function() {
+            $timeout(function () {
 
                 Notify.alert(
                     'This is a custom message from notify..', {
@@ -13347,7 +13656,7 @@ function PrizesService($rootScope, $q, Restangular) {
  * Directive for notify plugin
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -13370,7 +13679,7 @@ function PrizesService($rootScope, $q, Restangular) {
 
         function link(scope, element) {
 
-            element.on('click', function(e) {
+            element.on('click', function (e) {
                 e.preventDefault();
                 Notify.alert(scope.message, scope.options);
             });
@@ -13387,7 +13696,7 @@ function PrizesService($rootScope, $q, Restangular) {
  * Based on Notify addon from UIKit (http://getuikit.com/docs/addons_notify.html)
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
     angular
         .module('app.notify')
@@ -13403,7 +13712,7 @@ function PrizesService($rootScope, $q, Restangular) {
 
         function notifyAlert(msg, opts) {
             if (msg) {
-                $timeout(function() {
+                $timeout(function () {
                     $.notify(msg, opts || {});
                 });
             }
@@ -13417,11 +13726,11 @@ function PrizesService($rootScope, $q, Restangular) {
  * Adapted version to work with Bootstrap classes
  * More information http://getuikit.com/docs/addons_notify.html
  */
-(function($) {
+(function ($) {
     'use strict';
     var containers = {},
         messages = {},
-        notify = function(options) {
+        notify = function (options) {
             if ($.type(options) === 'string') {
                 options = {
                     message: options
@@ -13434,7 +13743,7 @@ function PrizesService($rootScope, $q, Restangular) {
             }
             return (new Message(options)).show();
         },
-        closeAll = function(group, instantly) {
+        closeAll = function (group, instantly) {
             var id;
             if (group) {
                 for (id in messages) {
@@ -13446,7 +13755,7 @@ function PrizesService($rootScope, $q, Restangular) {
                 }
             }
         };
-    var Message = function(options) {
+    var Message = function (options) {
         // var $this = this;
         this.options = $.extend({}, Message.defaults, options);
         this.uuid = 'ID' + (new Date().getTime()) + 'RAND' + (Math.ceil(Math.random() * 100000));
@@ -13465,7 +13774,7 @@ function PrizesService($rootScope, $q, Restangular) {
         this.group = this.options.group;
         messages[this.uuid] = this;
         if (!containers[this.options.pos]) {
-            containers[this.options.pos] = $('<div class="uk-notify uk-notify-' + this.options.pos + '"></div>').appendTo('body').on('click', '.uk-notify-message', function() {
+            containers[this.options.pos] = $('<div class="uk-notify uk-notify-' + this.options.pos + '"></div>').appendTo('body').on('click', '.uk-notify-message', function () {
                 $(this).data('notifyMessage').close();
             });
         }
@@ -13476,7 +13785,7 @@ function PrizesService($rootScope, $q, Restangular) {
         timout: false,
         currentstatus: '',
         group: false,
-        show: function() {
+        show: function () {
             if (this.element.is(':visible')) return;
             var $this = this;
             containers[this.options.pos].show().prepend(this.element);
@@ -13489,17 +13798,17 @@ function PrizesService($rootScope, $q, Restangular) {
                 'opacity': 1,
                 'margin-top': 0,
                 'margin-bottom': marginbottom
-            }, function() {
+            }, function () {
                 if ($this.options.timeout) {
-                    var closefn = function() {
+                    var closefn = function () {
                         $this.close();
                     };
                     $this.timeout = setTimeout(closefn, $this.options.timeout);
                     $this.element.hover(
-                        function() {
+                        function () {
                             clearTimeout($this.timeout);
                         },
-                        function() {
+                        function () {
                             $this.timeout = setTimeout(closefn, $this.options.timeout);
                         }
                     );
@@ -13507,9 +13816,9 @@ function PrizesService($rootScope, $q, Restangular) {
             });
             return this;
         },
-        close: function(instantly) {
+        close: function (instantly) {
             var $this = this,
-                finalize = function() {
+                finalize = function () {
                     $this.element.remove();
                     if (!containers[$this.options.pos].children().length) {
                         containers[$this.options.pos].hide();
@@ -13524,12 +13833,12 @@ function PrizesService($rootScope, $q, Restangular) {
                     'opacity': 0,
                     'margin-top': -1 * this.element.outerHeight(),
                     'margin-bottom': 0
-                }, function() {
+                }, function () {
                     finalize();
                 });
             }
         },
-        content: function(html) {
+        content: function (html) {
             var container = this.element.find('>div');
             if (!html) {
                 return container.html();
@@ -13537,7 +13846,7 @@ function PrizesService($rootScope, $q, Restangular) {
             container.html(html);
             return this;
         },
-        status: function(status) {
+        status: function (status) {
             if (!status) {
                 return this.currentstatus;
             }
@@ -13559,14 +13868,14 @@ function PrizesService($rootScope, $q, Restangular) {
     $.notify.closeAll = closeAll;
 
     return notify;
-} (jQuery));
+}(jQuery));
 
 /**=========================================================
  * Module: access-login.js
  * Demo for login api
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -13588,7 +13897,7 @@ function PrizesService($rootScope, $q, Restangular) {
             // place the message if something goes wrong
             vm.authMsg = '';
 
-            vm.login = function() {
+            vm.login = function () {
                 vm.authMsg = '';
 
                 if (vm.loginForm.$valid) {
@@ -13598,7 +13907,7 @@ function PrizesService($rootScope, $q, Restangular) {
                             email: vm.account.email,
                             password: vm.account.password
                         })
-                        .then(function(response) {
+                        .then(function (response) {
                             // assumes if ok, response is an object with some data, if not, a string with error
                             // customize according to your api
                             if (!response.account) {
@@ -13606,7 +13915,7 @@ function PrizesService($rootScope, $q, Restangular) {
                             } else {
                                 $state.go('app.dashboard');
                             }
-                        }, function() {
+                        }, function () {
                             vm.authMsg = 'Server Request Error';
                         });
                 } else {
@@ -13625,7 +13934,7 @@ function PrizesService($rootScope, $q, Restangular) {
  * Demo for register account api
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -13647,7 +13956,7 @@ function PrizesService($rootScope, $q, Restangular) {
             // place the message if something goes wrong
             vm.authMsg = '';
 
-            vm.register = function() {
+            vm.register = function () {
                 vm.authMsg = '';
 
                 if (vm.registerForm.$valid) {
@@ -13657,7 +13966,7 @@ function PrizesService($rootScope, $q, Restangular) {
                             email: vm.account.email,
                             password: vm.account.password
                         })
-                        .then(function(response) {
+                        .then(function (response) {
                             // assumes if ok, response is an object with some data, if not, a string with error
                             // customize according to your api
                             if (!response.account) {
@@ -13665,7 +13974,7 @@ function PrizesService($rootScope, $q, Restangular) {
                             } else {
                                 $state.go('app.dashboard');
                             }
-                        }, function() {
+                        }, function () {
                             vm.authMsg = 'Server Request Error';
                         });
                 } else {
@@ -13684,7 +13993,7 @@ function PrizesService($rootScope, $q, Restangular) {
 /**=========================================================
  * Collapse panels * [panel-collapse]
  =========================================================*/
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -13713,14 +14022,14 @@ function PrizesService($rootScope, $q, Restangular) {
         // Load the saved state if exists
         var currentState = loadPanelState(panelId);
         if (typeof currentState !== 'undefined') {
-            $timeout(function() {
-                $scope[panelId] = currentState;
-            },
+            $timeout(function () {
+                    $scope[panelId] = currentState;
+                },
                 10);
         }
 
         // bind events to switch icons
-        $element.bind('click', function(e) {
+        $element.bind('click', function (e) {
             e.preventDefault();
             savePanelState(panelId, !$scope[panelId]);
 
@@ -13752,7 +14061,7 @@ function PrizesService($rootScope, $q, Restangular) {
  * Dismiss panels * [panel-dismiss]
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -13775,7 +14084,7 @@ function PrizesService($rootScope, $q, Restangular) {
         var removeEvent = 'panel-remove',
             removedEvent = 'panel-removed';
 
-        $element.on('click', function(e) {
+        $element.on('click', function (e) {
             e.preventDefault();
 
             // find the first parent panel
@@ -13807,7 +14116,7 @@ function PrizesService($rootScope, $q, Restangular) {
                 parent.remove();
                 // remove the parent if it is a row and is empty and not a sortable (portlet)
                 col
-                    .filter(function() {
+                    .filter(function () {
                         var el = $(this);
                         return (el.is('[class*="col-"]:not(.sortable)') && el.children('*').length === 0);
                     }).remove();
@@ -13827,7 +14136,7 @@ function PrizesService($rootScope, $q, Restangular) {
  * [panel-refresh] * [data-spinner="standard"]
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -13852,7 +14161,7 @@ function PrizesService($rootScope, $q, Restangular) {
             defaultSpinner = 'standard';
 
         // catch clicks to toggle panel refresh
-        $element.on('click', function(e) {
+        $element.on('click', function (e) {
             e.preventDefault();
 
             var $this = $(this),
@@ -13889,7 +14198,7 @@ function PrizesService($rootScope, $q, Restangular) {
  * Saves panel state in browser storage
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -13924,7 +14233,7 @@ function PrizesService($rootScope, $q, Restangular) {
 
             var tools = scope.panelTools || attrs;
 
-            $timeout(function() {
+            $timeout(function () {
                 element.html(getTemplate(element, tools)).show();
                 $compile(element.contents())(scope);
 
@@ -13952,7 +14261,7 @@ function PrizesService($rootScope, $q, Restangular) {
  * Provides a simple demo for panel actions
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -13973,7 +14282,7 @@ function PrizesService($rootScope, $q, Restangular) {
             // ----------------------------------- 
 
             // We can use panel id name for the boolean flag to [un]collapse the panel
-            $scope.$watch('panelDemo1', function(newVal) {
+            $scope.$watch('panelDemo1', function (newVal) {
 
                 console.log('panelDemo1 collapsed: ' + newVal);
 
@@ -13984,7 +14293,7 @@ function PrizesService($rootScope, $q, Restangular) {
             // ----------------------------------- 
 
             // Before remove panel
-            $scope.$on('panel-remove', function(event, id, deferred) {
+            $scope.$on('panel-remove', function (event, id, deferred) {
 
                 console.log('Panel #' + id + ' removing');
 
@@ -13996,7 +14305,7 @@ function PrizesService($rootScope, $q, Restangular) {
             });
 
             // Panel removed ( only if above was resolved() )
-            $scope.$on('panel-removed', function(event, id) {
+            $scope.$on('panel-removed', function (event, id) {
 
                 console.log('Panel #' + id + ' removed');
 
@@ -14006,12 +14315,12 @@ function PrizesService($rootScope, $q, Restangular) {
             // PANEL REFRESH EVENTS
             // ----------------------------------- 
 
-            $scope.$on('panel-refresh', function(event, id) {
+            $scope.$on('panel-refresh', function (event, id) {
                 var secs = 3;
 
                 console.log('Refreshing during ' + secs + 's #' + id);
 
-                $timeout(function() {
+                $timeout(function () {
                     // directive listen for to remove the spinner 
                     // after we end up to perform own operations
                     $scope.$broadcast('removeSpinner', id);
@@ -14053,7 +14362,7 @@ function PrizesService($rootScope, $q, Restangular) {
  * Drag and drop any panel based on jQueryUI portlets
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -14097,7 +14406,7 @@ function PrizesService($rootScope, $q, Restangular) {
         }
 
 
-        function savePortletOrder(event /*, ui*/) {
+        function savePortletOrder(event /*, ui*/ ) {
             var self = event.target;
             var data = angular.fromJson($localStorage[storageKeyName]);
 
@@ -14108,7 +14417,7 @@ function PrizesService($rootScope, $q, Restangular) {
             data[self.id] = $(self).sortable('toArray');
 
             if (data) {
-                $timeout(function() {
+                $timeout(function () {
                     $localStorage[storageKeyName] = angular.toJson(data);
                 });
             }
@@ -14126,7 +14435,7 @@ function PrizesService($rootScope, $q, Restangular) {
                 if (panels) {
                     var portlet = $('#' + porletId);
 
-                    $.each(panels, function(index, value) {
+                    $.each(panels, function (index, value) {
                         $('#' + value).appendTo(portlet);
                     });
                 }
@@ -14138,7 +14447,7 @@ function PrizesService($rootScope, $q, Restangular) {
 
 })();
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -14152,9 +14461,9 @@ function PrizesService($rootScope, $q, Restangular) {
         var directive = {
             restrict: 'EAC',
             template: '<div class="preloader-progress">' +
-            '<div class="preloader-progress-bar" ' +
-            'ng-style="{width: loadCounter + \'%\'}"></div>' +
-            '</div>',
+                '<div class="preloader-progress-bar" ' +
+                'ng-style="{width: loadCounter + \'%\'}"></div>' +
+                '</div>',
             link: link
         };
         return directive;
@@ -14195,7 +14504,7 @@ function PrizesService($rootScope, $q, Restangular) {
 
                 scope.loadCounter = 100;
 
-                $timeout(function() {
+                $timeout(function () {
                     // animate preloader hiding
                     $animate.addClass(el, 'preloader-hidden');
                     // retore scrollbar
@@ -14208,7 +14517,7 @@ function PrizesService($rootScope, $q, Restangular) {
                 var viewsLoaded = 0;
                 // if this doesn't sync with the real app ready
                 // a custom event must be used instead
-                var off = scope.$on('$viewContentLoaded', function() {
+                var off = scope.$on('$viewContentLoaded', function () {
 
                     viewsLoaded++;
 
@@ -14217,14 +14526,14 @@ function PrizesService($rootScope, $q, Restangular) {
                     // before the app is ready (1-index.html 2-app*.html)
                     if (viewsLoaded === 1 && (!$rootScope.globals.currentUser || !$rootScope.$storage.currentUser)) {
                         // with resolve this fires only once
-                        $timeout(function() {
+                        $timeout(function () {
                             deferred.resolve();
                         }, 3000);
 
                         off();
                     } else if (viewsLoaded === 2) {
                         // with resolve this fires only once
-                        $timeout(function() {
+                        $timeout(function () {
                             deferred.resolve();
                         }, 3000);
 
@@ -14245,7 +14554,7 @@ function PrizesService($rootScope, $q, Restangular) {
  * Provides helper functions for routes definition
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -14262,7 +14571,7 @@ function PrizesService($rootScope, $q, Restangular) {
             basepath: basepath,
             resolveFor: resolveFor,
             // controller access level
-            $get: function() {
+            $get: function () {
                 return {
                     basepath: basepath,
                     resolveFor: resolveFor
@@ -14281,7 +14590,7 @@ function PrizesService($rootScope, $q, Restangular) {
         function resolveFor() {
             var _args = arguments;
             return {
-                deps: ['$ocLazyLoad', '$q', function($ocLL, $q) {
+                deps: ['$ocLazyLoad', '$q', function ($ocLL, $q) {
                     // Creates a promise chain for each argument
                     var promise = $q.when(1); // empty promise
                     for (var i = 0, len = _args.length; i < len; i++) {
@@ -14295,7 +14604,7 @@ function PrizesService($rootScope, $q, Restangular) {
                         if (typeof _arg === 'function')
                             return promise.then(_arg);
                         else
-                            return promise.then(function() {
+                            return promise.then(function () {
                                 // if is a module, pass the name. If not, pass the array
                                 var whatToLoad = getRequired(_arg);
                                 // simple error check
@@ -14332,7 +14641,7 @@ function PrizesService($rootScope, $q, Restangular) {
  =========================================================*/
 
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -14372,8 +14681,8 @@ function PrizesService($rootScope, $q, Restangular) {
                 resolve: helper.resolveFor('flot-chart', 'flot-chart-plugins', 'weather-icons', 'ngWebSocket', 'moment', 'moment-format')
             })
 
-            /* START MATCHES SCHEDULE */
-            .state('app.schedule', {
+        /* START MATCHES SCHEDULE */
+        .state('app.schedule', {
                 url: '/schedule',
                 title: 'Schedule',
                 templateUrl: helper.basepath('database/schedule.html'),
@@ -14402,7 +14711,14 @@ function PrizesService($rootScope, $q, Restangular) {
                 resolve: helper.resolveFor('akoenig.deckgrid', 'restangular', 'toaster', 'dirPagination', 'moment', 'datatables', 'ngFileUpload', 'localytics.directives', 'ui.select', 'truncate'),
                 controller: 'PublicationsController'
             })
-
+            .state('app.leaderboards', {
+                url: '/leaderboards',
+                title: 'Leaderboards',
+                templateUrl: helper.basepath('database/leaderboards.html'),
+                resolve: helper.resolveFor('toaster', 'dirPagination', 'moment', 'moment-format', 'ui.select', 'ngDialog', 'htmlSortable'),
+                controller: 'LeaderboardsController',
+                controllerAs: 'vm'
+            })
             .state('app.match-moderation-soccer', {
                 url: '/match-moderation/soccer/:id',
                 title: 'Mathces Administration',
@@ -14466,7 +14782,7 @@ function PrizesService($rootScope, $q, Restangular) {
                 url: '/widgets',
                 title: 'Widgets',
                 templateUrl: helper.basepath('widgets.html'),
-                resolve: helper.resolveFor('loadGoogleMapsJS', function() {
+                resolve: helper.resolveFor('loadGoogleMapsJS', function () {
                     return loadGoogleMaps();
                 }, 'ui.map')
             })
@@ -14525,7 +14841,7 @@ function PrizesService($rootScope, $q, Restangular) {
                 title: 'ngDialog',
                 templateUrl: helper.basepath('ngdialog.html'),
                 resolve: angular.extend(helper.resolveFor('ngDialog'), {
-                    tpl: function() {
+                    tpl: function () {
                         return {
                             path: helper.basepath('ngdialog-template.html')
                         };
@@ -14576,7 +14892,7 @@ function PrizesService($rootScope, $q, Restangular) {
                 url: '/maps-google',
                 title: 'Maps Google',
                 templateUrl: helper.basepath('maps-google.html'),
-                resolve: helper.resolveFor('loadGoogleMapsJS', function() {
+                resolve: helper.resolveFor('loadGoogleMapsJS', function () {
                     return loadGoogleMaps();
                 }, 'ui.map')
             })
@@ -14783,7 +15099,7 @@ function PrizesService($rootScope, $q, Restangular) {
                 url: '/profile',
                 title: 'Profile',
                 templateUrl: helper.basepath('profile.html'),
-                resolve: helper.resolveFor('loadGoogleMapsJS', function() {
+                resolve: helper.resolveFor('loadGoogleMapsJS', function () {
                     return loadGoogleMaps();
                 }, 'ui.map')
             })
@@ -14794,8 +15110,8 @@ function PrizesService($rootScope, $q, Restangular) {
                 controllerAs: 'coder',
                 resolve: {
                     deps: helper.resolveFor('codemirror', 'ui.codemirror', 'codemirror-modes-web', 'angularBootstrapNavTree').deps,
-                    filetree: ['LoadTreeService', function(LoadTreeService) {
-                        return LoadTreeService.get().$promise.then(function(res) {
+                    filetree: ['LoadTreeService', function (LoadTreeService) {
+                        return LoadTreeService.get().$promise.then(function (res) {
                             return res.data;
                         });
                     }]
@@ -14944,7 +15260,7 @@ function PrizesService($rootScope, $q, Restangular) {
                 url: '/page',
                 templateUrl: 'app/pages/page.html',
                 resolve: helper.resolveFor('modernizr', 'icons'),
-                controller: ['$rootScope', function($rootScope) {
+                controller: ['$rootScope', function ($rootScope) {
                     $rootScope.app.layout.isBoxed = false;
                 }]
             })
@@ -15029,7 +15345,7 @@ function PrizesService($rootScope, $q, Restangular) {
                 url: '/matwidgets',
                 title: 'Material Widgets',
                 templateUrl: helper.basepath('material.widgets.html'),
-                resolve: helper.resolveFor('weather-icons', 'loadGoogleMapsJS', function() {
+                resolve: helper.resolveFor('weather-icons', 'loadGoogleMapsJS', function () {
                     return loadGoogleMaps();
                 }, 'ui.map')
             })
@@ -15054,14 +15370,14 @@ function PrizesService($rootScope, $q, Restangular) {
             //     }
             //   )
             // })
-            ;
+        ;
 
     } // routesConfig
 
 })();
 
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -15104,12 +15420,12 @@ function PrizesService($rootScope, $q, Restangular) {
         else
             $localStorage.layout = $rootScope.app.layout;
 
-        $rootScope.$watch('app.layout', function() {
+        $rootScope.$watch('app.layout', function () {
             $localStorage.layout = $rootScope.app.layout;
         }, true);
 
         // Close submenu when sidebar change from collapsed to normal
-        $rootScope.$watch('app.layout.isCollapsed', function(newValue) {
+        $rootScope.$watch('app.layout.isCollapsed', function (newValue) {
             if (newValue === false)
                 $rootScope.$broadcast('closeSidebarMenu');
         });
@@ -15123,7 +15439,7 @@ function PrizesService($rootScope, $q, Restangular) {
  * Handle sidebar collapsible elements
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -15142,7 +15458,7 @@ function PrizesService($rootScope, $q, Restangular) {
             var collapseList = [];
 
             // demo: when switch from collapse to hover, close all items
-            $rootScope.$watch('app.layout.asideHover', function(oldVal, newVal) {
+            $rootScope.$watch('app.layout.asideHover', function (oldVal, newVal) {
                 if (newVal === false && oldVal === true) {
                     closeAllBut(-1);
                 }
@@ -15161,20 +15477,20 @@ function PrizesService($rootScope, $q, Restangular) {
             // Handle sidebar and collapse items
             // ----------------------------------
 
-            $scope.getMenuItemPropClasses = function(item) {
+            $scope.getMenuItemPropClasses = function (item) {
                 return (item.heading ? 'nav-heading' : '') +
                     (isActive(item) ? ' active' : '');
             };
 
-            $scope.addCollapse = function($index, item) {
+            $scope.addCollapse = function ($index, item) {
                 collapseList[$index] = $rootScope.app.layout.asideHover ? true : !isActive(item);
             };
 
-            $scope.isCollapse = function($index) {
+            $scope.isCollapse = function ($index) {
                 return (collapseList[$index]);
             };
 
-            $scope.toggleCollapse = function($index, isParentItem) {
+            $scope.toggleCollapse = function ($index, isParentItem) {
 
                 // collapsed sidebar doesn't toggle drodopwn
                 if (Utils.isSidebarCollapsed() || $rootScope.app.layout.asideHover) return true;
@@ -15205,7 +15521,7 @@ function PrizesService($rootScope, $q, Restangular) {
 
                 if (!item.sref || item.sref === '#') {
                     var foundActive = false;
-                    angular.forEach(item.submenu, function(value) {
+                    angular.forEach(item.submenu, function (value) {
                         if (isActive(value)) foundActive = true;
                     });
                     return foundActive;
@@ -15236,7 +15552,7 @@ function PrizesService($rootScope, $q, Restangular) {
  * Wraps the sidebar and handles collapsed state
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -15256,7 +15572,7 @@ function PrizesService($rootScope, $q, Restangular) {
             template: '<nav class="sidebar" ng-transclude></nav>',
             transclude: true,
             replace: true
-            // scope: {}
+                // scope: {}
         };
         return directive;
 
@@ -15268,7 +15584,7 @@ function PrizesService($rootScope, $q, Restangular) {
             var eventName = Utils.isTouch() ? 'click' : 'mouseenter';
             var subNav = $();
 
-            $sidebar.on(eventName, '.nav > li', function() {
+            $sidebar.on(eventName, '.nav > li', function () {
 
                 if (Utils.isSidebarCollapsed() || $rootScope.app.layout.asideHover) {
 
@@ -15282,18 +15598,18 @@ function PrizesService($rootScope, $q, Restangular) {
 
             });
 
-            scope.$on('closeSidebarMenu', function() {
+            scope.$on('closeSidebarMenu', function () {
                 removeFloatingNav();
             });
 
             // Normalize state when resize to mobile
-            $win.on('resize', function() {
+            $win.on('resize', function () {
                 if (!Utils.isMobile())
                     asideToggleOff();
             });
 
             // Adjustment on route changes
-            $rootScope.$on('$stateChangeStart', function(event, toState) {
+            $rootScope.$on('$stateChangeStart', function (event, toState) {
                 currentState = toState.name;
                 // Hide sidebar automatically on mobile
                 asideToggleOff();
@@ -15316,8 +15632,8 @@ function PrizesService($rootScope, $q, Restangular) {
             function watchExternalClicks(newVal) {
                 // if sidebar becomes visible
                 if (newVal === true) {
-                    $timeout(function() { // render after current digest cycle
-                        wrapper.on(sbclickEvent, function(e) {
+                    $timeout(function () { // render after current digest cycle
+                        wrapper.on(sbclickEvent, function (e) {
                             // if not child of sidebar
                             if (!$(e.target).parents('.aside').length) {
                                 asideToggleOff();
@@ -15342,7 +15658,7 @@ function PrizesService($rootScope, $q, Restangular) {
             var $backdrop = $('<div/>', {
                 'class': 'dropdown-backdrop'
             });
-            $backdrop.insertAfter('.aside-inner').on('click mouseenter', function() {
+            $backdrop.insertAfter('.aside-inner').on('click mouseenter', function () {
                 removeFloatingNav();
             });
         }
@@ -15390,7 +15706,7 @@ function PrizesService($rootScope, $q, Restangular) {
                     bottom: (subNav.outerHeight(true) + itemTop > vwHeight) ? 0 : 'auto'
                 });
 
-            subNav.on('mouseleave', function() {
+            subNav.on('mouseleave', function () {
                 toggleTouchItem($listItem);
                 subNav.remove();
             });
@@ -15409,7 +15725,7 @@ function PrizesService($rootScope, $q, Restangular) {
 })();
 
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -15427,7 +15743,7 @@ function PrizesService($rootScope, $q, Restangular) {
             var menuJson = 'server/sidebar-menu.json',
                 menuURL = menuJson + '?v=' + (new Date().getTime()); // jumps cache
 
-            onError = onError || function() {
+            onError = onError || function () {
                 alert('Failure loading menu');
             };
 
@@ -15438,7 +15754,7 @@ function PrizesService($rootScope, $q, Restangular) {
         }
     }
 })();
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -15458,12 +15774,12 @@ function PrizesService($rootScope, $q, Restangular) {
 
 
             // Hides/show user avatar on sidebar
-            $rootScope.toggleUserBlock = function() {
+            $rootScope.toggleUserBlock = function () {
                 console.log("toggle");
                 $rootScope.$broadcast('toggleUserBlock');
             };
 
-            $rootScope.logout = function() {
+            $rootScope.logout = function () {
                 console.log("logout");
                 $rootScope.$storage.currentUser = null;
                 $rootScope.user = null;
@@ -15473,7 +15789,7 @@ function PrizesService($rootScope, $q, Restangular) {
 
             $rootScope.userBlockVisible = true;
 
-            $rootScope.$on('toggleUserBlock', function( /*event, args*/) {
+            $rootScope.$on('toggleUserBlock', function ( /*event, args*/ ) {
 
                 $rootScope.userBlockVisible = !$rootScope.userBlockVisible;
 
@@ -15487,7 +15803,7 @@ function PrizesService($rootScope, $q, Restangular) {
  * Example for Angular Grid
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -15562,7 +15878,7 @@ function PrizesService($rootScope, $q, Restangular) {
             vm.gridOptions = {
                 columnDefs: columnDefs,
                 rowData: null,
-                ready: function(api) {
+                ready: function (api) {
                     api.sizeColumnsToFit();
                 }
             };
@@ -15637,7 +15953,7 @@ function PrizesService($rootScope, $q, Restangular) {
                 columnDefs: columnDefsFilter,
                 rowData: null,
                 enableFilter: true,
-                ready: function(api) {
+                ready: function (api) {
                     api.sizeColumnsToFit();
                 }
 
@@ -15650,7 +15966,7 @@ function PrizesService($rootScope, $q, Restangular) {
                 columnDefs: columnDefs,
                 rowData: null,
                 pinnedColumnCount: 2,
-                ready: function(api) {
+                ready: function (api) {
                     api.sizeColumnsToFit();
                 }
             };
@@ -15660,7 +15976,7 @@ function PrizesService($rootScope, $q, Restangular) {
             //-----------------------------
 
             $http.get('server/ag-owinners.json')
-                .then(function(res) {
+                .then(function (res) {
                     // basic
                     vm.gridOptions.rowData = res.data;
                     vm.gridOptions.api.onNewRows();
@@ -15681,7 +15997,7 @@ function PrizesService($rootScope, $q, Restangular) {
  * Angular Datatable controller
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -15701,16 +16017,16 @@ function PrizesService($rootScope, $q, Restangular) {
 
             // Ajax
 
-            $resource('server/datatable.json').query().$promise.then(function(persons) {
+            $resource('server/datatable.json').query().$promise.then(function (persons) {
                 vm.persons = persons;
             });
 
             // Changing data
 
             vm.heroes = [{
-                'id': 860,
-                'firstName': 'Superman',
-                'lastName': 'Yoda'
+                    'id': 860,
+                    'firstName': 'Superman',
+                    'lastName': 'Yoda'
             }, {
                     'id': 870,
                     'firstName': 'Ace',
@@ -15769,7 +16085,7 @@ function PrizesService($rootScope, $q, Restangular) {
  * ngGrid demo
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -15808,7 +16124,7 @@ function PrizesService($rootScope, $q, Restangular) {
                 filterOptions: $scope.filterOptions
             };
 
-            $scope.setPagingData = function(data, page, pageSize) {
+            $scope.setPagingData = function (data, page, pageSize) {
                 // calc for pager
                 var pagedData = data.slice((page - 1) * pageSize, page * pageSize);
                 // Store data from server
@@ -15822,21 +16138,21 @@ function PrizesService($rootScope, $q, Restangular) {
 
             };
 
-            $scope.getPagedDataAsync = function(pageSize, page, searchText) {
+            $scope.getPagedDataAsync = function (pageSize, page, searchText) {
                 var ngGridResourcePath = 'server/ng-grid-data.json';
 
-                $timeout(function() {
+                $timeout(function () {
 
                     if (searchText) {
                         var ft = searchText.toLowerCase();
-                        $http.get(ngGridResourcePath).success(function(largeLoad) {
-                            var data = largeLoad.filter(function(item) {
+                        $http.get(ngGridResourcePath).success(function (largeLoad) {
+                            var data = largeLoad.filter(function (item) {
                                 return JSON.stringify(item).toLowerCase().indexOf(ft) !== -1;
                             });
                             $scope.setPagingData(data, page, pageSize);
                         });
                     } else {
-                        $http.get(ngGridResourcePath).success(function(largeLoad) {
+                        $http.get(ngGridResourcePath).success(function (largeLoad) {
                             $scope.setPagingData(largeLoad, page, pageSize);
                         });
                     }
@@ -15844,12 +16160,12 @@ function PrizesService($rootScope, $q, Restangular) {
             };
 
 
-            $scope.$watch('pagingOptions', function(newVal, oldVal) {
+            $scope.$watch('pagingOptions', function (newVal, oldVal) {
                 if (newVal !== oldVal && newVal.currentPage !== oldVal.currentPage) {
                     $scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage, $scope.filterOptions.filterText);
                 }
             }, true);
-            $scope.$watch('filterOptions', function(newVal, oldVal) {
+            $scope.$watch('filterOptions', function (newVal, oldVal) {
                 if (newVal !== oldVal) {
                     $scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage, $scope.filterOptions.filterText);
                 }
@@ -15860,7 +16176,7 @@ function PrizesService($rootScope, $q, Restangular) {
     }
 })();
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -15879,7 +16195,7 @@ function PrizesService($rootScope, $q, Restangular) {
             // if no cache, request data and filter
             if (!self.cache) {
                 if (api) {
-                    api.get(function(data) {
+                    api.get(function (data) {
                         self.cache = data;
                         filterdata($defer, params);
                     });
@@ -15906,7 +16222,7 @@ function PrizesService($rootScope, $q, Restangular) {
  * Controller for ngTables
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -16021,22 +16337,22 @@ function PrizesService($rootScope, $q, Restangular) {
                 page: 1, // show first page
                 count: 10 // count per page
             }, {
-                    total: data.length, // length of data
-                    getData: function($defer, params) {
-                        // use build-in angular filter
-                        var filteredData = params.filter() ?
-                            $filter('filter')(data, params.filter()) :
-                            data;
-                        var orderedData = params.sorting() ?
-                            $filter('orderBy')(filteredData, params.orderBy()) :
-                            data;
+                total: data.length, // length of data
+                getData: function ($defer, params) {
+                    // use build-in angular filter
+                    var filteredData = params.filter() ?
+                        $filter('filter')(data, params.filter()) :
+                        data;
+                    var orderedData = params.sorting() ?
+                        $filter('orderBy')(filteredData, params.orderBy()) :
+                        data;
 
-                        params.total(orderedData.length); // set total for recalc pagination
-                        $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
-                    }
-                });
+                    params.total(orderedData.length); // set total for recalc pagination
+                    $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+                }
+            });
 
-            vm.changeSelection = function(user) {
+            vm.changeSelection = function (user) {
                 console.info(user);
             };
 
@@ -16044,8 +16360,8 @@ function PrizesService($rootScope, $q, Restangular) {
             // -----------------------------------  
 
             var data4 = [{
-                name: 'Moroni',
-                age: 50
+                    name: 'Moroni',
+                    age: 50
             },
                 {
                     name: 'Tiancum',
@@ -16116,11 +16432,11 @@ function PrizesService($rootScope, $q, Restangular) {
                 page: 1, // show first page
                 count: 10 // count per page
             }, {
-                    total: data4.length, // length of data4
-                    getData: function($defer, params) {
-                        $defer.resolve(data4.slice((params.page() - 1) * params.count(), params.page() * params.count()));
-                    }
-                });
+                total: data4.length, // length of data4
+                getData: function ($defer, params) {
+                    $defer.resolve(data4.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+                }
+            });
 
 
             // SORTING
@@ -16134,16 +16450,16 @@ function PrizesService($rootScope, $q, Restangular) {
                     name: 'asc' // initial sorting
                 }
             }, {
-                    total: data.length, // length of data
-                    getData: function($defer, params) {
-                        // use build-in angular filter
-                        var orderedData = params.sorting() ?
-                            $filter('orderBy')(data, params.orderBy()) :
-                            data;
+                total: data.length, // length of data
+                getData: function ($defer, params) {
+                    // use build-in angular filter
+                    var orderedData = params.sorting() ?
+                        $filter('orderBy')(data, params.orderBy()) :
+                        data;
 
-                        $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
-                    }
-                });
+                    $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+                }
+            });
 
             // FILTERS
             // ----------------------------------- 
@@ -16154,22 +16470,22 @@ function PrizesService($rootScope, $q, Restangular) {
                 filter: {
                     name: '',
                     age: ''
-                    // name: 'M'       // initial filter
+                        // name: 'M'       // initial filter
                 }
             }, {
-                    total: data.length, // length of data
-                    getData: function($defer, params) {
-                        // use build-in angular filter
-                        var orderedData = params.filter() ?
-                            $filter('filter')(data, params.filter()) :
-                            data;
+                total: data.length, // length of data
+                getData: function ($defer, params) {
+                    // use build-in angular filter
+                    var orderedData = params.filter() ?
+                        $filter('filter')(data, params.filter()) :
+                        data;
 
-                        vm.users = orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count());
+                    vm.users = orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count());
 
-                        params.total(orderedData.length); // set total for recalc pagination
-                        $defer.resolve(vm.users);
-                    }
-                });
+                    params.total(orderedData.length); // set total for recalc pagination
+                    $defer.resolve(vm.users);
+                }
+            });
 
             // AJAX
 
@@ -16179,25 +16495,25 @@ function PrizesService($rootScope, $q, Restangular) {
                 page: 1, // show first page
                 count: 10 // count per page
             }, {
-                    total: 0, // length of data
-                    counts: [], // hide page counts control
-                    getData: function($defer, params) {
+                total: 0, // length of data
+                counts: [], // hide page counts control
+                getData: function ($defer, params) {
 
-                        // Service using cache to avoid mutiple requests
-                        ngTableDataService.getData($defer, params, Api);
+                    // Service using cache to avoid mutiple requests
+                    ngTableDataService.getData($defer, params, Api);
 
-                        /* direct ajax request to api (perform result pagination on the server)
-                         Api.get(params.url(), function(data) {
-                         $timeout(function() {
-                         // update table params
-                         params.total(data.total);
-                         // set new data
-                         $defer.resolve(data.result);
-                         }, 500);
-                         });
-                         */
-                    }
-                });
+                    /* direct ajax request to api (perform result pagination on the server)
+                     Api.get(params.url(), function(data) {
+                     $timeout(function() {
+                     // update table params
+                     params.total(data.total);
+                     // set new data
+                     $defer.resolve(data.result);
+                     }, 500);
+                     });
+                     */
+                }
+            });
         }
     }
 })();
@@ -16208,7 +16524,7 @@ function PrizesService($rootScope, $q, Restangular) {
  * Provides a simple demo for buttons actions
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -16271,13 +16587,13 @@ function PrizesService($rootScope, $q, Restangular) {
             ];
 
             vm.groups = [];
-            vm.loadGroups = function() {
-                return vm.groups.length ? null : $http.get('server/xeditable-groups.json').success(function(data) {
+            vm.loadGroups = function () {
+                return vm.groups.length ? null : $http.get('server/xeditable-groups.json').success(function (data) {
                     vm.groups = data;
                 });
             };
 
-            vm.showGroup = function(user) {
+            vm.showGroup = function (user) {
                 if (user.group && vm.groups.length) {
                     var selected = $filter('filter')(vm.groups, {
                         id: user.group
@@ -16288,7 +16604,7 @@ function PrizesService($rootScope, $q, Restangular) {
                 }
             };
 
-            vm.showStatus = function(user) {
+            vm.showStatus = function (user) {
                 var selected = [];
                 if (user.status) {
                     selected = $filter('filter')(vm.statuses, {
@@ -16298,13 +16614,13 @@ function PrizesService($rootScope, $q, Restangular) {
                 return selected.length ? selected[0].text : 'Not set';
             };
 
-            vm.checkName = function(data, id) {
+            vm.checkName = function (data, id) {
                 if (id === 2 && data !== 'awesome') {
                     return 'Username 2 should be `awesome`';
                 }
             };
 
-            vm.saveUser = function(data, id) {
+            vm.saveUser = function (data, id) {
                 //vm.user not updated yet
                 angular.extend(data, {
                     id: id
@@ -16314,12 +16630,12 @@ function PrizesService($rootScope, $q, Restangular) {
             };
 
             // remove user
-            vm.removeUser = function(index) {
+            vm.removeUser = function (index) {
                 vm.users.splice(index, 1);
             };
 
             // add user
-            vm.addUser = function() {
+            vm.addUser = function () {
                 vm.inserted = {
                     id: vm.users.length + 1,
                     name: '',
@@ -16334,9 +16650,9 @@ function PrizesService($rootScope, $q, Restangular) {
             // ----------------------------------- 
 
 
-            vm.saveColumn = function(column) {
+            vm.saveColumn = function (column) {
                 var results = [];
-                angular.forEach(vm.users, function( /*user*/) {
+                angular.forEach(vm.users, function ( /*user*/ ) {
                     // results.push($http.post('/saveColumn', {column: column, value: user[column], id: user.id}));
                     console.log('Saving column: ' + column);
                 });
@@ -16347,12 +16663,12 @@ function PrizesService($rootScope, $q, Restangular) {
             // ----------------------------------- 
 
             // filter users to show
-            vm.filterUser = function(user) {
+            vm.filterUser = function (user) {
                 return user.isDeleted !== true;
             };
 
             // mark user as deleted
-            vm.deleteUser = function(id) {
+            vm.deleteUser = function (id) {
                 var filtered = $filter('filter')(vm.users, {
                     id: id
                 });
@@ -16362,7 +16678,7 @@ function PrizesService($rootScope, $q, Restangular) {
             };
 
             // cancel all changes
-            vm.cancel = function() {
+            vm.cancel = function () {
                 for (var i = vm.users.length; i--;) {
                     var user = vm.users[i];
                     // undelete
@@ -16377,7 +16693,7 @@ function PrizesService($rootScope, $q, Restangular) {
             };
 
             // save edits
-            vm.saveTable = function() {
+            vm.saveTable = function () {
                 var results = [];
                 for (var i = vm.users.length; i--;) {
                     var user = vm.users[i];
@@ -16406,7 +16722,7 @@ function PrizesService($rootScope, $q, Restangular) {
  * Module: UIGridController
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -16588,14 +16904,14 @@ function PrizesService($rootScope, $q, Restangular) {
                     }
                 ],
                 data: data,
-                onRegisterApi: function(gridApi) {
+                onRegisterApi: function (gridApi) {
                     vm.gridApi = gridApi;
                 }
             };
 
             $http.get('server/uigrid-complex.json')
-                .success(function(data) {
-                    data.forEach(function(row) {
+                .success(function (data) {
+                    data.forEach(function (row) {
                         row.registered = Date.parse(row.registered);
                     });
                     vm.gridOptionsComplex.data = data;
@@ -16619,7 +16935,7 @@ function PrizesService($rootScope, $q, Restangular) {
             };
 
             $http.get('server/uigrid-100.json')
-                .success(function(data) {
+                .success(function (data) {
                     vm.gridOptions1.data = data;
                 });
 
@@ -16627,7 +16943,7 @@ function PrizesService($rootScope, $q, Restangular) {
     }
 })();
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -16649,7 +16965,7 @@ function PrizesService($rootScope, $q, Restangular) {
 
     }
 })();
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -16671,12 +16987,12 @@ function PrizesService($rootScope, $q, Restangular) {
                 'es_AR': 'Español'
             },
             // display always the current ui language
-            init: function() {
+            init: function () {
                 var proposedLanguage = $translate.proposedLanguage() || $translate.use();
                 var preferredLanguage = $translate.preferredLanguage(); // we know we have set a preferred one in app.config
                 $rootScope.language.selected = $rootScope.language.available[(proposedLanguage || preferredLanguage)];
             },
-            set: function(localeId) {
+            set: function (localeId) {
                 // Set the new idiom
                 $translate.use(localeId);
                 // save a reference for the current language
@@ -16695,7 +17011,7 @@ function PrizesService($rootScope, $q, Restangular) {
  * Enable or disables ngAnimate for element with directive
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -16712,9 +17028,9 @@ function PrizesService($rootScope, $q, Restangular) {
         return directive;
 
         function link(scope, element, attrs) {
-            scope.$watch(function() {
+            scope.$watch(function () {
                 return scope.$eval(attrs.animateEnabled, scope);
-            }, function(newValue) {
+            }, function (newValue) {
                 $animate.enabled(!!newValue, element);
             });
         }
@@ -16727,7 +17043,7 @@ function PrizesService($rootScope, $q, Restangular) {
  * Browser detection
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -16747,7 +17063,7 @@ function PrizesService($rootScope, $q, Restangular) {
  * Removes a key from the browser storage via element click
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -16767,7 +17083,7 @@ function PrizesService($rootScope, $q, Restangular) {
         return directive;
 
         function link(scope, element) {
-            element.on('click', function(e) {
+            element.on('click', function (e) {
                 e.preventDefault();
 
                 if (scope.resetKey) {
@@ -16789,7 +17105,7 @@ function PrizesService($rootScope, $q, Restangular) {
  * Toggle the fullscreen mode on/off
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -16810,7 +17126,7 @@ function PrizesService($rootScope, $q, Restangular) {
             if (Browser.msie) {
                 element.addClass('hide');
             } else {
-                element.on('click', function(e) {
+                element.on('click', function (e) {
                     e.preventDefault();
 
                     if (screenfull.enabled) {
@@ -16840,7 +17156,7 @@ function PrizesService($rootScope, $q, Restangular) {
  * Request and load into the current page a css file
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -16855,7 +17171,7 @@ function PrizesService($rootScope, $q, Restangular) {
         return directive;
 
         function link(scope, element, attrs) {
-            element.on('click', function(e) {
+            element.on('click', function (e) {
                 if (element.is('a')) e.preventDefault();
                 var uri = attrs.loadCss,
                     link;
@@ -16897,7 +17213,7 @@ function PrizesService($rootScope, $q, Restangular) {
  * Provides a simple way to display the current time formatted
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -16924,7 +17240,7 @@ function PrizesService($rootScope, $q, Restangular) {
             updateTime();
             var intervalPromise = $interval(updateTime, 1000);
 
-            scope.$on('$destroy', function() {
+            scope.$on('$destroy', function () {
                 $interval.cancel(intervalPromise);
             });
 
@@ -16937,7 +17253,7 @@ function PrizesService($rootScope, $q, Restangular) {
  * Module: table-checkall.js
  * Tables check all checkbox
  =========================================================*/
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -16952,7 +17268,7 @@ function PrizesService($rootScope, $q, Restangular) {
         return directive;
 
         function link(scope, element) {
-            element.on('change', function() {
+            element.on('change', function () {
                 var $this = $(this),
                     index = $this.index() + 1,
                     checkbox = $this.find('input[type="checkbox"]'),
@@ -16971,7 +17287,7 @@ function PrizesService($rootScope, $q, Restangular) {
  * Module: trigger-resize.js
  * Triggers a window resize event from any element
  =========================================================*/
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -16988,8 +17304,8 @@ function PrizesService($rootScope, $q, Restangular) {
         return directive;
 
         function link(scope, element) {
-            element.on('click', function() {
-                $timeout(function() {
+            element.on('click', function () {
+                $timeout(function () {
                     $window.dispatchEvent(new Event('resize'));
                 });
             });
@@ -17003,7 +17319,7 @@ function PrizesService($rootScope, $q, Restangular) {
  * Utility library to use across the theme
  =========================================================*/
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -17021,8 +17337,8 @@ function PrizesService($rootScope, $q, Restangular) {
         return {
             // DETECTION
             support: {
-                transition: (function() {
-                    var transitionEnd = (function() {
+                transition: (function () {
+                    var transitionEnd = (function () {
 
                         var element = document.body || document.documentElement,
                             transEndEventNames = {
@@ -17036,15 +17352,15 @@ function PrizesService($rootScope, $q, Restangular) {
                         for (name in transEndEventNames) {
                             if (element.style[name] !== undefined) return transEndEventNames[name];
                         }
-                    } ());
+                    }());
 
                     return transitionEnd && {
                         end: transitionEnd
                     };
                 })(),
-                animation: (function() {
+                animation: (function () {
 
-                    var animationEnd = (function() {
+                    var animationEnd = (function () {
 
                         var element = document.body || document.documentElement,
                             animEndEventNames = {
@@ -17058,20 +17374,20 @@ function PrizesService($rootScope, $q, Restangular) {
                         for (name in animEndEventNames) {
                             if (element.style[name] !== undefined) return animEndEventNames[name];
                         }
-                    } ());
+                    }());
 
                     return animationEnd && {
                         end: animationEnd
                     };
                 })(),
                 requestAnimationFrame: window.requestAnimationFrame ||
-                window.webkitRequestAnimationFrame ||
-                window.mozRequestAnimationFrame ||
-                window.msRequestAnimationFrame ||
-                window.oRequestAnimationFrame ||
-                function(callback) {
-                    window.setTimeout(callback, 1000 / 60);
-                },
+                    window.webkitRequestAnimationFrame ||
+                    window.mozRequestAnimationFrame ||
+                    window.msRequestAnimationFrame ||
+                    window.oRequestAnimationFrame ||
+                    function (callback) {
+                        window.setTimeout(callback, 1000 / 60);
+                    },
                 /*jshint -W069*/
                 touch: (
                     ('ontouchstart' in window && navigator.userAgent.toLowerCase().match(/mobile|tablet/)) ||
@@ -17083,7 +17399,7 @@ function PrizesService($rootScope, $q, Restangular) {
                 mutationobserver: (window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver || null)
             },
             // UTILITIES
-            isInView: function(element, options) {
+            isInView: function (element, options) {
                 /*jshint -W106*/
                 var $element = $(element);
 
@@ -17112,19 +17428,19 @@ function PrizesService($rootScope, $q, Restangular) {
 
             langdirection: $html.attr('dir') === 'rtl' ? 'right' : 'left',
 
-            isTouch: function() {
+            isTouch: function () {
                 return $html.hasClass('touch');
             },
 
-            isSidebarCollapsed: function() {
+            isSidebarCollapsed: function () {
                 return $body.hasClass('aside-collapsed');
             },
 
-            isSidebarToggled: function() {
+            isSidebarToggled: function () {
                 return $body.hasClass('aside-toggled');
             },
 
-            isMobile: function() {
+            isMobile: function () {
                 return $win.width() < APP_MEDIAQUERY.tablet;
             }
 
@@ -17132,7 +17448,7 @@ function PrizesService($rootScope, $q, Restangular) {
     }
 })();
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -17150,7 +17466,7 @@ function PrizesService($rootScope, $q, Restangular) {
 // html data-ng-app attribute from angle to myAppName
 // ----------------------------------------------------------------------
 
-(function() {
+(function () {
     'use strict';
 
     angular

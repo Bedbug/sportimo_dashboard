@@ -743,6 +743,11 @@ border: 2px dashed #F1F1F1;
     background-color: white;
     border: 1px solid #f33123;
 }
+.small-margin{
+    margin:2px;
+        width: 44px;
+    height: 44px;
+}
 
 .edit,
 .edit:hover,
@@ -776,13 +781,13 @@ border: 2px dashed #F1F1F1;
     }
 
     to {
-        left: -100px;
+        left: -90%;
     }
 }
 
 @keyframes conrtrolsSlideRight {
     from {
-        left: -100px;
+        left: -90%;
     }
 
     to {

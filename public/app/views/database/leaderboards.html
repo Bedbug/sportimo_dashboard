@@ -1,80 +1,100 @@
-<div ng-show="!PoolRooms && !NewPool" class="col-xs-12 card ">
-    <div class="card-heading"></div>
-    <div class="card-body text-center">
-        There is no active reward leaderboard. Create a reward leaderboard now.
-        <br/>
-        <br/>
-        <button ng-click="CreatePoolRoom = 1" class="btn btn-success">CREATE</button>
-    </div>
-    <div class="card-footer"></div>
-</div>
+<h3 style="margin-bottom: 0;">Leaderboards
+    <small>Create and manage Sportimo leaderboards for the whole season, weekly rewards or custom leaderboards.</small>
+</h3>
 
-
-<!-- START LeaderBoards -->
-<div ng-show="!NewPool && !EditPool" class="table-responsive">
-    <div class="input-group col-xs-12 no-padding"><input ng-model="leaderboardSearch" placeholder="Search leaderboards... e.g. coca cola" type="text" class="form-control"><span class="input-group-btn"><button type="button" class="btn btn btn-default"><i class="fa fa-search"></i></button></span></div>
-    <table class="table table-striped table-bordered table-hover">
-        <thead>
-            <tr>
-                <th>Leaderboard</th>
-                <th class="text-center">Visible In</th>
-                <th class="text-center">Status</th>
-                <th class="text-center">Sponsor</th>
-                <th class="text-center">Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="poolroom in PoolRooms | filter: leaderboardSearch">
-                <td>
-                    {{poolroom.title.en}}
-                    <span ng-show="poolroom.isdefault"><label> [Default] </label></span>
-                </td>
-                <td class="text-center" style="width:200px">
-                    <!--ng-class="poolroom.isdefault?'td-isdefault':''"-->
-                    <div ng-show="poolroom.country == null || poolroom.country.length == 0 || poolroom.isdefault">
-                        <label>Everywhere</label>
-                    </div>
-                    <div ng-show="!poolroom.isdefault">
-                        <span ng-repeat="country in poolroom.country">{{country+' &nbsp;'}}</span>
-                    </div>
-                    <!--<sparkline data-bar-color="{{colorByName('primary')}}" data-height="20" data-bar-width="5" data-bar-spacing="2" values="1,4,4,7,5,9,10" data-resize="true"></sparkline>-->
-                </td>
-                <td class="text-center" style="width:100px">
-                    <div class="label" ng-class="poolroom.status?('label-'+poolroom.status):''">{{poolroom.status}}</div>
-                </td>
-                <td class="text-center" ng-style="{
+<div ng-show="!NewPool && !EditPool" class="col-lg-12 no-padding">
+    <!-- START panel tab-->
+    <div class="panel panel-transparent col-lg-12 no-padding">
+        <tabset justified="true" class="bg-white p0">
+            <tab>
+                <tab-heading>
+                    Season
+                </tab-heading>
+                <!-- START LeaderBoards -->
+                <div ng-show="!NewPool && !EditPool" class="table-responsive">
+                    <div class="input-group col-xs-12 no-padding">
+                        <input ng-model="leaderboardSearch" placeholder="Search leaderboards... e.g. coca cola" type="text" class="form-control"><span class="input-group-btn"><button type="button" class="btn btn btn-default"><i class="fa fa-search"></i></button></span></div>
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Leaderboard</th>
+                                <th class="text-center">Visible In</th>
+                                <th class="text-center">Status</th>
+                                <th class="text-center">Sponsor</th>
+                                <th class="text-center">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="poolroom in PoolRooms | filter: {roomtype: 'Season'} | filter: leaderboardSearch ">
+                                <td>
+                                    {{poolroom.title.en}}
+                                    <span ng-show="poolroom.isdefault"><label> [Default] </label></span>
+                                </td>
+                                <td class="text-center" style="width:200px">
+                                    <!--ng-class="poolroom.isdefault?'td-isdefault':''"-->
+                                    <div ng-show="poolroom.country == null || poolroom.country.length == 0 || poolroom.isdefault">
+                                        <label>Everywhere</label>
+                                    </div>
+                                    <div ng-show="!poolroom.isdefault">
+                                        <span ng-repeat="country in poolroom.country">{{country+' &nbsp;'}}</span>
+                                    </div>
+                                    <!--<sparkline data-bar-color="{{colorByName('primary')}}" data-height="20" data-bar-width="5" data-bar-spacing="2" values="1,4,4,7,5,9,10" data-resize="true"></sparkline>-->
+                                </td>
+                                <td class="text-center" style="width:100px">
+                                    <div class="label" ng-class="poolroom.status?('label-'+poolroom.status):''">{{poolroom.status}}</div>
+                                </td>
+                                <td class="text-center" ng-style="{
                     'width': '150px',
                     'background-size': 'cover',
                     'background-repeat': 'no-repeat',
                     'background-position': '50%',
                     'background-image':'url('+poolroom.sponsor.banner+')'}">
 
-                </td>
-                <td class="text-center" style="width:200px">
-                    <div class="event-card" ng-init="poolroom.openActions = false">
-                        <div style="width:150px" class="controlls col-xs-12">
-                            <button ng-click="editPool(poolroom)" class="minimal small-margin col-xs-4 btn btn-info"><span class="btn-label"><i class="fa fa-pencil"></i>
+                                </td>
+                                <td class="text-center" style="width:200px">
+                                    <div class="event-card" ng-init="poolroom.openActions = false">
+                                        <div style="width:150px" class="controlls col-xs-12">
+                                            <button ng-click="editPool(poolroom)" class="minimal small-margin col-xs-4 btn btn-info"><span class="btn-label"><i class="fa fa-pencil"></i>
                                     </span></button>
-                            <button ng-click="setDefault(poolroom)" ng-class="poolroom.isdefault?'edit':'minimal'" class=" small-margin col-xs-4 btn"><span class="btn-label"><i class="fa fa fa-file"></i>
+                                            <button ng-click="setDefault(poolroom)" ng-class="poolroom.isdefault?'edit':'minimal'" class=" small-margin col-xs-4 btn"><span class="btn-label"><i class="fa fa fa-file"></i>
                                     </span></button>
-                            <button ng-click="removePool(poolroom)" class="delete col-xs-4 btn btn-danger"><span class="btn-label"><i class="fa fa-trash"></i>
+                                            <button ng-click="removePool(poolroom)" class="delete col-xs-4 btn btn-danger"><span class="btn-label"><i class="fa fa-trash"></i>
                                     </span></button>
-                        </div>
+                                        </div>
 
-                        <!--<div noSwipeClick ng-click="poolroom.openActions = !poolroom.openActions" class="popover-content" ng-class="poolroom.openActions? 'slideLeft': 'slideRight'">
+                                        <!--<div noSwipeClick ng-click="poolroom.openActions = !poolroom.openActions" class="popover-content" ng-class="poolroom.openActions? 'slideLeft': 'slideRight'">
                             Click here
                         </div>-->
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="col-xs-12 no-padding ">
+                        <button ng-click="AddNewPool()" class="col-xs-12 btn btn-lg minimal">Add new Leaderboard</button>
                     </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    
-    <div class="col-xs-12 no-padding ">
-        <button ng-click="AddNewPool()" class="col-xs-12 btn btn-lg minimal">Add new Leaderboard</button>
+                </div>
+                <!-- END LEaderBoards -->
+
+            </tab>
+            <tab>
+                <tab-heading>
+                    Weekly
+                </tab-heading>
+
+            </tab>
+            <tab>
+                <tab-heading>
+                    Custom</tab-heading>
+            </tab>
+        </tabset>
     </div>
+    <!-- END panel tab-->
 </div>
-<!-- END LEaderBoards -->
+
+
+
 
 
 <!-- START OF SETUP-->
@@ -89,9 +109,9 @@
                 <div class="form-group text-left">
                     <label class="col-sm-2 control-label">Tile</label>
                     <div class="col-sm-10">
-                        
+
                         <multi-lang-text language-object="NewPool.title" default="en"></multi-lang-text>
-                        
+
                     </div>
                     <div class="col-xs-12"></div>
                     <label class="col-sm-2 control-label">Game ID</label>
@@ -101,9 +121,7 @@
                     <label class="col-sm-2 control-label">TimeSpan</label>
                     <div class="col-sm-5">
                         <p class="input-group">
-                            <input type="text" placeholder="Starts" name="date" datepicker-popup="{{format}}" ng-model="starts" is-open="opened['stars']"
-                            datepicker-options="dateOptions" ng-disabled="NewPool.gameid?true:false" close-text="Close" class="form-control"
-                            />
+                            <input type="text" placeholder="Ends" name="date" datepicker-popup="{{format}}" ng-model="NewPool.starts" is-open="opened['starts']" datepicker-options="dateOptions" ng-disabled="NewPool.gameid?true:false" close-text="Close" class="form-control" />
                             <span class="input-group-btn">
                                 <button type="button" ng-disabled="NewPool.gameid?true:false" ng-click="open($event,'starts')" class="btn btn-default"><em class="fa fa-calendar"></em></button>
                             </span>
@@ -111,9 +129,7 @@
                     </div>
                     <div class="col-sm-5">
                         <p class="input-group">
-                            <input type="text" placeholder="Ends" name="date" datepicker-popup="{{format}}" ng-model="NewPool.ends" is-open="opened['ends']"
-                            datepicker-options="dateOptions" ng-disabled="NewPool.gameid?true:false" close-text="Close" class="form-control"
-                            />
+                            <input type="text" placeholder="Ends" name="date" datepicker-popup="{{format}}" ng-model="NewPool.ends" is-open="opened['ends']" datepicker-options="dateOptions" ng-disabled="NewPool.gameid?true:false" close-text="Close" class="form-control" />
                             <span class="input-group-btn">
                                 <button type="button" ng-disabled="NewPool.gameid?true:false" ng-click="open($event,'ends')" class="btn btn-default"><em class="fa fa-calendar"></em></button>
                             </span>
@@ -172,9 +188,9 @@
                         <ui-select-match placeholder="Search prizes">{{$select.selected.name.en}}</ui-select-match>
                         <ui-select-choices repeat="prize in prizes | filter: $select.search">
                             <span ng-bind-html="prize.name.en | highlight: $select.search"></span>
-                        </ui-select-choices>
-                    </ui-select>
-                    <span class="input-group-btn">
+                </ui-select-choices>
+                </ui-select>
+                <span class="input-group-btn">
                         <button type="button"  ng-click="addPrize(modCtrl.selectedPrize,NewPool)" class="btn btn-default">Add</button>
                     </span>
                 </span>
@@ -263,12 +279,19 @@
                     <div class="col-sm-10">
                         <input type="text" ng-model="EditPool.gameid" disabled="" class="form-control" />
                     </div>
+                    <label class="col-sm-2 control-label">Type</label>
+                    <div class="btn-group col-sm-10">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default">Left</button>
+                            <button type="button" class="btn btn-default">Middle</button>
+                            <button type="button" class="btn btn-default">Right</button>
+                        </div>
+                    </div>
+
                     <label class="col-sm-2 control-label">TimeSpan</label>
                     <div class="col-sm-5">
                         <p class="input-group">
-                            <input type="text" placeholder="Starts" name="date" datepicker-popup="{{format}}" ng-model="starts" is-open="opened['stars']"
-                            datepicker-options="dateOptions" ng-disabled="EditPool.gameid?true:false" close-text="Close"
-                            class="form-control" />
+                            <input type="text" placeholder="Ends" name="date" datepicker-popup="{{format}}" ng-model="EditPool.starts" is-open="opened['starts']" datepicker-options="dateOptions" ng-disabled="EditPool.gameid?true:false" close-text="Close" class="form-control" />
                             <span class="input-group-btn">
                                 <button type="button" ng-disabled="EditPool.gameid?true:false" ng-click="open($event,'starts')" class="btn btn-default"><em class="fa fa-calendar"></em></button>
                             </span>
@@ -276,9 +299,7 @@
                     </div>
                     <div class="col-sm-5">
                         <p class="input-group">
-                            <input type="text" placeholder="Ends" name="date" datepicker-popup="{{format}}" ng-model="EditPool.ends" is-open="opened['ends']"
-                            datepicker-options="dateOptions" ng-disabled="EditPool.gameid?true:false" close-text="Close"
-                            class="form-control" />
+                            <input type="text" placeholder="Ends" name="date" datepicker-popup="{{format}}" ng-model="EditPool.ends" is-open="opened['ends']" datepicker-options="dateOptions" ng-disabled="EditPool.gameid?true:false" close-text="Close" class="form-control" />
                             <span class="input-group-btn">
                                 <button type="button" ng-disabled="EditPool.gameid?true:false" ng-click="open($event,'ends')" class="btn btn-default"><em class="fa fa-calendar"></em></button>
                             </span>
@@ -331,7 +352,7 @@
             <div class="panel-heading">
                 <label>Prizes</label>
             </div>
-             <div class="col-xs-12 no-padding">
+            <div class="col-xs-12 no-padding">
                 <p class="input-group col-xs-12 no-padding">
                     <ui-select ng-model="modCtrl.selectedPrize" theme="bootstrap" ng-disabled="" class="text-left">
                         <ui-select-match placeholder="Search prizes">{{$select.selected.name.en}}</ui-select-match>
@@ -344,12 +365,12 @@
                     </span>
                 </p>
             </div>
-            
+
             <ul html-sortable="sortableOptions" html-sortable-callback="sortableCallbackEdit" ng-model="EditPool.prizes" class="">
                 <li ng-repeat="prize in EditPool.prizes track by $index" class="list-group-item no-padding">
-                      <div class="col-xs-12 no-padding form-inline" style="background-color: #EDF1F2;">
-                       
-                          <div class="form-group col-xs-12 no-padding" ng-show="editPrizePos == prizePositions[$index]">
+                    <div class="col-xs-12 no-padding form-inline" style="background-color: #EDF1F2;">
+
+                        <div class="form-group col-xs-12 no-padding" ng-show="editPrizePos == prizePositions[$index]">
                             <div class="col-xs-2">
                                 <label>Position<span ng-show="prizePositions[$index].to - prizePositions[$index].from > 0">s</span></label>
                             </div>
@@ -362,7 +383,7 @@
                                 <button ng-click="removePrize(EditPool,prize)" class="delete col-xs-6 btn btn-sm btn-danger">Del</button>
                             </div>
                         </div>
-                        
+
                         <div ng-hide="editPrizePos == prizePositions[$index]">
                             <div ng-show="prizePositions[$index].from != prizePositions[$index].to && EditPool.prizes.length > 1">
                                 Positions from {{prizePositions[$index].from}} to {{prizePositions[$index].to}}
@@ -400,7 +421,7 @@
                 </li>
             </ul>
 
-            
+
         </div>
     </div>
     <div class="col-xs-12 card-footer">

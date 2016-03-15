@@ -52,6 +52,12 @@
         ]
     },
     {
+        "text": "Leaderboards",
+        "sref": "app.leaderboards",
+        "icon": "icon-list",
+        "translate": "Leaderboards"
+    },
+    {
         "text": "Pushes",
         "sref": "app.pushes",
         "icon": "icon-note",

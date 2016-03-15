@@ -98,6 +98,7 @@
             <p class="m0">Array of objects with single property binding</p>
          </div>
          <div class="col-md-4 col-sm-8">
+             
             <ui-select multiple="" ng-model="uisel.multipleDemo.selectedPeopleSimple" theme="bootstrap" ng-disabled="uisel.disabled">
                <ui-select-match placeholder="Select uisel.person...">{{$item.name}} &lt;{{$item.email}}&gt;</ui-select-match>
                <ui-select-choices repeat="person.email as person in uisel.people | propsFilter: {name: $select.search, age: $select.search}">
