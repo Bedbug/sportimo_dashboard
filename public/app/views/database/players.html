@@ -1,3 +1,15 @@
+<div ng-show="gridOptions.rowData" class="container-fluid">
+    <div class="clearfix no-padding">
+        <button class="col-xs-12 btn btn-lg minimal"><strong>{{selectedPool.title.en}}</strong></button>
+    </div>
+    <div angular-grid="gridOptions" style="width: 100%; height: 400px;" class="ag-angle"></div>
+    <div class="col-xs-12 no-padding ">
+        <button ng-click="gridOptions.rowData = null; gridOptions.api.onNewRows();" class="col-xs-6 btn btn-lg minimal">Close Leaderboard</button>
+        <button ladda="loading.leaderboard"  data-style="expand-left" data-spinner-color="#99999" ng-click="showLeaderboard(selectedPool)" class="ladda-button col-xs-6 btn btn-lg minimal">Reload Leaderboard</button>
+    </div>
+</div>
+
+
 <div ng-show="MassUpdateObjects.length > 0" class="events-self ">
     <div class="events-self panel">
         <div class="panel-heading">

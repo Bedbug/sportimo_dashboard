@@ -12339,7 +12339,8 @@ flatdoc .button .badge {
 .bg-light-green-900,
 .bg-lime-900,
 .bg-orange-800,
-.bg-orange-900,
+.bg-orange-900,@media only screen and (min-width: 768px)
+.wrapper>.aside .aside-inner {
 .bg-deep-orange,
 .bg-deep-orange-500,
 .bg-deep-orange-600,

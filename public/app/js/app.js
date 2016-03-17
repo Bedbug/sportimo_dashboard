@@ -5559,18 +5559,103 @@
 
     angular
         .module('app.leaderboards')
+        .service('LeaderboardsService', LeaderboardsService)
         .controller('LeaderboardsController', LeaderboardsController);
-    
-LeaderboardsController.$inject = ['CountriesService', 'PrizesService', 'SponsorsService', 'PoolsService', '$scope', 'ngDialog', '$stateParams', '$http', '$rootScope', '$timeout', '$interval', '$mdToast', '$mdBottomSheet', '$window'];
-    
-    function LeaderboardsController(CountriesService, PrizesService, SponsorsService, PoolsService, $scope, ngDialog, $stateParams, $http, $rootScope, $timeout, $interval, $mdToast, $mdBottomSheet, $window) {
+
+    LeaderboardsService.$inject = ['$rootScope', '$q', 'Restangular'];
+
+    function LeaderboardsService($rootScope, $q, Restangular) {
+        var LeaderboardsAPI = Restangular.all('leaderpay/v1/leaderboards');
+
+        Restangular.setBaseUrl($rootScope.servers[$rootScope.serverEnvironment].game_server);
+        Restangular.setRestangularFields({
+            id: "_id"
+        });
+
+        return {
+
+            getLeaderboard: function (pool) {
+                var Defer = $q.defer();
+
+                LeaderboardsAPI.post(pool).then(function (data) {
+                    Defer.resolve(data);
+                });
+
+                return Defer.promise;
+            }
+        }
+    };
+
+    LeaderboardsController.$inject = ['LeaderboardsService', 'CountriesService', 'PrizesService', 'SponsorsService', 'PoolsService', '$scope', 'ngDialog', '$stateParams', '$http', '$rootScope', '$timeout', '$interval', '$mdToast', '$mdBottomSheet', '$window'];
+
+    function LeaderboardsController(LeaderboardsService, CountriesService, PrizesService, SponsorsService, PoolsService, $scope, ngDialog, $stateParams, $http, $rootScope, $timeout, $interval, $mdToast, $mdBottomSheet, $window) {
 
         var vm = $scope;
+        vm.loading = {};
+
+        //-----------------------------
+        // Get the data from SERVER
+        //-----------------------------
+
+        // Basic
+        var columnDefs = [
+            {
+                displayName: 'Nickname',
+                field: 'name',
+                width: 100
+                },
+            {
+                displayName: 'Score',
+                field: 'score',
+                width: 100
+                },
+            {
+                displayName: 'Country',
+                field: 'country',
+                width: 100
+                },
+            {
+                displayName: 'ID',
+                field: '_id',
+                width: 100
+                }
+            ];
+
+        // LeaderBoards Grid
+        vm.gridOptions = {
+            columnDefs: columnDefs,
+            rowSelection: 'single',
+            rowData: null,
+            ready: function (api) {
+                api.sizeColumnsToFit();
+            },
+            rowClicked: rowClicked
+        };
         
-         // Moderation-PoolRooms
-        
+        vm.userSelected = null;
+        function rowClicked(params) {
+               vm.userSelected = params.data;
+        }
+
+        vm.showLeaderboard = function (pool) {
+            vm.loading.leaderboard = true;
+            vm.selectedPool = pool;
+            LeaderboardsService
+                .getLeaderboard(pool)
+                .then(function (data) {
+                    // pinning
+                    vm.gridOptions.rowData = data;
+                    vm.gridOptions.api.onNewRows();
+                    vm.gridOptions.api.sizeColumnsToFit();
+                    vm.loading.leaderboard = false;
+                });
+        }
+
+
+        // 
+        // PoolRooms
         vm.PoolRooms = null;
-        
+
         $scope.sortableCallbackNew = function (sourceModel, destModel, start, end) {
             vm.updatePrizePositions(vm.NewPool, vm.prizePositions);
         };
@@ -5583,11 +5668,11 @@ LeaderboardsController.$inject = ['CountriesService', 'PrizesService', 'Sponsors
             forcePlaceholderSize: true
         };
 
-        
+
         PoolsService.getNonGamePools().then(function (pools) {
             vm.PoolRooms = pools;
         });
-        
+
         vm.setDefault = function (pool) {
             vm.PoolRooms.forEach(function (eachpool) {
                 eachpool.isdefault = false;
@@ -5602,7 +5687,7 @@ LeaderboardsController.$inject = ['CountriesService', 'PrizesService', 'Sponsors
             var $index = 1;
             _.forEach(pool.prizes, function (prize) {
                 var pos = {};
-               
+
                 if (prize.positions && prize.positions.to)
                     pos.to = prize.positions.to;
                 if (prize.positions && prize.positions.from)
@@ -5623,7 +5708,6 @@ LeaderboardsController.$inject = ['CountriesService', 'PrizesService', 'Sponsors
             vm.NewPool = null;
         }
         vm.AddNewPool = function () {
-            console.log(vm.NewPool);
             vm.NewPool = {
 
                 title: {
@@ -5665,6 +5749,12 @@ LeaderboardsController.$inject = ['CountriesService', 'PrizesService', 'Sponsors
             };
         }
 
+        vm.removePool = function (pool) {
+            pool.remove().then(function () {
+                vm.PoolRooms = _.without(vm.PoolRooms, pool);
+            });
+        }
+
         SponsorsService.getAll().then(function (sponsors) {
             vm.sponsors = sponsors;
         });
@@ -5678,6 +5768,8 @@ LeaderboardsController.$inject = ['CountriesService', 'PrizesService', 'Sponsors
                 from: vm.prizePositions.length > 0 ? vm.prizePositions[vm.prizePositions.length - 1].to + 1 : 1,
                 to: vm.prizePositions.length > 0 ? vm.prizePositions[vm.prizePositions.length - 1].to + 1 : 1
             };
+
+            console.log(prize);
             var newprize = {
                 name: prize.name,
                 text: prize.text,
@@ -5756,10 +5848,10 @@ LeaderboardsController.$inject = ['CountriesService', 'PrizesService', 'Sponsors
         vm.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
         vm.format = vm.formats[0];
         vm.searchObj = {};
-        
-        
+
+
     };
-                                               
+
 })();
 
 (function () {
@@ -5902,8 +5994,8 @@ LeaderboardsController.$inject = ['CountriesService', 'PrizesService', 'Sponsors
                 });
                 return Defer.promise;
             },
-            
-            
+
+
             // getSchedule: function() {
             //     var Defer = $q.defer();
             //     Schedule.getList().then(function(schedule) {
@@ -5948,9 +6040,9 @@ LeaderboardsController.$inject = ['CountriesService', 'PrizesService', 'Sponsors
     }
 
 
-    SportimoModerationSoccerController.$inject = ['CountriesService', 'PrizesService', 'SponsorsService', 'PoolsService', '$scope', 'ngDialog', '$stateParams', '$http', '$rootScope', '$timeout', '$interval', '$mdToast', '$mdBottomSheet', '$window'];
+    SportimoModerationSoccerController.$inject = ['LeaderboardsService', 'CountriesService', 'PrizesService', 'SponsorsService', 'PoolsService', '$scope', 'ngDialog', '$stateParams', '$http', '$rootScope', '$timeout', '$interval', '$mdToast', '$mdBottomSheet', '$window'];
 
-    function SportimoModerationSoccerController(CountriesService, PrizesService, SponsorsService, PoolsService, $scope, ngDialog, $stateParams, $http, $rootScope, $timeout, $interval, $mdToast, $mdBottomSheet, $window) {
+    function SportimoModerationSoccerController(LeaderboardsService, CountriesService, PrizesService, SponsorsService, PoolsService, $scope, ngDialog, $stateParams, $http, $rootScope, $timeout, $interval, $mdToast, $mdBottomSheet, $window) {
 
 
         var vm = $scope;
@@ -5960,6 +6052,74 @@ LeaderboardsController.$inject = ['CountriesService', 'PrizesService', 'Sponsors
         vm.PoolRooms = null;
 
         vm.matchid = $stateParams.id;
+
+        vm.loading = {};
+
+        //-----------------------------
+        // Get the data from SERVER
+        //-----------------------------
+
+        // Basic
+        var columnDefs = [
+            {
+                displayName: 'Nickname',
+                field: 'name',
+                width: 100
+                },
+            {
+                displayName: 'Score',
+                field: 'score',
+                width: 100
+                },
+            {
+                displayName: 'Country',
+                field: 'country',
+                width: 100
+                },
+            {
+                displayName: 'ID',
+                field: '_id',
+                width: 100
+                }
+            ];
+
+        // LeaderBoards Grid
+        vm.gridOptions = {
+            columnDefs: columnDefs,
+            rowData: null,
+            rowSelection: 'single',
+            ready: function (api) {
+                api.sizeColumnsToFit();
+            },
+               rowClicked: rowClicked
+        };
+        
+        vm.userSelected = null;
+        function rowClicked(params) {
+               vm.userSelected = params.data;
+        }
+
+
+        vm.showLeaderboard = function (pool) {
+            vm.loading.leaderboard = true;
+            vm.selectedPool = pool;
+            LeaderboardsService
+                .getLeaderboard(pool)
+                .then(function (data) {
+                    console.log(data);
+                    // pinning
+                    vm.gridOptions.rowData = data;
+                    vm.gridOptions.api.onNewRows();
+                    vm.gridOptions.api.sizeColumnsToFit();
+
+                    $timeout(function () {
+                        vm.gridOptions.api.sizeColumnsToFit();
+                        console.log("now");
+                        vm.loading.leaderboard = false;
+                    }, 100);
+                });
+        }
+
 
         // $rootScope.toggleEnvironment = function () {
         //     if ($rootScope.serverEnvironment == 'production')
@@ -6470,7 +6630,7 @@ LeaderboardsController.$inject = ['CountriesService', 'PrizesService', 'Sponsors
         var match_timer;
 
         function AddHooks(match) {
-            //console.log(match);
+            console.log(match);
             if (angular.isDefined(match_timer)) {
                 $interval.cancel(match_timer);
                 match_timer = undefined;
@@ -6649,6 +6809,13 @@ LeaderboardsController.$inject = ['CountriesService', 'PrizesService', 'Sponsors
                 country: []
             };
         }
+
+        vm.removePool = function (pool) {
+            pool.remove().then(function () {
+                vm.PoolRooms = _.without(vm.PoolRooms, pool);
+            });
+        }
+
 
         SponsorsService.getAll().then(function (sponsors) {
             vm.sponsors = sponsors;
@@ -14715,7 +14882,7 @@ LeaderboardsController.$inject = ['CountriesService', 'PrizesService', 'Sponsors
                 url: '/leaderboards',
                 title: 'Leaderboards',
                 templateUrl: helper.basepath('database/leaderboards.html'),
-                resolve: helper.resolveFor('toaster', 'dirPagination', 'moment', 'moment-format', 'ui.select', 'ngDialog', 'htmlSortable'),
+                resolve: helper.resolveFor('toaster', 'dirPagination', 'moment', 'moment-format', 'ui.select', 'ngDialog', 'htmlSortable', 'angularGrid'),
                 controller: 'LeaderboardsController',
                 controllerAs: 'vm'
             })
@@ -14723,7 +14890,7 @@ LeaderboardsController.$inject = ['CountriesService', 'PrizesService', 'Sponsors
                 url: '/match-moderation/soccer/:id',
                 title: 'Mathces Administration',
                 templateUrl: helper.basepath('sportimo/moderation/sportimo_moderation_soccer.html'),
-                resolve: helper.resolveFor('toaster', 'dirPagination', 'moment', 'moment-format', 'ui.select', 'ngDialog', 'htmlSortable'),
+                resolve: helper.resolveFor('toaster', 'dirPagination', 'moment', 'moment-format', 'ui.select', 'ngDialog', 'htmlSortable', 'angularGrid'),
                 controller: 'SportimoModerationSoccerController',
                 controllerAs: 'modCtrl',
             })
@@ -15878,6 +16045,7 @@ LeaderboardsController.$inject = ['CountriesService', 'PrizesService', 'Sponsors
             vm.gridOptions = {
                 columnDefs: columnDefs,
                 rowData: null,
+                rowSelection: 'single',
                 ready: function (api) {
                     api.sizeColumnsToFit();
                 }
