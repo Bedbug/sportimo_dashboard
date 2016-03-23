@@ -1,30 +1,30 @@
-<div class="row">
-    <div class="col-xs-12" style="display:table; position:relative;">
-        <div ng-show="selected && lObject" style="display: table-cell" >
-            <div>
-                <input type="text" placeholder="Leaderboard description" class="form-control" ng-model="lObject[selected]" />
-            </div>
+<div class="col-md-12 p0">
+<!--   LABEL   -->
+    <label ng-show="label">{{label}}</label>
+<!-- INPUTS    -->
+     <div class="form-group" style=''> 
+        <div class="col-md-6 col-lg-4 no-padding" style="">
+            <span class="input-group">
+                           <select chosen="somethibg" ng-change="showChange('hello')" disable-search="true" data-placeholder="Add new" allow-single-deselect="true" ng-model="selected" ng-options="key as key for (key , value) in lObject" class="form-control chosen-select">
+                    <option value=""></option>
+                </select>
+                <span class="input-group-btn">
+                             <div ng-show="!selected || !lObject">
+                              <button  ng-click="pushLangKey()"  class="form-control  btn btn-default">+</button>
+                              </div>
+                            </span>
+            <span class="input-group-btn">
+                             <div ng-show="selected && lObject">
+                              <button  ng-click="delete(selected)" class="form-control  btn btn-default">-</button>
+                              </div>
+                            </span>
+            </span>
         </div>
-        <div ng-show="!selected || !lObject" style="display: table-cell">
-            <div>
-                <input type="text" placeholder="Add new language key" class="form-control" ng-model="newLangKey" />
-            </div>
+        <div ng-show="selected && lObject" class="col-md-6 col-lg-8 no-padding" style="">
+            <input style="text-align: center;" type="text" placeholder="Leaderboard description" class="form-control" ng-model="lObject[selected]" />
         </div>
-        <div ng-show="!selected || !lObject" style="display: table-cell; ">
-             <button  ng-click="pushLangKey()"  class="form-control  btn btn-default" style="margin-top: 3px;">+</button>
-        </div>
-        
-       <div ng-show="selected && lObject" style="display: table-cell">
-        <button ng-click="delete(selected)" class="form-control  btn btn-default" style="margin-top: 3px;">-</button>
-       </div>
-        
-        <div style="display: table-cell">
-            <select chosen disable-search="true" data-placeholder="Add new" allow-single-deselect="true" ng-model="selected" ng-options="key as key for (key , value) in lObject"
-            class="form-control chosen-select">
-                <option value=""></option>
-            </select>
+        <div style="text-align: center;" ng-show="!selected || !lObject" class="col-md-6 col-lg-8 no-padding" style="">
+            <input type="text" placeholder="Add new language key" class="form-control" ng-model="newLangKey" />
         </div>
     </div>
-
-    <div style="clear: both"></div>
 </div>

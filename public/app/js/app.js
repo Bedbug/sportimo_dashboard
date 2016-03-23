@@ -51,13 +51,12 @@
             'app.teams',
             "app.schedule",
             "app.players",
+            "app.data",
             "app.publications",
-        "app.leaderboards",
+            "app.leaderboards",
             "angular-ladda"
         ]);
 })();
-
-
 
 (function () {
     'use strict';
@@ -122,6 +121,12 @@
         .module('app.players', []);
 })();
 
+(function () {
+    'use strict';
+
+    angular
+        .module('app.data', []);
+})();
 
 (function () {
     'use strict';
@@ -402,13 +407,18 @@
         .module('app.bootstrapui')
         .config(bootstrapuiConfig);
 
-    bootstrapuiConfig.$inject = ['$tooltipProvider'];
-
-    function bootstrapuiConfig($tooltipProvider) {
-        $tooltipProvider.options({
-            appendToBody: true
-        });
+    function bootstrapuiConfig() {
+        //        $tooltipProvider.options({
+        //            appendToBody: true
+        //        });
     }
+    //    bootstrapuiConfig.$inject = ['$tooltipProvider'];
+
+    //    function bootstrapuiConfig($tooltipProvider) {
+    //        $tooltipProvider.options({
+    //            appendToBody: true
+    //        });
+    //    }
 })();
 /**=========================================================
  * Module: demo-buttons.js
@@ -4721,7 +4731,7 @@
         /* START of Match Context menu*/
         /* Moderate */
         $scope.ModerateMatch = function (matchid, sport) {
-                console.log(matchid);
+
                 $state.go("app.match-moderation-" + (sport || 'soccer'), {
                     id: (matchid || "565c4af6e4b030fba33dd459")
                 });
@@ -4828,63 +4838,374 @@
 
 })();
 
+(function(){
+    'use strict';
+    
+    angular.module('app.data')
+    .controller('EditorController', EditorController);
+    
+   EditorController.$inject = ['$window','$scope', '$stateParams','PlayersService'];
+    
+    function EditorController($window, $scope, $stateParams, PlayersService){
+        console.log($stateParams.type);
+        console.log($stateParams.id);
+        $scope.view = {
+            selectedLoading: true
+        }
+        
+        PlayersService.getPlayer($stateParams.id).then(function(player){
+            
+            if(player)
+                $scope.selectedItem = player;
+            
+             $scope.view.selectedLoading = false;
+        })
+        
+    }
+    
+    
+    
+    
+    
+})();
+
+
 (function () {
     'use strict';
 
     angular
         .module('app.players')
-        .controller('PlayersController', PlayersController)
+        .directive('playerEdit', playerEdit)
+        .directive('teamEdit', teamEdit)
+        .directive('imageUpload', imageUpload)
+        .controller('PlayersController', PlayersController);
 
-    PlayersController.$inject = ['$scope', 'TeamsService', 'PlayersService', 'DTOptionsBuilder', 'DTColumnDefBuilder', 'Upload', '$window'];
+    imageUpload = ['$window', 'Upload']
+
+    function imageUpload($window, Upload) {
+        return {
+            restrict: 'E',
+            templateUrl: './app/views/directives/imageUpload.html',
+            scope: {
+                filename: '=filename',
+                folder: '@folder',
+                shouldUpdate: '@shouldUpdate',
+                ngModel: '=ngModel',
+                picKey: '@picKey'
+            },
+            controller: ['$scope', function ($scope) {
+
+                $scope.searchFor = function (forQuery) {
+                    $window.open('https://www.google.gr/search?q=' + forQuery + '+logo&tbm=isch', '_blank');
+                };
+
+
+                var bucket = 'https://s3-eu-west-1.amazonaws.com/sportimo-media/';
+                $scope.uploadFile = function (file, player) {
+                    console.log(file.name.substr(file.name.lastIndexOf('.') + 1));
+                    // console.log(file);
+                    Upload.upload({
+                        url: 'https://s3-eu-west-1.amazonaws.com/sportimo-media', //S3 upload url including bucket name
+                        method: 'POST',
+                        data: {
+                            key: $scope.folder + '/' + $scope.filename + '.' + file.name.substr(file.name.lastIndexOf('.') + 1), // the key to store the file on S3, could be file name or customized
+                            AWSAccessKeyId: "AKIAJHAZLDHNWH7S45CQ",
+                            acl: 'public-read', // sets the access to the uploaded file in the bucket: private, public-read, ...
+                            policy: "ewogICJleHBpcmF0aW9uIjogIjIwMjAtMDEtMDFUMDA6MDA6MDBaIiwKICAiY29uZGl0aW9ucyI6IFsKICAgIHsiYnVja2V0IjogInNwb3J0aW1vLW1lZGlhIn0sCiAgICBbInN0YXJ0cy13aXRoIiwgIiRrZXkiLCAiIl0sCiAgICB7ImFjbCI6ICJwdWJsaWMtcmVhZCJ9LAogICAgWyJzdGFydHMtd2l0aCIsICIkQ29udGVudC1UeXBlIiwgIiJdLAogICAgWyJzdGFydHMtd2l0aCIsICIkZmlsZW5hbWUiLCAiIl0sCiAgICBbImNvbnRlbnQtbGVuZ3RoLXJhbmdlIiwgMCwgNTI0Mjg4MDAwXQogIF0KfQ==", // base64-encoded json policy (see article below)
+                            signature: "22lwJf8Yl4B8qoOT6OrtHqIH6qs=", // base64-encoded signature based on policy string (see article below)
+                            "Content-Type": file.type != '' ? file.type : 'application/octet-stream', // content type of the file (NotEmpty)
+                            filename: file.name, // this is needed for Flash polyfill IE8-9
+                            file: file
+                        }
+                    }).then(function (resp) {
+                        $scope.ngModel[$scope.picKey] = bucket + $scope.folder + '/' + $scope.filename + "." + file.name.substr(file.name.lastIndexOf('.') + 1);
+
+                        console.log($scope.shouldUpdate);
+                        if ($scope.shouldUpdate) {
+                            $scope.ngModel.save();
+                        }
+                        console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
+                    }, function (resp) {
+                        console.log('Error status: ' + resp.status);
+
+                    }, function (evt) {
+                        //                        var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                        // console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+                    });
+                }
+
+             }]
+        };
+    }
+
+    playerEdit.$inject = ['$timeout', 'TagsService'];
+
+    function playerEdit($timeout, TagsService) {
+        return {
+            restrict: 'E',
+            templateUrl: './app/views/directives/playerEdit.html',
+            scope: {
+                positions: '=positions',
+                reload: '=reload',
+                loading: '=loader',
+                selectedItem: '=ngModel',
+                onCancel: '@onCancel',
+                type: '@type'
+            },
+            controller: ['$scope','$window', function ($scope, $window) {
+
+                $scope.loading = true;
+                $scope.$watch('reload', function (newValue, oldValue) {
+                    if (newValue) {
+                        $timeout(function () {
+                            $scope.loading = false;
+                            $scope.reload = false;
+                        }, 600);
+                    }
+                });
+
+                TagsService.getAllTags().then(function (tags) {
+                    $scope.Tags = tags;
+                });
+
+                console.log("tags:" + $scope.Tags)
+                $scope.updateByFeedParser = function (item, parserid) {
+                    console.log("ID: " + parserid);
+                }
+
+                $scope.openedCal = {};
+
+                $scope.openCal = function ($event, whichCal) {
+                    $event.preventDefault();
+                    $event.stopPropagation();
+                    $scope.openedCal[whichCal] = true;
+                };
+
+                $scope.cancel = function(){
+                    
+                    console.log($scope.onCancel)
+                    if($scope.onCancel == 'back'){
+                        $window.history.back();
+                    }
+                    else
+                        $scope.selectedItem = null;
+                }
+
+                $scope.$watch('selectedItem.personalData.birth.birthDate.full', function (newValue, oldValue) {
+                    var date = new Date(newValue);
+                    if (!newValue) return;
+                    $scope.selectedItem.personalData.birth.birthDate.year = date.getYear();
+                    $scope.selectedItem.personalData.birth.birthDate.month = date.getMonth();
+                    $scope.selectedItem.personalData.birth.birthDate.date = date.getDate();
+                });
+
+             }]
+        };
+    };
+
+    teamEdit.$inject = ['$timeout', 'TagsService', 'TeamsService'];
+
+    function teamEdit($timeout, TagsService, TeamsService) {
+        return {
+            restrict: 'E',
+            templateUrl: './app/views/directives/teamEdit.html',
+            scope: {
+                positions: '=positions',
+                reload: '=reload',
+                loading: '=loader',
+                selectedItem: '=ngModel',
+                type: '@type'
+            },
+            controller: ['$scope', function ($scope) {
+
+                $scope.loading = true;
+                $scope.$watch('reload', function (newValue, oldValue) {
+                    if (newValue) {
+                        $timeout(function () {
+                            $scope.loading = false;
+                            $scope.reload = false;
+                        }, 600);
+                    }
+                });
+
+                TagsService.getAllTags().then(function (tags) {
+                    $scope.Tags = tags;
+                });
+
+                console.log("tags:" + $scope.Tags)
+                $scope.updateByFeedParser = function (item, parserid) {
+                    console.log("ID: " + parserid);
+                }
+
+                $scope.openedCal = {};
+
+                $scope.openCal = function ($event, whichCal) {
+                    $event.preventDefault();
+                    $event.stopPropagation();
+                    $scope.openedCal[whichCal] = true;
+                };
 
 
 
-    function PlayersController($scope, TeamsService, PlayersService, DTOptionsBuilder, DTColumnDefBuilder, Upload, $window) {
+                $scope.$watch('selectedItem.personalData.birth.birthDate.full', function (newValue, oldValue) {
+                    var date = new Date(newValue);
+                    if (!newValue) return;
+                    $scope.selectedItem.personalData.birth.birthDate.year = date.getYear();
+                    $scope.selectedItem.personalData.birth.birthDate.month = date.getMonth();
+                    $scope.selectedItem.personalData.birth.birthDate.date = date.getDate();
+                });
+
+                $scope.view = {
+                    editItem: 0,
+                    loadingPlayers: 0
+                }
+
+                /* Players */
+                $scope.LoadPlayers = function () {
+                    $scope.view.loadingPlayers = 1;
+                    TeamsService.getFullTeam($scope.selectedItem._id).then(function (fullTeam) {
+                        $scope.selectedItem.players = fullTeam.players;
+                        $scope.selectedItem.playersLoaded = true;
+
+                        $scope.view.loadingPlayers = 0;
+                    })
+                }
+                $scope.pushPlayer = function (player) {
+                    if (player) {
+                        player.team = $scope.selectedTeam._id;
+                        player.save().then(function () {
+                            $scope.selectedItem.players.push(player);
+                            $scope.selectedItem.save().then(function () {
+                                console.log("All OK!");
+                            })
+                        });
+                    }
+                }
+
+             }]
+        };
+    };
+
+    PlayersController.$inject = ['$scope', 'TagsService', 'TeamsService', 'PlayersService', 'DTOptionsBuilder', 'DTColumnDefBuilder', '$window', '$filter', '$timeout', '$state'];
+
+
+
+    function PlayersController($scope, TagsService, TeamsService, PlayersService, DTOptionsBuilder, DTColumnDefBuilder, $window, $filter, $timeout, $state) {
+
 
         var vm = $scope;
         vm.Players = [];
         vm.Teams = [];
+        vm.loading = {};
+        vm.selectedItem = null;
+        vm.Tags = null;
 
-
-        vm.view = {
-            editItem: 0,
-            loadingPlayers: 0
-        }
-
-        var bucket = 'https://s3-eu-west-1.amazonaws.com/sportimo-media/';
-        vm.uploadFile = function (file, player) {
-            console.log(file.name.substr(file.name.lastIndexOf('.') + 1));
-            // console.log(file);
-            Upload.upload({
-                url: 'https://s3-eu-west-1.amazonaws.com/sportimo-media', //S3 upload url including bucket name
-                method: 'POST',
-                data: {
-                    key: 'players/' + player._id + '.' + file.name.substr(file.name.lastIndexOf('.') + 1), // the key to store the file on S3, could be file name or customized
-                    AWSAccessKeyId: "AKIAJHAZLDHNWH7S45CQ",
-                    acl: 'public-read', // sets the access to the uploaded file in the bucket: private, public-read, ...
-                    policy: "ewogICJleHBpcmF0aW9uIjogIjIwMjAtMDEtMDFUMDA6MDA6MDBaIiwKICAiY29uZGl0aW9ucyI6IFsKICAgIHsiYnVja2V0IjogInNwb3J0aW1vLW1lZGlhIn0sCiAgICBbInN0YXJ0cy13aXRoIiwgIiRrZXkiLCAiIl0sCiAgICB7ImFjbCI6ICJwdWJsaWMtcmVhZCJ9LAogICAgWyJzdGFydHMtd2l0aCIsICIkQ29udGVudC1UeXBlIiwgIiJdLAogICAgWyJzdGFydHMtd2l0aCIsICIkZmlsZW5hbWUiLCAiIl0sCiAgICBbImNvbnRlbnQtbGVuZ3RoLXJhbmdlIiwgMCwgNTI0Mjg4MDAwXQogIF0KfQ==", // base64-encoded json policy (see article below)
-                    signature: "22lwJf8Yl4B8qoOT6OrtHqIH6qs=", // base64-encoded signature based on policy string (see article below)
-                    "Content-Type": file.type != '' ? file.type : 'application/octet-stream', // content type of the file (NotEmpty)
-                    filename: file.name, // this is needed for Flash polyfill IE8-9
-                    file: file
-                }
-            }).then(function (resp) {
-                player.pic = bucket + 'players/' + player._id + "." + file.name.substr(file.name.lastIndexOf('.') + 1);
-                console.log(player.pic);
-                player.save();
-                console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
-            }, function (resp) {
-                console.log('Error status: ' + resp.status);
-
-            }, function (evt) {
-                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-                // console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+        vm.itemClicked = function (action, type, item) {
+            $state.go("app.data", {
+                action:action,
+                type: type,
+                id: item._id
             });
         }
 
+        // ******* LOADING DATA ********** //
+        TagsService.getAllTags().then(function (tags) {
+            vm.Tags = tags;
+            // Populate Players
+            PlayersService.getAllPlayers().then(function (players) {
+                vm.Players = players;
+                _.forEach(vm.Players, function (player) {
+                    player.team = TagsService.getTeamNameById(player.teamId);
+                })
+                vm.gridOptions.data = players;
+
+                vm.positions = _.pluck(_.uniq(vm.Players, 'position'), 'position');
+
+
+                vm.loading.players = false;
+            }, function (error) {});
+        })
+
+
+
+        var data = [];
+        vm.filterOptions = {
+            filterText: "",
+            useExternalFilter: true
+        };
+
+        $scope.$watch('filterOptions', function () {
+            //Call an async function to fetch data here.
+            vm.gridOptions.data = $filter('filter')(vm.Players, vm.filterOptions.filterText);
+
+        }, true);
+
+        vm.gridOptions = {
+            enableRowSelection: true,
+            enableRowHeaderSelection: false,
+            multiSelect: false,
+            //            enableFiltering: true,
+            filterOptions: vm.filterOptions,
+            enableColumnResizing: true,
+            columnDefs: [
+                {
+                    name: 'Name',
+                    field: 'name.en'
+                    },
+                {
+                    name: 'Position',
+                    field: 'position'
+                    },
+                {
+                    name: 'Team',
+                    field: 'team',
+
+                    }
+                ],
+            data: data,
+            onRegisterApi: function (gridApi) {
+                vm.gridApi = gridApi;
+                gridApi.selection.on.rowSelectionChanged($scope, function (row) {
+
+                    vm.itemClicked('edit','player', row.entity);
+
+                    //                    if (vm.selectedItem) {
+                    //                        vm.view.selectedLoading = true;
+                    //                        $timeout(function () {
+                    //                            vm.selectedItem = row.entity;
+                    //                            vm.view.selectedLoading = false;
+                    //                            $scope.gridApi.core.handleWindowResize();
+                    //                        }, 400)
+                    //                    } else {
+                    //                        vm.reload = true;
+                    //                        vm.selectedItem = row.entity;
+                    //                        $scope.gridApi.core.handleWindowResize();
+                    //                    }
+
+                });
+            }
+        };
+
+        vm.createNew = function () {
+            vm.createdReload = true;
+            vm.newItem = {};
+
+        }
+
+
+
+        function rowClicked(params) {
+            vm.selectedItem = params.data;
+        }
+
+
+
+
+
+
         /* Scope Methods */
         vm.editItem = function (player) {
-            console.log(player);
+
             vm.selectedItem = player;
             if (!vm.selectedItem.name.en) {
                 vm.selectedItem.name.en = "";
@@ -4914,73 +5235,13 @@
             }
         }
 
-        vm.MassUpdateObjects = [];
-        vm.MassUpdateChanges = {};
-        vm.allSelected = null;
-        vm.dtInstance = null;
-
-        vm.pushMassUpdate = function (event, player) {
-            if (vm.isSelected(player))
-                vm.MassUpdateObjects.push(player);
-            else
-                vm.MassUpdateObjects = _.without(vm.MassUpdateObjects, player);
-
-            console.log(vm.MassUpdateObjects.length);
-        }
-        vm.selectAll = function () {
-            console.log(vm.dtInstance);
-            //  console.log(vm.dtInstance.dataTable._('tr', {"filter":"applied"})[0]);
-
-            vm.allSelected = true;
-        }
-        vm.selectNone = function () {
-            vm.allSelected = false;
-            vm.MassUpdateObjects = [];
-        }
-
-        vm.massUpdate = function () {
-            vm.MassUpdateObjects.forEach(function (item) {
-                if (vm.MassUpdateChanges.league != null) {
-                    item.league = vm.MassUpdateChanges.league;
-                    item.save();
-                }
-            })
-        }
 
         vm.getTeam = function (id) {
             return _.findWhere(vm.Teams, {
                 "_id": id
             });
         }
-
-        /* Upload Mechanics*/
-        // $scope.$watch('files', function () {
-        //     $scope.upload($scope.files);
-        // });
-        // $scope.$watch('file', function () {
-        //     if ($scope.file != null) {
-        //         $scope.files = [$scope.file];
-        //     }
-        // });
-        // $scope.log = '';
-
-
-        vm.searchFor = function (forQuery) {
-            $window.open('https://www.google.gr/search?q=' + forQuery + '+logo&tbm=isch', '_blank');
-
-        };
-
-        TeamsService.getAllTeams().then(function (teams) {
-            vm.Teams = teams;
-        }, function (error) {});
-
-        PlayersService.getAllPlayers().then(function (players) {
-            vm.Players = players;
-        }, function (error) {});
-
     }
-
-
 
 })();
 
@@ -5188,7 +5449,7 @@
 
     PlayersService.$inject = ['$resource', 'Restangular', '$q', '$rootScope'];
     TeamsService.$inject = ['$resource', 'Restangular', '$q', '$rootScope'];
-    TeamsController.$inject = ['$scope', 'TeamsService', 'PlayersService', 'TagsService', 'DTOptionsBuilder', 'DTColumnDefBuilder', 'Upload', '$window'];
+    TeamsController.$inject = ['$scope', 'TeamsService', 'PlayersService', 'TagsService', 'DTOptionsBuilder', 'DTColumnDefBuilder', 'Upload', '$window', '$filter', '$timeout'];
 
     function MultiLangText() {
         return {
@@ -5196,16 +5457,27 @@
             templateUrl: './app/views/directives/multiLangInput.html',
             scope: {
                 selected: '@default',
-
+                label: '@label',
                 lObject: '=languageObject',
-
+                ngModel: '=ngModel'
             },
             controller: ['$scope', function ($scope) {
 
                 $scope.$watch('lObject', function (newValue, oldValue) {
                     if ($scope.lObject && $scope.lObject.en)
                         $scope.selected = 'en';
+
+                    $scope.showChange();
                 });
+
+                $scope.showChange = function () {
+                    if ($scope.lObject)
+                        $scope.ngModel = {
+                            key: $scope.selected,
+                            value: $scope.lObject[$scope.selected]
+                        };
+
+                }
 
                 $scope.pushLangKey = function () {
                     $scope.lObject[$scope.newLangKey] = "";
@@ -5249,12 +5521,155 @@
         };
     };
 
-    function TeamsController($scope, TeamsService, PlayersService, TagsService, DTOptionsBuilder, DTColumnDefBuilder, Upload, $window) {
+    function TeamsController($scope, TeamsService, PlayersService, TagsService, DTOptionsBuilder, DTColumnDefBuilder, Upload, $window, $filter, $timeout) {
+
 
         var vm = $scope;
         vm.Players = [];
         vm.Teams = [];
-        vm.Tags = [];
+        vm.loading = {};
+        vm.selectedItem = null;
+        vm.Tags = null;
+
+
+
+        TagsService.getAllTags().then(function (tags) {
+            vm.loading.teams = true;
+            vm.Tags = tags;
+            TeamsService.getAllTeams().then(function (teams) {
+                vm.Teams = teams;
+
+                vm.gridOptions.data = teams;
+
+                vm.leagues = _.pluck(_.uniq(vm.Teams, 'league'), 'league');
+
+                vm.loading.teams = false;
+
+            }, function (error) {});
+        })
+
+
+
+        var data = [];
+        vm.filterOptions = {
+            filterText: "",
+            useExternalFilter: true
+        };
+
+        $scope.$watch('filterOptions', function () {
+            //Call an async function to fetch data here.
+            vm.gridOptions.data = $filter('filter')(vm.Teams, vm.filterOptions.filterText);
+
+        }, true);
+
+        vm.gridOptions = {
+            enableRowSelection: true,
+            enableRowHeaderSelection: false,
+            multiSelect: false,
+            //            enableFiltering: true,
+            filterOptions: vm.filterOptions,
+            enableColumnResizing: true,
+            columnDefs: [
+                {
+                    name: 'Name',
+                    field: 'name.en'
+                    },
+                {
+                    name: 'League',
+                    field: 'league'
+                    }
+                ],
+            data: data,
+            onRegisterApi: function (gridApi) {
+                vm.gridApi = gridApi;
+                gridApi.selection.on.rowSelectionChanged($scope, function (row) {
+                    if (vm.selectedItem) {
+                        vm.view.selectedLoading = true;
+                        $timeout(function () {
+                            vm.selectedItem = row.entity;
+                            vm.view.selectedLoading = false;
+                            $scope.gridApi.core.handleWindowResize();
+                        }, 400)
+                    } else {
+                        vm.reload = true;
+                        vm.selectedItem = row.entity;
+                        $scope.gridApi.core.handleWindowResize();
+                    }
+
+                });
+            }
+        };
+
+        vm.createNew = function () {
+            vm.createdReload = true;
+            vm.newItem = {};
+
+        }
+
+
+
+        function rowClicked(params) {
+            vm.selectedItem = params.data;
+        }
+
+
+        vm.view = {
+            editItem: 0,
+            loadingPlayers: 0
+        }
+
+
+
+        /* Scope Methods */
+        vm.editItem = function (player) {
+
+            vm.selectedItem = player;
+            if (!vm.selectedItem.name.en) {
+                vm.selectedItem.name.en = "";
+                vm.selectedItem.selected = "en";
+            } else {
+                vm.selectedItem.selected = "en";
+            }
+            vm.view.editItem = 1;
+        }
+
+        vm.updatePlayer = function () {
+            console.log(vm.selectedItem);
+            vm.selectedItem.save().then(function (res, err) {
+                vm.selectedItem = null;
+                vm.view.editItem = 0;
+            })
+        }
+
+
+        vm.isSelected = function (player) {
+            if (player.isSelected) {
+                player.isSelected = false;
+                return false;
+            } else {
+                player.isSelected = true;
+                return true;
+            }
+        }
+
+
+        vm.getTeam = function (id) {
+            return _.findWhere(vm.Teams, {
+                "_id": id
+            });
+        }
+
+
+
+        ///////// ****************************************************
+
+
+        ///////// ****************************************************
+
+        //        var vm = $scope;
+        //        vm.Players = [];
+        //        vm.Teams = [];
+        //        vm.Tags = [];
 
 
         vm.view = {
@@ -5262,36 +5677,36 @@
             loadingPlayers: 0
         }
 
-        var bucket = 'https://s3-eu-west-1.amazonaws.com/sportimo-media/';
-        vm.uploadFile = function (file, team) {
-            console.log(file.name.substr(file.name.lastIndexOf('.') + 1));
-            // console.log(file);
-            Upload.upload({
-                url: 'https://s3-eu-west-1.amazonaws.com/sportimo-media', //S3 upload url including bucket name
-                method: 'POST',
-                data: {
-                    key: 'teams/' + team._id + '.' + file.name.substr(file.name.lastIndexOf('.') + 1), // the key to store the file on S3, could be file name or customized
-                    AWSAccessKeyId: "AKIAJHAZLDHNWH7S45CQ",
-                    acl: 'public-read', // sets the access to the uploaded file in the bucket: private, public-read, ...
-                    policy: "ewogICJleHBpcmF0aW9uIjogIjIwMjAtMDEtMDFUMDA6MDA6MDBaIiwKICAiY29uZGl0aW9ucyI6IFsKICAgIHsiYnVja2V0IjogInNwb3J0aW1vLW1lZGlhIn0sCiAgICBbInN0YXJ0cy13aXRoIiwgIiRrZXkiLCAiIl0sCiAgICB7ImFjbCI6ICJwdWJsaWMtcmVhZCJ9LAogICAgWyJzdGFydHMtd2l0aCIsICIkQ29udGVudC1UeXBlIiwgIiJdLAogICAgWyJzdGFydHMtd2l0aCIsICIkZmlsZW5hbWUiLCAiIl0sCiAgICBbImNvbnRlbnQtbGVuZ3RoLXJhbmdlIiwgMCwgNTI0Mjg4MDAwXQogIF0KfQ==", // base64-encoded json policy (see article below)
-                    signature: "22lwJf8Yl4B8qoOT6OrtHqIH6qs=", // base64-encoded signature based on policy string (see article below)
-                    "Content-Type": file.type != '' ? file.type : 'application/octet-stream', // content type of the file (NotEmpty)
-                    filename: file.name, // this is needed for Flash polyfill IE8-9
-                    file: file
-                }
-            }).then(function (resp) {
-                team.logo = bucket + 'teams/' + team._id + "." + file.name.substr(file.name.lastIndexOf('.') + 1);
-                console.log(team.logo);
-                team.save();
-                console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
-            }, function (resp) {
-                console.log('Error status: ' + resp.status);
-
-            }, function (evt) {
-                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-                // console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
-            });
-        }
+        //        var bucket = 'https://s3-eu-west-1.amazonaws.com/sportimo-media/';
+        //        vm.uploadFile = function (file, team) {
+        //            console.log(file.name.substr(file.name.lastIndexOf('.') + 1));
+        //            // console.log(file);
+        //            Upload.upload({
+        //                url: 'https://s3-eu-west-1.amazonaws.com/sportimo-media', //S3 upload url including bucket name
+        //                method: 'POST',
+        //                data: {
+        //                    key: 'teams/' + team._id + '.' + file.name.substr(file.name.lastIndexOf('.') + 1), // the key to store the file on S3, could be file name or customized
+        //                    AWSAccessKeyId: "AKIAJHAZLDHNWH7S45CQ",
+        //                    acl: 'public-read', // sets the access to the uploaded file in the bucket: private, public-read, ...
+        //                    policy: "ewogICJleHBpcmF0aW9uIjogIjIwMjAtMDEtMDFUMDA6MDA6MDBaIiwKICAiY29uZGl0aW9ucyI6IFsKICAgIHsiYnVja2V0IjogInNwb3J0aW1vLW1lZGlhIn0sCiAgICBbInN0YXJ0cy13aXRoIiwgIiRrZXkiLCAiIl0sCiAgICB7ImFjbCI6ICJwdWJsaWMtcmVhZCJ9LAogICAgWyJzdGFydHMtd2l0aCIsICIkQ29udGVudC1UeXBlIiwgIiJdLAogICAgWyJzdGFydHMtd2l0aCIsICIkZmlsZW5hbWUiLCAiIl0sCiAgICBbImNvbnRlbnQtbGVuZ3RoLXJhbmdlIiwgMCwgNTI0Mjg4MDAwXQogIF0KfQ==", // base64-encoded json policy (see article below)
+        //                    signature: "22lwJf8Yl4B8qoOT6OrtHqIH6qs=", // base64-encoded signature based on policy string (see article below)
+        //                    "Content-Type": file.type != '' ? file.type : 'application/octet-stream', // content type of the file (NotEmpty)
+        //                    filename: file.name, // this is needed for Flash polyfill IE8-9
+        //                    file: file
+        //                }
+        //            }).then(function (resp) {
+        //                team.logo = bucket + 'teams/' + team._id + "." + file.name.substr(file.name.lastIndexOf('.') + 1);
+        //                console.log(team.logo);
+        //                team.save();
+        //                console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
+        //            }, function (resp) {
+        //                console.log('Error status: ' + resp.status);
+        //
+        //            }, function (evt) {
+        //                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+        //                // console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+        //            });
+        //        }
 
         /* Scope Methods */
         vm.editTeam = function (team) {
@@ -5372,87 +5787,21 @@
             })
         }
 
-        /* Players */
-        vm.LoadPlayers = function () {
-            vm.view.loadingPlayers = 1;
-            TeamsService.getFullTeam(vm.selectedTeam._id).then(function (fullTeam) {
-                vm.selectedTeam.players = fullTeam.players;
-                vm.selectedTeam.playersLoaded = true;
 
-                vm.view.loadingPlayers = 0;
-            })
-        }
-        vm.pushPlayer = function (player) {
-            if (player) {
-                player.team = vm.selectedTeam._id;
-                player.save().then(function () {
-                    vm.selectedTeam.players.push(player);
-                    vm.selectedTeam.save().then(function () {
-                        console.log("All OK!");
-                    })
-                });
-            }
-        }
 
-        /* Upload Mechanics*/
-        $scope.$watch('files', function () {
-            $scope.upload($scope.files);
-        });
-        $scope.$watch('file', function () {
-            if ($scope.file != null) {
-                $scope.files = [$scope.file];
-            }
-        });
-        $scope.log = '';
 
-        $scope.upload = function (files) {
-            if (files && files.length) {
-                for (var i = 0; i < files.length; i++) {
-                    var file = files[i];
-                    if (!file.$error) {
-                        Upload.upload({
-                            url: 'https://angular-file-upload-cors-srv.appspot.com/upload',
-                            data: {
-                                username: $scope.username,
-                                file: file
-                            }
-                        }).then(function (resp) {
-                            $timeout(function () {
-                                $scope.log = 'file: ' +
-                                    resp.config.data.file.name +
-                                    ', Response: ' + JSON.stringify(resp.data) +
-                                    '\n' + $scope.log;
-                            });
-                        }, null, function (evt) {
-                            var progressPercentage = parseInt(100.0 *
-                                evt.loaded / evt.total);
-                            $scope.log = 'progress: ' + progressPercentage +
-                                '% ' + evt.config.data.file.name + '\n' +
-                                $scope.log;
-                        });
-                    }
-                }
-            }
-        };
 
-        vm.searchFor = function (forQuery) {
-            $window.open('https://www.google.gr/search?q=' + forQuery + '+logo&tbm=isch', '_blank');
 
-        };
 
-        TeamsService.getAllTeams().then(function (teams) {
-            vm.Teams = teams;
-        }, function (error) {});
-
-        PlayersService.getAllPlayers().then(function (players) {
-            vm.Players = players;
-        }, function (error) {});
-
-        TagsService.getAllTags().then(function (tags) {
-            vm.Tags = tags;
-        }, function (error) {
-            console.log("Error loading tags")
-        });
+        //        PlayersService.getAllPlayers().then(function (players) {
+        //            vm.Players = players;
+        //        }, function (error) {});
+        //
+        //        TagsService.getAllTags().then(function (tags) {
+        //            vm.Tags = tags;
+        //        }, function (error) {
+        //            console.log("Error loading tags")
+        //        });
 
     }
 
@@ -5498,6 +5847,7 @@
     function TagsService($resource, Restangular, $q, $rootScope) {
 
         var tags = null;
+        var teamTags = null;
         var tagsRoute = Restangular.all('v1/data/tags');
 
         Restangular.setBaseUrl($rootScope.servers[$rootScope.serverEnvironment].game_server);
@@ -5506,6 +5856,7 @@
         });
 
         return {
+            Tags: tags,
             getAllTags: function () {
                 var Defer = $q.defer();
                 if (tags) Defer.resolve(tags);
@@ -5515,6 +5866,24 @@
                         Defer.resolve(tags);
                     });
                 return Defer.promise;
+            },
+            getAllTeamTags: function () {
+                var Defer = $q.defer();
+
+                if (teamTags) Defer.resolve(teamTags)
+                else
+                    this.getAllTags().then(function (tags) {
+                        teamTags = _.findWhere(tags, {
+                            type: 'Team'
+                        });
+                        Defer.resolve(teamTags);
+                    })
+                return Defer.promise;
+            },
+            getTeamNameById: function (ID) {
+                return _.get(_.find(tags, {
+                    _id: ID
+                }), 'name.en');
             }
         }
 
@@ -5544,6 +5913,15 @@
                     var Defer = $q.defer();
                     players.getList().then(function (schedule) {
                         Defer.resolve(schedule);
+                    });
+                    return Defer.promise;
+                },
+                
+                getPlayer: function (id){
+                     var Defer = $q.defer();
+                    players.get(id).then(function (player) {
+                        if(player.player)
+                        Defer.resolve(player.player);
                     });
                     return Defer.promise;
                 }
@@ -5631,10 +6009,11 @@
             },
             rowClicked: rowClicked
         };
-        
+
         vm.userSelected = null;
+
         function rowClicked(params) {
-               vm.userSelected = params.data;
+            vm.userSelected = params.data;
         }
 
         vm.showLeaderboard = function (pool) {
@@ -6091,12 +6470,13 @@
             ready: function (api) {
                 api.sizeColumnsToFit();
             },
-               rowClicked: rowClicked
+            rowClicked: rowClicked
         };
-        
+
         vm.userSelected = null;
+
         function rowClicked(params) {
-               vm.userSelected = params.data;
+            vm.userSelected = params.data;
         }
 
 
@@ -14857,19 +15237,22 @@
                 controller: 'ScheduleController'
             })
             /* END MATCHES SCHEDULE */
-            .state('app.teams', {
+
+
+        .state('app.teams', {
                 url: '/teams',
                 title: 'Teams',
                 templateUrl: helper.basepath('database/teams.html'),
-                resolve: helper.resolveFor('restangular', 'toaster', 'dirPagination', 'moment', 'datatables', 'ngFileUpload', 'localytics.directives'),
+                resolve: helper.resolveFor('restangular', 'toaster', 'dirPagination', 'moment', 'datatables', 'ngFileUpload', 'localytics.directives', 'ui.select', 'ui.grid'),
                 controller: 'TeamsController'
             })
             .state('app.players', {
                 url: '/players',
                 title: 'players',
-                resolve: helper.resolveFor('restangular', 'toaster', 'dirPagination', 'moment', 'datatables', 'ngFileUpload', 'localytics.directives'),
+                resolve: helper.resolveFor('restangular', 'toaster', 'dirPagination', 'moment', 'datatables', 'ngFileUpload', 'localytics.directives', 'ui.select', 'ui.grid'),
                 templateUrl: helper.basepath('database/players.html'),
-                controller: 'PlayersController'
+                controller: 'PlayersController',
+                controllerAs: 'vm'
             })
             .state('app.publications', {
                 url: '/publications',
@@ -14886,9 +15269,16 @@
                 controller: 'LeaderboardsController',
                 controllerAs: 'vm'
             })
+            .state('app.data', {
+                url: '/data/:action/:type/:id',
+                title: 'Editor',
+                templateUrl: helper.basepath('database/editors.html'),
+                resolve: helper.resolveFor('restangular', 'toaster', 'dirPagination', 'moment', 'datatables', 'ngFileUpload', 'localytics.directives', 'ui.select', 'ui.grid'),
+                controller: 'EditorController'
+            })
             .state('app.match-moderation-soccer', {
                 url: '/match-moderation/soccer/:id',
-                title: 'Mathces Administration',
+                title: 'Match Moderation',
                 templateUrl: helper.basepath('sportimo/moderation/sportimo_moderation_soccer.html'),
                 resolve: helper.resolveFor('toaster', 'dirPagination', 'moment', 'moment-format', 'ui.select', 'ngDialog', 'htmlSortable', 'angularGrid'),
                 controller: 'SportimoModerationSoccerController',
@@ -17174,6 +17564,7 @@
 
     }
 })();
+
 /**=========================================================
  * Module: animate-enabled.js
  * Enable or disables ngAnimate for element with directive

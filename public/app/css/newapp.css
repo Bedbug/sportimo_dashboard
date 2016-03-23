@@ -72,7 +72,7 @@
 
 .glyphicon {
     display: inline-block;
-    font: normal normal normal 14px/1 FontAwesome;
+/*    font: normal normal normal 14px/1 FontAwesome;*/
     font-size: inherit;
     text-rendering: auto;
     -webkit-font-smoothing: antialiased;
@@ -105,6 +105,11 @@
 .glyphicon.glyphicon-folder-open:before {
     content: "\f07c"
 }
+
+.glyphicon-remove:before {
+    content: "\e014" !important;
+}
+
 .ng-cloak,
 .x-ng-cloak,
 [data-ng-cloak],

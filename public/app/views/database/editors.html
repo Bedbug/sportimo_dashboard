@@ -1,0 +1,9 @@
+   <div class="fluid" ng-class="(selectedItem || newItem)?'col-lg-6':'col-sm-0'" style="padding-left:0">
+    <!-- START OF EDIT PANEL -->
+    <player-edit ng-model="selectedItem" onUpdate="" on-cancel="back" onCreate="" type="edit" reload="reload" loader="view.selectedLoading" positions="positions"> </player-edit>
+    <!-- END OF EDIT PANEL -->
+
+    <!-- START OF CREATE PANEL -->
+    <player-edit ng-model="newItem" onUpdate="" on-cancel="back" onCreate="" type="create"  reload="createdReload" loader="view.createdLoading" positions="positions"> </player-edit>
+    <!-- END OF CREATE PANEL -->
+</div>

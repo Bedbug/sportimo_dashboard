@@ -7,6 +7,7 @@
     <div class="panel-body">
         <div class="form-group">
             <div class="col-sm-12 select-input">
+               
                 <ui-select multiple="" on-remove="mother.onChangeCallback(card)" on-select="mother.onAddtag(card,$item,$model)" ng-model="card.tags" theme="bootstrap" ng-disabled="uisel.disabled">
                     <ui-select-match placeholder="Select article tags">{{$item.name.en}}</ui-select-match>
                     <ui-select-choices group-by="'type'" repeat="tag as tag in mother.Tags | filter: $select.search">

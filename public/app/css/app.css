@@ -119,6 +119,9 @@
   margin-left: 0.3em;
 }
 
+.glyphicon.glyphicon-chevron-right:before {
+    content:"\e080";
+}
 .glyphicon.glyphicon-arrow-left:before {
  content:"\e091";
 }

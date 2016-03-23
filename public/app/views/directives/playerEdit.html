@@ -1,0 +1,86 @@
+<!-- START OF EDIT PANEL -->
+<!-- START of ANIMATIONS -->
+<div ng-init="selectedLoading = false" ng-class="loading?'fadeOutDown':'fadeInUp'" class="animated" style="padding-left:0">
+    <div animate-enabled='true' ng-show="selectedItem" class="panel animShow">
+        <!-- END of ANIMATIONS -->
+        <div class="panel">
+            <div class="panel-body">
+                <div class="form-group">
+                    <div class="col-sm-4">
+                        <label>Image</label>
+                        <div class="event-team-logo" ng-show="selectedItem._id">
+                            <img ng-if="selectedItem.pic" class="img-responsive dragover" ng-src="{{selectedItem.pic}}" />
+                            <image-upload folder="players" should-update="true" filename="selectedItem._id" ng-model="selectedItem" pic-key="pic"></image-upload>
+                        </div>
+                        <div class="event-team-logo" ng-show="!selectedItem._id">
+                            <p ng-if="!selectedItem.pic" class="muted">This data item does not have an ID yet.</br>Therefore you cannot upload an image until it has.</br>However you can pass an image url in the settings tab.</p>
+                            <img ng-if="selectedItem.pic" class="img-responsive dragover" ng-src="{{selectedItem.pic}}" />
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                        <multi-lang-text language-object="selectedItem.name" default="en" label="Name"></multi-lang-text>
+
+                        <label>Team</label>
+                        <ui-select ng-model="selectedItem.teamId" theme="bootstrap" ng-disabled="uisel.disabled" class="text-left">
+                            <ui-select-match placeholder="Select team">{{$select.selected.name.en}}</ui-select-match>
+                            <ui-select-choices repeat="tag._id as tag in Tags | filter: $select.search | filter: {type:'Team'}">
+                                <span ng-bind-html="tag.name.en | highlight: $select.search"></span>
+                            </ui-select-choices>
+                        </ui-select>
+
+                        <label>Position</label>
+                        <ui-select ng-model="selectedItem.position" theme="bootstrap" ng-disabled="uisel.disabled" class="text-left">
+                            <ui-select-match placeholder="Select position">{{$select.selected}}</ui-select-match>
+                            <ui-select-choices repeat="position in positions | filter: $select.search">
+                                <span ng-bind-html="position | highlight: $select.search"></span>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                    <tabset justified="true" class="bg-white p0 col-sm-12" style="margin-top:20px">
+                        <tab>
+                            <tab-heading>
+                                Personal
+                            </tab-heading>
+                            <div class="col-xs-12" style="margin-top:20px">
+                                <label>Birth Date</label>
+                                <p class="input-group" style="position:relative">
+
+                                    <input type="text" placeholder="Birth Date" name="date" datepicker-popup ng-model="selectedItem.personalData.birth.birthDate.full" is-open="openedCal.birth" datepicker-options="popupOptions" close-text="Close" class="form-control" />
+                                    <span class="input-group-btn">
+                                <button type="button" ng-click="openCal($event, 'birth')" class="btn btn-default"><em class="fa fa-calendar"></em></button>
+                            </span>
+                                </p>
+                            </div>
+                        </tab>
+                        <tab>
+                            <tab-heading>
+                                Stats
+                            </tab-heading>
+                        </tab>
+                        <tab>
+                            <tab-heading>
+                                Settings
+                            </tab-heading>
+                            <div class="col-xs-12" style="margin-top:20px">
+                                <div class="form-group">
+                                    <label>Image url</label>
+                                    <input type="text" class="form-control" ng-model="selectedItem.pic" />
+                                    <multi-lang-text ng-model="parserid" language-object="selectedItem.parserids" default="Stats" label="Parsers"></multi-lang-text>
+                                    <btn ladda="view.busy" ng-click="updateByFeedParser(selectedItem, parserid.value)" data-style="zoom-out" class="col-xs-12 btn btn-lg edit">Update data by {{parserid.key}} parser and id:{{parserid.value}}</btn>
+                                </div>
+                            </div>
+
+                        </tab>
+                    </tabset>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <btn ng-click="cancel()" class="btn btn-default pull-right">Cancel</btn>
+                <btn ng-show="type=='edit'" ladda="view.busy" ng-click="UpdateItem(selectedItem)" data-style="zoom-out" class="btn do btn-space pull-right">Update</btn>
+                <btn ng-show="type=='create'" ladda="view.busy" ng-click="CreateItem(selectedItem)" data-style="zoom-out" class="btn do btn-space pull-right">Create</btn>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END OF EDIT PANEL -->
+
