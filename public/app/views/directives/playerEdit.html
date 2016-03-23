@@ -3,7 +3,7 @@
 <div ng-init="selectedLoading = false" ng-class="loading?'fadeOutDown':'fadeInUp'" class="animated" style="padding-left:0">
     <div animate-enabled='true' ng-show="selectedItem" class="panel animShow">
         <!-- END of ANIMATIONS -->
-        <div class="panel">
+        <div class="panel articleCard">
             <div class="panel-body">
                 <div class="form-group">
                     <div class="col-sm-4">
@@ -75,7 +75,7 @@
                 </div>
             </div>
             <div class="panel-footer">
-                <btn ng-click="cancel()" class="btn btn-default pull-right">Cancel</btn>
+                <btn ng-click="cancel();loading = true" class="btn btn-default pull-right">Cancel</btn>
                 <btn ng-show="type=='edit'" ladda="view.busy" ng-click="UpdateItem(selectedItem)" data-style="zoom-out" class="btn do btn-space pull-right">Update</btn>
                 <btn ng-show="type=='create'" ladda="view.busy" ng-click="CreateItem(selectedItem)" data-style="zoom-out" class="btn do btn-space pull-right">Create</btn>
             </div>

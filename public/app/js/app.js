@@ -4838,35 +4838,35 @@
 
 })();
 
-(function(){
+(function () {
     'use strict';
-    
+
     angular.module('app.data')
-    .controller('EditorController', EditorController);
-    
-   EditorController.$inject = ['$window','$scope', '$stateParams','PlayersService'];
-    
-    function EditorController($window, $scope, $stateParams, PlayersService){
+        .controller('EditorController', EditorController);
+
+    EditorController.$inject = ['$window', '$scope', '$stateParams', 'PlayersService'];
+
+    function EditorController($window, $scope, $stateParams, PlayersService) {
         console.log($stateParams.type);
         console.log($stateParams.id);
         $scope.view = {
             selectedLoading: true
         }
-        
-        PlayersService.getPlayer($stateParams.id).then(function(player){
-            
-            if(player)
+
+        PlayersService.getPlayer($stateParams.id).then(function (player) {
+
+            if (player)
                 $scope.selectedItem = player;
-            
-             $scope.view.selectedLoading = false;
+
+            $scope.view.selectedLoading = false;
         })
-        
+
     }
-    
-    
-    
-    
-    
+
+
+
+
+
 })();
 
 
@@ -4952,7 +4952,7 @@
                 onCancel: '@onCancel',
                 type: '@type'
             },
-            controller: ['$scope','$window', function ($scope, $window) {
+            controller: ['$scope', '$window', function ($scope, $window) {
 
                 $scope.loading = true;
                 $scope.$watch('reload', function (newValue, oldValue) {
@@ -4981,13 +4981,12 @@
                     $scope.openedCal[whichCal] = true;
                 };
 
-                $scope.cancel = function(){
-                    
+                $scope.cancel = function () {
+
                     console.log($scope.onCancel)
-                    if($scope.onCancel == 'back'){
+                    if ($scope.onCancel == 'back') {
                         $window.history.back();
-                    }
-                    else
+                    } else
                         $scope.selectedItem = null;
                 }
 
@@ -5102,7 +5101,7 @@
 
         vm.itemClicked = function (action, type, item) {
             $state.go("app.data", {
-                action:action,
+                action: action,
                 type: type,
                 id: item._id
             });
@@ -5111,6 +5110,7 @@
         // ******* LOADING DATA ********** //
         TagsService.getAllTags().then(function (tags) {
             vm.Tags = tags;
+
             // Populate Players
             PlayersService.getAllPlayers().then(function (players) {
                 vm.Players = players;
@@ -5118,10 +5118,7 @@
                     player.team = TagsService.getTeamNameById(player.teamId);
                 })
                 vm.gridOptions.data = players;
-
                 vm.positions = _.pluck(_.uniq(vm.Players, 'position'), 'position');
-
-
                 vm.loading.players = false;
             }, function (error) {});
         })
@@ -5167,21 +5164,19 @@
                 vm.gridApi = gridApi;
                 gridApi.selection.on.rowSelectionChanged($scope, function (row) {
 
-                    vm.itemClicked('edit','player', row.entity);
-
-                    //                    if (vm.selectedItem) {
-                    //                        vm.view.selectedLoading = true;
-                    //                        $timeout(function () {
-                    //                            vm.selectedItem = row.entity;
-                    //                            vm.view.selectedLoading = false;
-                    //                            $scope.gridApi.core.handleWindowResize();
-                    //                        }, 400)
-                    //                    } else {
-                    //                        vm.reload = true;
-                    //                        vm.selectedItem = row.entity;
-                    //                        $scope.gridApi.core.handleWindowResize();
-                    //                    }
-
+                    //                    vm.itemClicked('edit','player', row.entity);
+                    if (vm.selectedItem) {
+                        vm.view.selectedLoading = true;
+                        $timeout(function () {
+                            vm.selectedItem = row.entity;
+                            vm.view.selectedLoading = false;
+                            $scope.gridApi.core.handleWindowResize();
+                        }, 400)
+                    } else {
+                        vm.reload = true;
+                        vm.selectedItem = row.entity;
+                        $scope.gridApi.core.handleWindowResize();
+                    }
                 });
             }
         };
@@ -5916,12 +5911,12 @@
                     });
                     return Defer.promise;
                 },
-                
-                getPlayer: function (id){
-                     var Defer = $q.defer();
+
+                getPlayer: function (id) {
+                    var Defer = $q.defer();
                     players.get(id).then(function (player) {
-                        if(player.player)
-                        Defer.resolve(player.player);
+                        if (player.player)
+                            Defer.resolve(player.player);
                     });
                     return Defer.promise;
                 }
