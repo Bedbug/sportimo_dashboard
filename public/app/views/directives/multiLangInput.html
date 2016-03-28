@@ -21,7 +21,7 @@
             </span>
         </div>
         <div ng-show="selected && lObject" class="col-md-6 col-lg-8 no-padding" style="">
-            <input style="text-align: center;" type="text" placeholder="Leaderboard description" class="form-control" ng-model="lObject[selected]" />
+            <input style="text-align: center;" type="text" placeholder="{{placeholder}}" class="form-control" ng-model="lObject[selected]" />
         </div>
         <div style="text-align: center;" ng-show="!selected || !lObject" class="col-md-6 col-lg-8 no-padding" style="">
             <input type="text" placeholder="Add new language key" class="form-control" ng-model="newLangKey" />

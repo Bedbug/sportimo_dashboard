@@ -12,7 +12,7 @@
 // APP START
 // ----------------------------------- 
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -54,115 +54,141 @@
             "app.data",
             "app.publications",
             "app.leaderboards",
+            "app.competitions",
+            "app.standings",
+            "app.sponsors",
             "angular-ladda"
         ]);
 })();
 
-(function () {
+(function() {
     'use strict';
 
     angular
         .module('app.pushes', []);
 })();
 
-(function () {
+(function() {
     'use strict';
 
     angular
         .module('BedbugDirectives', []);
 })();
 
-(function () {
+(function() {
     'use strict';
 
     angular
         .module('app.polls', []);
 })();
 
-(function () {
+(function() {
     'use strict';
 
     angular
         .module('app.welcomes', []);
 })();
 
-(function () {
+(function() {
     'use strict';
 
     angular
         .module('app.match-moderation-soccer', ['ngDialog']);
 })();
 
-(function () {
+(function() {
     'use strict';
 
     angular
         .module('app.teams', []);
 })();
 
-(function () {
+(function() {
     'use strict';
 
     angular
         .module('app.publications', ['angular-ladda']);
 })();
 
-(function () {
+(function() {
     'use strict';
 
     angular
         .module('app.leaderboards', ['angular-ladda']);
 })();
 
-(function () {
+(function() {
+    'use strict';
+
+    angular
+        .module('app.competitions', ['angular-ladda']);
+})();
+
+(function() {
+    'use strict';
+
+    angular
+        .module('app.standings', ['angular-ladda']);
+})();
+
+
+(function() {
+    'use strict';
+
+    angular
+        .module('app.sponsors', ['angular-ladda']);
+})();
+
+
+(function() {
     'use strict';
 
     angular
         .module('app.players', []);
 })();
 
-(function () {
+(function() {
     'use strict';
 
     angular
         .module('app.data', []);
 })();
 
-(function () {
+(function() {
     'use strict';
 
     angular
         .module('app.schedule', ['ngDialog', 'ui.bootstrap.datetimepicker', 'ui.dateTimeInput']);
 })();
 
-(function () {
+(function() {
     'use strict';
 
     angular
         .module('app.activities', []);
 })();
 
-(function () {
+(function() {
     'use strict';
 
     angular
         .module('app.interviews', []);
 })();
 
-(function () {
+(function() {
     'use strict';
 
     angular
         .module('app.bootstrapui', []);
 })();
-(function () {
+(function() {
     'use strict';
 
     angular
         .module('app.charts', []);
 })();
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -170,7 +196,7 @@
 })();
 
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -181,7 +207,7 @@
 
 
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -208,73 +234,73 @@
             'angular-jwt'
         ]);
 })();
-(function () {
+(function() {
     'use strict';
 
     angular
         .module('app.dashboard', []);
 })();
-(function () {
+(function() {
     'use strict';
 
     angular
         .module('app.elements', []);
 })();
-(function () {
+(function() {
     'use strict';
 
     angular
         .module('app.extras', []);
 })();
-(function () {
+(function() {
     'use strict';
 
     angular
         .module('app.flatdoc', []);
 })();
-(function () {
+(function() {
     'use strict';
 
     angular
         .module('app.forms', []);
 })();
-(function () {
+(function() {
     'use strict';
 
     angular
         .module('app.icons', []);
 })();
-(function () {
+(function() {
     'use strict';
 
     angular
         .module('app.lazyload', []);
 })();
-(function () {
+(function() {
     'use strict';
 
     angular
         .module('app.loadingbar', []);
 })();
-(function () {
+(function() {
     'use strict';
 
     angular
         .module('app.locale', []);
 })();
-(function () {
+(function() {
     'use strict';
 
     angular
         .module('app.mailbox', []);
 })();
-(function () {
+(function() {
     'use strict';
 
     angular
         .module('app.maps', []);
 })();
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -282,31 +308,31 @@
             'ngMaterial'
         ]);
 })();
-(function () {
+(function() {
     'use strict';
 
     angular
         .module('app.navsearch', []);
 })();
-(function () {
+(function() {
     'use strict';
 
     angular
         .module('app.notify', []);
 })();
-(function () {
+(function() {
     'use strict';
 
     angular
         .module('app.pages', []);
 })();
-(function () {
+(function() {
     'use strict';
 
     angular
         .module('app.panels', []);
 })();
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -314,7 +340,7 @@
 })();
 
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -322,31 +348,31 @@
             'app.lazyload'
         ]);
 })();
-(function () {
+(function() {
     'use strict';
 
     angular
         .module('app.settings', []);
 })();
-(function () {
+(function() {
     'use strict';
 
     angular
         .module('app.sidebar', []);
 })();
-(function () {
+(function() {
     'use strict';
 
     angular
         .module('app.tables', []);
 })();
-(function () {
+(function() {
     'use strict';
 
     angular
         .module('app.translate', []);
 })();
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -361,7 +387,7 @@
  * Module: demo-alerts.js
  * Provides a simple demo for pagination
  =========================================================*/
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -387,20 +413,20 @@
                 }
             ];
 
-            vm.addAlert = function () {
+            vm.addAlert = function() {
                 vm.alerts.push({
                     msg: 'Another alert!'
                 });
             };
 
-            vm.closeAlert = function (index) {
+            vm.closeAlert = function(index) {
                 vm.alerts.splice(index, 1);
             };
         }
     }
 })();
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -425,7 +451,7 @@
  * Provides a simple demo for buttons actions
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -457,7 +483,7 @@
  * Module: demo-carousel.js
  * Provides a simple demo for bootstrap ui carousel
  =========================================================*/
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -475,7 +501,7 @@
             vm.myInterval = 5000;
 
             var slides = vm.slides = [];
-            vm.addSlide = function () {
+            vm.addSlide = function() {
                 var newWidth = 800 + slides.length;
                 slides.push({
                     image: '//placekitten.com/' + newWidth + '/300',
@@ -496,7 +522,7 @@
  * Provides a simple demo for bootstrap datepicker
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -511,26 +537,26 @@
         ////////////////
 
         function activate() {
-            vm.today = function () {
+            vm.today = function() {
                 vm.dt = new Date();
             };
             vm.today();
 
-            vm.clear = function () {
+            vm.clear = function() {
                 vm.dt = null;
             };
 
             // Disable weekend selection
-            vm.disabled = function (date, mode) {
+            vm.disabled = function(date, mode) {
                 return (mode === 'day' && (date.getDay() === 0 || date.getDay() === 6));
             };
 
-            vm.toggleMin = function () {
+            vm.toggleMin = function() {
                 vm.minDate = vm.minDate ? null : new Date();
             };
             vm.toggleMin();
 
-            vm.open = function ($event) {
+            vm.open = function($event) {
                 $event.preventDefault();
                 $event.stopPropagation();
                 vm.opened = true;
@@ -553,7 +579,7 @@
  * Module: modals.js
  * Provides a simple way to implement bootstrap modals from templates
  =========================================================*/
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -571,7 +597,7 @@
 
         function activate() {
 
-            vm.open = function (size) {
+            vm.open = function(size) {
 
                 var modalInstance = $modal.open({
                     templateUrl: '/myModalContent.html',
@@ -580,9 +606,9 @@
                 });
 
                 var state = $('#modal-state');
-                modalInstance.result.then(function () {
+                modalInstance.result.then(function() {
                     state.text('Modal dismissed with OK status');
-                }, function () {
+                }, function() {
                     state.text('Modal dismissed with Cancel status');
                 });
             };
@@ -594,11 +620,11 @@
 
             function ModalInstanceCtrl($scope, $modalInstance) {
 
-                $scope.ok = function () {
+                $scope.ok = function() {
                     $modalInstance.close('closed');
                 };
 
-                $scope.cancel = function () {
+                $scope.cancel = function() {
                     $modalInstance.dismiss('cancel');
                 };
             }
@@ -611,7 +637,7 @@
  * Module: demo-pagination.js
  * Provides a simple demo for pagination
  =========================================================*/
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -630,11 +656,11 @@
             vm.totalItems = 64;
             vm.currentPage = 4;
 
-            vm.setPage = function (pageNo) {
+            vm.setPage = function(pageNo) {
                 vm.currentPage = pageNo;
             };
 
-            vm.pageChanged = function () {
+            vm.pageChanged = function() {
                 console.log('Page changed to: ' + vm.currentPage);
             };
 
@@ -650,7 +676,7 @@
  * Provides a simple demo for popovers
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -676,7 +702,7 @@
  * Provides a simple demo to animate progress bar
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -693,7 +719,7 @@
         function activate() {
             vm.max = 200;
 
-            vm.random = function () {
+            vm.random = function() {
                 var value = Math.floor((Math.random() * 100) + 1);
                 var type;
 
@@ -714,7 +740,7 @@
             };
             vm.random();
 
-            vm.randomStacked = function () {
+            vm.randomStacked = function() {
                 vm.stacked = [];
                 var types = ['success', 'info', 'warning', 'danger'];
 
@@ -735,7 +761,7 @@
  * Module: demo-rating.js
  * Provides a demo for ratings UI
  =========================================================*/
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -754,7 +780,7 @@
             vm.max = 10;
             vm.isReadonly = false;
 
-            vm.hoveringOver = function (value) {
+            vm.hoveringOver = function(value) {
                 vm.overStar = value;
                 vm.percent = 100 * (value / vm.max);
             };
@@ -788,7 +814,7 @@
  * Provides a simple demo for bootstrap ui timepicker
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -814,22 +840,22 @@
             };
 
             vm.ismeridian = true;
-            vm.toggleMode = function () {
+            vm.toggleMode = function() {
                 vm.ismeridian = !vm.ismeridian;
             };
 
-            vm.update = function () {
+            vm.update = function() {
                 var d = new Date();
                 d.setHours(14);
                 d.setMinutes(0);
                 vm.mytime = d;
             };
 
-            vm.changed = function () {
+            vm.changed = function() {
                 console.log('Time changed to: ' + vm.mytime);
             };
 
-            vm.clear = function () {
+            vm.clear = function() {
                 vm.mytime = null;
             };
         }
@@ -841,7 +867,7 @@
  * Provides a simple demo for tooltip
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -860,7 +886,7 @@
             vm.dynamicTooltipText = 'dynamic';
             vm.htmlTooltip = 'I\'ve been made <b>bold</b>!';
 
-            vm.autoplace = function (context, source) {
+            vm.autoplace = function(context, source) {
                 //return (predictTooltipTop(source) < 0) ?  "bottom": "top";
                 var pos = 'top';
                 if (predictTooltipTop(source) < 0)
@@ -903,7 +929,7 @@
  * Module: demo-typeahead.js
  * Provides a simple demo for typeahead
  =========================================================*/
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -925,15 +951,15 @@
             vm.states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Dakota', 'North Carolina', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
 
             // Any function returning a promise object can be used to load values asynchronously
-            vm.getLocation = function (val) {
+            vm.getLocation = function(val) {
                 return $http.get('//maps.googleapis.com/maps/api/geocode/json', {
                     params: {
                         address: val,
                         sensor: false
                     }
-                }).then(function (res) {
+                }).then(function(res) {
                     var addresses = [];
-                    angular.forEach(res.data.results, function (item) {
+                    angular.forEach(res.data.results, function(item) {
                         /*jshint -W106*/
                         addresses.push(item.formatted_address);
                     });
@@ -945,152 +971,152 @@
                 'name': 'Alabama',
                 'flag': '5/5c/Flag_of_Alabama.svg/45px-Flag_of_Alabama.svg.png'
             }, {
-                'name': 'Alaska',
-                'flag': 'e/e6/Flag_of_Alaska.svg/43px-Flag_of_Alaska.svg.png'
+                    'name': 'Alaska',
+                    'flag': 'e/e6/Flag_of_Alaska.svg/43px-Flag_of_Alaska.svg.png'
                 }, {
-                'name': 'Arizona',
-                'flag': '9/9d/Flag_of_Arizona.svg/45px-Flag_of_Arizona.svg.png'
+                    'name': 'Arizona',
+                    'flag': '9/9d/Flag_of_Arizona.svg/45px-Flag_of_Arizona.svg.png'
                 }, {
-                'name': 'Arkansas',
-                'flag': '9/9d/Flag_of_Arkansas.svg/45px-Flag_of_Arkansas.svg.png'
+                    'name': 'Arkansas',
+                    'flag': '9/9d/Flag_of_Arkansas.svg/45px-Flag_of_Arkansas.svg.png'
                 }, {
-                'name': 'California',
-                'flag': '0/01/Flag_of_California.svg/45px-Flag_of_California.svg.png'
+                    'name': 'California',
+                    'flag': '0/01/Flag_of_California.svg/45px-Flag_of_California.svg.png'
                 }, {
-                'name': 'Colorado',
-                'flag': '4/46/Flag_of_Colorado.svg/45px-Flag_of_Colorado.svg.png'
+                    'name': 'Colorado',
+                    'flag': '4/46/Flag_of_Colorado.svg/45px-Flag_of_Colorado.svg.png'
                 }, {
-                'name': 'Connecticut',
-                'flag': '9/96/Flag_of_Connecticut.svg/39px-Flag_of_Connecticut.svg.png'
+                    'name': 'Connecticut',
+                    'flag': '9/96/Flag_of_Connecticut.svg/39px-Flag_of_Connecticut.svg.png'
                 }, {
-                'name': 'Delaware',
-                'flag': 'c/c6/Flag_of_Delaware.svg/45px-Flag_of_Delaware.svg.png'
+                    'name': 'Delaware',
+                    'flag': 'c/c6/Flag_of_Delaware.svg/45px-Flag_of_Delaware.svg.png'
                 }, {
-                'name': 'Florida',
-                'flag': 'f/f7/Flag_of_Florida.svg/45px-Flag_of_Florida.svg.png'
+                    'name': 'Florida',
+                    'flag': 'f/f7/Flag_of_Florida.svg/45px-Flag_of_Florida.svg.png'
                 }, {
-                'name': 'Georgia',
-                'flag': '5/54/Flag_of_Georgia_%28U.S._state%29.svg/46px-Flag_of_Georgia_%28U.S._state%29.svg.png'
+                    'name': 'Georgia',
+                    'flag': '5/54/Flag_of_Georgia_%28U.S._state%29.svg/46px-Flag_of_Georgia_%28U.S._state%29.svg.png'
                 }, {
-                'name': 'Hawaii',
-                'flag': 'e/ef/Flag_of_Hawaii.svg/46px-Flag_of_Hawaii.svg.png'
+                    'name': 'Hawaii',
+                    'flag': 'e/ef/Flag_of_Hawaii.svg/46px-Flag_of_Hawaii.svg.png'
                 }, {
-                'name': 'Idaho',
-                'flag': 'a/a4/Flag_of_Idaho.svg/38px-Flag_of_Idaho.svg.png'
+                    'name': 'Idaho',
+                    'flag': 'a/a4/Flag_of_Idaho.svg/38px-Flag_of_Idaho.svg.png'
                 }, {
-                'name': 'Illinois',
-                'flag': '0/01/Flag_of_Illinois.svg/46px-Flag_of_Illinois.svg.png'
+                    'name': 'Illinois',
+                    'flag': '0/01/Flag_of_Illinois.svg/46px-Flag_of_Illinois.svg.png'
                 }, {
-                'name': 'Indiana',
-                'flag': 'a/ac/Flag_of_Indiana.svg/45px-Flag_of_Indiana.svg.png'
+                    'name': 'Indiana',
+                    'flag': 'a/ac/Flag_of_Indiana.svg/45px-Flag_of_Indiana.svg.png'
                 }, {
-                'name': 'Iowa',
-                'flag': 'a/aa/Flag_of_Iowa.svg/44px-Flag_of_Iowa.svg.png'
+                    'name': 'Iowa',
+                    'flag': 'a/aa/Flag_of_Iowa.svg/44px-Flag_of_Iowa.svg.png'
                 }, {
-                'name': 'Kansas',
-                'flag': 'd/da/Flag_of_Kansas.svg/46px-Flag_of_Kansas.svg.png'
+                    'name': 'Kansas',
+                    'flag': 'd/da/Flag_of_Kansas.svg/46px-Flag_of_Kansas.svg.png'
                 }, {
-                'name': 'Kentucky',
-                'flag': '8/8d/Flag_of_Kentucky.svg/46px-Flag_of_Kentucky.svg.png'
+                    'name': 'Kentucky',
+                    'flag': '8/8d/Flag_of_Kentucky.svg/46px-Flag_of_Kentucky.svg.png'
                 }, {
-                'name': 'Louisiana',
-                'flag': 'e/e0/Flag_of_Louisiana.svg/46px-Flag_of_Louisiana.svg.png'
+                    'name': 'Louisiana',
+                    'flag': 'e/e0/Flag_of_Louisiana.svg/46px-Flag_of_Louisiana.svg.png'
                 }, {
-                'name': 'Maine',
-                'flag': '3/35/Flag_of_Maine.svg/45px-Flag_of_Maine.svg.png'
+                    'name': 'Maine',
+                    'flag': '3/35/Flag_of_Maine.svg/45px-Flag_of_Maine.svg.png'
                 }, {
-                'name': 'Maryland',
-                'flag': 'a/a0/Flag_of_Maryland.svg/45px-Flag_of_Maryland.svg.png'
+                    'name': 'Maryland',
+                    'flag': 'a/a0/Flag_of_Maryland.svg/45px-Flag_of_Maryland.svg.png'
                 }, {
-                'name': 'Massachusetts',
-                'flag': 'f/f2/Flag_of_Massachusetts.svg/46px-Flag_of_Massachusetts.svg.png'
+                    'name': 'Massachusetts',
+                    'flag': 'f/f2/Flag_of_Massachusetts.svg/46px-Flag_of_Massachusetts.svg.png'
                 }, {
-                'name': 'Michigan',
-                'flag': 'b/b5/Flag_of_Michigan.svg/45px-Flag_of_Michigan.svg.png'
+                    'name': 'Michigan',
+                    'flag': 'b/b5/Flag_of_Michigan.svg/45px-Flag_of_Michigan.svg.png'
                 }, {
-                'name': 'Minnesota',
-                'flag': 'b/b9/Flag_of_Minnesota.svg/46px-Flag_of_Minnesota.svg.png'
+                    'name': 'Minnesota',
+                    'flag': 'b/b9/Flag_of_Minnesota.svg/46px-Flag_of_Minnesota.svg.png'
                 }, {
-                'name': 'Mississippi',
-                'flag': '4/42/Flag_of_Mississippi.svg/45px-Flag_of_Mississippi.svg.png'
+                    'name': 'Mississippi',
+                    'flag': '4/42/Flag_of_Mississippi.svg/45px-Flag_of_Mississippi.svg.png'
                 }, {
-                'name': 'Missouri',
-                'flag': '5/5a/Flag_of_Missouri.svg/46px-Flag_of_Missouri.svg.png'
+                    'name': 'Missouri',
+                    'flag': '5/5a/Flag_of_Missouri.svg/46px-Flag_of_Missouri.svg.png'
                 }, {
-                'name': 'Montana',
-                'flag': 'c/cb/Flag_of_Montana.svg/45px-Flag_of_Montana.svg.png'
+                    'name': 'Montana',
+                    'flag': 'c/cb/Flag_of_Montana.svg/45px-Flag_of_Montana.svg.png'
                 }, {
-                'name': 'Nebraska',
-                'flag': '4/4d/Flag_of_Nebraska.svg/46px-Flag_of_Nebraska.svg.png'
+                    'name': 'Nebraska',
+                    'flag': '4/4d/Flag_of_Nebraska.svg/46px-Flag_of_Nebraska.svg.png'
                 }, {
-                'name': 'Nevada',
-                'flag': 'f/f1/Flag_of_Nevada.svg/45px-Flag_of_Nevada.svg.png'
+                    'name': 'Nevada',
+                    'flag': 'f/f1/Flag_of_Nevada.svg/45px-Flag_of_Nevada.svg.png'
                 }, {
-                'name': 'New Hampshire',
-                'flag': '2/28/Flag_of_New_Hampshire.svg/45px-Flag_of_New_Hampshire.svg.png'
+                    'name': 'New Hampshire',
+                    'flag': '2/28/Flag_of_New_Hampshire.svg/45px-Flag_of_New_Hampshire.svg.png'
                 }, {
-                'name': 'New Jersey',
-                'flag': '9/92/Flag_of_New_Jersey.svg/45px-Flag_of_New_Jersey.svg.png'
+                    'name': 'New Jersey',
+                    'flag': '9/92/Flag_of_New_Jersey.svg/45px-Flag_of_New_Jersey.svg.png'
                 }, {
-                'name': 'New Mexico',
-                'flag': 'c/c3/Flag_of_New_Mexico.svg/45px-Flag_of_New_Mexico.svg.png'
+                    'name': 'New Mexico',
+                    'flag': 'c/c3/Flag_of_New_Mexico.svg/45px-Flag_of_New_Mexico.svg.png'
                 }, {
-                'name': 'New York',
-                'flag': '1/1a/Flag_of_New_York.svg/46px-Flag_of_New_York.svg.png'
+                    'name': 'New York',
+                    'flag': '1/1a/Flag_of_New_York.svg/46px-Flag_of_New_York.svg.png'
                 }, {
-                'name': 'North Carolina',
-                'flag': 'b/bb/Flag_of_North_Carolina.svg/45px-Flag_of_North_Carolina.svg.png'
+                    'name': 'North Carolina',
+                    'flag': 'b/bb/Flag_of_North_Carolina.svg/45px-Flag_of_North_Carolina.svg.png'
                 }, {
-                'name': 'North Dakota',
-                'flag': 'e/ee/Flag_of_North_Dakota.svg/38px-Flag_of_North_Dakota.svg.png'
+                    'name': 'North Dakota',
+                    'flag': 'e/ee/Flag_of_North_Dakota.svg/38px-Flag_of_North_Dakota.svg.png'
                 }, {
-                'name': 'Ohio',
-                'flag': '4/4c/Flag_of_Ohio.svg/46px-Flag_of_Ohio.svg.png'
+                    'name': 'Ohio',
+                    'flag': '4/4c/Flag_of_Ohio.svg/46px-Flag_of_Ohio.svg.png'
                 }, {
-                'name': 'Oklahoma',
-                'flag': '6/6e/Flag_of_Oklahoma.svg/45px-Flag_of_Oklahoma.svg.png'
+                    'name': 'Oklahoma',
+                    'flag': '6/6e/Flag_of_Oklahoma.svg/45px-Flag_of_Oklahoma.svg.png'
                 }, {
-                'name': 'Oregon',
-                'flag': 'b/b9/Flag_of_Oregon.svg/46px-Flag_of_Oregon.svg.png'
+                    'name': 'Oregon',
+                    'flag': 'b/b9/Flag_of_Oregon.svg/46px-Flag_of_Oregon.svg.png'
                 }, {
-                'name': 'Pennsylvania',
-                'flag': 'f/f7/Flag_of_Pennsylvania.svg/45px-Flag_of_Pennsylvania.svg.png'
+                    'name': 'Pennsylvania',
+                    'flag': 'f/f7/Flag_of_Pennsylvania.svg/45px-Flag_of_Pennsylvania.svg.png'
                 }, {
-                'name': 'Rhode Island',
-                'flag': 'f/f3/Flag_of_Rhode_Island.svg/32px-Flag_of_Rhode_Island.svg.png'
+                    'name': 'Rhode Island',
+                    'flag': 'f/f3/Flag_of_Rhode_Island.svg/32px-Flag_of_Rhode_Island.svg.png'
                 }, {
-                'name': 'South Carolina',
-                'flag': '6/69/Flag_of_South_Carolina.svg/45px-Flag_of_South_Carolina.svg.png'
+                    'name': 'South Carolina',
+                    'flag': '6/69/Flag_of_South_Carolina.svg/45px-Flag_of_South_Carolina.svg.png'
                 }, {
-                'name': 'South Dakota',
-                'flag': '1/1a/Flag_of_South_Dakota.svg/46px-Flag_of_South_Dakota.svg.png'
+                    'name': 'South Dakota',
+                    'flag': '1/1a/Flag_of_South_Dakota.svg/46px-Flag_of_South_Dakota.svg.png'
                 }, {
-                'name': 'Tennessee',
-                'flag': '9/9e/Flag_of_Tennessee.svg/46px-Flag_of_Tennessee.svg.png'
+                    'name': 'Tennessee',
+                    'flag': '9/9e/Flag_of_Tennessee.svg/46px-Flag_of_Tennessee.svg.png'
                 }, {
-                'name': 'Texas',
-                'flag': 'f/f7/Flag_of_Texas.svg/45px-Flag_of_Texas.svg.png'
+                    'name': 'Texas',
+                    'flag': 'f/f7/Flag_of_Texas.svg/45px-Flag_of_Texas.svg.png'
                 }, {
-                'name': 'Utah',
-                'flag': 'f/f6/Flag_of_Utah.svg/45px-Flag_of_Utah.svg.png'
+                    'name': 'Utah',
+                    'flag': 'f/f6/Flag_of_Utah.svg/45px-Flag_of_Utah.svg.png'
                 }, {
-                'name': 'Vermont',
-                'flag': '4/49/Flag_of_Vermont.svg/46px-Flag_of_Vermont.svg.png'
+                    'name': 'Vermont',
+                    'flag': '4/49/Flag_of_Vermont.svg/46px-Flag_of_Vermont.svg.png'
                 }, {
-                'name': 'Virginia',
-                'flag': '4/47/Flag_of_Virginia.svg/44px-Flag_of_Virginia.svg.png'
+                    'name': 'Virginia',
+                    'flag': '4/47/Flag_of_Virginia.svg/44px-Flag_of_Virginia.svg.png'
                 }, {
-                'name': 'Washington',
-                'flag': '5/54/Flag_of_Washington.svg/46px-Flag_of_Washington.svg.png'
+                    'name': 'Washington',
+                    'flag': '5/54/Flag_of_Washington.svg/46px-Flag_of_Washington.svg.png'
                 }, {
-                'name': 'West Virginia',
-                'flag': '2/22/Flag_of_West_Virginia.svg/46px-Flag_of_West_Virginia.svg.png'
+                    'name': 'West Virginia',
+                    'flag': '2/22/Flag_of_West_Virginia.svg/46px-Flag_of_West_Virginia.svg.png'
                 }, {
-                'name': 'Wisconsin',
-                'flag': '2/22/Flag_of_Wisconsin.svg/45px-Flag_of_Wisconsin.svg.png'
+                    'name': 'Wisconsin',
+                    'flag': '2/22/Flag_of_Wisconsin.svg/45px-Flag_of_Wisconsin.svg.png'
                 }, {
-                'name': 'Wyoming',
-                'flag': 'b/bc/Flag_of_Wyoming.svg/43px-Flag_of_Wyoming.svg.png'
+                    'name': 'Wyoming',
+                    'flag': 'b/bc/Flag_of_Wyoming.svg/43px-Flag_of_Wyoming.svg.png'
                 }];
 
         }
@@ -1101,7 +1127,7 @@
  * Module: chartist.js
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -1145,7 +1171,7 @@
                 low: -10,
                 height: 220,
                 axisX: {
-                    labelInterpolationFnc: function (value, index) {
+                    labelInterpolationFnc: function(value, index) {
                         return index % 2 === 0 ? value : null;
                     }
                 }
@@ -1204,10 +1230,10 @@
             };
 
             vm.smilEvents = {
-                created: function () {
+                created: function() {
                     seq = 0;
                 },
-                draw: function (data) {
+                draw: function(data) {
                     seq++;
 
                     if (data.type === 'line') {
@@ -1295,7 +1321,7 @@
             };
 
             vm.pathEvents = {
-                draw: function (data) {
+                draw: function(data) {
                     if (data.type === 'line' || data.type === 'area') {
                         data.element.animate({
                             d: {
@@ -1320,7 +1346,7 @@
  * Controller for ChartJs
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -1339,7 +1365,7 @@
         function activate() {
 
             // random values for demo
-            var rFactor = function () {
+            var rFactor = function() {
                 return Math.round(Math.random() * 100);
             };
 
@@ -1600,7 +1626,7 @@
  * Based on https://gist.github.com/AndreasHeiberg/9837868
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -1615,7 +1641,7 @@
         .directive('donutchart', chartJS('Doughnut'));
 
     function chartJS(type) {
-        return function () {
+        return function() {
             return {
                 restrict: 'A',
                 scope: {
@@ -1631,11 +1657,11 @@
                     tooltip: '=',
                     legend: '='
                 },
-                link: function ($scope, $elem) {
+                link: function($scope, $elem) {
                     var ctx = $elem[0].getContext('2d');
                     var autosize = false;
 
-                    $scope.size = function () {
+                    $scope.size = function() {
                         if ($scope.width <= 0) {
                             $elem.width($elem.parent().width());
                             ctx.canvas.width = $elem.width();
@@ -1653,7 +1679,7 @@
                         }
                     };
 
-                    $scope.$watch('data', function (newVal) {
+                    $scope.$watch('data', function(newVal) {
                         if (chartCreated)
                             chartCreated.destroy();
 
@@ -1682,7 +1708,7 @@
                             angular.element($elem[0]).parent().after(chartCreated.generateLegend());
                     }, true);
 
-                    $scope.$watch('tooltip', function (newVal) {
+                    $scope.$watch('tooltip', function(newVal) {
                         if (chartCreated)
                             chartCreated.draw();
                         if (newVal === undefined || !chartCreated.segments)
@@ -1711,7 +1737,7 @@
  * Enable use of classyloader directly from data attributes
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -1732,7 +1758,7 @@
                 inViewFlagClass = 'js-is-in-view'; // a classname to detect when a chart has been triggered after scroll
 
             // run after interpolation  
-            $timeout(function () {
+            $timeout(function() {
 
                 var $element = $(element),
                     options = $element.data();
@@ -1741,7 +1767,7 @@
                 if (options) {
                     if (options.triggerInView) {
 
-                        $scroller.scroll(function () {
+                        $scroller.scroll(function() {
                             checkLoaderInVIew($element, options);
                         });
                         // if the element starts already in view
@@ -1770,7 +1796,7 @@
 
 })();
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -1802,7 +1828,7 @@
  * Setup options and data for flot chart directive
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -1841,7 +1867,7 @@
                 },
                 tooltip: true,
                 tooltipOpts: {
-                    content: function (label, x, y) {
+                    content: function(label, x, y) {
                         return x + ' : ' + y;
                     }
                 },
@@ -1878,7 +1904,7 @@
                 },
                 tooltip: true,
                 tooltipOpts: {
-                    content: function (label, x, y) {
+                    content: function(label, x, y) {
                         return x + ' : ' + y;
                     }
                 },
@@ -1922,7 +1948,7 @@
                 },
                 tooltip: true,
                 tooltipOpts: {
-                    content: function (label, x, y) {
+                    content: function(label, x, y) {
                         return x + ' : ' + y;
                     }
                 },
@@ -1935,8 +1961,8 @@
                     max: 150, // optional: use it for a clear represetation
                     tickColor: '#eee',
                     position: ($scope.app.layout.isRTL ? 'right' : 'left'),
-                    tickFormatter: function (v) {
-                        return v /* + ' visitors'*/ ;
+                    tickFormatter: function(v) {
+                        return v /* + ' visitors'*/;
                     }
                 },
                 shadowSize: 0
@@ -1964,7 +1990,7 @@
                 },
                 tooltip: true,
                 tooltipOpts: {
-                    content: function (label, x, y) {
+                    content: function(label, x, y) {
                         return x + ' : ' + y;
                     }
                 },
@@ -1976,7 +2002,7 @@
                     min: 0,
                     tickColor: '#eee',
                     position: ($scope.app.layout.isRTL ? 'right' : 'left'),
-                    tickFormatter: function (v) {
+                    tickFormatter: function(v) {
                         return v + ' visitors';
                     }
                 },
@@ -2005,7 +2031,7 @@
                 },
                 tooltip: true,
                 tooltipOpts: {
-                    content: function (label, x, y) {
+                    content: function(label, x, y) {
                         return x + ' : ' + y;
                     }
                 },
@@ -2031,7 +2057,7 @@
                         label: {
                             show: true,
                             radius: 0.8,
-                            formatter: function (label, series) {
+                            formatter: function(label, series) {
                                 return '<div class="flot-pie-label">' +
                                     //label + ' : ' +
                                     Math.round(series.percent) +
@@ -2078,7 +2104,7 @@
                     labelMargin: 10
                 },
                 xaxis: {
-                    tickFormatter: function () {
+                    tickFormatter: function() {
                         return '';
                     }
                 },
@@ -2131,12 +2157,12 @@
             // PANEL REFRESH EVENTS
             // ----------------------------------- 
 
-            $scope.$on('panel-refresh', function (event, id) {
+            $scope.$on('panel-refresh', function(event, id) {
 
                 console.log('Simulating chart refresh during 3s on #' + id);
 
                 // Instead of timeout you can request a chart data
-                $timeout(function () {
+                $timeout(function() {
 
                     // directive listen for to remove the spinner 
                     // after we end up to perform own operations
@@ -2153,7 +2179,7 @@
             // ----------------------------------- 
 
             // Before remove panel
-            $scope.$on('panel-remove', function (event, id, deferred) {
+            $scope.$on('panel-remove', function(event, id, deferred) {
 
                 console.log('Panel #' + id + ' removing');
 
@@ -2165,7 +2191,7 @@
             });
 
             // Panel removed ( only if above was resolved() )
-            $scope.$on('panel-removed', function (event, id) {
+            $scope.$on('panel-removed', function(event, id) {
 
                 console.log('Panel #' + id + ' removed');
 
@@ -2180,7 +2206,7 @@
  * Initializes the Flot chart plugin and handles data refresh
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -2257,7 +2283,7 @@
                 plot.draw();
 
                 function toggleFor(sName) {
-                    return function (s, i) {
+                    return function(s, i) {
                         if (someData[i] && someData[i][sName])
                             someData[i][sName].show = s;
                     };
@@ -2271,13 +2297,13 @@
                 if (src) {
 
                     $http.get(src)
-                        .success(function (data) {
+                        .success(function(data) {
 
-                            $timeout(function () {
+                            $timeout(function() {
                                 scope.dataset = data;
                             });
 
-                        }).error(function () {
+                        }).error(function() {
                             $.error('Flot chart: Bad request.');
                         });
 
@@ -2296,7 +2322,7 @@
  * Module: morris.js
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -2411,7 +2437,7 @@
  * AngularJS Directives for Morris Charts
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -2422,16 +2448,16 @@
         .directive('morrisArea', morrisChart('Area'));
 
     function morrisChart(type) {
-        return function () {
+        return function() {
             return {
                 restrict: 'EA',
                 scope: {
                     morrisData: '=',
                     morrisOptions: '='
                 },
-                link: function ($scope, element) {
+                link: function($scope, element) {
                     // start ready to watch for changes in data
-                    $scope.$watch('morrisData', function (newVal) {
+                    $scope.$watch('morrisData', function(newVal) {
                         if (newVal) {
                             $scope.morrisInstance.setData(newVal);
                             $scope.morrisInstance.redraw();
@@ -2456,7 +2482,7 @@
  * Module: PieChartsController.js
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -2567,7 +2593,7 @@
                 lineCap: 'circle'
             };
 
-            vm.randomize = function (type) {
+            vm.randomize = function(type) {
                 if (type === 'easy') {
                     vm.piePercent1 = random();
                     vm.piePercent2 = random();
@@ -2594,7 +2620,7 @@
  * Module: rickshaw.js
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -2614,14 +2640,14 @@
                 id: 'area',
                 name: 'Area'
             }, {
-                id: 'line',
-                name: 'Line'
+                    id: 'line',
+                    name: 'Line'
                 }, {
-                id: 'bar',
-                name: 'Bar'
+                    id: 'bar',
+                    name: 'Bar'
                 }, {
-                id: 'scatterplot',
-                name: 'Scatterplot'
+                    id: 'scatterplot',
+                    name: 'Scatterplot'
                 }];
 
             vm.palettes = [
@@ -2634,19 +2660,19 @@
                 'munin'
             ];
 
-            vm.rendererChanged = function (id) {
+            vm.rendererChanged = function(id) {
                 vm['options' + id] = {
                     renderer: vm['renderer' + id].id
                 };
             };
 
-            vm.paletteChanged = function (id) {
+            vm.paletteChanged = function(id) {
                 vm['features' + id] = {
                     palette: vm['palette' + id]
                 };
             };
 
-            vm.changeSeriesData = function (id) {
+            vm.changeSeriesData = function(id) {
                 var seriesList = [];
                 for (var i = 0; i < 3; i++) {
                     var series = {
@@ -2716,7 +2742,7 @@
  * SparkLines Mini Charts
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -2738,7 +2764,7 @@
     Controller.$inject = ['$scope', '$element', '$timeout', '$window'];
 
     function Controller($scope, $element, $timeout, $window) {
-        var runSL = function () {
+        var runSL = function() {
             initSparLine();
         };
 
@@ -2759,7 +2785,7 @@
             $element.sparkline('html', options);
 
             if (options.resize) {
-                $($window).resize(function () {
+                $($window).resize(function() {
                     $element.sparkline('html', options);
                 });
             }
@@ -2770,7 +2796,7 @@
 
 })();
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -2799,7 +2825,7 @@
  * Services to retrieve global colors
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -2844,7 +2870,7 @@
 
 // })();
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -2874,7 +2900,7 @@
  * Define constants to inject across the application
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -2887,7 +2913,7 @@
         });
 
 })();
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -2911,7 +2937,7 @@
             color: "#1ba3cd"
         }];
 
-        $rootScope.toggleEnvironment = function () {
+        $rootScope.toggleEnvironment = function() {
             if ($rootScope.serverEnvironment == 'production')
                 $rootScope.serverEnvironment = $rootScope.$storage.environment = 'development';
             else
@@ -2919,7 +2945,7 @@
 
             toast('Environment: ' + $rootScope.serverEnvironment);
 
-            $timeout(function () {
+            $timeout(function() {
                 $window.location.reload()
             }, 2000);
 
@@ -2928,12 +2954,12 @@
         function toast(message) {
             $mdToast.show({
                 template: '<md-toast class="sportimo-toast">' +
-                    '<div class="sportimo-toast-heading text-center">' +
-                    '<img src="app/img/sportimo/icon_sportimo-white_64.png" alt="App Logo" class="pull-left">' +
-                    '</div>' +
-                    '<div>' + message +
-                    '</div>' +
-                    '</md-toast>',
+                '<div class="sportimo-toast-heading text-center">' +
+                '<img src="app/img/sportimo/icon_sportimo-white_64.png" alt="App Logo" class="pull-left">' +
+                '</div>' +
+                '<div>' + message +
+                '</div>' +
+                '</md-toast>',
                 hideDelay: 3000,
                 position: 'top right'
             });
@@ -2954,7 +2980,7 @@
 
         $rootScope.serverEnvironment = $rootScope.$storage.environment || 'production';
 
-        $rootScope.reconnectSocket = function () {
+        $rootScope.reconnectSocket = function() {
             $rootScope.dataStream = $websocket($rootScope.servers[$rootScope.serverEnvironment].sockets);
         };
 
@@ -2962,17 +2988,17 @@
         $rootScope.dataStream = $websocket($rootScope.servers[$rootScope.serverEnvironment].sockets);
 
         $rootScope.socketConnection = false;
-        $rootScope.dataStream.onOpen(function () {
+        $rootScope.dataStream.onOpen(function() {
             $rootScope.socketConnection = true;
         });
-        $rootScope.dataStream.onClose(function () {
+        $rootScope.dataStream.onClose(function() {
             $rootScope.socketConnection = false;
         });
-        $rootScope.dataStream.onError(function () {
+        $rootScope.dataStream.onError(function() {
             $rootScope.socketConnection = false;
         });
 
-        $rootScope.dataStream.onMessage(function (message) {
+        $rootScope.dataStream.onMessage(function(message) {
             messageCount++;
 
 
@@ -3004,7 +3030,7 @@
         $rootScope.colorByName = Colors.byName;
 
         // cancel click event easily
-        $rootScope.cancel = function ($event) {
+        $rootScope.cancel = function($event) {
             $event.stopPropagation();
         };
 
@@ -3013,19 +3039,19 @@
 
         // Hook not found
         $rootScope.$on('$stateNotFound',
-            function (event, unfoundState /*, fromState, fromParams*/ ) {
+            function(event, unfoundState /*, fromState, fromParams*/) {
                 console.log(unfoundState.to); // "lazy.state"
                 console.log(unfoundState.toParams); // {a:1, b:2}
                 console.log(unfoundState.options); // {inherit:false} + default options
             });
         // Hook error
         $rootScope.$on('$stateChangeError',
-            function (event, toState, toParams, fromState, fromParams, error) {
+            function(event, toState, toParams, fromState, fromParams, error) {
                 console.log(error);
             });
         // Hook success
         $rootScope.$on('$stateChangeSuccess',
-            function ( /*event, toState, toParams, fromState, fromParams*/ ) {
+            function( /*event, toState, toParams, fromState, fromParams*/) {
                 // display new view from top
                 $window.scrollTo(0, 0);
                 // Save the route title
@@ -3034,7 +3060,7 @@
 
         // Load a title dynamically
         $rootScope.currTitle = $state.current.title;
-        $rootScope.pageTitle = function () {
+        $rootScope.pageTitle = function() {
             var title = $rootScope.app.name + ' - ' + ($rootScope.currTitle || $rootScope.app.description);
             document.title = title;
             return title;
@@ -3059,7 +3085,7 @@
 
 
 
-        $rootScope.$on('$locationChangeStart', function (event, next, current) {
+        $rootScope.$on('$locationChangeStart', function(event, next, current) {
             // redirect to login page if not logged in and trying to access a restricted page
             //var restrictedPage = $.inArray($location.path(), ['/login', '/register']) === -1;
             var loggedIn = $rootScope.globals.currentUser || $rootScope.$storage.currentUser;
@@ -3081,26 +3107,26 @@
 })();
 
 
-(function () {
+(function() {
     'use strict';
 
     angular
         .module('app.polls')
         .controller('SportimoPollsController', SportimoPollsController)
-        .filter('reverse', function () {
-            return function (items) {
+        .filter('reverse', function() {
+            return function(items) {
                 return items.slice().reverse();
             };
         });
 
 
-    SportimoPollsController.$inject = ['$scope', 'Restangular', 'toaster', '$state', ];
+    SportimoPollsController.$inject = ['$scope', 'Restangular', 'toaster', '$state',];
 
     function SportimoPollsController($scope, Restangular, toaster, $state) {
 
         'use strict';
 
-        $scope.getPercentFor = function (results, index) {
+        $scope.getPercentFor = function(results, index) {
             var sum = 0;
             for (var i in results) {
                 sum += results[i];
@@ -3136,7 +3162,7 @@
 
 
         function loadItems() {
-            Items.getList().then(function (data) {
+            Items.getList().then(function(data) {
                 $scope.allItems = data;
             });
         }
@@ -3147,17 +3173,17 @@
         $scope.composeItem = false;
         $scope.activeItem;
 
-        $scope.newPoll = function () {
+        $scope.newPoll = function() {
             $scope.composeItem = true;
         };
 
-        $scope.updateItem = function (item) {
-            item.save().then(function (res) {
+        $scope.updateItem = function(item) {
+            item.save().then(function(res) {
                 toaster.pop("success", "Task Completed", res);
             })
         };
 
-        $scope.pushPoll = function (poll) {
+        $scope.pushPoll = function(poll) {
 
             console.log(poll);
             var newquest = angular.copy(poll);
@@ -3168,7 +3194,7 @@
             }
 
 
-            Items.post(newquest).then(function (poll) {
+            Items.post(newquest).then(function(poll) {
                 $scope.allItems.push(newquest);
                 $scope.activeItem = null;
                 $scope.composeItem = false;
@@ -3177,11 +3203,11 @@
             });
         };
 
-        $scope.delete = function (item) {
+        $scope.delete = function(item) {
             $scope.loading = true;
 
             console.log(item);
-            item.remove().then(function (res, err) {
+            item.remove().then(function(res, err) {
                 console.log(res);
                 console.log(err);
                 $scope.loading = false;
@@ -3207,14 +3233,14 @@
     }
 })();
 
-(function () {
+(function() {
     'use strict';
 
     angular
         .module('app.welcomes')
         .controller('SportimoWelcomesController', SportimoWelcomesController)
-        .filter('reverse', function () {
-            return function (items) {
+        .filter('reverse', function() {
+            return function(items) {
                 return items.slice().reverse();
             };
         });
@@ -3244,7 +3270,7 @@
 
 
         function loadItems() {
-            Items.getList().then(function (data) {
+            Items.getList().then(function(data) {
                 $scope.allItems = data;
             });
         }
@@ -3255,23 +3281,23 @@
         $scope.composeItem = false;
         $scope.activeItem;
 
-        $scope.newPoll = function () {
+        $scope.newPoll = function() {
 
 
             $scope.composeItem = true;
             setnow();
         };
 
-        $scope.updateItem = function (item) {
+        $scope.updateItem = function(item) {
 
             var newquest = angular.copy(item);
 
-            newquest.save().then(function (res) {
+            newquest.save().then(function(res) {
                 toaster.pop("success", "Task Completed", res);
             })
         };
 
-        $scope.pushItem = function (item) {
+        $scope.pushItem = function(item) {
 
 
             var newquest = angular.copy(item);
@@ -3283,7 +3309,7 @@
 
             console.log(newquest);
 
-            Items.post(newquest).then(function (poll) {
+            Items.post(newquest).then(function(poll) {
                 $scope.allItems.push(newquest);
                 $scope.activeItem = null;
                 $scope.composeItem = false;
@@ -3292,10 +3318,10 @@
             });
         };
 
-        $scope.delete = function (item) {
+        $scope.delete = function(item) {
             $scope.loading = true;
 
-            item.remove().then(function (res, err) {
+            item.remove().then(function(res, err) {
                 console.log(res);
                 console.log(err);
                 $scope.loading = false;
@@ -3327,26 +3353,26 @@
         }
 
 
-        $scope.today = function () {
+        $scope.today = function() {
             $scope.dt = new Date();
         };
         $scope.today();
 
-        $scope.clear = function () {
+        $scope.clear = function() {
             $scope.dt = null;
         };
 
         // Disable weekend selection
-        $scope.disabled = function (date, mode) {
+        $scope.disabled = function(date, mode) {
             return (mode === 'day' && (date.getDay() === 0 || date.getDay() === 6));
         };
 
-        $scope.toggleMin = function () {
+        $scope.toggleMin = function() {
             $scope.minDate = $scope.minDate ? null : new Date();
         };
         $scope.toggleMin();
 
-        $scope.open = function ($event) {
+        $scope.open = function($event) {
             $event.preventDefault();
             $event.stopPropagation();
 
@@ -3367,7 +3393,7 @@
 })();
 
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -3388,7 +3414,7 @@
         function login() {
 
             vm.dataLoading = true;
-            AuthenticationService.Login(vm.username, vm.password, function (response) {
+            AuthenticationService.Login(vm.username, vm.password, function(response) {
 
                 if (response.success && response.admin) {
                     AuthenticationService.SetCredentials(vm.username, vm.password, response.name, response.admin, response.pic, response.token);
@@ -3436,7 +3462,7 @@
 //        };
 //})();
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -3464,31 +3490,31 @@
 
 
         return {
-            getSchedule: function () {
+            getSchedule: function() {
                 var Defer = $q.defer();
-                Schedule.getList().then(function (schedule) {
+                Schedule.getList().then(function(schedule) {
                     Defer.resolve(schedule);
                 });
                 return Defer.promise;
             },
 
-            addMatch: function (newMatch) {
+            addMatch: function(newMatch) {
                 var Defer = $q.defer();
-                Schedule.post(newMatch).then(function (match) {
+                Schedule.post(newMatch).then(function(match) {
                     console.log(match);
                     Defer.resolve(match);
-                }, function () {
+                }, function() {
                     console.log("There was an error saving");
                 });
                 return Defer.promise;
             },
 
-            updateMatch: function (updatedMatch) {
+            updateMatch: function(updatedMatch) {
                 var Defer = $q.defer();
                 var match = _.cloneDeep(updatedMatch);
                 updatedMatch.home_team = updatedMatch.home_team._id.$oid;
                 updatedMatch.away_team = updatedMatch.away_team._id.$oid;
-                updatedMatch.save().then(function (res) {
+                updatedMatch.save().then(function(res) {
                     updatedMatch.home_team = match.home_team;
                     updatedMatch.away_team = match.away_team
                     Defer.resolve(res);
@@ -3497,9 +3523,9 @@
             },
 
 
-            deleteMatch: function (match) {
+            deleteMatch: function(match) {
                 var Defer = $q.defer();
-                match.remove().then(function (res) {
+                match.remove().then(function(res) {
                     Defer.resolve(res);
                 })
                 return Defer.promise;
@@ -3540,9 +3566,9 @@
             var deferred = $q.defer();
 
             // simulate api call with $timeout
-            $timeout(function () {
+            $timeout(function() {
                 GetByUsername(user.username)
-                    .then(function (duplicateUser) {
+                    .then(function(duplicateUser) {
                         if (duplicateUser !== null) {
                             deferred.resolve({
                                 success: false,
@@ -3639,7 +3665,7 @@
     }
 })();
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -3699,9 +3725,9 @@
             ServerUsers.post({
                 username: username,
                 password: password
-            }).then(function (responseUser) {
+            }).then(function(responseUser) {
                 callback(responseUser);
-            }, function () {
+            }, function() {
                 console.log("There was an error saving");
             });
 
@@ -3746,7 +3772,7 @@
 
         keyStr: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=',
 
-        encode: function (input) {
+        encode: function(input) {
             var output = "";
             var chr1, chr2, chr3 = "";
             var enc1, enc2, enc3, enc4 = "";
@@ -3780,7 +3806,7 @@
             return output;
         },
 
-        decode: function (input) {
+        decode: function(input) {
             var output = "";
             var chr1, chr2, chr3 = "";
             var enc1, enc2, enc3, enc4 = "";
@@ -3826,13 +3852,13 @@
 })();
 
 
-(function () {
+(function() {
     'use strict';
 
     angular
         .module('app.pushes')
-        .filter('filterLastAction', function () {
-            return function (items, coddition) {
+        .filter('filterLastAction', function() {
+            return function(items, coddition) {
 
                 if (!coddition) return items;
 
@@ -3878,7 +3904,7 @@
 
 
         function loadItems() {
-            Items.getList().then(function (data) {
+            Items.getList().then(function(data) {
                 $scope.allItems = data;
             });
         }
@@ -3890,10 +3916,10 @@
         //}
 
 
-        $scope.$on('panel-refresh', function (event, id) {
+        $scope.$on('panel-refresh', function(event, id) {
             $scope.pushLoading = true;
             console.log('Simulating chart refresh during 3s on #' + id);
-            Items.getList().then(function (data, err) {
+            Items.getList().then(function(data, err) {
                 if (!err)
                     $scope.allItems = data;
                 $scope.$broadcast('removeSpinner', id);
@@ -3914,7 +3940,7 @@
 
         });
 
-        $scope.FormatDate = function (date) {
+        $scope.FormatDate = function(date) {
 
             var d = new Date(date);
             var d_string = ("0" + d.getDate()).slice(-2) + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" +
@@ -3924,7 +3950,7 @@
         };
 
 
-        $scope.pushRequest = function (Users, message, data) {
+        $scope.pushRequest = function(Users, message, data) {
             $scope.pushLoading = true;
 
             if (message == undefined) {
@@ -3940,11 +3966,11 @@
                 data: data != undefined ? JSON.parse(JSON.stringify(data)) : data
             };
 
-            Push.post(Request).then(function (res) {
+            Push.post(Request).then(function(res) {
                 $scope.pushLoading = false;
                 toaster.pop("success", "Success", "Successfuly sent Push Request");
                 console.log(res);
-            }, function () {
+            }, function() {
                 $scope.pushLoading = false;
                 console.log("There was an error saving");
             });
@@ -3966,20 +3992,20 @@
 
         // SELECTION
 
-        $scope.onServiceSelected = function (item, model) {
+        $scope.onServiceSelected = function(item, model) {
 
             $scope.selectedService = item.id;
 
 
         };
 
-        $scope.onSelected = function (item, model) {
+        $scope.onSelected = function(item, model) {
 
             $scope.push.message = JSON.stringify(item.message, null, 4);
 
         };
 
-        $scope.onDataSelected = function (item) {
+        $scope.onDataSelected = function(item) {
 
             item.message.match_id = $scope.matchIdFilter;
             $scope.push.data = JSON.stringify(item.message, null, 4);
@@ -4005,15 +4031,15 @@
 
         $scope.disabled = undefined;
 
-        $scope.enable = function () {
+        $scope.enable = function() {
             $scope.disabled = false;
         };
 
-        $scope.disable = function () {
+        $scope.disable = function() {
             vm.disabled = true;
         };
 
-        $scope.clear = function () {
+        $scope.clear = function() {
             vm.template.selected = undefined;
         };
 
@@ -4054,7 +4080,7 @@
 
 
         // Multiple
-        $scope.someGroupFn = function (item) {
+        $scope.someGroupFn = function(item) {
 
             if (item.name[0] >= 'A' && item.name[0] <= 'M')
                 return 'From A - M';
@@ -4065,7 +4091,7 @@
         };
 
         $scope.counter = 0;
-        $scope.someFunction = function (item, model) {
+        $scope.someFunction = function(item, model) {
             $scope.counter++;
             $scope.eventResult = {
                 item: item,
@@ -4086,14 +4112,14 @@
 })();
 
 
-(function () {
+(function() {
     'use strict';
 
     angular
         .module('app.activities')
         .controller('SportimoActivitiesController', SportimoActivitiesController)
-        .filter('reverse', function () {
-            return function (items) {
+        .filter('reverse', function() {
+            return function(items) {
                 return items.slice().reverse();
             };
         });
@@ -4120,7 +4146,7 @@
 
 
         function loadItems() {
-            Items.getList().then(function (data) {
+            Items.getList().then(function(data) {
                 $scope.allItems = data;
             });
         }
@@ -4131,20 +4157,20 @@
         $scope.composeItem = false;
         $scope.activeItem;
 
-        $scope.newPoll = function () {
+        $scope.newPoll = function() {
 
 
             $scope.composeItem = true;
             setnow();
         };
 
-        $scope.updateItem = function (item) {
-            item.save().then(function (res) {
+        $scope.updateItem = function(item) {
+            item.save().then(function(res) {
                 toaster.pop("success", "Task Completed", res);
             })
         };
 
-        $scope.pushItem = function (item) {
+        $scope.pushItem = function(item) {
 
 
             var newquest = angular.copy(item);
@@ -4155,7 +4181,7 @@
             }
 
 
-            Items.post(newquest).then(function (poll) {
+            Items.post(newquest).then(function(poll) {
                 $scope.allItems.push(newquest);
                 $scope.activeItem = null;
                 $scope.composeItem = false;
@@ -4164,10 +4190,10 @@
             });
         };
 
-        $scope.delete = function (item) {
+        $scope.delete = function(item) {
             $scope.loading = true;
 
-            item.remove().then(function (res, err) {
+            item.remove().then(function(res, err) {
                 console.log(res);
                 console.log(err);
                 $scope.loading = false;
@@ -4199,26 +4225,26 @@
         }
 
 
-        $scope.today = function () {
+        $scope.today = function() {
             $scope.dt = new Date();
         };
         $scope.today();
 
-        $scope.clear = function () {
+        $scope.clear = function() {
             $scope.dt = null;
         };
 
         // Disable weekend selection
-        $scope.disabled = function (date, mode) {
+        $scope.disabled = function(date, mode) {
             return (mode === 'day' && (date.getDay() === 0 || date.getDay() === 6));
         };
 
-        $scope.toggleMin = function () {
+        $scope.toggleMin = function() {
             $scope.minDate = $scope.minDate ? null : new Date();
         };
         $scope.toggleMin();
 
-        $scope.open = function ($event) {
+        $scope.open = function($event) {
             $event.preventDefault();
             $event.stopPropagation();
 
@@ -4238,14 +4264,14 @@
 
 })();
 
-(function () {
+(function() {
     'use strict';
 
     angular
         .module('app.interviews')
         .controller('SportimoInterviewsController', SportimoInterviewsController)
-        .filter('reverse', function () {
-            return function (items) {
+        .filter('reverse', function() {
+            return function(items) {
                 return items.slice().reverse();
             };
         })
@@ -4257,7 +4283,7 @@
         //        return input;
         //    };
         //});
-    ;
+        ;
 
     SportimoInterviewsController.$inject = ['$scope', 'Restangular', 'toaster', '$state'];
 
@@ -4282,7 +4308,7 @@
 
 
         function loadItems() {
-            Items.getList().then(function (data) {
+            Items.getList().then(function(data) {
                 $scope.allItems = data;
             });
         }
@@ -4293,21 +4319,21 @@
         $scope.composeItem = false;
         $scope.activeItem;
 
-        $scope.newPoll = function () {
+        $scope.newPoll = function() {
 
 
             $scope.composeItem = true;
             setnow();
         };
 
-        $scope.updateItem = function (item) {
+        $scope.updateItem = function(item) {
             console.log(item.date);
-            item.save().then(function (res) {
+            item.save().then(function(res) {
                 toaster.pop("success", "Task Completed", res);
             })
         };
 
-        $scope.pushItem = function (item) {
+        $scope.pushItem = function(item) {
 
 
             var newquest = angular.copy(item);
@@ -4322,7 +4348,7 @@
             }
 
 
-            Items.post(newquest).then(function (poll) {
+            Items.post(newquest).then(function(poll) {
                 $scope.allItems.push(newquest);
                 $scope.activeItem = null;
                 $scope.composeItem = false;
@@ -4331,10 +4357,10 @@
             });
         };
 
-        $scope.delete = function (item) {
+        $scope.delete = function(item) {
             $scope.loading = true;
 
-            item.remove().then(function (res, err) {
+            item.remove().then(function(res, err) {
                 console.log(res);
                 console.log(err);
                 $scope.loading = false;
@@ -4366,26 +4392,26 @@
         }
 
 
-        $scope.today = function () {
+        $scope.today = function() {
             $scope.dt = new Date();
         };
         $scope.today();
 
-        $scope.clear = function () {
+        $scope.clear = function() {
             $scope.dt = null;
         };
 
         // Disable weekend selection
-        $scope.disabled = function (date, mode) {
+        $scope.disabled = function(date, mode) {
             return (mode === 'day' && (date.getDay() === 0 || date.getDay() === 6));
         };
 
-        $scope.toggleMin = function () {
+        $scope.toggleMin = function() {
             $scope.minDate = $scope.minDate ? null : new Date();
         };
         $scope.toggleMin();
 
-        $scope.open = function ($event) {
+        $scope.open = function($event) {
             $event.preventDefault();
             $event.stopPropagation();
 
@@ -4415,14 +4441,14 @@
  * events and events creations
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
         .module('app.extras')
         .directive('calendar', calendar);
 
-    calendar.$inject = ['$rootScope', ];
+    calendar.$inject = ['$rootScope',];
 
     function calendar($rootScope) {
         var directive = {
@@ -4478,7 +4504,7 @@
                 week: 'week',
                 day: 'day'
             },
-            viewRender: function (view, element) {
+            viewRender: function(view, element) {
                 scope.startRange = view.start;
                 scope.endRange = view.end;
 
@@ -4491,7 +4517,7 @@
                     scope.$apply();
             },
             eventStartEditable: true,
-            eventDrop: function (event, delta, revertFunc) {
+            eventDrop: function(event, delta, revertFunc) {
 
 
                 var hookedEvent = _.findWhere(scope.events, {
@@ -4508,7 +4534,7 @@
 
             },
             droppable: false, // this allows things to be dropped onto the calendar 
-            drop: function (date, allDay) { // this function is called when something is dropped
+            drop: function(date, allDay) { // this function is called when something is dropped
 
                 var $this = $(this),
                     // retrieve the dropped element's stored Event Object
@@ -4536,12 +4562,12 @@
                     $this.remove();
                 }
             },
-            dayClick: function (date, jsEvent, view) {
+            dayClick: function(date, jsEvent, view) {
                 scope.showDaySchedule(date, calElement);
             },
             eventColor: '#2196f3',
             eventBorderColor: '#3c8dbc',
-            eventRender: function (event, element) {
+            eventRender: function(event, element) {
 
                 element.find(".fc-title").remove();
                 element.find(".fc-time").remove();
@@ -4554,7 +4580,7 @@
                 element.append(new_description);
             },
 
-            eventClick: function (calEvent, jsEvent, view) {
+            eventClick: function(calEvent, jsEvent, view) {
 
                 var tableFilter = calEvent.start.format("DD") + "/" + calEvent.start.format("MM") + " " + calEvent.home_team.name_en + " " + calEvent.away_team.name_en;
                 scope.LoadedDT.DataTable.search(tableFilter).draw();
@@ -4575,7 +4601,7 @@
                 //                    $(this).css('border-color', 'red');
 
             },
-            eventDragStart: function (event /*, js, ui*/ ) {
+            eventDragStart: function(event /*, js, ui*/) {
                 draggingEvent = event;
             },
             // This array is the events sources
@@ -4587,18 +4613,21 @@
 
 })();
 
-(function () {
+(function() {
     'use strict';
 
     angular
         .module('app.schedule')
         .service('ScheduleService', ScheduleService)
+
         .controller('ScheduleController', ScheduleController);
 
-    ScheduleService.$inject = ['$resource', 'Restangular', '$rootScope', '$q'];
-    ScheduleController.$inject = ['$scope', 'TeamsService', 'PlayersService', 'ScheduleService', 'DTOptionsBuilder', 'DTColumnDefBuilder', '$state'];
 
-    function ScheduleController($scope, TeamsService, PlayersService, ScheduleService, DTOptionsBuilder, DTColumnDefBuilder, $state) {
+    ScheduleService.$inject = ['$resource', 'Restangular', '$rootScope', '$q'];
+
+    ScheduleController.$inject = ['$scope', 'TeamsService', 'PlayersService', 'ScheduleService', 'DTOptionsBuilder', 'DTColumnDefBuilder', '$state', 'CompetitionsService'];
+
+    function ScheduleController($scope, TeamsService, PlayersService, ScheduleService, DTOptionsBuilder, DTColumnDefBuilder, $state, CompetitionsService) {
 
         var vm = $scope;
 
@@ -4611,7 +4640,7 @@
 
         vm.Teams = [];
 
-        vm.OnSet = function (newDate, oldDate) {
+        vm.OnSet = function(newDate, oldDate) {
             vm.openedCalendar = 0;
 
             if (vm.scheduledMatch.home_team != undefined && vm.scheduledMatch.away_team != undefined && vm.scheduledMatch.start != undefined && vm.scheduledMatch.competition != undefined)
@@ -4621,25 +4650,14 @@
             //vm.scheduledMatch.title = vm.scheduledMatch.home_team.name_en + " - " + vm.scheduledMatch.away_team.name_en;
         }
 
-        vm.competitions = [
-            {
-                "name": "Champions League",
-                "logo": "./app/img/sportimo/competitions/UEFA_Champions_League_Logo.png"
-            },
-            {
-                "name": "Europa League",
-                "logo": "./app/img/sportimo/competitions/uefa-europa-league-logo.jpg"
-            },
-            {
-                "name": "Greek Super League",
-                "logo": "./app/img/sportimo/competitions/profile_superleague_greece.gif"
-            }
+        CompetitionsService.All().then(function(all) {
+            vm.competitions = all;
+        })
 
-        ]
 
-        TeamsService.getAllTeams().then(function (teams) {
+        TeamsService.getAllTeams().then(function(teams) {
             vm.Teams = teams;
-        }, function (error) {});
+        }, function(error) { });
 
         vm.dtOptions = DTOptionsBuilder.newOptions()
             .withPaginationType('full_numbers');
@@ -4648,14 +4666,14 @@
             DTColumnDefBuilder.newColumnDef(4).notSortable()
         ];
 
-        ScheduleService.getSchedule().then(function (schedule) {
+        ScheduleService.getSchedule().then(function(schedule) {
             $scope.events = schedule;
             RefreshCalendar();
-        }, function (error) {});
+        }, function(error) { });
 
         vm.LoadedDT = null;
 
-        vm.CreateMatchEvent = function () {
+        vm.CreateMatchEvent = function() {
             vm.view.busy = true;
             var match = {};
             if (vm.scheduledMatch.home_team._id.$oid) {
@@ -4668,7 +4686,7 @@
             match.competition = vm.scheduledMatch.competition;
             match.start = vm.scheduledMatch.start;
 
-            ScheduleService.addMatch(match).then(function (res) {
+            ScheduleService.addMatch(match).then(function(res) {
                 res.home_team = vm.scheduledMatch.home_team;
                 res.away_team = vm.scheduledMatch.away_team;
 
@@ -4680,17 +4698,17 @@
             })
         }
 
-        vm.UpdateMatchEvent = function (event) {
+        vm.UpdateMatchEvent = function(event) {
             vm.view.busy = true;
-            ScheduleService.updateMatch(event).then(function (res) {
+            ScheduleService.updateMatch(event).then(function(res) {
                 RefreshCalendar();
                 vm.view.busy = false;
             })
         }
 
-        vm.DeleteMatchEvent = function (event) {
+        vm.DeleteMatchEvent = function(event) {
             vm.view.busy = true;
-            ScheduleService.deleteMatch(event).then(function (res) {
+            ScheduleService.deleteMatch(event).then(function(res) {
                 vm.events = _.without(vm.events, event);
                 RefreshCalendar();
                 vm.selectedMatch = null;
@@ -4698,12 +4716,12 @@
             })
         }
 
-        $scope.showDaySchedule = function (newdate, calendar) {
+        $scope.showDaySchedule = function(newdate, calendar) {
             var tableFilter = vm.formatDate(newdate, "DD") + "/" + vm.formatDate(newdate, "MM");
             vm.LoadedDT.DataTable.search(tableFilter).draw();
         }
 
-        $scope.formatDate = function (date, style) {
+        $scope.formatDate = function(date, style) {
             return moment(date).utc().format(style);
         }
 
@@ -4711,8 +4729,8 @@
         vm.endRange = null;
 
         //Filter Function
-        $scope.inRange = function (start, end) {
-            return function (item) {
+        $scope.inRange = function(start, end) {
+            return function(item) {
 
                 if (moment(item['start']) > vm.startRange && moment(item['start']) < vm.endRange) {
                     return true;
@@ -4730,30 +4748,30 @@
 
         /* START of Match Context menu*/
         /* Moderate */
-        $scope.ModerateMatch = function (matchid, sport) {
+        $scope.ModerateMatch = function(matchid, sport) {
 
-                $state.go("app.match-moderation-" + (sport || 'soccer'), {
-                    id: (matchid || "565c4af6e4b030fba33dd459")
-                });
-            }
-            /* Edit */
-        $scope.EditMatch = function (match) {
-                //                console.log(match);
-                vm.selectedMatch = match;
-                vm.view.inspectorPanel = true;
-                vm.inspectorPanel = false;
-            }
-            /* Change Color */
-        $scope.setColor = function (color) {
-                vm.selectedMatch.color = color;
-                RefreshCalendar();
-            }
-            /* Delete */
-        $scope.DeleteMatch = function (match) {
-                vm.DeleteMatchEvent(match);
-            }
-            // Before remove panel
-        $scope.$on('panel-remove', function (event, id, deferred) {
+            $state.go("app.match-moderation-" + (sport || 'soccer'), {
+                id: (matchid || "565c4af6e4b030fba33dd459")
+            });
+        }
+        /* Edit */
+        $scope.EditMatch = function(match) {
+            //                console.log(match);
+            vm.selectedMatch = match;
+            vm.view.inspectorPanel = true;
+            vm.inspectorPanel = false;
+        }
+        /* Change Color */
+        $scope.setColor = function(color) {
+            vm.selectedMatch.color = color;
+            RefreshCalendar();
+        }
+        /* Delete */
+        $scope.DeleteMatch = function(match) {
+            vm.DeleteMatchEvent(match);
+        }
+        // Before remove panel
+        $scope.$on('panel-remove', function(event, id, deferred) {
 
             console.log('Panel #' + id + ' removing');
             vm.view[id] = false;
@@ -4764,6 +4782,8 @@
 
     }
 
+
+
     function ScheduleService($resource, Restangular, $rootScope, $q) {
 
         var mock = false;
@@ -4773,8 +4793,8 @@
             var schedule = $resource('server/mockdata/schedule.json');
 
             return {
-                getSchedule: function () {
-                    return schedule.query({}, function (res) {
+                getSchedule: function() {
+                    return schedule.query({}, function(res) {
                         return res;
                     });
                 }
@@ -4790,31 +4810,31 @@
             });
 
             return {
-                getSchedule: function () {
+                getSchedule: function() {
                     var Defer = $q.defer();
-                    Schedule.getList().then(function (schedule) {
+                    Schedule.getList().then(function(schedule) {
                         Defer.resolve(schedule);
                     });
                     return Defer.promise;
                 },
 
-                addMatch: function (newMatch) {
+                addMatch: function(newMatch) {
                     var Defer = $q.defer();
-                    Schedule.post(newMatch).then(function (match) {
+                    Schedule.post(newMatch).then(function(match) {
                         console.log(match);
                         Defer.resolve(match);
-                    }, function () {
+                    }, function() {
                         console.log("There was an error saving");
                     });
                     return Defer.promise;
                 },
 
-                updateMatch: function (updatedMatch) {
+                updateMatch: function(updatedMatch) {
                     var Defer = $q.defer();
                     var match = _.cloneDeep(updatedMatch);
                     updatedMatch.home_team = updatedMatch.home_team._id.$oid;
                     updatedMatch.away_team = updatedMatch.away_team._id.$oid;
-                    updatedMatch.save().then(function (res) {
+                    updatedMatch.save().then(function(res) {
                         updatedMatch.home_team = match.home_team;
                         updatedMatch.away_team = match.away_team
                         Defer.resolve(res);
@@ -4823,9 +4843,9 @@
                 },
 
 
-                deleteMatch: function (match) {
+                deleteMatch: function(match) {
                     var Defer = $q.defer();
-                    match.remove().then(function (res) {
+                    match.remove().then(function(res) {
                         Defer.resolve(res);
                     })
                     return Defer.promise;
@@ -4838,7 +4858,7 @@
 
 })();
 
-(function () {
+(function() {
     'use strict';
 
     angular.module('app.data')
@@ -4853,7 +4873,7 @@
             selectedLoading: true
         }
 
-        PlayersService.getPlayer($stateParams.id).then(function (player) {
+        PlayersService.getPlayer($stateParams.id).then(function(player) {
 
             if (player)
                 $scope.selectedItem = player;
@@ -4862,15 +4882,473 @@
         })
 
     }
-
-
-
-
-
 })();
 
 
-(function () {
+(function() {
+    'use strict';
+
+    angular.module('app.standings')
+    .service('StandingsService',StandingsService)
+        .controller('StandingsController', StandingsController);
+
+    StandingsController.$inject = ['$window', '$scope', '$stateParams', 'StandingsService'];
+
+    function StandingsController($window, $scope, $stateParams, StandingsService) {
+        
+        var vm = $scope;
+        vm.selectedCompetition = $stateParams.competition;
+        vm.Standings = null;
+        vm.loadedData = null;
+   
+        vm.selectedSeason = null;
+        
+        $scope.view = {
+            selectedLoading: true
+        }
+        
+        vm.formatDate = function(date){
+            // console.log(date);
+            // console.log(moment(date).format('MMMM Do YYYY, h:mm:ss a'));
+            return moment(date).utc().format('MMMM Do YYYY, h:mm:ss a');
+        }
+
+        StandingsService.All().then(function(all) {
+            vm.loadedData = all;            
+            vm.Standings = _.uniq(vm.loadedData,'name.en');
+            
+            if(vm.selectedCompetition){
+                vm.Seasons = _.map(_.filter(vm.loadedData,{competitionid: vm.selectedCompetition}),'season');
+                vm.selectedSeason = vm.Seasons[0];
+                findStanding();
+            }
+            $scope.view.selectedLoading = false;
+        })
+        
+        $scope.onSelectedCompetition = function (selectedItem) {      
+            vm.Seasons = _.map(_.filter(vm.loadedData,{competitionid: selectedItem.competitionid}),'season');
+            vm.selectedCompetition = selectedItem.competitionid;
+            vm.selectedSeason = vm.Seasons[0];
+            findStanding();
+        }
+        
+         $scope.onSelectedSeason = function (selectedItem) {
+            vm.selectedSeason = selectedItem;
+            findStanding();
+        }
+        
+        function findStanding(){
+            vm.standing = _.filter(vm.loadedData, {competitionid: vm.selectedCompetition, season: vm.selectedSeason})[0];
+        }
+
+    }
+    
+    StandingsService.$inject = [ 'Restangular', '$q', '$rootScope'];
+    
+    function StandingsService(Restangular, $q, $rootScope){
+        
+        var Standings;
+        var Data = Restangular.all('v1/data/standings');
+
+        Restangular.setBaseUrl($rootScope.servers[$rootScope.serverEnvironment].game_server);
+        Restangular.setRestangularFields({
+            id: "_id"
+        });
+
+        return {
+            All: function() {
+                var Defer = $q.defer();
+                Defer.resolve([{
+    "_id": "56f51c5718e865c81b46476f",
+    "season": 2015,
+    "identity": "Stats",
+    "name": {
+        "en": "English Premier League"
+    },
+    "competitionid": "56f4800fe4b02f2226646297",
+    "lastupdate": "2016-03-25T11:09:11.836Z",
+    "created": "2016-03-25T11:09:11.836Z",
+    "parserids": [],
+    "visiblein": [],
+    "teams": [
+        {
+            "rank": 1,
+            "teamName": {
+                "ru": "Leicester City",
+                "ar": "ليستر سيتي",
+                "en": "Leicester City"
+            },
+            "teamId": "56e81b7c30345c282c01b2d1",
+            "points": 66,
+            "pointsPerGame": "2.13",
+            "penaltyPoints": 0,
+            "wins": 19,
+            "losses": 3,
+            "ties": 9,
+            "gamesPlayed": 9,
+            "goalsFor": 54,
+            "goalsAgainst": 31
+        },
+        {
+            "rank": 2,
+            "teamName": {
+                "ru": "Тоттенхэм Хотспур",
+                "ar": "توتنهام هوتسبر",
+                "en": "Tottenham Hotspur"
+            },
+            "teamId": "56e81b7c30345c282c01b2d3",
+            "points": 61,
+            "pointsPerGame": "1.97",
+            "penaltyPoints": 0,
+            "wins": 17,
+            "losses": 4,
+            "ties": 10,
+            "gamesPlayed": 10,
+            "goalsFor": 56,
+            "goalsAgainst": 24
+        },
+        {
+            "rank": 3,
+            "teamName": {
+                "ru": "Arsenal",
+                "ar": "آرسنال",
+                "en": "Arsenal"
+            },
+            "teamId": "56e81b7c30345c282c01b2e8",
+            "points": 55,
+            "pointsPerGame": "1.83",
+            "penaltyPoints": 0,
+            "wins": 16,
+            "losses": 7,
+            "ties": 7,
+            "gamesPlayed": 7,
+            "goalsFor": 48,
+            "goalsAgainst": 30
+        },
+        {
+            "rank": 4,
+            "teamName": {
+                "ru": "Manchester City",
+                "ar": "مانشستر سيتي",
+                "en": "Manchester City"
+            },
+            "teamId": "56e81b7c30345c282c01b2c2",
+            "points": 51,
+            "pointsPerGame": "1.70",
+            "penaltyPoints": 0,
+            "wins": 15,
+            "losses": 9,
+            "ties": 6,
+            "gamesPlayed": 6,
+            "goalsFor": 52,
+            "goalsAgainst": 32
+        },
+        {
+            "rank": 5,
+            "teamName": {
+                "ru": "West Ham United",
+                "ar": "وست هام يونايتد",
+                "en": "West Ham United"
+            },
+            "teamId": "56e81b7c30345c282c01b2c6",
+            "points": 50,
+            "pointsPerGame": "1.67",
+            "penaltyPoints": 0,
+            "wins": 13,
+            "losses": 6,
+            "ties": 11,
+            "gamesPlayed": 11,
+            "goalsFor": 47,
+            "goalsAgainst": 35
+        },
+        {
+            "rank": 6,
+            "teamName": {
+                "ru": "Manchester United",
+                "ar": "مانشستر يونايتد",
+                "en": "Manchester United"
+            },
+            "teamId": "56e81b7c30345c282c01b309",
+            "points": 50,
+            "pointsPerGame": "1.67",
+            "penaltyPoints": 0,
+            "wins": 14,
+            "losses": 8,
+            "ties": 8,
+            "gamesPlayed": 8,
+            "goalsFor": 38,
+            "goalsAgainst": 27
+        },
+        {
+            "rank": 7,
+            "teamName": {
+                "ru": "Southampton",
+                "ar": "ساوثمبتون",
+                "en": "Southampton"
+            },
+            "teamId": "56e81b7c30345c282c01b2ea",
+            "points": 47,
+            "pointsPerGame": "1.52",
+            "penaltyPoints": 0,
+            "wins": 13,
+            "losses": 10,
+            "ties": 8,
+            "gamesPlayed": 8,
+            "goalsFor": 41,
+            "goalsAgainst": 32
+        },
+        {
+            "rank": 8,
+            "teamName": {
+                "ru": "Stoke City",
+                "ar": "ستوك سيتي",
+                "en": "Stoke City"
+            },
+            "teamId": "56e81b7c30345c282c01b2c0",
+            "points": 46,
+            "pointsPerGame": "1.48",
+            "penaltyPoints": 0,
+            "wins": 13,
+            "losses": 11,
+            "ties": 7,
+            "gamesPlayed": 7,
+            "goalsFor": 34,
+            "goalsAgainst": 37
+        },
+        {
+            "rank": 9,
+            "teamName": {
+                "ru": "Liverpool",
+                "ar": "ليفربول",
+                "en": "Liverpool"
+            },
+            "teamId": "56e81b7c30345c282c01b2d5",
+            "points": 44,
+            "pointsPerGame": "1.52",
+            "penaltyPoints": 0,
+            "wins": 12,
+            "losses": 9,
+            "ties": 8,
+            "gamesPlayed": 8,
+            "goalsFor": 45,
+            "goalsAgainst": 40
+        },
+        {
+            "rank": 10,
+            "teamName": {
+                "ru": "Chelsea",
+                "ar": "تشيلسي",
+                "en": "Chelsea"
+            },
+            "teamId": "56e81b7c30345c282c01b2ce",
+            "points": 41,
+            "pointsPerGame": "1.37",
+            "penaltyPoints": 0,
+            "wins": 10,
+            "losses": 9,
+            "ties": 11,
+            "gamesPlayed": 11,
+            "goalsFor": 45,
+            "goalsAgainst": 41
+        },
+        {
+            "rank": 11,
+            "teamName": {
+                "ru": "West Bromwich Albion",
+                "ar": "وست بروميتش البيون",
+                "en": "West Bromwich Albion"
+            },
+            "teamId": "56e81b7c30345c282c01b2e1",
+            "points": 39,
+            "pointsPerGame": "1.30",
+            "penaltyPoints": 0,
+            "wins": 10,
+            "losses": 11,
+            "ties": 9,
+            "gamesPlayed": 9,
+            "goalsFor": 30,
+            "goalsAgainst": 37
+        },
+        {
+            "rank": 12,
+            "teamName": {
+                "ru": "Everton",
+                "ar": "ايفرتون",
+                "en": "Everton"
+            },
+            "teamId": "56e81b7c30345c282c01b2f0",
+            "points": 38,
+            "pointsPerGame": "1.31",
+            "penaltyPoints": 0,
+            "wins": 9,
+            "losses": 9,
+            "ties": 11,
+            "gamesPlayed": 11,
+            "goalsFor": 51,
+            "goalsAgainst": 41
+        },
+        {
+            "rank": 13,
+            "teamName": {
+                "ru": "Bournemouth",
+                "ar": "بورنموث ",
+                "en": "Bournemouth"
+            },
+            "teamId": "56e81b7c30345c282c01b2c9",
+            "points": 38,
+            "pointsPerGame": "1.23",
+            "penaltyPoints": 0,
+            "wins": 10,
+            "losses": 13,
+            "ties": 8,
+            "gamesPlayed": 8,
+            "goalsFor": 38,
+            "goalsAgainst": 50
+        },
+        {
+            "rank": 14,
+            "teamName": {
+                "ru": "Watford",
+                "ar": "واتفورد",
+                "en": "Watford"
+            },
+            "teamId": "56e81b7c30345c282c01b2be",
+            "points": 37,
+            "pointsPerGame": "1.23",
+            "penaltyPoints": 0,
+            "wins": 10,
+            "losses": 13,
+            "ties": 7,
+            "gamesPlayed": 7,
+            "goalsFor": 30,
+            "goalsAgainst": 32
+        },
+        {
+            "rank": 15,
+            "teamName": {
+                "ru": "Swansea City",
+                "ar": "سوانسي سيتي",
+                "en": "Swansea City"
+            },
+            "teamId": "56e81b7c30345c282c01b2d9",
+            "points": 36,
+            "pointsPerGame": "1.16",
+            "penaltyPoints": 0,
+            "wins": 9,
+            "losses": 13,
+            "ties": 9,
+            "gamesPlayed": 9,
+            "goalsFor": 31,
+            "goalsAgainst": 40
+        },
+        {
+            "rank": 16,
+            "teamName": {
+                "ru": "Crystal Palace",
+                "ar": "كريستال بالاس",
+                "en": "Crystal Palace"
+            },
+            "teamId": "56e81b7c30345c282c01b2c4",
+            "points": 33,
+            "pointsPerGame": "1.10",
+            "penaltyPoints": 0,
+            "wins": 9,
+            "losses": 15,
+            "ties": 6,
+            "gamesPlayed": 6,
+            "goalsFor": 32,
+            "goalsAgainst": 40
+        },
+        {
+            "rank": 17,
+            "teamName": {
+                "ru": "Norwich City",
+                "ar": "نوريتش سيتي",
+                "en": "Norwich City"
+            },
+            "teamId": "56e81b7c30345c282c01b2de",
+            "points": 28,
+            "pointsPerGame": "0.90",
+            "penaltyPoints": 0,
+            "wins": 7,
+            "losses": 17,
+            "ties": 7,
+            "gamesPlayed": 7,
+            "goalsFor": 32,
+            "goalsAgainst": 54
+        },
+        {
+            "rank": 18,
+            "teamName": {
+                "ru": "Sunderland",
+                "ar": "سندرلاند",
+                "en": "Sunderland"
+            },
+            "teamId": "56e81b7c30345c282c01b2fb",
+            "points": 26,
+            "pointsPerGame": "0.87",
+            "penaltyPoints": 0,
+            "wins": 6,
+            "losses": 16,
+            "ties": 8,
+            "gamesPlayed": 8,
+            "goalsFor": 36,
+            "goalsAgainst": 55
+        },
+        {
+            "rank": 19,
+            "teamName": {
+                "ru": "Newcastle United",
+                "ar": "نيوكاسل يونايتد",
+                "en": "Newcastle United"
+            },
+            "teamId": "56e81b7c30345c282c01b2bc",
+            "points": 25,
+            "pointsPerGame": "0.83",
+            "penaltyPoints": 0,
+            "wins": 6,
+            "losses": 17,
+            "ties": 7,
+            "gamesPlayed": 7,
+            "goalsFor": 29,
+            "goalsAgainst": 55
+        },
+        {
+            "rank": 20,
+            "teamName": {
+                "ru": "Aston Villa",
+                "ar": "استون فيلا",
+                "en": "Aston Villa"
+            },
+            "teamId": "56e81b7c30345c282c01b2cb",
+            "points": 16,
+            "pointsPerGame": "0.52",
+            "penaltyPoints": 0,
+            "wins": 3,
+            "losses": 21,
+            "ties": 7,
+            "gamesPlayed": 7,
+            "goalsFor": 22,
+            "goalsAgainst": 58
+        }
+    ]
+}])
+
+                // if (Standings)
+                //     Defer.resolve(Standings);
+                // else
+                //     Data.getList().then(function(all) {
+                //         Standings = all;
+                //         Defer.resolve(all);
+                //     });
+                return Defer.promise;
+            }
+        }
+    }
+    
+})();
+
+(function() {
     'use strict';
 
     angular
@@ -4893,15 +5371,15 @@
                 ngModel: '=ngModel',
                 picKey: '@picKey'
             },
-            controller: ['$scope', function ($scope) {
+            controller: ['$scope', function($scope) {
 
-                $scope.searchFor = function (forQuery) {
+                $scope.searchFor = function(forQuery) {
                     $window.open('https://www.google.gr/search?q=' + forQuery + '+logo&tbm=isch', '_blank');
                 };
 
 
                 var bucket = 'https://s3-eu-west-1.amazonaws.com/sportimo-media/';
-                $scope.uploadFile = function (file, player) {
+                $scope.uploadFile = function(file, player) {
                     console.log(file.name.substr(file.name.lastIndexOf('.') + 1));
                     // console.log(file);
                     Upload.upload({
@@ -4917,7 +5395,7 @@
                             filename: file.name, // this is needed for Flash polyfill IE8-9
                             file: file
                         }
-                    }).then(function (resp) {
+                    }).then(function(resp) {
                         $scope.ngModel[$scope.picKey] = bucket + $scope.folder + '/' + $scope.filename + "." + file.name.substr(file.name.lastIndexOf('.') + 1);
 
                         console.log($scope.shouldUpdate);
@@ -4925,16 +5403,16 @@
                             $scope.ngModel.save();
                         }
                         console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
-                    }, function (resp) {
+                    }, function(resp) {
                         console.log('Error status: ' + resp.status);
 
-                    }, function (evt) {
+                    }, function(evt) {
                         //                        var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
                         // console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
                     });
                 }
 
-             }]
+            }]
         };
     }
 
@@ -4952,36 +5430,36 @@
                 onCancel: '@onCancel',
                 type: '@type'
             },
-            controller: ['$scope', '$window', function ($scope, $window) {
+            controller: ['$scope', '$window', function($scope, $window) {
 
                 $scope.loading = true;
-                $scope.$watch('reload', function (newValue, oldValue) {
+                $scope.$watch('reload', function(newValue, oldValue) {
                     if (newValue) {
-                        $timeout(function () {
+                        $timeout(function() {
                             $scope.loading = false;
                             $scope.reload = false;
                         }, 600);
                     }
                 });
 
-                TagsService.getAllTags().then(function (tags) {
+                TagsService.getAllTags().then(function(tags) {
                     $scope.Tags = tags;
                 });
 
                 console.log("tags:" + $scope.Tags)
-                $scope.updateByFeedParser = function (item, parserid) {
+                $scope.updateByFeedParser = function(item, parserid) {
                     console.log("ID: " + parserid);
                 }
 
                 $scope.openedCal = {};
 
-                $scope.openCal = function ($event, whichCal) {
+                $scope.openCal = function($event, whichCal) {
                     $event.preventDefault();
                     $event.stopPropagation();
                     $scope.openedCal[whichCal] = true;
                 };
 
-                $scope.cancel = function () {
+                $scope.cancel = function() {
 
                     console.log($scope.onCancel)
                     if ($scope.onCancel == 'back') {
@@ -4990,7 +5468,7 @@
                         $scope.selectedItem = null;
                 }
 
-                $scope.$watch('selectedItem.personalData.birth.birthDate.full', function (newValue, oldValue) {
+                $scope.$watch('selectedItem.personalData.birth.birthDate.full', function(newValue, oldValue) {
                     var date = new Date(newValue);
                     if (!newValue) return;
                     $scope.selectedItem.personalData.birth.birthDate.year = date.getYear();
@@ -4998,7 +5476,7 @@
                     $scope.selectedItem.personalData.birth.birthDate.date = date.getDate();
                 });
 
-             }]
+            }]
         };
     };
 
@@ -5015,30 +5493,30 @@
                 selectedItem: '=ngModel',
                 type: '@type'
             },
-            controller: ['$scope', function ($scope) {
+            controller: ['$scope', function($scope) {
 
                 $scope.loading = true;
-                $scope.$watch('reload', function (newValue, oldValue) {
+                $scope.$watch('reload', function(newValue, oldValue) {
                     if (newValue) {
-                        $timeout(function () {
+                        $timeout(function() {
                             $scope.loading = false;
                             $scope.reload = false;
                         }, 600);
                     }
                 });
 
-                TagsService.getAllTags().then(function (tags) {
+                TagsService.getAllTags().then(function(tags) {
                     $scope.Tags = tags;
                 });
 
                 console.log("tags:" + $scope.Tags)
-                $scope.updateByFeedParser = function (item, parserid) {
+                $scope.updateByFeedParser = function(item, parserid) {
                     console.log("ID: " + parserid);
                 }
 
                 $scope.openedCal = {};
 
-                $scope.openCal = function ($event, whichCal) {
+                $scope.openCal = function($event, whichCal) {
                     $event.preventDefault();
                     $event.stopPropagation();
                     $scope.openedCal[whichCal] = true;
@@ -5046,7 +5524,7 @@
 
 
 
-                $scope.$watch('selectedItem.personalData.birth.birthDate.full', function (newValue, oldValue) {
+                $scope.$watch('selectedItem.personalData.birth.birthDate.full', function(newValue, oldValue) {
                     var date = new Date(newValue);
                     if (!newValue) return;
                     $scope.selectedItem.personalData.birth.birthDate.year = date.getYear();
@@ -5060,28 +5538,28 @@
                 }
 
                 /* Players */
-                $scope.LoadPlayers = function () {
+                $scope.LoadPlayers = function() {
                     $scope.view.loadingPlayers = 1;
-                    TeamsService.getFullTeam($scope.selectedItem._id).then(function (fullTeam) {
+                    TeamsService.getFullTeam($scope.selectedItem._id).then(function(fullTeam) {
                         $scope.selectedItem.players = fullTeam.players;
                         $scope.selectedItem.playersLoaded = true;
 
                         $scope.view.loadingPlayers = 0;
                     })
                 }
-                $scope.pushPlayer = function (player) {
+                $scope.pushPlayer = function(player) {
                     if (player) {
                         player.team = $scope.selectedTeam._id;
-                        player.save().then(function () {
+                        player.save().then(function() {
                             $scope.selectedItem.players.push(player);
-                            $scope.selectedItem.save().then(function () {
+                            $scope.selectedItem.save().then(function() {
                                 console.log("All OK!");
                             })
                         });
                     }
                 }
 
-             }]
+            }]
         };
     };
 
@@ -5099,7 +5577,7 @@
         vm.selectedItem = null;
         vm.Tags = null;
 
-        vm.itemClicked = function (action, type, item) {
+        vm.itemClicked = function(action, type, item) {
             $state.go("app.data", {
                 action: action,
                 type: type,
@@ -5108,19 +5586,19 @@
         }
 
         // ******* LOADING DATA ********** //
-        TagsService.getAllTags().then(function (tags) {
+        TagsService.getAllTags().then(function(tags) {
             vm.Tags = tags;
 
             // Populate Players
-            PlayersService.getAllPlayers().then(function (players) {
+            PlayersService.getAllPlayers().then(function(players) {
                 vm.Players = players;
-                _.forEach(vm.Players, function (player) {
+                _.forEach(vm.Players, function(player) {
                     player.team = TagsService.getTeamNameById(player.teamId);
                 })
                 vm.gridOptions.data = players;
                 vm.positions = _.pluck(_.uniq(vm.Players, 'position'), 'position');
                 vm.loading.players = false;
-            }, function (error) {});
+            }, function(error) { });
         })
 
 
@@ -5131,7 +5609,7 @@
             useExternalFilter: true
         };
 
-        $scope.$watch('filterOptions', function () {
+        $scope.$watch('filterOptions', function() {
             //Call an async function to fetch data here.
             vm.gridOptions.data = $filter('filter')(vm.Players, vm.filterOptions.filterText);
 
@@ -5148,26 +5626,26 @@
                 {
                     name: 'Name',
                     field: 'name.en'
-                    },
+                },
                 {
                     name: 'Position',
                     field: 'position'
-                    },
+                },
                 {
                     name: 'Team',
                     field: 'team',
 
-                    }
-                ],
+                }
+            ],
             data: data,
-            onRegisterApi: function (gridApi) {
+            onRegisterApi: function(gridApi) {
                 vm.gridApi = gridApi;
-                gridApi.selection.on.rowSelectionChanged($scope, function (row) {
+                gridApi.selection.on.rowSelectionChanged($scope, function(row) {
 
                     //                    vm.itemClicked('edit','player', row.entity);
                     if (vm.selectedItem) {
                         vm.view.selectedLoading = true;
-                        $timeout(function () {
+                        $timeout(function() {
                             vm.selectedItem = row.entity;
                             vm.view.selectedLoading = false;
                             $scope.gridApi.core.handleWindowResize();
@@ -5181,7 +5659,7 @@
             }
         };
 
-        vm.createNew = function () {
+        vm.createNew = function() {
             vm.createdReload = true;
             vm.newItem = {};
 
@@ -5199,9 +5677,10 @@
 
 
         /* Scope Methods */
-        vm.editItem = function (player) {
+        vm.editItem = function(player) {
 
             vm.selectedItem = player;
+            
             if (!vm.selectedItem.name.en) {
                 vm.selectedItem.name.en = "";
                 vm.selectedItem.selected = "en";
@@ -5211,16 +5690,16 @@
             vm.view.editItem = 1;
         }
 
-        vm.updatePlayer = function () {
+        vm.updatePlayer = function() {
             console.log(vm.selectedItem);
-            vm.selectedItem.save().then(function (res, err) {
+            vm.selectedItem.save().then(function(res, err) {
                 vm.selectedItem = null;
                 vm.view.editItem = 0;
             })
         }
 
 
-        vm.isSelected = function (player) {
+        vm.isSelected = function(player) {
             if (player.isSelected) {
                 player.isSelected = false;
                 return false;
@@ -5231,7 +5710,7 @@
         }
 
 
-        vm.getTeam = function (id) {
+        vm.getTeam = function(id) {
             return _.findWhere(vm.Teams, {
                 "_id": id
             });
@@ -5241,7 +5720,7 @@
 })();
 
 
-(function () {
+(function() {
     'use strict';
     angular
         .module('app.publications')
@@ -5257,13 +5736,13 @@
         vm.Articles = null;
         vm.view = {};
 
-        vm.onChangeCallback = function (article) {
-            article.put().then(function (res) {
+        vm.onChangeCallback = function(article) {
+            article.put().then(function(res) {
                 console.log(res);
             });
         }
 
-        vm.onAddtag = function (article, item, model) {
+        vm.onAddtag = function(article, item, model) {
             var newTag = {
                 name: item.name,
                 _id: item._id
@@ -5274,7 +5753,7 @@
             });
             article.tags[index] = newTag;
 
-            article.put().then(function (res) {
+            article.put().then(function(res) {
                 console.log(res);
             });
         }
@@ -5282,7 +5761,7 @@
         /**
          * SEARCH */
         vm.opened = {};
-        vm.open = function ($event, whichCal) {
+        vm.open = function($event, whichCal) {
             $event.preventDefault();
             $event.stopPropagation();
             vm.opened[whichCal] = true;
@@ -5298,12 +5777,12 @@
         vm.format = vm.formats[0];
         vm.searchObj = {};
 
-        vm.searchArticles = function (searchObj) {
+        vm.searchArticles = function(searchObj) {
             vm.view.searchBusy = true;
             if (searchObj.tags == "") {
                 searchObj.tags = null;
             }
-            PublicationsService.getArticles(searchObj).then(function (articles) {
+            PublicationsService.getArticles(searchObj).then(function(articles) {
                 vm.Articles = articles;
                 vm.view.searchBusy = false;
             })
@@ -5312,7 +5791,7 @@
         /* NEW ITEM */
         vm.newItem = null;
 
-        vm.createNew = function () {
+        vm.createNew = function() {
             // vm.view.busy = true;
             vm.newItem = {
                 "publication": {
@@ -5328,23 +5807,23 @@
 
         vm.artTypes = ["Interview", "News", "Welcome", "Activity"];
 
-        vm.SetToNow = function () {
+        vm.SetToNow = function() {
             vm.newItem.publishDate = new Date(moment.utc());
         }
 
-        vm.SaveNewItem = function (newItem) {
-                vm.view.busy = true;
-                PublicationsService.postItem(newItem).then(function (returnedItem) {
-                    vm.Articles.push(returnedItem);
-                    vm.newItem = null;
-                    vm.view.busy = false;
-                })
-            }
-            /* END OF NEW ITEM*/
-
-        vm.UpdateItem = function (item) {
+        vm.SaveNewItem = function(newItem) {
             vm.view.busy = true;
-            item.put().then(function (res) {
+            PublicationsService.postItem(newItem).then(function(returnedItem) {
+                vm.Articles.push(returnedItem);
+                vm.newItem = null;
+                vm.view.busy = false;
+            })
+        }
+        /* END OF NEW ITEM*/
+
+        vm.UpdateItem = function(item) {
+            vm.view.busy = true;
+            item.put().then(function(res) {
                 console.log(res);
                 vm.editItem = null;
                 vm.view.busy = false;
@@ -5354,7 +5833,7 @@
 
         PublicationsService.getArticles({
             limit: 30
-        }).then(function (articles) {
+        }).then(function(articles) {
             vm.Articles = articles;
         })
 
@@ -5362,13 +5841,13 @@
 
         vm.basepath = RouteHelpers.basepath;
 
-        TagsService.getAllTags().then(function (tags) {
+        TagsService.getAllTags().then(function(tags) {
             vm.Tags = tags;
         })
 
         /* UPLOAD MECHANICS */
         var bucket = 'https://s3-eu-west-1.amazonaws.com/sportimo-media/';
-        vm.uploadFile = function (file, item) {
+        vm.uploadFile = function(file, item) {
 
             Upload.upload({
                 url: 'https://s3-eu-west-1.amazonaws.com/sportimo-media', //S3 upload url including bucket name
@@ -5383,14 +5862,14 @@
                     filename: file.name, // this is needed for Flash polyfill IE8-9
                     file: file
                 }
-            }).then(function (resp) {
+            }).then(function(resp) {
                 item.photo = bucket + 'articles/' + item._id + "." + file.name.substr(file.name.lastIndexOf('.') + 1);
                 console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
                 item.put();
-            }, function (resp) {
+            }, function(resp) {
                 console.log('Error status: ' + resp.status);
 
-            }, function (evt) {
+            }, function(evt) {
                 var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
                 // console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
             });
@@ -5410,17 +5889,17 @@
         });
 
         return {
-            getArticles: function (conditions) {
+            getArticles: function(conditions) {
                 var Defer = $q.defer();
-                articlesSearch.post(conditions).then(function (articles) {
+                articlesSearch.post(conditions).then(function(articles) {
                     articles = Restangular.restangularizeCollection(null, articles, 'v1/data/articles');
                     Defer.resolve(articles);
                 });
                 return Defer.promise;
             },
-            postItem: function (item) {
+            postItem: function(item) {
                 var Defer = $q.defer();
-                articles.post(item).then(function (returnItem) {
+                articles.post(item).then(function(returnItem) {
                     Defer.resolve(returnItem);
                 });
                 return Defer.promise;
@@ -5430,7 +5909,7 @@
     };
 })();
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -5454,18 +5933,19 @@
                 selected: '@default',
                 label: '@label',
                 lObject: '=languageObject',
-                ngModel: '=ngModel'
+                ngModel: '=ngModel',
+                placeholder: '@placeholder'
             },
-            controller: ['$scope', function ($scope) {
+            controller: ['$scope', function($scope) {
 
-                $scope.$watch('lObject', function (newValue, oldValue) {
+                $scope.$watch('lObject', function(newValue, oldValue) {
                     if ($scope.lObject && $scope.lObject.en)
                         $scope.selected = 'en';
 
                     $scope.showChange();
                 });
 
-                $scope.showChange = function () {
+                $scope.showChange = function() {
                     if ($scope.lObject)
                         $scope.ngModel = {
                             key: $scope.selected,
@@ -5474,13 +5954,13 @@
 
                 }
 
-                $scope.pushLangKey = function () {
+                $scope.pushLangKey = function() {
                     $scope.lObject[$scope.newLangKey] = "";
                     $scope.selected = $scope.newLangKey;
                     $scope.newLangKey = null;
                 };
 
-                $scope.delete = function () {
+                $scope.delete = function() {
                     delete $scope.lObject[$scope.selected];
                 }
             }]
@@ -5494,22 +5974,25 @@
             scope: {
                 selected: '@default',
                 lObject: '=languageObject',
-
+                placeholder: '@placeholder'
             },
-            controller: ['$scope', function ($scope) {
-
-                $scope.$watch('lObject', function (newValue, oldValue) {
+            controller: ['$scope', function($scope) {
+                
+                
+                console.log( $scope.placeholder);
+                
+                $scope.$watch('lObject', function(newValue, oldValue) {
                     if ($scope.lObject && $scope.lObject.en)
                         $scope.selected = 'en';
                 });
 
-                $scope.pushLangKey = function () {
+                $scope.pushLangKey = function() {
                     $scope.lObject[$scope.newLangKey] = "";
                     $scope.selected = $scope.newLangKey;
                     $scope.newLangKey = null;
                 };
 
-                $scope.delete = function () {
+                $scope.delete = function() {
                     delete $scope.lObject[$scope.selected];
                 }
             }]
@@ -5528,10 +6011,10 @@
 
 
 
-        TagsService.getAllTags().then(function (tags) {
+        TagsService.getAllTags().then(function(tags) {
             vm.loading.teams = true;
             vm.Tags = tags;
-            TeamsService.getAllTeams().then(function (teams) {
+            TeamsService.getAllTeams().then(function(teams) {
                 vm.Teams = teams;
 
                 vm.gridOptions.data = teams;
@@ -5540,7 +6023,7 @@
 
                 vm.loading.teams = false;
 
-            }, function (error) {});
+            }, function(error) { });
         })
 
 
@@ -5551,7 +6034,7 @@
             useExternalFilter: true
         };
 
-        $scope.$watch('filterOptions', function () {
+        $scope.$watch('filterOptions', function() {
             //Call an async function to fetch data here.
             vm.gridOptions.data = $filter('filter')(vm.Teams, vm.filterOptions.filterText);
 
@@ -5568,19 +6051,19 @@
                 {
                     name: 'Name',
                     field: 'name.en'
-                    },
+                },
                 {
                     name: 'League',
                     field: 'league'
-                    }
-                ],
+                }
+            ],
             data: data,
-            onRegisterApi: function (gridApi) {
+            onRegisterApi: function(gridApi) {
                 vm.gridApi = gridApi;
-                gridApi.selection.on.rowSelectionChanged($scope, function (row) {
+                gridApi.selection.on.rowSelectionChanged($scope, function(row) {
                     if (vm.selectedItem) {
                         vm.view.selectedLoading = true;
-                        $timeout(function () {
+                        $timeout(function() {
                             vm.selectedItem = row.entity;
                             vm.view.selectedLoading = false;
                             $scope.gridApi.core.handleWindowResize();
@@ -5595,7 +6078,7 @@
             }
         };
 
-        vm.createNew = function () {
+        vm.createNew = function() {
             vm.createdReload = true;
             vm.newItem = {};
 
@@ -5616,7 +6099,7 @@
 
 
         /* Scope Methods */
-        vm.editItem = function (player) {
+        vm.editItem = function(player) {
 
             vm.selectedItem = player;
             if (!vm.selectedItem.name.en) {
@@ -5628,16 +6111,16 @@
             vm.view.editItem = 1;
         }
 
-        vm.updatePlayer = function () {
+        vm.updatePlayer = function() {
             console.log(vm.selectedItem);
-            vm.selectedItem.save().then(function (res, err) {
+            vm.selectedItem.save().then(function(res, err) {
                 vm.selectedItem = null;
                 vm.view.editItem = 0;
             })
         }
 
 
-        vm.isSelected = function (player) {
+        vm.isSelected = function(player) {
             if (player.isSelected) {
                 player.isSelected = false;
                 return false;
@@ -5648,7 +6131,7 @@
         }
 
 
-        vm.getTeam = function (id) {
+        vm.getTeam = function(id) {
             return _.findWhere(vm.Teams, {
                 "_id": id
             });
@@ -5704,7 +6187,7 @@
         //        }
 
         /* Scope Methods */
-        vm.editTeam = function (team) {
+        vm.editTeam = function(team) {
             console.log(team);
             vm.selectedTeam = team;
             if (!vm.selectedTeam.name.en) {
@@ -5716,30 +6199,30 @@
             vm.view.editTeam = 1;
         }
 
-        vm.updateTeam = function () {
+        vm.updateTeam = function() {
             console.log(vm.selectedTeam);
-            vm.selectedTeam.save().then(function (res, err) {
+            vm.selectedTeam.save().then(function(res, err) {
                 vm.selectedTeam = null;
                 vm.view.editTeam = 0;
             })
         }
 
-        vm.delete = function () {
+        vm.delete = function() {
             delete vm.selectedTeam.name[vm.selectedTeam.selected];
         }
 
-        vm.Getlang = function (array, lang) {
+        vm.Getlang = function(array, lang) {
             return _.findWhere(array, {
                 lang: lang
             }).text;
         };
 
-        vm.pushLang = function (team) {
+        vm.pushLang = function(team) {
             vm.selectedTeam.name[vm.newLangKey] = "";
             vm.selectedTeam.selected = vm.newLangKey;
             vm.newLangKey = null;
         }
-        vm.isSelected = function (team) {
+        vm.isSelected = function(team) {
             if (team.isSelected) {
                 team.isSelected = false;
                 return false;
@@ -5754,7 +6237,7 @@
         vm.allSelected = null;
         vm.dtInstance = null;
 
-        vm.pushMassUpdate = function (event, team) {
+        vm.pushMassUpdate = function(event, team) {
             if (vm.isSelected(team))
                 vm.MassUpdateObjects.push(team);
             else
@@ -5762,19 +6245,19 @@
 
             console.log(vm.MassUpdateObjects.length);
         }
-        vm.selectAll = function () {
+        vm.selectAll = function() {
             console.log(vm.dtInstance);
             //  console.log(vm.dtInstance.dataTable._('tr', {"filter":"applied"})[0]);
 
             vm.allSelected = true;
         }
-        vm.selectNone = function () {
+        vm.selectNone = function() {
             vm.allSelected = false;
             vm.MassUpdateObjects = [];
         }
 
-        vm.massUpdate = function () {
-            vm.MassUpdateObjects.forEach(function (item) {
+        vm.massUpdate = function() {
+            vm.MassUpdateObjects.forEach(function(item) {
                 if (vm.MassUpdateChanges.league != null) {
                     item.league = vm.MassUpdateChanges.league;
                     item.save();
@@ -5806,8 +6289,8 @@
         if (mock) {
             var teams = $resource('server/mockdata/teams.json');
             return {
-                getAllTeams: function () {
-                    return teams.query({}, function (res) {
+                getAllTeams: function() {
+                    return teams.query({}, function(res) {
                         return res;
                     });
                 }
@@ -5820,17 +6303,17 @@
             });
 
             return {
-                getAllTeams: function () {
+                getAllTeams: function() {
                     var Defer = $q.defer();
-                    teams.getList().then(function (teams) {
+                    teams.getList().then(function(teams) {
                         Defer.resolve(teams);
                     });
                     return Defer.promise;
                 },
 
-                getFullTeam: function (id) {
+                getFullTeam: function(id) {
                     var Defer = $q.defer();
-                    Restangular.one('v1/data/teams', id).one('full').get().then(function (team) {
+                    Restangular.one('v1/data/teams', id).one('full').get().then(function(team) {
                         Defer.resolve(team);
                     });
                     return Defer.promise;
@@ -5852,22 +6335,22 @@
 
         return {
             Tags: tags,
-            getAllTags: function () {
+            getAllTags: function() {
                 var Defer = $q.defer();
                 if (tags) Defer.resolve(tags);
                 else
-                    tagsRoute.getList().then(function (receivedTags) {
+                    tagsRoute.getList().then(function(receivedTags) {
                         tags = receivedTags;
                         Defer.resolve(tags);
                     });
                 return Defer.promise;
             },
-            getAllTeamTags: function () {
+            getAllTeamTags: function() {
                 var Defer = $q.defer();
 
                 if (teamTags) Defer.resolve(teamTags)
                 else
-                    this.getAllTags().then(function (tags) {
+                    this.getAllTags().then(function(tags) {
                         teamTags = _.findWhere(tags, {
                             type: 'Team'
                         });
@@ -5875,7 +6358,7 @@
                     })
                 return Defer.promise;
             },
-            getTeamNameById: function (ID) {
+            getTeamNameById: function(ID) {
                 return _.get(_.find(tags, {
                     _id: ID
                 }), 'name.en');
@@ -5890,8 +6373,8 @@
         if (mock) {
             var players = $resource('server/mockdata/players.json');
             return {
-                getAllPlayers: function () {
-                    return players.query({}, function (res) {
+                getAllPlayers: function() {
+                    return players.query({}, function(res) {
                         return res;
                     });
                 }
@@ -5904,17 +6387,17 @@
             });
 
             return {
-                getAllPlayers: function () {
+                getAllPlayers: function() {
                     var Defer = $q.defer();
-                    players.getList().then(function (schedule) {
+                    players.getList().then(function(schedule) {
                         Defer.resolve(schedule);
                     });
                     return Defer.promise;
                 },
 
-                getPlayer: function (id) {
+                getPlayer: function(id) {
                     var Defer = $q.defer();
-                    players.get(id).then(function (player) {
+                    players.get(id).then(function(player) {
                         if (player.player)
                             Defer.resolve(player.player);
                     });
@@ -5926,8 +6409,154 @@
 
 })();
 
+(function() {
+    'use strict';
 
-(function () {
+    angular.module('app.sponsors')
+        .controller('SponsorsController', SponsorsController);
+
+    SponsorsController.$inject = ['$scope'];
+
+    function SponsorsController($scope) {
+
+        var vm = $scope;
+        vm.loading = {};
+        
+        vm.editItem = function(item) {
+            if(item!=null)
+                 vm.selectedItem = item;
+            else
+                 vm.selectedItem = {
+                name:{en:""}};
+        }
+        
+         $scope.save = function(item) {
+                    if (!item._id) {
+                        console.log("saving it");
+                    }
+                    else {
+                        console.log("updating it");
+                    }
+         }
+
+    }
+    
+})();
+
+(function() {
+    'use strict';
+
+    angular.module('app.competitions')
+        .service('CompetitionsService', CompetitionsService)
+        .controller('CompetitionsController', CompetitionsController);
+
+    CompetitionsController.$inject = ['CompetitionsService', 'PrizesService', '$scope','CountriesService', '$state'];
+
+    function CompetitionsController(CompetitionsService, PrizesService, $scope, CountriesService, $state) {
+
+        var vm = $scope;
+        vm.loading = {};
+        
+         // *** Load all countries *** //
+         vm.countries = CountriesService.getCountries();
+
+        // *** Load all registered competitions *** //
+        CompetitionsService.All().then(function(all) {
+            vm.Competitions = all;
+        });
+
+        vm.editItem = function(item) {
+            if(item!=null)
+                 vm.selectedItem = item;
+            else
+                 vm.selectedItem = {
+                name:{en:""}};
+        }
+        
+         $scope.showStandings = function(id){
+             $state.go('app.standings',{
+                 competition: id
+             })
+         }
+         
+         $scope.save = function(item) {
+                    if (!item._id) {
+                        console.log("saving it");
+                    }
+                    else {
+                        console.log("updating it");
+                    }
+         }
+
+    }
+
+
+    CompetitionsService.$inject = ['$resource', 'Restangular', '$rootScope', '$q'];
+    function CompetitionsService($resource, Restangular, $rootScope, $q) {
+
+        var Competitions;
+
+        var Data = Restangular.all('v1/data/competitions');
+
+        Restangular.setBaseUrl($rootScope.servers[$rootScope.serverEnvironment].game_server);
+        Restangular.setRestangularFields({
+            id: "_id"
+        });
+
+        return {
+            All: function() {
+                var Defer = $q.defer();
+                Defer.resolve([
+                    {
+    "_id": "56f4800fe4b02f2226646297",
+    "name": {
+        "en": "English Premier League"
+    },
+    "logo": null,
+    "parserids": {
+        "Stats": "epl"
+    }
+},
+                    {
+                        "_id":"56e81b7c30345c282c01b2ce",
+                        "name": { "en": "UEFA Champions League" },
+                        "logo": "./app/img/sportimo/competitions/UEFA_Champions_League_Logo.png",
+                        "status": "Active",
+                        "visiblein": []
+                    },
+                    {   
+                        "_id": "56e81b7c30345c282c01b2cd",
+                        "name": { "en": "UEFA Europa League" },
+                        "logo": "./app/img/sportimo/competitions/uefa-europa-league-logo.jpg",
+                        "status": "Active",
+                        "visiblein": []
+                    },
+                    {
+                        "_id":"56e81b7c30345c282c01b2cg",
+                        "name": { "en": "Greek Superleague" },
+                        "logo": "./app/img/sportimo/competitions/profile_superleague_greece.gif",
+                        "status": "Active",
+                        "visiblein": ["GR"]
+                    }
+
+                ]);
+
+                // if (Competitions)
+                //     Defer.resolve(Competitions);
+                // else
+                //     Data.getList().then(function(all) {
+                //         Competitions = all;
+                //         Defer.resolve(all);
+                //     });
+                return Defer.promise;
+            }
+        }
+    }
+
+
+})();
+
+(function() {
     'use strict';
 
     angular
@@ -5946,11 +6575,10 @@
         });
 
         return {
-
-            getLeaderboard: function (pool) {
+            getLeaderboard: function(pool) {
                 var Defer = $q.defer();
 
-                LeaderboardsAPI.post(pool).then(function (data) {
+                LeaderboardsAPI.post(pool).then(function(data) {
                     Defer.resolve(data);
                 });
 
@@ -5976,30 +6604,30 @@
                 displayName: 'Nickname',
                 field: 'name',
                 width: 100
-                },
+            },
             {
                 displayName: 'Score',
                 field: 'score',
                 width: 100
-                },
+            },
             {
                 displayName: 'Country',
                 field: 'country',
                 width: 100
-                },
+            },
             {
                 displayName: 'ID',
                 field: '_id',
                 width: 100
-                }
-            ];
+            }
+        ];
 
         // LeaderBoards Grid
         vm.gridOptions = {
             columnDefs: columnDefs,
             rowSelection: 'single',
             rowData: null,
-            ready: function (api) {
+            ready: function(api) {
                 api.sizeColumnsToFit();
             },
             rowClicked: rowClicked
@@ -6011,12 +6639,12 @@
             vm.userSelected = params.data;
         }
 
-        vm.showLeaderboard = function (pool) {
+        vm.showLeaderboard = function(pool) {
             vm.loading.leaderboard = true;
             vm.selectedPool = pool;
             LeaderboardsService
                 .getLeaderboard(pool)
-                .then(function (data) {
+                .then(function(data) {
                     // pinning
                     vm.gridOptions.rowData = data;
                     vm.gridOptions.api.onNewRows();
@@ -6030,10 +6658,10 @@
         // PoolRooms
         vm.PoolRooms = null;
 
-        $scope.sortableCallbackNew = function (sourceModel, destModel, start, end) {
+        $scope.sortableCallbackNew = function(sourceModel, destModel, start, end) {
             vm.updatePrizePositions(vm.NewPool, vm.prizePositions);
         };
-        $scope.sortableCallbackEdit = function (sourceModel, destModel, start, end) {
+        $scope.sortableCallbackEdit = function(sourceModel, destModel, start, end) {
             vm.updatePrizePositions(vm.EditPool, vm.prizePositions);
         };
 
@@ -6043,12 +6671,12 @@
         };
 
 
-        PoolsService.getNonGamePools().then(function (pools) {
+        PoolsService.getNonGamePools().then(function(pools) {
             vm.PoolRooms = pools;
         });
 
-        vm.setDefault = function (pool) {
-            vm.PoolRooms.forEach(function (eachpool) {
+        vm.setDefault = function(pool) {
+            vm.PoolRooms.forEach(function(eachpool) {
                 eachpool.isdefault = false;
                 eachpool.save();
             })
@@ -6056,10 +6684,10 @@
             pool.isdefault = true;
             pool.save();
         }
-        vm.editPool = function (pool) {
+        vm.editPool = function(pool) {
             vm.prizePositions = [];
             var $index = 1;
-            _.forEach(pool.prizes, function (prize) {
+            _.forEach(pool.prizes, function(prize) {
                 var pos = {};
 
                 if (prize.positions && prize.positions.to)
@@ -6078,10 +6706,10 @@
             vm.EditPool = pool;
         }
 
-        vm.RemoveNewPool = function () {
+        vm.RemoveNewPool = function() {
             vm.NewPool = null;
         }
-        vm.AddNewPool = function () {
+        vm.AddNewPool = function() {
             vm.NewPool = {
 
                 title: {
@@ -6123,21 +6751,21 @@
             };
         }
 
-        vm.removePool = function (pool) {
-            pool.remove().then(function () {
+        vm.removePool = function(pool) {
+            pool.remove().then(function() {
                 vm.PoolRooms = _.without(vm.PoolRooms, pool);
             });
         }
 
-        SponsorsService.getAll().then(function (sponsors) {
+        SponsorsService.All().then(function(sponsors) {
             vm.sponsors = sponsors;
         });
 
-        PrizesService.getAllPlain().then(function (prizes) {
+        PrizesService.getAllPlain().then(function(prizes) {
             vm.prizes = prizes;
         });
 
-        vm.addPrize = function (prize, pool) {
+        vm.addPrize = function(prize, pool) {
             var positions = {
                 from: vm.prizePositions.length > 0 ? vm.prizePositions[vm.prizePositions.length - 1].to + 1 : 1,
                 to: vm.prizePositions.length > 0 ? vm.prizePositions[vm.prizePositions.length - 1].to + 1 : 1
@@ -6154,35 +6782,35 @@
             pool.prizes.push(newprize);
         }
 
-        vm.removePrize = function (pool, prize) {
+        vm.removePrize = function(pool, prize) {
             pool.prizes = _.without(pool.prizes, prize);
             vm.editPrizePos = -1;
             vm.updatePrizePositions(pool, vm.prizePositions);
         }
 
-        vm.CreateLeaderboard = function (pool) {
-            PoolsService.addPool(pool).then(function (newPool) {
+        vm.CreateLeaderboard = function(pool) {
+            PoolsService.addPool(pool).then(function(newPool) {
                 vm.PoolRooms.push(newPool);
                 vm.NewPool = null;
                 vm.prizePositions = [];
             });
         }
 
-        vm.UpdateLeaderboard = function (pool) {
+        vm.UpdateLeaderboard = function(pool) {
 
-            pool.save().then(function (newPool) {
+            pool.save().then(function(newPool) {
                 vm.EditPool = null;
                 vm.prizePositions = [];
             });
         }
 
-        vm.RemoveEditPool = function () {
+        vm.RemoveEditPool = function() {
             vm.EditPool = null;
             vm.prizePositions = [];
         }
 
         vm.opened = {};
-        vm.open = function ($event, whichCal) {
+        vm.open = function($event, whichCal) {
             $event.preventDefault();
             $event.stopPropagation();
             vm.opened[whichCal] = true;
@@ -6193,17 +6821,17 @@
         // Holds prize positions in order to pass it along the pool
         vm.prizePositions = [];
 
-        vm.updatePrizePositions = function (pool, prizePositions) {
+        vm.updatePrizePositions = function(pool, prizePositions) {
             var $index = 0;
             var lastPos = 0;
 
-            _.forEach(prizePositions, function (pos) {
+            _.forEach(prizePositions, function(pos) {
                 if (lastPos >= pos.from) pos.from = lastPos + 1;
                 lastPos = pos.to;
 
             });
 
-            pool.prizes.forEach(function (prize) {
+            pool.prizes.forEach(function(prize) {
                 prize.positions = prizePositions[$index];
                 $index++;
             });
@@ -6228,7 +6856,7 @@
 
 })();
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -6238,17 +6866,17 @@
         .service('SponsorsService', SponsorsService)
         .service('CountriesService', CountriesService)
         .controller('SportimoModerationSoccerController', SportimoModerationSoccerController)
-        .directive('disableAnimation', function ($animate) {
+        .directive('disableAnimation', function($animate) {
             return {
                 restrict: 'A',
-                link: function ($scope, $element) {
+                link: function($scope, $element) {
                     $animate.enabled($element, false);
                 }
             };
-        }).directive('noSwipeClick', function () {
-            return function (scope, elm) {
+        }).directive('noSwipeClick', function() {
+            return function(scope, elm) {
                 var el = angular.element(elm);
-                el.bind('click', function (e) {
+                el.bind('click', function(e) {
                     if (scope.swipe.swiping === true) {
                         e.stopPropagation();
                         e.preventDefault();
@@ -6257,15 +6885,15 @@
             };
         })
 
-    .filter('reverse', function () {
-        return function (items) {
+        .filter('reverse', function() {
+            return function(items) {
 
-            if (!angular.isArray(items)) {
-                return items;
-            }
-            return items.slice().reverse();
-        };
-    });
+                if (!angular.isArray(items)) {
+                    return items;
+                }
+                return items.slice().reverse();
+            };
+        });
 
     PrizesService.$inject = ['$rootScope', '$q', 'Restangular'];
     PoolsService.$inject = ['$rootScope', '$q', 'Restangular'];
@@ -6281,21 +6909,26 @@
 
         return {
 
-            getAll: function () {
+            All: function() {
                 var Defer = $q.defer();
 
                 Defer.resolve([{
-                        "name": "Sponsored by Coca Cola",
-                        "banner": "http://static.wixstatic.com/media/86524a_8e7cf46163d10eb8ccb2ceb407085a97.jpg_1024"
+                    "company":"Coca Cola",
+                    "name": "Sponsored by Coca Cola",
+                    "banner": "http://static.wixstatic.com/media/86524a_8e7cf46163d10eb8ccb2ceb407085a97.jpg_1024",
+                    "video": ""
                 },
                     {
+                        "company": "Amstel",
                         "name": "Seeing you later - Amstel",
                         "banner": "http://2.bp.blogspot.com/-KQ4Ze7kZoEM/UYlG1Lcp9nI/AAAAAAAAH1I/dhuMMd8EFGU/s1600/amstel-lager.jpg"
-                },
+                    },
                     {
+                        "company":"Vodagone",
                         "name": "Vodafone",
-                        "banner": "http://www.vodafone.gr/portal/resources/media/Vodafone_Elladas/network/network-banner-inner-en--.jpg"
-                }
+                        "banner": "http://www.vodafone.gr/portal/resources/media/Vodafone_Elladas/network/network-banner-inner-en--.jpg",
+                        "video":""
+                    }
                 ]);
 
                 // SponsorsAPI.getList().then(function(sponsors) {
@@ -6316,11 +6949,11 @@
 
         return {
 
-            getAllPlain: function () {
+            getAllPlain: function() {
                 var Defer = $q.defer();
 
-                PrizesAPI.getList().then(function (prizes) {
-                    prizes = _.forEach(prizes, function (prize) {
+                PrizesAPI.getList().then(function(prizes) {
+                    prizes = _.forEach(prizes, function(prize) {
                         prize = prize.plain();
                     });
                     Defer.resolve(prizes);
@@ -6342,26 +6975,26 @@
 
         return {
 
-            getPoolsFor: function (id) {
+            getPoolsFor: function(id) {
                 // Get Pool for game
                 // https://sportimo.mod.bz/leaderpay/v1/pools/forgame/
                 var Defer = $q.defer();
-                PoolsAPI.one('forgame/').getList(id).then(function (pools) {
+                PoolsAPI.one('forgame/').getList(id).then(function(pools) {
                     pools = Restangular.restangularizeCollection(null, pools, 'leaderpay/v1/pools');
-                    pools = _.forEach(pools, function (pool) {
+                    pools = _.forEach(pools, function(pool) {
                         pool.fromServer = true
                     });
                     Defer.resolve(pools);
                 });
                 return Defer.promise;
             },
-            getNonGamePools: function (id) {
+            getNonGamePools: function(id) {
                 // Get Pool for game
                 // https://sportimo.mod.bz/leaderpay/v1/pools/forgame/
                 var Defer = $q.defer();
-                PoolsAPI.one('').getList('timed').then(function (pools) {
+                PoolsAPI.one('').getList('timed').then(function(pools) {
                     pools = Restangular.restangularizeCollection(null, pools, 'leaderpay/v1/pools');
-                    pools = _.forEach(pools, function (pool) {
+                    pools = _.forEach(pools, function(pool) {
                         pool.fromServer = true
                     });
                     Defer.resolve(pools);
@@ -6378,11 +7011,11 @@
             //     return Defer.promise;
             // },
 
-            addPool: function (newPool) {
+            addPool: function(newPool) {
                 var Defer = $q.defer();
-                PoolsAPI.post(newPool).then(function (pool) {
+                PoolsAPI.post(newPool).then(function(pool) {
                     Defer.resolve(pool);
-                }, function (err) {
+                }, function(err) {
                     console.log(err);
                 });
                 return Defer.promise;
@@ -6439,30 +7072,30 @@
                 displayName: 'Nickname',
                 field: 'name',
                 width: 100
-                },
+            },
             {
                 displayName: 'Score',
                 field: 'score',
                 width: 100
-                },
+            },
             {
                 displayName: 'Country',
                 field: 'country',
                 width: 100
-                },
+            },
             {
                 displayName: 'ID',
                 field: '_id',
                 width: 100
-                }
-            ];
+            }
+        ];
 
         // LeaderBoards Grid
         vm.gridOptions = {
             columnDefs: columnDefs,
             rowData: null,
             rowSelection: 'single',
-            ready: function (api) {
+            ready: function(api) {
                 api.sizeColumnsToFit();
             },
             rowClicked: rowClicked
@@ -6475,19 +7108,19 @@
         }
 
 
-        vm.showLeaderboard = function (pool) {
+        vm.showLeaderboard = function(pool) {
             vm.loading.leaderboard = true;
             vm.selectedPool = pool;
             LeaderboardsService
                 .getLeaderboard(pool)
-                .then(function (data) {
+                .then(function(data) {
                     console.log(data);
                     // pinning
                     vm.gridOptions.rowData = data;
                     vm.gridOptions.api.onNewRows();
                     vm.gridOptions.api.sizeColumnsToFit();
 
-                    $timeout(function () {
+                    $timeout(function() {
                         vm.gridOptions.api.sizeColumnsToFit();
                         console.log("now");
                         vm.loading.leaderboard = false;
@@ -6524,21 +7157,21 @@
         //     });
         // }
 
-        $scope.showGridBottomSheet = function ($event) {
+        $scope.showGridBottomSheet = function($event) {
             $scope.alert = '';
             $mdBottomSheet.show({
                 templateUrl: 'bottom-sheet-grid-template.html',
                 controller: 'GridBottomSheetCtrl',
 
                 targetEvent: $event
-            }).then(function (clickedItem) {
+            }).then(function(clickedItem) {
                 $scope.alert = clickedItem.name + ' clicked!';
             });
         };
 
         $scope.filterTeamPlayers = true;
         $scope.event = {};
-        $rootScope.dataStream.onMessage(function (message) {
+        $rootScope.dataStream.onMessage(function(message) {
 
             var evt = JSON.parse(message.data);
 
@@ -6561,7 +7194,7 @@
                     }).status = "removed";
                 }
 
-                $timeout(function () {
+                $timeout(function() {
                     $scope.loadMatchData(evt.match_id)
                 }, 1500)
 
@@ -6569,14 +7202,14 @@
         });
 
 
-        $scope.readable = function (obj) {
+        $scope.readable = function(obj) {
 
             return JSON.stringify(obj, null, 4);
         };
 
 
 
-        $scope.loadMatchData = function (id) {
+        $scope.loadMatchData = function(id) {
 
             $http({
                 method: 'GET',
@@ -6657,11 +7290,11 @@
         ];
 
 
-        $scope.checkSelection = function ($item, $model) {
+        $scope.checkSelection = function($item, $model) {
 
         };
 
-        $scope.advanceSegment = function () {
+        $scope.advanceSegment = function() {
 
             ngDialog.openConfirm({
                 template: 'deleteEventDialog',
@@ -6669,7 +7302,7 @@
                     title: 'Warning',
                     message: 'This action will advance the match to its next segment as it is defined in the sports atributes.<br/><br/> <p>Do you still want to continue?</p><br/>'
                 }
-            }).then(function (value) {
+            }).then(function(value) {
                 var EventData = {
                     type: "AdvanceSegment",
                     match_id: $scope.match.id,
@@ -6689,14 +7322,14 @@
                     // or server returns response with an error status.
                 });
 
-            }, function (reason) {
+            }, function(reason) {
 
                 console.log('Modal promise rejected. Reason: ', reason);
             });
 
         };
 
-        $scope.removeSegment = function (index) {
+        $scope.removeSegment = function(index) {
 
             if (index != $scope.match.data.state) {
                 ngDialog.open({
@@ -6715,7 +7348,7 @@
                         title: 'Warning',
                         message: 'This action will destroy the current segment. It is here for testing purposes or extreme conditions. It will not affect stats or anything else apart remove the segment from the timeline.<br/><br/> <p>Do you still want to continue?</p><br/>'
                     }
-                }).then(function (value) {
+                }).then(function(value) {
                     var EventData = {
                         type: "DeleteSegment",
                         id: $scope.match.id,
@@ -6735,7 +7368,7 @@
                         // or server returns response with an error status.
                     });
 
-                }, function (reason) {
+                }, function(reason) {
 
                     console.log('Modal promise rejected. Reason: ', reason);
                 });
@@ -6752,7 +7385,7 @@
             edited: false
         };
 
-        $scope.EditSegmentTimes = function (index) {
+        $scope.EditSegmentTimes = function(index) {
             if ($scope.editingSegmentTime.index == index) {
 
                 if ($scope.editingSegmentTime.edited) {
@@ -6785,19 +7418,19 @@
         };
 
 
-        $scope.changed = function () {
+        $scope.changed = function() {
             $scope.editingSegmentTime.edited = true;
         };
 
         $scope.selectedEvent = {};
-        $scope.editEvent = function (event) {
+        $scope.editEvent = function(event) {
             $scope.selectedEvent = event;
             $scope.eventDrawer = 3;
         };
 
         $scope.clickedEvent = -1;
 
-        $scope.addEvent = function (event) {
+        $scope.addEvent = function(event) {
 
             var addEventData = {
                 type: "Add",
@@ -6809,9 +7442,9 @@
         };
 
 
-        $scope.updateEvent = function (event) {
+        $scope.updateEvent = function(event) {
 
-            delete(event.clicked);
+            delete (event.clicked);
 
             ngDialog.openConfirm({
                 template: 'deleteEventDialog',
@@ -6819,7 +7452,7 @@
                     title: 'DANGER',
                     message: 'This action will destroy the selected event. It will remove points from users and re-calculate new points and leaderboards.<br/> Will also cause floods and earthquakes in a poor distant country.<br/> There is also a high probability that it kill a few unborn babies somewhere too.<p>Do you still want to continue?</p>'
                 }
-            }).then(function (value) {
+            }).then(function(value) {
                 //console.log('Modal promise resolved. Value: ', value);
                 var updateEventData = {
                     type: "Update",
@@ -6829,20 +7462,20 @@
 
                 $scope.sendEvent(updateEventData);
 
-            }, function (reason) {
+            }, function(reason) {
 
                 console.log('Modal promise rejected. Reason: ', reason);
             });
         };
 
-        $scope.removeEvent = function (event) {
+        $scope.removeEvent = function(event) {
             ngDialog.openConfirm({
                 template: 'deleteEventDialog',
                 data: {
                     title: 'DANGER',
                     message: 'This action will destroy the selected event. It will remove points from users and re-calculate new points and leaderboards.<br/> Will also cause floods and earthquakes in a poor distant country.<br/> There is also a high probability that it kill a few unborn babies somewhere too.<p>Do you still want to continue?</p>'
                 }
-            }).then(function (value) {
+            }).then(function(value) {
                 //console.log('Modal promise resolved. Value: ', value);
                 var removeEventData = {
                     type: "Delete",
@@ -6852,19 +7485,19 @@
 
                 $scope.sendEvent(removeEventData);
 
-            }, function (reason) {
+            }, function(reason) {
 
                 console.log('Modal promise rejected. Reason: ', reason);
             });
         };
 
-        $scope.GetStat = function (statId, statkey) {
+        $scope.GetStat = function(statId, statkey) {
             return _.result(_.findWhere($scope.match.data.stats, {
                 id: statId
             }), statkey);
         };
 
-        $scope.createEvent = function (eventType, stats) {
+        $scope.createEvent = function(eventType, stats) {
             //console.log($scope.match);
             $scope.eventDrawer = 1;
             var event_id = $scope.GetStat($scope.match.id, 'events_sent') || 0;
@@ -6887,10 +7520,10 @@
             if (eventType == "substitution") $scope.event.playerscount = 2;
         };
 
-        $scope.openDrawer = function (drawer) {
+        $scope.openDrawer = function(drawer) {
             $scope.eventDrawer = drawer;
         };
-        $scope.closeDrawer = function () {
+        $scope.closeDrawer = function() {
             $scope.eventDrawer = 0;
         };
 
@@ -6901,7 +7534,7 @@
             return true;
         }
 
-        $scope.sendEvent = function (event) {
+        $scope.sendEvent = function(event) {
 
             if (!validateEvent(event)) {
 
@@ -6933,8 +7566,8 @@
             });
         };
 
-        $scope.capitalize = function (str) {
-            return str.replace(/(?:^|\s)\S/g, function (a) {
+        $scope.capitalize = function(str) {
+            return str.replace(/(?:^|\s)\S/g, function(a) {
                 return a.toUpperCase();
             });
         };
@@ -6943,7 +7576,7 @@
         $scope.complete = false;
         $scope.humanizedEvent = "";
 
-        $scope.$watch('event', function (now, then) {
+        $scope.$watch('event', function(now, then) {
 
             $scope.humanizedEvent = "";
 
@@ -6972,7 +7605,7 @@
         }, true);
 
 
-        $scope.sendMessage = function (matchid, message) {
+        $scope.sendMessage = function(matchid, message) {
             console.log(matchid + ": " + message);
             var data = {
                 match_id: matchid,
@@ -7013,7 +7646,7 @@
 
             match.data.state = match.data.state || 0;
 
-            match.GetCurrentSegment = function () {
+            match.GetCurrentSegment = function() {
                 // We assign the name of the segment to the currentSegment var
                 if (match.sport.segments[match.data.state])
                     return match.sport.segments[match.data.state].name;
@@ -7026,7 +7659,7 @@
                 if (match.sport.segments[match.data.state].timed) {
 
                     if (!match.sport.time_dependant) { //  Is Time controlled?
-                        match_timer = $interval(function () {
+                        match_timer = $interval(function() {
                             var now = moment().utc();
                             var then = moment(match.data.timeline[match.data.state].start);
                             var ms = moment(now, "DD/MM/YYYY HH:mm:ss").diff(moment(then, "DD/MM/YYYY HH:mm:ss"));
@@ -7046,7 +7679,7 @@
             return match;
         }
 
-        $scope.reloadMatch = function () {
+        $scope.reloadMatch = function() {
             $scope.reloadingServer = true;
             $http({
                 method: 'POST',
@@ -7087,15 +7720,15 @@
         //     // or server returns response with an error status.
         // });
 
-        $scope.formatDate = function (stringDate) {
+        $scope.formatDate = function(stringDate) {
             return moment(stringDate).calendar(); //format("dddd, MMMM Do YYYY, h:mm:ss a");
         };
 
         // Moderation-PoolRooms
-        $scope.sortableCallbackNew = function (sourceModel, destModel, start, end) {
+        $scope.sortableCallbackNew = function(sourceModel, destModel, start, end) {
             vm.updatePrizePositions(vm.NewPool, vm.prizePositions);
         };
-        $scope.sortableCallbackEdit = function (sourceModel, destModel, start, end) {
+        $scope.sortableCallbackEdit = function(sourceModel, destModel, start, end) {
             vm.updatePrizePositions(vm.EditPool, vm.prizePositions);
         };
 
@@ -7105,11 +7738,11 @@
         };
 
         vm.PoolRooms = null;
-        PoolsService.getPoolsFor(vm.matchid).then(function (pools) {
+        PoolsService.getPoolsFor(vm.matchid).then(function(pools) {
             vm.PoolRooms = pools;
         });
-        vm.setDefault = function (pool) {
-            vm.PoolRooms.forEach(function (eachpool) {
+        vm.setDefault = function(pool) {
+            vm.PoolRooms.forEach(function(eachpool) {
                 eachpool.isdefault = false;
                 eachpool.save();
             })
@@ -7117,10 +7750,10 @@
             pool.isdefault = true;
             pool.save();
         }
-        vm.editPool = function (pool) {
+        vm.editPool = function(pool) {
             vm.prizePositions = [];
             var $index = 1;
-            _.forEach(pool.prizes, function (prize) {
+            _.forEach(pool.prizes, function(prize) {
                 var pos = {};
                 console.log(prize.positions);
                 if (prize.positions.to)
@@ -7139,10 +7772,10 @@
             vm.EditPool = pool;
         }
 
-        vm.RemoveNewPool = function () {
+        vm.RemoveNewPool = function() {
             vm.NewPool = null;
         }
-        vm.AddNewPool = function () {
+        vm.AddNewPool = function() {
             console.log(vm.NewPool);
             vm.NewPool = {
 
@@ -7185,22 +7818,22 @@
             };
         }
 
-        vm.removePool = function (pool) {
-            pool.remove().then(function () {
+        vm.removePool = function(pool) {
+            pool.remove().then(function() {
                 vm.PoolRooms = _.without(vm.PoolRooms, pool);
             });
         }
 
 
-        SponsorsService.getAll().then(function (sponsors) {
+        SponsorsService.getAll().then(function(sponsors) {
             vm.sponsors = sponsors;
         });
 
-        PrizesService.getAllPlain().then(function (prizes) {
+        PrizesService.getAllPlain().then(function(prizes) {
             vm.prizes = prizes;
         });
 
-        vm.addPrize = function (prize, pool) {
+        vm.addPrize = function(prize, pool) {
             var positions = {
                 from: vm.prizePositions.length > 0 ? vm.prizePositions[vm.prizePositions.length - 1].to + 1 : 1,
                 to: vm.prizePositions.length > 0 ? vm.prizePositions[vm.prizePositions.length - 1].to + 1 : 1
@@ -7215,35 +7848,35 @@
             pool.prizes.push(newprize);
         }
 
-        vm.removePrize = function (pool, prize) {
+        vm.removePrize = function(pool, prize) {
             pool.prizes = _.without(pool.prizes, prize);
             vm.editPrizePos = -1;
             vm.updatePrizePositions(pool, vm.prizePositions);
         }
 
-        vm.CreateLeaderboard = function (pool) {
-            PoolsService.addPool(pool).then(function (newPool) {
+        vm.CreateLeaderboard = function(pool) {
+            PoolsService.addPool(pool).then(function(newPool) {
                 vm.PoolRooms.push(newPool);
                 vm.NewPool = null;
                 vm.prizePositions = [];
             });
         }
 
-        vm.UpdateLeaderboard = function (pool) {
+        vm.UpdateLeaderboard = function(pool) {
 
-            pool.save().then(function (newPool) {
+            pool.save().then(function(newPool) {
                 vm.EditPool = null;
                 vm.prizePositions = [];
             });
         }
 
-        vm.RemoveEditPool = function () {
+        vm.RemoveEditPool = function() {
             vm.EditPool = null;
             vm.prizePositions = [];
         }
 
         vm.opened = {};
-        vm.open = function ($event, whichCal) {
+        vm.open = function($event, whichCal) {
             $event.preventDefault();
             $event.stopPropagation();
             vm.opened[whichCal] = true;
@@ -7254,17 +7887,17 @@
         // Holds prize positions in order to pass it along the pool
         vm.prizePositions = [];
 
-        vm.updatePrizePositions = function (pool, prizePositions) {
+        vm.updatePrizePositions = function(pool, prizePositions) {
             var $index = 0;
             var lastPos = 0;
 
-            _.forEach(prizePositions, function (pos) {
+            _.forEach(prizePositions, function(pos) {
                 if (lastPos >= pos.from) pos.from = lastPos + 1;
                 lastPos = pos.to;
 
             });
 
-            pool.prizes.forEach(function (prize) {
+            pool.prizes.forEach(function(prize) {
                 prize.positions = prizePositions[$index];
                 $index++;
             });
@@ -7289,7 +7922,7 @@
 
     function CountriesService() {
         return {
-            getCountries: function () {
+            getCountries: function() {
                 return [ // Taken from https://gist.github.com/unceus/6501985
                     {
                         name: 'Afghanistan',
@@ -8269,7 +8902,7 @@
     }
 })();
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -8281,16 +8914,16 @@
 
     function DashboardController($rootScope, $scope, ChartData, $timeout, $websocket, $http, $state) {
 
-        $scope.getMatchStatus = function (status) {
+        $scope.getMatchStatus = function(status) {
 
             if (status == "0") return "Pre Game";
         };
 
-        $scope.formatDate = function (stringDate) {
+        $scope.formatDate = function(stringDate) {
             return moment(stringDate).calendar(); //format("dddd, MMMM Do YYYY, h:mm:ss a");
         };
 
-        $scope.ModerateMatch = function (matchid, sport) {
+        $scope.ModerateMatch = function(matchid, sport) {
 
             $state.go("app.match-moderation-" + (sport || 'soccer'), {
                 id: (matchid || "565c4af6e4b030fba33dd459")
@@ -8355,7 +8988,7 @@
 
         clearInterval($rootScope.DataUpdate);
 
-        $rootScope.DataUpdate = setInterval(function () {
+        $rootScope.DataUpdate = setInterval(function() {
             vm.splineData = angular.copy($rootScope.dataset);
         }, 5000);
 
@@ -8407,7 +9040,7 @@
                 },
                 tooltip: true,
                 tooltipOpts: {
-                    content: function (label, x, y) {
+                    content: function(label, x, y) {
                         return x + ' : ' + y;
                     }
                 },
@@ -8420,8 +9053,8 @@
                     max: 300, // optional: use it for a clear represetation
                     tickColor: '#eee',
                     position: ($scope.app.layout.isRTL ? 'right' : 'left'),
-                    tickFormatter: function (v) {
-                        return v /* + ' visitors'*/ ;
+                    tickFormatter: function(v) {
+                        return v /* + ' visitors'*/;
                     }
                 },
                 shadowSize: 0
@@ -8431,12 +9064,12 @@
             // PANEL REFRESH EVENTS
             // -----------------------------------
 
-            $scope.$on('panel-refresh', function (event, id) {
+            $scope.$on('panel-refresh', function(event, id) {
 
                 //console.log('Simulating chart refresh during 3s on #' + id);
 
                 // Instead of timeout you can request a chart data
-                $timeout(function () {
+                $timeout(function() {
                     vm.splineData = angular.copy($rootScope.dataset);
                     // directive listen for to remove the spinner
                     // after we end up to perform own operations
@@ -8453,7 +9086,7 @@
             // -----------------------------------
 
             // Before remove panel
-            $scope.$on('panel-remove', function (event, id, deferred) {
+            $scope.$on('panel-remove', function(event, id, deferred) {
 
                 console.log('Panel #' + id + ' removing');
 
@@ -8465,7 +9098,7 @@
             });
 
             // Panel removed ( only if above was resolved() )
-            $scope.$on('panel-removed', function (event, id) {
+            $scope.$on('panel-removed', function(event, id) {
 
                 console.log('Panel #' + id + ' removed');
 
@@ -8476,7 +9109,7 @@
 })();
 
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -8501,7 +9134,7 @@
             if ($state.includes('app-h')) {
                 // Setup layout horizontal for demo
                 $rootScope.app.layout.horizontal = true;
-                $scope.$on('$destroy', function () {
+                $scope.$on('$destroy', function() {
                     $rootScope.app.layout.horizontal = false;
                 });
             } else {
@@ -8529,7 +9162,7 @@
                 },
                 tooltip: true,
                 tooltipOpts: {
-                    content: function (label, x, y) {
+                    content: function(label, x, y) {
                         return x + ' : ' + y;
                     }
                 },
@@ -8573,7 +9206,7 @@
                 },
                 tooltip: true,
                 tooltipOpts: {
-                    content: function (label, x, y) {
+                    content: function(label, x, y) {
                         return x + ' : ' + y;
                     }
                 },
@@ -8586,8 +9219,8 @@
                     max: 150, // optional: use it for a clear represetation
                     tickColor: '#eee',
                     position: ($rootScope.app.layout.isRTL ? 'right' : 'left'),
-                    tickFormatter: function (v) {
-                        return v /* + ' visitors'*/ ;
+                    tickFormatter: function(v) {
+                        return v /* + ' visitors'*/;
                     }
                 },
                 shadowSize: 0
@@ -8595,7 +9228,7 @@
         }
     }
 })();
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -8640,7 +9273,7 @@
                 },
                 tooltip: true,
                 tooltipOpts: {
-                    content: function (label, x, y) {
+                    content: function(label, x, y) {
                         return x + ' : ' + y;
                     }
                 },
@@ -8653,8 +9286,8 @@
                     max: 150, // optional: use it for a clear represetation
                     tickColor: '#eee',
                     position: ($rootScope.app.layout.isRTL ? 'right' : 'left'),
-                    tickFormatter: function (v) {
-                        return v /* + ' visitors'*/ ;
+                    tickFormatter: function(v) {
+                        return v /* + ' visitors'*/;
                     }
                 },
                 shadowSize: 0
@@ -8741,7 +9374,7 @@
     }
 })();
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -8806,7 +9439,7 @@
             vm.slides6 = [];
             vm.carouselIndex6 = 0;
             addSlides(vm.slides6, 'sports', 10);
-            vm.addSlide = function (at) {
+            vm.addSlide = function(at) {
                 if (at === 'head') {
                     vm.slides6.unshift(getSlide(vm.slides6, 'people'));
                 } else {
@@ -8824,7 +9457,7 @@
  *   using lazy loader. Include plugin in base.js instead.
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -8866,21 +9499,21 @@
             $rootScope.jsonData = '{"foo": "bar"}';
             $rootScope.theme = 'ngdialog-theme-default';
 
-            $scope.directivePreCloseCallback = function (value) {
+            $scope.directivePreCloseCallback = function(value) {
                 if (confirm('Close it? MainCtrl.Directive. (Value = ' + value + ')')) {
                     return true;
                 }
                 return false;
             };
 
-            $scope.preCloseCallbackOnScope = function (value) {
+            $scope.preCloseCallbackOnScope = function(value) {
                 if (confirm('Close it? MainCtrl.OnScope (Value = ' + value + ')')) {
                     return true;
                 }
                 return false;
             };
 
-            $scope.open = function () {
+            $scope.open = function() {
                 ngDialog.open({
                     template: 'firstDialogId',
                     controller: 'InsideCtrl',
@@ -8890,7 +9523,7 @@
                 });
             };
 
-            $scope.openDefault = function () {
+            $scope.openDefault = function() {
                 ngDialog.open({
                     template: 'firstDialogId',
                     controller: 'InsideCtrl',
@@ -8898,12 +9531,12 @@
                 });
             };
 
-            $scope.openDefaultWithPreCloseCallbackInlined = function () {
+            $scope.openDefaultWithPreCloseCallbackInlined = function() {
                 ngDialog.open({
                     template: 'firstDialogId',
                     controller: 'InsideCtrl',
                     className: 'ngdialog-theme-default',
-                    preCloseCallback: function (value) {
+                    preCloseCallback: function(value) {
                         if (confirm('Close it?  (Value = ' + value + ')')) {
                             return true;
                         }
@@ -8912,65 +9545,65 @@
                 });
             };
 
-            $scope.openConfirm = function () {
+            $scope.openConfirm = function() {
                 ngDialog.openConfirm({
                     template: 'modalDialogId',
                     className: 'ngdialog-theme-default'
-                }).then(function (value) {
+                }).then(function(value) {
                     console.log('Modal promise resolved. Value: ', value);
-                }, function (reason) {
+                }, function(reason) {
                     console.log('Modal promise rejected. Reason: ', reason);
                 });
             };
 
-            $scope.openConfirmWithPreCloseCallbackOnScope = function () {
+            $scope.openConfirmWithPreCloseCallbackOnScope = function() {
                 ngDialog.openConfirm({
                     template: 'modalDialogId',
                     className: 'ngdialog-theme-default',
                     preCloseCallback: 'preCloseCallbackOnScope',
                     scope: $scope
-                }).then(function (value) {
+                }).then(function(value) {
                     console.log('Modal promise resolved. Value: ', value);
-                }, function (reason) {
+                }, function(reason) {
                     console.log('Modal promise rejected. Reason: ', reason);
                 });
             };
 
-            $scope.openConfirmWithPreCloseCallbackInlinedWithNestedConfirm = function () {
+            $scope.openConfirmWithPreCloseCallbackInlinedWithNestedConfirm = function() {
                 ngDialog.openConfirm({
-                        template: 'dialogWithNestedConfirmDialogId',
-                        className: 'ngdialog-theme-default',
-                        preCloseCallback: function ( /*value*/ ) {
+                    template: 'dialogWithNestedConfirmDialogId',
+                    className: 'ngdialog-theme-default',
+                    preCloseCallback: function( /*value*/) {
 
-                            var nestedConfirmDialog = ngDialog.openConfirm({
-                                template: '<p>Are you sure you want to close the parent dialog?</p>' +
-                                    '<div>' +
-                                    '<button type="button" class="btn btn-default" ng-click="closeThisDialog(0)">No' +
-                                    '<button type="button" class="btn btn-primary" ng-click="confirm(1)">Yes' +
-                                    '</button></div>',
-                                plain: true,
-                                className: 'ngdialog-theme-default'
-                            });
+                        var nestedConfirmDialog = ngDialog.openConfirm({
+                            template: '<p>Are you sure you want to close the parent dialog?</p>' +
+                            '<div>' +
+                            '<button type="button" class="btn btn-default" ng-click="closeThisDialog(0)">No' +
+                            '<button type="button" class="btn btn-primary" ng-click="confirm(1)">Yes' +
+                            '</button></div>',
+                            plain: true,
+                            className: 'ngdialog-theme-default'
+                        });
 
-                            return nestedConfirmDialog;
-                        },
-                        scope: $scope
-                    })
-                    .then(function (value) {
+                        return nestedConfirmDialog;
+                    },
+                    scope: $scope
+                })
+                    .then(function(value) {
                         console.log('resolved:' + value);
                         // Perform the save here
-                    }, function (value) {
+                    }, function(value) {
                         console.log('rejected:' + value);
 
                     });
             };
 
-            $scope.openInlineController = function () {
+            $scope.openInlineController = function() {
                 $rootScope.theme = 'ngdialog-theme-default';
 
                 ngDialog.open({
                     template: 'withInlineController',
-                    controller: ['$scope', '$timeout', function ($scope, $timeout) {
+                    controller: ['$scope', '$timeout', function($scope, $timeout) {
                         var counter = 0;
                         var timeout;
 
@@ -8980,7 +9613,7 @@
                         }
 
                         count();
-                        $scope.$on('$destroy', function () {
+                        $scope.$on('$destroy', function() {
                             $timeout.cancel(timeout);
                         });
                     }],
@@ -8988,7 +9621,7 @@
                 });
             };
 
-            $scope.openTemplate = function () {
+            $scope.openTemplate = function() {
                 $scope.value = true;
 
                 ngDialog.open({
@@ -8998,7 +9631,7 @@
                 });
             };
 
-            $scope.openTemplateNoCache = function () {
+            $scope.openTemplateNoCache = function() {
                 $scope.value = true;
 
                 ngDialog.open({
@@ -9009,30 +9642,30 @@
                 });
             };
 
-            $scope.openTimed = function () {
+            $scope.openTimed = function() {
                 var dialog = ngDialog.open({
                     template: '<p>Just passing through!</p>',
                     plain: true,
                     closeByDocument: false,
                     closeByEscape: false
                 });
-                setTimeout(function () {
+                setTimeout(function() {
                     dialog.close();
                 }, 2000);
             };
 
-            $scope.openNotify = function () {
+            $scope.openNotify = function() {
                 var dialog = ngDialog.open({
                     template: '<p>You can do whatever you want when I close, however that happens.</p>' +
-                        '<div><button type="button" class="btn btn-primary" ng-click="closeThisDialog(1)">Close Me</button></div>',
+                    '<div><button type="button" class="btn btn-primary" ng-click="closeThisDialog(1)">Close Me</button></div>',
                     plain: true
                 });
-                dialog.closePromise.then(function (data) {
+                dialog.closePromise.then(function(data) {
                     console.log('ngDialog closed' + (data.value === 1 ? ' using the button' : '') + ' and notified by promise: ' + data.id);
                 });
             };
 
-            $scope.openWithoutOverlay = function () {
+            $scope.openWithoutOverlay = function() {
                 ngDialog.open({
                     template: '<h2>Notice that there is no overlay!</h2>',
                     className: 'ngdialog-theme-default',
@@ -9041,15 +9674,15 @@
                 });
             };
 
-            $rootScope.$on('ngDialog.opened', function (e, $dialog) {
+            $rootScope.$on('ngDialog.opened', function(e, $dialog) {
                 console.log('ngDialog opened: ' + $dialog.attr('id'));
             });
 
-            $rootScope.$on('ngDialog.closed', function (e, $dialog) {
+            $rootScope.$on('ngDialog.closed', function(e, $dialog) {
                 console.log('ngDialog closed: ' + $dialog.attr('id'));
             });
 
-            $rootScope.$on('ngDialog.closing', function (e, $dialog) {
+            $rootScope.$on('ngDialog.closing', function(e, $dialog) {
                 console.log('ngDialog closing: ' + $dialog.attr('id'));
             });
         }
@@ -9069,7 +9702,7 @@
             $scope.dialogModel = {
                 message: 'message from passed scope'
             };
-            $scope.openSecond = function () {
+            $scope.openSecond = function() {
                 ngDialog.open({
                     template: '<p class="lead m0"><a href="" ng-click="closeSecond()">Close all by click here!</a></h3>',
                     plain: true,
@@ -9089,7 +9722,7 @@
         ////////////////
 
         function activate() {
-            $scope.closeSecond = function () {
+            $scope.closeSecond = function() {
                 ngDialog.close();
             };
         }
@@ -9106,7 +9739,7 @@
  * events and events creations
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -9124,7 +9757,7 @@
         function activate() {
             vm.images = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-            vm.loadMore = function () {
+            vm.loadMore = function() {
                 var last = vm.images[vm.images.length - 1];
                 for (var i = 1; i <= 10; i++) {
                     vm.images.push(last + i);
@@ -9137,8 +9770,8 @@
 
     function datasource(console, $timeout) {
 
-        var get = function (index, count, success) {
-            return $timeout(function () {
+        var get = function(index, count, success) {
+            return $timeout(function() {
                 var i, result, _i, _ref;
                 result = [];
                 for (i = _i = index, _ref = index + count - 1; index <= _ref ? _i <= _ref : _i >= _ref; i = index <= _ref ? ++_i : --_i) {
@@ -9159,7 +9792,7 @@
  * Demo for Angular Deck
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -9290,7 +9923,7 @@
         function link(scope, element, attrs) {
             var cssClass = attrs.loadedclass;
 
-            element.bind('load', function () {
+            element.bind('load', function() {
                 angular.element(element).addClass(cssClass);
             });
         }
@@ -9304,7 +9937,7 @@
  * Demo for login api
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -9322,7 +9955,7 @@
 
         /*jshint -W106*/
         function activate() {
-            vm.my_tree_handler = function (branch) {
+            vm.my_tree_handler = function(branch) {
 
                 vm.output = 'You selected: ' + branch.label;
 
@@ -9333,7 +9966,7 @@
             };
 
             // onSelect event handlers
-            var apple_selected = function (branch) {
+            var apple_selected = function(branch) {
                 vm.output = 'APPLE! : ' + branch.label;
                 return vm.output;
             };
@@ -9368,7 +10001,7 @@
                         definition: 'A plant or part of a plant used as food, typically as accompaniment to meat or fish, such as a cabbage, potato, carrot, or bean.',
                         data_can_contain_anything: true
                     },
-                    onSelect: function (branch) {
+                    onSelect: function(branch) {
                         vm.output = 'Vegetable: ' + branch.data.definition;
                         return vm.output;
                     },
@@ -9449,7 +10082,7 @@
             ];
 
             vm.my_data = treedata_avm;
-            vm.try_changing_the_tree_data = function () {
+            vm.try_changing_the_tree_data = function() {
                 if (vm.my_data === treedata_avm) {
                     vm.my_data = treedata_geography;
                 } else {
@@ -9461,7 +10094,7 @@
             var tree;
             // This is our API control variable
             vm.my_tree = tree = {};
-            vm.try_async_load = function () {
+            vm.try_async_load = function() {
 
                 vm.my_data = [];
                 vm.doing_async = true;
@@ -9469,7 +10102,7 @@
                 // Request tree data via $resource
                 var remoteTree = $resource('server/treedata.json');
 
-                return remoteTree.get(function (res) {
+                return remoteTree.get(function(res) {
 
                     vm.my_data = res.data;
 
@@ -9483,7 +10116,7 @@
             };
 
             // Adds a new branch to the tree
-            vm.try_adding_a_branch = function () {
+            vm.try_adding_a_branch = function() {
                 var b;
                 b = tree.get_selected_branch();
                 return tree.add_branch(b, {
@@ -9505,7 +10138,7 @@
  * Nestable controller
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -9609,7 +10242,7 @@
  * Make a content box scrollable
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -9637,7 +10270,7 @@
  * Module: sortable.js
  * Sortable controller
  =========================================================*/
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -9674,14 +10307,14 @@
                 }
             ];
 
-            $scope.add = function () {
+            $scope.add = function() {
                 $scope.data1.push({
                     id: $scope.data1.length + 1,
                     name: 'Earl Knight'
                 });
             };
 
-            $scope.sortableCallback = function (sourceModel, destModel, start, end) {
+            $scope.sortableCallback = function(sourceModel, destModel, start, end) {
                 console.log(start + ' -> ' + end);
             };
 
@@ -9698,7 +10331,7 @@
  * Module: sweetalert.js
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -9715,19 +10348,19 @@
         ////////////////
 
         function activate() {
-            vm.demo1 = function () {
+            vm.demo1 = function() {
                 SweetAlert.swal('Here\'s a message');
             };
 
-            vm.demo2 = function () {
+            vm.demo2 = function() {
                 SweetAlert.swal('Here\'s a message!', 'It\'s pretty, isn\'t it?');
             };
 
-            vm.demo3 = function () {
+            vm.demo3 = function() {
                 SweetAlert.swal('Good job!', 'You clicked the button!', 'success');
             };
 
-            vm.demo4 = function () {
+            vm.demo4 = function() {
                 SweetAlert.swal({
                     title: 'Are you sure?',
                     text: 'Your will not be able to recover this imaginary file!',
@@ -9736,12 +10369,12 @@
                     confirmButtonColor: '#DD6B55',
                     confirmButtonText: 'Yes, delete it!',
                     closeOnConfirm: false
-                }, function () {
+                }, function() {
                     SweetAlert.swal('Booyah!');
                 });
             };
 
-            vm.demo5 = function () {
+            vm.demo5 = function() {
                 SweetAlert.swal({
                     title: 'Are you sure?',
                     text: 'Your will not be able to recover this imaginary file!',
@@ -9752,7 +10385,7 @@
                     cancelButtonText: 'No, cancel plx!',
                     closeOnConfirm: false,
                     closeOnCancel: false
-                }, function (isConfirm) {
+                }, function(isConfirm) {
                     if (isConfirm) {
                         SweetAlert.swal('Deleted!', 'Your imaginary file has been deleted.', 'success');
                     } else {
@@ -9761,7 +10394,7 @@
                 });
             };
 
-            vm.demo6 = function () {
+            vm.demo6 = function() {
                 SweetAlert.swal({
                     title: 'Sweet!',
                     text: 'Here\'s a custom image.',
@@ -9777,7 +10410,7 @@
  * Demos for toaster notifications
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -9800,7 +10433,7 @@
                 text: 'Message'
             };
 
-            vm.pop = function () {
+            vm.pop = function() {
                 toaster.pop(vm.toaster.type, vm.toaster.title, vm.toaster.text);
             };
         }
@@ -9811,7 +10444,7 @@
  * Module: tour.js
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -9835,7 +10468,7 @@
                 'position': 'static'
             });
             // finally restore on destroy and reuse the value declared in stylesheet
-            $scope.$on('$destroy', function () {
+            $scope.$on('$destroy', function() {
                 section.css({
                     'position': ''
                 });
@@ -9847,7 +10480,7 @@
 /**=========================================================
  * Module: article.js
  =========================================================*/
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -9921,7 +10554,7 @@
                 }
             ];
 
-            vm.closeAlert = function (index) {
+            vm.closeAlert = function(index) {
                 vm.alerts.splice(index, 1);
             };
         }
@@ -9930,7 +10563,7 @@
 
 
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -9950,7 +10583,7 @@
  * Codemirror code editor controller
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -9974,7 +10607,7 @@
             $rootScope.app.layout.isCollapsed = true;
 
             // Restore layout for demo
-            $scope.$on('$destroy', function () {
+            $scope.$on('$destroy', function() {
                 $rootScope.app.useFullLayout = false;
                 $rootScope.app.hiddenFooter = false;
             });
@@ -10002,7 +10635,7 @@
             // Load dinamically the stylesheet for the selected theme
             // You can use ozLazyLoad to load also the mode js based 
             // on the file extension that is loaded (see handle_filetree)
-            vm.loadTheme = function () {
+            vm.loadTheme = function() {
                 var BASE = 'vendor/codemirror/theme/';
                 $ocLazyLoad.load(BASE + vm.editorOpts.theme + '.css');
                 vm.refreshEditor = !vm.refreshEditor;
@@ -10018,7 +10651,7 @@
             // Tree
 
             var selectedBranch;
-            vm.handle_filetree = function (branch) {
+            vm.handle_filetree = function(branch) {
 
                 selectedBranch = branch;
 
@@ -10031,7 +10664,7 @@
 
                     $http
                         .get(basePath + branch.path)
-                        .success(function (response) {
+                        .success(function(response) {
 
                             console.log('Loaded.. ' + branch.path);
                             // set the new code into the editor
@@ -10061,7 +10694,7 @@
             tree = vm.filetree = {};
 
             // Adds a new branch to the tree
-            vm.new_filetree = function () {
+            vm.new_filetree = function() {
                 var b;
                 b = tree.get_selected_branch();
 
@@ -10080,7 +10713,7 @@
 })();
 
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -10124,7 +10757,7 @@
             vm.editingTodo = false;
             vm.todo = {};
 
-            vm.addTodo = function () {
+            vm.addTodo = function() {
 
                 if (vm.todo.title === '') return;
                 if (!vm.todo.description) vm.todo.description = '';
@@ -10142,29 +10775,29 @@
                 }
             };
 
-            vm.editTodo = function (index, $event) {
+            vm.editTodo = function(index, $event) {
                 $event.preventDefault();
                 $event.stopPropagation();
                 vm.todo = vm.items[index].todo;
                 vm.editingTodo = true;
             };
 
-            vm.removeTodo = function (index /*, $event*/ ) {
+            vm.removeTodo = function(index /*, $event*/) {
                 vm.items.splice(index, 1);
             };
 
-            vm.clearAll = function () {
+            vm.clearAll = function() {
                 vm.items = [];
             };
 
-            vm.totalCompleted = function () {
-                return $filter('filter')(vm.items, function (item) {
+            vm.totalCompleted = function() {
+                return $filter('filter')(vm.items, function(item) {
                     return item.complete;
                 }).length;
             };
 
-            vm.totalPending = function () {
-                return $filter('filter')(vm.items, function (item) {
+            vm.totalPending = function() {
+                return $filter('filter')(vm.items, function(item) {
                     return !item.complete;
                 }).length;
             };
@@ -10178,7 +10811,7 @@
  * Controller for jqCloud
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -10198,7 +10831,7 @@
                 {
                     text: 'Lorem',
                     weight: 13
-                        //link: 'http://themicon.co'
+                    //link: 'http://themicon.co'
                 }, {
                     text: 'Ipsum',
                     weight: 10.5
@@ -10240,7 +10873,7 @@
  * Creates the flatdoc markup and initializes the plugin
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -10262,9 +10895,9 @@
             });
 
             var $root = $('html, body');
-            $(document).on('flatdoc:ready', function () {
+            $(document).on('flatdoc:ready', function() {
                 var docMenu = $('[role="flatdoc-menu"]');
-                docMenu.find('a').on('click', function (e) {
+                docMenu.find('a').on('click', function(e) {
                     e.preventDefault();
                     e.stopPropagation();
 
@@ -10285,7 +10918,7 @@
 
 })();
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -10316,25 +10949,25 @@
                 color: ''
             };
 
-            vm.resetColor = function () {
+            vm.resetColor = function() {
                 vm.hexPicker = {
                     color: '#ff0000'
                 };
             };
 
-            vm.resetRBGColor = function () {
+            vm.resetRBGColor = function() {
                 vm.rgbPicker = {
                     color: 'rgb(255,255,255)'
                 };
             };
 
-            vm.resetRBGAColor = function () {
+            vm.resetRBGAColor = function() {
                 vm.rgbaPicker = {
                     color: 'rgb(255,255,255, 0.25)'
                 };
             };
 
-            vm.resetNonInputColor = function () {
+            vm.resetNonInputColor = function() {
                 vm.nonInput = {
                     color: '#ffffff'
                 };
@@ -10347,7 +10980,7 @@
  * Initializes the fielstyle plugin
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -10378,7 +11011,7 @@
  * Image crop controller
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -10395,7 +11028,7 @@
         ////////////////
 
         function activate() {
-            vm.reset = function () {
+            vm.reset = function() {
                 vm.myImage = '';
                 vm.myCroppedImage = '';
                 vm.imgcropType = 'square';
@@ -10403,11 +11036,11 @@
 
             vm.reset();
 
-            var handleFileSelect = function (evt) {
+            var handleFileSelect = function(evt) {
                 var file = evt.currentTarget.files[0];
                 var reader = new FileReader();
-                reader.onload = function (evt) {
-                    $scope.$apply(function ( /*$scope*/ ) {
+                reader.onload = function(evt) {
+                    $scope.$apply(function( /*$scope*/) {
                         vm.myImage = evt.target.result;
                     });
                 };
@@ -10425,7 +11058,7 @@
  * Input validation with UI Validate
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -10440,23 +11073,23 @@
         ////////////////
 
         function activate() {
-            vm.notBlackListed = function (value) {
+            vm.notBlackListed = function(value) {
                 var blacklist = ['some@mail.com', 'another@email.com'];
                 return blacklist.indexOf(value) === -1;
             };
 
-            vm.words = function (value) {
+            vm.words = function(value) {
                 return value && value.split(' ').length;
             };
 
             vm.submitted = false;
-            vm.validateInput = function (name, type) {
+            vm.validateInput = function(name, type) {
                 var input = vm.formValidate[name];
                 return (input.$dirty || vm.submitted) && input.$error[type];
             };
 
             // Submit form
-            vm.submitForm = function () {
+            vm.submitForm = function() {
                 vm.submitted = true;
                 if (vm.formValidate.$valid) {
                     console.log('Submitted!!');
@@ -10475,7 +11108,7 @@
  =========================================================*/
 
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -10505,13 +11138,13 @@
             self.validate = validate;
             self.element = element;
 
-            self.init = function () {
+            self.init = function() {
                 self.createsteps(self.quantity);
                 self.go(1); // always start at fist step
                 return self;
             };
 
-            self.go = function (step) {
+            self.go = function(step) {
 
                 if (angular.isDefined(self.steps[step])) {
 
@@ -10529,17 +11162,17 @@
                 }
             };
 
-            self.active = function (step) {
+            self.active = function(step) {
                 return !!self.steps[step];
             };
 
-            self.cleanall = function () {
+            self.cleanall = function() {
                 for (var i in self.steps) {
                     self.steps[i] = false;
                 }
             };
 
-            self.createsteps = function (q) {
+            self.createsteps = function(q) {
                 self.steps = [];
                 for (var i = 1; i <= q; i++) self.steps[i] = false;
             };
@@ -10555,7 +11188,7 @@
  * Form xEditable controller
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -10625,7 +11258,7 @@
                 }
             ];
 
-            vm.showStatus = function () {
+            vm.showStatus = function() {
                 var selected = $filter('filter')(vm.statuses, {
                     value: vm.user2.status
                 });
@@ -10642,13 +11275,13 @@
 
             vm.groups = [];
 
-            vm.loadGroups = function () {
-                return vm.groups.length ? null : $http.get('server/xeditable-groups.json').success(function (data) {
+            vm.loadGroups = function() {
+                return vm.groups.length ? null : $http.get('server/xeditable-groups.json').success(function(data) {
                     vm.groups = data;
                 });
             };
 
-            $scope.$watch('user3.id', function (newVal, oldVal) {
+            $scope.$watch('user3.id', function(newVal, oldVal) {
                 if (newVal !== oldVal) {
                     var selected = $filter('filter')(vm.groups, {
                         id: vm.user3.id
@@ -10671,7 +11304,7 @@
 })();
 
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -10700,7 +11333,7 @@
             // ----------------------------------- 
             var Cities = $resource('server/cities.json', {}, actions);
 
-            Cities.get(function (data) {
+            Cities.get(function(data) {
 
                 vm.cities = data;
 
@@ -10731,7 +11364,7 @@
             vm.states = States.query();
 
 
-            vm.alertSubmit = function () {
+            vm.alertSubmit = function() {
                 alert('Form submitted!');
                 return false;
             };
@@ -10755,7 +11388,7 @@
  * Initializes the masked inputs
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -10785,7 +11418,7 @@
  * We want to perform a OR.
  */
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -10800,7 +11433,7 @@
             var out = [];
 
             if (angular.isArray(items)) {
-                items.forEach(function (item) {
+                items.forEach(function(item) {
                     var itemMatches = false;
 
                     var keys = Object.keys(props);
@@ -10832,7 +11465,7 @@
  * Initializes the tag inputs plugin
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -10850,7 +11483,7 @@
         return directive;
 
         function link(scope, element, attrs, ngModel) {
-            element.on('itemAdded itemRemoved', function () {
+            element.on('itemAdded itemRemoved', function() {
                 // check if view value is not empty and is a string
                 // and update the view from string to an array of tags
                 if (ngModel.$viewValue && ngModel.$viewValue.split) {
@@ -10859,7 +11492,7 @@
                 }
             });
 
-            $timeout(function () {
+            $timeout(function() {
                 element.tagsinput();
             });
         }
@@ -10872,7 +11505,7 @@
  * uiSelect controller
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -10893,15 +11526,15 @@
 
             vm.disabled = undefined;
 
-            vm.enable = function () {
+            vm.enable = function() {
                 vm.disabled = false;
             };
 
-            vm.disable = function () {
+            vm.disable = function() {
                 vm.disabled = true;
             };
 
-            vm.clear = function () {
+            vm.clear = function() {
                 vm.person.selected = undefined;
                 vm.address.selected = undefined;
                 vm.country.selected = undefined;
@@ -10952,7 +11585,7 @@
             ];
 
             vm.address = {};
-            vm.refreshAddresses = function (address) {
+            vm.refreshAddresses = function(address) {
                 var params = {
                     address: address,
                     sensor: false
@@ -10961,7 +11594,7 @@
                     '//maps.googleapis.com/maps/api/geocode/json', {
                         params: params
                     }
-                ).then(function (response) {
+                ).then(function(response) {
                     vm.addresses = response.data.results;
                 });
             };
@@ -11944,7 +12577,7 @@
 
 
             // Multiple
-            vm.someGroupFn = function (item) {
+            vm.someGroupFn = function(item) {
 
                 if (item.name[0] >= 'A' && item.name[0] <= 'M')
                     return 'From A - M';
@@ -11955,7 +12588,7 @@
             };
 
             vm.counter = 0;
-            vm.someFunction = function (item, model) {
+            vm.someFunction = function(item, model) {
                 vm.counter++;
                 vm.eventResult = {
                     item: item,
@@ -11979,7 +12612,7 @@
  * Module: upload.js
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -12004,44 +12637,44 @@
 
             uploader.filters.push({
                 name: 'customFilter',
-                fn: function ( /*item, options*/ ) {
+                fn: function( /*item, options*/) {
                     return this.queue.length < 10;
                 }
             });
 
             // CALLBACKS
 
-            uploader.onWhenAddingFileFailed = function (item /*{File|FileLikeObject}*/ , filter, options) {
+            uploader.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/, filter, options) {
                 console.info('onWhenAddingFileFailed', item, filter, options);
             };
-            uploader.onAfterAddingFile = function (fileItem) {
+            uploader.onAfterAddingFile = function(fileItem) {
                 console.info('onAfterAddingFile', fileItem);
             };
-            uploader.onAfterAddingAll = function (addedFileItems) {
+            uploader.onAfterAddingAll = function(addedFileItems) {
                 console.info('onAfterAddingAll', addedFileItems);
             };
-            uploader.onBeforeUploadItem = function (item) {
+            uploader.onBeforeUploadItem = function(item) {
                 console.info('onBeforeUploadItem', item);
             };
-            uploader.onProgressItem = function (fileItem, progress) {
+            uploader.onProgressItem = function(fileItem, progress) {
                 console.info('onProgressItem', fileItem, progress);
             };
-            uploader.onProgressAll = function (progress) {
+            uploader.onProgressAll = function(progress) {
                 console.info('onProgressAll', progress);
             };
-            uploader.onSuccessItem = function (fileItem, response, status, headers) {
+            uploader.onSuccessItem = function(fileItem, response, status, headers) {
                 console.info('onSuccessItem', fileItem, response, status, headers);
             };
-            uploader.onErrorItem = function (fileItem, response, status, headers) {
+            uploader.onErrorItem = function(fileItem, response, status, headers) {
                 console.info('onErrorItem', fileItem, response, status, headers);
             };
-            uploader.onCancelItem = function (fileItem, response, status, headers) {
+            uploader.onCancelItem = function(fileItem, response, status, headers) {
                 console.info('onCancelItem', fileItem, response, status, headers);
             };
-            uploader.onCompleteItem = function (fileItem, response, status, headers) {
+            uploader.onCompleteItem = function(fileItem, response, status, headers) {
                 console.info('onCompleteItem', fileItem, response, status, headers);
             };
-            uploader.onCompleteAll = function () {
+            uploader.onCompleteAll = function() {
                 console.info('onCompleteAll');
             };
 
@@ -12055,7 +12688,7 @@
  * Initializes the validation plugin Parsley
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -12083,7 +12716,7 @@
  * Include any animated weather icon from Skycons
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -12113,7 +12746,7 @@
 
 })();
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -12133,7 +12766,7 @@
 
     }
 })();
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -12422,7 +13055,7 @@
 
 })();
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -12437,7 +13070,7 @@
         cfpLoadingBarProvider.parentSelector = '.wrapper > section';
     }
 })();
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -12450,14 +13083,14 @@
         // Loading bar transition
         // ----------------------------------- 
         var thBar;
-        $rootScope.$on('$stateChangeStart', function () {
+        $rootScope.$on('$stateChangeStart', function() {
             if ($('.wrapper > section').length) // check if bar container exists
-                thBar = $timeout(function () {
-                cfpLoadingBar.start();
-            }, 0); // sets a latency Threshold
+                thBar = $timeout(function() {
+                    cfpLoadingBar.start();
+                }, 0); // sets a latency Threshold
         });
-        $rootScope.$on('$stateChangeSuccess', function (event) {
-            event.targetScope.$watch('$viewContentLoaded', function () {
+        $rootScope.$on('$stateChangeSuccess', function(event) {
+            event.targetScope.$watch('$viewContentLoaded', function() {
                 $timeout.cancel(thBar);
                 cfpLoadingBar.complete();
             });
@@ -12466,7 +13099,7 @@
     }
 
 })();
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -12485,7 +13118,7 @@
  * Module: locale.js
  * Demo for locale settings
  =========================================================*/
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -12528,7 +13161,7 @@
  * Provides a simple demo for pagination
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -12605,7 +13238,7 @@
     }
 })();
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -12627,7 +13260,7 @@
             // no filter for inbox
             vm.folder.folder = $stateParams.folder === 'inbox' ? '' : $stateParams.folder;
 
-            mails.all().then(function (mails) {
+            mails.all().then(function(mails) {
                 vm.mails = mails;
             });
         }
@@ -12636,7 +13269,7 @@
 
 // A RESTful factory for retrieving mails from json file
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -12656,7 +13289,7 @@
 
         function readMails() {
             var path = 'server/mails.json';
-            return $http.get(path).then(function (resp) {
+            return $http.get(path).then(function(resp) {
                 return resp.data.mails;
             });
         }
@@ -12666,7 +13299,7 @@
         }
 
         function get(id) {
-            return readMails().then(function (mails) {
+            return readMails().then(function(mails) {
                 for (var i = 0; i < mails.length; i++) {
                     if (+mails[i].id === +id) return mails[i];
                 }
@@ -12677,7 +13310,7 @@
 })();
 
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -12694,7 +13327,7 @@
         ////////////////
 
         function activate() {
-            mails.get($stateParams.mid).then(function (mail) {
+            mails.get($stateParams.mid).then(function(mail) {
                 vm.mail = mail;
             });
         }
@@ -12706,7 +13339,7 @@
  * Provides a simple way to implement bootstrap modals from templates
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -12724,7 +13357,7 @@
 
         function activate() {
 
-            vm.open = function (size) {
+            vm.open = function(size) {
 
                 //var modalInstance = 
                 $modal.open({
@@ -12741,7 +13374,7 @@
 
             function ModalInstanceCtrl($scope, $modalInstance, $timeout) {
 
-                $modalInstance.opened.then(function () {
+                $modalInstance.opened.then(function() {
                     var position = new google.maps.LatLng(33.790807, -117.835734);
 
                     $scope.mapOptionsModal = {
@@ -12751,7 +13384,7 @@
                     };
 
                     // we use timeout to wait maps to be ready before add a markers
-                    $timeout(function () {
+                    $timeout(function() {
                         // 1. Add a marker at the position it was initialized
                         new google.maps.Marker({
                             map: $scope.myMapModal,
@@ -12765,11 +13398,11 @@
 
                 });
 
-                $scope.ok = function () {
+                $scope.ok = function() {
                     $modalInstance.close('closed');
                 };
 
-                $scope.cancel = function () {
+                $scope.cancel = function() {
                     $modalInstance.dismiss('cancel');
                 };
 
@@ -12781,7 +13414,7 @@
 })();
 
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -12808,7 +13441,7 @@
 
             vm.addMarker = addMarker;
             // we use timeout to wait maps to be ready before add a markers
-            $timeout(function () {
+            $timeout(function() {
                 addMarker(vm.myMap1, position[0]);
                 addMarker(vm.myMap2, position[1]);
                 addMarker(vm.myMap3, position[2]);
@@ -12841,7 +13474,7 @@
             };
 
             // for multiple markers
-            $timeout(function () {
+            $timeout(function() {
                 addMarker(vm.myMap4, position[3]);
                 addMarker(vm.myMap4, position[4]);
             });
@@ -12852,69 +13485,69 @@
                 'stylers': [{
                     'visibility': 'on'
                 }, {
-                    'color': '#bdd1f9'
+                        'color': '#bdd1f9'
                     }]
             }, {
-                'featureType': 'all',
-                'elementType': 'labels.text.fill',
-                'stylers': [{
-                    'color': '#334165'
+                    'featureType': 'all',
+                    'elementType': 'labels.text.fill',
+                    'stylers': [{
+                        'color': '#334165'
                     }]
                 }, {
-                featureType: 'landscape',
-                stylers: [{
-                    color: '#e9ebf1'
+                    featureType: 'landscape',
+                    stylers: [{
+                        color: '#e9ebf1'
                     }]
                 }, {
-                featureType: 'road.highway',
-                elementType: 'geometry',
-                stylers: [{
-                    color: '#c5c6c6'
+                    featureType: 'road.highway',
+                    elementType: 'geometry',
+                    stylers: [{
+                        color: '#c5c6c6'
                     }]
                 }, {
-                featureType: 'road.arterial',
-                elementType: 'geometry',
-                stylers: [{
-                    color: '#fff'
+                    featureType: 'road.arterial',
+                    elementType: 'geometry',
+                    stylers: [{
+                        color: '#fff'
                     }]
                 }, {
-                featureType: 'road.local',
-                elementType: 'geometry',
-                stylers: [{
-                    color: '#fff'
+                    featureType: 'road.local',
+                    elementType: 'geometry',
+                    stylers: [{
+                        color: '#fff'
                     }]
                 }, {
-                featureType: 'transit',
-                elementType: 'geometry',
-                stylers: [{
-                    color: '#d8dbe0'
+                    featureType: 'transit',
+                    elementType: 'geometry',
+                    stylers: [{
+                        color: '#d8dbe0'
                     }]
                 }, {
-                featureType: 'poi',
-                elementType: 'geometry',
-                stylers: [{
-                    color: '#cfd5e0'
+                    featureType: 'poi',
+                    elementType: 'geometry',
+                    stylers: [{
+                        color: '#cfd5e0'
                     }]
                 }, {
-                featureType: 'administrative',
-                stylers: [{
-                    visibility: 'on'
+                    featureType: 'administrative',
+                    stylers: [{
+                        visibility: 'on'
                     }, {
-                    lightness: 33
+                            lightness: 33
                         }]
                 }, {
-                featureType: 'poi.park',
-                elementType: 'labels',
-                stylers: [{
-                    visibility: 'on'
+                    featureType: 'poi.park',
+                    elementType: 'labels',
+                    stylers: [{
+                        visibility: 'on'
                     }, {
-                    lightness: 20
+                            lightness: 20
                         }]
                 }, {
-                featureType: 'road',
-                stylers: [{
-                    color: '#d8dbe0',
-                    lightness: 20
+                    featureType: 'road',
+                    stylers: [{
+                        color: '#d8dbe0',
+                        lightness: 20
                     }]
                 }];
             vm.mapOptions5 = {
@@ -12943,7 +13576,7 @@
  * Init jQuery Vector Map plugin
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -12995,7 +13628,7 @@
  * Services to initialize vector map plugin
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -13041,7 +13674,7 @@
                         stroke: opts.markerColor
                     }
                 },
-                onRegionLabelShow: function (e, el, code) {
+                onRegionLabelShow: function(e, el, code) {
                     if (series && series[code])
                         el.html(el.html() + ': ' + series[code] + ' visitors');
                 },
@@ -13063,7 +13696,7 @@
  * jVector Maps support
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -13159,7 +13792,7 @@
 })();
 
 
-(function () {
+(function() {
     'use strict';
     // Used only for the BottomSheetExample
     angular
@@ -13183,7 +13816,7 @@
 })();
 
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -13230,7 +13863,7 @@
                 deferred;
             if (self.simulateQuery) {
                 deferred = $q.defer();
-                $timeout(function () {
+                $timeout(function() {
                     deferred.resolve(results);
                 }, Math.random() * 1000, false);
                 return deferred.promise;
@@ -13242,7 +13875,7 @@
         function loadAll() {
             var allStates = 'Alabama, Alaska, Arizona, Arkansas, California, Colorado, Connecticut, Delaware, Florida, Georgia, Hawaii, Idaho, Illinois, Indiana, Iowa, Kansas, Kentucky, Louisiana, Maine, Maryland, Massachusetts, Michigan, Minnesota, Mississippi, Missouri, Montana, Nebraska, Nevada, New Hampshire, New Jersey, New Mexico, New York, North Carolina, North Dakota, Ohio, Oklahoma, Oregon, Pennsylvania, Rhode Island, South Carolina, South Dakota, Tennessee, Texas, Utah, Vermont, Virginia, Washington, West Virginia, Wisconsin, Wyoming';
 
-            return allStates.split(/, +/g).map(function (state) {
+            return allStates.split(/, +/g).map(function(state) {
                 return {
                     value: state.toLowerCase(),
                     display: state
@@ -13271,24 +13904,24 @@
     function MDBottomSheetCtrl($scope, $timeout, $mdBottomSheet) {
         $scope.alert = '';
 
-        $scope.showListBottomSheet = function ($event) {
+        $scope.showListBottomSheet = function($event) {
             $scope.alert = '';
             $mdBottomSheet.show({
                 templateUrl: 'bottom-sheet-list-template.html',
                 controller: 'ListBottomSheetCtrl',
                 targetEvent: $event
-            }).then(function (clickedItem) {
+            }).then(function(clickedItem) {
                 $scope.alert = clickedItem.name + ' clicked!';
             });
         };
 
-        $scope.showGridBottomSheet = function ($event) {
+        $scope.showGridBottomSheet = function($event) {
             $scope.alert = '';
             $mdBottomSheet.show({
                 templateUrl: 'bottom-sheet-grid-template.html',
                 controller: 'GridBottomSheetCtrl',
                 targetEvent: $event
-            }).then(function (clickedItem) {
+            }).then(function(clickedItem) {
                 $scope.alert = clickedItem.name + ' clicked!';
             });
         };
@@ -13320,7 +13953,7 @@
             },
         ];
 
-        $scope.listItemClick = function ($index) {
+        $scope.listItemClick = function($index) {
             var clickedItem = $scope.items[$index];
             $mdBottomSheet.hide(clickedItem);
         };
@@ -13360,7 +13993,7 @@
             },
         ];
 
-        $scope.listItemClick = function ($index) {
+        $scope.listItemClick = function($index) {
             var clickedItem = $scope.items[$index];
             $mdBottomSheet.hide(clickedItem);
         };
@@ -13399,13 +14032,13 @@
             title: 'avatar 1',
             value: 'avatar-1'
         }, {
-            id: 'svg-2',
-            title: 'avatar 2',
-            value: 'avatar-2'
+                id: 'svg-2',
+                title: 'avatar 2',
+                value: 'avatar-2'
             }, {
-            id: 'svg-3',
-            title: 'avatar 3',
-            value: 'avatar-3'
+                id: 'svg-3',
+                title: 'avatar 3',
+                value: 'avatar-3'
             }];
 
         $scope.radioData = [
@@ -13425,12 +14058,12 @@
         ];
 
 
-        $scope.submit = function () {
+        $scope.submit = function() {
             alert('submit');
         };
 
         var vals = ['Apple', 'Banana', 'Mango', 'Grape', 'Melon', 'Strawberry', 'Kiwi'];
-        $scope.addItem = function () {
+        $scope.addItem = function() {
             var rval = vals[Math.floor(Math.random() * vals.length)];
             $scope.radioData.push({
                 label: rval,
@@ -13438,7 +14071,7 @@
             });
         };
 
-        $scope.removeItem = function () {
+        $scope.removeItem = function() {
             $scope.radioData.pop();
         };
     }
@@ -13454,7 +14087,7 @@
             cb4: true
         };
 
-        $scope.onChange = function (cbState) {
+        $scope.onChange = function(cbState) {
             $scope.message = 'The switch is now: ' + cbState;
         };
     }
@@ -13467,18 +14100,18 @@
     function MDDialogCtrl($scope, $mdDialog) {
         $scope.alert = '';
 
-        $scope.showAlert = function (ev) {
+        $scope.showAlert = function(ev) {
             $mdDialog.show(
                 $mdDialog.alert()
-                .title('This is an alert title')
-                .content('You can specify some description text in here.')
-                .ariaLabel('Password notification')
-                .ok('Got it!')
-                .targetEvent(ev)
+                    .title('This is an alert title')
+                    .content('You can specify some description text in here.')
+                    .ariaLabel('Password notification')
+                    .ok('Got it!')
+                    .targetEvent(ev)
             );
         };
 
-        $scope.showConfirm = function (ev) {
+        $scope.showConfirm = function(ev) {
             var confirm = $mdDialog.confirm()
                 .title('Would you like to delete your debt?')
                 .content('All of the banks have agreed to forgive you your debts.')
@@ -13487,37 +14120,37 @@
                 .cancel('Sounds like a scam')
                 .targetEvent(ev);
 
-            $mdDialog.show(confirm).then(function () {
+            $mdDialog.show(confirm).then(function() {
                 $scope.alert = 'You decided to get rid of your debt.';
-            }, function () {
+            }, function() {
                 $scope.alert = 'You decided to keep your debt.';
             });
         };
 
-        $scope.showAdvanced = function (ev) {
+        $scope.showAdvanced = function(ev) {
             $mdDialog.show({
-                    controller: DialogController,
-                    templateUrl: 'dialog1.tmpl.html',
-                    targetEvent: ev,
-                })
-                .then(function (answer) {
+                controller: DialogController,
+                templateUrl: 'dialog1.tmpl.html',
+                targetEvent: ev,
+            })
+                .then(function(answer) {
                     $scope.alert = 'You said the information was \'' + answer + '\'.';
-                }, function () {
+                }, function() {
                     $scope.alert = 'You cancelled the dialog.';
                 });
         };
         DialogController.$inject = ['$scope', '$mdDialog'];
 
         function DialogController($scope, $mdDialog) {
-            $scope.hide = function () {
+            $scope.hide = function() {
                 $mdDialog.hide();
             };
 
-            $scope.cancel = function () {
+            $scope.cancel = function() {
                 $mdDialog.cancel();
             };
 
-            $scope.answer = function (answer) {
+            $scope.answer = function(answer) {
                 $mdDialog.hide(answer);
             };
         }
@@ -13554,11 +14187,11 @@
         vm.userState = '';
         vm.states = ('AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS ' +
             'MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI ' +
-            'WY').split(' ').map(function (state) {
-            return {
-                abbrev: state
-            };
-        });
+            'WY').split(' ').map(function(state) {
+                return {
+                    abbrev: state
+                };
+            });
 
         vm.sizes = [
             'small (12-inch)',
@@ -13637,7 +14270,7 @@
         $scope.determinateValue = 30;
         $scope.determinateValue2 = 30;
 
-        $interval(function () {
+        $interval(function() {
             $scope.determinateValue += 1;
             $scope.determinateValue2 += 1.5;
             if ($scope.determinateValue > 100) {
@@ -13646,7 +14279,7 @@
             }
         }, 100, 0, true);
 
-        $interval(function () {
+        $interval(function() {
             $scope.mode = ($scope.mode === 'query' ? 'determinate' : 'query');
         }, 7200, 0, true);
     }
@@ -13657,28 +14290,28 @@
     MDSidenavCtrl.$inject = ['$scope', '$timeout', '$mdSidenav', '$log'];
 
     function MDSidenavCtrl($scope, $timeout, $mdSidenav, $log) {
-        $scope.toggleLeft = function () {
+        $scope.toggleLeft = function() {
             $mdSidenav('left').toggle()
-                .then(function () {
+                .then(function() {
                     $log.debug('toggle left is done');
                 });
         };
-        $scope.toggleRight = function () {
+        $scope.toggleRight = function() {
             $mdSidenav('right').toggle()
-                .then(function () {
+                .then(function() {
                     $log.debug('toggle RIGHT is done');
                 });
         };
-        $scope.closeLeft = function () {
+        $scope.closeLeft = function() {
             $mdSidenav('left').close()
-                .then(function () {
+                .then(function() {
                     $log.debug('close LEFT is done');
                 });
 
         };
-        $scope.closeRight = function () {
+        $scope.closeRight = function() {
             $mdSidenav('right').close()
-                .then(function () {
+                .then(function() {
                     $log.debug('close RIGHT is done');
                 });
         };
@@ -13785,15 +14418,15 @@
             right: true
         };
 
-        $scope.getToastPosition = function () {
+        $scope.getToastPosition = function() {
             return Object.keys($scope.toastPosition)
-                .filter(function (pos) {
+                .filter(function(pos) {
                     return $scope.toastPosition[pos];
                 })
                 .join(' ');
         };
 
-        $scope.showCustomToast = function () {
+        $scope.showCustomToast = function() {
             $mdToast.show({
                 controller: 'ToastCtrl',
                 templateUrl: 'toast-template.html',
@@ -13803,23 +14436,23 @@
             });
         };
 
-        $scope.showSimpleToast = function () {
+        $scope.showSimpleToast = function() {
             $mdToast.show(
                 $mdToast.simple()
-                .content('Simple Toast!')
-                .position($scope.getToastPosition())
-                .hideDelay(30000)
+                    .content('Simple Toast!')
+                    .position($scope.getToastPosition())
+                    .hideDelay(30000)
             );
         };
 
-        $scope.showActionToast = function () {
+        $scope.showActionToast = function() {
             var toast = $mdToast.simple()
                 .content('Action Toast!')
                 .action('OK')
                 .highlightAction(false)
                 .position($scope.getToastPosition());
 
-            $mdToast.show(toast).then(function () {
+            $mdToast.show(toast).then(function() {
                 alert('You clicked \'OK\'.');
             });
         };
@@ -13831,7 +14464,7 @@
     ToastCtrl.$inject = ['$scope', '$mdToast'];
 
     function ToastCtrl($scope, $mdToast) {
-        $scope.closeToast = function () {
+        $scope.closeToast = function() {
             $mdToast.hide();
         };
     }
@@ -13853,26 +14486,26 @@
     function BottomSheetExample($scope, $timeout, $mdBottomSheet) {
         $scope.alert = '';
 
-        $scope.showListBottomSheet = function ($event) {
+        $scope.showListBottomSheet = function($event) {
             $scope.alert = '';
             $mdBottomSheet.show({
                 templateUrl: 'bottom-sheet-list-template.html',
                 controller: 'ListBottomSheetCtrl',
                 targetEvent: $event,
                 parent: '#bottomsheetcontainer'
-            }).then(function (clickedItem) {
+            }).then(function(clickedItem) {
                 $scope.alert = clickedItem.name + ' clicked!';
             });
         };
 
-        $scope.showGridBottomSheet = function ($event) {
+        $scope.showGridBottomSheet = function($event) {
             $scope.alert = '';
             $mdBottomSheet.show({
                 templateUrl: 'bottom-sheet-grid-template.html',
                 controller: 'GridBottomSheetCtrl',
                 targetEvent: $event,
                 parent: '#bottomsheetcontainer'
-            }).then(function (clickedItem) {
+            }).then(function(clickedItem) {
                 $scope.alert = clickedItem.name + ' clicked!';
             });
         };
@@ -13904,7 +14537,7 @@
             },
         ];
 
-        $scope.listItemClick = function ($index) {
+        $scope.listItemClick = function($index) {
             var clickedItem = $scope.items[$index];
             $mdBottomSheet.hide(clickedItem);
         };
@@ -13943,7 +14576,7 @@
             },
         ];
 
-        $scope.listItemClick = function ($index) {
+        $scope.listItemClick = function($index) {
             var clickedItem = $scope.items[$index];
             $mdBottomSheet.hide(clickedItem);
         };
@@ -13952,7 +14585,7 @@
 
 })();
 
-(function () {
+(function() {
     'use strict';
     // Used only for the BottomSheetExample
     angular
@@ -13974,7 +14607,7 @@
             'app/img/icons/twitter.svg'
         ];
 
-        angular.forEach(urls, function (url) {
+        angular.forEach(urls, function(url) {
             $http.get(url, {
                 cache: $templateCache
             });
@@ -13984,7 +14617,7 @@
 
 })();
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -14038,7 +14671,7 @@
  * Navbar search toggler * Auto dismiss on ESC key
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -14076,7 +14709,7 @@
 
     function searchOpenController($scope, $element, NavSearch) {
         $element
-            .on('click', function (e) {
+            .on('click', function(e) {
                 e.stopPropagation();
             })
             .on('click', NavSearch.toggle);
@@ -14089,10 +14722,10 @@
         var inputSelector = '.navbar-form input[type="text"]';
 
         $(inputSelector)
-            .on('click', function (e) {
+            .on('click', function(e) {
                 e.stopPropagation();
             })
-            .on('keyup', function (e) {
+            .on('keyup', function(e) {
                 if (e.keyCode === 27) // ESC
                     NavSearch.dismiss();
             });
@@ -14101,7 +14734,7 @@
         $(document).on('click', NavSearch.dismiss);
         // dismissable options
         $element
-            .on('click', function (e) {
+            .on('click', function(e) {
                 e.stopPropagation();
             })
             .on('click', NavSearch.dismiss);
@@ -14115,7 +14748,7 @@
  * Services to share navbar search functions
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -14145,7 +14778,7 @@
                 .removeClass('open') // Close control
                 .find('input[type="text"]').blur() // remove focus
                 .val('') // Empty input
-            ;
+                ;
         }
     }
 })();
@@ -14154,7 +14787,7 @@
  * Module: demo-notify.js
  * Provides a simple demo for notify
  =========================================================*/
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -14180,7 +14813,7 @@
             };
 
             // Service usage example
-            $timeout(function () {
+            $timeout(function() {
 
                 Notify.alert(
                     'This is a custom message from notify..', {
@@ -14198,7 +14831,7 @@
  * Directive for notify plugin
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -14221,7 +14854,7 @@
 
         function link(scope, element) {
 
-            element.on('click', function (e) {
+            element.on('click', function(e) {
                 e.preventDefault();
                 Notify.alert(scope.message, scope.options);
             });
@@ -14238,7 +14871,7 @@
  * Based on Notify addon from UIKit (http://getuikit.com/docs/addons_notify.html)
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
     angular
         .module('app.notify')
@@ -14254,7 +14887,7 @@
 
         function notifyAlert(msg, opts) {
             if (msg) {
-                $timeout(function () {
+                $timeout(function() {
                     $.notify(msg, opts || {});
                 });
             }
@@ -14268,11 +14901,11 @@
  * Adapted version to work with Bootstrap classes
  * More information http://getuikit.com/docs/addons_notify.html
  */
-(function ($) {
+(function($) {
     'use strict';
     var containers = {},
         messages = {},
-        notify = function (options) {
+        notify = function(options) {
             if ($.type(options) === 'string') {
                 options = {
                     message: options
@@ -14285,7 +14918,7 @@
             }
             return (new Message(options)).show();
         },
-        closeAll = function (group, instantly) {
+        closeAll = function(group, instantly) {
             var id;
             if (group) {
                 for (id in messages) {
@@ -14297,7 +14930,7 @@
                 }
             }
         };
-    var Message = function (options) {
+    var Message = function(options) {
         // var $this = this;
         this.options = $.extend({}, Message.defaults, options);
         this.uuid = 'ID' + (new Date().getTime()) + 'RAND' + (Math.ceil(Math.random() * 100000));
@@ -14316,7 +14949,7 @@
         this.group = this.options.group;
         messages[this.uuid] = this;
         if (!containers[this.options.pos]) {
-            containers[this.options.pos] = $('<div class="uk-notify uk-notify-' + this.options.pos + '"></div>').appendTo('body').on('click', '.uk-notify-message', function () {
+            containers[this.options.pos] = $('<div class="uk-notify uk-notify-' + this.options.pos + '"></div>').appendTo('body').on('click', '.uk-notify-message', function() {
                 $(this).data('notifyMessage').close();
             });
         }
@@ -14327,7 +14960,7 @@
         timout: false,
         currentstatus: '',
         group: false,
-        show: function () {
+        show: function() {
             if (this.element.is(':visible')) return;
             var $this = this;
             containers[this.options.pos].show().prepend(this.element);
@@ -14340,17 +14973,17 @@
                 'opacity': 1,
                 'margin-top': 0,
                 'margin-bottom': marginbottom
-            }, function () {
+            }, function() {
                 if ($this.options.timeout) {
-                    var closefn = function () {
+                    var closefn = function() {
                         $this.close();
                     };
                     $this.timeout = setTimeout(closefn, $this.options.timeout);
                     $this.element.hover(
-                        function () {
+                        function() {
                             clearTimeout($this.timeout);
                         },
-                        function () {
+                        function() {
                             $this.timeout = setTimeout(closefn, $this.options.timeout);
                         }
                     );
@@ -14358,9 +14991,9 @@
             });
             return this;
         },
-        close: function (instantly) {
+        close: function(instantly) {
             var $this = this,
-                finalize = function () {
+                finalize = function() {
                     $this.element.remove();
                     if (!containers[$this.options.pos].children().length) {
                         containers[$this.options.pos].hide();
@@ -14375,12 +15008,12 @@
                     'opacity': 0,
                     'margin-top': -1 * this.element.outerHeight(),
                     'margin-bottom': 0
-                }, function () {
+                }, function() {
                     finalize();
                 });
             }
         },
-        content: function (html) {
+        content: function(html) {
             var container = this.element.find('>div');
             if (!html) {
                 return container.html();
@@ -14388,7 +15021,7 @@
             container.html(html);
             return this;
         },
-        status: function (status) {
+        status: function(status) {
             if (!status) {
                 return this.currentstatus;
             }
@@ -14410,14 +15043,14 @@
     $.notify.closeAll = closeAll;
 
     return notify;
-}(jQuery));
+} (jQuery));
 
 /**=========================================================
  * Module: access-login.js
  * Demo for login api
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -14439,7 +15072,7 @@
             // place the message if something goes wrong
             vm.authMsg = '';
 
-            vm.login = function () {
+            vm.login = function() {
                 vm.authMsg = '';
 
                 if (vm.loginForm.$valid) {
@@ -14449,7 +15082,7 @@
                             email: vm.account.email,
                             password: vm.account.password
                         })
-                        .then(function (response) {
+                        .then(function(response) {
                             // assumes if ok, response is an object with some data, if not, a string with error
                             // customize according to your api
                             if (!response.account) {
@@ -14457,7 +15090,7 @@
                             } else {
                                 $state.go('app.dashboard');
                             }
-                        }, function () {
+                        }, function() {
                             vm.authMsg = 'Server Request Error';
                         });
                 } else {
@@ -14476,7 +15109,7 @@
  * Demo for register account api
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -14498,7 +15131,7 @@
             // place the message if something goes wrong
             vm.authMsg = '';
 
-            vm.register = function () {
+            vm.register = function() {
                 vm.authMsg = '';
 
                 if (vm.registerForm.$valid) {
@@ -14508,7 +15141,7 @@
                             email: vm.account.email,
                             password: vm.account.password
                         })
-                        .then(function (response) {
+                        .then(function(response) {
                             // assumes if ok, response is an object with some data, if not, a string with error
                             // customize according to your api
                             if (!response.account) {
@@ -14516,7 +15149,7 @@
                             } else {
                                 $state.go('app.dashboard');
                             }
-                        }, function () {
+                        }, function() {
                             vm.authMsg = 'Server Request Error';
                         });
                 } else {
@@ -14535,7 +15168,7 @@
 /**=========================================================
  * Collapse panels * [panel-collapse]
  =========================================================*/
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -14564,14 +15197,14 @@
         // Load the saved state if exists
         var currentState = loadPanelState(panelId);
         if (typeof currentState !== 'undefined') {
-            $timeout(function () {
-                    $scope[panelId] = currentState;
-                },
+            $timeout(function() {
+                $scope[panelId] = currentState;
+            },
                 10);
         }
 
         // bind events to switch icons
-        $element.bind('click', function (e) {
+        $element.bind('click', function(e) {
             e.preventDefault();
             savePanelState(panelId, !$scope[panelId]);
 
@@ -14603,7 +15236,7 @@
  * Dismiss panels * [panel-dismiss]
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -14626,7 +15259,7 @@
         var removeEvent = 'panel-remove',
             removedEvent = 'panel-removed';
 
-        $element.on('click', function (e) {
+        $element.on('click', function(e) {
             e.preventDefault();
 
             // find the first parent panel
@@ -14658,7 +15291,7 @@
                 parent.remove();
                 // remove the parent if it is a row and is empty and not a sortable (portlet)
                 col
-                    .filter(function () {
+                    .filter(function() {
                         var el = $(this);
                         return (el.is('[class*="col-"]:not(.sortable)') && el.children('*').length === 0);
                     }).remove();
@@ -14678,7 +15311,7 @@
  * [panel-refresh] * [data-spinner="standard"]
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -14703,7 +15336,7 @@
             defaultSpinner = 'standard';
 
         // catch clicks to toggle panel refresh
-        $element.on('click', function (e) {
+        $element.on('click', function(e) {
             e.preventDefault();
 
             var $this = $(this),
@@ -14740,7 +15373,7 @@
  * Saves panel state in browser storage
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -14775,7 +15408,7 @@
 
             var tools = scope.panelTools || attrs;
 
-            $timeout(function () {
+            $timeout(function() {
                 element.html(getTemplate(element, tools)).show();
                 $compile(element.contents())(scope);
 
@@ -14803,7 +15436,7 @@
  * Provides a simple demo for panel actions
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -14824,7 +15457,7 @@
             // ----------------------------------- 
 
             // We can use panel id name for the boolean flag to [un]collapse the panel
-            $scope.$watch('panelDemo1', function (newVal) {
+            $scope.$watch('panelDemo1', function(newVal) {
 
                 console.log('panelDemo1 collapsed: ' + newVal);
 
@@ -14835,7 +15468,7 @@
             // ----------------------------------- 
 
             // Before remove panel
-            $scope.$on('panel-remove', function (event, id, deferred) {
+            $scope.$on('panel-remove', function(event, id, deferred) {
 
                 console.log('Panel #' + id + ' removing');
 
@@ -14847,7 +15480,7 @@
             });
 
             // Panel removed ( only if above was resolved() )
-            $scope.$on('panel-removed', function (event, id) {
+            $scope.$on('panel-removed', function(event, id) {
 
                 console.log('Panel #' + id + ' removed');
 
@@ -14857,12 +15490,12 @@
             // PANEL REFRESH EVENTS
             // ----------------------------------- 
 
-            $scope.$on('panel-refresh', function (event, id) {
+            $scope.$on('panel-refresh', function(event, id) {
                 var secs = 3;
 
                 console.log('Refreshing during ' + secs + 's #' + id);
 
-                $timeout(function () {
+                $timeout(function() {
                     // directive listen for to remove the spinner 
                     // after we end up to perform own operations
                     $scope.$broadcast('removeSpinner', id);
@@ -14904,7 +15537,7 @@
  * Drag and drop any panel based on jQueryUI portlets
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -14948,7 +15581,7 @@
         }
 
 
-        function savePortletOrder(event /*, ui*/ ) {
+        function savePortletOrder(event /*, ui*/) {
             var self = event.target;
             var data = angular.fromJson($localStorage[storageKeyName]);
 
@@ -14959,7 +15592,7 @@
             data[self.id] = $(self).sortable('toArray');
 
             if (data) {
-                $timeout(function () {
+                $timeout(function() {
                     $localStorage[storageKeyName] = angular.toJson(data);
                 });
             }
@@ -14977,7 +15610,7 @@
                 if (panels) {
                     var portlet = $('#' + porletId);
 
-                    $.each(panels, function (index, value) {
+                    $.each(panels, function(index, value) {
                         $('#' + value).appendTo(portlet);
                     });
                 }
@@ -14989,7 +15622,7 @@
 
 })();
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -15003,9 +15636,9 @@
         var directive = {
             restrict: 'EAC',
             template: '<div class="preloader-progress">' +
-                '<div class="preloader-progress-bar" ' +
-                'ng-style="{width: loadCounter + \'%\'}"></div>' +
-                '</div>',
+            '<div class="preloader-progress-bar" ' +
+            'ng-style="{width: loadCounter + \'%\'}"></div>' +
+            '</div>',
             link: link
         };
         return directive;
@@ -15046,7 +15679,7 @@
 
                 scope.loadCounter = 100;
 
-                $timeout(function () {
+                $timeout(function() {
                     // animate preloader hiding
                     $animate.addClass(el, 'preloader-hidden');
                     // retore scrollbar
@@ -15059,7 +15692,7 @@
                 var viewsLoaded = 0;
                 // if this doesn't sync with the real app ready
                 // a custom event must be used instead
-                var off = scope.$on('$viewContentLoaded', function () {
+                var off = scope.$on('$viewContentLoaded', function() {
 
                     viewsLoaded++;
 
@@ -15068,14 +15701,14 @@
                     // before the app is ready (1-index.html 2-app*.html)
                     if (viewsLoaded === 1 && (!$rootScope.globals.currentUser || !$rootScope.$storage.currentUser)) {
                         // with resolve this fires only once
-                        $timeout(function () {
+                        $timeout(function() {
                             deferred.resolve();
                         }, 3000);
 
                         off();
                     } else if (viewsLoaded === 2) {
                         // with resolve this fires only once
-                        $timeout(function () {
+                        $timeout(function() {
                             deferred.resolve();
                         }, 3000);
 
@@ -15096,7 +15729,7 @@
  * Provides helper functions for routes definition
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -15113,7 +15746,7 @@
             basepath: basepath,
             resolveFor: resolveFor,
             // controller access level
-            $get: function () {
+            $get: function() {
                 return {
                     basepath: basepath,
                     resolveFor: resolveFor
@@ -15132,7 +15765,7 @@
         function resolveFor() {
             var _args = arguments;
             return {
-                deps: ['$ocLazyLoad', '$q', function ($ocLL, $q) {
+                deps: ['$ocLazyLoad', '$q', function($ocLL, $q) {
                     // Creates a promise chain for each argument
                     var promise = $q.when(1); // empty promise
                     for (var i = 0, len = _args.length; i < len; i++) {
@@ -15146,7 +15779,7 @@
                         if (typeof _arg === 'function')
                             return promise.then(_arg);
                         else
-                            return promise.then(function () {
+                            return promise.then(function() {
                                 // if is a module, pass the name. If not, pass the array
                                 var whatToLoad = getRequired(_arg);
                                 // simple error check
@@ -15183,7 +15816,7 @@
  =========================================================*/
 
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -15223,8 +15856,8 @@
                 resolve: helper.resolveFor('flot-chart', 'flot-chart-plugins', 'weather-icons', 'ngWebSocket', 'moment', 'moment-format')
             })
 
-        /* START MATCHES SCHEDULE */
-        .state('app.schedule', {
+            /* START MATCHES SCHEDULE */
+            .state('app.schedule', {
                 url: '/schedule',
                 title: 'Schedule',
                 templateUrl: helper.basepath('database/schedule.html'),
@@ -15232,9 +15865,7 @@
                 controller: 'ScheduleController'
             })
             /* END MATCHES SCHEDULE */
-
-
-        .state('app.teams', {
+            .state('app.teams', {
                 url: '/teams',
                 title: 'Teams',
                 templateUrl: helper.basepath('database/teams.html'),
@@ -15255,6 +15886,27 @@
                 templateUrl: helper.basepath('database/publications.html'),
                 resolve: helper.resolveFor('akoenig.deckgrid', 'restangular', 'toaster', 'dirPagination', 'moment', 'datatables', 'ngFileUpload', 'localytics.directives', 'ui.select', 'truncate'),
                 controller: 'PublicationsController'
+            })
+            .state('app.standings', {
+                url: '/standings/:competition',
+                title: 'Standings',
+                templateUrl: helper.basepath('database/standings.html'),
+                resolve: helper.resolveFor('restangular', 'toaster', 'dirPagination', 'moment', 'datatables', 'ngFileUpload', 'localytics.directives', 'ui.select', 'ui.grid'),
+                controller: 'StandingsController'
+            })
+            .state('app.competitions', {
+                url: '/competitions',
+                title: 'Competitions',
+                templateUrl: helper.basepath('database/competitions.html'),
+                resolve: helper.resolveFor('ui.select','ngFileUpload'),
+                controller: 'CompetitionsController'
+            })
+            .state('app.sponsors', {
+                url: '/sponsors',
+                title: 'Sponsors',
+                templateUrl: helper.basepath('database/sponsors.html'),
+                resolve: helper.resolveFor('ui.select','ngFileUpload'),
+                controller: 'SponsorsController'
             })
             .state('app.leaderboards', {
                 url: '/leaderboards',
@@ -15334,7 +15986,7 @@
                 url: '/widgets',
                 title: 'Widgets',
                 templateUrl: helper.basepath('widgets.html'),
-                resolve: helper.resolveFor('loadGoogleMapsJS', function () {
+                resolve: helper.resolveFor('loadGoogleMapsJS', function() {
                     return loadGoogleMaps();
                 }, 'ui.map')
             })
@@ -15393,7 +16045,7 @@
                 title: 'ngDialog',
                 templateUrl: helper.basepath('ngdialog.html'),
                 resolve: angular.extend(helper.resolveFor('ngDialog'), {
-                    tpl: function () {
+                    tpl: function() {
                         return {
                             path: helper.basepath('ngdialog-template.html')
                         };
@@ -15444,7 +16096,7 @@
                 url: '/maps-google',
                 title: 'Maps Google',
                 templateUrl: helper.basepath('maps-google.html'),
-                resolve: helper.resolveFor('loadGoogleMapsJS', function () {
+                resolve: helper.resolveFor('loadGoogleMapsJS', function() {
                     return loadGoogleMaps();
                 }, 'ui.map')
             })
@@ -15651,7 +16303,7 @@
                 url: '/profile',
                 title: 'Profile',
                 templateUrl: helper.basepath('profile.html'),
-                resolve: helper.resolveFor('loadGoogleMapsJS', function () {
+                resolve: helper.resolveFor('loadGoogleMapsJS', function() {
                     return loadGoogleMaps();
                 }, 'ui.map')
             })
@@ -15662,8 +16314,8 @@
                 controllerAs: 'coder',
                 resolve: {
                     deps: helper.resolveFor('codemirror', 'ui.codemirror', 'codemirror-modes-web', 'angularBootstrapNavTree').deps,
-                    filetree: ['LoadTreeService', function (LoadTreeService) {
-                        return LoadTreeService.get().$promise.then(function (res) {
+                    filetree: ['LoadTreeService', function(LoadTreeService) {
+                        return LoadTreeService.get().$promise.then(function(res) {
                             return res.data;
                         });
                     }]
@@ -15812,7 +16464,7 @@
                 url: '/page',
                 templateUrl: 'app/pages/page.html',
                 resolve: helper.resolveFor('modernizr', 'icons'),
-                controller: ['$rootScope', function ($rootScope) {
+                controller: ['$rootScope', function($rootScope) {
                     $rootScope.app.layout.isBoxed = false;
                 }]
             })
@@ -15897,7 +16549,7 @@
                 url: '/matwidgets',
                 title: 'Material Widgets',
                 templateUrl: helper.basepath('material.widgets.html'),
-                resolve: helper.resolveFor('weather-icons', 'loadGoogleMapsJS', function () {
+                resolve: helper.resolveFor('weather-icons', 'loadGoogleMapsJS', function() {
                     return loadGoogleMaps();
                 }, 'ui.map')
             })
@@ -15922,14 +16574,14 @@
             //     }
             //   )
             // })
-        ;
+            ;
 
     } // routesConfig
 
 })();
 
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -15972,12 +16624,12 @@
         else
             $localStorage.layout = $rootScope.app.layout;
 
-        $rootScope.$watch('app.layout', function () {
+        $rootScope.$watch('app.layout', function() {
             $localStorage.layout = $rootScope.app.layout;
         }, true);
 
         // Close submenu when sidebar change from collapsed to normal
-        $rootScope.$watch('app.layout.isCollapsed', function (newValue) {
+        $rootScope.$watch('app.layout.isCollapsed', function(newValue) {
             if (newValue === false)
                 $rootScope.$broadcast('closeSidebarMenu');
         });
@@ -15991,7 +16643,7 @@
  * Handle sidebar collapsible elements
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -16010,7 +16662,7 @@
             var collapseList = [];
 
             // demo: when switch from collapse to hover, close all items
-            $rootScope.$watch('app.layout.asideHover', function (oldVal, newVal) {
+            $rootScope.$watch('app.layout.asideHover', function(oldVal, newVal) {
                 if (newVal === false && oldVal === true) {
                     closeAllBut(-1);
                 }
@@ -16029,20 +16681,20 @@
             // Handle sidebar and collapse items
             // ----------------------------------
 
-            $scope.getMenuItemPropClasses = function (item) {
+            $scope.getMenuItemPropClasses = function(item) {
                 return (item.heading ? 'nav-heading' : '') +
                     (isActive(item) ? ' active' : '');
             };
 
-            $scope.addCollapse = function ($index, item) {
+            $scope.addCollapse = function($index, item) {
                 collapseList[$index] = $rootScope.app.layout.asideHover ? true : !isActive(item);
             };
 
-            $scope.isCollapse = function ($index) {
+            $scope.isCollapse = function($index) {
                 return (collapseList[$index]);
             };
 
-            $scope.toggleCollapse = function ($index, isParentItem) {
+            $scope.toggleCollapse = function($index, isParentItem) {
 
                 // collapsed sidebar doesn't toggle drodopwn
                 if (Utils.isSidebarCollapsed() || $rootScope.app.layout.asideHover) return true;
@@ -16073,7 +16725,7 @@
 
                 if (!item.sref || item.sref === '#') {
                     var foundActive = false;
-                    angular.forEach(item.submenu, function (value) {
+                    angular.forEach(item.submenu, function(value) {
                         if (isActive(value)) foundActive = true;
                     });
                     return foundActive;
@@ -16104,7 +16756,7 @@
  * Wraps the sidebar and handles collapsed state
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -16124,7 +16776,7 @@
             template: '<nav class="sidebar" ng-transclude></nav>',
             transclude: true,
             replace: true
-                // scope: {}
+            // scope: {}
         };
         return directive;
 
@@ -16136,7 +16788,7 @@
             var eventName = Utils.isTouch() ? 'click' : 'mouseenter';
             var subNav = $();
 
-            $sidebar.on(eventName, '.nav > li', function () {
+            $sidebar.on(eventName, '.nav > li', function() {
 
                 if (Utils.isSidebarCollapsed() || $rootScope.app.layout.asideHover) {
 
@@ -16150,18 +16802,18 @@
 
             });
 
-            scope.$on('closeSidebarMenu', function () {
+            scope.$on('closeSidebarMenu', function() {
                 removeFloatingNav();
             });
 
             // Normalize state when resize to mobile
-            $win.on('resize', function () {
+            $win.on('resize', function() {
                 if (!Utils.isMobile())
                     asideToggleOff();
             });
 
             // Adjustment on route changes
-            $rootScope.$on('$stateChangeStart', function (event, toState) {
+            $rootScope.$on('$stateChangeStart', function(event, toState) {
                 currentState = toState.name;
                 // Hide sidebar automatically on mobile
                 asideToggleOff();
@@ -16184,8 +16836,8 @@
             function watchExternalClicks(newVal) {
                 // if sidebar becomes visible
                 if (newVal === true) {
-                    $timeout(function () { // render after current digest cycle
-                        wrapper.on(sbclickEvent, function (e) {
+                    $timeout(function() { // render after current digest cycle
+                        wrapper.on(sbclickEvent, function(e) {
                             // if not child of sidebar
                             if (!$(e.target).parents('.aside').length) {
                                 asideToggleOff();
@@ -16210,7 +16862,7 @@
             var $backdrop = $('<div/>', {
                 'class': 'dropdown-backdrop'
             });
-            $backdrop.insertAfter('.aside-inner').on('click mouseenter', function () {
+            $backdrop.insertAfter('.aside-inner').on('click mouseenter', function() {
                 removeFloatingNav();
             });
         }
@@ -16258,7 +16910,7 @@
                     bottom: (subNav.outerHeight(true) + itemTop > vwHeight) ? 0 : 'auto'
                 });
 
-            subNav.on('mouseleave', function () {
+            subNav.on('mouseleave', function() {
                 toggleTouchItem($listItem);
                 subNav.remove();
             });
@@ -16277,7 +16929,7 @@
 })();
 
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -16295,7 +16947,7 @@
             var menuJson = 'server/sidebar-menu.json',
                 menuURL = menuJson + '?v=' + (new Date().getTime()); // jumps cache
 
-            onError = onError || function () {
+            onError = onError || function() {
                 alert('Failure loading menu');
             };
 
@@ -16306,7 +16958,7 @@
         }
     }
 })();
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -16326,12 +16978,12 @@
 
 
             // Hides/show user avatar on sidebar
-            $rootScope.toggleUserBlock = function () {
+            $rootScope.toggleUserBlock = function() {
                 console.log("toggle");
                 $rootScope.$broadcast('toggleUserBlock');
             };
 
-            $rootScope.logout = function () {
+            $rootScope.logout = function() {
                 console.log("logout");
                 $rootScope.$storage.currentUser = null;
                 $rootScope.user = null;
@@ -16341,7 +16993,7 @@
 
             $rootScope.userBlockVisible = true;
 
-            $rootScope.$on('toggleUserBlock', function ( /*event, args*/ ) {
+            $rootScope.$on('toggleUserBlock', function( /*event, args*/) {
 
                 $rootScope.userBlockVisible = !$rootScope.userBlockVisible;
 
@@ -16355,7 +17007,7 @@
  * Example for Angular Grid
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -16431,7 +17083,7 @@
                 columnDefs: columnDefs,
                 rowData: null,
                 rowSelection: 'single',
-                ready: function (api) {
+                ready: function(api) {
                     api.sizeColumnsToFit();
                 }
             };
@@ -16506,7 +17158,7 @@
                 columnDefs: columnDefsFilter,
                 rowData: null,
                 enableFilter: true,
-                ready: function (api) {
+                ready: function(api) {
                     api.sizeColumnsToFit();
                 }
 
@@ -16519,7 +17171,7 @@
                 columnDefs: columnDefs,
                 rowData: null,
                 pinnedColumnCount: 2,
-                ready: function (api) {
+                ready: function(api) {
                     api.sizeColumnsToFit();
                 }
             };
@@ -16529,7 +17181,7 @@
             //-----------------------------
 
             $http.get('server/ag-owinners.json')
-                .then(function (res) {
+                .then(function(res) {
                     // basic
                     vm.gridOptions.rowData = res.data;
                     vm.gridOptions.api.onNewRows();
@@ -16550,7 +17202,7 @@
  * Angular Datatable controller
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -16570,16 +17222,16 @@
 
             // Ajax
 
-            $resource('server/datatable.json').query().$promise.then(function (persons) {
+            $resource('server/datatable.json').query().$promise.then(function(persons) {
                 vm.persons = persons;
             });
 
             // Changing data
 
             vm.heroes = [{
-                    'id': 860,
-                    'firstName': 'Superman',
-                    'lastName': 'Yoda'
+                'id': 860,
+                'firstName': 'Superman',
+                'lastName': 'Yoda'
             }, {
                     'id': 870,
                     'firstName': 'Ace',
@@ -16638,7 +17290,7 @@
  * ngGrid demo
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -16677,7 +17329,7 @@
                 filterOptions: $scope.filterOptions
             };
 
-            $scope.setPagingData = function (data, page, pageSize) {
+            $scope.setPagingData = function(data, page, pageSize) {
                 // calc for pager
                 var pagedData = data.slice((page - 1) * pageSize, page * pageSize);
                 // Store data from server
@@ -16691,21 +17343,21 @@
 
             };
 
-            $scope.getPagedDataAsync = function (pageSize, page, searchText) {
+            $scope.getPagedDataAsync = function(pageSize, page, searchText) {
                 var ngGridResourcePath = 'server/ng-grid-data.json';
 
-                $timeout(function () {
+                $timeout(function() {
 
                     if (searchText) {
                         var ft = searchText.toLowerCase();
-                        $http.get(ngGridResourcePath).success(function (largeLoad) {
-                            var data = largeLoad.filter(function (item) {
+                        $http.get(ngGridResourcePath).success(function(largeLoad) {
+                            var data = largeLoad.filter(function(item) {
                                 return JSON.stringify(item).toLowerCase().indexOf(ft) !== -1;
                             });
                             $scope.setPagingData(data, page, pageSize);
                         });
                     } else {
-                        $http.get(ngGridResourcePath).success(function (largeLoad) {
+                        $http.get(ngGridResourcePath).success(function(largeLoad) {
                             $scope.setPagingData(largeLoad, page, pageSize);
                         });
                     }
@@ -16713,12 +17365,12 @@
             };
 
 
-            $scope.$watch('pagingOptions', function (newVal, oldVal) {
+            $scope.$watch('pagingOptions', function(newVal, oldVal) {
                 if (newVal !== oldVal && newVal.currentPage !== oldVal.currentPage) {
                     $scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage, $scope.filterOptions.filterText);
                 }
             }, true);
-            $scope.$watch('filterOptions', function (newVal, oldVal) {
+            $scope.$watch('filterOptions', function(newVal, oldVal) {
                 if (newVal !== oldVal) {
                     $scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage, $scope.filterOptions.filterText);
                 }
@@ -16729,7 +17381,7 @@
     }
 })();
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -16748,7 +17400,7 @@
             // if no cache, request data and filter
             if (!self.cache) {
                 if (api) {
-                    api.get(function (data) {
+                    api.get(function(data) {
                         self.cache = data;
                         filterdata($defer, params);
                     });
@@ -16775,7 +17427,7 @@
  * Controller for ngTables
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -16890,22 +17542,22 @@
                 page: 1, // show first page
                 count: 10 // count per page
             }, {
-                total: data.length, // length of data
-                getData: function ($defer, params) {
-                    // use build-in angular filter
-                    var filteredData = params.filter() ?
-                        $filter('filter')(data, params.filter()) :
-                        data;
-                    var orderedData = params.sorting() ?
-                        $filter('orderBy')(filteredData, params.orderBy()) :
-                        data;
+                    total: data.length, // length of data
+                    getData: function($defer, params) {
+                        // use build-in angular filter
+                        var filteredData = params.filter() ?
+                            $filter('filter')(data, params.filter()) :
+                            data;
+                        var orderedData = params.sorting() ?
+                            $filter('orderBy')(filteredData, params.orderBy()) :
+                            data;
 
-                    params.total(orderedData.length); // set total for recalc pagination
-                    $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
-                }
-            });
+                        params.total(orderedData.length); // set total for recalc pagination
+                        $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+                    }
+                });
 
-            vm.changeSelection = function (user) {
+            vm.changeSelection = function(user) {
                 console.info(user);
             };
 
@@ -16913,8 +17565,8 @@
             // -----------------------------------  
 
             var data4 = [{
-                    name: 'Moroni',
-                    age: 50
+                name: 'Moroni',
+                age: 50
             },
                 {
                     name: 'Tiancum',
@@ -16985,11 +17637,11 @@
                 page: 1, // show first page
                 count: 10 // count per page
             }, {
-                total: data4.length, // length of data4
-                getData: function ($defer, params) {
-                    $defer.resolve(data4.slice((params.page() - 1) * params.count(), params.page() * params.count()));
-                }
-            });
+                    total: data4.length, // length of data4
+                    getData: function($defer, params) {
+                        $defer.resolve(data4.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+                    }
+                });
 
 
             // SORTING
@@ -17003,16 +17655,16 @@
                     name: 'asc' // initial sorting
                 }
             }, {
-                total: data.length, // length of data
-                getData: function ($defer, params) {
-                    // use build-in angular filter
-                    var orderedData = params.sorting() ?
-                        $filter('orderBy')(data, params.orderBy()) :
-                        data;
+                    total: data.length, // length of data
+                    getData: function($defer, params) {
+                        // use build-in angular filter
+                        var orderedData = params.sorting() ?
+                            $filter('orderBy')(data, params.orderBy()) :
+                            data;
 
-                    $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
-                }
-            });
+                        $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+                    }
+                });
 
             // FILTERS
             // ----------------------------------- 
@@ -17023,22 +17675,22 @@
                 filter: {
                     name: '',
                     age: ''
-                        // name: 'M'       // initial filter
+                    // name: 'M'       // initial filter
                 }
             }, {
-                total: data.length, // length of data
-                getData: function ($defer, params) {
-                    // use build-in angular filter
-                    var orderedData = params.filter() ?
-                        $filter('filter')(data, params.filter()) :
-                        data;
+                    total: data.length, // length of data
+                    getData: function($defer, params) {
+                        // use build-in angular filter
+                        var orderedData = params.filter() ?
+                            $filter('filter')(data, params.filter()) :
+                            data;
 
-                    vm.users = orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count());
+                        vm.users = orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count());
 
-                    params.total(orderedData.length); // set total for recalc pagination
-                    $defer.resolve(vm.users);
-                }
-            });
+                        params.total(orderedData.length); // set total for recalc pagination
+                        $defer.resolve(vm.users);
+                    }
+                });
 
             // AJAX
 
@@ -17048,25 +17700,25 @@
                 page: 1, // show first page
                 count: 10 // count per page
             }, {
-                total: 0, // length of data
-                counts: [], // hide page counts control
-                getData: function ($defer, params) {
+                    total: 0, // length of data
+                    counts: [], // hide page counts control
+                    getData: function($defer, params) {
 
-                    // Service using cache to avoid mutiple requests
-                    ngTableDataService.getData($defer, params, Api);
+                        // Service using cache to avoid mutiple requests
+                        ngTableDataService.getData($defer, params, Api);
 
-                    /* direct ajax request to api (perform result pagination on the server)
-                     Api.get(params.url(), function(data) {
-                     $timeout(function() {
-                     // update table params
-                     params.total(data.total);
-                     // set new data
-                     $defer.resolve(data.result);
-                     }, 500);
-                     });
-                     */
-                }
-            });
+                        /* direct ajax request to api (perform result pagination on the server)
+                         Api.get(params.url(), function(data) {
+                         $timeout(function() {
+                         // update table params
+                         params.total(data.total);
+                         // set new data
+                         $defer.resolve(data.result);
+                         }, 500);
+                         });
+                         */
+                    }
+                });
         }
     }
 })();
@@ -17077,7 +17729,7 @@
  * Provides a simple demo for buttons actions
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -17140,13 +17792,13 @@
             ];
 
             vm.groups = [];
-            vm.loadGroups = function () {
-                return vm.groups.length ? null : $http.get('server/xeditable-groups.json').success(function (data) {
+            vm.loadGroups = function() {
+                return vm.groups.length ? null : $http.get('server/xeditable-groups.json').success(function(data) {
                     vm.groups = data;
                 });
             };
 
-            vm.showGroup = function (user) {
+            vm.showGroup = function(user) {
                 if (user.group && vm.groups.length) {
                     var selected = $filter('filter')(vm.groups, {
                         id: user.group
@@ -17157,7 +17809,7 @@
                 }
             };
 
-            vm.showStatus = function (user) {
+            vm.showStatus = function(user) {
                 var selected = [];
                 if (user.status) {
                     selected = $filter('filter')(vm.statuses, {
@@ -17167,13 +17819,13 @@
                 return selected.length ? selected[0].text : 'Not set';
             };
 
-            vm.checkName = function (data, id) {
+            vm.checkName = function(data, id) {
                 if (id === 2 && data !== 'awesome') {
                     return 'Username 2 should be `awesome`';
                 }
             };
 
-            vm.saveUser = function (data, id) {
+            vm.saveUser = function(data, id) {
                 //vm.user not updated yet
                 angular.extend(data, {
                     id: id
@@ -17183,12 +17835,12 @@
             };
 
             // remove user
-            vm.removeUser = function (index) {
+            vm.removeUser = function(index) {
                 vm.users.splice(index, 1);
             };
 
             // add user
-            vm.addUser = function () {
+            vm.addUser = function() {
                 vm.inserted = {
                     id: vm.users.length + 1,
                     name: '',
@@ -17203,9 +17855,9 @@
             // ----------------------------------- 
 
 
-            vm.saveColumn = function (column) {
+            vm.saveColumn = function(column) {
                 var results = [];
-                angular.forEach(vm.users, function ( /*user*/ ) {
+                angular.forEach(vm.users, function( /*user*/) {
                     // results.push($http.post('/saveColumn', {column: column, value: user[column], id: user.id}));
                     console.log('Saving column: ' + column);
                 });
@@ -17216,12 +17868,12 @@
             // ----------------------------------- 
 
             // filter users to show
-            vm.filterUser = function (user) {
+            vm.filterUser = function(user) {
                 return user.isDeleted !== true;
             };
 
             // mark user as deleted
-            vm.deleteUser = function (id) {
+            vm.deleteUser = function(id) {
                 var filtered = $filter('filter')(vm.users, {
                     id: id
                 });
@@ -17231,7 +17883,7 @@
             };
 
             // cancel all changes
-            vm.cancel = function () {
+            vm.cancel = function() {
                 for (var i = vm.users.length; i--;) {
                     var user = vm.users[i];
                     // undelete
@@ -17246,7 +17898,7 @@
             };
 
             // save edits
-            vm.saveTable = function () {
+            vm.saveTable = function() {
                 var results = [];
                 for (var i = vm.users.length; i--;) {
                     var user = vm.users[i];
@@ -17275,7 +17927,7 @@
  * Module: UIGridController
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -17457,14 +18109,14 @@
                     }
                 ],
                 data: data,
-                onRegisterApi: function (gridApi) {
+                onRegisterApi: function(gridApi) {
                     vm.gridApi = gridApi;
                 }
             };
 
             $http.get('server/uigrid-complex.json')
-                .success(function (data) {
-                    data.forEach(function (row) {
+                .success(function(data) {
+                    data.forEach(function(row) {
                         row.registered = Date.parse(row.registered);
                     });
                     vm.gridOptionsComplex.data = data;
@@ -17488,7 +18140,7 @@
             };
 
             $http.get('server/uigrid-100.json')
-                .success(function (data) {
+                .success(function(data) {
                     vm.gridOptions1.data = data;
                 });
 
@@ -17496,7 +18148,7 @@
     }
 })();
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -17518,7 +18170,7 @@
 
     }
 })();
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -17540,12 +18192,12 @@
                 'es_AR': 'Español'
             },
             // display always the current ui language
-            init: function () {
+            init: function() {
                 var proposedLanguage = $translate.proposedLanguage() || $translate.use();
                 var preferredLanguage = $translate.preferredLanguage(); // we know we have set a preferred one in app.config
                 $rootScope.language.selected = $rootScope.language.available[(proposedLanguage || preferredLanguage)];
             },
-            set: function (localeId) {
+            set: function(localeId) {
                 // Set the new idiom
                 $translate.use(localeId);
                 // save a reference for the current language
@@ -17565,7 +18217,7 @@
  * Enable or disables ngAnimate for element with directive
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -17582,9 +18234,9 @@
         return directive;
 
         function link(scope, element, attrs) {
-            scope.$watch(function () {
+            scope.$watch(function() {
                 return scope.$eval(attrs.animateEnabled, scope);
-            }, function (newValue) {
+            }, function(newValue) {
                 $animate.enabled(!!newValue, element);
             });
         }
@@ -17597,7 +18249,7 @@
  * Browser detection
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -17617,7 +18269,7 @@
  * Removes a key from the browser storage via element click
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -17637,7 +18289,7 @@
         return directive;
 
         function link(scope, element) {
-            element.on('click', function (e) {
+            element.on('click', function(e) {
                 e.preventDefault();
 
                 if (scope.resetKey) {
@@ -17659,7 +18311,7 @@
  * Toggle the fullscreen mode on/off
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -17680,7 +18332,7 @@
             if (Browser.msie) {
                 element.addClass('hide');
             } else {
-                element.on('click', function (e) {
+                element.on('click', function(e) {
                     e.preventDefault();
 
                     if (screenfull.enabled) {
@@ -17710,7 +18362,7 @@
  * Request and load into the current page a css file
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -17725,7 +18377,7 @@
         return directive;
 
         function link(scope, element, attrs) {
-            element.on('click', function (e) {
+            element.on('click', function(e) {
                 if (element.is('a')) e.preventDefault();
                 var uri = attrs.loadCss,
                     link;
@@ -17767,7 +18419,7 @@
  * Provides a simple way to display the current time formatted
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -17794,7 +18446,7 @@
             updateTime();
             var intervalPromise = $interval(updateTime, 1000);
 
-            scope.$on('$destroy', function () {
+            scope.$on('$destroy', function() {
                 $interval.cancel(intervalPromise);
             });
 
@@ -17807,7 +18459,7 @@
  * Module: table-checkall.js
  * Tables check all checkbox
  =========================================================*/
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -17822,7 +18474,7 @@
         return directive;
 
         function link(scope, element) {
-            element.on('change', function () {
+            element.on('change', function() {
                 var $this = $(this),
                     index = $this.index() + 1,
                     checkbox = $this.find('input[type="checkbox"]'),
@@ -17841,7 +18493,7 @@
  * Module: trigger-resize.js
  * Triggers a window resize event from any element
  =========================================================*/
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -17858,8 +18510,8 @@
         return directive;
 
         function link(scope, element) {
-            element.on('click', function () {
-                $timeout(function () {
+            element.on('click', function() {
+                $timeout(function() {
                     $window.dispatchEvent(new Event('resize'));
                 });
             });
@@ -17873,7 +18525,7 @@
  * Utility library to use across the theme
  =========================================================*/
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -17891,8 +18543,8 @@
         return {
             // DETECTION
             support: {
-                transition: (function () {
-                    var transitionEnd = (function () {
+                transition: (function() {
+                    var transitionEnd = (function() {
 
                         var element = document.body || document.documentElement,
                             transEndEventNames = {
@@ -17906,15 +18558,15 @@
                         for (name in transEndEventNames) {
                             if (element.style[name] !== undefined) return transEndEventNames[name];
                         }
-                    }());
+                    } ());
 
                     return transitionEnd && {
                         end: transitionEnd
                     };
                 })(),
-                animation: (function () {
+                animation: (function() {
 
-                    var animationEnd = (function () {
+                    var animationEnd = (function() {
 
                         var element = document.body || document.documentElement,
                             animEndEventNames = {
@@ -17928,20 +18580,20 @@
                         for (name in animEndEventNames) {
                             if (element.style[name] !== undefined) return animEndEventNames[name];
                         }
-                    }());
+                    } ());
 
                     return animationEnd && {
                         end: animationEnd
                     };
                 })(),
                 requestAnimationFrame: window.requestAnimationFrame ||
-                    window.webkitRequestAnimationFrame ||
-                    window.mozRequestAnimationFrame ||
-                    window.msRequestAnimationFrame ||
-                    window.oRequestAnimationFrame ||
-                    function (callback) {
-                        window.setTimeout(callback, 1000 / 60);
-                    },
+                window.webkitRequestAnimationFrame ||
+                window.mozRequestAnimationFrame ||
+                window.msRequestAnimationFrame ||
+                window.oRequestAnimationFrame ||
+                function(callback) {
+                    window.setTimeout(callback, 1000 / 60);
+                },
                 /*jshint -W069*/
                 touch: (
                     ('ontouchstart' in window && navigator.userAgent.toLowerCase().match(/mobile|tablet/)) ||
@@ -17953,7 +18605,7 @@
                 mutationobserver: (window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver || null)
             },
             // UTILITIES
-            isInView: function (element, options) {
+            isInView: function(element, options) {
                 /*jshint -W106*/
                 var $element = $(element);
 
@@ -17982,19 +18634,19 @@
 
             langdirection: $html.attr('dir') === 'rtl' ? 'right' : 'left',
 
-            isTouch: function () {
+            isTouch: function() {
                 return $html.hasClass('touch');
             },
 
-            isSidebarCollapsed: function () {
+            isSidebarCollapsed: function() {
                 return $body.hasClass('aside-collapsed');
             },
 
-            isSidebarToggled: function () {
+            isSidebarToggled: function() {
                 return $body.hasClass('aside-toggled');
             },
 
-            isMobile: function () {
+            isMobile: function() {
                 return $win.width() < APP_MEDIAQUERY.tablet;
             }
 
@@ -18002,7 +18654,7 @@
     }
 })();
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -18020,7 +18672,7 @@
 // html data-ng-app attribute from angle to myAppName
 // ----------------------------------------------------------------------
 
-(function () {
+(function() {
     'use strict';
 
     angular

@@ -4,6 +4,7 @@
   "main": "./main.js",
   "scripts": {
     "start": "electron .",
+<<<<<<< Updated upstream
     "package": "electron-packager ./ Sportimo --platform=win32 --arch=x64 --version=0.36.0 --out ./../../../ --icon ./app-icon.ico --overwrite",
     "icon": "rcedit ('./Sportimo-win32-x64',{icon: './app-icon.ico')"
   },
@@ -14,5 +15,11 @@
   "dependencies": {
     "angular-bootstrap-datetimepicker": "^1.0.1",
     "angular-date-time-input": "^1.0.0"
+=======
+    "package": "electron-packager ./ Sportimo --platform=darwin --arch=x64 --version 0.34.3 --overwrite --icon=./app-icon.icns"
+  },
+  "devDependencies": {
+    "electron-packager": "^5.1.1"
+>>>>>>> Stashed changes
   }
 }

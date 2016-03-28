@@ -43,6 +43,10 @@
                 "text": "Competitions",
                 "sref": "app.competitions"
             },
+             {
+                "text": "Sponsors",
+                "sref": "app.sponsors"
+            },
            
             {
                 "text": "Polls",
