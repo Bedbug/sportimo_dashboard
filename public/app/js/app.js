@@ -4958,389 +4958,389 @@
         return {
             All: function() {
                 var Defer = $q.defer();
-                Defer.resolve([{
-    "_id": "56f51c5718e865c81b46476f",
-    "season": 2015,
-    "identity": "Stats",
-    "name": {
-        "en": "English Premier League"
-    },
-    "competitionid": "56f4800fe4b02f2226646297",
-    "lastupdate": "2016-03-25T11:09:11.836Z",
-    "created": "2016-03-25T11:09:11.836Z",
-    "parserids": [],
-    "visiblein": [],
-    "teams": [
-        {
-            "rank": 1,
-            "teamName": {
-                "ru": "Leicester City",
-                "ar": "ليستر سيتي",
-                "en": "Leicester City"
-            },
-            "teamId": "56e81b7c30345c282c01b2d1",
-            "points": 66,
-            "pointsPerGame": "2.13",
-            "penaltyPoints": 0,
-            "wins": 19,
-            "losses": 3,
-            "ties": 9,
-            "gamesPlayed": 9,
-            "goalsFor": 54,
-            "goalsAgainst": 31
-        },
-        {
-            "rank": 2,
-            "teamName": {
-                "ru": "Тоттенхэм Хотспур",
-                "ar": "توتنهام هوتسبر",
-                "en": "Tottenham Hotspur"
-            },
-            "teamId": "56e81b7c30345c282c01b2d3",
-            "points": 61,
-            "pointsPerGame": "1.97",
-            "penaltyPoints": 0,
-            "wins": 17,
-            "losses": 4,
-            "ties": 10,
-            "gamesPlayed": 10,
-            "goalsFor": 56,
-            "goalsAgainst": 24
-        },
-        {
-            "rank": 3,
-            "teamName": {
-                "ru": "Arsenal",
-                "ar": "آرسنال",
-                "en": "Arsenal"
-            },
-            "teamId": "56e81b7c30345c282c01b2e8",
-            "points": 55,
-            "pointsPerGame": "1.83",
-            "penaltyPoints": 0,
-            "wins": 16,
-            "losses": 7,
-            "ties": 7,
-            "gamesPlayed": 7,
-            "goalsFor": 48,
-            "goalsAgainst": 30
-        },
-        {
-            "rank": 4,
-            "teamName": {
-                "ru": "Manchester City",
-                "ar": "مانشستر سيتي",
-                "en": "Manchester City"
-            },
-            "teamId": "56e81b7c30345c282c01b2c2",
-            "points": 51,
-            "pointsPerGame": "1.70",
-            "penaltyPoints": 0,
-            "wins": 15,
-            "losses": 9,
-            "ties": 6,
-            "gamesPlayed": 6,
-            "goalsFor": 52,
-            "goalsAgainst": 32
-        },
-        {
-            "rank": 5,
-            "teamName": {
-                "ru": "West Ham United",
-                "ar": "وست هام يونايتد",
-                "en": "West Ham United"
-            },
-            "teamId": "56e81b7c30345c282c01b2c6",
-            "points": 50,
-            "pointsPerGame": "1.67",
-            "penaltyPoints": 0,
-            "wins": 13,
-            "losses": 6,
-            "ties": 11,
-            "gamesPlayed": 11,
-            "goalsFor": 47,
-            "goalsAgainst": 35
-        },
-        {
-            "rank": 6,
-            "teamName": {
-                "ru": "Manchester United",
-                "ar": "مانشستر يونايتد",
-                "en": "Manchester United"
-            },
-            "teamId": "56e81b7c30345c282c01b309",
-            "points": 50,
-            "pointsPerGame": "1.67",
-            "penaltyPoints": 0,
-            "wins": 14,
-            "losses": 8,
-            "ties": 8,
-            "gamesPlayed": 8,
-            "goalsFor": 38,
-            "goalsAgainst": 27
-        },
-        {
-            "rank": 7,
-            "teamName": {
-                "ru": "Southampton",
-                "ar": "ساوثمبتون",
-                "en": "Southampton"
-            },
-            "teamId": "56e81b7c30345c282c01b2ea",
-            "points": 47,
-            "pointsPerGame": "1.52",
-            "penaltyPoints": 0,
-            "wins": 13,
-            "losses": 10,
-            "ties": 8,
-            "gamesPlayed": 8,
-            "goalsFor": 41,
-            "goalsAgainst": 32
-        },
-        {
-            "rank": 8,
-            "teamName": {
-                "ru": "Stoke City",
-                "ar": "ستوك سيتي",
-                "en": "Stoke City"
-            },
-            "teamId": "56e81b7c30345c282c01b2c0",
-            "points": 46,
-            "pointsPerGame": "1.48",
-            "penaltyPoints": 0,
-            "wins": 13,
-            "losses": 11,
-            "ties": 7,
-            "gamesPlayed": 7,
-            "goalsFor": 34,
-            "goalsAgainst": 37
-        },
-        {
-            "rank": 9,
-            "teamName": {
-                "ru": "Liverpool",
-                "ar": "ليفربول",
-                "en": "Liverpool"
-            },
-            "teamId": "56e81b7c30345c282c01b2d5",
-            "points": 44,
-            "pointsPerGame": "1.52",
-            "penaltyPoints": 0,
-            "wins": 12,
-            "losses": 9,
-            "ties": 8,
-            "gamesPlayed": 8,
-            "goalsFor": 45,
-            "goalsAgainst": 40
-        },
-        {
-            "rank": 10,
-            "teamName": {
-                "ru": "Chelsea",
-                "ar": "تشيلسي",
-                "en": "Chelsea"
-            },
-            "teamId": "56e81b7c30345c282c01b2ce",
-            "points": 41,
-            "pointsPerGame": "1.37",
-            "penaltyPoints": 0,
-            "wins": 10,
-            "losses": 9,
-            "ties": 11,
-            "gamesPlayed": 11,
-            "goalsFor": 45,
-            "goalsAgainst": 41
-        },
-        {
-            "rank": 11,
-            "teamName": {
-                "ru": "West Bromwich Albion",
-                "ar": "وست بروميتش البيون",
-                "en": "West Bromwich Albion"
-            },
-            "teamId": "56e81b7c30345c282c01b2e1",
-            "points": 39,
-            "pointsPerGame": "1.30",
-            "penaltyPoints": 0,
-            "wins": 10,
-            "losses": 11,
-            "ties": 9,
-            "gamesPlayed": 9,
-            "goalsFor": 30,
-            "goalsAgainst": 37
-        },
-        {
-            "rank": 12,
-            "teamName": {
-                "ru": "Everton",
-                "ar": "ايفرتون",
-                "en": "Everton"
-            },
-            "teamId": "56e81b7c30345c282c01b2f0",
-            "points": 38,
-            "pointsPerGame": "1.31",
-            "penaltyPoints": 0,
-            "wins": 9,
-            "losses": 9,
-            "ties": 11,
-            "gamesPlayed": 11,
-            "goalsFor": 51,
-            "goalsAgainst": 41
-        },
-        {
-            "rank": 13,
-            "teamName": {
-                "ru": "Bournemouth",
-                "ar": "بورنموث ",
-                "en": "Bournemouth"
-            },
-            "teamId": "56e81b7c30345c282c01b2c9",
-            "points": 38,
-            "pointsPerGame": "1.23",
-            "penaltyPoints": 0,
-            "wins": 10,
-            "losses": 13,
-            "ties": 8,
-            "gamesPlayed": 8,
-            "goalsFor": 38,
-            "goalsAgainst": 50
-        },
-        {
-            "rank": 14,
-            "teamName": {
-                "ru": "Watford",
-                "ar": "واتفورد",
-                "en": "Watford"
-            },
-            "teamId": "56e81b7c30345c282c01b2be",
-            "points": 37,
-            "pointsPerGame": "1.23",
-            "penaltyPoints": 0,
-            "wins": 10,
-            "losses": 13,
-            "ties": 7,
-            "gamesPlayed": 7,
-            "goalsFor": 30,
-            "goalsAgainst": 32
-        },
-        {
-            "rank": 15,
-            "teamName": {
-                "ru": "Swansea City",
-                "ar": "سوانسي سيتي",
-                "en": "Swansea City"
-            },
-            "teamId": "56e81b7c30345c282c01b2d9",
-            "points": 36,
-            "pointsPerGame": "1.16",
-            "penaltyPoints": 0,
-            "wins": 9,
-            "losses": 13,
-            "ties": 9,
-            "gamesPlayed": 9,
-            "goalsFor": 31,
-            "goalsAgainst": 40
-        },
-        {
-            "rank": 16,
-            "teamName": {
-                "ru": "Crystal Palace",
-                "ar": "كريستال بالاس",
-                "en": "Crystal Palace"
-            },
-            "teamId": "56e81b7c30345c282c01b2c4",
-            "points": 33,
-            "pointsPerGame": "1.10",
-            "penaltyPoints": 0,
-            "wins": 9,
-            "losses": 15,
-            "ties": 6,
-            "gamesPlayed": 6,
-            "goalsFor": 32,
-            "goalsAgainst": 40
-        },
-        {
-            "rank": 17,
-            "teamName": {
-                "ru": "Norwich City",
-                "ar": "نوريتش سيتي",
-                "en": "Norwich City"
-            },
-            "teamId": "56e81b7c30345c282c01b2de",
-            "points": 28,
-            "pointsPerGame": "0.90",
-            "penaltyPoints": 0,
-            "wins": 7,
-            "losses": 17,
-            "ties": 7,
-            "gamesPlayed": 7,
-            "goalsFor": 32,
-            "goalsAgainst": 54
-        },
-        {
-            "rank": 18,
-            "teamName": {
-                "ru": "Sunderland",
-                "ar": "سندرلاند",
-                "en": "Sunderland"
-            },
-            "teamId": "56e81b7c30345c282c01b2fb",
-            "points": 26,
-            "pointsPerGame": "0.87",
-            "penaltyPoints": 0,
-            "wins": 6,
-            "losses": 16,
-            "ties": 8,
-            "gamesPlayed": 8,
-            "goalsFor": 36,
-            "goalsAgainst": 55
-        },
-        {
-            "rank": 19,
-            "teamName": {
-                "ru": "Newcastle United",
-                "ar": "نيوكاسل يونايتد",
-                "en": "Newcastle United"
-            },
-            "teamId": "56e81b7c30345c282c01b2bc",
-            "points": 25,
-            "pointsPerGame": "0.83",
-            "penaltyPoints": 0,
-            "wins": 6,
-            "losses": 17,
-            "ties": 7,
-            "gamesPlayed": 7,
-            "goalsFor": 29,
-            "goalsAgainst": 55
-        },
-        {
-            "rank": 20,
-            "teamName": {
-                "ru": "Aston Villa",
-                "ar": "استون فيلا",
-                "en": "Aston Villa"
-            },
-            "teamId": "56e81b7c30345c282c01b2cb",
-            "points": 16,
-            "pointsPerGame": "0.52",
-            "penaltyPoints": 0,
-            "wins": 3,
-            "losses": 21,
-            "ties": 7,
-            "gamesPlayed": 7,
-            "goalsFor": 22,
-            "goalsAgainst": 58
-        }
-    ]
-}])
+//                 Defer.resolve([{
+//     "_id": "56f51c5718e865c81b46476f",
+//     "season": 2015,
+//     "identity": "Stats",
+//     "name": {
+//         "en": "English Premier League"
+//     },
+//     "competitionid": "56f4800fe4b02f2226646297",
+//     "lastupdate": "2016-03-25T11:09:11.836Z",
+//     "created": "2016-03-25T11:09:11.836Z",
+//     "parserids": [],
+//     "visiblein": [],
+//     "teams": [
+//         {
+//             "rank": 1,
+//             "teamName": {
+//                 "ru": "Leicester City",
+//                 "ar": "ليستر سيتي",
+//                 "en": "Leicester City"
+//             },
+//             "teamId": "56e81b7c30345c282c01b2d1",
+//             "points": 66,
+//             "pointsPerGame": "2.13",
+//             "penaltyPoints": 0,
+//             "wins": 19,
+//             "losses": 3,
+//             "ties": 9,
+//             "gamesPlayed": 9,
+//             "goalsFor": 54,
+//             "goalsAgainst": 31
+//         },
+//         {
+//             "rank": 2,
+//             "teamName": {
+//                 "ru": "Тоттенхэм Хотспур",
+//                 "ar": "توتنهام هوتسبر",
+//                 "en": "Tottenham Hotspur"
+//             },
+//             "teamId": "56e81b7c30345c282c01b2d3",
+//             "points": 61,
+//             "pointsPerGame": "1.97",
+//             "penaltyPoints": 0,
+//             "wins": 17,
+//             "losses": 4,
+//             "ties": 10,
+//             "gamesPlayed": 10,
+//             "goalsFor": 56,
+//             "goalsAgainst": 24
+//         },
+//         {
+//             "rank": 3,
+//             "teamName": {
+//                 "ru": "Arsenal",
+//                 "ar": "آرسنال",
+//                 "en": "Arsenal"
+//             },
+//             "teamId": "56e81b7c30345c282c01b2e8",
+//             "points": 55,
+//             "pointsPerGame": "1.83",
+//             "penaltyPoints": 0,
+//             "wins": 16,
+//             "losses": 7,
+//             "ties": 7,
+//             "gamesPlayed": 7,
+//             "goalsFor": 48,
+//             "goalsAgainst": 30
+//         },
+//         {
+//             "rank": 4,
+//             "teamName": {
+//                 "ru": "Manchester City",
+//                 "ar": "مانشستر سيتي",
+//                 "en": "Manchester City"
+//             },
+//             "teamId": "56e81b7c30345c282c01b2c2",
+//             "points": 51,
+//             "pointsPerGame": "1.70",
+//             "penaltyPoints": 0,
+//             "wins": 15,
+//             "losses": 9,
+//             "ties": 6,
+//             "gamesPlayed": 6,
+//             "goalsFor": 52,
+//             "goalsAgainst": 32
+//         },
+//         {
+//             "rank": 5,
+//             "teamName": {
+//                 "ru": "West Ham United",
+//                 "ar": "وست هام يونايتد",
+//                 "en": "West Ham United"
+//             },
+//             "teamId": "56e81b7c30345c282c01b2c6",
+//             "points": 50,
+//             "pointsPerGame": "1.67",
+//             "penaltyPoints": 0,
+//             "wins": 13,
+//             "losses": 6,
+//             "ties": 11,
+//             "gamesPlayed": 11,
+//             "goalsFor": 47,
+//             "goalsAgainst": 35
+//         },
+//         {
+//             "rank": 6,
+//             "teamName": {
+//                 "ru": "Manchester United",
+//                 "ar": "مانشستر يونايتد",
+//                 "en": "Manchester United"
+//             },
+//             "teamId": "56e81b7c30345c282c01b309",
+//             "points": 50,
+//             "pointsPerGame": "1.67",
+//             "penaltyPoints": 0,
+//             "wins": 14,
+//             "losses": 8,
+//             "ties": 8,
+//             "gamesPlayed": 8,
+//             "goalsFor": 38,
+//             "goalsAgainst": 27
+//         },
+//         {
+//             "rank": 7,
+//             "teamName": {
+//                 "ru": "Southampton",
+//                 "ar": "ساوثمبتون",
+//                 "en": "Southampton"
+//             },
+//             "teamId": "56e81b7c30345c282c01b2ea",
+//             "points": 47,
+//             "pointsPerGame": "1.52",
+//             "penaltyPoints": 0,
+//             "wins": 13,
+//             "losses": 10,
+//             "ties": 8,
+//             "gamesPlayed": 8,
+//             "goalsFor": 41,
+//             "goalsAgainst": 32
+//         },
+//         {
+//             "rank": 8,
+//             "teamName": {
+//                 "ru": "Stoke City",
+//                 "ar": "ستوك سيتي",
+//                 "en": "Stoke City"
+//             },
+//             "teamId": "56e81b7c30345c282c01b2c0",
+//             "points": 46,
+//             "pointsPerGame": "1.48",
+//             "penaltyPoints": 0,
+//             "wins": 13,
+//             "losses": 11,
+//             "ties": 7,
+//             "gamesPlayed": 7,
+//             "goalsFor": 34,
+//             "goalsAgainst": 37
+//         },
+//         {
+//             "rank": 9,
+//             "teamName": {
+//                 "ru": "Liverpool",
+//                 "ar": "ليفربول",
+//                 "en": "Liverpool"
+//             },
+//             "teamId": "56e81b7c30345c282c01b2d5",
+//             "points": 44,
+//             "pointsPerGame": "1.52",
+//             "penaltyPoints": 0,
+//             "wins": 12,
+//             "losses": 9,
+//             "ties": 8,
+//             "gamesPlayed": 8,
+//             "goalsFor": 45,
+//             "goalsAgainst": 40
+//         },
+//         {
+//             "rank": 10,
+//             "teamName": {
+//                 "ru": "Chelsea",
+//                 "ar": "تشيلسي",
+//                 "en": "Chelsea"
+//             },
+//             "teamId": "56e81b7c30345c282c01b2ce",
+//             "points": 41,
+//             "pointsPerGame": "1.37",
+//             "penaltyPoints": 0,
+//             "wins": 10,
+//             "losses": 9,
+//             "ties": 11,
+//             "gamesPlayed": 11,
+//             "goalsFor": 45,
+//             "goalsAgainst": 41
+//         },
+//         {
+//             "rank": 11,
+//             "teamName": {
+//                 "ru": "West Bromwich Albion",
+//                 "ar": "وست بروميتش البيون",
+//                 "en": "West Bromwich Albion"
+//             },
+//             "teamId": "56e81b7c30345c282c01b2e1",
+//             "points": 39,
+//             "pointsPerGame": "1.30",
+//             "penaltyPoints": 0,
+//             "wins": 10,
+//             "losses": 11,
+//             "ties": 9,
+//             "gamesPlayed": 9,
+//             "goalsFor": 30,
+//             "goalsAgainst": 37
+//         },
+//         {
+//             "rank": 12,
+//             "teamName": {
+//                 "ru": "Everton",
+//                 "ar": "ايفرتون",
+//                 "en": "Everton"
+//             },
+//             "teamId": "56e81b7c30345c282c01b2f0",
+//             "points": 38,
+//             "pointsPerGame": "1.31",
+//             "penaltyPoints": 0,
+//             "wins": 9,
+//             "losses": 9,
+//             "ties": 11,
+//             "gamesPlayed": 11,
+//             "goalsFor": 51,
+//             "goalsAgainst": 41
+//         },
+//         {
+//             "rank": 13,
+//             "teamName": {
+//                 "ru": "Bournemouth",
+//                 "ar": "بورنموث ",
+//                 "en": "Bournemouth"
+//             },
+//             "teamId": "56e81b7c30345c282c01b2c9",
+//             "points": 38,
+//             "pointsPerGame": "1.23",
+//             "penaltyPoints": 0,
+//             "wins": 10,
+//             "losses": 13,
+//             "ties": 8,
+//             "gamesPlayed": 8,
+//             "goalsFor": 38,
+//             "goalsAgainst": 50
+//         },
+//         {
+//             "rank": 14,
+//             "teamName": {
+//                 "ru": "Watford",
+//                 "ar": "واتفورد",
+//                 "en": "Watford"
+//             },
+//             "teamId": "56e81b7c30345c282c01b2be",
+//             "points": 37,
+//             "pointsPerGame": "1.23",
+//             "penaltyPoints": 0,
+//             "wins": 10,
+//             "losses": 13,
+//             "ties": 7,
+//             "gamesPlayed": 7,
+//             "goalsFor": 30,
+//             "goalsAgainst": 32
+//         },
+//         {
+//             "rank": 15,
+//             "teamName": {
+//                 "ru": "Swansea City",
+//                 "ar": "سوانسي سيتي",
+//                 "en": "Swansea City"
+//             },
+//             "teamId": "56e81b7c30345c282c01b2d9",
+//             "points": 36,
+//             "pointsPerGame": "1.16",
+//             "penaltyPoints": 0,
+//             "wins": 9,
+//             "losses": 13,
+//             "ties": 9,
+//             "gamesPlayed": 9,
+//             "goalsFor": 31,
+//             "goalsAgainst": 40
+//         },
+//         {
+//             "rank": 16,
+//             "teamName": {
+//                 "ru": "Crystal Palace",
+//                 "ar": "كريستال بالاس",
+//                 "en": "Crystal Palace"
+//             },
+//             "teamId": "56e81b7c30345c282c01b2c4",
+//             "points": 33,
+//             "pointsPerGame": "1.10",
+//             "penaltyPoints": 0,
+//             "wins": 9,
+//             "losses": 15,
+//             "ties": 6,
+//             "gamesPlayed": 6,
+//             "goalsFor": 32,
+//             "goalsAgainst": 40
+//         },
+//         {
+//             "rank": 17,
+//             "teamName": {
+//                 "ru": "Norwich City",
+//                 "ar": "نوريتش سيتي",
+//                 "en": "Norwich City"
+//             },
+//             "teamId": "56e81b7c30345c282c01b2de",
+//             "points": 28,
+//             "pointsPerGame": "0.90",
+//             "penaltyPoints": 0,
+//             "wins": 7,
+//             "losses": 17,
+//             "ties": 7,
+//             "gamesPlayed": 7,
+//             "goalsFor": 32,
+//             "goalsAgainst": 54
+//         },
+//         {
+//             "rank": 18,
+//             "teamName": {
+//                 "ru": "Sunderland",
+//                 "ar": "سندرلاند",
+//                 "en": "Sunderland"
+//             },
+//             "teamId": "56e81b7c30345c282c01b2fb",
+//             "points": 26,
+//             "pointsPerGame": "0.87",
+//             "penaltyPoints": 0,
+//             "wins": 6,
+//             "losses": 16,
+//             "ties": 8,
+//             "gamesPlayed": 8,
+//             "goalsFor": 36,
+//             "goalsAgainst": 55
+//         },
+//         {
+//             "rank": 19,
+//             "teamName": {
+//                 "ru": "Newcastle United",
+//                 "ar": "نيوكاسل يونايتد",
+//                 "en": "Newcastle United"
+//             },
+//             "teamId": "56e81b7c30345c282c01b2bc",
+//             "points": 25,
+//             "pointsPerGame": "0.83",
+//             "penaltyPoints": 0,
+//             "wins": 6,
+//             "losses": 17,
+//             "ties": 7,
+//             "gamesPlayed": 7,
+//             "goalsFor": 29,
+//             "goalsAgainst": 55
+//         },
+//         {
+//             "rank": 20,
+//             "teamName": {
+//                 "ru": "Aston Villa",
+//                 "ar": "استون فيلا",
+//                 "en": "Aston Villa"
+//             },
+//             "teamId": "56e81b7c30345c282c01b2cb",
+//             "points": 16,
+//             "pointsPerGame": "0.52",
+//             "penaltyPoints": 0,
+//             "wins": 3,
+//             "losses": 21,
+//             "ties": 7,
+//             "gamesPlayed": 7,
+//             "goalsFor": 22,
+//             "goalsAgainst": 58
+//         }
+//     ]
+// }])
 
-                // if (Standings)
-                //     Defer.resolve(Standings);
-                // else
-                //     Data.getList().then(function(all) {
-                //         Standings = all;
-                //         Defer.resolve(all);
-                //     });
+                if (Standings)
+                    Defer.resolve(Standings);
+                else
+                    Data.getList().then(function(all) {
+                        Standings = all;
+                        Defer.resolve(all);
+                    });
                 return Defer.promise;
             }
         }
@@ -6508,15 +6508,15 @@
                 var Defer = $q.defer();
                 Defer.resolve([
                     {
-    "_id": "56f4800fe4b02f2226646297",
-    "name": {
-        "en": "English Premier League"
-    },
-    "logo": null,
-    "parserids": {
-        "Stats": "epl"
-    }
-},
+                        "_id": "56f4800fe4b02f2226646297",
+                        "name": {
+                            "en": "English Premier League"
+                        },
+                        "logo": null,
+                        "parserids": {
+                            "Stats": "epl"
+                        }
+                    },
                     {
                         "_id":"56e81b7c30345c282c01b2ce",
                         "name": { "en": "UEFA Champions League" },
@@ -6538,16 +6538,15 @@
                         "status": "Active",
                         "visiblein": ["GR"]
                     }
-
                 ]);
 
-                // if (Competitions)
-                //     Defer.resolve(Competitions);
-                // else
-                //     Data.getList().then(function(all) {
-                //         Competitions = all;
-                //         Defer.resolve(all);
-                //     });
+                if (Competitions)
+                    Defer.resolve(Competitions);
+                else
+                    Data.getList().then(function(all) {
+                        Competitions = all;
+                        Defer.resolve(all);
+                    });
                 return Defer.promise;
             }
         }
@@ -7825,7 +7824,7 @@
         }
 
 
-        SponsorsService.getAll().then(function(sponsors) {
+        SponsorsService.All().then(function(sponsors) {
             vm.sponsors = sponsors;
         });
 
