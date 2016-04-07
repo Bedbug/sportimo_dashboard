@@ -4624,62 +4624,42 @@
 
 
     ScheduleService.$inject = ['$resource', 'Restangular', '$rootScope', '$q'];
-    StatsComService.$inject = ['$resource', 'Restangular', '$rootScope', '$q'];
+    StatsComService.$inject = ['$resource', 'Restangular', '$rootScope', '$q', 'TagsService'];
 
     ScheduleController.$inject = ['$scope', 'TeamsService', 'PlayersService', 'ScheduleService', 'DTOptionsBuilder', 'DTColumnDefBuilder', '$state', 'CompetitionsService','StatsComService'];
     
-    function StatsComService($resource, Restangular, $rootScope, $q) {
-       
-            var fixtures = Restangular.all('offline_data/fixtures');
-            Restangular.setBaseUrl($rootScope.servers[$rootScope.serverEnvironment].game_server);
-            Restangular.setRestangularFields({
-                id: "_id"
-            });
+    function StatsComService($resource, Restangular, $rootScope, $q, TagsService) {
 
-            return {
-                GetFixtures: function(id) {
-                    var Defer = $q.defer();
-        //             Defer.resolve([{"sport":"soccer","home_team":{
-        //     "_id": "56e81b7c30345c282c01b2ce",
-        //     "parserids": {
-        //         "Stats": 6159
-        //     },
-        //     "league": "epl",
-        //     "logo": null,
-        //     "name": {
-        //         "en": "Chelsea",
-        //         "ar": "تشيلسي",
-        //         "ru": "Chelsea"
-        //     },
-        //     "name_en": "Chelsea",
-        //     "players": [],
-        //     "__v": 0,
-        //     "competitionid": "56f4800fe4b02f2226646297",
-        //     "created": "2016-03-15T14:26:04.471Z"
-        // },"away_team":{
-        //     "_id": "56e81b7c30345c282c01b2e8",
-        //     "parserids": {
-        //         "Stats": 6145
-        //     },
-        //     "league": "epl",
-        //     "logo": null,
-        //     "name": {
-        //         "en": "Arsenal",
-        //         "ar": "آرسنال",
-        //         "ru": "Arsenal"
-        //     },
-        //     "name_en": "Arsenal",
-        //     "players": [],
-        //     "__v": 0,
-        //     "competitionid": "56f4800fe4b02f2226646297",
-        //     "created": "2016-03-15T14:26:04.471Z"
-        // },"color":{"home_team":{},"away_team":{}},"competitionId":"56f4800fe4b02f2226646297","competitionName":{"en":"English Premier League"},"home_score":0,"away_score":0,"time":null,"start":"2016-04-09T11:45:00","state":0}])
+        var fixtures = Restangular.all('offline_data/fixtures');
+        Restangular.setBaseUrl($rootScope.servers[$rootScope.serverEnvironment].game_server);
+        Restangular.setRestangularFields({
+            id: "_id"
+        });
+        var upfixtures = null;
+
+        return {
+            GetFixtures: function(id) {
+                var Defer = $q.defer();
+                if (upfixtures)
+                    Defer.resolve(upfixtures)
+                else
                     fixtures.get(id).then(function(result) {
-                        Defer.resolve(result.parsers.Stats.comingFixtures);
+                        upfixtures = result.parsers.Stats.comingFixtures;
+                        console.log(upfixtures);
+                        TagsService.getAllTags().then(function(){
+                            
+                             _.each(upfixtures, function(fix){
+                            fix.home_team = TagsService.getTeamById(fix.home_team);
+                            fix.away_team = TagsService.getTeamById(fix.away_team);
+                        })
+                        
+                        Defer.resolve(upfixtures);
+                        })
+                       
                     });
-                    return Defer.promise;
-                }
+                return Defer.promise;
             }
+        }
     }
     
     function ScheduleController($scope, TeamsService, PlayersService, ScheduleService, DTOptionsBuilder, DTColumnDefBuilder, $state, CompetitionsService, StatsComService) {
@@ -4696,9 +4676,18 @@
         // message:"Select upcoming event from Stats.com"
         vm.StatsUpcomingEvents = [];
          vm.onStatsCompetition = function(){
-             StatsComService.GetFixtures(vm.statsSearch.competition).then(function(result){               
+             StatsComService.GetFixtures(vm.statsSearch.competition).then(function(result){      
+                 console.log(result[0]);    
                  vm.StatsUpcomingEvents = result;
              })
+         }
+         
+         vm.OnEventSelection = function(selection){
+             console.log(selection);
+             vm.scheduledMatch = selection;
+              vm.scheduledMatch.competition = vm.statsSearch.competition;
+             vm.scheduledMatch.finalized = true; 
+              
          }
          
          $scope.formDate = function(date, style, inUTC) {
@@ -4721,7 +4710,6 @@
             if (vm.scheduledMatch.home_team != undefined && vm.scheduledMatch.away_team != undefined && vm.scheduledMatch.start != undefined && vm.scheduledMatch.competition != undefined)
                 vm.scheduledMatch.finalized = true;
                 
-
                    console.log("finialized:"+  vm.scheduledMatch.competition);
 
             //vm.scheduledMatch.title = vm.scheduledMatch.home_team.name_en + " - " + vm.scheduledMatch.away_team.name_en;
@@ -6434,6 +6422,11 @@
                         Defer.resolve(teamTags);
                     })
                 return Defer.promise;
+            },
+            getTeamById: function(ID) {
+                return _.find(tags, {
+                    _id: ID
+                });
             },
             getTeamNameById: function(ID) {
                 return _.get(_.find(tags, {
