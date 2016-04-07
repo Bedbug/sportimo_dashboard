@@ -4619,15 +4619,70 @@
     angular
         .module('app.schedule')
         .service('ScheduleService', ScheduleService)
-
+        .service('StatsComService', StatsComService)
         .controller('ScheduleController', ScheduleController);
 
 
     ScheduleService.$inject = ['$resource', 'Restangular', '$rootScope', '$q'];
+    StatsComService.$inject = ['$resource', 'Restangular', '$rootScope', '$q'];
 
-    ScheduleController.$inject = ['$scope', 'TeamsService', 'PlayersService', 'ScheduleService', 'DTOptionsBuilder', 'DTColumnDefBuilder', '$state', 'CompetitionsService'];
+    ScheduleController.$inject = ['$scope', 'TeamsService', 'PlayersService', 'ScheduleService', 'DTOptionsBuilder', 'DTColumnDefBuilder', '$state', 'CompetitionsService','StatsComService'];
+    
+    function StatsComService($resource, Restangular, $rootScope, $q) {
+       
+            var fixtures = Restangular.all('offline_data/fixtures');
+            Restangular.setBaseUrl($rootScope.servers[$rootScope.serverEnvironment].game_server);
+            Restangular.setRestangularFields({
+                id: "_id"
+            });
 
-    function ScheduleController($scope, TeamsService, PlayersService, ScheduleService, DTOptionsBuilder, DTColumnDefBuilder, $state, CompetitionsService) {
+            return {
+                GetFixtures: function(id) {
+                    var Defer = $q.defer();
+        //             Defer.resolve([{"sport":"soccer","home_team":{
+        //     "_id": "56e81b7c30345c282c01b2ce",
+        //     "parserids": {
+        //         "Stats": 6159
+        //     },
+        //     "league": "epl",
+        //     "logo": null,
+        //     "name": {
+        //         "en": "Chelsea",
+        //         "ar": "تشيلسي",
+        //         "ru": "Chelsea"
+        //     },
+        //     "name_en": "Chelsea",
+        //     "players": [],
+        //     "__v": 0,
+        //     "competitionid": "56f4800fe4b02f2226646297",
+        //     "created": "2016-03-15T14:26:04.471Z"
+        // },"away_team":{
+        //     "_id": "56e81b7c30345c282c01b2e8",
+        //     "parserids": {
+        //         "Stats": 6145
+        //     },
+        //     "league": "epl",
+        //     "logo": null,
+        //     "name": {
+        //         "en": "Arsenal",
+        //         "ar": "آرسنال",
+        //         "ru": "Arsenal"
+        //     },
+        //     "name_en": "Arsenal",
+        //     "players": [],
+        //     "__v": 0,
+        //     "competitionid": "56f4800fe4b02f2226646297",
+        //     "created": "2016-03-15T14:26:04.471Z"
+        // },"color":{"home_team":{},"away_team":{}},"competitionId":"56f4800fe4b02f2226646297","competitionName":{"en":"English Premier League"},"home_score":0,"away_score":0,"time":null,"start":"2016-04-09T11:45:00","state":0}])
+                    fixtures.get(id).then(function(result) {
+                        Defer.resolve(result.parsers.Stats.comingFixtures);
+                    });
+                    return Defer.promise;
+                }
+            }
+    }
+    
+    function ScheduleController($scope, TeamsService, PlayersService, ScheduleService, DTOptionsBuilder, DTColumnDefBuilder, $state, CompetitionsService, StatsComService) {
 
         var vm = $scope;
 
@@ -4637,7 +4692,27 @@
         };
 
         vm.scheduledMatch = {};
-
+        vm.statsSearch = {message:"First select competition"};
+        // message:"Select upcoming event from Stats.com"
+        vm.StatsUpcomingEvents = [];
+         vm.onStatsCompetition = function(){
+             StatsComService.GetFixtures(vm.statsSearch.competition).then(function(result){               
+                 vm.StatsUpcomingEvents = result;
+             })
+         }
+         
+         $scope.formDate = function(date, style, inUTC) {
+            //  console.log(date);
+            //   console.log(new Date(date));
+             var d = new Date(date);
+             
+             if (inUTC)
+                 return moment(d).utc().format(style);
+             else
+                 return moment(d).format(style) + " (local time)";
+         }
+        
+        
         vm.Teams = [];
 
         vm.OnSet = function(newDate, oldDate) {
@@ -4645,7 +4720,9 @@
 
             if (vm.scheduledMatch.home_team != undefined && vm.scheduledMatch.away_team != undefined && vm.scheduledMatch.start != undefined && vm.scheduledMatch.competition != undefined)
                 vm.scheduledMatch.finalized = true;
+                
 
+                   console.log("finialized:"+  vm.scheduledMatch.competition);
 
             //vm.scheduledMatch.title = vm.scheduledMatch.home_team.name_en + " - " + vm.scheduledMatch.away_team.name_en;
         }
@@ -6431,11 +6508,16 @@
         }
         
          $scope.save = function(item) {
+             
                     if (!item._id) {
                         console.log("saving it");
                     }
                     else {
-                        console.log("updating it");
+                        vm.loading.updating = true;
+                        item.save().then(function(){
+                            vm.loading.updating = false;
+                            item = null;
+                        })
                     }
          }
 
@@ -6456,6 +6538,7 @@
 
         var vm = $scope;
         vm.loading = {};
+        vm.selectedItem = null;
         
          // *** Load all countries *** //
          vm.countries = CountriesService.getCountries();
@@ -6484,7 +6567,13 @@
                         console.log("saving it");
                     }
                     else {
+                        vm.loading.updating = true;
                         console.log("updating it");
+                        item.save().then(function(){
+                            vm.loading.updating = false;
+                            vm.selectedItem = null;
+                            console.log(item);
+                        })
                     }
          }
 
@@ -6505,40 +6594,7 @@
 
         return {
             All: function() {
-                var Defer = $q.defer();
-                Defer.resolve([
-                    {
-                        "_id": "56f4800fe4b02f2226646297",
-                        "name": {
-                            "en": "English Premier League"
-                        },
-                        "logo": null,
-                        "parserids": {
-                            "Stats": "epl"
-                        }
-                    },
-                    {
-                        "_id":"56e81b7c30345c282c01b2ce",
-                        "name": { "en": "UEFA Champions League" },
-                        "logo": "./app/img/sportimo/competitions/UEFA_Champions_League_Logo.png",
-                        "status": "Active",
-                        "visiblein": []
-                    },
-                    {   
-                        "_id": "56e81b7c30345c282c01b2cd",
-                        "name": { "en": "UEFA Europa League" },
-                        "logo": "./app/img/sportimo/competitions/uefa-europa-league-logo.jpg",
-                        "status": "Active",
-                        "visiblein": []
-                    },
-                    {
-                        "_id":"56e81b7c30345c282c01b2cg",
-                        "name": { "en": "Greek Superleague" },
-                        "logo": "./app/img/sportimo/competitions/profile_superleague_greece.gif",
-                        "status": "Active",
-                        "visiblein": ["GR"]
-                    }
-                ]);
+                var Defer = $q.defer();                
 
                 if (Competitions)
                     Defer.resolve(Competitions);

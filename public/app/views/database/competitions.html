@@ -60,9 +60,10 @@
 
 
     </div>
+    {{selectedItem}}
     <div class="panel-footer clearfix">
-        <button ng-if="selectedItem._id" ng-click="save(selectedItem)" style="margin-right: 10px;" class="col-md-4 col-md-offset-3 btn do">Create</button>
-        <button ng-if="!selectedItem._id" ng-click="save(selectedItem)" style="margin-right: 10px;" class="col-md-4 col-md-offset-3 btn do">Update</button>
+        <button ng-if="!selectedItem._id" ng-click="save(selectedItem)" style="margin-right: 10px;" class="col-md-4 col-md-offset-3 btn do">Create</button>
+        <button ng-if="selectedItem._id" ng-click="save(selectedItem)" style="margin-right: 10px;" class="col-md-4 col-md-offset-3 btn do">Update</button>
         <button ng-click="selectedItem = null" class="col-md-2 btn minimal">Cancel</button>
     </div>
 </div>
