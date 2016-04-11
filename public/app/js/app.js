@@ -2951,16 +2951,21 @@
 
         };
 
+
+        $rootScope.toast = function(message) {
+            toast(message);
+        }
+
         function toast(message) {
             $mdToast.show({
-                template: '<md-toast class="sportimo-toast">' +
+                template: '<md-toast class="sportimo-toast" style="z-index: 130; position: fixed;">' +
                 '<div class="sportimo-toast-heading text-center">' +
                 '<img src="app/img/sportimo/icon_sportimo-white_64.png" alt="App Logo" class="pull-left">' +
                 '</div>' +
                 '<div>' + message +
                 '</div>' +
                 '</md-toast>',
-                hideDelay: 3000,
+                hideDelay: 5000,
                 position: 'top right'
             });
         }
@@ -5423,7 +5428,7 @@
         .directive('imageUpload', imageUpload)
         .controller('PlayersController', PlayersController);
 
-    imageUpload = ['$window', 'Upload']
+    imageUpload.$inject = ['$window', 'Upload']
 
     function imageUpload($window, Upload) {
         return {
@@ -5434,24 +5439,28 @@
                 folder: '@folder',
                 shouldUpdate: '@shouldUpdate',
                 ngModel: '=ngModel',
+                search: '@search',
                 picKey: '@picKey'
             },
             controller: ['$scope', function($scope) {
-
-                $scope.searchFor = function(forQuery) {
+                var vm = $scope;
+                
+               vm.searchFor = function(forQuery) {
                     $window.open('https://www.google.gr/search?q=' + forQuery + '+logo&tbm=isch', '_blank');
                 };
 
-
+              
+                
                 var bucket = 'https://s3-eu-west-1.amazonaws.com/sportimo-media/';
-                $scope.uploadFile = function(file, player) {
+                
+               vm.uploadFile = function(file, player) {
                     console.log(file.name.substr(file.name.lastIndexOf('.') + 1));
                     // console.log(file);
                     Upload.upload({
                         url: 'https://s3-eu-west-1.amazonaws.com/sportimo-media', //S3 upload url including bucket name
                         method: 'POST',
                         data: {
-                            key: $scope.folder + '/' + $scope.filename + '.' + file.name.substr(file.name.lastIndexOf('.') + 1), // the key to store the file on S3, could be file name or customized
+                            key: vm.folder + '/' + vm.filename + '.' + file.name.substr(file.name.lastIndexOf('.') + 1), // the key to store the file on S3, could be file name or customized
                             AWSAccessKeyId: "AKIAJHAZLDHNWH7S45CQ",
                             acl: 'public-read', // sets the access to the uploaded file in the bucket: private, public-read, ...
                             policy: "ewogICJleHBpcmF0aW9uIjogIjIwMjAtMDEtMDFUMDA6MDA6MDBaIiwKICAiY29uZGl0aW9ucyI6IFsKICAgIHsiYnVja2V0IjogInNwb3J0aW1vLW1lZGlhIn0sCiAgICBbInN0YXJ0cy13aXRoIiwgIiRrZXkiLCAiIl0sCiAgICB7ImFjbCI6ICJwdWJsaWMtcmVhZCJ9LAogICAgWyJzdGFydHMtd2l0aCIsICIkQ29udGVudC1UeXBlIiwgIiJdLAogICAgWyJzdGFydHMtd2l0aCIsICIkZmlsZW5hbWUiLCAiIl0sCiAgICBbImNvbnRlbnQtbGVuZ3RoLXJhbmdlIiwgMCwgNTI0Mjg4MDAwXQogIF0KfQ==", // base64-encoded json policy (see article below)
@@ -5461,11 +5470,12 @@
                             file: file
                         }
                     }).then(function(resp) {
-                        $scope.ngModel[$scope.picKey] = bucket + $scope.folder + '/' + $scope.filename + "." + file.name.substr(file.name.lastIndexOf('.') + 1);
+                         console.log(vm);
+                       vm.ngModel[vm.picKey] = bucket +vm.folder + '/' +vm.filename + "." + file.name.substr(file.name.lastIndexOf('.') + 1);
 
-                        console.log($scope.shouldUpdate);
-                        if ($scope.shouldUpdate) {
-                            $scope.ngModel.save();
+                        
+                        if (vm.shouldUpdate) {
+                           vm.ngModel.save();
                         }
                         console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
                     }, function(resp) {
@@ -6044,7 +6054,7 @@
             controller: ['$scope', function($scope) {
                 
                 
-                console.log( $scope.placeholder);
+                // console.log( $scope.placeholder);
                 
                 $scope.$watch('lObject', function(newValue, oldValue) {
                     if ($scope.lObject && $scope.lObject.en)
@@ -6912,6 +6922,7 @@
         .service('PrizesService', PrizesService)
         .service('PoolsService', PoolsService)
         .service('SponsorsService', SponsorsService)
+        .service('QuestionsService', QuestionsService)
         .service('CountriesService', CountriesService)
         .controller('SportimoModerationSoccerController', SportimoModerationSoccerController)
         .directive('disableAnimation', function($animate) {
@@ -6945,15 +6956,159 @@
 
     PrizesService.$inject = ['$rootScope', '$q', 'Restangular'];
     PoolsService.$inject = ['$rootScope', '$q', 'Restangular'];
-    SponsorsService.$inject = ['$rootScope', '$q', 'Restangular'];
-
-    function SponsorsService($rootScope, $q, Restangular) {
-        var SponsorsAPI = Restangular.all('leaderpay/v1/sponsors');
+    
+    
+     QuestionsService.$inject = ['$rootScope', '$q', 'Restangular'];
+     
+     function QuestionsService($rootScope, $q, Restangular) {
+        var API = Restangular.all('v1/questions');
 
         Restangular.setBaseUrl($rootScope.servers[$rootScope.serverEnvironment].game_server);
         Restangular.setRestangularFields({
             id: "_id"
         });
+        
+        var favoriteQuestions = [
+            {
+
+                "text": {
+                    "en": "#home is playing quite offensive but which team will win in the end?"
+                },
+                "type": "reward",
+                "status": 0,
+                "answers": [
+                    {
+
+                        "text": {
+                            "en": "#home"
+                        },
+                        "img": null,
+                        "points": 0,
+                        "answered": 0
+                    },
+                    {
+
+                        "text": {
+                            "en": "#away"
+                        },
+
+                        "points": 0,
+                        "answered": 0
+                    },
+                    {
+
+                        "text": {
+                            "en": "None"
+                        },
+                        "points": 0,
+                        "answered": 0
+                    }
+                ]
+            }
+        ];
+        
+       
+        return {           
+            AllByMatch: function(matchid) {
+                var Defer = $q.defer();
+                API.one('match/').getList(matchid).then(function(items) {
+                    items = Restangular.restangularizeCollection(null, items, 'v1/questions');
+                    items = _.forEach(items, function(item) {
+                        item.fromServer = true;
+                    });
+                    Defer.resolve(items);
+                });
+                return Defer.promise;
+            },
+            AllFavorites: function() {
+                var Defer = $q.defer();
+                if (favoriteQuestions)
+                    Defer.resolve(favoriteQuestions);
+                else
+                    API.getList('favorites/').then(function(items) {
+                        favoriteQuestions = items;
+                        Defer.resolve(items);
+                    });
+                return Defer.promise;
+            },
+            saveToFavorites: function(question, matchData) {
+                 var Defer = $q.defer();
+                // TODO: SCAN for match data and replace with vars
+                if (!matchData) {
+                    question.status = 0;
+                    // var favorite = _.cloneDeep(question);
+                     var  favorite =  _.omit(question, ['_id', 'correct']);
+                    
+                    favorite = Restangular.restangularizeElement(null, favorite, 'v1/questions/favorites');
+                    favorite.save().then(function(res, err) {
+                        favoriteQuestions.push(res);
+                         Defer.resolve();
+                    })
+                }
+                return Defer.promise;
+            },
+            parseFavorites: function(matchData) {
+                var parsedFavoriteQuestions = _.cloneDeep(favoriteQuestions);
+                console.log(parsedFavoriteQuestions);
+                var subs = [
+                    {
+                        name: "#home",
+                        langs: matchData.home_team.name
+                    },
+                    {
+                        name: "#away",
+                        langs: matchData.away_team.name
+                    }
+                ]
+
+                // For each question
+                _.each(parsedFavoriteQuestions, function(favoriteQuestion) {
+                    // Change vars in "question.text"
+                    _.forOwn(favoriteQuestion.text, function(answerText, languageKey) {
+                        // For each variable sub
+                        _.each(subs, function(sub) {
+                            favoriteQuestion.text[languageKey] = _.replace(favoriteQuestion.text[languageKey], sub.name, sub.langs[languageKey]);;
+                        })
+                    });
+
+                    // For each answer
+                    _.each(favoriteQuestion.answers, function(answer) {
+                        // For each language in answer's text
+                        _.forOwn(answer.text, function(answerText, languageKey) {
+                            // For each variable sub
+                            _.each(subs, function(sub) {
+                                answer.text[languageKey] = _.replace(answer.text[languageKey], sub.name, sub.langs[languageKey]);;
+                            })
+                        });
+                    })
+                });
+                
+                return parsedFavoriteQuestions;
+            },
+            Save: function(question) {
+                var Defer = $q.defer();
+                question = Restangular.restangularizeElement(null, question, 'v1/questions');
+                question.save().then(function(res, err) {
+                    console.log(res);
+                    console.log(err);
+                    Defer.resolve(res);
+                })
+
+                return Defer.promise;
+            }
+        }
+     };
+
+
+     SponsorsService.$inject = ['$rootScope', '$q', 'Restangular'];
+
+     function SponsorsService($rootScope, $q, Restangular) {
+         var SponsorsAPI = Restangular.all('leaderpay/v1/sponsors');
+
+         Restangular.setBaseUrl($rootScope.servers[$rootScope.serverEnvironment].game_server);
+         Restangular.setRestangularFields({
+             id: "_id"
+         });
 
         return {
 
@@ -7095,9 +7250,9 @@
     }
 
 
-    SportimoModerationSoccerController.$inject = ['LeaderboardsService', 'CountriesService', 'PrizesService', 'SponsorsService', 'PoolsService', '$scope', 'ngDialog', '$stateParams', '$http', '$rootScope', '$timeout', '$interval', '$mdToast', '$mdBottomSheet', '$window'];
+    SportimoModerationSoccerController.$inject = ['QuestionsService','LeaderboardsService', 'CountriesService', 'PrizesService', 'SponsorsService', 'PoolsService', '$scope', 'ngDialog', '$stateParams', '$http', '$rootScope', '$timeout', '$interval', '$mdToast', '$mdBottomSheet', '$window'];
 
-    function SportimoModerationSoccerController(LeaderboardsService, CountriesService, PrizesService, SponsorsService, PoolsService, $scope, ngDialog, $stateParams, $http, $rootScope, $timeout, $interval, $mdToast, $mdBottomSheet, $window) {
+    function SportimoModerationSoccerController(QuestionsService, LeaderboardsService, CountriesService, PrizesService, SponsorsService, PoolsService, $scope, ngDialog, $stateParams, $http, $rootScope, $timeout, $interval, $mdToast, $mdBottomSheet, $window) {
 
 
         var vm = $scope;
@@ -7540,7 +7695,7 @@
         };
 
         $scope.GetStat = function(statId, statkey) {
-            return _.result(_.findWhere($scope.match.data.stats, {
+            return _.result(_.find($scope.match.data.stats, {
                 id: statId
             }), statkey);
         };
@@ -7686,7 +7841,7 @@
         var match_timer;
 
         function AddHooks(match) {
-            console.log(match);
+            
             if (angular.isDefined(match_timer)) {
                 $interval.cancel(match_timer);
                 match_timer = undefined;
@@ -7724,6 +7879,8 @@
                     match.Match_timer = "00:00";
                 }
             }
+            
+            
             return match;
         }
 
@@ -7964,6 +8121,99 @@
         vm.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
         vm.format = vm.formats[0];
         vm.searchObj = {};
+
+        /* ========================================================================
+          Questions Administration
+        ========================================================================== */
+        vm.questions = null;
+        vm.ClosedQuestions;
+        vm.SelectedQuestion = null;
+        
+        
+        vm.saveToFavorites = function(question){
+            QuestionsService.saveToFavorites(question).then(function(){
+                 vm.parseFavoriteQuestions();
+             $rootScope.toast("Question saved to favorites."); 
+            })    
+        }
+        
+        vm.selectedSaved = {};
+        vm.parsedFavoriteQuestions = [];
+        vm.parseFavoriteQuestions = function(){
+           vm.parsedFavoriteQuestions = QuestionsService.parseFavorites(vm.match.data);
+        }
+        
+        vm.setSavedQuestion = function(question){
+            vm.SelectedQuestion = _.cloneDeep(question);
+            vm.SelectedQuestion.matchid = vm.matchid;
+        }
+        
+        vm.addNewQuestion = function(){
+            
+            vm.parseFavoriteQuestions();
+            
+            vm.SelectedQuestion = {
+                matchid: vm.matchid,
+                type: "reward",
+                text: {
+                    en: ""
+                }
+            }
+        }
+        
+        vm.showFavoritesInfo = function(){
+            $rootScope.toast("You can use variables before you save to custom questions.</br></br> Vars:</br> #home - home_team</br> #away - away_team");
+        }
+        
+        vm.addAnswer = function(){
+            vm.SelectedQuestion.answers.push({
+            "text": {
+                "en": ""
+            },
+            "img": null,
+            "points": 0,
+            "answered": 0
+        
+            })
+        }
+        
+        vm.deleteAnswer = function(answer){
+           vm.SelectedQuestion.answers =  _.without(vm.SelectedQuestion.answers,answer);
+        }
+        
+        vm.cancelEditQuestion = function(){
+            vm.SelectedQuestion = null;
+        }
+        
+        vm.editQuestion = function(question) {
+            vm.SelectedQuestion = question;
+        }
+        
+        vm.UpdateQuestion = function(question){
+            question.save().then(function(err,data){
+                console.log(err);
+                console.log(data);
+                vm.SelectedQuestion = null;
+            })
+        }
+
+        QuestionsService.AllByMatch(vm.matchid).then(function(questions) {
+             
+            vm.questions = questions;
+
+            vm.ClosedQuestions = _.filter(questions, { status: 1 }).length;
+            
+             vm.parseFavoriteQuestions();  
+            
+        })
+        
+        vm.CreateSendQuestion = function(question){
+            QuestionsService.Save(question).then(function(res){
+                vm.questions.push(res);
+                vm.SelectedQuestion = null;
+                question = null;
+            })
+        }
 
 
     }
@@ -15975,7 +16225,7 @@
                 url: '/match-moderation/soccer/:id',
                 title: 'Match Moderation',
                 templateUrl: helper.basepath('sportimo/moderation/sportimo_moderation_soccer.html'),
-                resolve: helper.resolveFor('toaster', 'dirPagination', 'moment', 'moment-format', 'ui.select', 'ngDialog', 'htmlSortable', 'angularGrid'),
+                resolve: helper.resolveFor('toaster', 'dirPagination', 'moment', 'moment-format', 'ui.select', 'ngDialog', 'htmlSortable', 'angularGrid','ngFileUpload'),
                 controller: 'SportimoModerationSoccerController',
                 controllerAs: 'modCtrl',
             })

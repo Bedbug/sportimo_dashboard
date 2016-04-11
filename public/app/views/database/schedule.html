@@ -167,7 +167,7 @@
 
                 <div class="events-self panel">
                     <div class="panel-heading">
-                        <div class="moving-self-heading">Import from Stats.com {{StatsUpcomingEvents[0].start}}</div>
+                        <div class="moving-self-heading">Import from Stats.com</div>
                         <div class="row">
                             <div class="col-xs-6">
                                 <ui-select limit=1 on-select="onStatsCompetition()" reset-search-input="true" ng-model="statsSearch.competition" theme="bootstrap"
@@ -191,7 +191,7 @@
                                         <!--<img class="ui-select-match-img" alt='{{team.logo}}' ng-src='http://ep7t6ae.cloudimg.io/s/height/25/{{team.logo}}'>-->
                                         <strong><span ng-bind-html="event.home_team.name.en | highlight: $select.search"></span> - 
                                         <span ng-bind-html="event.away_team.name.en | highlight: $select.search"></span></strong>
-                                      <div> <muted> {{formDate(event.start,"DD-MMMM-YYYY h:mm", false)}}</muted></div>
+                                      <div> <muted> {{formDate(event.start,"DD-MMMM-YYYY HH:mm", false)}}</muted></div>
                                         <!--<div ng-bind-html="event.start | highlight: $select.search"></div>-->
                                     </ui-select-choices>
                                 </ui-select>

@@ -82,8 +82,18 @@
                     </tab-heading>
                     <div ng-include="'app/views/sportimo/moderation/leaderboard.html'"></div>
                 </tab>
-
-              
+                <tab>
+                    <tab-heading>
+                         <div class="ph"> <em class="fa fa-question-circle fa-fw"></em> Questions <span class="m0  pull-right"><em class="icon-drawer mr fa-lg"></em>{{ClosedQuestions}}/{{questions.length}}</span></div>
+                    </tab-heading>
+                    <div ng-include="'app/views/sportimo/moderation/questions.html'"></div>
+                </tab>
+               <tab>
+                    <tab-heading>
+                          <em class="fa fa-area-chart fa-fw"></em> <strong>Stats</strong>
+                    </tab-heading>
+                    <div ng-include="'app/views/sportimo/moderation/questions.html'"></div>
+                </tab>
                 <tab>
                     <tab-heading>
                         <em class="fa fa-cogs fa-fw"></em>Settings</tab-heading>

@@ -1,0 +1,317 @@
+<!-- START EDITOR -->
+<!-- START OF SETUP-->
+<div ng-show="SelectedQuestion" class="col-xs-12 card">
+    <div class="card-body text-center col-xs-12 no-padding">
+
+        <div class="col-md-7 ">
+            <div class="panel-heading">
+                <label>Setup</label>
+            </div>
+            <fieldset>
+                <div class="form-group text-left">
+                    <label class="col-sm-2 control-label">Favorites</label>
+                    <div class="col-xs-10" style="margin-bottom: 15px;">
+                        <span class="input-group col-xs-12 no-padding">
+                        <ui-select ng-model="modCtrl.selectedSaved" theme="bootstrap" ng-disabled="" class="text-left">
+                        <ui-select-match placeholder="Pick one of your stored favorite questions">{{$select.selected.text.en}}</ui-select-match>
+                        <ui-select-choices repeat="savedQuestion in parsedFavoriteQuestions | filter: $select.search">
+                            <span ng-bind-html="savedQuestion.text.en | highlight: $select.search"></span>
+                        </ui-select-choices>
+                        </ui-select>
+                        <span class="input-group-btn">
+                          
+                        <button type="button"  ng-click="setSavedQuestion(modCtrl.selectedSaved)" class="btn btn-default">Set</button>
+                        </span>
+                        </span>
+                         
+                    </div>
+
+                    <label class="col-sm-2 control-label">Question</label>
+                    <div class="col-sm-10">
+                        <multi-lang-text-area language-object="SelectedQuestion.text" default="en"></multi-lang-text-area>
+                    </div>
+
+                    <label class="col-sm-2 control-label">Match ID</label>
+                    <div class="col-sm-10">
+                        <input type="text" ng-model="SelectedQuestion.matchid" disabled="" class="form-control" />
+                    </div>
+
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-10 text-center">
+                        <img ng-if="SelectedQuestion.img" ng-src="{{SelectedQuestion.img}}" class="media-box-object img-responsive img-rounded" />
+                    </div>
+                    <label class="col-sm-2 control-label">Image</label>
+                    <div class="col-sm-10">
+                        <image-upload folder="{{'questions/'+SelectedQuestion._id}}" should-update="true" search="false" filename="SelectedQuestion._id"
+                        ng-model="SelectedQuestion" pic-key="img"></image-upload>
+
+                        <!-- ERASER Input Group-->
+                        <div class="col-xs-12 p0">
+                            <p class="input-group">
+                                <input class="col-sm-12 form-control" type="text" placeholder="Image url" ng-model="SelectedQuestion.img" />
+                                <span class="input-group-btn">
+                                <button type="button" ng-click="SelectedQuestion.img = null;" class="btn btn-default"><em class="fa fa-eraser"></em></button>
+                            </span>
+                            </p>
+                        </div>
+                        <!-- End of ERASER Input Group-->
+                    </div>
+
+                    <div class="col-xs-12"></div>
+
+                    <label class="col-sm-2 control-label">Sponsor</label>
+                    <div class="col-sm-10">
+
+                        <span class="input-group col-sm-12">
+                            <ui-select ng-model="SelectedQuestion.sponsor" allow-single-deselect="true" theme="bootstrap" class="text-left">
+                                <ui-select-match placeholder="Select sponsor from the list...">{{$select.selected.name}}</ui-select-match>
+                                <ui-select-choices repeat="sponsor in sponsors | filter: $select.search">
+                                    <span ng-bind-html="sponsor.name | highlight: $select.search"></span>
+                        </ui-select-choices>
+                        </ui-select>
+                        <span ng-show="SelectedQuestion.sponsor" class="input-group-btn">
+                             <button  type="button" ng-click="SelectedQuestion.sponsor = null" class="btn btn-default">Clear</button>
+                            </span>
+                        </span>
+
+                        <div class="col-xs-12" ng-style="SelectedQuestion.sponsor?{                       
+                                'height': '75px',
+                                'background-size': 'cover',
+                                'background-repeat': 'no-repeat',
+                                'background-position': '50%',
+                                'background-image':'url('+SelectedQuestion.sponsor.banner+')'}:''">
+                        </div>
+                        <div class="text-center">
+                            <label> {{SelectedQuestion.sponsor.name}}</label>
+                        </div>
+                    </div>
+                    <!--<label class="col-lg-2 control-label">Disabled</label>
+                    <div class="col-lg-10">
+                        <input type="text" placeholder="Disabled input here..." disabled="" class="form-control" />
+                    </div>-->
+                </div>
+            </fieldset>
+        </div>
+
+        <div class="col-md-5">
+            <div class="panel-heading">
+                <label>Answers</label>
+                 <button type="button" ng-click="addAnswer()" class="pull-right btn btn-default">Add</button>
+            </div>
+            <!--<div class="col-xs-12 no-padding">
+                <span>
+                  <button type="button" ng-click="addAnswer()" class="btn btn-default">Add</button>
+                </span>
+            </div>-->
+
+            <ul html-sortable="sortableOptions" html-sortable-callback="sortableCallbackNew" ng-model="SelectedQuestion.answers" class="">
+                <li ng-repeat="answer in SelectedQuestion.answers track by $index" class="list-group-item mv p0">
+                    <table width="100%">
+                        <tr>
+                            <td class="ph pv" style="width:100px;">
+                                <div ng-style="{                       
+                                'height': '50px',
+                                'width': '100%',
+                                'background-size': 'cover',
+                                'background-repeat': 'no-repeat',
+                                'background-position': '50% 0',
+                                'background-image':'url('+answer.img+')'}">
+                                </div>
+                                <image-upload folder="{{'questions/'+Question._id+'/'+answer._id}}" search="false" filename="answer._id" ng-model="answer"
+                                pic-key="img"></image-upload>
+                            </td>
+                            <td class="pv">
+                                <!--<input placeholder="The id when saved" type="text" ng-model="answer._id" disabled="" class="form-control" />-->
+                                <multi-lang-text language-object="answer.text" default="en"></multi-lang-text>
+                                <!-- ERASER Input Group-->
+                        
+                            <p class="input-group">
+                                <input class="col-sm-12 form-control" type="text" placeholder="image url" ng-model="answer.img" />
+                                <span class="input-group-btn">
+                                <button type="button" ng-click="answer.img = null;" class="btn btn-default"><em class="fa fa-eraser"></em></button>
+                            </span>
+                            </p>
+                       
+                        <!-- End of ERASER Input Group-->
+                                <div class="col-xs-12 p0">
+                                    <p class="input-group">
+                                        <input class="col-sm-12 form-control" type="text" placeholder="points" ng-model="answer.points" />
+                                        <span class="input-group-btn">
+                                <button type="button" class="btn btn-default"><em class="fa fa-trophy"></em></button>
+                            </span>
+                                    </p>
+                                </div>
+                            </td>
+                            <td  style="width:45px; vertical-align: top;" class="pv ph">
+                               <button type="button" ng-click="deleteAnswer(answer)" class="btn btn-danger minimal"><em class="fa fa-minus-circle"></em></button>
+                            </td>
+                            <tr>
+                    </table>
+                </li>
+            </ul>
+
+
+        </div>
+    </div>
+    <div class="col-xs-12 card-footer">
+        <div ng-show="SelectedQuestion._id">
+            <!---->
+            <button ng-disabled="SelectedQuestion.status == 1" ng-click="UpdateQuestion(SelectedQuestion)" style="margin-right: 10px;" class="col-sm-4 col-sm-offset-2 btn  btn-primary btn-lg ">Update</button>
+        </div>
+        <div ng-hide="SelectedQuestion._id">
+            <button ng-click="CreateSendQuestion(SelectedQuestion)" style="margin-right: 10px;" class="col-sm-4 col-sm-offset-2 btn  btn-primary btn-lg ">Send</button>
+        </div>
+         <button ng-click="Delete(SelectedQuestion)" style="margin-right: 10px;" class="col-sm-2  btn btn-danger delete btn-lg ">Delete</button>
+        <button ng-click="cancelEditQuestion()" class="col-sm-2 btn btn-lg minimal">Cancel</button>
+        
+        <div class="btn-group pull-right">
+        <button ng-click="saveToFavorites(SelectedQuestion)" class="btn btn-primary btn-lg minimal"><em class="fa fa-save"></em></button>
+        <button type="button" ng-click="showFavoritesInfo()" class="btn btn-primary btn-lg minimal"><em class="fa fa-info"></em></button>
+        </div>
+    </div>
+</div>
+<!-- END OF SETUP -->
+<!-- END EDITOR -->
+
+<!-- START LeaderBoards -->
+<div ng-show="!SelectedQuestion" class="table-responsive">
+    <div class="col-xs-12 no-padding ">
+        <button ng-click="addNewQuestion()" class="col-xs-12 btn btn-lg minimal">Add new Question</button>
+    </div>
+
+    <div class="input-group col-xs-12 no-padding">
+        <input ng-model="questionsSearch" placeholder="Search questions..." type="text" class="form-control"><span class="input-group-btn"><button type="button" class="btn btn btn-default"><i class="fa fa-search"></i></button></span>
+    </div>
+
+    <div ng-show="true" class="container-fluid">
+        <!-- START OF Questions List -->
+        <div class="list-group">
+            <div ng-repeat="question in questions | filter: questionsSearch" class="list-group-item">
+                <table class="wd-wide">
+                    <tbody>
+                        <tr>
+                            <td class="wd-xs">
+                                <div ng-show="question.img" class="ph">
+                                    <img src="app/img/dummy.png" alt="" class="media-box-object img-responsive img-rounded thumb64" />
+                                </div>
+                            </td>
+                            <td style="min-width: 350px">
+                                <div class="ph">
+                                    <h4 class="text-muted media-box-heading">Question {{$index + 1}}</h4>
+                                    <span style="font-size: 16px; font-weight: 600; color: #666;">{{question.text.en}}</span>
+                                </div>
+                            </td>
+                            <td class="answers-row">
+                                <table>
+                                    <tr>
+                                        <td class="heading" ng-class="question.correct == answer._id?'correct':''" ng-repeat="answer in question.answers">
+                                            <h5 class="">Answer {{$index +1 }}</h5>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-cell" ng-repeat="answer in question.answers">
+                                            <div  ng-show="answer.img"  class="cell-img">
+                                                <img src="app/img/dummy.png" ng-src="{{answer.img}}" onerror="this.src='app/img/dummy.png'" class="media-box-object img-rounded thumb64"
+                                                />
+                                            </div>
+                                            <div class="cell-text" >{{answer.text.en}}</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding:10px 20px 0; text-align:center" ng-repeat="answer in question.answers">
+                                            <div class="col-xs-6 p0">
+                                                <p class=" text-muted">
+                                                    <em class="icon-users mr fa-lg"></em>{{answer.answered}}</p>
+                                            </div>
+                                            <div class="col-xs-6 p0">
+                                                <p class=" text-muted">
+                                                    <em class="icon-trophy mr fa-lg"></em>{{answer.points}}</p>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding:0 10px" ng-repeat="answer in question.answers">
+                                            <button class="btn btn-sm col-xs-12" ng-disabled="question.status == 1" ng-class="question.correct == answer._id?'btn-success':''">Correct</button>
+                                        </td>
+                                    </tr>
+                                </table>
+
+
+                            </td>
+                            <td style="width:60px; text-align:center">
+                                <button ng-click="editQuestion(question)" class="minimal small-margin btn btn-info" tabindex="0"><span class=""><i class="fa fa-pencil"></i>
+                                    </span></button>
+                            </td>
+                            <!--<td class="wd-sm">
+                                <div class="ph">
+                                    <progressbar value="80" type="success" class="m0 progress-xs"></progressbar>
+                                </div>
+                            </td>-->
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- END OF Questions List -->
+    </div>
+
+    <!--<table class="table table-striped table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Leaderboard</th>
+                <th class="text-center">Visible In</th>
+                <th class="text-center">Status</th>
+                <th class="text-center">Sponsor</th>
+                <th class="text-center">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="poolroom in PoolRooms | filter: leaderboardSearch">
+                <td>
+                    {{poolroom.title.en}}
+                    <span ng-show="poolroom.isdefault"><label> [Default] </label></span>
+                </td>
+                <td class="text-center" style="width:200px">
+                    
+                    <div ng-show="poolroom.country == null || poolroom.country.length == 0 || poolroom.isdefault">
+                        <label>Everywhere</label>
+                    </div>
+                    <div ng-show="!poolroom.isdefault">
+                        <span ng-repeat="country in poolroom.country">{{country+' &nbsp;'}}</span>
+                    </div>
+                 
+                </td>
+                <td class="text-center" style="width:100px">
+                    <div class="label" ng-class="poolroom.status?('label-'+poolroom.status):''">{{poolroom.status}}</div>
+                </td>
+                <td class="text-center" ng-style="{
+                    'width': '150px',
+                    'background-size': 'cover',
+                    'background-repeat': 'no-repeat',
+                    'background-position': '50%',
+                    'background-image':'url('+poolroom.sponsor.banner+')'}">
+
+                </td>
+                <td class="text-center" style="width:250px">
+                    <div class="event-card" ng-init="poolroom.openActions = false">
+                        <div style="width:200px" class="controlls col-xs-12">
+                            <button ladda="loading.leaderboard" data-style="expand-left" ng-click="showLeaderboard(poolroom);" class="minimal small-margin col-xs-4 btn btn-info"><span class="btn-label"><i class="fa fa-sitemap"></i>
+                                    </span></button>
+                            <button ng-click="editPool(poolroom)" class="minimal small-margin col-xs-4 btn btn-info"><span class="btn-label"><i class="fa fa-pencil"></i>
+                                    </span></button>
+                            <button ng-click="setDefault(poolroom)" ng-class="poolroom.isdefault?'edit':'minimal'" class=" small-margin col-xs-4 btn"><span class="btn-label"><i class="fa fa fa-file"></i>
+                                    </span></button>
+                            <button ng-click="removePool(poolroom)" class="delete col-xs-4 btn btn-danger"><span class="btn-label"><i class="fa fa-trash"></i>
+                                    </span></button>
+                        </div>
+
+                      
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>-->
+
+
+</div>
+<!-- END LEaderBoards -->
