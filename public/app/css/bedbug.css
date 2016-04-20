@@ -2,6 +2,11 @@
     /*display: none;*/
 }
 
+.panel-highlighted{
+    background-color: #F9F9F9;
+    border: 2px solid white;
+    box-shadow: rgba(58, 63, 81, 0.21) 2px 2px;
+}
 
 .sideline {
    border-right: 1px solid #DDE6E9;
@@ -88,6 +93,26 @@ md-toast {
 /* ========================================================================
    Animations
  ========================================================================== */
+
+/* Events */
+
+.hello.ng-enter {
+  transition:0.5s linear all;
+  opacity:0;
+}
+
+/* The finishing CSS styles for the enter animation */
+.hello.ng-enter.ng-enter-active {
+  opacity:1;
+}
+
+.hello.ng-leave {
+  transition:0.2s linear all;
+  opacity:1;
+}
+.hello.ng-leave.ng-leave-active {
+  opacity:0;
+}
 
 /* Fluid */
 div.fluid{
@@ -176,6 +201,10 @@ div.fluid{
     width: 100%;
 }
 */
+
+.rounded {
+    border-radius: 4px;    
+}
 
 .ag-angle .ag-row-selected {
     background-color: #3A3F51;
@@ -1294,6 +1323,26 @@ body,
     display: block;
     text-align: center;
 }
+
+.match-status{
+    background-color: #2196f3;
+    color: #fff;
+    border-top: 2px solid #50B4FF;
+    border-bottom: 2px solid #117FD6;
+}
+
+.match-status .score{
+    font-size: 36px;
+    display: block;
+}
+
+.time{
+    display: block;
+    background-color: #fafafa;
+    font-size: 18px;
+    line-height: 25px;
+}
+
 .player-result {
     border-left: 1px solid #ccc;
 }
@@ -1305,7 +1354,7 @@ body,
 }
 .team-logo div {
     border-radius: 75%;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: #F4F4F4;
     /* position: relative; */
     width: 80px;
     margin: auto;
@@ -1318,21 +1367,30 @@ body,
 }
 .nopadding {
     padding: 0 !important;
-    // margin: 0 !important;
+    margin: 0 !important;
 }
 .scheduled-match {
-    /*
-    max-width: 250px;
-    min-height: 380px;
+    width: 330px; 
     float: left;
-    margin-left: 5%;
-*/
+    height: 355px;
+    /*margin-left: 5%;*/
 }
+
+/*.scheduled-match .panel{
+    min-height: 270px;
+}*/
 .scheduled-match .panel-body {
-    /*    max-width: 250px;*/
-    /*    min-height: 255px;*/
-    /*background-color: ghostwhite;*/
+        /*max-width: 250px;*/
+height: 232px;
+/*background-color: ghostwhite;*/
 }
+
+.scheduled-match .panel-heading {
+        /*max-width: 250px;*/
+height: 43px;
+/*background-color: ghostwhite;*/
+}
+
 .scheduled-match h4 {
     color: #6B6B6B;
     font-weight: 500;
@@ -1553,19 +1611,19 @@ body,
         left: 0px;
     }
 }
-@media only screen and (min-width: 992px) {
+/*@media only screen and (min-width: 992px) {
     .timeline > li.timeline-inverted {
         float: right;
         clear: both;
         margin-top: -20px;
-        !important;
+        
     }
     .timeline > li {
         float: left;
         clear: both;
         width: 45%;
     }
-}
+}*/
 .timeline-inverted {
     margin-top: 0 !important;
 }
@@ -1744,6 +1802,8 @@ body,
 .team-logo img {
     min-height: 75px;
     min-width: 75px;
+    max-width: 100px;
+    max-height: 100px;
 }
 .moving-self-img {
     min-height: 75px;
@@ -1847,29 +1907,29 @@ body,
     color: #3a3f51;
 }
 .yellow {
-    background-color: #9E9D24;
+    background-color: #F8CC04;
     color: #fff;
 }
 .mda-form-control.yellow-text:focus,
 .mda-form-control.yellow-text.focus {
-    border-color: #9E9D24;
+    border-color: #F8CC04;
 }
 .yellow-text,
 .mda-form-control.yellow-text:focus ~ label,
 .mda-form-control.yellow-text.focus ~ label {
-    color: #9E9D24;
+    color: #F8CC04;
 }
 .red {
-    background-color: #9E3B25;
+    background-color: #F44336;
     color: #fff;
 }
 .mda-form-control.red-text:focus,
 .mda-form-control.red-text.focus {
-    border-color: #9E3B25;
+    border-color: #F44336;
 }
 .mda-form-control.red-text:focus ~ label,
 .mda-form-control.red-text.focus ~ label {
-    color: #9E3B25;
+    color: #F44336;
 }
 .type-banner-vertical span {
     position: absolute;
@@ -1889,7 +1949,7 @@ body,
         margin-right: 8.33333333%;
     }
 }
-@media (max-width: 992px) {
+/*@media (max-width: 992px) {
     .type-banner-vertical {
         display: none;
     }
@@ -1899,7 +1959,7 @@ body,
     .timeline-options-side {
         display: none;
     }
-}
+}*/
 @media (max-width: 768px) {}
 @media (max-width: 375px) {
     .moving-self {
@@ -1918,7 +1978,7 @@ body,
 }
 .panel-footer {
     padding: 10px 15px;
-    background-color: #fafafa;
+    /*background-color: #fafafa;*/
     border-top: 1px solid #eeeeee;
     border-bottom-right-radius: 3px;
     border-bottom-left-radius: 3px;

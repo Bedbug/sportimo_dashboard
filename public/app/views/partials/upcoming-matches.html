@@ -1,40 +1,43 @@
-<div class="row" ng-controller="DashboardController as dash">
+<div ng-controller="DashboardController as dash">
 
-    <div class="col-lg-12">
+    <div>
         <!-- START widget-->
-        <div class="panel">
-            <div class="panel-heading"><h4>Scheduled Matches</h4></div>
-            <div class="panel-body row">
-
-
-                <div ng-repeat="match in livematches" class="scheduled-match">
-                    <div class="panel ">
-                        <div class="panel-heading  text-center"><h4>{{match.home_team_name}} -
-                            {{match.visitor_team_name}}</h4>
+        <div>
+                <div ng-repeat="match in livematches" class="col-md-6 pl0 scheduled-match">
+                    <div class="panel">
+                        <div ng-show="match.started=='0'" class="panel-heading  text-center">
+                           {{match.home_team_name}} -
+                            {{match.visitor_team_name}}
                         </div>
-                        <div class="panel-body">
-                            <div class="team-logos row">
+                        
+                        <div ng-show="match.started=='1'" class="panel-heading match-status text-center">
+                            <strong>Live:</strong> {{match.home_team_name}} -
+                            {{match.visitor_team_name}}</div>
+                        
+                        <div class="panel-body pb0">
+                            <div class="team-logos clearfix">
                                 <div class="team-logo pull-left ">
-                                    <img ng-src="http://162.13.157.7/soccerapp/images/teams_logos/{{match.home_team_logo}}"/>
+                                    <img ng-src="http://162.13.157.7/soccerapp/images/teams_logos/{{match.home_team_logo}}" />
 
                                     <div></div>
                                 </div>
                                 <div class="team-logo pull-right ">
-                                    <img ng-src="http://162.13.157.7/soccerapp/images/teams_logos/{{match.visitor_team_logo}}"/>
+                                    <img ng-src="http://162.13.157.7/soccerapp/images/teams_logos/{{match.visitor_team_logo}}" />
 
                                     <div></div>
                                 </div>
                             </div>
-                            <div  ng-show="match.started=='1'" class = "match-info">
-                                <small class="text-muted"></small>
-                                <h1>2 - 0</h1>
-                                <h5>89'</h5>
+                            <div ng-show="match.started=='1'" class="time row mb-sm text-center"> <em class="fa fa-clock-o "></em> 89'</div>
+                            <div ng-show="match.started=='1'" class="match-status row text-center">
+                                    <span class="score">2 - 0</span>
                             </div>
-                            <div  ng-show="match.started=='0'" class = "match-info">
-                               <p>
-                                   <br/>
-                                <strong>{{formatDate(match.match_date)}}</strong><br/>
-                                <span class="text-muted">{{getMatchStatus(match.status)}}</span></p>
+                              
+                            <div ng-show="match.started=='0'" class="match-info">
+                                <p>
+                                    <br/>
+                                    <strong>{{formatDate(match.match_date)}}</strong><br/>
+                                    <span class="text-muted">{{getMatchStatus(match.status)}}</span>
+                                </p>
                             </div>
                         </div>
                         <div ng-click="ModerateMatch(match._id, match.sport)" class="panel-footer text-center">clicking on the panel starts moderation</div>

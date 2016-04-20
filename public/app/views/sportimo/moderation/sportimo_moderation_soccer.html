@@ -67,14 +67,26 @@
 
     <div class="col-lg-12 no-padding">
         <!-- START panel tab-->
-        <div class="panel panel-transparent">
+        <div class="panel">
 
-            <tabset justified="true" class="bg-white p0">
+            <tabset justified="true" class="p0">
                 <tab>
                     <tab-heading>
                         <em class="fa fa-clock-o fa-fw"></em> <strong>Timeline</strong>
                     </tab-heading>
                     <div ng-include="'app/views/sportimo/moderation/timeline.html'"></div>
+                </tab>
+                 <tab>
+                    <tab-heading>
+                         <div class="ph"> <em class="fa fa-question-circle fa-fw"></em> Questions <span class="m0  pull-right"><em class="icon-drawer mr fa-lg"></em>{{ClosedQuestions}}/{{questions.length}}</span></div>
+                    </tab-heading>
+                    <div ng-include="'app/views/sportimo/moderation/questions.html'"></div>
+                </tab>
+                 <tab>
+                    <tab-heading>
+                         <div class="ph"> <em class="fa fa-users fa-fw"></em> Users</div>
+                    </tab-heading>
+                    <div ng-include="'app/views/sportimo/moderation/questions.html'"></div>
                 </tab>
                 <tab>
                     <tab-heading>
@@ -82,12 +94,7 @@
                     </tab-heading>
                     <div ng-include="'app/views/sportimo/moderation/leaderboard.html'"></div>
                 </tab>
-                <tab>
-                    <tab-heading>
-                         <div class="ph"> <em class="fa fa-question-circle fa-fw"></em> Questions <span class="m0  pull-right"><em class="icon-drawer mr fa-lg"></em>{{ClosedQuestions}}/{{questions.length}}</span></div>
-                    </tab-heading>
-                    <div ng-include="'app/views/sportimo/moderation/questions.html'"></div>
-                </tab>
+               
                <tab>
                     <tab-heading>
                           <em class="fa fa-area-chart fa-fw"></em> <strong>Stats</strong>
