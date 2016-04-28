@@ -29,6 +29,7 @@
                         </ui-select>
 
                         <label>Position</label>
+                        
                         <ui-select ng-model="selectedItem.position" theme="bootstrap" ng-disabled="uisel.disabled" class="text-left">
                             <ui-select-match placeholder="Select position">{{$select.selected}}</ui-select-match>
                             <ui-select-choices repeat="position in positions | filter: $select.search">

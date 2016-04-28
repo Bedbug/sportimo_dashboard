@@ -1,0 +1,117 @@
+<div>
+    <!--{{match}}-->
+    <!-- START XML Moderation -->
+    <div class="panel panel-highlighted">     
+        <div class="panel-heading">
+            <div class="form-group">
+                <label class="col-xs-6 control-label">Feed Moderation</label>
+                <div class="col-xs-6"><label class="switch pull-right"><input type="checkbox" ng-change="toggleNewModeration(StatsParserData)" ng-model ="match.data.automoderation"
+                ng-true-value="true" ng-false-value="false">
+          <span></span></label></div>
+            </div>
+        </div>       
+        <div ng-show="match.data.moderation[0]" class="panel-body">
+           
+            <form name="StatsParserData" novalidate>
+                 <div class="form-group">
+                    <label class="col-xs-2 control-label">Parser</label>
+                    <div class="col-xs-10">
+                        <ui-select ng-model="match.data.moderation[0].parsername" theme="bootstrap" class="text-left">
+                            <ui-select-match placeholder="Select parser">{{$select.selected}}</ui-select-match>
+                            <ui-select-choices repeat="parser in ['Stats'] | filter: $select.search">
+                                <span ng-bind-html="parser | highlight: $select.search"></span>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-2 control-label">ParserID<em tooltip="The ID the parser uses to identify the match." class="fa fa-info-circle fa-fw"></em></label>
+                    <div class="col-xs-10 p0" ng-hide="findID">
+                        <div class="col-xs-10">
+                            <input type="text" class="form-control" ng-model="match.data.moderation[0].parserid" style="">
+                        </div>
+                        <div class="col-xs-2">
+                            <button type="button" ng-click="openFindID()" class="form-control btn btn-default">Find ID</button>
+                        </div>
+                    </div>
+                    <div class="col-xs-10 p0" ng-show="findID">
+                        <div class="col-xs-4">
+                            <ui-select limit=1 on-select="onStatsCompetition()" reset-search-input="true" ng-model="statsSearch.competition" theme="bootstrap"
+                                ng-disabled="event.chooseplayer.disabled">
+                                <ui-select-match placeholder="Select Competition">
+                                    <img class="ui-select-match-img" alt="$select.selected.name.en" ng-src="{{$select.selected.logo}}">                                    {{$select.selected.name.en}}
+                                </ui-select-match>
+
+                                <ui-select-choices repeat="competition._id as competition in competitions | filter: $select.search">
+                                    <img class="ui-select-match-img" alt='{{team.logo}}' ng-src='{{competition.logo}}'>
+                                    <div ng-bind-html="competition.name.en | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                        <div class="col-xs-6">
+                            <div ng-hide="StatsUpcomingEvents.length>0">
+                                <btn ladda="loadingCompetitions" data-style="zoom-out" class="form-control btn btn-default">First select competition</btn>
+                            </div>
+                            <div ng-show="StatsUpcomingEvents.length>0">
+                                <ui-select limit=1 on-select="OnEventSelection($item)" reset-search-input="true" ng-model="selected" theme="bootstrap" ng-disabled="!statsSearch.competition">
+                                    <ui-select-match placeholder="{{statsSearch.message}}">
+                                    </ui-select-match>
+                                    <ui-select-choices repeat="event in StatsUpcomingEvents | filter: $select.search">
+                                        <!--<img class="ui-select-match-img" alt='{{team.logo}}' ng-src='http://ep7t6ae.cloudimg.io/s/height/25/{{team.logo}}'>-->
+                                        <strong><span ng-bind-html="event.home_team.name.en | highlight: $select.search"></span> - 
+                                        <span ng-bind-html="event.away_team.name.en | highlight: $select.search"></span></strong>
+                                        <div>
+                                            <muted> {{formDate(event.start,"DD-MMMM-YYYY HH:mm", false)}}</muted>
+                                        </div>
+                                        <!--<div ng-bind-html="event.start | highlight: $select.search"></div>-->
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                        </div>
+                        <div class="col-xs-2">
+                            <button type="button" ng-click="findID = null" class="form-control btn btn-default">Cancel</button>
+                        </div>
+
+                    </div>
+                </div>
+               
+                <div class="form-group">
+                    <label class="col-xs-2 control-label">Active</label>
+                    <div class="col-xs-10 p0">
+                          <div class="col-xs-6"><label class="switch"><input type="checkbox"  no-validate ng-change="updateModerationStatus(match.data.moderation[0])" ng-model="match.data.moderation[0].active"><span></span>&nbsp; <em tooltip="Changes to auto-moderation status updates server immediatly." class="fa fa-info-circle fa-fw"></em></label></div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div ng-show="StatsParserData.$dirty" class="panel-footer">
+            <div <div class="col-xs-12" style="color:red; text-align:center" ng-show="moderationError">{{moderationError}}</div>
+            <div class="col-xs-12">
+                <button ladda="view.busy" data-style="zoom-out" type="button" ng-click="UpdateModeration(match.data.moderation[0])" class="form-control btn btn-default edit">Save Changes</button>
+            </div>
+        </div>
+    </div>
+    <!-- END XML Moderation -->
+
+    <!-- START GameCard Rules -->
+    <div class="panel">
+
+    </div>
+    <!-- END XML Moderation -->
+
+    <!-- START list group-->
+    <div class="panel panel-highlighted">
+        <div class="panel-heading"><label class="col-xs-6 control-label">Match Settings</label></div>
+        <div class="panel-body">
+            <div class="list-group mb0">
+                <div class="list-group-item bt0">
+                    <label>Destroy on Delete  <em tooltip="Events will be destroyed when deleted. Otherwise they will be marked invisible." class="fa fa-info-circle fa-fw"></em></label>
+                    <label class="switch pull-right"><input type="checkbox" ng-model="match.data.settings.destroyOnDelete"><span></span>
+                        </label>
+                    <div class="">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

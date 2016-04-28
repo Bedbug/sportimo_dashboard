@@ -12,6 +12,20 @@
    border-right: 1px solid #DDE6E9;
 }
 
+/*Timeline Tabs Behaviour*/
+.match-tab-text { display: inline-block; }
+@media (max-width: 1540px) { 
+  .match-tab-text { display: none; }
+}
+
+.nav-tabs.nav-justified > li {
+    display: table-cell;
+    width: 1%;
+  }
+  .nav-tabs.nav-justified > li > a {
+    margin-bottom: 0;
+  }
+
 md-toast {
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -1354,7 +1368,7 @@ body,
 }
 .team-logo div {
     border-radius: 75%;
-    background-color: #F4F4F4;
+    background-color: rgba(0, 0, 0, 0.3);
     /* position: relative; */
     width: 80px;
     margin: auto;
@@ -1365,12 +1379,17 @@ body,
     -ms-filter: blur(3px);
     filter: blur(3px)
 }
+
+.list-group .list-group-item.striped:nth-child(odd) {
+background-color: #F7F7F7;
+}
+
 .nopadding {
     padding: 0 !important;
     margin: 0 !important;
 }
 .scheduled-match {
-    width: 330px; 
+    width: 300px; 
     float: left;
     height: 355px;
     /*margin-left: 5%;*/

@@ -11,7 +11,7 @@
                     <img ng-src="{{match.data.home_team.logo}}" />
 
                     <div></div>
-                    <p>{{match.data.home_team.name}}</p>
+                    <p>{{match.data.home_team.name.en}}</p>
                 </div>
                 <div class="col-sm-4">
                     <div ng-show="match.sport.segments[ match.data.timeline.length - 1].timed" class="match-time">
@@ -34,7 +34,7 @@
                     <img ng-src="{{match.data.away_team.logo}}" />
 
                     <div></div>
-                    <p> {{match.data.away_team.name}}</p>
+                    <p> {{match.data.away_team.name.en}}</p>
                 </div>
             </div>
 
@@ -72,49 +72,45 @@
             <tabset justified="true" class="p0">
                 <tab>
                     <tab-heading>
-                        <em class="fa fa-clock-o fa-fw"></em> <strong>Timeline</strong>
+                        <em class="fa fa-clock-o fa-fw"></em> <span class="match-tab-text"><strong>Timeline</strong></span>
                     </tab-heading>
                     <div ng-include="'app/views/sportimo/moderation/timeline.html'"></div>
                 </tab>
+                <tab>
+                    <tab-heading>
+                         <div class="ph"> <em class="fa fa-tablet fa-fw"></em><span class="match-tab-text"> Wildcards</span></div>
+                    </tab-heading>
+                    <div ng-include="'app/views/sportimo/moderation/gamecards.html'"></div>
+                </tab>
                  <tab>
                     <tab-heading>
-                         <div class="ph"> <em class="fa fa-question-circle fa-fw"></em> Questions <span class="m0  pull-right"><em class="icon-drawer mr fa-lg"></em>{{ClosedQuestions}}/{{questions.length}}</span></div>
+                         <div class="ph"> <em class="fa fa-question-circle fa-fw"></em><span class="match-tab-text"> Questions</span> <span ng-if="questions.length" class="m0  pull-right"><em class="icon-drawer mr fa-lg"></em>{{ClosedQuestions}}/{{questions.length}}</span></div>
                     </tab-heading>
                     <div ng-include="'app/views/sportimo/moderation/questions.html'"></div>
                 </tab>
                  <tab>
                     <tab-heading>
-                         <div class="ph"> <em class="fa fa-users fa-fw"></em> Users</div>
+                         <div class="ph"> <em class="fa fa-users fa-fw"></em><span class="match-tab-text"> Users</span></div>
                     </tab-heading>
                     <div ng-include="'app/views/sportimo/moderation/questions.html'"></div>
                 </tab>
                 <tab>
                     <tab-heading>
-                        <em class="fa fa-sitemap fa-fw"></em>Leaderboards / <em class="fa fa-gift fa-fw"></em>Prizes
+                        <span class="match-tab-text"><em class="fa fa-sitemap fa-fw"></em>Leaderboards &nbsp;/&nbsp; </span><em class="fa fa-gift fa-fw"></em><span class="match-tab-text">Prizes</span>
                     </tab-heading>
                     <div ng-include="'app/views/sportimo/moderation/leaderboard.html'"></div>
                 </tab>
                
                <tab>
                     <tab-heading>
-                          <em class="fa fa-area-chart fa-fw"></em> <strong>Stats</strong>
+                          <em class="fa fa-area-chart fa-fw"></em><span class="match-tab-text"> <strong>Stats</strong></span>
                     </tab-heading>
-                    <div ng-include="'app/views/sportimo/moderation/questions.html'"></div>
+                    <div ng-include="'app/views/sportimo/moderation/stats.html'"></div>
                 </tab>
                 <tab>
                     <tab-heading>
-                        <em class="fa fa-cogs fa-fw"></em>Settings</tab-heading>
-                    <div>
-                        <!-- START list group-->
-                        <div class="list-group mb0">
-                            <a href="#" class="list-group-item bt0" ng-repeat="setting in match.data.settings">
-                                <span class="label label-purple pull-right">just now</span>
-                                <em class="fa fa-fw fa-calendar mr"></em>{{readable(match.data.settings)}}</a>
-                        </div>
-                        <!-- END list group-->
-                        <div class="panel-footer text-right"><a href="#" class="btn btn-default btn-sm">View All Activity </a>
-                        </div>
-                    </div>
+                        <em class="fa fa-cogs fa-fw"></em><span class="match-tab-text">Settings</span></tab-heading>
+                        <div ng-include="'app/views/sportimo/moderation/settings.html'"></div>
                 </tab>
             </tabset>
         </div>

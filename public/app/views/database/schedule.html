@@ -1,8 +1,7 @@
 <h3>Match Schedule
    <small>Schedule matches to be active in the game.</small>
 </h3>
-
-
+<match-panels ng-model="events"></match-panels>
 
 <!-- START row -->
 <div class="calendar-app">
@@ -329,7 +328,7 @@
                                         <img style="padding-bottom: 5px;" ng-src="http://ep7t6ae.cloudimg.io/s/height/25/{{event.away_team.logo}}">                                        {{event.away_team.name.en}}
 
                                     </td>
-                                    <td>{{ event.competition}}</td>
+                                    <td>{{ event.competition.name.en}}</td>
                                     <td>
 
                                         <!-- START button group-->

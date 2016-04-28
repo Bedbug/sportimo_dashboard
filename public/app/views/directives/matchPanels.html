@@ -1,0 +1,42 @@
+<div>
+    <div ng-repeat="match in ngModel" class="col-md-6 pl0 scheduled-match">
+        <div class="panel">
+            <!--{{match}}-->
+            <div ng-show="match.state == 0" class="panel-heading  text-center">
+                {{match.home_team.name.en}} - {{match.away_team.name.en}}
+            </div>
+
+            <div ng-show="match.state > 0" class="panel-heading match-status text-center">
+                <strong>Live:</strong>  {{match.home_team.name.en}} - {{match.away_team.name.en}}
+            </div>
+
+            <div class="panel-body pb0">
+                <div class="team-logos clearfix">
+                    <div class="team-logo pull-left ">
+                        <img class="" ng-src="{{match.home_team.logo}}" />
+
+                        <div></div>
+                    </div>
+                    <div class="team-logo pull-right ">
+                        <img  class="" ng-src="{{match.away_team.logo}}" />
+
+                        <div></div>
+                    </div>
+                </div>
+                <div ng-show="match.state > 0" class="time row mb-sm text-center"> <em class="fa fa-clock-o "></em> {{match.time}}'</div>
+                <div ng-show="match.state > 0" class="match-status row text-center">
+                    <span class="score">{{match.home_score}} - {{match.away_score}}</span>
+                </div>
+
+                <div ng-show="match.state == 0" class="match-info">
+                    <p>
+                        <br/>
+                        <strong>{{formatDate(match.start)}}</strong><br/>
+                        <span class="text-muted">{{getMatchStatus(match.state)}}</span>
+                    </p>
+                </div>
+            </div>
+            <div ng-click="moderateMatch(match._id, match.sport)" class="panel-footer text-center">clicking on the panel starts moderation</div>
+        </div>
+    </div>
+</div>

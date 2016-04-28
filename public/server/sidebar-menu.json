@@ -17,8 +17,14 @@
         "heading": "true",
         "translate": "Manage"
     },
+     {
+        "text": "Game Cards",
+        "sref": "app.gamecards",
+        "icon": "icon-screen-tablet",
+        "translate": "Game Cards"
+    },
     {
-        "text": "Data",
+        "text": "Sportimo Data",
         "sref": "#",
         "icon": "icon-note",
         "submenu": [

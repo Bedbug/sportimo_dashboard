@@ -93,7 +93,7 @@
     'use strict';
 
     angular
-        .module('app.match-moderation-soccer', ['ngDialog']);
+        .module('app.match-moderation-soccer', ['ngDialog', 'angular-ladda']);
 })();
 
 (function () {
@@ -2935,6 +2935,16 @@
 
     StatsService.$inject = ['$rootScope'];
     function StatsService($rootScope) {
+        var statsTransalations = {
+            g: 'Goals',
+            rc: 'Red Cards',
+            yc: 'Yellow Cards',
+            fc: 'Fouls',
+            c: 'Corners',
+            of: 'Offsides',
+            events_sent: 'Events Sent'
+        }
+
         $rootScope.SocketInstances = [];
         var messageCount = 0;
         $rootScope.dataset = [{
@@ -2955,6 +2965,9 @@
             }
         };
         return {
+            transStat: function (stat) {
+                return statsTransalations[stat];
+            },
             ParseStats: function (payload) {
 
                 // console.log(payload);
@@ -3044,8 +3057,8 @@
             development: {
                 data_server: '',
                 game_server: 'http://localhost:3030/',
-                // sockets: 'wss://socketserverv2-56658.onmodulus.net/'
-                sockets: 'ws://localhost:8080/'
+                sockets: 'wss://socketserverv2-56658.onmodulus.net/'
+                // sockets: 'ws://localhost:8080/'
             }
         };
 
@@ -3060,8 +3073,10 @@
 
         $rootScope.socketConnection = false;
         $rootScope.dataStream.onOpen(function () {
+            console.log("SOCKET: Opened");
             $rootScope.socketConnection = true;
             var user = JSON.parse($rootScope.$storage.currentUser);
+            console.log(user);
             // Register to socket with ID
             $rootScope.dataStream.send(JSON.stringify({ "register": { "uid": user._id, "uname": user.name, "admin": true } }));
         });
@@ -4716,8 +4731,8 @@
                         TagsService.getAllTags().then(function () {
 
                             _.each(upfixtures, function (fix) {
-                                fix.home_team = TagsService.getTeamById(fix.home_team);
-                                fix.away_team = TagsService.getTeamById(fix.away_team);
+                                fix.home_team = TagsService.getTagById(fix.home_team);
+                                fix.away_team = TagsService.getTagById(fix.away_team);
                             })
 
                             Defer.resolve(upfixtures);
@@ -4934,7 +4949,7 @@
         } else {
 
 
-            var Schedule = Restangular.all('v1/schedule');
+            var Schedule = Restangular.all('v1/data/schedule');
 
             Restangular.setBaseUrl($rootScope.servers[$rootScope.serverEnvironment].game_server);
             Restangular.setRestangularFields({
@@ -6495,12 +6510,17 @@
                     })
                 return Defer.promise;
             },
-            getTeamById: function (ID) {
+            getTagById: function (ID) {
                 return _.find(tags, {
                     _id: ID
                 });
             },
             getTeamNameById: function (ID) {
+                return _.get(_.find(tags, {
+                    _id: ID
+                }), 'name.en');
+            },
+            getNameById: function (ID) {
                 return _.get(_.find(tags, {
                     _id: ID
                 }), 'name.en');
@@ -6989,6 +7009,34 @@
         .service('QuestionsService', QuestionsService)
         .service('CountriesService', CountriesService)
         .controller('SportimoModerationSoccerController', SportimoModerationSoccerController)
+        .factory('ngClipboard', function ($compile, $rootScope, $document) {
+            return {
+                toClipboard: function (element) {
+
+                    var copyElement = angular.element('<span id="ngClipboardCopyId">' + element + '</span>');
+                    var body = $document.find('body').eq(0);
+                    body.append($compile(copyElement)($rootScope));
+
+                    var ngClipboardElement = angular.element(document.getElementById('ngClipboardCopyId'));
+                    console.log(ngClipboardElement);
+                    var range = document.createRange();
+
+                    range.selectNode(ngClipboardElement[0]);
+
+                    window.getSelection().removeAllRanges();
+                    window.getSelection().addRange(range);
+
+                    var successful = document.execCommand('copy');
+
+                    var msg = successful ? 'successful' : 'unsuccessful';
+                    console.log('Copying text command was ' + msg);
+                    window.getSelection().removeAllRanges();
+
+                    copyElement.remove();
+                }
+            }
+        })
+
         .directive('disableAnimation', function ($animate) {
             return {
                 restrict: 'A',
@@ -7314,9 +7362,9 @@
     }
 
 
-    SportimoModerationSoccerController.$inject = ['$location', '$anchorScroll', 'QuestionsService', 'LeaderboardsService', 'CountriesService', 'PrizesService', 'SponsorsService', 'PoolsService', '$scope', 'ngDialog', '$stateParams', '$http', '$rootScope', '$timeout', '$interval', '$mdToast', '$mdBottomSheet', '$window'];
+    SportimoModerationSoccerController.$inject = ['StatsComService', 'CompetitionsService', 'StatsService', 'TagsService', 'ngClipboard', '$location', '$anchorScroll', 'QuestionsService', 'LeaderboardsService', 'CountriesService', 'PrizesService', 'SponsorsService', 'PoolsService', '$scope', 'ngDialog', '$stateParams', '$http', '$rootScope', '$timeout', '$interval', '$mdToast', '$mdBottomSheet', '$window'];
 
-    function SportimoModerationSoccerController($location, $anchorScroll, QuestionsService, LeaderboardsService, CountriesService, PrizesService, SponsorsService, PoolsService, $scope, ngDialog, $stateParams, $http, $rootScope, $timeout, $interval, $mdToast, $mdBottomSheet, $window) {
+    function SportimoModerationSoccerController(StatsComService, CompetitionsService, StatsService, TagsService, ngClipboard, $location, $anchorScroll, QuestionsService, LeaderboardsService, CountriesService, PrizesService, SponsorsService, PoolsService, $scope, ngDialog, $stateParams, $http, $rootScope, $timeout, $interval, $mdToast, $mdBottomSheet, $window) {
 
 
         var vm = $scope;
@@ -7328,6 +7376,10 @@
         vm.matchid = $stateParams.id;
 
         vm.loading = {};
+
+        vm.clipboard = function (tocopy) {
+            ngClipboard.toClipboard(tocopy);
+        }
 
         //-----------------------------
         // Get the data from SERVER
@@ -7437,36 +7489,72 @@
         };
 
         $scope.filterTeamPlayers = true;
+
+        // Load tags
+        TagsService.getAllTags().then(function (tags) {
+            $scope.Tags = tags;
+        })
+        $scope.getTagById = function (id) {
+            // console.log("Getting tag for: "+id);
+            var tag = TagsService.getTagById(id);
+            return tag;
+        }
+
         $scope.event = {};
         $rootScope.dataStream.onMessage(function (message) {
 
             var evt = JSON.parse(message.data);
+            if (evt.room != vm.matchid) return;
 
-            if (!evt.users)
+            if (!evt.type.indexOf("Event") > -1)
                 console.log(evt);
 
-            if (evt.match_id == $scope.match.id) {
-                console.log("Event is for this match");
-                if (evt.type == "Add" && evt.data.timeline_event) {
-                    console.log("Adding Event");
-                    $scope.match.data.timeline[evt.data.state].events.push(evt.data);
-                }
-
-
-                if (evt.type == "Delete") {
-                    console.log("Removing Event");
-                    _.findWhere($scope.match.data.timeline[evt.data.state].events, {
-                        id: evt.data.id,
-                        match_id: evt.match_id
+            switch (evt.type) {
+                case "Event_added":
+                    if (evt.data.timeline_event)
+                        $scope.match.data.timeline[evt.data.state].events.push(evt.data);
+                    break;
+                case "Event_updated":
+                    var indx = _.findIndex($scope.match.data.timeline[evt.data.state].events, function (o) {
+                        return o._id == evt.data._id;
+                    });
+                    $scope.match.data.timeline[evt.data.state].events[indx] = evt.data;
+                    break;
+                case "Event_deleted":
+                    _.find($scope.match.data.timeline[evt.data.state].events, function (o) {
+                        return o._id == evt.data._id;
                     }).status = "removed";
-                }
-
-                $timeout(function () {
-                    $scope.loadMatchData(evt.match_id)
-                }, 1500)
-
+                    $timeout(function () {
+                        $scope.loadMatchData(evt.match_id);
+                    }, 1500);
+                    break;
             }
+
         });
+
+
+        // if (evt.match_id == $scope.match.id) {
+        //     console.log("Event is for this match");
+        //     if (evt.type == "Add" && evt.data.timeline_event) {
+        //         console.log("Adding Event");
+        //         $scope.match.data.timeline[evt.data.state].events.push(evt.data);
+        //     }
+
+
+        //     if (evt.type == "Delete") {
+        //         console.log("Removing Event");
+        //         _.findWhere($scope.match.data.timeline[evt.data.state].events, {
+        //             id: evt.data.id,
+        //             match_id: evt.match_id
+        //         }).status = "removed";
+        //     }
+
+        //     $timeout(function () {
+        //         $scope.loadMatchData(evt.match_id)
+        //     }, 1500)
+
+        // }
+        // });
 
 
         $scope.readable = function (obj) {
@@ -7485,6 +7573,8 @@
             }).then(function successCallback(response) {
                 console.log(response);
                 $scope.match = AddHooks(response.data);
+                vm.match.data.automoderation = vm.match.data.moderation[0] ? true : false;
+                $scope.stats = ParseMatchStats(response.data.data.stats);
                 vm.pushLoading = false;
             }, function errorCallback(response) {
                 vm.pushLoading = false;
@@ -7493,68 +7583,125 @@
             });
         };
 
-        $scope.players = [
-            {
-                id: "565c4",
-                team: "home_team",
-                name: "marco"
-            },
-            {
-                id: "565c4a",
-                team: "home_team",
-                name: "polo"
-            },
-            {
-                id: "565c4af",
-                team: "home_team",
-                name: "christopher"
-            },
-            {
-                id: "565c4af6",
-                team: "away_team",
-                name: "colombo"
-            },
-            {
-                id: "565c4af6e",
-                team: "away_team",
-                name: "jekhis"
-            },
-            {
-                id: "565c4af6e4",
-                team: "home_team",
-                name: "marlon"
-            },
-            {
-                id: "565c4af6e4b",
-                team: "home_team",
-                name: "jones"
-            },
-            {
-                id: "565c4af6e4b0",
-                team: "away_team",
-                name: "indiana"
-            },
-            {
-                id: "565c4af6e4b0a",
-                team: "home_team",
-                name: "brando"
-            },
-            {
-                id: "565c4af6e4b0a3",
-                team: "away_team",
-                name: "han"
-            },
-            {
-                id: "565c4af6e4b0ba33",
-                team: "home_team",
-                name: "indiana"
-            },
-            {
-                id: "565c4af6e4b0a33dd",
-                team: "home_team",
-                name: "chackie"
+        function ParseMatchStats(data) {
+            var clonedStats = _.cloneDeep(data);
+            var stats = {
+                match: {
+                    id: null,
+                    stats: []
+                },
+                teams: [],
+                players: []
             }
-        ];
+
+            // Match
+            var match = _.remove(clonedStats, { 'name': 'match' });
+            if (match[0])
+                stats.match.id = match[0].id;
+            _.forOwn(match[0], function (value, key) {
+                console.log(key + ":" + value);
+                if (key != 'name' && key != 'id')
+                    stats.match.stats.push({ key: key, value: value });
+            })
+
+            var teams = _.remove(clonedStats, function (o) {
+                return o.name.indexOf('team') > -1;
+            })
+
+            _.each(teams, function (team) {
+                var newTeam = { id: null, name: null, stats: [] };
+                _.forOwn(team, function (value, key) {
+                    if (key == 'name')
+                        newTeam.name = value;
+                    else if (key == 'id')
+                        newTeam.id = value;
+                    else
+                        newTeam.stats.push({ key: key, value: value });
+                })
+                stats.teams.push(newTeam);
+            });
+
+            _.each(data, function (player) {
+                var newPlayer = { id: null, name: null, stats: [] };
+                _.forOwn(player, function (value, key) {
+                    if (key == 'name')
+                        newPlayer.name = value;
+                    else if (key == 'id')
+                        newPlayer.id = value;
+                    else
+                        newPlayer.stats.push({ key: key, value: value });
+                })
+                stats.players.push(newPlayer);
+            });
+
+            return stats;
+        }
+
+        vm.transStat = function (stat) {
+            return StatsService.transStat(stat);
+        }
+        // $scope.players = [
+        //     {
+        //         id: "565c4",
+        //         team: "home_team",
+        //         name: "marco"
+        //     },
+        //     {
+        //         id: "565c4a",
+        //         team: "home_team",
+        //         name: "polo"
+        //     },
+        //     {
+        //         id: "565c4af",
+        //         team: "home_team",
+        //         name: "christopher"
+        //     },
+        //     {
+        //         id: "565c4af6",
+        //         team: "away_team",
+        //         name: "colombo"
+        //     },
+        //     {
+        //         id: "565c4af6e",
+        //         team: "away_team",
+        //         name: "jekhis"
+        //     },
+        //     {
+        //         id: "565c4af6e4",
+        //         team: "home_team",
+        //         name: "marlon"
+        //     },
+        //     {
+        //         id: "565c4af6e4b",
+        //         team: "home_team",
+        //         name: "jones"
+        //     },
+        //     {
+        //         id: "565c4af6e4b0",
+        //         team: "away_team",
+        //         name: "indiana"
+        //     },
+        //     {
+        //         id: "565c4af6e4b0a",
+        //         team: "home_team",
+        //         name: "brando"
+        //     },
+        //     {
+        //         id: "565c4af6e4b0a3",
+        //         team: "away_team",
+        //         name: "han"
+        //     },
+        //     {
+        //         id: "565c4af6e4b0ba33",
+        //         team: "home_team",
+        //         name: "indiana"
+        //     },
+        //     {
+        //         id: "565c4af6e4b0a33dd",
+        //         team: "home_team",
+        //         name: "chackie"
+        //     }
+        // ];
 
 
         $scope.checkSelection = function ($item, $model) {
@@ -7629,7 +7776,7 @@
                     }).then(function successCallback(response) {
                         console.log(response);
                         $scope.match = AddHooks(response.data);
-                        toast("Removal succesful.");
+                        $rootScope.toast("Removal succesful.");
                     }, function errorCallback(response) {
                         // called asynchronously if an error occurs
                         // or server returns response with an error status.
@@ -7667,7 +7814,7 @@
                             data: $scope.match.data.timeline[index]
                         }
                     }).then(function successCallback(response) {
-                        toast("Segment time updated on server.");
+                        $rootScope.toast("Segment time updated on server.");
 
                     }, function errorCallback(response) {
                         // called asynchronously if an error occurs
@@ -7770,7 +7917,7 @@
         }
         $scope.InNeedUpdateEvents = [];
 
-        $scope.createEmptyEventForTeam = function (team) {
+        $scope.createEmptyEventForTeam = function (team, id) {
             if ($scope.newEvent) {
                 $scope.newEvent.team = team;
             } else {
@@ -7790,6 +7937,7 @@
                     sender: "Moderator",
                     time: $scope.match.data.time,
                     team: team,
+                    team_id: id,
                     complete: false,
                     playerSelected: ""
                 };
@@ -7840,7 +7988,7 @@
 
         $scope.sendEvent = function (event) {
 
-            console.log(event);
+            // console.log(event);
             if (!validateEvent(event)) {
 
                 ngDialog.open({
@@ -7945,6 +8093,7 @@
             }).then(function successCallback(response) {
                 console.log(response.data);
                 $scope.match = AddHooks(response.data);
+                vm.match.data.automoderation = vm.match.data.moderation[0] ? true : false;
             }, function errorCallback(response) {
                 // called asynchronously if an error occurs
                 // or server returns response with an error status.
@@ -8010,7 +8159,7 @@
                 $scope.reloadingServer = false;
                 console.log("[Reloaded Match]");
                 $scope.match = AddHooks(response.data);
-
+                vm.match.data.automoderation = vm.match.data.moderation[0] ? true : false;
 
             }, function errorCallback(response) {
                 $scope.reloadingServer = false;
@@ -8329,6 +8478,112 @@
             })
         }
 
+        // -----------------------------
+        // Stats Auto Moderation
+        // -----------------------------
+        vm.moderationError = "";
+        vm.UpdateModeration = function (modObject) {
+            if (!modObject.parserid) {
+                vm.moderationError = "Match ParserID is mandatory";
+                return;
+            }
+
+            $http({
+                method: 'POST',
+                url: $rootScope.servers[$rootScope.serverEnvironment].game_server + 'v1/moderation/' + vm.matchid + '/service/add',
+                data: modObject
+            }).then(function successCallback(response) {
+                console.log(repsonse);
+            }, function errorCallback(response) {
+                console.log(repsonse);
+            });
+
+        }
+        
+        vm.view = {};
+        
+        vm.updateModerationStatus = function(modObject){
+            vm.view.busy = true;
+            
+            $http({
+                method: 'PUT',
+                url: $rootScope.servers[$rootScope.serverEnvironment].game_server + 'v1/moderation/' + vm.matchid + '/service/'+(vm.match.data.moderation[0].active?'resume':'pause'),
+                data: modObject
+            }).then(function successCallback(response) {
+                 vm.view.busy = false;
+            }, function errorCallback(response) {
+                console.log(repsonse);
+            });
+        }
+        
+        var storedModObject = null;
+        vm.toggleNewModeration = function (form) {
+          
+            form.$dirty = true;
+
+            if (vm.match.data.automoderation) {
+               
+                if (storedModObject)
+                     vm.match.data.moderation[0] = storedModObject;
+                else
+                     vm.match.data.moderation[0] = {
+                        "type": "rss-feed",
+                        "parserid":  (vm.match.data.parserids && vm.match.data.parserids["Stats"])?vm.match.data.parserids["Stats"]:null,
+                        "parsername": "Stats",
+                        "active": true
+                    }
+            }
+            else {
+                 
+                if (vm.match.data.moderation[0])
+                    storedModObject = vm.match.data.moderation[0];
+                vm.match.data.moderation[0] = null;
+
+            }
+            //  ng-true-value='{
+            //     "type": "rss-feed",
+            //     "parserid": "{{match.data.parseids[stats]}}",
+            //     "parsername": "Stats",
+            //     "active": true
+            // }' ng-false-value="null">    
+        }
+
+        vm.findID = null;
+        vm.loadingCompetitions = false;
+        vm.openFindID = function () {
+            vm.findID = 1;
+            CompetitionsService.All().then(function (all) {
+                vm.competitions = all;
+            })
+        }
+        vm.statsSearch = { message: "Select event" };
+        // message:"Select upcoming event from Stats.com"
+        vm.StatsUpcomingEvents = [];
+        vm.onStatsCompetition = function () {
+            vm.loadingCompetitions = true;
+            StatsComService.GetFixtures(vm.statsSearch.competition).then(function (result) {
+                console.log(result[0]);
+                vm.StatsUpcomingEvents = result;
+            })
+        }
+
+        vm.OnEventSelection = function (selection) {
+            console.log(selection);
+            vm.match.data.moderation[0].parserid = selection.parserids["Stats"] || "No id found";
+            vm.findID = null;
+            vm.loadingCompetitions = false;
+        }
+
+        $scope.formDate = function (date, style, inUTC) {
+            //  console.log(date);
+            //   console.log(new Date(date));
+            var d = new Date(date);
+
+            if (inUTC)
+                return moment(d).utc().format(style);
+            else
+                return moment(d).format(style) + " (local time)";
+        }
 
     }
 
@@ -9319,10 +9574,41 @@
 
     angular
         .module('app.dashboard')
+        .directive('matchPanels', matchPanels)
         .controller('DashboardController', DashboardController);
 
+    matchPanels.$inject = ['$timeout', 'TagsService'];
 
-    DashboardController.$inject = ['$rootScope', '$scope', 'ChartData', '$timeout', '$websocket', '$http', '$state', 'Colors','TagsService'];
+    function matchPanels($timeout, TagsService) {
+        return {
+            restrict: 'E',
+            templateUrl: './app/views/directives/matchPanels.html',
+            scope: {
+                ngModel: '=ngModel',
+            },
+            controller: ['$scope', '$state', function ($scope, $state) {
+                console.log("Directive Matches-List Loaded");
+
+                $scope.formatDate = function (stringDate) {
+                    return moment(stringDate).calendar(); //format("dddd, MMMM Do YYYY, h:mm:ss a");
+                };
+
+                $scope.moderateMatch = function (matchid, sport) {
+                    $state.go("app.match-moderation-" + (sport || 'soccer'), {
+                        id: (matchid)
+                    });
+                };
+
+                $scope.getMatchStatus = function (status) {
+
+                    if (status == "0") return "Pre Game";
+                };
+
+            }]
+        };
+    };
+
+    DashboardController.$inject = ['$rootScope', '$scope', 'ChartData', '$timeout', '$websocket', '$http', '$state', 'Colors', 'TagsService'];
 
     function DashboardController($rootScope, $scope, ChartData, $timeout, $websocket, $http, $state, Colors, TagsService) {
 
@@ -9369,12 +9655,13 @@
         //     }]
         // }];
         TagsService.getAllTags();
-        vm.getNameById = function(id){
-                var name =  TagsService.getTeamNameById(id);
-                if(!name) name = id;
-                return name; 
+        vm.getNameById = function (id) {
+            // console.log("getting name for: "+id);
+            var name = TagsService.getTeamNameById(id);
+            if (!name) name = id;
+            return name;
         }
-        
+
         vm.$watchCollection('SocketInstances', function (newValue, oldValue) {
             var count = 0;
             _.each(newValue, function (instance) {

@@ -127,6 +127,8 @@
                                         <!--<button class="btn btn-sm btn-danger btn-delete"> <i class="fa fa-trash"></i></button>-->
                                         <button ng-show="(match.data.timeline.length - 1 - $index)>0" ng-click="removeSegment(match.data.timeline.length - 1 - $index)"
                                             class="delete btn btn-danger"><i class="fa fa-trash"></i></button>
+                                             <button ng-show="(match.data.timeline.length - 1 - $index)>0" ng-click="removeSegment(match.data.timeline.length - 1 - $index)"
+                                            class="btn btn-primary btn-outline"><i class="fa fa-pause"></i></button>
 
                                     </div>
 
@@ -161,13 +163,20 @@
         </div>
         <!-- START Moderator Panel-->
         <div class="col-xs-6 pr0">
-
+            
             <div class="panel col-xs-12 panel-highlighted">
-                <div class="panel-heading"></div>
-                <div class="match-logos" id="eventsPanel">
+             
+                <div class="panel-heading">
+                    <label class="mda-checkbox pull-right">
+                            <input type="checkbox" ng-model="debugEvent" />
+                            <em class="subtle-checkbox"></em>Debug Event
+                        </label>
+                <textarea style="width:100%; clear:both" ng-show="debugEvent" class="panel-body">{{readable(newEvent)}}</textarea>
+                </div>
+                <div class="match-logos " style="clear:both" id="eventsPanel">
                     <!-- Team 1 -->
                     <div class="col-xs-6">
-                        <button ng-click="createEmptyEventForTeam('home_team')" ng-style="newEvent.team != 'home_team'?{'background-color':'#F3F3F3'}:{'background-color':'#FFF'}"
+                        <button ng-click="createEmptyEventForTeam('home_team',match.data.home_team._id)" ng-style="newEvent.team != 'home_team'?{'background-color':'#F3F3F3'}:{'background-color':'#FFF'}"
                             class="btn btn-large btn-default col-xs-12">
                             <div class="event-team-logo">
                                 <img class="moving-self-img" ng-class="newEvent.team != 'home_team'? 'desaturate':'zoom'" ng-src="{{match.data.home_team.logo}}"/>
@@ -178,7 +187,7 @@
                     <!-- End Team 1 -->
                     <!-- Team 2 -->
                     <div class="col-xs-6">
-                        <button ng-click="createEmptyEventForTeam('away_team')" ng-style="newEvent.team != 'away_team'?{'background-color':'#F3F3F3'}:{'background-color':'#FFF'}"
+                        <button ng-click="createEmptyEventForTeam('away_team',match.data.away_team._id)" ng-style="newEvent.team != 'away_team'?{'background-color':'#F3F3F3'}:{'background-color':'#FFF'}"
                             class="btn btn-large btn-default col-xs-12">
                             <div class="event-team-logo">
                                 <img class="moving-self-img" ng-class="newEvent.team != 'away_team'? 'desaturate':'zoom'" ng-src="{{match.data.away_team.logo}}"
@@ -242,14 +251,18 @@
                                 <img class="thumb24" style="margin-bottom: 5px;" ng-src="{{match.data[needUpdate.team].logo}}" />{{match.data.home_team.name.en}}
                             </div>
                         </div>
-                        <div class="col-xs-4 " ng-init="filterTeamPlayers=true">
+                        {{needUpdate.team._id}}
+                        <div class="col-xs-4" ng-init="filterTeamPlayers=true">
                             <ui-select ng-hide="needUpdate.playerscount == 2" limit=1 on-select="checkSelection($item,$model)" multiple reset-search-input="true"
                                 ng-model="needUpdate.players" theme="bootstrap" ng-disabled="needUpdate.chooseplayer.disabled">
-                                <ui-select-match placeholder="&nbsp;&nbsp;Select player name"><img class="ui-select-match-img" alt="$item.team" ng-src="{{match.data[$item.team].logo}}">                                    {{$item.name}}
+                                <ui-select-match placeholder="&nbsp;&nbsp;Select player name">
+                                    <!--<img class="ui-select-match-img" alt="$item.team" ng-src="{{match.data[$item.team._id].logo}}">-->
+                                    {{$item.name.en}}
                                 </ui-select-match>
-                                <ui-select-choices repeat="player in players | filter: (filterTeamPlayers || '') && {team: needUpdate.team} | propsFilter: {name: $select.search, team: $select.search}">
-                                    <img class="ui-select-match-img" alt='{{player.team}}' ng-src='{{match.data[player.team].logo}}'>
-                                    <div ng-bind-html=" player.name | highlight: $select.search"></div>
+                                <ui-select-choices repeat="{id:player._id, name:player.name} as player in Tags | filter: {type: 'Player', teamId: needUpdate.team_id} | filter: $select.search "> 
+                                     <!--| propsFilter: {name: $select.search, team: $select.search}-->
+                                    <!--<img class="ui-select-match-img" alt='{{player.team}}' ng-src='{{match.data[player.team._id].logo}}'>-->
+                                    <div ng-bind-html=" player.name.en | highlight: $select.search"></div>
                                 </ui-select-choices>
                             </ui-select>
                             <ui-select ng-hide="needUpdate.playerscount == 1" limit=2 on-select="checkSelection" multiple reset-search-input="true" ng-model="needUpdate.players"
@@ -257,8 +270,8 @@
                                 <ui-select-match placeholder="&nbsp;&nbsp;Select player names"><img class="ui-select-match-img" alt="$item.team" ng-src="{{match.data[$item.team].logo}}">                                    {{$item.name}}
                                 </ui-select-match>
                                 <ui-select-choices repeat="player in players | filter: (filterTeamPlayers || '') && {team: needUpdate.team} | propsFilter: {name: $select.search, team: $select.search}">
-                                    <img class="ui-select-match-img" alt='{{player.team}}' ng-src='{{match.data[player.team].logo}}'>
-                                    <div ng-bind-html=" player.name | highlight: $select.search"></div>
+                                    <!--<img class="ui-select-match-img" alt='{{player.team}}' ng-src='{{match.data[player.team].logo}}'>-->
+                                    <div ng-bind-html="player.name | highlight: $select.search"></div>
                                 </ui-select-choices>
                             </ui-select>
                         </div>
