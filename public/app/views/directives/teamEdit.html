@@ -120,7 +120,7 @@
             <div ng-show="type=='edit'">
                 <div class="panel-footer">
                     <btn ng-click="selectedItem = null;  loading = true" class="btn btn-default pull-right">Cancel</btn>
-                    <btn ladda="view.busy" ng-click="UpdateItem(selectedItem)" data-style="zoom-out" class="btn do btn-space pull-right">Update</btn>
+                    <btn ladda="view.busy" ng-click="updateItem(selectedItem)" data-style="zoom-out" class="btn do btn-space pull-right">Update</btn>
                 </div>
             </div>
             <div ng-show="type=='create'">

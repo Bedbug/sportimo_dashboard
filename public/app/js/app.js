@@ -5666,6 +5666,13 @@
                     console.log("ID: " + parserid);
                 }
 
+                $scope.updateItem = function (item) {
+                    console.log(item);
+                    item.save().then(function (res) {
+                        toaster.pop("success", "Task Completed", res);
+                    })
+                };
+
                 $scope.openedCal = {};
 
                 $scope.openCal = function ($event, whichCal) {
@@ -8499,42 +8506,42 @@
             });
 
         }
-        
+
         vm.view = {};
-        
-        vm.updateModerationStatus = function(modObject){
+
+        vm.updateModerationStatus = function (modObject) {
             vm.view.busy = true;
-            
+
             $http({
                 method: 'PUT',
-                url: $rootScope.servers[$rootScope.serverEnvironment].game_server + 'v1/moderation/' + vm.matchid + '/service/'+(vm.match.data.moderation[0].active?'resume':'pause'),
+                url: $rootScope.servers[$rootScope.serverEnvironment].game_server + 'v1/moderation/' + vm.matchid + '/service/' + (vm.match.data.moderation[0].active ? 'resume' : 'pause'),
                 data: modObject
             }).then(function successCallback(response) {
-                 vm.view.busy = false;
+                vm.view.busy = false;
             }, function errorCallback(response) {
                 console.log(repsonse);
             });
         }
-        
+
         var storedModObject = null;
         vm.toggleNewModeration = function (form) {
-          
+
             form.$dirty = true;
 
             if (vm.match.data.automoderation) {
-               
+
                 if (storedModObject)
-                     vm.match.data.moderation[0] = storedModObject;
+                    vm.match.data.moderation[0] = storedModObject;
                 else
-                     vm.match.data.moderation[0] = {
+                    vm.match.data.moderation[0] = {
                         "type": "rss-feed",
-                        "parserid":  (vm.match.data.parserids && vm.match.data.parserids["Stats"])?vm.match.data.parserids["Stats"]:null,
+                        "parserid": (vm.match.data.parserids && vm.match.data.parserids["Stats"]) ? vm.match.data.parserids["Stats"] : null,
                         "parsername": "Stats",
                         "active": true
                     }
             }
             else {
-                 
+
                 if (vm.match.data.moderation[0])
                     storedModObject = vm.match.data.moderation[0];
                 vm.match.data.moderation[0] = null;
