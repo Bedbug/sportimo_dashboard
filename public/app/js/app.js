@@ -4822,7 +4822,7 @@
 
         vm.CreateMatchEvent = function () {
             vm.view.busy = true;
-            var match = {};
+            var match = _.cloneDeep(vm.scheduledMatch);
             if (vm.scheduledMatch.home_team._id.$oid) {
                 match.home_team = vm.scheduledMatch.home_team._id.$oid;
                 match.away_team = vm.scheduledMatch.away_team._id.$oid;
@@ -4830,8 +4830,18 @@
                 match.home_team = vm.scheduledMatch.home_team._id;
                 match.away_team = vm.scheduledMatch.away_team._id;
             }
-            match.competition = vm.scheduledMatch.competition;
-            match.start = vm.scheduledMatch.start;
+            // match.competition = vm.scheduledMatch.competition;
+            // match.start = vm.scheduledMatch.start;
+            delete match.color;
+
+            if (match.parserids.Stats) {
+                match.moderation = [{
+                    "type": "rss-feed",
+                    "parserid": match.parserids.Stats,
+                    "parsername": "Stats",
+                    "active": false
+                }];
+            }
 
             ScheduleService.addMatch(match).then(function (res) {
                 res.home_team = vm.scheduledMatch.home_team;
@@ -8410,7 +8420,8 @@
         vm.selectedSaved = {};
         vm.parsedFavoriteQuestions = [];
         vm.parseFavoriteQuestions = function () {
-            vm.parsedFavoriteQuestions = QuestionsService.parseFavorites(vm.match.data);
+            if (vm.match.data)
+                vm.parsedFavoriteQuestions = QuestionsService.parseFavorites(vm.match.data);
         }
 
         vm.setSavedQuestion = function (question) {
