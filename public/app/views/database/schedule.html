@@ -91,14 +91,14 @@
                                     <div class="moving-self-heading">Match DateTime</div>
 
                                     <p class="input-group">
-                                        <input class="form-control" data-ng-model="selectedMatch.start" data-date-time-input="DD/MM/YYYY H:mm" />
+                                        <input class="form-control" data-ng-model="selectedMatch.start" data-date-time-input="DD/MM/YYYY TH:mm Z" />
                                         <!-- ngIf: isOpen -->
                                         <span class="input-group-btn">
                                         <button type="button" ng-click="openedCalendar = 1" class="btn btn-default"><em class="fa fa-calendar"></em></button>
                                     </span>
                                     </p>
                                 </div>
-                                <datetimepicker style="position:absolute; top:0px; right: 13px; z-index: 99;" class="card events-self pull-right" data-on-set-time="OnSet(newDate, oldDate)"
+                                <datetimepicker  class="matchDateTime card events-self pull-right" data-on-set-time="OnSet(newDate, oldDate)"
                                 ng-show="openedCalendar==1" data-ng-model="selectedMatch.start"></datetimepicker>
 
                             </div>
@@ -260,14 +260,14 @@
                                     <div class="moving-self-heading">Match DateTime</div>
 
                                     <p class="input-group">
-                                        <input class="form-control" data-ng-model="scheduledMatch.start" data-date-time-input="DD/MM/YYYY H:mm" />
+                                        <input class="form-control" data-ng-model="scheduledMatch.start" data-date-time-input="DD/MM/YYYY TH:mm Z" />
                                         <!-- ngIf: isOpen -->
                                         <span class="input-group-btn">
                                         <button type="button" ng-click="openedCalendar = 1" class="btn btn-default"><em class="fa fa-calendar"></em></button>
                                     </span>
                                     </p>
                                 </div>
-                                <datetimepicker style="position:absolute; top:0px; right: 13px; z-index: 99;" class="card events-self pull-right" data-on-set-time="OnSet(newDate, oldDate)"
+                                <datetimepicker class="matchDateTime card events-self pull-right" data-on-set-time="OnSet(newDate, oldDate)"
                                 ng-show="openedCalendar==1" data-ng-model="scheduledMatch.start"></datetimepicker>
 
                                 <!--

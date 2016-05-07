@@ -1643,6 +1643,17 @@ height: 43px;
         width: 45%;
     }
 }*/
+
+.matchDateTime{
+    position: absolute;
+    top: 0px;
+    right: 13px;
+    z-index: 99;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid #ccc;
+    box-shadow: 7px 19px rgba(0,0,0,0.1);
+}
+
 .timeline-inverted {
     margin-top: 0 !important;
 }
@@ -1651,6 +1662,9 @@ height: 43px;
 .tab-content > .active {
     display: inline-block;
     width: 100%;
+    -webkit-animation: 0.8s fadeInUp ;
+    -o-animation: 0.8s fadeInUp ;
+    animation:  0.8s fadeInUp ;
 /*    display: block;*/
     /*overflow-y: scroll;*/
     /*max-height: 510px;*/
@@ -2083,6 +2097,12 @@ height: 43px;
 .glyphicon.glyphicon-arrow-left:before {
  content:"\e091";
 }
+
+.glyph-left_arrow:before { content: "\f060"; }
+
+.glyph-right_arrow:before { content: "\f061"; }
+
+
 
 .glyphicon.glyphicon-chevron-left:before {
   content: "\f053";

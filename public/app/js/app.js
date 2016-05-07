@@ -4837,7 +4837,7 @@
                 res.home_team = vm.scheduledMatch.home_team;
                 res.away_team = vm.scheduledMatch.away_team;
 
-                $scope.events.push(res.data);
+                $scope.events.push(res);
                 vm.scheduledMatch = {};
                 RefreshCalendar();
                 vm.LoadedDT.DataTable.draw();
