@@ -1,6 +1,6 @@
 <div class="col-md-6 panel">
     <div class="panel-heading"></div>
-    <div class="panel  panel-highlighted">
+    <div ng-if="stats.match.stats[0]" class="panel  panel-highlighted">
         <div class="panel-heading"><strong>Match</strong></div>
         <div class="table-responsive">
             <table class="table table-bordered table-hover">
@@ -29,7 +29,7 @@
         </div>
     </div>
 
-    <div class="panel  panel-highlighted">
+    <div ng-if="stats.teams[0]" class="panel  panel-highlighted">
         <div class="panel-heading"><strong>Teams</strong></div>
         <div class="table-responsive">
             <table class="table table-bordered table-hover">
@@ -60,7 +60,7 @@
         </div>
     </div>
 
-    <div class="panel  panel-highlighted">
+    <div ng-if="stats.players[0]" class="panel panel-highlighted">
         <div class="panel-heading"><strong>Players</strong></div>
         <div class="table-responsive">
             <table class="table table-bordered table-hover">
@@ -82,6 +82,33 @@
                                 <span ng-repeat="stat in player.stats" class="list-group-item striped bt0"><span class="label label-inverse pull-right">{{stat.value}}</span>
                                 <!--<em class="fa fa-fw fa-calendar mr"></em>-->
                                  {{transStat(stat.key)}}</span>
+                                <!--<span ng-repeat="stat in stats.match.stats"><strong>{{stat.key}}</strong>:{{stat.value}}</br></span></td>-->
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-6 panel">
+    <div class="panel-heading"></div>
+    <div ng-if="stats.system.stats[0]" class="panel  panel-highlighted">
+        <div class="panel-heading"><strong>System</strong></div>
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>                         
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>     
+                        <td>
+                            <div class="list-group mb0">
+                                <span ng-repeat="stat in stats.system.stats" class="list-group-item striped bt0"><span class="label label-inverse pull-right">{{stat.value}}</span>
+                                <!--<em class="fa fa-fw fa-calendar mr"></em>-->
+                                {{transStat(stat.key)}}</span>
                                 <!--<span ng-repeat="stat in stats.match.stats"><strong>{{stat.key}}</strong>:{{stat.value}}</br></span></td>-->
                             </div>
                         </td>

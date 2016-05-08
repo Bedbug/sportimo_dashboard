@@ -2966,7 +2966,11 @@
         };
         return {
             transStat: function (stat) {
-                return statsTransalations[stat];
+                var trStat = statsTransalations[stat];
+                if (trStat)
+                    return statsTransalations[stat];
+                else
+                    return stat;
             },
             ParseStats: function (payload) {
 
@@ -4834,7 +4838,7 @@
             // match.start = vm.scheduledMatch.start;
             delete match.color;
 
-            if (match.parserids.Stats) {
+            if (match.parserids && match.parserids.Stats) {
                 match.moderation = [{
                     "type": "rss-feed",
                     "parserid": match.parserids.Stats,
@@ -7527,8 +7531,11 @@
                 console.log(evt);
 
             switch (evt.type) {
+                case "Stats_changed":
+                 $scope.stats = ParseMatchStats(evt.data);
+                break;
                 case "Event_added":
-                    if (evt.data.timeline_event)
+                    if (evt.data.timeline_event && evt.data.type.indeOf("Starts") < 0 &&  evt.data.type.indeOf("Ends") < 0)
                         $scope.match.data.timeline[evt.data.state].events.push(evt.data);
                     break;
                 case "Event_updated":
@@ -7592,6 +7599,13 @@
                 $scope.match = AddHooks(response.data);
                 vm.match.data.automoderation = vm.match.data.moderation[0] ? true : false;
                 $scope.stats = ParseMatchStats(response.data.data.stats);
+                QuestionsService.AllByMatch(vm.matchid).then(function (questions) {
+                    vm.questions = questions;
+                    vm.ClosedQuestions = _.filter(questions, { status: 1 }).length;
+                    vm.parseFavoriteQuestions();
+
+                })
+
                 vm.pushLoading = false;
             }, function errorCallback(response) {
                 vm.pushLoading = false;
@@ -7608,10 +7622,17 @@
                     stats: []
                 },
                 teams: [],
-                players: []
+                players: [],
+                system: {stats:[]}
             }
 
-            // Match
+            var system = _.remove(clonedStats, { 'name': 'system' });
+            _.forOwn(system[0], function (value, key) {
+                if (key != 'name' && key != 'id')
+                    stats.system.stats.push({ key: key, value: value });
+            })
+            
+            
             var match = _.remove(clonedStats, { 'name': 'match' });
             if (match[0])
                 stats.match.id = match[0].id;
@@ -7638,7 +7659,7 @@
                 stats.teams.push(newTeam);
             });
 
-            _.each(data, function (player) {
+            _.each(clonedStats, function (player) {
                 var newPlayer = { id: null, name: null, stats: [] };
                 _.forOwn(player, function (value, key) {
                     if (key == 'name')
@@ -8054,6 +8075,11 @@
             else return null;
         };
 
+        $scope.getEventNameFromStat = function (stats) {
+
+            return _.keys(stats)[0];
+        }
+
         //{"id":43,"data":"{"event":"message","data":{"message":".","match_id":421}}"}
         $scope.complete = false;
         $scope.humanizedEvent = "";
@@ -8111,6 +8137,12 @@
                 console.log(response.data);
                 $scope.match = AddHooks(response.data);
                 vm.match.data.automoderation = vm.match.data.moderation[0] ? true : false;
+                QuestionsService.AllByMatch(vm.matchid).then(function (questions) {
+                    vm.questions = questions;
+                    vm.ClosedQuestions = _.filter(questions, { status: 1 }).length;
+                    vm.parseFavoriteQuestions();
+
+                })
             }, function errorCallback(response) {
                 // called asynchronously if an error occurs
                 // or server returns response with an error status.
@@ -8478,15 +8510,14 @@
             })
         }
 
-        QuestionsService.AllByMatch(vm.matchid).then(function (questions) {
+        // We request this after loading match now
+        //
+        // QuestionsService.AllByMatch(vm.matchid).then(function (questions) {
+        //     vm.questions = questions;
+        //     vm.ClosedQuestions = _.filter(questions, { status: 1 }).length;
+        //     vm.parseFavoriteQuestions();
 
-            vm.questions = questions;
-
-            vm.ClosedQuestions = _.filter(questions, { status: 1 }).length;
-
-            vm.parseFavoriteQuestions();
-
-        })
+        // })
 
         vm.CreateSendQuestion = function (question) {
             QuestionsService.Save(question).then(function (res) {

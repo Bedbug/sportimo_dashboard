@@ -1445,12 +1445,13 @@ height: 43px;
 }
 .score {
     font-weight: bolder;
-    font-size: 70px;
+    font-size: 60px;
 }
 .match-time {
     margin-bottom: -50px;
+    margin-left: 5px;
     font-weight: bold;
-    font-size: 27px;
+    font-size: 20px;
 }
 .match-segment-title {
     font-size: medium;
