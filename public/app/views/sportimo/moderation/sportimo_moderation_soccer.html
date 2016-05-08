@@ -8,10 +8,10 @@
             <div class="match-logos" style="max-width: 450px;
     margin: auto;">
                 <div class="team-logo col-sm-4">
-                    <img ng-src="{{match.data.home_team.logo}}" />
+                    <img class="thumb128" ng-src="{{match.data.home_team.logo}}" />
 
                     <div></div>
-                    <p>{{match.data.home_team.name.en}}</p>
+                   <a class="data-link" ng-href="#/app/teams/{{match.data.home_team._id}}">{{match.data.home_team.name.en}}</a>
                 </div>
                 <div class="col-sm-4">
                     <div ng-show="match.sport.segments[ match.data.timeline.length - 1].timed" class="match-time">
@@ -19,7 +19,7 @@
                     </div>
                     <div ng-show="match.data.state > 0" class="match-info">
                         <small class="text-muted"></small>
-                        <div class="score">{{match.data?(GetStat(match.data.home_team._id,'g') || 0) +" - "+ (GetStat(match.data.away_team._id,'g')
+                        <div class="score">{{match.data?(GetStat(match.data.home_team._id,'Goal') || 0) +" - "+ (GetStat(match.data.away_team._id,'Goal')
                             || 0): ''}}
                         </div>
 
@@ -31,10 +31,10 @@
                     </div>
                 </div>
                 <div class="team-logo  col-sm-4">
-                    <img ng-src="{{match.data.away_team.logo}}" />
+                    <img class="thumb128" ng-src="{{match.data.away_team.logo}}" />
 
                     <div></div>
-                    <p> {{match.data.away_team.name.en}}</p>
+                   <a class="data-link" ng-href="#/app/teams/{{match.data.away_team._id}}">{{match.data.away_team.name.en}}</a>
                 </div>
             </div>
 

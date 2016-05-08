@@ -1395,6 +1395,38 @@ background-color: #F7F7F7;
     /*margin-left: 5%;*/
 }
 
+.mini-match-panel{
+    width:200px;
+}
+
+.data-link{
+   color: inherit;
+}
+
+.data-link:link .data-link:visited{
+    text-decoration: none;
+}
+
+.data-link:hover{
+    text-decoration: none !important;
+    color: #ccc !important;
+}
+
+.mini-match-panel img{
+    width: auto;
+}
+
+.mini-match-panel .match-status .score {
+    font-size: 26px;
+    display: block;
+}
+
+.tab-content{
+    border-left: 1px solid #dddddd;
+    border-right: 1px solid #dddddd;
+    border-bottom: 1px solid #dddddd;
+}
+
 /*.scheduled-match .panel{
     min-height: 270px;
 }*/

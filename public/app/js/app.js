@@ -4712,7 +4712,7 @@
     ScheduleService.$inject = ['$resource', 'Restangular', '$rootScope', '$q'];
     StatsComService.$inject = ['$resource', 'Restangular', '$rootScope', '$q', 'TagsService'];
 
-    ScheduleController.$inject = ['$scope', 'TeamsService', 'PlayersService', 'ScheduleService', 'DTOptionsBuilder', 'DTColumnDefBuilder', '$state', 'CompetitionsService', 'StatsComService'];
+    ScheduleController.$inject = ['$rootScope', '$scope', 'TeamsService', 'PlayersService', 'ScheduleService', 'DTOptionsBuilder', 'DTColumnDefBuilder', '$state', 'CompetitionsService', 'StatsComService'];
 
     function StatsComService($resource, Restangular, $rootScope, $q, TagsService) {
 
@@ -4748,9 +4748,16 @@
         }
     }
 
-    function ScheduleController($scope, TeamsService, PlayersService, ScheduleService, DTOptionsBuilder, DTColumnDefBuilder, $state, CompetitionsService, StatsComService) {
+    function ScheduleController($rootScope, $scope, TeamsService, PlayersService, ScheduleService, DTOptionsBuilder, DTColumnDefBuilder, $state, CompetitionsService, StatsComService) {
 
         var vm = $scope;
+
+        if ($rootScope.upcomingDrawer == null)
+            $rootScope.upcomingDrawer = true;
+            
+        vm.toggleUpcomming = function(){
+           $rootScope.upcomingDrawer = !$rootScope.upcomingDrawer; 
+        }
 
         vm.view = {
             inspectorPanel: true,
@@ -5537,7 +5544,7 @@
                 var vm = $scope;
 
                 vm.searchFor = function (forQuery) {
-                    $window.open('https://www.google.gr/search?q=' + forQuery + '+logo&tbm=isch', '_blank');
+                    $window.open('https://www.google.gr/search?q=' + forQuery +'%20'+vm.search+'+logo&tbm=isch', '_blank');
                 };
 
 
@@ -6096,7 +6103,7 @@
 
     PlayersService.$inject = ['$resource', 'Restangular', '$q', '$rootScope'];
     TeamsService.$inject = ['$resource', 'Restangular', '$q', '$rootScope'];
-    TeamsController.$inject = ['$scope', 'TeamsService', 'PlayersService', 'TagsService', 'DTOptionsBuilder', 'DTColumnDefBuilder', 'Upload', '$window', '$filter', '$timeout'];
+    TeamsController.$inject = ['$stateParams', '$scope', 'TeamsService', 'PlayersService', 'TagsService', 'DTOptionsBuilder', 'DTColumnDefBuilder', 'Upload', '$window', '$filter', '$timeout'];
 
     function MultiLangText() {
         return {
@@ -6172,7 +6179,7 @@
         };
     };
 
-    function TeamsController($scope, TeamsService, PlayersService, TagsService, DTOptionsBuilder, DTColumnDefBuilder, Upload, $window, $filter, $timeout) {
+    function TeamsController($stateParams, $scope, TeamsService, PlayersService, TagsService, DTOptionsBuilder, DTColumnDefBuilder, Upload, $window, $filter, $timeout) {
 
 
         var vm = $scope;
@@ -6182,20 +6189,24 @@
         vm.selectedItem = null;
         vm.Tags = null;
 
-
+        var preselected = $stateParams.id;
 
         TagsService.getAllTags().then(function (tags) {
             vm.loading.teams = true;
             vm.Tags = tags;
+
             TeamsService.getAllTeams().then(function (teams) {
                 vm.Teams = teams;
-
                 vm.gridOptions.data = teams;
-
-                vm.leagues = _.pluck(_.uniq(vm.Teams, 'league'), 'league');
-
+                vm.leagues = _.map(_.uniq(vm.Teams, 'league'), 'league');
                 vm.loading.teams = false;
 
+                if (preselected) {
+                    vm.selectedItem = _.find(vm.Teams, function (o) {
+                        return o._id == preselected;
+                    });
+                    vm.view.selectedLoading = false;
+                }
             }, function (error) { });
         })
 
@@ -6236,11 +6247,11 @@
                 gridApi.selection.on.rowSelectionChanged($scope, function (row) {
                     if (vm.selectedItem) {
                         vm.view.selectedLoading = true;
-                        $timeout(function () {
-                            vm.selectedItem = row.entity;
-                            vm.view.selectedLoading = false;
-                            $scope.gridApi.core.handleWindowResize();
-                        }, 400)
+                        // $timeout(function () {
+                        vm.selectedItem = row.entity;
+                        vm.view.selectedLoading = false;
+                        $scope.gridApi.core.handleWindowResize();
+                        // }, 400)
                     } else {
                         vm.reload = true;
                         vm.selectedItem = row.entity;
@@ -7532,10 +7543,11 @@
 
             switch (evt.type) {
                 case "Stats_changed":
-                 $scope.stats = ParseMatchStats(evt.data);
-                break;
+                    $scope.match.data.stats = evt.data;
+                    $scope.stats = ParseMatchStats(evt.data);
+                    break;
                 case "Event_added":
-                    if (evt.data.timeline_event && evt.data.type.indeOf("Starts") < 0 &&  evt.data.type.indeOf("Ends") < 0)
+                    if (evt.data.timeline_event && evt.data.type.indexOf("Starts") < 0 && evt.data.type.indexOf("Ends") < 0)
                         $scope.match.data.timeline[evt.data.state].events.push(evt.data);
                     break;
                 case "Event_updated":
@@ -7623,7 +7635,7 @@
                 },
                 teams: [],
                 players: [],
-                system: {stats:[]}
+                system: { stats: [] }
             }
 
             var system = _.remove(clonedStats, { 'name': 'system' });
@@ -7631,8 +7643,8 @@
                 if (key != 'name' && key != 'id')
                     stats.system.stats.push({ key: key, value: value });
             })
-            
-            
+
+
             var match = _.remove(clonedStats, { 'name': 'match' });
             if (match[0])
                 stats.match.id = match[0].id;
@@ -9624,6 +9636,7 @@
     angular
         .module('app.dashboard')
         .directive('matchPanels', matchPanels)
+        .directive('matchMiniPanels', matchMiniPanels)
         .controller('DashboardController', DashboardController);
 
     matchPanels.$inject = ['$timeout', 'TagsService'];
@@ -9632,6 +9645,37 @@
         return {
             restrict: 'E',
             templateUrl: './app/views/directives/matchPanels.html',
+            scope: {
+                ngModel: '=ngModel',
+            },
+            controller: ['$scope', '$state', function ($scope, $state) {
+                console.log("Directive Matches-List Loaded");
+
+                $scope.formatDate = function (stringDate) {
+                    return moment(stringDate).calendar(); //format("dddd, MMMM Do YYYY, h:mm:ss a");
+                };
+
+                $scope.moderateMatch = function (matchid, sport) {
+                    $state.go("app.match-moderation-" + (sport || 'soccer'), {
+                        id: (matchid)
+                    });
+                };
+
+                $scope.getMatchStatus = function (status) {
+
+                    if (status == "0") return "Pre Game";
+                };
+
+            }]
+        };
+    };
+
+    matchMiniPanels.$inject = ['$timeout', 'TagsService'];
+
+    function matchMiniPanels($timeout, TagsService) {
+        return {
+            restrict: 'E',
+            templateUrl: './app/views/directives/matchMiniPanels.html',
             scope: {
                 ngModel: '=ngModel',
             },
@@ -16649,7 +16693,7 @@
             })
             /* END MATCHES SCHEDULE */
             .state('app.teams', {
-                url: '/teams',
+                url: '/teams/:id',
                 title: 'Teams',
                 templateUrl: helper.basepath('database/teams.html'),
                 resolve: helper.resolveFor('restangular', 'toaster', 'dirPagination', 'moment', 'datatables', 'ngFileUpload', 'localytics.directives', 'ui.select', 'ui.grid'),

@@ -8,13 +8,13 @@
                 <div class="form-group">
                     <div class="col-sm-4">
                         <label>Image</label>
-                        <div class="event-team-logo" ng-show="selectedItem._id">
-                            <img ng-if="selectedItem.pic" class="img-responsive dragover" ng-src="{{selectedItem.pic}}" />
-                            <image-upload folder="players" should-update="true" filename="selectedItem._id" ng-model="selectedItem" pic-key="pic"></image-upload>
+                        <div class="event-team-logo text-center" ng-show="selectedItem._id">
+                            <img ng-if="selectedItem.logo" class="thumb256 m" ng-src="{{selectedItem.logo}}" />
+                            <image-upload folder="teams" search="transparent png 256" should-update="true" filename="selectedItem._id" ng-model="selectedItem" pic-key="logo"></image-upload>
                         </div>
-                        <div class="event-team-logo" ng-show="!selectedItem._id">
-                            <p ng-if="!selectedItem.pic" class="muted">This data item does not have an ID yet.</br>Therefore you cannot upload an image until it has.</br>However you can pass an image url in the settings tab.</p>
-                            <img ng-if="selectedItem.pic" class="img-responsive dragover" ng-src="{{selectedItem.pic}}" />
+                        <div class="event-team-logo text-center" ng-show="!selectedItem._id">
+                            <p ng-if="!selectedItem.logo" class="muted">This data item does not have an ID yet.</br>Therefore you cannot upload an image until it has.</br>However you can pass an image url in the settings tab.</p>
+                            <img ng-if="selectedItem.logo" class="thumb256 m" ng-src="{{selectedItem.logo}}" />
                         </div>
                     </div>
                     <div class="col-sm-8">
@@ -46,7 +46,7 @@
                                     <table width="100%" class="table table-striped table-bordered table-hover">
                                         <thead>
                                             <tr>
-                                                <!--<th>Pic</th>-->
+                                                <!--<th>logo</th>-->
                                                 <th>Name</th>
                                                 <th>Position</th>
                                                 <!--<th>ID</th>-->
@@ -57,7 +57,7 @@
                                             <tr ng-repeat="player in selectedTeam.players">
                                                 <!--<td>
                                                     <div class="center ">
-                                                        <img ng-click="searchFor(player.name.en);" ng-src="http://ep7t6ae.cloudimg.io/s/height/50/{{player.pic}}">
+                                                        <img ng-click="searchFor(player.name.en);" ng-src="http://ep7t6ae.cloudimg.io/s/height/50/{{player.logo}}">
                                                     </div>
                                                 </td>-->
                                                 <td>{{player.name.en}}</td>
@@ -103,7 +103,7 @@
                             <div class="col-xs-12" style="margin-top:20px">
                                 <div class="form-group">
                                     <label>Image url</label>
-                                    <input type="text" class="form-control" ng-model="selectedItem.pic" />
+                                    <input type="text" class="form-control" ng-model="selectedItem.logo" />
                                     <multi-lang-text ng-model="parserid" language-object="selectedItem.parserids" default="Stats" label="Parsers"></multi-lang-text>
                                     <btn ladda="view.busy" ng-click="updateByFeedParser(selectedItem, parserid.value)" data-style="zoom-out" class="col-xs-12 btn btn-lg edit">Update data by {{parserid.key}} parser and id:{{parserid.value}}</btn>
                                 </div>
