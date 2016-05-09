@@ -4,12 +4,12 @@
 
 <div class="panel">
     <div class="panel-body">
-        <button ng-click="toggleUpcomming()" type="button" ng-class="upcomingDrawer?'':'edit'" class="mb-sm btn btn-primary pull-left edit"><strong>Show upcoming</strong></button>
+        <button ng-click="toggleUpcomming()" type="button" ng-class="upcomingDrawer?'':'edit'" class="mb-sm btn btn-primary pull-left"><strong>Show upcoming</strong></button>
         <button ng-click="view.addPanel = true" type="button" class="mb-sm btn btn-primary pull-right"><strong>Schedule Match</strong></button>
     </div>
 </div>
 
-<div  ng-show="upcomingDrawer" class="col-md-12">
+<div ng-show="upcomingDrawer" class="col-md-12">
     <div class="panel-body p0">
         <match-mini-panels ng-model="events"></match-mini-panels>
     </div>

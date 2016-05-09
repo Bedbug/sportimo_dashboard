@@ -1,5 +1,5 @@
 <div>
-    <div ng-repeat="match in ngModel" class="col-md-6 pl0 mini-match-panel">
+    <div ng-repeat="match in ngModel" class="pl0  mini-match-panel">
         <div class="panel">
             <!--{{match}}-->
             <div ng-show="match.state == 0" class="panel-heading  text-center">
@@ -7,7 +7,7 @@
             </div>
 
             <div ng-show="match.state > 0" class="panel-heading match-status text-center">
-                <strong>Live</strong><br/> <a class="data-link" ng-href="#/app/teams/{{match.home_team._id}}">{{match.home_team.name.en}}</a> - <a class="data-link" ng-href="#/app/teams/{{match.away_team._id}}">{{match.away_team.name.en}}</a>
+                <strong>Live</strong><br/> <team-link teamid="match.home_team._id" teamshort="match.home_team.name.short" teamfull="match.home_team.name.en"></team-link> - <team-link teamid="match.away_team._id" teamshort="match.away_team.name.short" teamfull="match.away_team.name.en"></team-link>
             </div>
 
             <div class="panel-body pb0">

@@ -7649,7 +7649,7 @@
             if (match[0])
                 stats.match.id = match[0].id;
             _.forOwn(match[0], function (value, key) {
-                console.log(key + ":" + value);
+                // console.log(key + ":" + value);
                 if (key != 'name' && key != 'id')
                     stats.match.stats.push({ key: key, value: value });
             })
@@ -8061,8 +8061,8 @@
             }).then(function successCallback(response) {
                 console.log(response);
 
-
-                if (response.data.playerscount == response.data.players.length) {
+               
+                if (response.data.players && response.data.playerscount == response.data.players.length) {
                     $scope.InNeedUpdateEvents.pop();
                     console.log($scope.InNeedUpdateEvents.length);
                 }
@@ -9636,6 +9636,7 @@
     angular
         .module('app.dashboard')
         .directive('matchPanels', matchPanels)
+        .directive('teamLink',teamLink)
         .directive('matchMiniPanels', matchMiniPanels)
         .controller('DashboardController', DashboardController);
 
@@ -9700,7 +9701,27 @@
             }]
         };
     };
+    
+    
+    function teamLink() {
+        return {
+            restrict: 'E',
+            templateUrl: './app/views/directives/team-link.html',
+            scope: {
+                teamid: '=teamid',
+                teamfull: '=teamfull',
+                teamshort: '=teamshort'
+            },
+            controller: ['$scope', '$state', function ($scope, $state) {
+                console.log("Directive Team Link Loaded");
+                if($scope.teamshort == null)
+                $scope.teamshort = $scope.teamfull;
+               
 
+            }]
+        };
+    };
+    
     DashboardController.$inject = ['$rootScope', '$scope', 'ChartData', '$timeout', '$websocket', '$http', '$state', 'Colors', 'TagsService'];
 
     function DashboardController($rootScope, $scope, ChartData, $timeout, $websocket, $http, $state, Colors, TagsService) {
