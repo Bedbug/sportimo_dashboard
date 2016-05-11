@@ -4754,9 +4754,9 @@
 
         if ($rootScope.upcomingDrawer == null)
             $rootScope.upcomingDrawer = true;
-            
-        vm.toggleUpcomming = function(){
-           $rootScope.upcomingDrawer = !$rootScope.upcomingDrawer; 
+
+        vm.toggleUpcomming = function () {
+            $rootScope.upcomingDrawer = !$rootScope.upcomingDrawer;
         }
 
         vm.view = {
@@ -5544,7 +5544,7 @@
                 var vm = $scope;
 
                 vm.searchFor = function (forQuery) {
-                    $window.open('https://www.google.gr/search?q=' + forQuery +'%20'+vm.search+'+logo&tbm=isch', '_blank');
+                    $window.open('https://www.google.gr/search?q=' + forQuery + '%20' + vm.search + '+logo&tbm=isch', '_blank');
                 };
 
 
@@ -7040,6 +7040,7 @@
         .service('SponsorsService', SponsorsService)
         .service('QuestionsService', QuestionsService)
         .service('CountriesService', CountriesService)
+        .service('UsersService', UsersService)
         .controller('SportimoModerationSoccerController', SportimoModerationSoccerController)
         .factory('ngClipboard', function ($compile, $rootScope, $document) {
             return {
@@ -7100,9 +7101,8 @@
 
     PrizesService.$inject = ['$rootScope', '$q', 'Restangular'];
     PoolsService.$inject = ['$rootScope', '$q', 'Restangular'];
-
-
     QuestionsService.$inject = ['$rootScope', '$q', 'Restangular'];
+    UsersService.$inject = ['$rootScope', '$q', 'Restangular'];
 
     function QuestionsService($rootScope, $q, Restangular) {
         var API = Restangular.all('v1/questions');
@@ -7393,10 +7393,28 @@
 
     }
 
+    function UsersService($rootScope, $q, Restangular) {
+        var API = Restangular.all('v1/users');
 
-    SportimoModerationSoccerController.$inject = ['StatsComService', 'CompetitionsService', 'StatsService', 'TagsService', 'ngClipboard', '$location', '$anchorScroll', 'QuestionsService', 'LeaderboardsService', 'CountriesService', 'PrizesService', 'SponsorsService', 'PoolsService', '$scope', 'ngDialog', '$stateParams', '$http', '$rootScope', '$timeout', '$interval', '$mdToast', '$mdBottomSheet', '$window'];
+        Restangular.setBaseUrl($rootScope.servers[$rootScope.serverEnvironment].game_server);
+        Restangular.setRestangularFields({
+            id: "_id"
+        });
 
-    function SportimoModerationSoccerController(StatsComService, CompetitionsService, StatsService, TagsService, ngClipboard, $location, $anchorScroll, QuestionsService, LeaderboardsService, CountriesService, PrizesService, SponsorsService, PoolsService, $scope, ngDialog, $stateParams, $http, $rootScope, $timeout, $interval, $mdToast, $mdBottomSheet, $window) {
+        return {
+            getUserActivityByMatch: function (matchid) {
+                var Defer = $q.defer();
+                API.one('activity').getList(matchid).then(function (items) {
+                    Defer.resolve(items);
+                });
+                return Defer.promise;
+            }
+        }
+    };
+
+    SportimoModerationSoccerController.$inject = ['UsersService', 'StatsComService', 'CompetitionsService', 'StatsService', 'TagsService', 'ngClipboard', '$location', '$anchorScroll', 'QuestionsService', 'LeaderboardsService', 'CountriesService', 'PrizesService', 'SponsorsService', 'PoolsService', '$scope', 'ngDialog', '$stateParams', '$http', '$rootScope', '$timeout', '$interval', '$mdToast', '$mdBottomSheet', '$window'];
+
+    function SportimoModerationSoccerController(UsersService, StatsComService, CompetitionsService, StatsService, TagsService, ngClipboard, $location, $anchorScroll, QuestionsService, LeaderboardsService, CountriesService, PrizesService, SponsorsService, PoolsService, $scope, ngDialog, $stateParams, $http, $rootScope, $timeout, $interval, $mdToast, $mdBottomSheet, $window) {
 
 
         var vm = $scope;
@@ -8061,7 +8079,7 @@
             }).then(function successCallback(response) {
                 console.log(response);
 
-               
+
                 if (response.data.players && response.data.playerscount == response.data.players.length) {
                     $scope.InNeedUpdateEvents.pop();
                     console.log($scope.InNeedUpdateEvents.length);
@@ -8645,6 +8663,34 @@
             else
                 return moment(d).format(style) + " (local time)";
         }
+
+        // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        // @@
+        // @@    TAB: USERS       
+        UsersService.getUserActivityByMatch(vm.matchid).then(function (result) {
+                vm.lastUsersUpdate = moment().format("HH:mm:ss");
+                vm.matchUsers = result;
+            })
+            
+        vm.reloadUsers = $interval(function () {
+            UsersService.getUserActivityByMatch(vm.matchid).then(function (result) {
+                vm.lastUsersUpdate = moment().format("HH:mm:ss");
+                vm.matchUsers = result;
+            })
+        }, 30000);
+
+        vm.$on('$destroy', function () {
+            if (vm.reloadUsers)
+                $interval.cancel(vm.reloadUsers);
+        });
+
+        vm.greaterThan = function (prop, val) {
+            return function (item) {
+                return item[prop] > val;
+            }
+        }
+
+
 
     }
 
@@ -9636,7 +9682,7 @@
     angular
         .module('app.dashboard')
         .directive('matchPanels', matchPanels)
-        .directive('teamLink',teamLink)
+        .directive('teamLink', teamLink)
         .directive('matchMiniPanels', matchMiniPanels)
         .controller('DashboardController', DashboardController);
 
@@ -9701,8 +9747,8 @@
             }]
         };
     };
-    
-    
+
+
     function teamLink() {
         return {
             restrict: 'E',
@@ -9714,14 +9760,14 @@
             },
             controller: ['$scope', '$state', function ($scope, $state) {
                 console.log("Directive Team Link Loaded");
-                if($scope.teamshort == null)
-                $scope.teamshort = $scope.teamfull;
-               
+                if ($scope.teamshort == null)
+                    $scope.teamshort = $scope.teamfull;
+
 
             }]
         };
     };
-    
+
     DashboardController.$inject = ['$rootScope', '$scope', 'ChartData', '$timeout', '$websocket', '$http', '$state', 'Colors', 'TagsService'];
 
     function DashboardController($rootScope, $scope, ChartData, $timeout, $websocket, $http, $state, Colors, TagsService) {
