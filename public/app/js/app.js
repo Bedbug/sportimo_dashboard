@@ -2753,7 +2753,8 @@
         var directive = {
             restrict: 'EA',
             scope: {
-                'sparkline': '='
+                'sparkline': '=',
+                'ngModel': "=ngModel"
             },
             controller: Controller
         };
@@ -2774,6 +2775,7 @@
             var options = $scope.sparkline,
                 data = $element.data();
 
+
             if (!options) // if no scope options, try with data attributes
                 options = data;
             else if (data) // data attributes overrides scope options
@@ -2784,9 +2786,17 @@
 
             $element.sparkline('html', options);
 
+            $scope.$watchCollection('ngModel', function () {
+                console.log("ng:" + $scope.ngModel);
+                $element.sparkline($scope.ngModel, options);
+            })
+
+
             if (options.resize) {
                 $($window).resize(function () {
+
                     $element.sparkline('html', options);
+
                 });
             }
         }
@@ -6134,10 +6144,18 @@
 
                 }
 
-                $scope.pushLangKey = function () {
-                    $scope.lObject[$scope.newLangKey] = "";
-                    $scope.selected = $scope.newLangKey;
-                    $scope.newLangKey = null;
+                $scope.addNew = function () {
+                    $scope.selected = null;
+                }
+
+                $scope.select = function (key) {
+                    $scope.selected = key;
+                }
+
+                $scope.pushLangKey = function (key) {
+                    $scope.lObject[key] = "";
+                    $scope.selected = key;
+                    key = null;
                 };
 
                 $scope.delete = function () {
@@ -6154,7 +6172,8 @@
             scope: {
                 selected: '@default',
                 lObject: '=languageObject',
-                placeholder: '@placeholder'
+                placeholder: '@placeholder',
+                label: '@label'
             },
             controller: ['$scope', function ($scope) {
 
@@ -6166,14 +6185,23 @@
                         $scope.selected = 'en';
                 });
 
-                $scope.pushLangKey = function () {
-                    $scope.lObject[$scope.newLangKey] = "";
-                    $scope.selected = $scope.newLangKey;
-                    $scope.newLangKey = null;
+                $scope.addNew = function () {
+                    $scope.selected = null;
+                }
+
+                $scope.select = function (key) {
+                    $scope.selected = key;
+                }
+
+                $scope.pushLangKey = function (key) {
+                    $scope.lObject[key] = "";
+                    $scope.selected = key;
+                    key = null;
                 };
 
-                $scope.delete = function () {
-                    delete $scope.lObject[$scope.selected];
+                $scope.delete = function (selected) {
+                    delete $scope.lObject[selected];
+                    $scope.selected = $scope.lObject[0];
                 }
             }]
         };
@@ -8668,14 +8696,26 @@
         // @@
         // @@    TAB: USERS       
         UsersService.getUserActivityByMatch(vm.matchid).then(function (result) {
-                vm.lastUsersUpdate = moment().format("HH:mm:ss");
-                vm.matchUsers = result;
-            })
-            
+            vm.lastUsersUpdate = moment().format("HH:mm:ss");
+            vm.matchUsers = result;
+        })
+
+        vm.matchVisits = 0;
+        vm.activeUsers = 0;
+        vm.userBarValues = [];
+
         vm.reloadUsers = $interval(function () {
             UsersService.getUserActivityByMatch(vm.matchid).then(function (result) {
                 vm.lastUsersUpdate = moment().format("HH:mm:ss");
                 vm.matchUsers = result;
+                vm.matchVisits = result.length;
+                var newUserCount = _.filter(result, { isPresent: true }).length;
+
+                if (vm.activeUsers != newUserCount) {
+                    vm.userBarValues.push(newUserCount);
+                    vm.activeUsers = newUserCount;
+                }
+
             })
         }, 30000);
 
@@ -8689,6 +8729,28 @@
                 return item[prop] > val;
             }
         }
+
+        // Messages
+
+        vm.message = null;
+
+        vm.onSelected = function ($item, $model) {
+            vm.message = $item;
+
+        }
+        vm.messageTemplates = [
+            {
+                "name": "New question",
+                "title": { "en": "New Question" },
+                "msg": { "en": "A new question is comming up!" },
+                "data": {
+                    "view": "match",
+                    "matchid": "1234"
+                }
+            }
+        ]
+
+        vm.messageTemplates[0].data = JSON.stringify(vm.messageTemplates[0].data);
 
 
 
@@ -16821,7 +16883,7 @@
                 url: '/match-moderation/soccer/:id',
                 title: 'Match Moderation',
                 templateUrl: helper.basepath('sportimo/moderation/sportimo_moderation_soccer.html'),
-                resolve: helper.resolveFor('toaster', 'dirPagination', 'moment', 'moment-format', 'ui.select', 'ngDialog', 'htmlSortable', 'angularGrid', 'ngFileUpload'),
+                resolve: helper.resolveFor('toaster', 'dirPagination', 'moment', 'moment-format', 'ui.select', 'ngDialog', 'htmlSortable', 'angularGrid', 'ngFileUpload', 'classyloader'),
                 controller: 'SportimoModerationSoccerController',
                 controllerAs: 'modCtrl',
             })
