@@ -6,7 +6,7 @@
         <div class="panel articleCard">
             <div class="panel-body">
                 <div class="form-group">
-                    <div class="col-sm-4">
+                    <div class="col-sm-4 col-lg-2">
                         <label>Image</label>
                         <div class="event-team-logo text-center" ng-show="selectedItem._id">
                             <img ng-if="selectedItem.logo" style="width: 100%;" class="m" ng-src="{{selectedItem.logo}}" />
@@ -19,7 +19,7 @@
                             <img ng-if="selectedItem.logo" class="thumb256 m" ng-src="{{selectedItem.logo}}" />
                         </div>
                     </div>
-                    <div class="col-sm-8 col-md-5">
+                    <div class="col-sm-8 col-lg-5">
 
                         <multi-lang-text language-object="selectedItem.name" default="en" label="Club Name"></multi-lang-text>
 
@@ -38,7 +38,7 @@
 
                     </div>
 
-                    <tabset justified="true" class="bg-white p0 col-sm-12" style="margin-top:20px">
+                    <tabset justified="true" class="bg-white  col-sm-8 col-lg-5" style="margin-top:20px">
                         <tab>
                             <tab-heading>
                                 Players

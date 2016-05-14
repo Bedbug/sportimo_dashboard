@@ -10,7 +10,7 @@
                             <p class="input-group">
                                 <label class="checkbox-inline c-checkbox">
                         <input id="inlineCheckbox20" type="checkbox" value="option2" ng-model="activeUsers"/>
-                        <span class="fa fa-check"></span>Only Active Users</label>
+                        <span class="fa fa-check"></span>Active</label>
                                 </span>
                             </p>
                         </div>
@@ -19,7 +19,7 @@
                             <p class="input-group">
                                 <label class="checkbox-inline c-checkbox">
                         <input id="inlineCheckbox20" type="checkbox" value="option2" ng-model="kickoff"/>
-                        <span class="fa fa-check"></span>Visited after kick off</label>
+                        <span class="fa fa-check"></span>After kick off</label>
                                 </span>
                             </p>
                         </div>
@@ -28,7 +28,7 @@
                         <div class="col-md-2 mt-sm">
                             <label class="checkbox-inline c-checkbox">
                         <input id="inlineCheckbox30" type="checkbox" value="option3" ng-model="last_action"/>
-                        <span class="fa fa-check"></span>Action in the last 20 min</label>
+                        <span class="fa fa-check"></span>Last 20' Action</label>
                         </div>
 
                         <div class="col-md-2">
@@ -51,7 +51,7 @@
                 </div>
             </div>
 
-            <div class="panel panel-highlighted">
+            <div ng-show="newMessage" class="panel panel-highlighted">
                 <h3 class="m0 pb-lg panel-heading">Messages & Push Notifications</h3>
                 <div class="panel-body">
                     <div class="btn-group col-xs-12 p0 pb-lg">
@@ -80,8 +80,8 @@
                     <div class="">
                         <label>Data</label>
 
-                        <textarea ng-model="message.data" placeholder="{{demodata}}" aria-multiline="true" tabindex="0" aria-invalid="false"
-                            class="form-control" style="max-width:100%; border-color: #eaeaea;"></textarea>
+                        <textarea ng-model="message.data" placeholder="{{demodata}}" aria-multiline="true" tabindex="0" aria-invalid="false" class="form-control"
+                            style="max-width:100%; border-color: #eaeaea;"></textarea>
                     </div>
 
                     <br/>
@@ -196,8 +196,8 @@
                             </p>
                         </div>
                         <div class="col-xs-6 text-center">
-                            <div sparkline="" ng-model="userBarValues" data-bar-color="{{colorByName('info')}}" data-height="60" data-bar-width="10" data-bar-spacing="6" data-chart-range-min="0"
-                                values="0"></div>
+                            <div sparkline="" ng-model="userBarValues" data-bar-color="{{colorByName('info')}}" data-height="60" data-bar-width="10"
+                                data-bar-spacing="6" data-chart-range-min="0" values="0"></div>
                         </div>
                     </div>
                 </li>
@@ -213,7 +213,7 @@
                             <div sparkline="" data-type="line" data-height="60" data-width="80%" data-line-width="2" data-line-color="{{colorByName('purple')}}"
                                 data-chart-range-min="0" data-spot-color="#888" data-min-spot-color="{{colorByName('purple')}}"
                                 data-max-spot-color="{{colorByName('purple')}}" data-fill-color="" data-highlight-line-color="#fff"
-                                data-spot-radius="3" values = "1,1,1,1" data-resize="true"></div>
+                                data-spot-radius="3" values="1,1,1,1" data-resize="true"></div>
                         </div>
                     </div>
                 </li>

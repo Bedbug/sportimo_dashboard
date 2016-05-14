@@ -2788,7 +2788,6 @@
             $element.sparkline('html', options);
 
             $scope.$watchCollection('ngModel', function () {
-                console.log("ng:" + $scope.ngModel);
                 $element.sparkline($scope.ngModel, options);
             })
 
@@ -3091,7 +3090,6 @@
             console.log("SOCKET: Opened");
             $rootScope.socketConnection = true;
             var user = JSON.parse($rootScope.$storage.currentUser);
-            console.log(user);
             // Register to socket with ID
             $rootScope.dataStream.send(JSON.stringify({ "register": { "uid": user._id, "uname": user.name, "admin": true } }));
         });
@@ -6185,7 +6183,6 @@
             },
             controller: ['$scope', '$log', function ($scope, $log) {
 
-                $log.debug($scope.lObject);
 
                 $scope.$watch('lObject', function (newValue, oldValue) {
                     if ($scope.lObject && $scope.lObject.en)
@@ -6279,8 +6276,12 @@
 
         var preselected = $stateParams.id;
 
-
-
+        if(preselected)
+        TeamsService.getTeam(preselected).then(function(team){
+            vm.selectedItem = team;
+            vm.view.selectedLoading = false;
+        })
+        
 
 
         TagsService.getAllTags().then(function (tags) {
@@ -6293,12 +6294,12 @@
                 vm.leagues = _.map(_.uniq(vm.Teams, 'league'), 'league');
                 vm.loading.teams = false;
 
-                if (preselected) {
-                    vm.selectedItem = _.find(vm.Teams, function (o) {
-                        return o._id == preselected;
-                    });
-                    vm.view.selectedLoading = false;
-                }
+                // if (preselected) {
+                //     vm.selectedItem = _.find(vm.Teams, function (o) {
+                //         return o._id == preselected;
+                //     });
+                //     vm.view.selectedLoading = false;
+                // }
             }, function (error) { });
         })
 
@@ -6594,7 +6595,15 @@
                     });
                     return Defer.promise;
                 },
-
+                getTeam: function(matchid){
+                     var Defer = $q.defer();
+                    TeamsAPI.get(matchid).then(function (team) {
+                        Defer.resolve(team);
+                    }, function (err) {
+                        console.log(err);
+                    });
+                    return Defer.promise;
+                },
                 addTeam: function (data) {
                     var Defer = $q.defer();
                     TeamsAPI.post(data).then(function (pool) {
@@ -7308,7 +7317,6 @@
             },
             parseFavorites: function (matchData) {
                 var parsedFavoriteQuestions = _.cloneDeep(favoriteQuestions);
-                console.log(parsedFavoriteQuestions);
                 var subs = [
                     {
                         name: "#home",
@@ -7745,7 +7753,6 @@
                 url: $rootScope.servers[$rootScope.serverEnvironment].game_server + 'v1/live/match/' + id
 
             }).then(function successCallback(response) {
-                console.log(response);
                 $scope.match = AddHooks(response.data);
                 vm.match.data.automoderation = vm.match.data.moderation[0] ? true : false;
                 $scope.stats = ParseMatchStats(response.data.data.stats);
@@ -9883,7 +9890,6 @@
                 ngModel: '=ngModel',
             },
             controller: ['$scope', '$state', function ($scope, $state) {
-                console.log("Directive Matches-List Loaded");
 
                 $scope.formatDate = function (stringDate) {
                     return moment(stringDate).calendar(); //format("dddd, MMMM Do YYYY, h:mm:ss a");
@@ -9915,11 +9921,8 @@
                 teamshort: '=teamshort'
             },
             controller: ['$scope', '$state', function ($scope, $state) {
-                console.log("Directive Team Link Loaded");
                 if ($scope.teamshort == null)
                     $scope.teamshort = $scope.teamfull;
-
-
             }]
         };
     };

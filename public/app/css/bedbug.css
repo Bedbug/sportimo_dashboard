@@ -1673,6 +1673,18 @@ height: 43px;
     background-color: white;
     border: 1px solid #EAEAEA;
 }
+
+.delete:before {
+  font-family: FontAwesome;
+  font-weight: normal;
+  font-style: normal;
+  display: inline-block;
+  text-decoration: inherit;
+  content: "\f014";
+  padding-right: 5px;
+}
+
+
 .small-margin {
     margin: 2px;
     width: 44px;
@@ -1685,6 +1697,15 @@ height: 43px;
     color: #4caf50;
     background-color: white;
     border: 1px solid #EAEAEA;
+}
+.do:before {
+  font-family: FontAwesome;
+  font-weight: normal;
+  font-style: normal;
+  display: inline-block;
+  text-decoration: inherit;
+  content: "\f087";
+  padding-right: 5px;
 }
 
 .edit, .edit:hover {
