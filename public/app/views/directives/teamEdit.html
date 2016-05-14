@@ -1,6 +1,6 @@
 <!-- START OF EDIT PANEL -->
 <!-- START of ANIMATIONS -->
-<div ng-init="selectedLoading = false" ng-class="loading?'fadeOutDown':'fadeInUp'" class="animated" style="padding-left:0">
+<div ng-init="selectedLoading = false" ng-class="loading?'fadeOutDown':'fadeInUp'" class="animated">
     <div animate-enabled='true' ng-show="selectedItem" class="panel animShow">
         <!-- END of ANIMATIONS -->
         <div class="panel articleCard">
@@ -9,23 +9,30 @@
                     <div class="col-sm-4">
                         <label>Image</label>
                         <div class="event-team-logo text-center" ng-show="selectedItem._id">
-                            <img ng-if="selectedItem.logo" class="thumb256 m" ng-src="{{selectedItem.logo}}" />
-                            <image-upload folder="teams" search="transparent png 256" should-update="true" filename="selectedItem._id" ng-model="selectedItem" pic-key="logo"></image-upload>
+                            <img ng-if="selectedItem.logo" style="width: 100%;" class="m" ng-src="{{selectedItem.logo}}" />
+                            <image-upload folder="teams" search="transparent png 256" should-update="true" filename="selectedItem._id" ng-model="selectedItem"
+                                pic-key="logo"></image-upload>
                         </div>
                         <div class="event-team-logo text-center" ng-show="!selectedItem._id">
-                            <p ng-if="!selectedItem.logo" class="muted">This data item does not have an ID yet.</br>Therefore you cannot upload an image until it has.</br>However you can pass an image url in the settings tab.</p>
+                            <p ng-if="!selectedItem.logo" class="muted">This data item does not have an ID yet.</br>Therefore you cannot upload an image until it has.</br>However
+                                you can pass an image url in the settings tab.</p>
                             <img ng-if="selectedItem.logo" class="thumb256 m" ng-src="{{selectedItem.logo}}" />
                         </div>
                     </div>
-                    <div class="col-sm-8">
+                    <div class="col-sm-8 col-md-5">
 
                         <multi-lang-text language-object="selectedItem.name" default="en" label="Club Name"></multi-lang-text>
 
                         <label>League</label>
-                        <ui-select ng-model="selectedItem.position" theme="bootstrap" ng-disabled="uisel.disabled" class="text-left">
-                            <ui-select-match placeholder="Select league">{{$select.selected}}</ui-select-match>
-                            <ui-select-choices repeat="league in leagues | filter: $select.search">
-                                <span ng-bind-html="league | highlight: $select.search"></span>
+                        <ui-select limit=1 on-select="OnSet()" reset-search-input="true" ng-model="selectedItem.competitionid" theme="bootstrap"
+                            ng-disabled="event.chooseplayer.disabled">
+                            <ui-select-match placeholder="Select Competition">
+                                <img class="ui-select-match-img" alt="$select.selected.name.en" ng-src="{{$select.selected.logo}}">                                {{$select.selected.name.en}}
+                            </ui-select-match>
+
+                            <ui-select-choices repeat="team._id as team in Competitions | filter: $select.search">
+                                <img class="ui-select-match-img" alt='{{team.logo}}' ng-src='{{team.logo}}'>
+                                <div ng-bind-html="team.name.en | highlight: $select.search"></div>
                             </ui-select-choices>
                         </ui-select>
 
@@ -36,10 +43,12 @@
                             <tab-heading>
                                 Players
                             </tab-heading>
-                            <div class="col-xs-12">
-                                <button ladda="view.loadingPlayers == 1" style="margin:5px" data-spinner-color="#000000" data-style="zoom-in" ng-click="LoadPlayers(selectedItem)" ng-show="!selectedTeam.playersLoaded" class="col-xs-12 btn edit">Load Players</button>
+                            <div ng-show="!selectedItem.playersLoaded" class="col-xs-12 p0">
+                                <button ladda="view.loadingPlayers == 1" style="margin:5px" data-style="expand-right" ng-click="LoadPlayers(selectedItem)"
+                                    ng-show="!selectedTeam.playersLoaded" class="col-xs-12 btn btn-primary edit">Load Players</button>
                             </div>
-                            <div ng-show="selectedTeam.playersLoaded">
+                            <!--{{selectedItem.players}}-->
+                            <div ng-show="selectedItem.playersLoaded">
 
                                 <!-- START OF Players Table -->
                                 <div class="panel col-xs-12 no-padding">
@@ -54,19 +63,11 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr ng-repeat="player in selectedTeam.players">
-                                                <!--<td>
-                                                    <div class="center ">
-                                                        <img ng-click="searchFor(player.name.en);" ng-src="http://ep7t6ae.cloudimg.io/s/height/50/{{player.logo}}">
-                                                    </div>
-                                                </td>-->
-                                                <td>{{player.name.en}}</td>
-                                                <td>{{ player.position}}</td>
-                                                <!--<td><small>{{ player._id }}</small></td>-->
+                                            <tr ng-repeat="player in selectedItem.players">
+                                                <td><player-link playerid="player._id" name="player.name.en"></player-link></td>
+                                                <td>{{player.position}}</td>
                                                 <td align="center ">
-                                                    <div dropdown="dropdown2 " class="text-center btn-group ">
-                                                        <i ng-click="editTeam(team); " class="fa fa-edit "></i>
-                                                    </div>
+                                                    <button class="btn btn-danger delete"> <i ng-click="removePlayer(player); " class="fa fa-trash "></i></button>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -75,7 +76,9 @@
                                         <!-- START OF Add New Player -->
                                         <div>
                                             <div class="col-xs-10" style="padding-left:0">
-                                                <select chosen disable-search="false" data-placeholder="Add new player" allow-single-deselect="true" ng-model="selectedTeam.selectedPlayer" ng-options="option.name.en for option in (Tags | filter: {type: 'Player'})" class="form-control chosen-select">
+                                                <select chosen disable-search="false" data-placeholder="Add new player" allow-single-deselect="true" ng-model="selectedTeam.selectedPlayer"
+                                                    ng-options="option.name.en for option in (Tags | filter: {type: 'Player'})"
+                                                    class="form-control chosen-select">
                                                     <option value=""></option>
                                                 </select>
                                             </div>
@@ -119,14 +122,16 @@
             </div>
             <div ng-show="type=='edit'">
                 <div class="panel-footer">
+
                     <btn ng-click="selectedItem = null;  loading = true" class="btn btn-default pull-right">Cancel</btn>
-                    <btn ladda="view.busy" ng-click="updateItem(selectedItem)" data-style="zoom-out" class="btn do btn-space pull-right">Update</btn>
+                    <btn ladda="view.delete" data-style="expand-right" ng-click="deleteItem(selectedItem)" class="btn btn-outline delete btn-danger btn-space pull-right">Delete</btn>
+                    <btn ladda="view.update" data-style="expand-right" ng-click="updateItem(selectedItem)" class="btn btn-outline do btn-success btn-space pull-right">Update</btn>
                 </div>
             </div>
             <div ng-show="type=='create'">
                 <div class="panel-footer">
                     <btn ng-click="selectedItem = null; loading = true" class="btn btn-default pull-right">Cancel</btn>
-                    <btn ladda="view.busy" ng-click="CreateItem(selectedItem)" data-style="zoom-out" class="btn do btn-space pull-right">Create</btn>
+                    <btn ladda="view.update" data-style="expand-right" ng-click="CreateItem(selectedItem)" class="btn btn-outline do btn-success btn-space pull-right">Create</btn>
                 </div>
             </div>
         </div>

@@ -1416,7 +1416,15 @@ background-color: #F7F7F7;
     margin: 0;
 }
 
+.match-mini-panels{
+    display: block;
+    width: 100%;
+    height: 280px;
+    overflow-y: scroll;
+}
+
 .mini-match-panel{
+    display: block;
     width: 200px;
     float: left;
     padding-right: 5px;
@@ -1444,11 +1452,48 @@ background-color: #F7F7F7;
     display: block;
 }
 
-.tab-content{
+a {
+  color: #2196f3;
+  text-decoration: none;
+}
+
+.moderationTabs .nav-tabs>li>a {
+    font-weight: 700;
+    color: #515253;
+    background-color: #edf1f2;
+    margin: 0;
+    border: 1px solid #dde6e9;
+    border-radius: 0;
+    padding: 10px 20px
+}
+
+/*.moderationTabs .nav-tabs>li.active{
+     background-color: #edf1f2;
+}*/
+
+.moderationTabs .nav-tabs>li.active>a,
+.moderationTabs .nav-tabs>li.active>a:focus,
+.moderationTabs .nav-tabs>li.active>a:hover {
+        background-color: white;
+    color: inherit;
+    border-bottom-color: #fff
+}
+/*.tab-content {*/
+    /*padding: 10px 20px;*/
+    /*border-style: solid;
+    border-width: 0 1px 1px;
+    border-color: #dde6e9*/
+/*}*/
+/*.nav-pills+.tab-content {
+    border: 0;
+    padding: 0
+}*/
+
+/*.tab-content{
     border-left: 1px solid #dddddd;
     border-right: 1px solid #dddddd;
     border-bottom: 1px solid #dddddd;
-}
+}*/
 
 /*.scheduled-match .panel{
     min-height: 270px;
@@ -1623,12 +1668,10 @@ height: 43px;
     width: 44px;
     margin: 2px;
 }
-.delete,
-.delete:hover,
-.delete:focus {
-    color: #693D3A;
+.delete, .delete:hover {
+    color: #BB2D24;
     background-color: white;
-    border: 1px solid #693D3A;
+    border: 1px solid #EAEAEA;
 }
 .small-margin {
     margin: 2px;
@@ -1638,20 +1681,16 @@ height: 43px;
 .btn-space{
     margin-right: 5px;
 }
-.do,
-.do:hover,
-.do:focus {
+.do, .do:hover {
     color: #4caf50;
     background-color: white;
-    border: 1px solid #4caf50;
+    border: 1px solid #EAEAEA;
 }
 
-.edit,
-.edit:hover,
-.edit:focus {
+.edit, .edit:hover {
     color: #1c94f3;
     background-color: white;
-    border: 1px solid #1c94f3;
+    border: 1px solid #EAEAEA;
 }
 .minimal,
 .minimal:hover,

@@ -56,7 +56,11 @@
                 <p class="m0 match-segment-title">{{match.GetCurrentSegment()}}</p>
             </div>
             <div class="col-xs-4">
-                <!--<button ng-click="advanceSegment()"> Advance Segment</button>-->
+                <button class="btn btn-inverse" ng-click="finalizeGame()"> 	Final Whistle
+                   <svg style="top: 4px; position: relative;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="20px" height="20px" viewBox="0 0 463.61 463.611" style="enable-background:new 0 0 463.61 463.611;" xml:space="preserve">
+		<path d="M114.203,242.541c-31.424,54.746-23.984,125.753,22.772,172.504c48.594,48.594,123.449,54.85,178.851,18.859    l20.971,20.967c11.65,11.653,30.549,11.653,42.194,0c11.654-11.654,11.654-30.545,0-42.194l-20.967-20.972    c35.991-55.402,29.735-130.257-18.858-178.855l-22.999-22.999c-14.29,10.702-30.4,13.24-38.539,5.098l-29.787-29.783    c-8.136-8.142-5.595-24.249,5.109-38.532L133.905,7.613c-10.151-10.151-26.611-10.151-36.76,0L83.364,21.389    C73.213,31.54,73.686,47.555,82.965,58.51C110.144,90.587,154.443,160.551,114.203,242.541z" fill="#FFFFFF"/>
+
+</svg></button>
                 <!--<h3 class="m0">100</h3>-->
 
                 <!--<p class="m0">Following</p>-->
@@ -88,9 +92,9 @@
     </div>-->
     <div class="col-lg-12 no-padding">
         <!-- START panel tab-->
-        <div class="panel">
+        <div class="panel" style="border:none">
 
-            <tabset justified="true" class="p0">
+            <tabset class="moderationTabs" justified="true" class="p0">
                 <tab>
                     <tab-heading>
                         <em class="fa fa-clock-o fa-fw"></em> <span class="match-tab-text"><strong>Timeline</strong></span>
@@ -106,8 +110,7 @@
                 <tab>
                     <tab-heading>
                         <div class="ph"> <em class="fa fa-question-circle fa-fw"></em><span class="match-tab-text"> Questions</span>
-                            <span
-                                ng-if="questions.length" class="m0  pull-right"><em class="icon-drawer mr fa-lg"></em>{{ClosedQuestions}}/{{questions.length}}</span>
+                            <span ng-if="questions.length" class="m0  pull-right"><em class="icon-drawer mr fa-lg"></em>{{ClosedQuestions}}/{{questions.length}}</span>
                         </div>
                     </tab-heading>
                     <div ng-include="'app/views/sportimo/moderation/questions.html'"></div>
@@ -122,8 +125,7 @@
                 <tab>
                     <tab-heading>
                         <span class="match-tab-text"><em class="fa fa-sitemap fa-fw"></em>Leaderboards &nbsp;/&nbsp; </span>
-                        <em
-                            class="fa fa-gift fa-fw"></em><span class="match-tab-text">Prizes</span>
+                        <em class="fa fa-gift fa-fw"></em><span class="match-tab-text">Prizes</span>
                     </tab-heading>
                     <div ng-include="'app/views/sportimo/moderation/leaderboard.html'"></div>
                 </tab>

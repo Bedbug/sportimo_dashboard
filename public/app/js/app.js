@@ -231,7 +231,8 @@
             'ngTouch',
             'ngStorage',
             'restangular',
-            'angular-jwt'
+            'angular-jwt',
+            'ui.tab.scroll'
         ]);
 })();
 (function () {
@@ -5613,7 +5614,7 @@
                 onCancel: '@onCancel',
                 type: '@type'
             },
-            controller: ['$scope', '$window', function ($scope, $window) {
+            controller: ['$scope', '$window','$rootScope', function ($scope, $window,$rootScope) {
 
                 $scope.loading = true;
                 $scope.$watch('reload', function (newValue, oldValue) {
@@ -5624,16 +5625,35 @@
                         }, 600);
                     }
                 });
+                
+                $scope.view = {};
+
+                $scope.scrlTabsApi = {};
+                $scope.reCalcScroll = function () {
+                    console.log("Recalc!");
+                    if ($scope.scrlTabsApi.doRecalculate) {
+                        $scope.scrlTabsApi.doRecalculate();
+                    }
+                };
 
                 TagsService.getAllTags().then(function (tags) {
                     $scope.Tags = tags;
+                    $scope.reCalcScroll();
                 });
 
                 console.log("tags:" + $scope.Tags)
                 $scope.updateByFeedParser = function (item, parserid) {
                     console.log("ID: " + parserid);
                 }
-
+                
+                $scope.updateItem = function (item) {
+                    $scope.view.update = true;
+                    item.save().then(function (res) {
+                        $rootScope.toast(item.name.en+" Updated");
+                        $scope.view.update = false;
+                    })
+                };
+                
                 $scope.openedCal = {};
 
                 $scope.openCal = function ($event, whichCal) {
@@ -5663,9 +5683,9 @@
         };
     };
 
-    teamEdit.$inject = ['$timeout', 'TagsService', 'TeamsService'];
+    teamEdit.$inject = ['$rootScope','$timeout', 'TagsService', 'TeamsService', 'CompetitionsService','PlayersService'];
 
-    function teamEdit($timeout, TagsService, TeamsService) {
+    function teamEdit($rootScope, $timeout, TagsService, TeamsService, CompetitionsService, PlayersService) {
         return {
             restrict: 'E',
             templateUrl: './app/views/directives/teamEdit.html',
@@ -5677,7 +5697,9 @@
                 type: '@type'
             },
             controller: ['$scope', function ($scope) {
-
+                $scope.view= {
+                    busy: false
+                }
                 $scope.loading = true;
                 $scope.$watch('reload', function (newValue, oldValue) {
                     if (newValue) {
@@ -5688,6 +5710,15 @@
                     }
                 });
 
+                $scope.Competitions = null;
+                CompetitionsService.All().then(function (all) {
+                    $scope.Competitions = all;
+
+                });
+
+
+                $scope.scrlTabsApi = {};
+
                 TagsService.getAllTags().then(function (tags) {
                     $scope.Tags = tags;
                 });
@@ -5697,10 +5728,26 @@
                     console.log("ID: " + parserid);
                 }
 
+                $scope.CreateItem = function (item) {
+                    TeamsService.addTeam(item).then(function () {
+                         $rootScope.toast(item.name.en+" was created succesfuly");
+                          $scope.selectedItem = null;  $scope.loading = true;
+                    })
+                }
+                
+                $scope.deleteItem = function(item){
+                     $scope.view.delete = true;
+                    item.remove().then(function(){
+                        $scope.selectedItem = null;  $scope.loading = true;
+                         $rootScope.toast("Team Deleted");
+                    })
+                }
+
                 $scope.updateItem = function (item) {
-                    console.log(item);
+                    $scope.view.update = true;
                     item.save().then(function (res) {
-                        toaster.pop("success", "Task Completed", res);
+                        $rootScope.toast("Team Updated");
+                        $scope.view.update = false;
                     })
                 };
 
@@ -5730,21 +5777,22 @@
                 /* Players */
                 $scope.LoadPlayers = function () {
                     $scope.view.loadingPlayers = 1;
-                    TeamsService.getFullTeam($scope.selectedItem._id).then(function (fullTeam) {
-                        $scope.selectedItem.players = fullTeam.players;
+                    PlayersService.getAllPlayersByTeam($scope.selectedItem._id).then(function (players) {
+                        $scope.selectedItem.players = players;
                         $scope.selectedItem.playersLoaded = true;
-
                         $scope.view.loadingPlayers = 0;
                     })
                 }
                 $scope.pushPlayer = function (player) {
                     if (player) {
-                        player.team = $scope.selectedTeam._id;
-                        player.save().then(function () {
-                            $scope.selectedItem.players.push(player);
-                            $scope.selectedItem.save().then(function () {
-                                console.log("All OK!");
-                            })
+                        console.log(player);
+                        player.team = $scope.selectedItem._id;
+                        PlayersService.updatePlayer(player._id,{teamId:$scope.selectedItem._id}).then(function (resPlayer) {
+                            console.log(resPlayer);
+                            // $scope.selectedItem.players.push(player);
+                            // $scope.selectedItem.save().then(function () {
+                            //     console.log("All OK!");
+                            // })
                         });
                     }
                 }
@@ -5753,11 +5801,11 @@
         };
     };
 
-    PlayersController.$inject = ['$scope', 'TagsService', 'TeamsService', 'PlayersService', 'DTOptionsBuilder', 'DTColumnDefBuilder', '$window', '$filter', '$timeout', '$state'];
+    PlayersController.$inject = ['$scope', 'TagsService', 'TeamsService', 'PlayersService', 'DTOptionsBuilder', 'DTColumnDefBuilder', '$window', '$filter', '$timeout', '$state','$stateParams'];
 
 
 
-    function PlayersController($scope, TagsService, TeamsService, PlayersService, DTOptionsBuilder, DTColumnDefBuilder, $window, $filter, $timeout, $state) {
+    function PlayersController($scope, TagsService, TeamsService, PlayersService, DTOptionsBuilder, DTColumnDefBuilder, $window, $filter, $timeout, $state, $stateParams) {
 
 
         var vm = $scope;
@@ -5774,7 +5822,9 @@
                 id: item._id
             });
         }
-
+        
+        var preselected = $stateParams.id;
+        
         // ******* LOADING DATA ********** //
         TagsService.getAllTags().then(function (tags) {
             vm.Tags = tags;
@@ -5786,8 +5836,15 @@
                     player.team = TagsService.getTeamNameById(player.teamId);
                 })
                 vm.gridOptions.data = players;
-                vm.positions = _.pluck(_.uniq(vm.Players, 'position'), 'position');
+                vm.positions = _.uniq(_.map(vm.Players, 'position'));
                 vm.loading.players = false;
+                
+                 if (preselected) {
+                    vm.selectedItem = _.find(vm.Players, function (o) {
+                        return o._id == preselected;
+                    });
+                    vm.view.selectedLoading = false;
+                }
             }, function (error) { });
         })
 
@@ -6126,7 +6183,9 @@
                 ngModel: '=ngModel',
                 placeholder: '@placeholder'
             },
-            controller: ['$scope', function ($scope) {
+            controller: ['$scope', '$log', function ($scope, $log) {
+
+                $log.debug($scope.lObject);
 
                 $scope.$watch('lObject', function (newValue, oldValue) {
                     if ($scope.lObject && $scope.lObject.en)
@@ -6178,7 +6237,7 @@
             controller: ['$scope', function ($scope) {
 
 
-                // console.log( $scope.placeholder);
+
 
                 $scope.$watch('lObject', function (newValue, oldValue) {
                     if ($scope.lObject && $scope.lObject.en)
@@ -6217,7 +6276,12 @@
         vm.selectedItem = null;
         vm.Tags = null;
 
+
         var preselected = $stateParams.id;
+
+
+
+
 
         TagsService.getAllTags().then(function (tags) {
             vm.loading.teams = true;
@@ -6292,7 +6356,7 @@
 
         vm.createNew = function () {
             vm.createdReload = true;
-            vm.newItem = {};
+            vm.newItem = { name: { en: "" } };
 
         }
 
@@ -6508,7 +6572,7 @@
                 }
             }
         } else {
-            var teams = Restangular.all('v1/data/teams');
+            var TeamsAPI = Restangular.all('v1/data/teams');
             Restangular.setBaseUrl($rootScope.servers[$rootScope.serverEnvironment].game_server);
             Restangular.setRestangularFields({
                 id: "_id"
@@ -6517,7 +6581,7 @@
             return {
                 getAllTeams: function () {
                     var Defer = $q.defer();
-                    teams.getList().then(function (teams) {
+                    TeamsAPI.getList().then(function (teams) {
                         Defer.resolve(teams);
                     });
                     return Defer.promise;
@@ -6527,6 +6591,16 @@
                     var Defer = $q.defer();
                     Restangular.one('v1/data/teams', id).one('full').get().then(function (team) {
                         Defer.resolve(team);
+                    });
+                    return Defer.promise;
+                },
+
+                addTeam: function (data) {
+                    var Defer = $q.defer();
+                    TeamsAPI.post(data).then(function (pool) {
+                        Defer.resolve(pool);
+                    }, function (err) {
+                        console.log(err);
                     });
                     return Defer.promise;
                 }
@@ -6602,7 +6676,7 @@
                 }
             }
         } else {
-            var players = Restangular.all('v1/data/players');
+            var PlayersAPI = Restangular.all('v1/data/players');
             Restangular.setBaseUrl($rootScope.servers[$rootScope.serverEnvironment].game_server);
             Restangular.setRestangularFields({
                 id: "_id"
@@ -6611,17 +6685,30 @@
             return {
                 getAllPlayers: function () {
                     var Defer = $q.defer();
-                    players.getList().then(function (schedule) {
+                    PlayersAPI.getList().then(function (schedule) {
                         Defer.resolve(schedule);
                     });
                     return Defer.promise;
                 },
-
+                getAllPlayersByTeam: function (teamid) {
+                    var Defer = $q.defer();
+                    PlayersAPI.one('team/').getList(teamid).then(function (players) {
+                        Defer.resolve(players);
+                    });
+                    return Defer.promise;
+                },
                 getPlayer: function (id) {
                     var Defer = $q.defer();
-                    players.get(id).then(function (player) {
+                    PlayersAPI.get(id).then(function (player) {
                         if (player.player)
                             Defer.resolve(player.player);
+                    });
+                    return Defer.promise;
+                },
+                updatePlayer: function(pid, data){
+                     var Defer = $q.defer();
+                   PlayersAPI.one(pid).customPUT(data).then(function (players) {
+                        Defer.resolve(players);
                     });
                     return Defer.promise;
                 }
@@ -7588,14 +7675,19 @@
                 console.log(evt);
 
             switch (evt.type) {
+                case "Advance_Segment":
+                    $scope.match.data.state = evt.data.state;
+                    $scope.match.data.timeline.push(evt.data.segment);
+                    $scope.match = AddHooks($scope.match);
+                    break;
                 case "Stats_changed":
                     $scope.match.data.stats = evt.data;
                     $scope.stats = ParseMatchStats(evt.data);
                     break;
                 case "Event_added":
-                    if (evt.data.timeline_event && evt.data.type.indexOf("Starts") < 0 && evt.data.type.indexOf("Ends") < 0)
-                        $scope.match.data.timeline[evt.data.state].events.push(evt.data);
-                    break;
+                    // if (evt.data.timeline_event && evt.data.type.indexOf("Starts") < 0 && evt.data.type.indexOf("Ends") < 0)
+                    $scope.match.data.timeline[evt.data.state].events.push(evt.data);
+                // break;
                 case "Event_updated":
                     var indx = _.findIndex($scope.match.data.timeline[evt.data.state].events, function (o) {
                         return o._id == evt.data._id;
@@ -7826,7 +7918,8 @@
                     url: $rootScope.servers[$rootScope.serverEnvironment].game_server + 'v1/moderation/' + $stateParams.id + '/event',
                     data: EventData
                 }).then(function successCallback(response) {
-                    $scope.match = AddHooks(response.data);
+                    // $scope.match = AddHooks(response.data);
+                    $rootScope.toast("Advance match segment request accepted.")
                 }, function errorCallback(response) {
                     // called asynchronously if an error occurs
                     // or server returns response with an error status.
@@ -9745,6 +9838,7 @@
         .module('app.dashboard')
         .directive('matchPanels', matchPanels)
         .directive('teamLink', teamLink)
+        .directive('playerLink', playerLink)
         .directive('matchMiniPanels', matchMiniPanels)
         .controller('DashboardController', DashboardController);
 
@@ -9825,6 +9919,22 @@
                 if ($scope.teamshort == null)
                     $scope.teamshort = $scope.teamfull;
 
+
+            }]
+        };
+    };
+    
+    function playerLink() {
+        return {
+            restrict: 'E',
+            templateUrl: './app/views/directives/player-link.html',
+            scope: {
+                playerid: '=playerid',
+                name: '=name'
+            },
+            controller: ['$scope', '$state', function ($scope, $state) {
+                console.log("Directive Player Link Loaded");
+                
 
             }]
         };
@@ -16829,7 +16939,7 @@
                 controller: 'TeamsController'
             })
             .state('app.players', {
-                url: '/players',
+                url: '/players/:id',
                 title: 'players',
                 resolve: helper.resolveFor('restangular', 'toaster', 'dirPagination', 'moment', 'datatables', 'ngFileUpload', 'localytics.directives', 'ui.select', 'ui.grid'),
                 templateUrl: helper.basepath('database/players.html'),

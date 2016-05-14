@@ -1,4 +1,4 @@
-<div>
+
     <div ng-repeat="match in ngModel" class="pl0  mini-match-panel">
         <div class="panel">
             <!--{{match}}-->
@@ -6,8 +6,12 @@
                <a class="data-link" ng-href="#/app/teams/{{match.home_team._id}}">{{match.home_team.name.en}}</a> -  <a class="data-link" ng-href="#/app/teams/{{match.away_team._id}}">{{match.away_team.name.en}}</a>
             </div>
 
-            <div ng-show="match.state > 0" class="panel-heading match-status text-center">
+            <div ng-show="match.state > 0 && !match.completed" class="panel-heading match-status text-center">
                 <strong>Live</strong><br/> <team-link teamid="match.home_team._id" teamshort="match.home_team.name.short" teamfull="match.home_team.name.en"></team-link> - <team-link teamid="match.away_team._id" teamshort="match.away_team.name.short" teamfull="match.away_team.name.en"></team-link>
+            </div>
+            
+            <div ng-show="match.state > 0 && match.completed" class="panel-heading text-center">
+                <strong>Ended</strong><br/> <team-link teamid="match.home_team._id" teamshort="match.home_team.name.short" teamfull="match.home_team.name.en"></team-link> - <team-link teamid="match.away_team._id" teamshort="match.away_team.name.short" teamfull="match.away_team.name.en"></team-link>
             </div>
 
             <div class="panel-body pb0">
@@ -23,8 +27,10 @@
                         <div></div>
                     </div>
                 </div>
-                <div ng-show="match.state > 0" class="time row mb-sm text-center"> <em class="fa fa-clock-o "></em> {{match.time}}'</div>
-                <div ng-show="match.state > 0" class="match-status row text-center">
+                <div ng-show="match.state > 0 && !match.completed" class="time row mb-sm mt-lg text-center"> <em class="fa fa-clock-o "></em> {{match.time}}'</div>
+                 <div ng-show="match.state == 0" class="time row mb-sm mt-lg text-center">Pre Game</div>
+                 <div ng-show="match.completed" class="time row mb-sm mt-lg text-center">FT</div>
+                <div ng-show="match.state > 0 || match.completed" class="match-status row text-center">
                     <span class="score">{{match.home_score}} - {{match.away_score}}</span>
                 </div>
 
@@ -36,7 +42,8 @@
                     </p>
                 </div>
             </div>
-            <div ng-click="moderateMatch(match._id, match.sport)" class="panel-footer text-center"><i class="fa fa-caret-square-o-right fa-fw" aria-hidden="true"></i>Moderate</div>
+            <div ng-show="!match.completed" ng-click="moderateMatch(match._id, match.sport)" class="panel-footer text-center"><i class="fa fa-caret-square-o-right fa-fw" aria-hidden="true"></i>Moderate</div>
+            <div ng-show="match.completed" ng-click="moderateMatch(match._id, match.sport)" class="panel-footer text-center"><i class="fa fa-caret-square-o-right fa-fw" aria-hidden="true"></i>View</div>
         </div>
     </div>
-</div>
+

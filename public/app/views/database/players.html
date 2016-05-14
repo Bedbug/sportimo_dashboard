@@ -18,7 +18,7 @@
 <!--<button ng-init="flow = false" style="float:left" ng-click="flow = !flow">reflow</button>-->
 
 
-<div class="fluid" ng-class="(selectedItem || newItem)?'col-md-6':'col-sm-0'" style="padding-left:0">
+<div class="col-xs-12 p0" >
     <!-- START OF EDIT PANEL -->
     <player-edit ng-model="selectedItem" onUpdate="" onCreate="" type="edit" reload="reload" loader="view.selectedLoading" positions="positions"> </player-edit>
     <!-- END OF EDIT PANEL -->
@@ -28,7 +28,7 @@
     <!-- END OF CREATE PANEL -->
 </div>
 
-<div class="fluid" ng-class="(selectedItem || newItem)?'col-md-6 no-padding':'col-md-12 p0'">
+<div ng-show="(!selectedItem && !newItem)" class="col-xs-12 p0">
     <div>
         <div style="height:600px" ui-grid="gridOptions" ui-grid-selection class="table-uigrid"></div>
     </div>
