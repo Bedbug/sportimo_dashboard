@@ -1547,6 +1547,14 @@ height: 43px;
     font-weight: bolder;
     font-size: 60px;
 }
+
+.card-icon{
+    width: 60px;
+    height: 39px;
+    text-align: center;
+    float: left;
+    margin-left: -10px;
+}
 .match-time {
     margin-bottom: -50px;
     margin-left: 5px;
@@ -1587,6 +1595,13 @@ height: 43px;
     margin: 0;
     line-height: 1;
 }
+
+.btn-default:active, .btn-default:active:hover, .btn-default.active:focus, .btn-default.active, .open > .dropdown-toggle.btn-default {
+    color: #fafafa;
+    background-color: #2196f3;
+    border-color: #d6d6d6;
+}
+
 .segment-time-editor.ng-hide-add {
     animation: .5s fadeOutUp ease;
 }

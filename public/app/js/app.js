@@ -3071,8 +3071,8 @@
             development: {
                 data_server: '',
                 game_server: 'http://localhost:3030/',
-                sockets: 'wss://socketserverv2-56658.onmodulus.net/'
-                // sockets: 'ws://localhost:8080/'
+                // sockets: 'wss://socketserverv2-56658.onmodulus.net/'
+                sockets: 'ws://localhost:8080/'
             }
         };
 
@@ -3164,10 +3164,11 @@
 
         $rootScope.user = null;
 
-        // if ($rootScope.globals.currentUser) {
-        //     $rootScope.user = JSON.parse($rootScope.globals.currentUser);
-        //     //$http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata; // jshint ignore:line
-        // }
+        if ($rootScope.globals.currentUser) {
+            $rootScope.user = JSON.parse($rootScope.globals.currentUser);
+            console.log($rootScope.user);
+            //$http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata; // jshint ignore:line
+        }
 
         // if ($rootScope.$storage.currentUser){
         //     $rootScope.user = JSON.parse($rootScope.$storage.currentUser);
@@ -3485,6 +3486,112 @@
     }
 })();
 
+////////////////////
+// ObjectID
+///////////////////
+var ObjectId = (function () {
+    var increment = Math.floor(Math.random() * (16777216));
+    var pid = Math.floor(Math.random() * (65536));
+    var machine = Math.floor(Math.random() * (16777216));
+
+    var setMachineCookie = function () {
+        var cookieList = document.cookie.split('; ');
+        for (var i in cookieList) {
+            var cookie = cookieList[i].split('=');
+            var cookieMachineId = parseInt(cookie[1], 10);
+            if (cookie[0] == 'mongoMachineId' && cookieMachineId && cookieMachineId >= 0 && cookieMachineId <= 16777215) {
+                machine = cookieMachineId;
+                break;
+            }
+        }
+        document.cookie = 'mongoMachineId=' + machine + ';expires=Tue, 19 Jan 2038 05:00:00 GMT;path=/';
+    };
+    if (typeof (localStorage) != 'undefined') {
+        try {
+            var mongoMachineId = parseInt(localStorage['mongoMachineId']);
+            if (mongoMachineId >= 0 && mongoMachineId <= 16777215) {
+                machine = Math.floor(localStorage['mongoMachineId']);
+            }
+            // Just always stick the value in.
+            localStorage['mongoMachineId'] = machine;
+        } catch (e) {
+            setMachineCookie();
+        }
+    }
+    else {
+        setMachineCookie();
+    }
+
+    function ObjId() {
+        if (!(this instanceof ObjectId)) {
+            return new ObjectId(arguments[0], arguments[1], arguments[2], arguments[3]).toString();
+        }
+
+        if (typeof (arguments[0]) == 'object') {
+            this.timestamp = arguments[0].timestamp;
+            this.machine = arguments[0].machine;
+            this.pid = arguments[0].pid;
+            this.increment = arguments[0].increment;
+        }
+        else if (typeof (arguments[0]) == 'string' && arguments[0].length == 24) {
+            this.timestamp = Number('0x' + arguments[0].substr(0, 8)),
+                this.machine = Number('0x' + arguments[0].substr(8, 6)),
+                this.pid = Number('0x' + arguments[0].substr(14, 4)),
+                this.increment = Number('0x' + arguments[0].substr(18, 6))
+        }
+        else if (arguments.length == 4 && arguments[0] != null) {
+            this.timestamp = arguments[0];
+            this.machine = arguments[1];
+            this.pid = arguments[2];
+            this.increment = arguments[3];
+        }
+        else {
+            this.timestamp = Math.floor(new Date().valueOf() / 1000);
+            this.machine = machine;
+            this.pid = pid;
+            this.increment = increment++;
+            if (increment > 0xffffff) {
+                increment = 0;
+            }
+        }
+    };
+    return ObjId;
+})();
+
+ObjectId.prototype.getDate = function () {
+    return new Date(this.timestamp * 1000);
+};
+
+ObjectId.prototype.toArray = function () {
+    var strOid = this.toString();
+    var array = [];
+    var i;
+    for (i = 0; i < 12; i++) {
+        array[i] = parseInt(strOid.slice(i * 2, i * 2 + 2), 16);
+    }
+    return array;
+};
+
+/**
+* Turns a WCF representation of a BSON ObjectId into a 24 character string representation.
+*/
+ObjectId.prototype.toString = function () {
+    if (this.timestamp === undefined
+        || this.machine === undefined
+        || this.pid === undefined
+        || this.increment === undefined) {
+        return 'Invalid ObjectId';
+    }
+
+    var timestamp = this.timestamp.toString(16);
+    var machine = this.machine.toString(16);
+    var pid = this.pid.toString(16);
+    var increment = this.increment.toString(16);
+    return '00000000'.substr(0, 8 - timestamp.length) + timestamp +
+        '000000'.substr(0, 6 - machine.length) + machine +
+        '0000'.substr(0, 4 - pid.length) + pid +
+        '000000'.substr(0, 6 - increment.length) + increment;
+};
 
 (function () {
     'use strict';
@@ -4787,6 +4894,7 @@
         vm.OnEventSelection = function (selection) {
             console.log(selection);
             vm.scheduledMatch = selection;
+            vm.scheduledMatch.time = 0;
             vm.scheduledMatch.competition = vm.statsSearch.competition;
             vm.scheduledMatch.finalized = true;
 
@@ -5612,7 +5720,7 @@
                 onCancel: '@onCancel',
                 type: '@type'
             },
-            controller: ['$scope', '$window','$rootScope', function ($scope, $window,$rootScope) {
+            controller: ['$scope', '$window', '$rootScope', function ($scope, $window, $rootScope) {
 
                 $scope.loading = true;
                 $scope.$watch('reload', function (newValue, oldValue) {
@@ -5623,7 +5731,7 @@
                         }, 600);
                     }
                 });
-                
+
                 $scope.view = {};
 
                 $scope.scrlTabsApi = {};
@@ -5643,15 +5751,15 @@
                 $scope.updateByFeedParser = function (item, parserid) {
                     console.log("ID: " + parserid);
                 }
-                
+
                 $scope.updateItem = function (item) {
                     $scope.view.update = true;
                     item.save().then(function (res) {
-                        $rootScope.toast(item.name.en+" Updated");
+                        $rootScope.toast(item.name.en + " Updated");
                         $scope.view.update = false;
                     })
                 };
-                
+
                 $scope.openedCal = {};
 
                 $scope.openCal = function ($event, whichCal) {
@@ -5681,7 +5789,7 @@
         };
     };
 
-    teamEdit.$inject = ['$rootScope','$timeout', 'TagsService', 'TeamsService', 'CompetitionsService','PlayersService'];
+    teamEdit.$inject = ['$rootScope', '$timeout', 'TagsService', 'TeamsService', 'CompetitionsService', 'PlayersService'];
 
     function teamEdit($rootScope, $timeout, TagsService, TeamsService, CompetitionsService, PlayersService) {
         return {
@@ -5695,7 +5803,7 @@
                 type: '@type'
             },
             controller: ['$scope', function ($scope) {
-                $scope.view= {
+                $scope.view = {
                     busy: false
                 }
                 $scope.loading = true;
@@ -5728,16 +5836,16 @@
 
                 $scope.CreateItem = function (item) {
                     TeamsService.addTeam(item).then(function () {
-                         $rootScope.toast(item.name.en+" was created succesfuly");
-                          $scope.selectedItem = null;  $scope.loading = true;
+                        $rootScope.toast(item.name.en + " was created succesfuly");
+                        $scope.selectedItem = null; $scope.loading = true;
                     })
                 }
-                
-                $scope.deleteItem = function(item){
-                     $scope.view.delete = true;
-                    item.remove().then(function(){
-                        $scope.selectedItem = null;  $scope.loading = true;
-                         $rootScope.toast("Team Deleted");
+
+                $scope.deleteItem = function (item) {
+                    $scope.view.delete = true;
+                    item.remove().then(function () {
+                        $scope.selectedItem = null; $scope.loading = true;
+                        $rootScope.toast("Team Deleted");
                     })
                 }
 
@@ -5785,7 +5893,7 @@
                     if (player) {
                         console.log(player);
                         player.team = $scope.selectedItem._id;
-                        PlayersService.updatePlayer(player._id,{teamId:$scope.selectedItem._id}).then(function (resPlayer) {
+                        PlayersService.updatePlayer(player._id, { teamId: $scope.selectedItem._id }).then(function (resPlayer) {
                             console.log(resPlayer);
                             // $scope.selectedItem.players.push(player);
                             // $scope.selectedItem.save().then(function () {
@@ -5799,7 +5907,7 @@
         };
     };
 
-    PlayersController.$inject = ['$scope', 'TagsService', 'TeamsService', 'PlayersService', 'DTOptionsBuilder', 'DTColumnDefBuilder', '$window', '$filter', '$timeout', '$state','$stateParams'];
+    PlayersController.$inject = ['$scope', 'TagsService', 'TeamsService', 'PlayersService', 'DTOptionsBuilder', 'DTColumnDefBuilder', '$window', '$filter', '$timeout', '$state', '$stateParams'];
 
 
 
@@ -5820,9 +5928,9 @@
                 id: item._id
             });
         }
-        
+
         var preselected = $stateParams.id;
-        
+
         // ******* LOADING DATA ********** //
         TagsService.getAllTags().then(function (tags) {
             vm.Tags = tags;
@@ -5836,8 +5944,8 @@
                 vm.gridOptions.data = players;
                 vm.positions = _.uniq(_.map(vm.Players, 'position'));
                 vm.loading.players = false;
-                
-                 if (preselected) {
+
+                if (preselected) {
                     vm.selectedItem = _.find(vm.Players, function (o) {
                         return o._id == preselected;
                     });
@@ -6276,12 +6384,12 @@
 
         var preselected = $stateParams.id;
 
-        if(preselected)
-        TeamsService.getTeam(preselected).then(function(team){
-            vm.selectedItem = team;
-            vm.view.selectedLoading = false;
-        })
-        
+        if (preselected)
+            TeamsService.getTeam(preselected).then(function (team) {
+                vm.selectedItem = team;
+                vm.view.selectedLoading = false;
+            })
+
 
 
         TagsService.getAllTags().then(function (tags) {
@@ -6595,8 +6703,8 @@
                     });
                     return Defer.promise;
                 },
-                getTeam: function(matchid){
-                     var Defer = $q.defer();
+                getTeam: function (matchid) {
+                    var Defer = $q.defer();
                     TeamsAPI.get(matchid).then(function (team) {
                         Defer.resolve(team);
                     }, function (err) {
@@ -6714,9 +6822,9 @@
                     });
                     return Defer.promise;
                 },
-                updatePlayer: function(pid, data){
-                     var Defer = $q.defer();
-                   PlayersAPI.one(pid).customPUT(data).then(function (players) {
+                updatePlayer: function (pid, data) {
+                    var Defer = $q.defer();
+                    PlayersAPI.one(pid).customPUT(data).then(function (players) {
                         Defer.resolve(players);
                     });
                     return Defer.promise;
@@ -7531,6 +7639,14 @@
                     Defer.resolve(items);
                 });
                 return Defer.promise;
+            },
+            SendMessage: function (recipients, message) {
+                var Defer = $q.defer();
+                message.recipients = recipients;
+                API.customPOST(message, "messages").then(function (res, err) {
+                    Defer.resolve(res, err);
+                });
+                return Defer.promise;
             }
         }
     };
@@ -7744,7 +7860,14 @@
             return JSON.stringify(obj, null, 4);
         };
 
-
+        function FindInNeedToUpdateEvents(timeline) {
+            _.each(timeline, function (segment) {
+                 _.each(segment.events, function (event) {
+                     if(event.players && event.playerscount && event.playerscount != event.players.length)
+                     $scope.InNeedUpdateEvents.push(event);
+                 });
+            });
+        };
 
         $scope.loadMatchData = function (id) {
 
@@ -7755,6 +7878,9 @@
             }).then(function successCallback(response) {
                 $scope.match = AddHooks(response.data);
                 vm.match.data.automoderation = vm.match.data.moderation[0] ? true : false;
+                $scope.InNeedUpdateEvents = [];
+                FindInNeedToUpdateEvents(vm.match.data.timeline);
+
                 $scope.stats = ParseMatchStats(response.data.data.stats);
                 QuestionsService.AllByMatch(vm.matchid).then(function (questions) {
                     vm.questions = questions;
@@ -7800,7 +7926,9 @@
             })
 
             var teams = _.remove(clonedStats, function (o) {
-                return o.name.indexOf('team') > -1;
+                if (angular.isString(o.name))
+                    return o.name.indexOf('team') > -1;
+
             })
 
             _.each(teams, function (team) {
@@ -8060,7 +8188,7 @@
                 template: 'deleteEventDialog',
                 data: {
                     title: 'DANGER',
-                    message: 'This action will destroy the selected event. It will remove points from users and re-calculate new points and leaderboards.<br/> Will also cause floods and earthquakes in a poor distant country.<br/> There is also a high probability that it kill a few unborn babies somewhere too.<p>Do you still want to continue?</p>'
+                    message: 'This action will destroy the selected event. It will remove points from users and re-calculate new points and leaderboards.<br/> Will also cause floods and earthquakes in a poor distant country.<br/> There is also a high probability that it will kill a few unborn babies somewhere too.<p>Do you still want to continue?</p>'
                 }
             }).then(function (value) {
                 //console.log('Modal promise resolved. Value: ', value);
@@ -8069,6 +8197,7 @@
                     match_id: event.match_id,
                     data: event
                 };
+
 
                 $scope.sendEvent(updateEventData);
 
@@ -8139,8 +8268,8 @@
                 };
 
                 $scope.InNeedUpdateEvents.push(event);
-
                 $scope.newEvent = _.last($scope.InNeedUpdateEvents);
+
             }
             setTimeout(function () {
                 $anchorScroll.yOffset = 100;
@@ -8209,14 +8338,17 @@
 
 
                 if (response.data.players && response.data.playerscount == response.data.players.length) {
-                    $scope.InNeedUpdateEvents.pop();
-                    console.log($scope.InNeedUpdateEvents.length);
+                    console.log("All done. Let's remove it from needing an update.");
+                    $scope.InNeedUpdateEvents = _.without($scope.InNeedUpdateEvents, event.data);
                 }
-                else {
-                    var last = _.last($scope.InNeedUpdateEvents);
-                    last._id = response.data._id;
+                else if (response.data.players && response.data.playerscount != response.data.players.length) {
+                    console.log("The event has players that have not been submited. Let's update the ID for future upadate ref.");
+                    event.data._id = response.data._id;
+                    // var last = _.find($scope.InNeedUpdateEvents, event.data);
+                    // if(last)
+                    // last._id = response.data._id;
+                }
 
-                }
                 $scope.newEvent = null;
                 // last = response.data.data;
             }, function errorCallback(response) {
@@ -8832,12 +8964,37 @@
 
         // Messages
 
-        vm.message = null;
+        vm.newMessage = null;
 
         vm.onSelected = function ($item, $model) {
-            vm.message = $item;
-
+            vm.newMessage = _.merge($item, vm.newMessage);
         }
+
+        vm.createNew = function () {
+            vm.newMessage = {
+                _id: new ObjectId().toString(),
+                sender: $rootScope.user._id,
+                message: true,
+                push: false,
+                sockets: true
+            };
+        }
+
+        vm.cancelMessage = function () {
+            vm.newMessage = null;
+        }
+
+        vm.sendMessage = function (recips, message) {
+            vm.view.sendingMessage = true;
+            var recipients = _.map(recips, 'user._id');
+
+            UsersService.SendMessage(recipients, message).then(function (res, err) {
+                vm.newMessage = null;
+                vm.view.sendingMessage = false;
+                $rootScope.toast("Message sent succesfuly to " + recipients.length + " users.")
+            });
+        }
+
         vm.messageTemplates = [
             {
                 "name": "New question",
@@ -9926,7 +10083,7 @@
             }]
         };
     };
-    
+
     function playerLink() {
         return {
             restrict: 'E',
@@ -9937,7 +10094,7 @@
             },
             controller: ['$scope', '$state', function ($scope, $state) {
                 console.log("Directive Player Link Loaded");
-                
+
 
             }]
         };
