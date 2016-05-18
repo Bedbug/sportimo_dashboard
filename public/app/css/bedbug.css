@@ -2048,9 +2048,21 @@ height: 43px;
     width: 50px;
     float: left;
 }
+
+.graph-info{
+    position: absolute;
+    width: 100%;
+    top: 7px;
+}
+.graph-number{
+    font-size: 92px;
+}
+.graph-text{
+}
 .shadowed {
-    -webkit-filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.3));
-    filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.3));
+    /*-webkit-filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.3));
+    filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.3));*/
+    filter: none;
 }
 .foul {
     background-color: #3a3f51;

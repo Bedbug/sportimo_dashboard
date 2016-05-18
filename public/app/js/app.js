@@ -3103,6 +3103,7 @@
         $rootScope.dataStream.onMessage(function (message) {
             var wsData = JSON.parse(message.data);
 
+
             if (wsData.type.indexOf('stats'))
                 StatsService.ParseStats(wsData);
 
@@ -5640,6 +5641,7 @@ ObjectId.prototype.toString = function () {
         .module('app.players')
         .directive('playerEdit', playerEdit)
         .directive('teamEdit', teamEdit)
+        .directive('userProfile', userProfile)
         .directive('imageUpload', imageUpload)
         .controller('PlayersController', PlayersController);
 
@@ -5788,6 +5790,76 @@ ObjectId.prototype.toString = function () {
             }]
         };
     };
+
+    userProfile.$inject = ['$rootScope'];
+    function userProfile($rootScope) {
+        return {
+            restrict: 'E',
+            templateUrl: './app/views/directives/user.html',
+            scope: {
+                selectedUser: '=ngModel',
+                loading: '=loading',
+                onRemove: '=onRemove'
+            },
+            controller: ['$scope', '$timeout', function ($scope, $timeout) {
+                $scope.removeUser = function () {
+                    console.log("remove user");
+                    $scope.onRemove();
+
+                }
+                $scope.doughnutOptions = {
+                    segmentShowStroke: true,
+                    segmentStrokeColor: '#fff',
+                    segmentStrokeWidth: 2,
+                    percentageInnerCutout: 50,
+                    animationSteps: 50,
+                    animationEasing: 'easeOutBounce',
+                    animateRotate: false,
+                    animateScale: false
+                };
+
+
+                $scope.$watch('selectedUser', function (newValue, oldValue) {
+                    $scope.statsReloaded = false;
+                    if (newValue) {
+                        $timeout(function () {
+                            $scope.activityStats = [
+                                {
+                                    value: $scope.selectedUser.stats.matchedPlayed || 0,
+                                    color: '#128F1F',
+                                    highlight: '#3DF555',
+                                    label: 'Played'
+                                },
+                                {
+                                    value: $scope.selectedUser.stats.matchedVisited - $scope.selectedUser.stats.matchedPlayed || ($scope.selectedUser.stats.matchesVisited || 0),
+                                    color: '#131e26',
+                                    highlight: '#3a3f51',
+                                    label: 'Just Visited'
+                                }
+                            ]
+                            $scope.gameStats = [
+                                {
+                                    value: $scope.selectedUser.stats.cardsWon || 0,
+                                    color: '#128F1F',
+                                    highlight: '#3DF555',
+                                    label: 'Cards Won'
+                                },
+                                {
+                                    value: $scope.selectedUser.stats.cardsPlayed - $scope.selectedUser.stats.cardsWon || ($scope.selectedUser.stats.cardsPlayed || 0),
+                                    color: '#131e26',
+                                    highlight: '#3a3f51',
+                                    label: 'Cards Lost'
+                                }
+                            ];
+
+                            $scope.statsReloaded = true;
+                        }, 200);
+                    }
+                });
+
+            }]
+        }
+    }
 
     teamEdit.$inject = ['$rootScope', '$timeout', 'TagsService', 'TeamsService', 'CompetitionsService', 'PlayersService'];
 
@@ -7409,7 +7481,7 @@ ObjectId.prototype.toString = function () {
             },
             saveToFavorites: function (question, matchData) {
                 var Defer = $q.defer();
-                // TODO: SCAN for match data and replace with vars
+                // SCAN for match data and replace with vars
                 if (!matchData) {
                     question.status = 0;
                     // var favorite = _.cloneDeep(question);
@@ -7493,17 +7565,20 @@ ObjectId.prototype.toString = function () {
                 Defer.resolve([{
                     "company": "Coca Cola",
                     "name": "Sponsored by Coca Cola",
+                    "text": { "en": "Sponsored by Coca Cola" },
                     "banner": "http://static.wixstatic.com/media/86524a_8e7cf46163d10eb8ccb2ceb407085a97.jpg_1024",
                     "video": ""
                 },
                     {
                         "company": "Amstel",
                         "name": "Seeing you later - Amstel",
+                        "text": { "en": "Sponsored by Amstel" },
                         "banner": "http://2.bp.blogspot.com/-KQ4Ze7kZoEM/UYlG1Lcp9nI/AAAAAAAAH1I/dhuMMd8EFGU/s1600/amstel-lager.jpg"
                     },
                     {
                         "company": "Vodagone",
                         "name": "Vodafone",
+                        "text": { "en": "Sponsored by Vodafone" },
                         "banner": "http://www.vodafone.gr/portal/resources/media/Vodafone_Elladas/network/network-banner-inner-en--.jpg",
                         "video": ""
                     }
@@ -7633,6 +7708,13 @@ ObjectId.prototype.toString = function () {
         });
 
         return {
+            getuserById: function (id) {
+                var Defer = $q.defer();
+                Restangular.one('v1/user', id).get().then(function (items) {
+                    Defer.resolve(items);
+                });
+                return Defer.promise;
+            },
             getUserActivityByMatch: function (matchid) {
                 var Defer = $q.defer();
                 API.one('activity').getList(matchid).then(function (items) {
@@ -7799,6 +7881,9 @@ ObjectId.prototype.toString = function () {
                 console.log(evt);
 
             switch (evt.type) {
+                case "Message":
+                    $rootScope.toast(evt.data.message.en);
+                    break;
                 case "Advance_Segment":
                     $scope.match.data.state = evt.data.state;
                     $scope.match.data.timeline.push(evt.data.segment);
@@ -7862,10 +7947,10 @@ ObjectId.prototype.toString = function () {
 
         function FindInNeedToUpdateEvents(timeline) {
             _.each(timeline, function (segment) {
-                 _.each(segment.events, function (event) {
-                     if(event.players && event.playerscount && event.playerscount != event.players.length)
-                     $scope.InNeedUpdateEvents.push(event);
-                 });
+                _.each(segment.events, function (event) {
+                    if (event.players && event.playerscount && event.playerscount != event.players.length)
+                        $scope.InNeedUpdateEvents.push(event);
+                });
             });
         };
 
@@ -8927,6 +9012,10 @@ ObjectId.prototype.toString = function () {
         // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
         // @@
         // @@    TAB: USERS       
+
+        //TODO: user Profile
+
+
         UsersService.getUserActivityByMatch(vm.matchid).then(function (result) {
             vm.lastUsersUpdate = moment().format("HH:mm:ss");
             vm.matchUsers = result;
@@ -8962,6 +9051,25 @@ ObjectId.prototype.toString = function () {
             }
         }
 
+        vm.filterBackup = null;
+        vm.selectedUser = null;
+        vm.showUserProfile = function (id) {
+            vm.view.userLoading = true;
+            UsersService.getuserById(id).then(function (result) {
+                vm.selectedUser = result;
+                vm.view.userLoading = false;
+                if (vm.searchUsers)
+                   vm.filterBackup = vm.searchUsers;
+                vm.searchUsers = result._id;
+            });
+        }
+
+        vm.onRemoveUser = function () {
+            vm.selectedUser = null;
+            if (vm.filterBackup) vm.searchUsers = vm.filterBackup; else vm.searchUsers = "";
+            vm.filterBackup = null;
+        }
+
         // Messages
 
         vm.newMessage = null;
@@ -8970,7 +9078,8 @@ ObjectId.prototype.toString = function () {
             vm.newMessage = _.merge($item, vm.newMessage);
         }
 
-        vm.createNew = function () {
+        vm.createNewMessage = function () {
+          
             vm.newMessage = {
                 _id: new ObjectId().toString(),
                 sender: $rootScope.user._id,
@@ -9009,8 +9118,69 @@ ObjectId.prototype.toString = function () {
 
         vm.messageTemplates[0].data = JSON.stringify(vm.messageTemplates[0].data);
 
+        // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        // @@
+        // @@    ACTIONS: SPONSORS     
 
 
+        vm.sendMatchSocketMessage = function (data) {
+            var addEventData = {
+                type: "SocketMessage",
+                match_id: event.match_id,
+                data: data
+            };
+
+            $http({
+                method: 'POST',
+                url: $rootScope.servers[$rootScope.serverEnvironment].game_server + 'v1/moderation/' + $stateParams.id + '/event',
+                data: addEventData
+            }).then(function successCallback(response) {
+                console.log(response);
+            }, function errorCallback(response) {
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+            });
+
+        }
+
+        vm.sponsorSendTextMessage = function (message) {
+
+            var data = {
+                room: vm.matchid,
+                type: "Message",
+                timeline_event: false,
+                data: {
+                    message: message
+                }
+
+            };
+            vm.sendMatchSocketMessage(data);
+
+        }
+        vm.sponsorSendBanner = function (banner) {
+            var data = {
+                room: vm.matchid,
+                type: "Banner",
+                timeline_event: false,
+                data: {
+                    url: banner
+                }
+
+            };
+            vm.sendMatchSocketMessage(data);
+        }
+        vm.sponsorSendVideo = function (video) {
+            var data = {
+                room: vm.matchid,
+                type: "Video",
+                timeline_event: false,
+                data: {
+                    url: video
+                }
+
+            };
+            vm.sendMatchSocketMessage(data);
+        }
     }
 
     function CountriesService() {
@@ -10183,7 +10353,7 @@ ObjectId.prototype.toString = function () {
             segmentStrokeColor: '#fff',
             segmentStrokeWidth: 2,
             percentageInnerCutout: 50,
-            animationSteps: 100,
+            animationSteps: 50,
             animationEasing: 'easeOutBounce',
             animateRotate: false,
             animateScale: false
@@ -17153,7 +17323,7 @@ ObjectId.prototype.toString = function () {
                 url: '/match-moderation/soccer/:id',
                 title: 'Match Moderation',
                 templateUrl: helper.basepath('sportimo/moderation/sportimo_moderation_soccer.html'),
-                resolve: helper.resolveFor('toaster', 'dirPagination', 'moment', 'moment-format', 'ui.select', 'ngDialog', 'htmlSortable', 'angularGrid', 'ngFileUpload', 'classyloader'),
+                resolve: helper.resolveFor('chartjs', 'toaster', 'dirPagination', 'moment', 'moment-format', 'ui.select', 'ngDialog', 'htmlSortable', 'angularGrid', 'ngFileUpload', 'classyloader'),
                 controller: 'SportimoModerationSoccerController',
                 controllerAs: 'modCtrl',
             })

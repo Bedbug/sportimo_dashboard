@@ -136,7 +136,7 @@
                                 </div>
                             </li>
                             <!-- START timeline item-->
-                            <li ng-repeat="event in segment.events | reverse | filter: {status:'!removed'}" class="custom" ng-class="$index%2==0?'timeline-inverted':'timeline-left'">
+                            <li ng-repeat="event in segment.events | reverse | filter: {status:'!removed'} track by event._id" class="custom" ng-class="$index%2==0?'timeline-inverted':'timeline-left'">
                                 <div class="timeline-badge">
                                     {{event.time}}'
                                 </div>
@@ -415,7 +415,7 @@
             <!-- Sponsor Panel -->
             <div class="panel col-xs-12 panel-highlighted">
                 <div class="panel-heading">
-                    <label class="control-label">Sponsor</label>
+                    <label class="control-label">Match Sponsor</label>
                     <span class="input-group col-sm-12">
                             <ui-select ng-model="match.sponsor" allow-single-deselect="true" theme="bootstrap" class="text-left">
                                 <ui-select-match placeholder="Select sponsor from the list...">{{$select.selected.name}}</ui-select-match>
@@ -423,23 +423,46 @@
                                     <span ng-bind-html="sponsor.name | highlight: $select.search"></span>
                     </ui-select-choices>
                     </ui-select>
-                </div>
-                <span ng-show="match.sponsor" class="input-group-btn">
+                    <span ng-show="match.sponsor" class="input-group-btn">
                              <button  type="button" ng-click="match.sponsor = null" class="btn btn-default">Clear</button>
                             </span>
-                </span>
-
+                    </span>
+                </div>
+                
+                <!-- TEXT -->
+                <div ng-if="match.sponsor.name" class="col-xs-12">
+                    <label>{{match.sponsor.name}}</label>
+                     <multi-lang-text language-object="match.sponsor.text" class="mb0" default="en"></multi-lang-text>
+                    <button ng-click="sponsorSendTextMessage(match.sponsor.text)" type="button" class="moderation btn btn-lg mt0 mb-lg col-xs-12 btn-default">
+                        <em class="fa fa-bullhorn fa-fw"></em> Send Text
+                    </button>
+                </div>
+                <!-- END TEXT -->
+                
+                <!-- BANNER -->
                 <div class="col-xs-12" ng-style="match.sponsor?{                       
                                 'height': '75px',
                                 'background-size': 'cover',
                                 'background-repeat': 'no-repeat',
                                 'background-position': '50%',
+                                 'background-clip': 'content-box',
                                 'background-image':'url('+match.sponsor.banner+')'}:''">
                 </div>
-                <div class="text-center">
-                    <label> {{match.sponsor.name}}</label>
+                <div ng-if="match.sponsor.banner" class="col-xs-12 pb-lg">
+                    <button ng-click="sponsorSendBanner(match.sponsor.banner)" type="button" class="moderation btn btn-lg mt0 col-xs-12 btn-default">
+                        <em class="fa fa-bullhorn fa-fw"></em> Send banner
+                    </button>
                 </div>
-
+                <!-- END BANNER-->
+                
+                <!-- VIDEO -->
+                <div ng-if="match.sponsor.name" class="col-xs-12">
+                    <input type="text" ng-model="match.sponsor.video" placeholder="Video url..." class="form-control mb0" />
+                    <button ng-click="sponsorSendVideo(match.sponsor.video)" type="button" class="moderation btn btn-lg mt0 mb-lg col-xs-12 btn-default">
+                        <em class="fa fa-bullhorn fa-fw"></em> Send Video
+                    </button>
+                </div>
+                <!-- END VIDEO -->
             </div>
             <!-- END Sponsor Panel -->
         </div>

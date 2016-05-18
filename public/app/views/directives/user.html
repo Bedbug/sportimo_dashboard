@@ -1,0 +1,101 @@
+<div ladda="loading" data-spinner-color="#000" data-style="zoom-in" class="panel hello panel-highlighted col-xs-12">
+    <div class="col-xs-12">
+        <div class="panel-heading pr0">
+            <button class="btn btn-default btn-xs mb-xs pull-right" ng-click="removeUser()"><span class="text-muted">X</span></button>
+        </div>
+        <div class="panel-body p0 mt-lg">
+            <!-- START widget-->
+            <div class="col-md-6">
+                <div class="panel widget mb">
+                    <div class="panel-body" style="min-height: 200px;">
+                        <div class="row row-table">
+                            <div class="col-xs-6 text-center">
+                                <img ng-if="selectedUser.pic" ng-src="{{selectedUser.pic}}" alt="Image" class="img-circle thumb96" />
+                                <i ng-if="!selectedUser.pic" class="fa fa-user fa-5" style="font-size: 119px;" aria-hidden="true"></i>
+                            </div>
+                            <div class="col-xs-6">
+                                <h3 class="mt0">{{selectedUser.username}}</h3>
+                                <ul class="list-unstyled">
+                                    <li class="mb-sm">
+                                        <em tooltip="{{selectedUser._id}}" ng-click="clipboard(selectedUser._id)" class="fa fa-fw fa-info-circle"></em>{{selectedUser.name}}</li>
+                                    <li class="mb-sm">
+                                        <em class="fa fa-map-marker fa-fw"></em>{{selectedUser.country}} &nbsp;<span class="flag-icon"
+                                            ng-class="'flag-icon-'+selectedUser.country.toLowerCase()"></span> </li>
+                                    <li class="mb-sm">
+                                        <em class="fa fa-envelope fa-fw"></em>{{selectedUser.email}}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body bg-inverse">
+                        <div class="row row-table text-center" style="min-height:27px">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END widget-->
+            <!-- START widget-->
+            <div class="col-xs-6 col-md-3 p0 pr-sm" ng-if="statsReloaded">
+                <!-- START widget-->
+                <div class="panel widget">
+                    <div class="graph-info text-center">
+                        <span class="graph-number">{{selectedUser.stats.matchesVisited || 0}}</span><br/>
+                        <span class="graph-text">Matches Visited</span>
+                    </div>
+                    <div class="text-center" style="padding-top: 15px; height:180px;">
+                        <canvas doughnutchart="" options="{
+                    segmentShowStroke: true,
+                    segmentStrokeColor: '#fff',
+                    segmentStrokeWidth: 2,
+                    percentageInnerCutout: 80,
+                    animationSteps: 50,
+                    animationEasing: 'easeOutElastic',
+                    animateRotate: true,
+                    animateScale: false
+                }" data="activityStats" height="130" responsive="false" width="130 " style="width: 150px; height:200px; "></canvas>
+                    </div>
+                    <div class="list-group ">
+                        <a href=" " class="list-group-item ">
+                            <span class="label label-inverse pull-right ">{{selectedUser.stats.matchesPlayed || 0}}</span>
+                            <em class="fa fa-fw fa-clock-o text-muted "></em>Matches played</a>
+                        <a href=" " class="list-group-item ">
+                            <span class="label label-inverse pull-right ">{{selectedUser.stats.matchesVisited - selectedUser.stats.matchesPlayed || (selectedUser.stats.matchesVisited || 0)}}</span>
+                            <em class="fa fa-fw fa-user text-muted "></em>Matches not played</a>
+                    </div>
+                </div>
+                <!-- END widget-->
+            </div>
+
+            <div class="col-xs-6 col-md-3 p0 pr-sm" ng-if="statsReloaded">
+                <!-- START widget-->
+                <div class="panel widget">
+                    <div class="graph-info text-center">
+                        <span class="graph-number">{{selectedUser.stats.cardsPlayed || 0}}</span><br/>
+                        <span class="graph-text">Cards Played</span>
+                    </div>
+                    <div class="text-center" style="padding-top: 15px; height:180px;">
+                        <canvas doughnutchart="" options="{
+                    segmentShowStroke: true,
+                    segmentStrokeColor: '#fff',
+                    segmentStrokeWidth: 2,
+                    percentageInnerCutout: 80,
+                    animationSteps: 50,
+                    animationEasing: 'easeOutElastic',
+                    animateRotate: true,
+                    animateScale: false
+                }" data="gameStats" height="130" responsive="false" width="130 " style="width: 150px; height:200px; "></canvas>
+                    </div>
+                    <div class="list-group ">
+                        <a href=" " class="list-group-item ">
+                            <span class="label label-inverse pull-right ">{{selectedUser.stats.cardsWon || 0}}</span>
+                            <em class="fa fa-fw fa-clock-o text-muted "></em>Cards won</a>
+                        <a href=" " class="list-group-item ">
+                            <span class="label label-inverse pull-right ">{{selectedUser.stats.cardsPlayed - selectedUser.stats.cardsWon || (selectedUser.stats.cardsPlayed || 0)}}</span>
+                            <em class="fa fa-fw fa-user text-muted "></em>Cards lost</a>
+                    </div>
+                </div>
+                <!-- END widget-->
+            </div>
+
+        </div>
+    </div>
