@@ -57,12 +57,12 @@
                                 Stats
                             </tab-heading>
                             <div class="col-xs-12 p0 mt-lg">
-                                <multi-lang-text language-object="selectedItem.careerStats" placeholder="Add a new stat"></multi-lang-text>
+                                <multi-lang-text language-object="selectedItem.stats" placeholder="Add a new stat"></multi-lang-text>
                                 
                                 <!--<multi-lang-text language-object="value" placeholder="Add a new stat"></multi-lang-text>-->
                                 <scrollable-tabset api="scrlTabsApi" show-drop-down="false" tooltip-left-placement="top">
                                     <tabset>
-                                        <tab ng-repeat="(key,value) in selectedItem.careerStats">
+                                        <tab ng-repeat="(key,value) in selectedItem.stats">
                                             <tab-heading>{{key}}</tab-heading>
                                             <div class="tabContent">
                                                 <div class="list-group mb0">

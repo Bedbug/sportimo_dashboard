@@ -17,22 +17,29 @@
         "heading": "true",
         "translate": "Manage"
     },
-     {
+    {
         "text": "Game Cards",
         "sref": "app.gamecards",
         "icon": "icon-screen-tablet",
         "translate": "Game Cards"
     },
     {
+        "text": "Publications",
+        "sref": "app.publications",
+        "icon": "icon-note",
+        "translate": "Publications"
+    },
+    {
+        "text": "Polls",
+        "sref": "app.polls",
+        "icon": "icon-note",
+        "translate": "Polls"
+    },
+    {
         "text": "Sportimo Data",
         "sref": "#",
         "icon": "icon-note",
         "submenu": [
-             {
-                "text": "Publications",
-                "sref": "app.publications",
-                "translate": "Publications"
-            },
             {
                 "text": "Teams",
                 "sref": "app.teams"
@@ -41,7 +48,7 @@
                 "text": "Players",
                 "sref": "app.players"
             },
-             {
+            {
                 "text": "Standings",
                 "sref": "app.standings"
             },
@@ -49,15 +56,9 @@
                 "text": "Competitions",
                 "sref": "app.competitions"
             },
-             {
+            {
                 "text": "Sponsors",
                 "sref": "app.sponsors"
-            },
-           
-            {
-                "text": "Polls",
-                "sref": "app.polls",
-                "translate": "Polls"
             }
         ]
     },

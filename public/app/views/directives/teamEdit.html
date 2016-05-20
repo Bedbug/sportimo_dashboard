@@ -38,7 +38,7 @@
 
                     </div>
 
-                    <tabset justified="true" class="bg-white  col-sm-8 col-lg-5" style="margin-top:20px">
+                    <tabset justified="true" class="bg-white  col-sm-12 col-lg-5" style="margin-top:20px">
                         <tab>
                             <tab-heading>
                                 Players
@@ -64,7 +64,9 @@
                                         </thead>
                                         <tbody>
                                             <tr ng-repeat="player in selectedItem.players">
-                                                <td><player-link playerid="player._id" name="player.name.en"></player-link></td>
+                                                <td>
+                                                    <player-link playerid="player._id" name="player.name.en"></player-link>
+                                                </td>
                                                 <td>{{player.position}}</td>
                                                 <td align="center ">
                                                     <button class="btn btn-danger delete"> <i ng-click="removePlayer(player); " class="fa fa-trash "></i></button>
@@ -93,10 +95,121 @@
                         </tab>
                         <tab>
                             <tab-heading>
-                                Stats
+                                Info
                             </tab-heading>
 
+                            <table class="table table-striped table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Rank</th>
+                                        <th class="text-center">Team</th>
+                                        <th tooltip="Matches Played" tooltip-append-to-body="true" class="text-center">MP</th>
+                                        <th tooltip="Goals For" tooltip-append-to-body="true" class="text-center">GF</th>
+                                        <th tooltip="Goals Against" tooltip-append-to-body="true" class="text-center">GA</th>
+                                        <th tooltip="Wins" tooltip-append-to-body="true" class="text-center">W</th>
+                                        <th tooltip="Losses" tooltip-append-to-body="true" class="text-center">L</th>
+                                        <th tooltip="Ties" tooltip-append-to-body="true" class="text-center">T</th>
+                                        <th class="text-center">Points</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            {{selectedItem.standing.rank}}
+                                        </td>
+                                        <td>
+                                            {{selectedItem.standing.teamName.en}}
+                                        </td>
+                                        <td class="text-center">
+                                            {{selectedItem.standing.gamesPlayed}}
+                                        </td>
+                                        <td class="text-center">
+                                            {{selectedItem.standing.goalsFor}}
+                                        </td>
+                                        <td class="text-center">
+                                            {{selectedItem.standing.goalsAgainst}}
+                                        </td>
+                                        <td class="text-center">
+                                            {{selectedItem.standing.wins}}
+                                        </td>
+                                        <td class="text-center">
+                                            {{selectedItem.standing.losses}}
+                                        </td>
+                                        <td class="text-center">
+                                            {{selectedItem.standing.ties}}
+                                        </td>
+                                        <td class="text-center">
+                                            {{selectedItem.standing.points}}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
 
+                            <table class="mt-sm table table-striped table-bordered table-hover">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            Recent Form
+                                        </td>
+                                        <td ng-class="'form-'+form" class="text-center" ng-repeat="form in selectedItem.recentform track by $index">
+                                            {{form}}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <table class="mt-sm table table-striped table-bordered table-hover">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            Last match
+                                        </td>
+                                        <td class="text-center">
+                                            <span tooltip="{{selectedItem.lastmatch.home.name.en}}"><img class="thumb24" ng-src="{{selectedItem.lastmatch.home.logo}}"/></span>
+                                        </td>
+                                        <td class="text-center">{{selectedItem.lastmatch.homescore}} &nbsp;-&nbsp; {{selectedItem.lastmatch.awayscore}}</td>
+                                        <td class="text-center">
+                                            <span tooltip="{{selectedItem.lastmatch.away.name.en}}"><img class="thumb24" ng-src="{{selectedItem.lastmatch.away.logo}}"/></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Next match
+                                        </td>
+                                        <td class="text-center">
+                                            <span tooltip="{{selectedItem.nextmatch.home.name.en}}"><img class="thumb24" ng-src="{{selectedItem.nextmatch.home.logo}}"/></span>
+                                        </td>
+                                        <td class="text-center">{{formatDate(selectedItem.nextmatch.eventdate)}}</td>
+                                        <td class="text-center">
+                                            <span tooltip="{{selectedItem.nextmatch.away.name.en}}"><img class="thumb24" ng-src="{{selectedItem.nextmatch.away.logo}}"/></span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                         
+
+                            <table class="mt-sm table table-striped table-bordered table-hover">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            Top scorer
+                                        </td>
+                                        <td class="text-center">
+                                            {{selectedItem.topscorer.uniformNumber}}
+                                        </td>
+                                        <td class="p0 text-center">
+                                            <img class="thumb32" ng-src="{{selectedItem.topscorer.pic}}" />
+                                        </td>
+                                        <td class="text-center">
+                                            <player-link playerid="selectedItem.topscorer._id" name="selectedItem.topscorer.name.en"></player-link>
+                                        </td>
+                                        <td class="text-center">
+                                            Goals: {{selectedItem.topscorer.stats[selectedItem.topscorer.lastActiveSeason].goals}}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
 
                         </tab>
                         <tab>

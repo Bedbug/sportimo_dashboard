@@ -1,10 +1,8 @@
-<div class="col-xs-12">
-    <user-profile  on-remove="onRemoveUser" ng-hide="!view.userLoading && !selectedUser" class="col-xs-12" ng-model="selectedUser" loading="view.userLoading"></user-profile>
-</div>
+
 <div class="col-xs-12  mt-lg">
 
     <div class="">
-        <div class="col-lg-9">
+        <div class="pl0 col-lg-9">
             <div ng-hide="newMessage" class="panel panel-highlighted">
                 <!--<div class="panel-heading"></div>-->
                 <div class="panel-body" style="padding: 15px 0 0 0;">
@@ -51,7 +49,7 @@
                     </div>
                 </div>
             </div>
-            <div ng-show="newMessage" class="panel panel-highlighted">
+            <div ng-show="newMessage" class="animShow panel panel-highlighted">
                 <h3 class="m0 pb-lg panel-heading">Messages & Push Notifications</h3>
                 <div class="panel-body">
 
@@ -159,6 +157,7 @@
 
         </div>
         <!-- END panel-->
+        <user-profile  on-remove="onRemoveUser" ng-hide="!view.userLoading && !selectedUser"  ng-model="selectedUser" loading="view.userLoading"></user-profile>
     </div>
     <div class="col-lg-3">
         <div class="">

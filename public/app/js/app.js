@@ -5893,7 +5893,10 @@ ObjectId.prototype.toString = function () {
                     $scope.Competitions = all;
 
                 });
-
+                
+                   $scope.formatDate = function (stringDate) {
+            return moment(stringDate).calendar(); //format("dddd, MMMM Do YYYY, h:mm:ss a");
+        };
 
                 $scope.scrlTabsApi = {};
 
@@ -6458,6 +6461,7 @@ ObjectId.prototype.toString = function () {
 
         if (preselected)
             TeamsService.getTeam(preselected).then(function (team) {
+                console.log(team);
                 vm.selectedItem = team;
                 vm.view.selectedLoading = false;
             })
@@ -6520,15 +6524,23 @@ ObjectId.prototype.toString = function () {
                 gridApi.selection.on.rowSelectionChanged($scope, function (row) {
                     if (vm.selectedItem) {
                         vm.view.selectedLoading = true;
-                        // $timeout(function () {
-                        vm.selectedItem = row.entity;
-                        vm.view.selectedLoading = false;
-                        $scope.gridApi.core.handleWindowResize();
+                         TeamsService.getTeam(row.entity._id).then(function (team) {
+                           console.log(team);
+                         vm.selectedItem = team;
+                         vm.view.selectedLoading = false;
+                        })
+                        // vm.selectedItem = row.entity;
+                        // vm.view.selectedLoading = false;
+                        // $scope.gridApi.core.handleWindowResize();
                         // }, 400)
                     } else {
                         vm.reload = true;
-                        vm.selectedItem = row.entity;
-                        $scope.gridApi.core.handleWindowResize();
+                         TeamsService.getTeam(row.entity._id).then(function (team) {
+                           console.log(team);
+                         vm.selectedItem = team;
+                        //  vm.view.selectedLoading = false;
+                        })
+                        // $scope.gridApi.core.handleWindowResize();
                     }
 
                 });
@@ -7953,7 +7965,11 @@ ObjectId.prototype.toString = function () {
                 });
             });
         };
-
+        
+        
+        $scope.finalizeMatch = function(){
+            $scope.match.data.completed = true;
+        }
         $scope.loadMatchData = function (id) {
 
             $http({
@@ -8612,9 +8628,7 @@ ObjectId.prototype.toString = function () {
         //     // or server returns response with an error status.
         // });
 
-        $scope.formatDate = function (stringDate) {
-            return moment(stringDate).calendar(); //format("dddd, MMMM Do YYYY, h:mm:ss a");
-        };
+        
 
         // Moderation-PoolRooms
         $scope.sortableCallbackNew = function (sourceModel, destModel, start, end) {
@@ -10302,7 +10316,13 @@ ObjectId.prototype.toString = function () {
         $rootScope.DataUpdate = setInterval(function () {
             vm.splineData = angular.copy($rootScope.dataset);
         }, 5000);
-
+        
+        
+        $rootScope.formatDate = function (stringDate) {
+            console.log("request for a calendar date");
+            return moment(stringDate).calendar(); //format("dddd, MMMM Do YYYY, h:mm:ss a");
+        };
+        
         //  Doughnut chart
         // ----------------------------------- 
 
@@ -17279,7 +17299,7 @@ ObjectId.prototype.toString = function () {
             .state('app.publications', {
                 url: '/publications',
                 title: 'Publications',
-                templateUrl: helper.basepath('database/publications.html'),
+                templateUrl: helper.basepath('sportimo/publications/publications.html'),
                 resolve: helper.resolveFor('akoenig.deckgrid', 'restangular', 'toaster', 'dirPagination', 'moment', 'datatables', 'ngFileUpload', 'localytics.directives', 'ui.select', 'truncate'),
                 controller: 'PublicationsController'
             })

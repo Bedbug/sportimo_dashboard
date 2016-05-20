@@ -178,6 +178,21 @@ div.fluid{
         margin-bottom: 16px;
     }
 }
+
+
+.form-W{
+    background-color: green;
+    color:white;
+}
+.form-D{
+    background-color: #4BAAF6;
+    color:white;
+}
+.form-L{
+   background-color: darkred;
+    color:white;
+}
+
 @media (max-width: 768px) {
     @keyframes ExpandDown {
         from {
