@@ -125,11 +125,11 @@
                                 </td>
                                 <td>
                                     Last visit:
-                                    <strong>{{formatDate(item.lastActive)}}</strong>
+                                    <strong>{{calendar(item.lastActive)}}</strong>
                                 </td>
                                 <td>
                                     First:
-                                    <strong>{{formatDate(item.createdAt)}}</strong>
+                                    <strong>{{calendar(item.createdAt)}}</strong>
                                 </td>
                                 <td class="text-center" width="70px">
                                     <span class="flag-icon" ng-class="'flag-icon-'+item.user.country.toLowerCase()"></span>

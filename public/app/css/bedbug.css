@@ -2,6 +2,51 @@
     /*display: none;*/
 }
 
+
+.card-icon{
+   position: absolute;
+    left: 90px;
+}
+
+.right-team-logo {
+    position: relative;
+    top: -3px;
+    right: 12px;
+    float: right;
+}
+
+.event-time{
+    float: left;
+    position: absolute;
+    left: 10px;
+    padding: inherit;
+    color: #164C75;
+    font-weight: bold;
+}
+.event-type{ 
+    float: left;
+    position: absolute;
+    left: 120px;
+    padding: inherit;
+    color: #164C75;
+    font-weight: bold;
+    font-size: 15px;
+ }
+.event-player{
+    position: absolute;
+    left: 222px;
+    padding: inherit;
+    color: #164C75;
+    font-size: 15px;
+}
+
+/*.right-team-logo {
+    height: 30px;
+    width: auto;
+    margin-right: 10px;
+}*/
+
+
 .panel-highlighted{
     background-color: #F9F9F9;
     border: 2px solid white;
@@ -1563,13 +1608,6 @@ height: 43px;
     font-size: 60px;
 }
 
-.card-icon{
-    width: 60px;
-    height: 39px;
-    text-align: center;
-    float: left;
-    margin-left: -10px;
-}
 .match-time {
     margin-bottom: -50px;
     margin-left: 5px;

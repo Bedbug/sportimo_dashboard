@@ -3303,8 +3303,7 @@
 
             console.log(item);
             item.remove().then(function (res, err) {
-                console.log(res);
-                console.log(err);
+
                 $scope.loading = false;
                 // Remove the deleted question from the array
                 //  var index = $scope.Users.indexOf(item);
@@ -3417,8 +3416,7 @@
             $scope.loading = true;
 
             item.remove().then(function (res, err) {
-                console.log(res);
-                console.log(err);
+
                 $scope.loading = false;
                 // Remove the deleted question from the array
                 //  var index = $scope.Users.indexOf(item);
@@ -4397,8 +4395,7 @@ ObjectId.prototype.toString = function () {
             $scope.loading = true;
 
             item.remove().then(function (res, err) {
-                console.log(res);
-                console.log(err);
+
                 $scope.loading = false;
                 // Remove the deleted question from the array
                 //  var index = $scope.Users.indexOf(item);
@@ -4564,8 +4561,7 @@ ObjectId.prototype.toString = function () {
             $scope.loading = true;
 
             item.remove().then(function (res, err) {
-                console.log(res);
-                console.log(err);
+
                 $scope.loading = false;
                 // Remove the deleted question from the array
                 //  var index = $scope.Users.indexOf(item);
@@ -4839,11 +4835,12 @@ ObjectId.prototype.toString = function () {
             id: "_id"
         });
         var upfixtures = null;
+        var lastfixtureid = null;
 
         return {
             GetFixtures: function (id) {
                 var Defer = $q.defer();
-                if (upfixtures)
+                if (upfixtures && lastfixtureid == id)
                     Defer.resolve(upfixtures)
                 else
                     fixtures.get(id).then(function (result) {
@@ -4855,7 +4852,7 @@ ObjectId.prototype.toString = function () {
                                 fix.home_team = TagsService.getTagById(fix.home_team);
                                 fix.away_team = TagsService.getTagById(fix.away_team);
                             })
-
+                            lastfixtureid = id;
                             Defer.resolve(upfixtures);
                         })
 
@@ -5893,10 +5890,10 @@ ObjectId.prototype.toString = function () {
                     $scope.Competitions = all;
 
                 });
-                
-                   $scope.formatDate = function (stringDate) {
-            return moment(stringDate).calendar(); //format("dddd, MMMM Do YYYY, h:mm:ss a");
-        };
+
+                $scope.formatDate = function (stringDate) {
+                    return moment(stringDate).calendar(); //format("dddd, MMMM Do YYYY, h:mm:ss a");
+                };
 
                 $scope.scrlTabsApi = {};
 
@@ -6365,40 +6362,48 @@ ObjectId.prototype.toString = function () {
                 placeholder: '@placeholder'
             },
             controller: ['$scope', '$log', function ($scope, $log) {
-
+                $scope.selected = null;
 
                 $scope.$watch('lObject', function (newValue, oldValue) {
-                    if ($scope.lObject && $scope.lObject.en)
-                        $scope.selected = 'en';
+                    if ($scope.selected)
+                        $scope.key = $scope.selected;
+                    else if ($scope.lObject && $scope.lObject.en)
+                        $scope.key = 'en';
+                    else if (!$scope.selected && _.size($scope.lObject) > 0) {
 
-                    $scope.showChange();
+                        $scope.key = _.keys($scope.lObject)[0];
+
+                    }
+
+                    // $scope.showChange();
                 });
 
-                $scope.showChange = function () {
-                    if ($scope.lObject)
-                        $scope.ngModel = {
-                            key: $scope.selected,
-                            value: $scope.lObject[$scope.selected]
-                        };
+                // $scope.showChange = function () {
+                //     if ($scope.lObject)
+                //         $scope.ngModel = {
+                //             key: $scope.selected,
+                //             value: $scope.lObject[$scope.selected]
+                //         };
 
-                }
+
+                // }
 
                 $scope.addNew = function () {
-                    $scope.selected = null;
+                    $scope.key = null;
                 }
 
                 $scope.select = function (key) {
-                    $scope.selected = key;
+                    $scope.key = key;
                 }
 
                 $scope.pushLangKey = function (key) {
                     $scope.lObject[key] = "";
-                    $scope.selected = key;
+                    $scope.key = key;
                     key = null;
                 };
 
                 $scope.delete = function () {
-                    delete $scope.lObject[$scope.selected];
+                    delete $scope.lObject[$scope.key];
                 }
             }]
         };
@@ -6418,11 +6423,11 @@ ObjectId.prototype.toString = function () {
 
 
 
-
                 $scope.$watch('lObject', function (newValue, oldValue) {
                     if ($scope.lObject && $scope.lObject.en)
                         $scope.selected = 'en';
-                });
+
+                }, true);
 
                 $scope.addNew = function () {
                     $scope.selected = null;
@@ -6524,10 +6529,10 @@ ObjectId.prototype.toString = function () {
                 gridApi.selection.on.rowSelectionChanged($scope, function (row) {
                     if (vm.selectedItem) {
                         vm.view.selectedLoading = true;
-                         TeamsService.getTeam(row.entity._id).then(function (team) {
-                           console.log(team);
-                         vm.selectedItem = team;
-                         vm.view.selectedLoading = false;
+                        TeamsService.getTeam(row.entity._id).then(function (team) {
+                            console.log(team);
+                            vm.selectedItem = team;
+                            vm.view.selectedLoading = false;
                         })
                         // vm.selectedItem = row.entity;
                         // vm.view.selectedLoading = false;
@@ -6535,10 +6540,10 @@ ObjectId.prototype.toString = function () {
                         // }, 400)
                     } else {
                         vm.reload = true;
-                         TeamsService.getTeam(row.entity._id).then(function (team) {
-                           console.log(team);
-                         vm.selectedItem = team;
-                        //  vm.view.selectedLoading = false;
+                        TeamsService.getTeam(row.entity._id).then(function (team) {
+                            console.log(team);
+                            vm.selectedItem = team;
+                            //  vm.view.selectedLoading = false;
                         })
                         // $scope.gridApi.core.handleWindowResize();
                     }
@@ -6832,6 +6837,13 @@ ObjectId.prototype.toString = function () {
                     });
                 return Defer.promise;
             },
+            getTagsByMatch: function (matchid) {
+                var Defer = $q.defer();
+                Restangular.one('v1/data/tags', matchid).getList('match').then(function (items) {
+                    Defer.resolve(items);
+                });
+                return Defer.promise;
+            },
             getAllTeamTags: function () {
                 var Defer = $q.defer();
 
@@ -7091,6 +7103,23 @@ ObjectId.prototype.toString = function () {
         // Basic
         var columnDefs = [
             {
+                displayName: 'Rank',
+                cellRenderer: function (params) {
+                    console.log(params.rowIndex);
+                    return params.rowIndex + 1;
+                },
+                cellStyle: function (params) {
+                    console.log(params.node.id);
+                    if (params.node.id < 3) {
+                        //mark police cells as red
+                        return { color: 'white', backgroundColor: 'rgb(59, 163, 245)', 'text-align': 'center', 'border': '1px solid white' };
+                    } else {
+                        return { 'text-align': 'center' };
+                    }
+                },
+                width: 30
+            },
+            {
                 displayName: 'Nickname',
                 field: 'name',
                 width: 100
@@ -7103,6 +7132,9 @@ ObjectId.prototype.toString = function () {
             {
                 displayName: 'Country',
                 field: 'country',
+                cellStyle: function (params) {
+                    return { 'text-align': 'center' };
+                },
                 width: 100
             },
             {
@@ -7357,6 +7389,7 @@ ObjectId.prototype.toString = function () {
         .service('QuestionsService', QuestionsService)
         .service('CountriesService', CountriesService)
         .service('UsersService', UsersService)
+        .service('GamecardsService', GamecardsService)
         .controller('SportimoModerationSoccerController', SportimoModerationSoccerController)
         .factory('ngClipboard', function ($compile, $rootScope, $document) {
             return {
@@ -7419,6 +7452,7 @@ ObjectId.prototype.toString = function () {
     PoolsService.$inject = ['$rootScope', '$q', 'Restangular'];
     QuestionsService.$inject = ['$rootScope', '$q', 'Restangular'];
     UsersService.$inject = ['$rootScope', '$q', 'Restangular'];
+    GamecardsService.$inject = ['$rootScope', '$q', 'Restangular'];
 
     function QuestionsService($rootScope, $q, Restangular) {
         var API = Restangular.all('v1/questions');
@@ -7711,6 +7745,47 @@ ObjectId.prototype.toString = function () {
 
     }
 
+    function GamecardsService($rootScope, $q, Restangular) {
+
+
+        var configuredRestangular = Restangular.withConfig(function (config) {
+            config.restangularFields.options = 'restangularOptions';
+        });
+        var API = configuredRestangular.all('v1/gamecards');
+        configuredRestangular.setBaseUrl($rootScope.servers[$rootScope.serverEnvironment].game_server);
+        configuredRestangular.setRestangularFields({
+            id: "_id"
+        });
+
+        return {
+            getAllTemplates: function () {
+                var Defer = $q.defer();
+                API.one('templates').getList().then(function (items) {
+                    Defer.resolve(items);
+                });
+                return Defer.promise;
+            },
+            getMatchDefinitions: function (matchid) {
+                var Defer = $q.defer();
+                configuredRestangular.one('v1/gamecards', matchid).getList('matchdefinitions').then(function (items) {
+                    Defer.resolve(items);
+                });
+                return Defer.promise;
+            },
+            ceateDefinitionForMatch: function (card, matchid) {
+                var Defer = $q.defer();
+                card = configuredRestangular.restangularizeElement(null, card, 'v1/gamecards/' + matchid + '/matchdefinitions');
+                card.save().then(function (res, err) {
+                    if (!err)
+                        Defer.resolve(res);
+                    else
+                        console.error(err);
+                })
+                return Defer.promise;
+            }
+        }
+    }
+
     function UsersService($rootScope, $q, Restangular) {
         var API = Restangular.all('v1/users');
 
@@ -7745,9 +7820,9 @@ ObjectId.prototype.toString = function () {
         }
     };
 
-    SportimoModerationSoccerController.$inject = ['UsersService', 'StatsComService', 'CompetitionsService', 'StatsService', 'TagsService', 'ngClipboard', '$location', '$anchorScroll', 'QuestionsService', 'LeaderboardsService', 'CountriesService', 'PrizesService', 'SponsorsService', 'PoolsService', '$scope', 'ngDialog', '$stateParams', '$http', '$rootScope', '$timeout', '$interval', '$mdToast', '$mdBottomSheet', '$window'];
+    SportimoModerationSoccerController.$inject = ['GamecardsService', 'UsersService', 'StatsComService', 'CompetitionsService', 'StatsService', 'TagsService', 'ngClipboard', '$location', '$anchorScroll', 'QuestionsService', 'LeaderboardsService', 'CountriesService', 'PrizesService', 'SponsorsService', 'PoolsService', '$scope', 'ngDialog', '$stateParams', '$http', '$rootScope', '$timeout', '$interval', '$mdToast', '$mdBottomSheet', '$window'];
 
-    function SportimoModerationSoccerController(UsersService, StatsComService, CompetitionsService, StatsService, TagsService, ngClipboard, $location, $anchorScroll, QuestionsService, LeaderboardsService, CountriesService, PrizesService, SponsorsService, PoolsService, $scope, ngDialog, $stateParams, $http, $rootScope, $timeout, $interval, $mdToast, $mdBottomSheet, $window) {
+    function SportimoModerationSoccerController(GamecardsService, UsersService, StatsComService, CompetitionsService, StatsService, TagsService, ngClipboard, $location, $anchorScroll, QuestionsService, LeaderboardsService, CountriesService, PrizesService, SponsorsService, PoolsService, $scope, ngDialog, $stateParams, $http, $rootScope, $timeout, $interval, $mdToast, $mdBottomSheet, $window) {
 
 
         var vm = $scope;
@@ -7762,7 +7837,12 @@ ObjectId.prototype.toString = function () {
 
         vm.clipboard = function (tocopy) {
             ngClipboard.toClipboard(tocopy);
+            $rootScope.toast("Copied to Clipboard");
         }
+
+        vm.calendar = function (stringDate) {
+            return moment(stringDate).calendar(); //format("dddd, MMMM Do YYYY, h:mm:ss a");
+        };
 
         //-----------------------------
         // Get the data from SERVER
@@ -7907,6 +7987,8 @@ ObjectId.prototype.toString = function () {
                     break;
                 case "Event_added":
                     // if (evt.data.timeline_event && evt.data.type.indexOf("Starts") < 0 && evt.data.type.indexOf("Ends") < 0)
+                    if (event.players && event.playerscount && event.playerscount != event.players.length)
+                        $scope.InNeedUpdateEvents.push(evt.data);
                     $scope.match.data.timeline[evt.data.state].events.push(evt.data);
                 // break;
                 case "Event_updated":
@@ -7965,11 +8047,18 @@ ObjectId.prototype.toString = function () {
                 });
             });
         };
-        
-        
-        $scope.finalizeMatch = function(){
+
+
+        $scope.finalizeMatch = function () {
             $scope.match.data.completed = true;
+            var addEventData = {
+                type: "Terminate",
+                match_id: event.match_id
+            };
+
+            $scope.sendEvent(addEventData);
         }
+
         $scope.loadMatchData = function (id) {
 
             $http({
@@ -8555,7 +8644,7 @@ ObjectId.prototype.toString = function () {
             match.GetCurrentSegment = function () {
                 // We assign the name of the segment to the currentSegment var
                 if (match.sport.segments[match.data.state])
-                    return match.sport.segments[match.data.state].name;
+                    return match.sport.segments[match.data.state].name.en;
                 else
                     return "Unknown State";
             };
@@ -8569,7 +8658,7 @@ ObjectId.prototype.toString = function () {
                             var now = moment().utc();
                             var then = moment(match.data.timeline[match.data.state].start);
                             var ms = moment(now, "DD/MM/YYYY HH:mm:ss").diff(moment(then, "DD/MM/YYYY HH:mm:ss"));
-                            var d = moment.duration(ms);
+                            var d = moment.duration(ms).add(match.data.timeline[match.data.state].sport_start_time, 'm');
                             match.Match_timer = d.format("mm:ss", {
                                 trim: false
                             });
@@ -8628,7 +8717,7 @@ ObjectId.prototype.toString = function () {
         //     // or server returns response with an error status.
         // });
 
-        
+
 
         // Moderation-PoolRooms
         $scope.sortableCallbackNew = function (sourceModel, destModel, start, end) {
@@ -9073,7 +9162,7 @@ ObjectId.prototype.toString = function () {
                 vm.selectedUser = result;
                 vm.view.userLoading = false;
                 if (vm.searchUsers)
-                   vm.filterBackup = vm.searchUsers;
+                    vm.filterBackup = vm.searchUsers;
                 vm.searchUsers = result._id;
             });
         }
@@ -9093,7 +9182,7 @@ ObjectId.prototype.toString = function () {
         }
 
         vm.createNewMessage = function () {
-          
+
             vm.newMessage = {
                 _id: new ObjectId().toString(),
                 sender: $rootScope.user._id,
@@ -9194,6 +9283,89 @@ ObjectId.prototype.toString = function () {
 
             };
             vm.sendMatchSocketMessage(data);
+        }
+
+        // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        // @@
+        // @@    TAB: Gamecards     
+
+        vm.gamecardTemplates = {};
+        vm.selectedGameCard = null;
+
+        GamecardsService.getMatchDefinitions(vm.matchid).then(function (templates) {
+            vm.gamecardTemplates.instants = _.filter(templates, { cardType: "Instant" });
+            vm.gamecardTemplates.overalls = _.filter(templates, { cardType: "Overall" });
+        });
+
+        vm.editDefinition = function (definition) {
+            console.log(definition);
+            vm.selectedGameCard = definition;
+        }
+
+        TagsService.getTagsByMatch(vm.matchid).then(function (result) {
+            vm.matchTags = result;
+        })
+
+        vm.duplicateGameCard = function (selected) {
+            var dup = _.cloneDeep(selected);
+            delete dup._id;
+            dup.title.en += " [Duplicate]";
+            vm.selectedGameCard = dup;
+        }
+        vm.CancelGamecardEdit = function () {
+            vm.selectedGameCard = null;
+        }
+
+        vm.CreateGameCard = function (gamecard) {
+            GamecardsService.ceateDefinitionForMatch(gamecard, vm.matchid).then(function (result) {
+
+                if (result.cardType == "Instant")
+                    vm.gamecardTemplates.instants.push(result);
+                else
+                    vm.gamecardTemplates.overalls.push(result);
+
+                vm.selectedGameCard = null;
+                $rootScope.toast("Card definition created");
+            })
+        }
+
+        vm.deleteGameCard = function (gamecard) {
+            gamecard.remove().then(function (res, err) {
+                if (!err) {
+
+                    if (gamecard.cardType == "Instant")
+                        vm.gamecardTemplates.instants = _.without(vm.gamecardTemplates.instants, gamecard);
+                    else
+                        vm.gamecardTemplates.overalls = _.without(vm.gamecardTemplates.overalls, gamecard);
+                    vm.selectedGameCard = null;
+                    $rootScope.toast("Card definition deleted");
+                }
+            })
+        }
+
+        vm.changeStatus = function (definition, status) {
+            definition.status = status;
+            definition.save().then(function (res, err) {
+                if (!err)
+                    $rootScope.toast("Status updated");
+                else
+                    $rootScope.toast(err);
+            })
+        }
+
+        vm.UpdateGamecard = function (selectedGameCard) {
+            selectedGameCard.save().then(function (res, err) {
+                if (!err) {
+                    $rootScope.toast("Game card definition changed succesfuly");
+                    vm.selectedGameCard = null;
+                }
+                else
+                    $rootScope.toast(err);
+            })
+        }
+
+        vm.showFavoritesInfo = function () {
+            $rootScope.toast("You can use variables before you save your game card.</br></br> Vars:</br> [[home_team_name]] - home_team</br> [[away_team_name]] - away_team");
         }
     }
 
@@ -10316,13 +10488,12 @@ ObjectId.prototype.toString = function () {
         $rootScope.DataUpdate = setInterval(function () {
             vm.splineData = angular.copy($rootScope.dataset);
         }, 5000);
-        
-        
-        $rootScope.formatDate = function (stringDate) {
-            console.log("request for a calendar date");
+
+
+        $scope.formatDate = function (stringDate) {
             return moment(stringDate).calendar(); //format("dddd, MMMM Do YYYY, h:mm:ss a");
         };
-        
+
         //  Doughnut chart
         // ----------------------------------- 
 
@@ -17346,6 +17517,13 @@ ObjectId.prototype.toString = function () {
                 resolve: helper.resolveFor('chartjs', 'toaster', 'dirPagination', 'moment', 'moment-format', 'ui.select', 'ngDialog', 'htmlSortable', 'angularGrid', 'ngFileUpload', 'classyloader'),
                 controller: 'SportimoModerationSoccerController',
                 controllerAs: 'modCtrl',
+            })
+            .state('app.gamecards', {
+                url: '/gamecards',
+                title: 'Game cards',
+                templateUrl: helper.basepath('sportimo/gamecards/gamecards.html'),
+                resolve: helper.resolveFor('chartjs', 'toaster', 'dirPagination', 'moment', 'moment-format', 'ui.select', 'ngDialog', 'htmlSortable', 'angularGrid', 'ngFileUpload', 'classyloader'),
+                controller: 'SportimoModerationSoccerController',
             })
             .state('app.welcomes', {
                 url: '/welcomes',

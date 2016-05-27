@@ -26,7 +26,7 @@
                     </div>
                     <div ng-show="match.data.state == 0" class="match-info">
                         <small class="text-muted"></small>
-                        <h5><strong>{{formatDate(match.data.start)}}</strong></h5>
+                        <h5><strong>{{calendar(match.data.start)}}</strong></h5>
                         <h5 class="text-muted">{{match.GetCurrentSegment()}}</h5>
                     </div>
                 </div>
@@ -105,7 +105,7 @@
                 </tab>
                 <tab>
                     <tab-heading>
-                        <div class="ph"> <em class="fa fa-tablet fa-fw"></em><span class="match-tab-text"> Wildcards</span></div>
+                        <div class="ph"> <em class="fa fa-tablet fa-fw"></em><span class="match-tab-text"> Game cards</span></div>
                     </tab-heading>
                     <div ng-include="'app/views/sportimo/moderation/gamecards.html'"></div>
                 </tab>

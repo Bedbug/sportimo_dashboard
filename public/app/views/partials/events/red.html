@@ -2,23 +2,21 @@
     <div ng-show="modCtrl.clickedEvent == event.id" class="controlls col-xs-12">
         <button ng-click="editEvent(event)" class="edit col-xs-6 btn btn-info"><span class="btn-label"><i class="fa fa-pencil"></i>
                                     </span></button>
-        <button ng-click="removeEvent(event)" class="delete col-xs-6 btn btn-danger"><span class="btn-label"><i class="fa fa-trash"></i>
+        <button ng-click="removeEvent(event)" class="delete col-xs-6 btn btn-danger"><span class="btn-label">
                                     </span></button>
     </div>
 
     <div noSwipeClick ng-click="modCtrl.clickedEvent == event.id? modCtrl.clickedEvent = -1: modCtrl.clickedEvent = event.id;  event.clicked = true"
         class="popover-content" style="line-height: 15px;" ng-class="modCtrl.clickedEvent!=null &&  event.clicked? ((modCtrl.clickedEvent == event.id)? 'slideLeft': 'slideRight'): ''">
 
-        <img class="shadowed" style="position: relative;
-            height: 35px;
-            width: auto;
-            top: -3px;
-            right: -3px;
-            float: right;" alt='{{event.type}}' src='{{match.data[event.team].logo}}'>
-        <div class="card-icon">
-            <img class="shadowed" style="height: 30px;width: auto;margin-right: 10px;" alt='{{now.data.team }}' src="./app/img/sportimo/red-card.png">
-        </div>
-        <strong>{{event.time}}' {{capitalize(event.type)}} Card</strong><br/> {{event.players[0].name.en}}
+        <img class="shadowed right-team-logo thumb32" alt='{{event.type}}' src='{{match.data[event.team].logo}}'>
 
+        <div class="card-icon">
+            <img class="shadowed thumb32" alt='{{now.data.team }}' src="./app/img/sportimo/red-card.png">
+        </div>
+        
+        <div class="event-time">{{event.time}}'</div>
+        <div class="event-type"> {{capitalize(event.type)}}</div>
+        <div class="event-player">{{event.players[0].name.en}}</div>
     </div>
 </div>

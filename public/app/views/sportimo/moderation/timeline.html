@@ -24,12 +24,12 @@
                                     <img class="moving-self-img" ng-click="selectedEvent.team = 'home_team'" ng-style="selectedEvent.team != 'home_team'?{'background-color':'#ccc'}:''"
                                         ng-class="selectedEvent.team != 'home_team'? 'desaturate':'zoom'" ng-src="{{match.data.home_team.logo}}"
                                     />
-                                    <br/> {{match.data.home_team.name}}
+                                    <br/> {{match.data.home_team.name.en}}
                                 </div>
                                 <div class="event-team-logo col-xs-6 col-sm-12 col-md-6">
                                     <img class="moving-self-img" ng-click="selectedEvent.team ='away_team'" ng-class="selectedEvent.team != 'away_team'? 'desaturate':'zoom'"
                                         ng-src="{{match.data.away_team.logo}}" />
-                                    <br/> {{match.data.away_team.name}}
+                                    <br/> {{match.data.away_team.name.en}}
                                 </div>
                             </div>
                             <div class="col-sm-8 col-xs-12">
@@ -104,7 +104,7 @@
                     <div>
                         <ul ng-repeat="segment in match.data.timeline | reverse " class="timeline">
 
-                            <li data-datetime="{{match.sport.segments[ match.data.timeline.length - 1 - $index].name}}" class="timeline-separator">
+                            <li data-datetime="{{match.sport.segments[ match.data.timeline.length - 1 - $index].name.en}}" class="timeline-separator">
                                 <div ng-show="(match.data.timeline.length - 1 - $index)>0" ng-click="EditSegmentTimes(match.data.timeline.length - 1 - $index)"
                                     class="segment-watch"><i class="glyph-stopwatch"></i></div>
                                 <div ng-show="editingSegmentTime.index == (match.data.timeline.length - 1 - $index)" class="segment-time-editor">
