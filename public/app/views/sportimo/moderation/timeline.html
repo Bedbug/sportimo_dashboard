@@ -102,7 +102,7 @@
                     <!--class="fa fa-refresh"></em> </a></paneltool>-->
                     <!--</div>-->
                     <div>
-                        <ul ng-repeat="segment in match.data.timeline | reverse " class="timeline">
+                        <ul ng-repeat="segment in match.data.timeline | reverse track by $index" class="timeline">
 
                             <li data-datetime="{{match.sport.segments[ match.data.timeline.length - 1 - $index].name.en}}" class="timeline-separator">
                                 <div ng-show="(match.data.timeline.length - 1 - $index)>0" ng-click="EditSegmentTimes(match.data.timeline.length - 1 - $index)"
@@ -136,7 +136,7 @@
                                 </div>
                             </li>
                             <!-- START timeline item-->
-                            <li ng-repeat="event in segment.events | reverse | filter: {status:'!removed'} track by event._id" class="custom" ng-class="$index%2==0?'timeline-inverted':'timeline-left'">
+                            <li ng-repeat="event in segment.events | reverse | filter: {status:'!removed'} track by $index" class="custom" ng-class="$index%2==0?'timeline-inverted':'timeline-left'">
                                 <div class="timeline-badge">
                                     {{event.time}}'
                                 </div>
