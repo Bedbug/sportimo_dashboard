@@ -122,15 +122,12 @@
                         <table width="100%">
                             <tr>
                                 <td class="pv text-left">
-
-
                                     <div class="col-xs-12 pr0">
                                         <label class="col-xs-2">Text</label>
                                         <div class="col-xs-10 pr0">
                                             <multi-lang-text language-object="option.text" default="en"></multi-lang-text>
                                         </div>
                                     </div>
-
                                     <div class="col-xs-12 pr0">
                                         <label class="col-xs-2">Start Points</label>
                                         <div class="col-xs-10 pr0">
@@ -145,34 +142,6 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-xs-12 pr0">
-                                        <div class="col-xs-12 pr0">
-                                            <label class="pt-sm">Win Conditions</label>
-                                            <button class="btn btn-default btn-outline mb-sm pull-right">Add new condition</button>
-                                            <div style="background-color: #E2E7E8; padding: 0px 4px 1px 3px; border-radius: 7px; margin: 3px 0 0px 0;" ng-repeat="condition in option.winConditions">
-                                                <div class="form-group">
-                                                    <div class="col-sm-12 mb0 select-input">
-                                                        <ui-select on-remove="onChangeCallback(card)" on-select="onAddtag(condition,$item,$model)" ng-model="condition.id" theme="bootstrap"
-                                                            ng-disabled="uisel.disabled">
-                                                            <ui-select-match placeholder="Select reference">{{$select.selected.name.en}}</ui-select-match>
-                                                            <ui-select-choices group-by="'type'" repeat="tag._id as tag in matchTags | filter: $select.search">
-                                                                <div ng-bind-html="tag.name.en | highlight: $select.search"></div>
-                                                            </ui-select-choices>
-                                                        </ui-select>
-                                                    </div>
-                                                    <br/>
-                                                </div>
-                                                <multi-lang-text language-object="condition"></multi-lang-text>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-xs-12 pr0">
-                                        <div class="col-xs-12 pr0">
-                                            <multi-lang-text ng-repeat="condition in option.terminationConditions" ng-if="selectedGameCard.cardType=='Overall'" language-object="condition"
-                                                label="Termination conditions"></multi-lang-text>
-                                        </div>
-                                    </div>
 
 
 
@@ -189,7 +158,98 @@
                                 <td style="width:45px; vertical-align: top;" class="pv ph">
                                     <button type="button" ng-click="deleteAnswer(answer)" class="btn btn-danger minimal"><em class="fa fa-minus-circle"></em></button>
                                 </td>
-                                <tr>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="col-xs-12 text-left pr0">
+                                        <label class="pt-sm pl-lg">Win Conditions</label>
+                                        <button ng-click="addNewWinCondition(option.winConditions,'Instant')" class="btn btn-default btn-outline mb-sm mr-lg pull-right">Add condition</button>
+                                    </div>
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr ng-repeat="condition in option.winConditions">
+                                <td class="pv ph">
+                                    <div class="form-group col-xs-12 pr0">
+                                        <div class="select-input mb0">
+                                            <ui-select on-remove="onChangeCallback(card)" on-select="onAddtag(condition,$item,$model)" ng-model="condition.id" theme="bootstrap"
+                                                ng-disabled="uisel.disabled">
+                                                <ui-select-match placeholder="Select reference">{{$select.selected.name.en}}</ui-select-match>
+                                                <ui-select-choices group-by="'type'" repeat="tag._id as tag in matchTags | filter: $select.search">
+                                                    <div ng-bind-html="tag.name.en | highlight: $select.search"></div>
+                                                </ui-select-choices>
+                                            </ui-select>
+                                        </div>
+
+                                        <multi-lang-text language-object="condition"></multi-lang-text>
+                                    </div>
+                                </td>
+                                <td style="width:45px; vertical-align: top;" class="pv ph">
+                                    <button type="button" ng-click="option.winConditions = removeCondition(option.winConditions, condition)" class="btn btn-danger minimal"><em class="fa fa-minus-circle"></em></button>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>
+                                    <div class="col-xs-12 text-left pr0">
+                                        <label class="pt-sm pl-lg">Appear Conditions</label>
+                                        <button ng-click="addNewWinCondition(option.appearConditions)" class="btn btn-default btn-outline mb-sm mr-lg pull-right">Add condition</button>
+                                    </div>
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr ng-repeat="condition in option.appearConditions">
+                                <td class="pv ph">
+                                    <div class="form-group col-xs-12 pr0">
+                                        <div class="select-input">
+                                            <ui-select on-remove="onChangeCallback(card)" on-select="onAddtag(condition,$item,$model)" ng-model="condition.id" theme="bootstrap"
+                                                ng-disabled="uisel.disabled">
+                                                <ui-select-match placeholder="Select reference">{{$select.selected.name.en}}</ui-select-match>
+                                                <ui-select-choices group-by="'type'" repeat="tag._id as tag in matchTags | filter: $select.search">
+                                                    <div ng-bind-html="tag.name.en | highlight: $select.search"></div>
+                                                </ui-select-choices>
+                                            </ui-select>
+                                        </div>
+
+                                        <multi-lang-text language-object="condition"></multi-lang-text>
+                                    </div>
+                                </td>
+                                <td style="width:45px; vertical-align: top;" class="pv ph">
+                                    <button type="button" ng-click="option.appearConditions = removeCondition(option.appearConditions, condition)" class="btn btn-danger minimal"><em class="fa fa-minus-circle"></em></button>
+                                </td>
+                            </tr>
+                            
+                            <tr ng-if="selectedGameCard.cardType=='Overall'" >
+                                <td>
+                                    <div class="col-xs-12 text-left pr0">
+                                        <label class="pt-sm pl-lg">Termination Conditions</label>
+                                        <button ng-click="addNewWinCondition(option.terminationConditions,'Overall')" class="btn btn-default btn-outline mb-sm mr-lg pull-right">Add condition</button>
+                                    </div>
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr ng-if="selectedGameCard.cardType=='Overall'" ng-repeat="condition in option.terminationConditions">
+                                <td class="pv ph">
+                                    <div class="form-group col-xs-12 pr0">
+                                        <div class="select-input">
+                                            <ui-select on-remove="onChangeCallback(card)" on-select="onAddtag(condition,$item,$model)" ng-model="condition.id" theme="bootstrap"
+                                                ng-disabled="uisel.disabled">
+                                                <ui-select-match placeholder="Select reference">{{$select.selected.name.en}}</ui-select-match>
+                                                <ui-select-choices group-by="'type'" repeat="tag._id as tag in matchTags | filter: $select.search">
+                                                    <div ng-bind-html="tag.name.en | highlight: $select.search"></div>
+                                                </ui-select-choices>
+                                            </ui-select>
+                                        </div>
+
+                                        <multi-lang-text language-object="condition"></multi-lang-text>
+                                    </div>
+                                </td>
+                                <td style="width:45px; vertical-align: top;" class="pv ph">
+                                    <button type="button" ng-click="option.terminationConditions = removeCondition(option.terminationConditions, condition)" class="btn btn-danger minimal"><em class="fa fa-minus-circle"></em></button>
+                                </td>
+                            </tr>
+
+                          
                         </table>
                     </li>
                 </ul>
@@ -232,12 +292,12 @@
                                             </div>
                                         </td>
                                         <td width="100px" class="text-center">
-                                                        {{definition.options.length}}&nbsp; options
+                                            {{definition.options.length}}&nbsp; options
                                         </td>
                                         <td class="wd-xs text-center">
                                             <div ng-show="definition.isVisible"><button ng-click="changeStatus(definition,
                                             false)" class="btn btn-primary "><em class="fa fa-thumbs-up "></em></button></div>
-                                             <div ng-show="!definition.isVisible"><button ng-click="changeStatus(definition,
+                                            <div ng-show="!definition.isVisible"><button ng-click="changeStatus(definition,
                                             true)" class="btn btn-danger "><em class="fa fa-thumbs-down "></em></button></div>
                                         </td>
                                         <td style="width:60px; text-align:center ">
