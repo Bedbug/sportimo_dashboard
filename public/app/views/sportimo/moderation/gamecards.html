@@ -40,31 +40,49 @@
                         </div>
                         <label class="col-sm-2 control-label">Icon</label>
                         <div class="col-sm-10">
-                            <multi-lang-text language-object="selectedGameCard.image" default="url"></multi-lang-text>
+                            <multi-lang-text language-object="selectedGameCard.image" default="sprite"></multi-lang-text>
+                            <span class="col-sm-12 p0">
+                                <div class="col-xs-1 p0" ng-style="selectedGameCard.image.sprite?{                       
+                                'height': '32px',
+                                'background-size': 'contain',
+                                'background-repeat': 'no-repeat',
+                                'background-position': '50%',
+                                 'background-clip': 'content-box',
+                                'background-image':'url(/app/img/sportimo/cardicons/'+getSpriteFilename(selectedGameCard.image.sprite)+')'}:''">
+                </div>
+            <div class="col-xs-11 p0">
+                            <ui-select ng-ig="selectedGameCard.image.sprite" ng-model="selectedGameCard.image.sprite" allow-single-deselect="true" theme="bootstrap" class="text-left">
+                                <ui-select-match placeholder="Select icon ...">{{$select.selected.spriteName}}</ui-select-match>
+                                <ui-select-choices repeat="icon.name as icon in icons | filter: $select.search">
+                                    <span ng-bind-html="icon.spriteName | highlight: $select.search"></span>
+                            </ui-select-choices>
+                            </ui-select>
                         </div>
+                        </span>
+                    </div>
 
-                        <label class="col-sm-2 control-label">Title</label>
-                        <div class="col-sm-10">
-                            <multi-lang-text language-object="selectedGameCard.title" default="en"></multi-lang-text>
-                        </div>
+                    <label class="col-sm-2 control-label">Title</label>
+                    <div class="col-sm-10">
+                        <multi-lang-text language-object="selectedGameCard.title" default="en"></multi-lang-text>
+                    </div>
 
-                        <label class="col-sm-2 control-label">Text</label>
-                        <div class="col-sm-10">
-                            <multi-lang-text-area language-object="selectedGameCard.text" default="en"></multi-lang-text-area>
-                        </div>
+                    <label class="col-sm-2 control-label">Text</label>
+                    <div class="col-sm-10">
+                        <multi-lang-text-area language-object="selectedGameCard.text" default="en"></multi-lang-text-area>
+                    </div>
 
-                        <label class="col-sm-2 control-label">Duration</label>
-                        <div class="col-sm-10">
-                            <input type="text" ng-model="selectedGameCard.duration" ng-disabled="selectedGameCard.cardType == 'Overall'" class="form-control"
-                            />
-                        </div>
+                    <label class="col-sm-2 control-label">Duration</label>
+                    <div class="col-sm-10">
+                        <input type="text" ng-model="selectedGameCard.duration" ng-disabled="selectedGameCard.cardType == 'Overall'" class="form-control"
+                        />
+                    </div>
 
-                        <label class="col-sm-2 control-label">Activation delay</label>
-                        <div class="col-sm-10">
-                            <input type="text" ng-model="selectedGameCard.activationLatency" class="form-control" />
-                        </div>
+                    <label class="col-sm-2 control-label">Activation delay</label>
+                    <div class="col-sm-10">
+                        <input type="text" ng-model="selectedGameCard.activationLatency" class="form-control" />
+                    </div>
 
-                        <!--<label class="col-sm-2 control-label">Sponsor</label>
+                    <!--<label class="col-sm-2 control-label">Sponsor</label>
                         <div class="col-sm-10">
 
                             <span class="input-group col-sm-12">
@@ -91,8 +109,9 @@
                             </div>
                         </div>
                         -->
-                    </div>
-                </fieldset>
+            </div>
+            </fieldset>
+            <div class="col-xs-12 p0 pb-lg">
                 <div class="col-xs-9">
                     <div ng-show="selectedGameCard._id">
                         <!--ng-disabled="selectedGameCard.status == 1"-->
@@ -111,42 +130,43 @@
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="col-md-5">
-                <div class="panel-heading">
-                    <label>Options</label>
-                    <button type="button" ng-click="addOption()" class="pull-right btn btn-default">Add</button>
-                </div>
-                <ul html-sortable="sortableOptions" html-sortable-callback="sortableCallbackNew" ng-model="selectedGameCard.options" class="">
-                    <li ng-repeat="option in selectedGameCard.options track by $index" class="list-group-item mv p0 panel-highlighted">
-                        <table width="100%">
-                            <tr>
-                                <td class="pv text-left">
-                                    <div class="col-xs-12 pr0">
-                                        <label class="col-xs-2">Text</label>
-                                        <div class="col-xs-10 pr0">
-                                            <multi-lang-text language-object="option.text" default="en"></multi-lang-text>
-                                        </div>
+        <div class="col-md-5">
+            <div class="panel-heading">
+                <label>Options</label>
+                <button type="button" ng-click="addOption(selectedGameCard.options)" class="pull-right btn btn-default">Add</button>
+            </div>
+            <ul >
+                <li ng-repeat="option in selectedGameCard.options track by $index" class="list-group-item mv p0 panel-highlighted">
+                    <table width="100%">
+                        <tr>
+                            <td class="pv text-left">
+                                <div class="col-xs-12 pr0">
+                                    <label class="col-xs-2">Text</label>
+                                    <div class="col-xs-10 pr0">
+                                        <multi-lang-text language-object="option.text" default="en"></multi-lang-text>
                                     </div>
-                                    <div class="col-xs-12 pr0">
-                                        <label class="col-xs-2">Start Points</label>
-                                        <div class="col-xs-10 pr0">
-                                            <input class="form-control" type="text" placeholder="Start points" ng-model="option.startPoints" />
-                                        </div>
+                                </div>
+                                <div class="col-xs-12 pr0">
+                                    <label class="col-xs-2">Start Points</label>
+                                    <div class="col-xs-10 pr0">
+                                        <input class="form-control" type="text" placeholder="Start points" ng-model="option.startPoints" />
                                     </div>
+                                </div>
 
-                                    <div class="col-xs-12 pr0">
-                                        <label class="col-xs-2">End Points</label>
-                                        <div class="col-xs-10 pr0">
-                                            <input class="form-control" type="text" placeholder="End points" ng-model="option.endPoints" />
-                                        </div>
+                                <div class="col-xs-12 pr0">
+                                    <label class="col-xs-2">End Points</label>
+                                    <div class="col-xs-10 pr0">
+                                        <input class="form-control" type="text" placeholder="End points" ng-model="option.endPoints" />
                                     </div>
+                                </div>
 
 
 
 
-                                    <!-- End of ERASER Input Group-->
-                                    <!--<div class="col-xs-12 p0">
+                                <!-- End of ERASER Input Group-->
+                                <!--<div class="col-xs-12 p0">
                                         <p class="input-group">
                                             <input class="col-sm-12 form-control" type="text" placeholder="points" ng-model="answer.points" />
                                             <span class="input-group-btn">
@@ -154,180 +174,191 @@
                             </span>
                                         </p>
                                     </div>-->
-                                </td>
-                                <td style="width:45px; vertical-align: top;" class="pv ph">
-                                    <button type="button" ng-click="deleteAnswer(answer)" class="btn btn-danger minimal"><em class="fa fa-minus-circle"></em></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="col-xs-12 text-left pr0">
-                                        <label class="pt-sm pl-lg">Win Conditions</label>
-                                        <button ng-click="addNewWinCondition(option.winConditions,'Instant')" class="btn btn-default btn-outline mb-sm mr-lg pull-right">Add condition</button>
+                            </td>
+                            <td style="width:45px; vertical-align: top;" class="pv ph">
+                                <button type="button" ng-click="selectedGameCard.options = removeOption(selectedGameCard.options,option)" class="btn btn-danger minimal"><em class="fa fa-minus-circle"></em></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="col-xs-12 text-left pr0">
+                                    <label class="pt-sm pl-lg">Win Conditions</label>
+                                    <button ng-click="addNewWinCondition(option.winConditions,'Instant')" class="btn btn-default btn-outline mb-sm mr-lg pull-right">Add condition</button>
+                                </div>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr ng-repeat="condition in option.winConditions">
+                            <td class="pv ph">
+                                <div class="form-group col-xs-12 pr0">
+                                    <div class="select-input mb0">
+                                        <ui-select on-remove="onChangeCallback(card)" on-select="onAddtag(condition,$item,$model)" ng-model="condition.id" theme="bootstrap"
+                                            ng-disabled="uisel.disabled">
+                                            <ui-select-match placeholder="Select reference">{{$select.selected.name.en}}</ui-select-match>
+                                            <ui-select-choices group-by="'type'" repeat="tag._id as tag in matchTags | filter: $select.search">
+                                                <div ng-bind-html="tag.name.en | highlight: $select.search"></div>
+                                            </ui-select-choices>
+                                        </ui-select>
                                     </div>
-                                </td>
-                                <td></td>
-                            </tr>
-                            <tr ng-repeat="condition in option.winConditions">
-                                <td class="pv ph">
-                                    <div class="form-group col-xs-12 pr0">
-                                        <div class="select-input mb0">
-                                            <ui-select on-remove="onChangeCallback(card)" on-select="onAddtag(condition,$item,$model)" ng-model="condition.id" theme="bootstrap"
-                                                ng-disabled="uisel.disabled">
-                                                <ui-select-match placeholder="Select reference">{{$select.selected.name.en}}</ui-select-match>
-                                                <ui-select-choices group-by="'type'" repeat="tag._id as tag in matchTags | filter: $select.search">
-                                                    <div ng-bind-html="tag.name.en | highlight: $select.search"></div>
-                                                </ui-select-choices>
-                                            </ui-select>
-                                        </div>
 
-                                        <multi-lang-text language-object="condition"></multi-lang-text>
-                                    </div>
-                                </td>
-                                <td style="width:45px; vertical-align: top;" class="pv ph">
-                                    <button type="button" ng-click="option.winConditions = removeCondition(option.winConditions, condition)" class="btn btn-danger minimal"><em class="fa fa-minus-circle"></em></button>
-                                </td>
-                            </tr>
-                            
-                            <tr>
-                                <td>
-                                    <div class="col-xs-12 text-left pr0">
-                                        <label class="pt-sm pl-lg">Appear Conditions</label>
-                                        <button ng-click="addNewWinCondition(option.appearConditions)" class="btn btn-default btn-outline mb-sm mr-lg pull-right">Add condition</button>
-                                    </div>
-                                </td>
-                                <td></td>
-                            </tr>
-                            <tr ng-repeat="condition in option.appearConditions">
-                                <td class="pv ph">
-                                    <div class="form-group col-xs-12 pr0">
-                                        <div class="select-input">
-                                            <ui-select on-remove="onChangeCallback(card)" on-select="onAddtag(condition,$item,$model)" ng-model="condition.id" theme="bootstrap"
-                                                ng-disabled="uisel.disabled">
-                                                <ui-select-match placeholder="Select reference">{{$select.selected.name.en}}</ui-select-match>
-                                                <ui-select-choices group-by="'type'" repeat="tag._id as tag in matchTags | filter: $select.search">
-                                                    <div ng-bind-html="tag.name.en | highlight: $select.search"></div>
-                                                </ui-select-choices>
-                                            </ui-select>
-                                        </div>
+                                    <multi-lang-text language-object="condition" default="stat"></multi-lang-text>
+                                </div>
+                            </td>
+                            <td style="width:45px; vertical-align: top;" class="pv ph">
+                                <button type="button" ng-click="option.winConditions = removeCondition(option.winConditions, condition)" class="btn btn-danger minimal"><em class="fa fa-minus-circle"></em></button>
+                            </td>
+                        </tr>
 
-                                        <multi-lang-text language-object="condition"></multi-lang-text>
+                        <tr>
+                            <td>
+                                <div class="col-xs-12 text-left pr0">
+                                    <label class="pt-sm pl-lg">Appear Conditions</label>
+                                    <button ng-click="addNewWinCondition(option.appearConditions)" class="btn btn-default btn-outline mb-sm mr-lg pull-right">Add condition</button>
+                                </div>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr ng-repeat="condition in option.appearConditions">
+                            <td class="pv ph">
+                                <div class="form-group col-xs-12 pr0">
+                                    <div class="select-input">
+                                        <ui-select on-remove="onChangeCallback(card)" on-select="onAddtag(condition,$item,$model)" ng-model="condition.id" theme="bootstrap"
+                                            ng-disabled="uisel.disabled">
+                                            <ui-select-match placeholder="Select reference">{{$select.selected.name.en}}</ui-select-match>
+                                            <ui-select-choices group-by="'type'" repeat="tag._id as tag in matchTags | filter: $select.search">
+                                                <div ng-bind-html="tag.name.en | highlight: $select.search"></div>
+                                            </ui-select-choices>
+                                        </ui-select>
                                     </div>
-                                </td>
-                                <td style="width:45px; vertical-align: top;" class="pv ph">
-                                    <button type="button" ng-click="option.appearConditions = removeCondition(option.appearConditions, condition)" class="btn btn-danger minimal"><em class="fa fa-minus-circle"></em></button>
-                                </td>
-                            </tr>
-                            
-                            <tr ng-if="selectedGameCard.cardType=='Overall'" >
-                                <td>
-                                    <div class="col-xs-12 text-left pr0">
-                                        <label class="pt-sm pl-lg">Termination Conditions</label>
-                                        <button ng-click="addNewWinCondition(option.terminationConditions,'Overall')" class="btn btn-default btn-outline mb-sm mr-lg pull-right">Add condition</button>
+
+                                    <multi-lang-text language-object="condition" default="stat"></multi-lang-text>
+                                </div>
+                            </td>
+                            <td style="width:45px; vertical-align: top;" class="pv ph">
+                                <button type="button" ng-click="option.appearConditions = removeCondition(option.appearConditions, condition)" class="btn btn-danger minimal"><em class="fa fa-minus-circle"></em></button>
+                            </td>
+                        </tr>
+
+                        <tr ng-if="selectedGameCard.cardType=='Overall'">
+                            <td>
+                                <div class="col-xs-12 text-left pr0">
+                                    <label class="pt-sm pl-lg">Termination Conditions</label>
+                                    <button ng-click="addNewWinCondition(option.terminationConditions,'Overall')" class="btn btn-default btn-outline mb-sm mr-lg pull-right">Add condition</button>
+                                </div>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr ng-if="selectedGameCard.cardType=='Overall'" ng-repeat="condition in option.terminationConditions">
+                            <td class="pv ph">
+                                <div class="form-group col-xs-12 pr0">
+                                    <div class="select-input">
+                                        <ui-select on-remove="onChangeCallback(card)" on-select="onAddtag(condition,$item,$model)" ng-model="condition.id" theme="bootstrap"
+                                            ng-disabled="uisel.disabled">
+                                            <ui-select-match placeholder="Select reference">{{$select.selected.name.en}}</ui-select-match>
+                                            <ui-select-choices group-by="'type'" repeat="tag._id as tag in matchTags | filter: $select.search">
+                                                <div ng-bind-html="tag.name.en | highlight: $select.search"></div>
+                                            </ui-select-choices>
+                                        </ui-select>
                                     </div>
-                                </td>
-                                <td></td>
-                            </tr>
-                            <tr ng-if="selectedGameCard.cardType=='Overall'" ng-repeat="condition in option.terminationConditions">
-                                <td class="pv ph">
-                                    <div class="form-group col-xs-12 pr0">
-                                        <div class="select-input">
-                                            <ui-select on-remove="onChangeCallback(card)" on-select="onAddtag(condition,$item,$model)" ng-model="condition.id" theme="bootstrap"
-                                                ng-disabled="uisel.disabled">
-                                                <ui-select-match placeholder="Select reference">{{$select.selected.name.en}}</ui-select-match>
-                                                <ui-select-choices group-by="'type'" repeat="tag._id as tag in matchTags | filter: $select.search">
-                                                    <div ng-bind-html="tag.name.en | highlight: $select.search"></div>
-                                                </ui-select-choices>
-                                            </ui-select>
-                                        </div>
 
-                                        <multi-lang-text language-object="condition"></multi-lang-text>
-                                    </div>
-                                </td>
-                                <td style="width:45px; vertical-align: top;" class="pv ph">
-                                    <button type="button" ng-click="option.terminationConditions = removeCondition(option.terminationConditions, condition)" class="btn btn-danger minimal"><em class="fa fa-minus-circle"></em></button>
-                                </td>
-                            </tr>
+                                    <multi-lang-text language-object="condition" default="stat"></multi-lang-text>
+                                </div>
+                            </td>
+                            <td style="width:45px; vertical-align: top;" class="pv ph">
+                                <button type="button" ng-click="option.terminationConditions = removeCondition(option.terminationConditions, condition)"
+                                    class="btn btn-danger minimal"><em class="fa fa-minus-circle"></em></button>
+                            </td>
+                        </tr>
 
-                          
-                        </table>
-                    </li>
-                </ul>
-            </div>
 
+                    </table>
+                </li>
+            </ul>
         </div>
 
     </div>
-    <!-- END OF SETUP -->
 
-    <tabset ng-show="!selectedGameCard" class="moderationTabs" justified="true" class="p0">
-        <tab>
-            <tab-heading>
-                Instant
-            </tab-heading>
+</div>
+<!-- END OF SETUP -->
 
-            <!-- START LeaderBoards -->
-            <div class="table-responsive">
-                <div class="col-xs-12 no-padding ">
-                    <button ng-click="addNewGamecard()" class="col-xs-12 btn btn-lg minimal">Add a new Gamecard</button>
-                </div>
+<tabset ng-show="!selectedGameCard" class="moderationTabs" justified="true" class="p0">
+    <tab>
+        <tab-heading>
+            Instant
+        </tab-heading>
 
-                <div class="input-group col-xs-12 no-padding">
-                    <input ng-model="definitionSearch" placeholder="Search gamecards..." type="text" class="form-control">
-                    <span class="input-group-btn"><button type="button" class="btn btn btn-default"><i class="fa fa-search"></i></button></span>
-                </div>
+        <!-- START LeaderBoards -->
+        <div class="table-responsive">
+            <div class="col-xs-12 no-padding ">
+                <button ng-click="addNewGamecard()" class="col-xs-12 btn btn-lg minimal">Add a new Gamecard</button>
+            </div>
 
-                <div ng-show="true" class="container-fluid">
-                    <!-- START OF Questions List -->
-                    <div class="list-group">
-                        <div ng-repeat="definition in gamecardTemplates.instants | filter: definitionSearch track by $index" class="list-group-item">
-                            <table class="wd-wide">
-                                <tbody>
-                                    <tr>
+            <div class="input-group col-xs-12 no-padding">
+                <input ng-model="definitionSearch" placeholder="Search gamecards..." type="text" class="form-control">
+                <span class="input-group-btn"><button type="button" class="btn btn btn-default"><i class="fa fa-search"></i></button></span>
+            </div>
 
-                                        <td style="min-width: 350px">
-                                            <div class="ph">
-                                                <h4 class="text-muted media-box-heading">{{definition.title.en}}</h4>
-                                                <span style="font-size: 16px; font-weight: 600; color: #666;">{{definition.text.en}}</span>
-                                            </div>
-                                        </td>
-                                        <td width="100px" class="text-center">
-                                            {{definition.options.length}}&nbsp; options
-                                        </td>
-                                        <td class="wd-xs text-center">
-                                            <div ng-show="definition.isVisible"><button ng-click="changeStatus(definition,
+            <div ng-show="true" class="container-fluid">
+                <!-- START OF Questions List -->
+                <div class="list-group">
+                    <div ng-repeat="definition in gamecardTemplates.instants | filter: definitionSearch track by $index" class="list-group-item">
+                        <table class="wd-wide">
+                            <tbody>
+                                <tr>
+                                    <td ng-if="definition.image.sprite">
+                                       
+                                <div class="p0" ng-style="definition.image.sprite?{   
+                                'min-width':'15px',                    
+                                'height': '32px',
+                                'background-size': 'contain',
+                                'background-repeat': 'no-repeat',
+                                'background-position': '50%',
+                                 'background-clip': 'content-box',
+                                'background-image':'url(/app/img/sportimo/cardicons/'+getSpriteFilename(definition.image.sprite)+')'}:''"></div>
+                                    </td>
+                                    <td style="min-width: 350px">
+                                        <div class="ph">
+                                            <h4 class="text-muted media-box-heading">{{definition.title.en}}</h4>
+                                            <span style="font-size: 16px; font-weight: 600; color: #666;">{{definition.text.en}}</span>
+                                        </div>
+                                    </td>
+                                    <td width="100px" class="text-center">
+                                        {{definition.options.length}}&nbsp; options
+                                    </td>
+                                    <td class="wd-xs text-center">
+                                        <div ng-show="definition.isVisible"><button ng-click="changeStatus(definition,
                                             false)" class="btn btn-primary "><em class="fa fa-thumbs-up "></em></button></div>
-                                            <div ng-show="!definition.isVisible"><button ng-click="changeStatus(definition,
+                                        <div ng-show="!definition.isVisible"><button ng-click="changeStatus(definition,
                                             true)" class="btn btn-danger "><em class="fa fa-thumbs-down "></em></button></div>
-                                        </td>
-                                        <td style="width:60px; text-align:center ">
-                                            <button ng-click="editDefinition(definition) " class="minimal small-margin
+                                    </td>
+                                    <td style="width:60px; text-align:center ">
+                                        <button ng-click="editDefinition(definition) " class="minimal small-margin
                                             btn btn-info " tabindex="0 "><span class=" "><i class="fa fa-pencil "></i>
                                     </span></button>
-                                        </td>
-                                        <!--<td class="wd-sm ">
+                                    </td>
+                                    <!--<td class="wd-sm ">
                                 <div class="ph ">
                                     <progressbar value="80 " type="success " class="m0 progress-xs "></progressbar>
                                 </div>
                             </td>-->
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-                    <!-- END OF Questions List -->
                 </div>
-
+                <!-- END OF Questions List -->
             </div>
-            <!-- END LEaderBoards -->
-        </tab>
+
+        </div>
+        <!-- END LEaderBoards -->
+    </tab>
 
 
-        <tab>
-            <tab-heading>
-                Overall
-            </tab-heading>
+    <tab>
+        <tab-heading>
+            Overall
+        </tab-heading>
 
-        </tab>
-    </tabset>
+    </tab>
+</tabset>
 </div>

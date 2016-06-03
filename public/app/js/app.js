@@ -48,6 +48,7 @@
 			'app.welcomes',
 			'app.polls',
 			'app.match-moderation-soccer',
+			'app.gamecards',
 			'app.teams',
 			"app.schedule",
 			"app.players",
@@ -94,6 +95,13 @@
 
 	angular
 		.module('app.match-moderation-soccer', ['ngDialog', 'angular-ladda']);
+})();
+
+(function () {
+	'use strict';
+
+	angular
+		.module('app.gamecards', ['ngDialog', 'angular-ladda']);
 })();
 
 (function () {
@@ -3044,13 +3052,17 @@
 		};
 
 
-		$rootScope.toast = function (message) {
-			toast(message);
+		$rootScope.toast = function (message, type) {
+			if (!type)
+				type = "info";
+			toast(message, type);
 		}
 
-		function toast(message) {
+
+
+		function toast(message, type) {
 			$mdToast.show({
-				template: '<md-toast class="sportimo-toast" style="z-index: 130; position: fixed;">' +
+				template: '<md-toast class="sportimo-toast-' + type + '" style="z-index: 130; position: fixed;">' +
 				'<div class="sportimo-toast-heading text-center">' +
 				'<img src="app/img/sportimo/icon_sportimo-white_64.png" alt="App Logo" class="pull-left">' +
 				'</div>' +
@@ -4884,7 +4896,7 @@ ObjectId.prototype.toString = function () {
 		vm.StatsUpcomingEvents = [];
 		vm.onStatsCompetition = function () {
 			StatsComService.GetFixtures(vm.statsSearch.competition).then(function (result) {
-				console.log(result[0]);
+				console.log(result);
 				vm.StatsUpcomingEvents = result;
 			})
 		}
@@ -6262,8 +6274,9 @@ ObjectId.prototype.toString = function () {
 			vm.Articles = articles;
 		})
 
-
-
+		vm.viewItem = function (article) {
+			PublicationsService.viewItem(article);
+		}
 		vm.basepath = RouteHelpers.basepath;
 
 		TagsService.getAllTags().then(function (tags) {
@@ -6303,9 +6316,9 @@ ObjectId.prototype.toString = function () {
 		/* END OF UPLOAD MECHANICS */
 	};
 
-	PublicationsService.$inject = ['$resource', 'Restangular', '$q', '$rootScope'];
+	PublicationsService.$inject = ['$resource', 'Restangular', '$q', '$rootScope', '$window'];
 
-	function PublicationsService($resource, Restangular, $q, $rootScope) {
+	function PublicationsService($resource, Restangular, $q, $rootScope, $window) {
 		var articlesSearch = Restangular.all('v1/data/articles/search');
 		var articles = Restangular.all('v1/data/articles');
 		Restangular.setBaseUrl($rootScope.servers[$rootScope.serverEnvironment].game_server);
@@ -6329,6 +6342,9 @@ ObjectId.prototype.toString = function () {
 				});
 				return Defer.promise;
 			},
+			viewArticle: function (article) {
+				$window.open($rootScope.servers[$rootScope.serverEnvironment].game_server + 'v1/data/', '_blank');
+			}
 		}
 
 	};
@@ -6363,7 +6379,7 @@ ObjectId.prototype.toString = function () {
 				placeholder: '@placeholder'
 			},
 			controller: ['$scope', '$log', function ($scope, $log) {
-				$scope.selected = null;
+				// $scope.selected = null;
 
 				$scope.$watch('lObject', function (newValue, oldValue) {
 					if ($scope.selected)
@@ -6374,18 +6390,9 @@ ObjectId.prototype.toString = function () {
 						$scope.key = _.keys($scope.lObject)[0];
 					}
 
-					// $scope.showChange();
+
 				});
 
-				// $scope.showChange = function () {
-				//     if ($scope.lObject)
-				//         $scope.ngModel = {
-				//             key: $scope.selected,
-				//             value: $scope.lObject[$scope.selected]
-				//         };
-
-
-				// }
 
 				$scope.addNew = function () {
 					$scope.key = null;
@@ -6404,10 +6411,11 @@ ObjectId.prototype.toString = function () {
 				$scope.delete = function () {
 					console.log($scope.onEmpty);
 					delete $scope.lObject[$scope.key];
-				if(_.size($scope.lObject) == 0){
-					
-					$scope.onEmpty();}
-						else
+					if (_.size($scope.lObject) == 0) {
+
+						$scope.onEmpty();
+					}
+					else
 						$scope.key = _.keys($scope.lObject)[0];
 				}
 			}]
@@ -6837,7 +6845,7 @@ ObjectId.prototype.toString = function () {
 				if (tags) Defer.resolve(tags);
 				else
 					tagsRoute.getList().then(function (receivedTags) {
-						tags = receivedTags;
+						tags = Restangular.stripRestangular(receivedTags);
 						Defer.resolve(tags);
 					});
 				return Defer.promise;
@@ -6845,7 +6853,7 @@ ObjectId.prototype.toString = function () {
 			getTagsByMatch: function (matchid) {
 				var Defer = $q.defer();
 				Restangular.one('v1/data/tags', matchid).getList('match').then(function (items) {
-					Defer.resolve(items);
+					Defer.resolve(Restangular.stripRestangular(items));
 				});
 				return Defer.promise;
 			},
@@ -7384,6 +7392,194 @@ ObjectId.prototype.toString = function () {
 })();
 
 (function () {
+	'use strinct';
+
+	angular.module('app.gamecards')
+		.controller('GamecardsController', GamecardsController);
+
+	GamecardsController.$inject = ['GamecardsService', 'TagsService', 'ngClipboard', '$location', '$scope', 'ngDialog', '$stateParams', '$http', '$rootScope', '$window'];
+
+	function GamecardsController(GamecardsService, TagsService, ngClipboard, $location, $scope, ngDialog, $stateParams, $http, $rootScope, $window) {
+
+		var vm = $scope;
+
+		// TODO: Gamecards Page
+		vm.isTemplateDefinitions = true;
+		
+		vm.gamecardTemplates = {};
+		vm.selectedGameCard = null;
+		vm.icons = [
+			{ spriteName: 'Corner', name: 'corner', filename: 'corner.png' },
+			{ spriteName: 'Score', name: 'exact-score', filename: 'exact-score.png' },
+			{ spriteName: 'Foul', name: 'foul-icon', filename: 'foul-icon.png' },
+			{ spriteName: 'Goal', name: 'goal', filename: 'goal2.png' },
+			{ spriteName: 'Double yellow', name: 'most-yellow', filename: 'most-yellow.png' },
+			{ spriteName: 'Offside', name: 'offside', filename: 'offside.png' },
+			{ spriteName: 'Penalty', name: 'penalty', filename: 'penalty.png' },
+			{ spriteName: 'Play', name: 'play-icon', filename: 'play-icon.png' },
+			{ spriteName: 'Red', name: 'red-card', filename: 'red-card.png' },
+			{ spriteName: 'Yellow', name: 'yellow-card', filename: 'yellow-card.png' }, { spriteName: 'Goal2', name: 'firstgoal', filename: 'firstgoal.png' }, { spriteName: 'KickOff', name: 'kickoff', filename: 'kickoff.png' }, { spriteName: 'Possession', name: 'possession', filename: 'possession.png' }, { spriteName: 'Result', name: 'result', filename: 'result.png' }, { spriteName: 'ShotOn', name: 'shoton', filename: 'shoton.png' }, { spriteName: 'Sub1', name: 'sub1', filename: 'sub1.png' }, { spriteName: 'Sub2', name: 'sub2', filename: 'sub2' }, { spriteName: 'Score', name: 'who-will-score', filename: 'who-will-score.png' }];
+
+		vm.getSpriteFilename = function (sprite) {
+			var selectedSprite = _.find(vm.icons, { name: sprite });
+			if (selectedSprite)
+				return selectedSprite.filename;
+			else
+				return null;
+		}
+
+		GamecardsService.getTemplateDefinitions().then(function (templates) {
+			vm.gamecardTemplates.instants = _.filter(templates, { cardType: "Instant" });
+			vm.gamecardTemplates.overalls = _.filter(templates, { cardType: "Overall" });
+		});
+
+		vm.editDefinition = function (definition) {
+			console.log(definition);
+			vm.selectedGameCard = definition;
+		}
+
+	
+		vm.duplicateGameCard = function (selected) {
+			var dup = _.cloneDeep(selected);
+			delete dup._id;
+			dup.title.en += " [Duplicate]";
+			vm.selectedGameCard = dup;
+		}
+		vm.CancelGamecardEdit = function () {
+			vm.selectedGameCard = null;
+		}
+
+		vm.CreateGameCard = function (gamecard) {
+			GamecardsService.ceateTemplateDefinition(gamecard).then(function (result) {
+
+				if (result.cardType == "Instant")
+					vm.gamecardTemplates.instants.push(result);
+				else
+					vm.gamecardTemplates.overalls.push(result);
+
+				vm.selectedGameCard = null;
+				$rootScope.toast("Card definition created");
+			})
+		}
+
+		vm.deleteGameCard = function (gamecard) {
+			gamecard.remove().then(function (res, err) {
+				if (!err) {
+
+					if (gamecard.cardType == "Instant")
+						vm.gamecardTemplates.instants = _.without(vm.gamecardTemplates.instants, gamecard);
+					else
+						vm.gamecardTemplates.overalls = _.without(vm.gamecardTemplates.overalls, gamecard);
+					vm.selectedGameCard = null;
+					$rootScope.toast("Card definition deleted");
+				}
+			})
+		}
+
+		vm.changeStatus = function (definition, status) {
+
+			definition.isVisible = status;
+
+			definition.save().then(function (res, err) {
+				if (!err)
+					$rootScope.toast("Status updated");
+				else
+					$rootScope.toast(err, "error");
+			})
+		}
+		vm.addOption = function (cardOptions) {
+			if (_.size(cardOptions) == 4)
+				return $rootScope.toast("You cannot have more than 4 options in a game card. Maybe we will implement it down the road.", "warn");
+			var option = {
+				"optionId": new ObjectId().toString(),
+				"endPoints": 150,
+				"startPoints": 300,
+				"text": {
+					"en": ""
+				},
+				"winConditions": [],
+				"terminationConditions": [],
+				"appearConditions": []
+			}
+			cardOptions.push(option);
+		}
+			vm.matchTags = [
+				{
+					_id: "match",
+					name: {"en":"Regardless Team"},
+					type: "Match selection"
+				},
+				{
+					_id: "home_team",
+					name: {"en":"Home Team"},
+					type: "Team selection",
+					alias: "home_team"
+				},
+				{
+					_id: "away_team",
+					name: {"en":"Away Team"},
+					type: "Team selection",
+					alias: "away_team"
+				}
+			]
+			vm.onAddtag = function (condition, item, model) {
+			if (vm.isTemplateDefinitions) {
+				// let's delete stuff. Yay!!name
+				delete condition.teamid;
+				
+				console.log(item);
+				// Is it team related or not
+				if (item.alias) {
+					if (item.alias == "home_team")
+						condition.teamid = "[[home_team_id]]";
+					if (item.alias == "away_team")
+						condition.teamid =  "[[away_team_id]]";
+				}
+				
+				
+			}
+		}
+
+		vm.removeOption = function (cardOptions, option) {
+			return _.without(cardOptions, option);
+		}
+
+		vm.UpdateGamecard = function (selectedGameCard) {
+			selectedGameCard.save().then(function (res, err) {
+				if (!err) {
+					$rootScope.toast("Game card definition changed succesfuly");
+					vm.selectedGameCard = null;
+				}
+				else
+					$rootScope.toast(err, "error");
+			})
+		}
+
+		vm.addNewWinCondition = function (context, type) {
+			console.log("Add new")
+			if (type == 'Instant') {
+				var emptyCondition = {
+					id: null
+				}
+				context.push(emptyCondition);
+			}
+
+		}
+
+		vm.removeCondition = function (context, condition) {
+
+			return _.without(context, condition);
+
+		}
+
+		vm.showFavoritesInfo = function () {
+			$rootScope.toast("You can use variables before you save your game card.</br></br> Vars:</br> [[home_team_name]] - home_team</br> [[away_team_name]] - away_team");
+		}
+
+	}
+})();
+
+(function () {
 	'use strict';
 
 	angular
@@ -7763,11 +7959,22 @@ ObjectId.prototype.toString = function () {
 		});
 
 		return {
-			getAllTemplates: function () {
+			getTemplateDefinitions: function () {
 				var Defer = $q.defer();
-				API.one('templates').getList().then(function (items) {
+				configuredRestangular.one('v1/gamecards').getList('templates').then(function (items) {
 					Defer.resolve(items);
 				});
+				return Defer.promise;
+			},
+			ceateTemplateDefinition: function (card) {
+				var Defer = $q.defer();
+				card = configuredRestangular.restangularizeElement(null, card, '/v1/gamecards/templates');
+				card.save().then(function (res, err) {
+					if (!err)
+						Defer.resolve(res);
+					else
+						console.error(err);
+				})
 				return Defer.promise;
 			},
 			getMatchDefinitions: function (matchid) {
@@ -7991,10 +8198,12 @@ ObjectId.prototype.toString = function () {
 					$scope.stats = ParseMatchStats(evt.data);
 					break;
 				case "Event_added":
-					// if (evt.data.timeline_event && evt.data.type.indexOf("Starts") < 0 && evt.data.type.indexOf("Ends") < 0)
-					if (event.players && event.playerscount && event.playerscount != event.players.length)
-						$scope.InNeedUpdateEvents.push(evt.data);
-					$scope.match.data.timeline[evt.data.state].events.push(evt.data);
+					if (evt.data.timeline_event) {
+						if (event.players && event.playerscount && event.playerscount != event.players.length)
+							$scope.InNeedUpdateEvents.push(evt.data);
+
+						$scope.match.data.timeline[evt.data.state].events.push(evt.data);
+					}
 				// break;
 				case "Event_updated":
 					var indx = _.findIndex($scope.match.data.timeline[evt.data.state].events, function (o) {
@@ -8663,7 +8872,7 @@ ObjectId.prototype.toString = function () {
 							var now = moment().utc();
 							var then = moment(match.data.timeline[match.data.state].start);
 							var ms = moment(now, "DD/MM/YYYY HH:mm:ss").diff(moment(then, "DD/MM/YYYY HH:mm:ss"));
-							var d = moment.duration(ms).add(match.data.timeline[match.data.state].sport_start_time, 'm');
+							var d = moment.duration(ms);//.add(match.data.timeline[match.data.state].sport_start_time, 'm');
 							match.Match_timer = d.format("mm:ss", {
 								trim: false
 							});
@@ -9121,9 +9330,6 @@ ObjectId.prototype.toString = function () {
 		// @@
 		// @@    TAB: USERS       
 
-		//TODO: user Profile
-
-
 		UsersService.getUserActivityByMatch(vm.matchid).then(function (result) {
 			vm.lastUsersUpdate = moment().format("HH:mm:ss");
 			vm.matchUsers = result;
@@ -9203,7 +9409,10 @@ ObjectId.prototype.toString = function () {
 
 		vm.sendMessage = function (recips, message) {
 			vm.view.sendingMessage = true;
-			var recipients = _.map(recips, 'user._id');
+			var recipients = _.compact(_.map(recips, 'user._id'));
+
+			if (message.push)
+				message.pushTokens = _.compact(_.map(recips, 'user.pushToken'));
 
 			UsersService.SendMessage(recipients, message).then(function (res, err) {
 				vm.newMessage = null;
@@ -9294,8 +9503,30 @@ ObjectId.prototype.toString = function () {
 		// @@
 		// @@    TAB: Gamecards     
 
+		// Flag to inform different methods in gamecards .
+		vm.isTemplateDefinitions = false;
+
 		vm.gamecardTemplates = {};
 		vm.selectedGameCard = null;
+		vm.icons = [
+			{ spriteName: 'Corner', name: 'corner', filename: 'corner.png' },
+			{ spriteName: 'Score', name: 'exact-score', filename: 'exact-score.png' },
+			{ spriteName: 'Foul', name: 'foul-icon', filename: 'foul-icon.png' },
+			{ spriteName: 'Goal', name: 'goal', filename: 'goal2.png' },
+			{ spriteName: 'Double yellow', name: 'most-yellow', filename: 'most-yellow.png' },
+			{ spriteName: 'Offside', name: 'offside', filename: 'offside.png' },
+			{ spriteName: 'Penalty', name: 'penalty', filename: 'penalty.png' },
+			{ spriteName: 'Play', name: 'play-icon', filename: 'play-icon.png' },
+			{ spriteName: 'Red', name: 'red-card', filename: 'red-card.png' },
+			{ spriteName: 'Yellow', name: 'yellow-card', filename: 'yellow-card.png' }, { spriteName: 'Goal2', name: 'firstgoal', filename: 'firstgoal.png' }, { spriteName: 'KickOff', name: 'kickoff', filename: 'kickoff.png' }, { spriteName: 'Possession', name: 'possession', filename: 'possession.png' }, { spriteName: 'Result', name: 'result', filename: 'result.png' }, { spriteName: 'ShotOn', name: 'shoton', filename: 'shoton.png' }, { spriteName: 'Sub1', name: 'sub1', filename: 'sub1.png' }, { spriteName: 'Sub2', name: 'sub2', filename: 'sub2' }, { spriteName: 'Score', name: 'who-will-score', filename: 'who-will-score.png' }];
+
+		vm.getSpriteFilename = function (sprite) {
+			var selectedSprite = _.find(vm.icons, { name: sprite });
+			if (selectedSprite)
+				return selectedSprite.filename;
+			else
+				return null;
+		}
 
 		GamecardsService.getMatchDefinitions(vm.matchid).then(function (templates) {
 			vm.gamecardTemplates.instants = _.filter(templates, { cardType: "Instant" });
@@ -9349,15 +9580,60 @@ ObjectId.prototype.toString = function () {
 		}
 
 		vm.changeStatus = function (definition, status) {
-			
+
 			definition.isVisible = status;
-			
+
 			definition.save().then(function (res, err) {
 				if (!err)
 					$rootScope.toast("Status updated");
 				else
-					$rootScope.toast(err);
+					$rootScope.toast(err, "error");
 			})
+		}
+
+		vm.addOption = function (cardOptions) {
+			if (_.size(cardOptions) == 4)
+				return $rootScope.toast("You cannot have more than 4 options in a game card. Maybe we will implement it down the road.", "warn");
+			var option = {
+				"optionId": new ObjectId().toString(),
+				"endPoints": 150,
+				"startPoints": 300,
+				"text": {
+					"en": ""
+				},
+				"winConditions": [],
+				"terminationConditions": [],
+				"appearConditions": []
+			}
+			cardOptions.push(option);
+		}
+
+		vm.onAddtag = function (condition, item, model) {
+			if (!vm.isTemplateDefinitions) {
+				// let's delete stuff. Yay!!
+				delete condition.teamid;
+				delete condition.player;
+				delete condition.playerid;
+				
+				// Is it team related or not
+				if (item.alias) {
+					if (item.alias == "home_team")
+						condition.teamid = item._id;
+					if (item.alias == "away_team")
+						condition.teamid = item._id;
+				}
+				
+				// If it is a player let's populate the player properties
+				if(item.type == "Player"){
+					console.log("Is it?");
+					condition.playerid = item._id;
+					condition.player = item;
+				}
+			}
+		}
+
+		vm.removeOption = function (cardOptions, option) {
+			return _.without(cardOptions, option);
 		}
 
 		vm.UpdateGamecard = function (selectedGameCard) {
@@ -9367,25 +9643,25 @@ ObjectId.prototype.toString = function () {
 					vm.selectedGameCard = null;
 				}
 				else
-					$rootScope.toast(err);
+					$rootScope.toast(err, "error");
 			})
 		}
-		
-		vm.addNewWinCondition = function(context, type){
+
+		vm.addNewWinCondition = function (context, type) {
 			console.log("Add new")
-			if(type== 'Instant'){
+			if (type == 'Instant') {
 				var emptyCondition = {
 					id: null
 				}
 				context.push(emptyCondition);
 			}
-			
+
 		}
-		
-		vm.removeCondition = function(context, condition){
-		
-		return _.without(context, condition);
-			
+
+		vm.removeCondition = function (context, condition) {
+
+			return _.without(context, condition);
+
 		}
 
 		vm.showFavoritesInfo = function () {
@@ -17546,8 +17822,8 @@ ObjectId.prototype.toString = function () {
 				url: '/gamecards',
 				title: 'Game cards',
 				templateUrl: helper.basepath('sportimo/gamecards/gamecards.html'),
-				resolve: helper.resolveFor('chartjs', 'toaster', 'dirPagination', 'moment', 'moment-format', 'ui.select', 'ngDialog', 'htmlSortable', 'angularGrid', 'ngFileUpload', 'classyloader'),
-				controller: 'SportimoModerationSoccerController',
+				resolve: helper.resolveFor('dirPagination', 'ui.select', 'ngDialog', 'htmlSortable', 'angularGrid', 'ngFileUpload', 'classyloader'),
+				controller: 'GamecardsController',
 			})
 			.state('app.welcomes', {
 				url: '/welcomes',

@@ -3,6 +3,8 @@
     <div ng-class="card.type?card.type:''" class="col-sm-12">
         <strong>{{card.type}}</strong>
         <button ng-click="mother.editItem = card" class="btn pull-right" style="background:none; border:none; box-shadow:none; margin-top: 2px;"><i class="fa fa-edit"></i></button>
+         <button ng-click="mother.viewItem(card)" class="btn pull-right" style="background:none; border:none; box-shadow:none; margin-top: 2px;"><i class="fa fa-eye"></i></button>
+    </div>
     </div>
     <div class="panel-body">
         <div class="form-group">

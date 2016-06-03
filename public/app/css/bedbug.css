@@ -1129,9 +1129,18 @@ fieldset[disabled] .btn-primary.active {
     width: 17px;
     margin-left: 10px;
 }
-.sportimo-toast {
+.sportimo-toast-info {
     background-color: #2196f3;
 }
+
+.sportimo-toast-warn {
+    background-color: #F8CC04;
+}
+
+.sportimo-toast-error {
+    background-color:  #BB2D24;
+}
+
 .sportimo-toast-heading {
     margin: 0;
 }
@@ -2105,13 +2114,21 @@ height: 43px;
 .graph-info{
     position: absolute;
     width: 100%;
-    top: 7px;
-}
-.graph-number{
-    font-size: 92px;
+    height: 160px;
+    top: 0;
+    line-height: 160px;
+    left: -2px;
+    font-size: 3vw;
 }
 .graph-text{
+       font-size: 22px;
+    position: absolute;
+    top: 84px;
+    text-align: center;
+    width: 100%;
+    left: 0;
 }
+
 .shadowed {
     /*-webkit-filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.3));
     filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.3));*/
