@@ -1,6 +1,6 @@
 <!-- START EDITOR -->
 <!-- START OF SETUP-->
-<div ng-show="SelectedQuestion" class="col-xs-12 card">
+<div ng-show="SelectedPoll" class="col-xs-12 card">
     <div class="card-body text-center col-xs-12 no-padding">
 
         <div class="col-md-7 ">
@@ -28,29 +28,39 @@
 
                     <label class="col-sm-2 control-label">Question</label>
                     <div class="col-sm-10">
-                        <multi-lang-text-area language-object="SelectedQuestion.text" default="en"></multi-lang-text-area>
+                        <multi-lang-text-area language-object="SelectedPoll.text" default="en"></multi-lang-text-area>
+                    </div>
+                    <label class="col-sm-2 control-label">Tags</label>
+                    <div class="col-sm-10">
+                        <ui-select multiple="" on-select="onAddPollTag(SelectedPoll,$item,$model)" ng-model="SelectedPoll.tags" theme="bootstrap"
+                            ng-disabled="uisel.disabled">
+                            <ui-select-match placeholder="Select  tags">{{$item.name.en}}</ui-select-match>
+                            <ui-select-choices group-by="'type'" repeat="tag as tag in matchTags | filter: $select.search">
+                                <div ng-bind-html="tag.name.en | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
                     </div>
 
                     <label class="col-sm-2 control-label">Match ID</label>
                     <div class="col-sm-10">
-                        <input type="text" ng-model="SelectedQuestion.matchid" disabled="" class="form-control" />
+                        <input type="text" ng-model="SelectedPoll.matchid" disabled="" class="form-control" />
                     </div>
 
                     <div class="col-sm-2"></div>
                     <div class="col-sm-10 text-center">
-                        <img ng-if="SelectedQuestion.img" ng-src="{{SelectedQuestion.img}}" class="media-box-object img-responsive img-rounded" />
+                        <img ng-if="SelectedPoll.img" ng-src="{{SelectedPoll.img}}" class="media-box-object img-responsive img-rounded" />
                     </div>
                     <label class="col-sm-2 control-label">Image</label>
                     <div class="col-sm-10">
-                        <image-upload folder="{{'questions/'+SelectedQuestion._id}}" should-update="true" search="false" filename="SelectedQuestion._id"
-                        ng-model="SelectedQuestion" pic-key="img"></image-upload>
+                        <image-upload folder="{{'questions/'+SelectedPoll._id}}" should-update="true" search="false" filename="SelectedPoll._id"
+                            ng-model="SelectedPoll" pic-key="img"></image-upload>
 
                         <!-- ERASER Input Group-->
                         <div class="col-xs-12 p0">
                             <p class="input-group">
-                                <input class="col-sm-12 form-control" type="text" placeholder="Image url" ng-model="SelectedQuestion.img" />
+                                <input class="col-sm-12 form-control" type="text" placeholder="Image url" ng-model="SelectedPoll.img" />
                                 <span class="input-group-btn">
-                                <button type="button" ng-click="SelectedQuestion.img = null;" class="btn btn-default"><em class="fa fa-eraser"></em></button>
+                                <button type="button" ng-click="SelectedPoll.img = null;" class="btn btn-default"><em class="fa fa-eraser"></em></button>
                             </span>
                             </p>
                         </div>
@@ -63,26 +73,26 @@
                     <div class="col-sm-10">
 
                         <span class="input-group col-sm-12">
-                            <ui-select ng-model="SelectedQuestion.sponsor" allow-single-deselect="true" theme="bootstrap" class="text-left">
+                            <ui-select ng-model="SelectedPoll.sponsor" allow-single-deselect="true" theme="bootstrap" class="text-left">
                                 <ui-select-match placeholder="Select sponsor from the list...">{{$select.selected.name}}</ui-select-match>
                                 <ui-select-choices repeat="sponsor in sponsors | filter: $select.search">
                                     <span ng-bind-html="sponsor.name | highlight: $select.search"></span>
                         </ui-select-choices>
                         </ui-select>
-                        <span ng-show="SelectedQuestion.sponsor" class="input-group-btn">
-                             <button  type="button" ng-click="SelectedQuestion.sponsor = null" class="btn btn-default">Clear</button>
+                        <span ng-show="SelectedPoll.sponsor" class="input-group-btn">
+                             <button  type="button" ng-click="SelectedPoll.sponsor = null" class="btn btn-default">Clear</button>
                             </span>
                         </span>
 
-                        <div class="col-xs-12" ng-style="SelectedQuestion.sponsor?{                       
+                        <div class="col-xs-12" ng-style="SelectedPoll.sponsor?{                       
                                 'height': '75px',
                                 'background-size': 'cover',
                                 'background-repeat': 'no-repeat',
                                 'background-position': '50%',
-                                'background-image':'url('+SelectedQuestion.sponsor.banner+')'}:''">
+                                'background-image':'url('+SelectedPoll.sponsor.banner+')'}:''">
                         </div>
                         <div class="text-center">
-                            <label> {{SelectedQuestion.sponsor.name}}</label>
+                            <label> {{SelectedPoll.sponsor.name}}</label>
                         </div>
                     </div>
                     <!--<label class="col-lg-2 control-label">Disabled</label>
@@ -96,7 +106,7 @@
         <div class="col-md-5">
             <div class="panel-heading">
                 <label>Answers</label>
-                 <button type="button" ng-click="addAnswer()" class="pull-right btn btn-default">Add</button>
+                <button type="button" ng-click="addPollAnswer()" class="pull-right btn btn-default">Add</button>
             </div>
             <!--<div class="col-xs-12 no-padding">
                 <span>
@@ -104,8 +114,8 @@
                 </span>
             </div>-->
 
-            <ul html-sortable="sortableOptions" html-sortable-callback="sortableCallbackNew" ng-model="SelectedQuestion.answers" class="">
-                <li ng-repeat="answer in SelectedQuestion.answers track by $index" class="list-group-item mv p0">
+            <ul>
+                <li ng-repeat="answer in SelectedPoll.answers track by $index" class="list-group-item mv p0">
                     <table width="100%">
                         <tr>
                             <td class="ph pv" style="width:100px;">
@@ -118,32 +128,40 @@
                                 'background-image':'url('+answer.img+')'}">
                                 </div>
                                 <image-upload folder="{{'questions/'+Question._id+'/'+answer._id}}" search="false" filename="answer._id" ng-model="answer"
-                                pic-key="img"></image-upload>
+                                    pic-key="img"></image-upload>
                             </td>
                             <td class="pv">
                                 <!--<input placeholder="The id when saved" type="text" ng-model="answer._id" disabled="" class="form-control" />-->
                                 <multi-lang-text language-object="answer.text" default="en"></multi-lang-text>
                                 <!-- ERASER Input Group-->
-                        
-                            <p class="input-group">
-                                <input class="col-sm-12 form-control" type="text" placeholder="image url" ng-model="answer.img" />
-                                <span class="input-group-btn">
+                    
+                        <ui-select on-select="onImageFromTag(answer,$item,$model)" ng-model="nothing" theme="bootstrap"
+                            ng-disabled="uisel.disabled">
+                            <ui-select-match placeholder="Select image from tag">{{$select.selected.name.en}}</ui-select-match>
+                            <ui-select-choices group-by="'type'" repeat="tag as tag in matchTags | filter: $select.search">
+                                <div ng-bind-html="tag.name.en | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                    
+                                <p class="input-group">
+                                    <input class="col-sm-12 form-control" type="text" placeholder="image url" ng-model="answer.img" />
+                                    <span class="input-group-btn">
                                 <button type="button" ng-click="answer.img = null;" class="btn btn-default"><em class="fa fa-eraser"></em></button>
                             </span>
-                            </p>
-                       
-                        <!-- End of ERASER Input Group-->
+                                </p>
+
+                                <!-- End of ERASER Input Group-->
                                 <div class="col-xs-12 p0">
                                     <p class="input-group">
-                                        <input class="col-sm-12 form-control" type="text" placeholder="points" ng-model="answer.points" />
+                                        <input class="col-sm-12 form-control" type="text" placeholder="votes" ng-model="answer.votes" />
                                         <span class="input-group-btn">
-                                <button type="button" class="btn btn-default"><em class="fa fa-trophy"></em></button>
+                                <button type="button" class="btn btn-default"><em class="fa fa-comments-o"></em></button>
                             </span>
                                     </p>
                                 </div>
                             </td>
-                            <td  style="width:45px; vertical-align: top;" class="pv ph">
-                               <button type="button" ng-click="deleteAnswer(answer)" class="btn btn-danger minimal"><em class="fa fa-minus-circle"></em></button>
+                            <td style="width:45px; vertical-align: top;" class="pv ph">
+                                <button type="button" ng-click="deletePollAnswer(answer)" class="btn btn-danger minimal"><em class="fa fa-minus-circle"></em></button>
                             </td>
                             <tr>
                     </table>
@@ -154,39 +172,35 @@
         </div>
     </div>
     <div class="col-xs-12 card-footer">
-        <div ng-show="SelectedQuestion._id">
+        <div ng-show="SelectedPoll._id">
             <!---->
-            <button ng-disabled="SelectedQuestion.status == 1" ng-click="UpdateQuestion(SelectedQuestion)" style="margin-right: 10px;" class="col-sm-4 col-sm-offset-2 btn  btn-primary btn-lg ">Update</button>
+            <button ng-disabled="SelectedPoll.status == 1" ng-click="UpdatePoll(SelectedPoll)" style="margin-right: 10px;" class="col-sm-4 col-sm-offset-2 btn  btn-primary btn-lg ">Update</button>
         </div>
-        <div ng-hide="SelectedQuestion._id">
-            <button ng-click="CreateSendQuestion(SelectedQuestion)" style="margin-right: 10px;" class="col-sm-4 col-sm-offset-2 btn  btn-primary btn-lg ">Send</button>
+        <div ng-hide="SelectedPoll._id">
+            <button ng-click="CreateSendPoll(SelectedPoll)" style="margin-right: 10px;" class="col-sm-4 col-sm-offset-2 btn  btn-primary btn-lg ">Send</button>
         </div>
-         <button ng-click="Delete(SelectedQuestion)" style="margin-right: 10px;" class="col-sm-2  btn btn-danger delete btn-lg ">Delete</button>
-        <button ng-click="cancelEditQuestion()" class="col-sm-2 btn btn-lg minimal">Cancel</button>
-        
-        <div class="btn-group pull-right">
-        <button ng-click="saveToFavorites(SelectedQuestion)" class="btn btn-primary btn-lg minimal"><em class="fa fa-save"></em></button>
-        <button type="button" ng-click="showFavoritesInfo()" class="btn btn-primary btn-lg minimal"><em class="fa fa-info"></em></button>
-        </div>
+        <button ng-click="DeletePoll(SelectedPoll)" style="margin-right: 10px;" class="col-sm-2  btn btn-danger delete btn-lg ">Delete</button>
+        <button ng-click="cancelEditPoll()" class="col-sm-2 btn btn-lg minimal">Cancel</button>
+
     </div>
 </div>
 <!-- END OF SETUP -->
 <!-- END EDITOR -->
 
 <!-- START LeaderBoards -->
-<div ng-show="!SelectedQuestion" class="table-responsive">
+<div ng-show="!SelectedPoll" class="table-responsive">
     <div class="col-xs-12 no-padding ">
-        <button ng-click="addNewQuestion()" class="col-xs-12 btn btn-lg minimal">Add a new Poll</button>
+        <button ng-click="addNewPoll()" class="col-xs-12 btn btn-lg minimal">Add a new Poll</button>
     </div>
 
     <div class="input-group col-xs-12 no-padding">
-        <input ng-model="questionsSearch" placeholder="Search questions..." type="text" class="form-control"><span class="input-group-btn"><button type="button" class="btn btn btn-default"><i class="fa fa-search"></i></button></span>
+        <input ng-model="questionsSearch" placeholder="Search polls..." type="text" class="form-control"><span class="input-group-btn"><button type="button" class="btn btn btn-default"><i class="fa fa-search"></i></button></span>
     </div>
 
     <div ng-show="true" class="container-fluid">
         <!-- START OF Questions List -->
         <div class="list-group">
-            <div ng-repeat="question in questions | filter: questionsSearch" class="list-group-item">
+            <div ng-repeat="question in polls | filter: questionsSearch" class="list-group-item">
                 <table class="wd-wide">
                     <tbody>
                         <tr>
@@ -195,9 +209,9 @@
                                     <img src="app/img/dummy.png" alt="" class="media-box-object img-responsive img-rounded thumb64" />
                                 </div>
                             </td>
-                            <td style="min-width: 350px">
+                            <td style="min-width: 350px;vertical-align: top;">
                                 <div class="ph">
-                                    <h4 class="text-muted media-box-heading">Question {{$index + 1}}</h4>
+                                    <h4 class="text-muted media-box-heading">Poll {{$index + 1}}</h4>
                                     <span style="font-size: 16px; font-weight: 600; color: #666;">{{question.text.en}}</span>
                                 </div>
                             </td>
@@ -208,30 +222,38 @@
                                             <h5 class="">Answer {{$index +1 }}</h5>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td class="text-cell" ng-repeat="answer in question.answers">
-                                            <div  ng-show="answer.img"  class="cell-img">
-                                                <img src="app/img/dummy.png" ng-src="{{answer.img}}" onerror="this.src='app/img/dummy.png'" class="media-box-object img-rounded thumb64"
-                                                />
+                                    <tr ng-if="polls">
+                                        <td style="min-width:250px;width: 500px;position:relative;" class="col-xs-12" ng-repeat="answer in question.answers">
+                                            <div style="position:relative">
+                                               
+                                                <div class="col-xs-12 p0 panel panel-highlighted widget ">
+
+                                                    <div class="text-center " style="padding-top: 15px; height:180px; ">
+                                                        <canvas doughnutchart=" " options="{ segmentShowStroke: true, segmentStrokeColor: '#fff', segmentStrokeWidth:
+            2, percentageInnerCutout: 80, animationSteps: 50, animationEasing: 'easeOutSine', animateRotate: true, animateScale:
+            false } " data="answer.pieData" height="130 " responsive="false " width="130 " style="width: 150px; height:200px; "></canvas>
+                                                    </div>
+                                                </div>
+                                                <div class="graph-info text-center ">
+                                                     <div class="graph-number">
+                                <img ng-if="answer.img" src="{{answer.img}}" alt="Image" class="media-box-object img-circle" style="position: absolute; left: calc(50% - 50px); width: 100px; top: 20%;">
+                                {{answer.percent}}%
+                                </div>
+                                                    <!--<span class="">{{answer.votes}}</span><br/>-->
+                                                    <br>
+                                                    <span class="graph-text ">{{answer.text.en}}</span>
+                                                </div>
                                             </div>
-                                            <div class="cell-text" >{{answer.text.en}}</div>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td style="padding:10px 20px 0; text-align:center" ng-repeat="answer in question.answers">
-                                            <div class="col-xs-6 p0">
-                                                <p class=" text-muted">
-                                                    <em class="icon-users mr fa-lg"></em>{{answer.answered}}</p>
+                                        <td style="font-size:15px; text-align:center" ng-repeat="answer in question.answers">
+                                            <div class="col-xs-12 p0" style="    margin-top: -10px;">
+                                                <p class="text-center text-muted white">
+                                                    {{answer.votes}}<em class="fa fa-users fa-fw mr"></em>
+                                                    {{answer.percent}}<em class="fa-percent fa fa-fw"></em>
+                                                    </p>
                                             </div>
-                                            <div class="col-xs-6 p0">
-                                                <p class=" text-muted">
-                                                    <em class="icon-trophy mr fa-lg"></em>{{answer.points}}</p>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding:0 10px" ng-repeat="answer in question.answers">
-                                            <button class="btn btn-sm col-xs-12" ng-disabled="question.status == 1" ng-class="question.correct == answer._id?'btn-success':''">Correct</button>
                                         </td>
                                     </tr>
                                 </table>
@@ -239,7 +261,7 @@
 
                             </td>
                             <td style="width:60px; text-align:center">
-                                <button ng-click="editQuestion(question)" class="minimal small-margin btn btn-info" tabindex="0"><span class=""><i class="fa fa-pencil"></i>
+                                <button ng-click="editPoll(question)" class="minimal small-margin btn btn-info" tabindex="0"><span class=""><i class="fa fa-pencil"></i>
                                     </span></button>
                             </td>
                             <!--<td class="wd-sm">

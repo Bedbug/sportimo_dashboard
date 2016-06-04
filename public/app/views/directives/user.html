@@ -4,7 +4,7 @@
     <div class="panel-body p0">
         <!-- START widget-->
         <div style="position:absolute;top:10px; right:10px; z-index:99">
-         <button class=" btn btn-default btn-xs mb-xs pull-right " ng-click="removeUser() "><span class="text-muted ">X</span></button></div>
+            <button class=" btn btn-default btn-xs mb-xs pull-right " ng-click="removeUser() "><span class="text-muted ">X</span></button></div>
         <div class="col-md-6 pl0">
             <div class="panel panel-highlighted widget mb ">
                 <div class="panel-body " style="min-height: 200px; ">
@@ -23,8 +23,7 @@
             fa-fw fa-info-circle "></em>{{selectedUser.name}}</li>
                                 <li class="mb-sm ">
                                     <em class="fa fa-map-marker fa-fw
-            "></em>{{selectedUser.country}} &nbsp;<span class="flag-icon "
-                                        ng-class=" 'flag-icon-'+selectedUser.country.toLowerCase() "></span> </li>
+            "></em>{{selectedUser.country}} &nbsp;<span class="flag-icon " ng-class=" 'flag-icon-'+selectedUser.country.toLowerCase() "></span>                                    </li>
                                 <li class="mb-sm ">
                                     <em class="fa fa-envelope fa-fw "></em>{{selectedUser.email}}</li>
                             </ul>
@@ -66,7 +65,7 @@
         <div class="col-xs-6 col-md-3 p0 pr-sm " ng-if="statsReloaded ">
             <!-- START widget-->
             <div class="panel panel-highlighted widget ">
-                
+
                 <div class="text-center " style="padding-top: 15px; height:180px; ">
                     <canvas doughnutchart=" " options="{ segmentShowStroke: true, segmentStrokeColor: '#fff', segmentStrokeWidth:
             2, percentageInnerCutout: 80, animationSteps: 50, animationEasing: 'easeOutSine', animateRotate: true, animateScale:
@@ -81,11 +80,11 @@
                         <em class="fa fa-fw fa-user text-muted "></em>Cards lost</a>
                 </div>
             </div>
-            
+
             <div class="graph-info text-center ">
-                    <span class="graph-number ">{{selectedUser.stats.cardsPlayed || 0}}</span><br/>
-                    <span class="graph-text ">Cards Played</span>
-                </div>
+                <span class="graph-number ">{{selectedUser.stats.cardsPlayed || 0}}</span><br/>
+                <span class="graph-text ">Cards Played</span>
+            </div>
             <!-- END widget-->
         </div>
 

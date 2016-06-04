@@ -59,7 +59,7 @@
 
 /*Timeline Tabs Behaviour*/
 .match-tab-text { display: inline-block; }
-@media (max-width: 1540px) { 
+@media (max-width: 1694px) { 
   .match-tab-text { display: none; }
 }
 
@@ -125,6 +125,7 @@ md-toast {
  }
  
  .answers-row .text-cell{
+     position: relative;
      max-width:300px;
      min-width: 200px; 
      vertical-align:top; 
@@ -2117,8 +2118,8 @@ height: 43px;
     height: 160px;
     top: 0;
     line-height: 160px;
-    left: -2px;
-    font-size: 3vw;
+    left: 0;
+    font-size: 2vw;
 }
 .graph-text{
        font-size: 22px;

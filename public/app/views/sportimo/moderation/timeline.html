@@ -169,9 +169,23 @@
                 <div class="panel-heading">
                     <label class="mda-checkbox pull-right">
                             <input type="checkbox" ng-model="debugEvent" />
-                            <em class="subtle-checkbox"></em>Debug Event
+                            <em class="subtle-checkbox"></em>Debug
                         </label>
-                    <textarea style="width:100%; clear:both" ng-show="debugEvent" class="panel-body">{{readable(newEvent)}}</textarea>
+                    <div ng-show="debugEvent">
+                        <div class="btn-group col-xs-12 p0 pb-lg">
+
+                            <button ladda="pushLoading" data-style="zoom-in" ng-click="loadMatchData(match.id)" type="button" class="moderation btn btn-lg col-xs-6 btn-default">
+                        <em class="fa fa-refresh fa-fw"></em> Data
+                    </button>
+
+
+                            <button ladda="reloadingServer" data-style="zoom-in" ng-click="reloadMatch(match.id)" type="button" class="moderation btn btn-lg col-xs-6 btn-default">
+                        <em class="fa fa-refresh fa-fw"></em> Server
+                    </button>
+                        </div>
+
+                        <textarea style="width:100%; clear:both" class="panel-body">{{readable(newEvent)}}</textarea>
+                    </div>
                 </div>
                 <div class="match-logos " style="clear:both" id="eventsPanel">
                     <!-- Team 1 -->
@@ -377,36 +391,35 @@
 
                 <!-- Utilities -->
                 <div class="btn-group col-xs-12 pb-lg">
-
-                    <button ng-click="openDrawer(3)" type="button" class="moderation btn btn-lg col-xs-4 btn-default">
+                    <button ng-click="createNewComentary()" type="button" class="moderation btn btn-lg col-xs-12 btn-default">
                         <em class="fa fa-bullhorn fa-fw"></em> Message
                     </button>
 
-
-                    <button ladda="pushLoading" data-style="zoom-in" ng-click="loadMatchData(match.id)" type="button" class="moderation btn btn-lg col-xs-4 btn-default">
-                        <em class="fa fa-refresh fa-fw"></em> Data
-                    </button>
-
-
-                    <button ladda="reloadingServer" data-style="zoom-in" ng-click="reloadMatch(match.id)" type="button" class="moderation btn btn-lg col-xs-4 btn-default">
-                        <em class="fa fa-refresh fa-fw"></em> Server
-                    </button>
                 </div>
+                <div ng-show="newComentary" class="panel col-xs-12 mt" style="margin-top: 18px;">
+                    <div class="animShow panel">
+                        <div class="panel-body">
+                            <div class="clearfix"></div>
+                            <div class="pb-sm">
+                                <label>Saved Message</label>
+                                <ui-select ng-model="template.selected" theme="bootstrap" on-select="onSelectedComentary($item,$model)" ng-disabled="disabled">
+                                    <ui-select-match placeholder="Select message template">{{$select.selected.title.en}}</ui-select-match>
+                                    <ui-select-choices repeat="template in savedMessages | propsFilter: {title: $select.search}">
+                                        <div ng-bind-html="template.title.en | highlight: $select.search"></div>
+                                        <small>{{template}}</small>
+                                    </ui-select-choices>
+                                </ui-select>
+                                <multi-lang-text label="Title" placeholder="Message title" language-object="newComentary.title"></multi-lang-text>
+                                <multi-lang-text-area label="Message" placeholder="Message body" language-object="newComentary.message"></multi-lang-text-area>
 
-                <div ng-show="eventDrawer == 3" class="panel col-xs-12 mt" style="margin-top: 18px;">
-                    <div class="form-group mb-xl panel-body">
+                            </div>
+                            <button data-style="expand-left" ng-click="cancelComentary()" class="btn btn-simple pull-right">Cancel</button>
+                            <button ladda="view.sendingMessage" data-style="expand-right" ng-click="sendComentary(newComentary)" class="btn btn-success btn-space do pull-right">Send</button>
+                            <div class="col-xs-12 p0 text-sm text-muted pt-lg">
+                                <em class="fa fa-info-circle fa-fw"></em><em>Send a comentary message to all match users. If you want to send specific user messages please use the <strong>Users Tab</strong>instead.</em>
+                            </div>
+                        </div>
 
-                        <div class="mda-form-group ">
-                            <textarea ng-model="push.message" style="height: 180px;" placeholder="{{demomessage}}" rows="7" aria-multiline="true" tabindex="0"
-                                aria-invalid="false" class="mda-form-control ng-pristine ng-valid ng-touched" style="margin-top: 0px; margin-bottom: 0px; height: 139px;"></textarea>
-                            <label>Message</label>
-                            <span class="mda-form-msg right">Any message here</span>
-                        </div>
-                        <div class="">
-                            <button ladda="pushLoading" data-style="expand-left" ng-click="sendMessage(match.id, push.message)" class="btn btn-success pull-right btn-lg">
-                                Send Message
-                            </button>
-                        </div>
                     </div>
                 </div>
                 <!-- END of Utilities -->
@@ -428,17 +441,17 @@
                             </span>
                     </span>
                 </div>
-                
+
                 <!-- TEXT -->
                 <div ng-if="match.sponsor.name" class="col-xs-12">
                     <label>{{match.sponsor.name}}</label>
-                     <multi-lang-text language-object="match.sponsor.text" class="mb0" default="en"></multi-lang-text>
+                    <multi-lang-text language-object="match.sponsor.text" class="mb0" default="en"></multi-lang-text>
                     <button ng-click="sponsorSendTextMessage(match.sponsor.text)" type="button" class="moderation btn btn-lg mt0 mb-lg col-xs-12 btn-default">
                         <em class="fa fa-bullhorn fa-fw"></em> Send Text
                     </button>
                 </div>
                 <!-- END TEXT -->
-                
+
                 <!-- BANNER -->
                 <div class="col-xs-12" ng-style="match.sponsor?{                       
                                 'height': '75px',
@@ -454,7 +467,7 @@
                     </button>
                 </div>
                 <!-- END BANNER-->
-                
+
                 <!-- VIDEO -->
                 <div ng-if="match.sponsor.name" class="col-xs-12">
                     <input type="text" ng-model="match.sponsor.video" placeholder="Video url..." class="form-control mb0" />

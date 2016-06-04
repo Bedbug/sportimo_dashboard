@@ -5117,6 +5117,12 @@ ObjectId.prototype.toString = function () {
 					var Defer = $q.defer();
 					Schedule.post(newMatch).then(function (match) {
 						console.log(match);
+
+						// Create gamecard definitions for match
+						Restangular.one('v1/gamecards').one(match._id, 'createdefs').get().then(function (res) {
+							console.log(res);
+						});
+
 						Defer.resolve(match);
 					}, function () {
 						console.log("There was an error saving");
@@ -7405,7 +7411,7 @@ ObjectId.prototype.toString = function () {
 
 		// TODO: Gamecards Page
 		vm.isTemplateDefinitions = true;
-		
+
 		vm.gamecardTemplates = {};
 		vm.selectedGameCard = null;
 		vm.icons = [
@@ -7438,7 +7444,7 @@ ObjectId.prototype.toString = function () {
 			vm.selectedGameCard = definition;
 		}
 
-	
+
 		vm.duplicateGameCard = function (selected) {
 			var dup = _.cloneDeep(selected);
 			delete dup._id;
@@ -7503,40 +7509,40 @@ ObjectId.prototype.toString = function () {
 			}
 			cardOptions.push(option);
 		}
-			vm.matchTags = [
-				{
-					_id: "match",
-					name: {"en":"Regardless Team"},
-					type: "Match selection"
-				},
-				{
-					_id: "home_team",
-					name: {"en":"Home Team"},
-					type: "Team selection",
-					alias: "home_team"
-				},
-				{
-					_id: "away_team",
-					name: {"en":"Away Team"},
-					type: "Team selection",
-					alias: "away_team"
-				}
-			]
-			vm.onAddtag = function (condition, item, model) {
+		vm.matchTags = [
+			{
+				_id: "match",
+				name: { "en": "Regardless Team" },
+				type: "Match selection"
+			},
+			{
+				_id: "home_team",
+				name: { "en": "Home Team" },
+				type: "Team selection",
+				alias: "home_team"
+			},
+			{
+				_id: "away_team",
+				name: { "en": "Away Team" },
+				type: "Team selection",
+				alias: "away_team"
+			}
+		]
+		vm.onAddtag = function (condition, item, model) {
 			if (vm.isTemplateDefinitions) {
 				// let's delete stuff. Yay!!name
 				delete condition.teamid;
-				
+
 				console.log(item);
 				// Is it team related or not
 				if (item.alias) {
 					if (item.alias == "home_team")
 						condition.teamid = "[[home_team_id]]";
 					if (item.alias == "away_team")
-						condition.teamid =  "[[away_team_id]]";
+						condition.teamid = "[[away_team_id]]";
 				}
-				
-				
+
+
 			}
 		}
 
@@ -7588,6 +7594,7 @@ ObjectId.prototype.toString = function () {
 		.service('PoolsService', PoolsService)
 		.service('SponsorsService', SponsorsService)
 		.service('QuestionsService', QuestionsService)
+		.service('PollsService', PollsService)
 		.service('CountriesService', CountriesService)
 		.service('UsersService', UsersService)
 		.service('GamecardsService', GamecardsService)
@@ -7652,8 +7659,53 @@ ObjectId.prototype.toString = function () {
 	PrizesService.$inject = ['$rootScope', '$q', 'Restangular'];
 	PoolsService.$inject = ['$rootScope', '$q', 'Restangular'];
 	QuestionsService.$inject = ['$rootScope', '$q', 'Restangular'];
+	PollsService.$inject = ['$rootScope', '$q', 'Restangular'];
 	UsersService.$inject = ['$rootScope', '$q', 'Restangular'];
 	GamecardsService.$inject = ['$rootScope', '$q', 'Restangular'];
+
+	function PollsService($rootScope, $q, Restangular) {
+		var API = Restangular.all('v1/polls');
+
+		Restangular.setBaseUrl($rootScope.servers[$rootScope.serverEnvironment].game_server);
+		Restangular.setRestangularFields({
+			id: "_id"
+		});
+
+		return {
+			findByTagId: function (id) {
+				var Defer = $q.defer();
+				API.one(id, 'tag').getList().then(function (items) {
+					items = Restangular.restangularizeCollection(null, items, 'v1/polls');
+					items = _.forEach(items, function (item) {
+						item.fromServer = true;
+					});
+					Defer.resolve(items);
+				});
+				return Defer.promise;
+			},
+			Save: function (poll) {
+				var Defer = $q.defer();
+				poll = Restangular.restangularizeElement(null, poll, 'v1/polls');
+				poll.save().then(function (res, err) {
+					console.log(res);
+					console.log(err);
+					Defer.resolve(res);
+				})
+
+				return Defer.promise;
+			},
+			Remove: function (poll) {
+				var Defer = $q.defer();
+				poll.remove().then(function (res, err) {
+
+					Defer.resolve(res);
+				})
+
+				return Defer.promise;
+			}
+		}
+	};
+
 
 	function QuestionsService($rootScope, $q, Restangular) {
 		var API = Restangular.all('v1/questions');
@@ -8028,13 +8080,21 @@ ObjectId.prototype.toString = function () {
 					Defer.resolve(res, err);
 				});
 				return Defer.promise;
+			},
+			SendRoomMessage: function (room, message) {
+				var Defer = $q.defer();
+				message.room = room;
+				API.customPOST(message, "messages").then(function (res, err) {
+					Defer.resolve(res, err);
+				});
+				return Defer.promise;
 			}
 		}
 	};
 
-	SportimoModerationSoccerController.$inject = ['GamecardsService', 'UsersService', 'StatsComService', 'CompetitionsService', 'StatsService', 'TagsService', 'ngClipboard', '$location', '$anchorScroll', 'QuestionsService', 'LeaderboardsService', 'CountriesService', 'PrizesService', 'SponsorsService', 'PoolsService', '$scope', 'ngDialog', '$stateParams', '$http', '$rootScope', '$timeout', '$interval', '$mdToast', '$mdBottomSheet', '$window'];
+	SportimoModerationSoccerController.$inject = ['PollsService', 'GamecardsService', 'UsersService', 'StatsComService', 'CompetitionsService', 'StatsService', 'TagsService', 'ngClipboard', '$location', '$anchorScroll', 'QuestionsService', 'LeaderboardsService', 'CountriesService', 'PrizesService', 'SponsorsService', 'PoolsService', '$scope', 'ngDialog', '$stateParams', '$http', '$rootScope', '$timeout', '$interval', '$mdToast', '$mdBottomSheet', '$window'];
 
-	function SportimoModerationSoccerController(GamecardsService, UsersService, StatsComService, CompetitionsService, StatsService, TagsService, ngClipboard, $location, $anchorScroll, QuestionsService, LeaderboardsService, CountriesService, PrizesService, SponsorsService, PoolsService, $scope, ngDialog, $stateParams, $http, $rootScope, $timeout, $interval, $mdToast, $mdBottomSheet, $window) {
+	function SportimoModerationSoccerController(PollsService, GamecardsService, UsersService, StatsComService, CompetitionsService, StatsService, TagsService, ngClipboard, $location, $anchorScroll, QuestionsService, LeaderboardsService, CountriesService, PrizesService, SponsorsService, PoolsService, $scope, ngDialog, $stateParams, $http, $rootScope, $timeout, $interval, $mdToast, $mdBottomSheet, $window) {
 
 
 		var vm = $scope;
@@ -8290,9 +8350,11 @@ ObjectId.prototype.toString = function () {
 					vm.questions = questions;
 					vm.ClosedQuestions = _.filter(questions, { status: 1 }).length;
 					vm.parseFavoriteQuestions();
-
 				})
-
+				PollsService.findByTagId(vm.matchid).then(function (polls) {
+					vm.polls = polls; 
+					drawPollsPies(vm.polls);
+				})
 				vm.pushLoading = false;
 			}, function errorCallback(response) {
 				vm.pushLoading = false;
@@ -9326,6 +9388,135 @@ ObjectId.prototype.toString = function () {
 				return moment(d).format(style) + " (local time)";
 		}
 
+		// 	@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+		//	@@
+		//	@@		TAB: POLLS
+
+		// TODO: POLLS
+
+		vm.polls = null;
+		vm.ClosedPolls;
+		vm.SelectedPoll = null;
+
+		function drawPollsPies(polls) {
+			
+			
+			_.each(polls, function (poll) {
+				var ThisAnwer = 0;
+				_.each(poll.answers, function (answer) {
+					answer.pieData = [];
+
+					for (var i = 0; i < poll.answers.length; i++) {
+						var votes = poll.answers[i].votes;
+						var is = ThisAnwer == i;
+						answer.pieData[i] = {
+							value: votes,
+							color: is ? '#128F1F' : '#131e26',
+							highlight: is ? '#3DF555' : '#3a3f51',
+							label: poll.answers[i].text.en
+						};
+					}
+					ThisAnwer++;
+				})
+			})
+			
+			return  polls;
+		}
+
+		vm.addNewPoll = function () {
+
+			// vm.parseFavoriteQuestions();
+			var matchtag = _.pick(_.find(vm.matchTags, function (o) {
+				return o._id == vm.matchid;
+			}), ['_id', 'name']);
+
+			vm.SelectedPoll = {
+
+				tags: [matchtag],
+				text: {
+					en: ""
+				},
+				answers: []
+			}
+		}
+
+		vm.addPollAnswer = function () {
+			vm.SelectedPoll.answers.push({
+				"text": {
+					"en": ""
+				},
+				"img": null,
+				"votes": 0
+
+			})
+		}
+
+		vm.deletePollAnswer = function (answer) {
+			vm.SelectedPoll.answers = _.without(vm.SelectedPoll.answers, answer);
+		}
+
+		vm.deletePoll = function (poll) {
+			PollsService.Remove(poll).then(function (result) {
+				vm.pools = _.without(vm.polls, poll);
+			})
+		}
+
+		vm.cancelEditPoll = function () {
+			vm.SelectedPoll = null;
+		}
+
+		vm.editPoll = function (poll) {
+			vm.SelectedPoll = poll;
+		}
+
+		vm.UpdatePoll = function (poll) {
+			
+			poll.save().then(function (data, err) {
+				
+				vm.polls = _.without(vm.polls, poll);
+		
+				vm.polls.push(data);
+			
+				drawPollsPies(vm.polls);
+			
+				vm.SelectedPoll = null;
+			})
+		}
+
+		vm.onAddPollTag = function (poll, item, model) {
+			var newTag = {
+				name: item.name,
+				_id: item._id
+			};
+
+			var index = _.findIndex(poll.tags, {
+				"_id": item._id
+			});
+			poll.tags[index] = newTag;
+			poll.img = item.pic;
+		}
+		
+		vm.onImageFromTag = function (answer, item, model) {
+			answer.img = item.logo;
+		}
+
+		// We request this after loading match now
+		//
+		// QuestionsService.AllByMatch(vm.matchid).then(function (questions) {
+		//     vm.questions = questions;
+		//     vm.ClosedQuestions = _.filter(questions, { status: 1 }).length;
+		//     vm.parseFavoriteQuestions();
+
+		// })
+
+		vm.CreateSendPoll = function (poll) {
+			PollsService.Save(poll).then(function (res) {
+				vm.polls.push(res);
+				vm.SelectedPoll = null;
+				poll = null;
+			})
+		}
+
 		// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 		// @@
 		// @@    TAB: USERS       
@@ -9396,7 +9587,7 @@ ObjectId.prototype.toString = function () {
 
 			vm.newMessage = {
 				_id: new ObjectId().toString(),
-				sender: $rootScope.user._id,
+				sender: $rootScope.user._id || 'Moderator',
 				message: true,
 				push: false,
 				sockets: true
@@ -9437,6 +9628,64 @@ ObjectId.prototype.toString = function () {
 
 		// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 		// @@
+		// @@    ACTIONS: COMENTARY    
+
+		vm.newComentary = null;
+
+		vm.onSelectedComentary = function ($item, $model) {
+			vm.newComentary = null;
+			vm.newComentary = _.merge($item, vm.newComentary);
+		}
+
+		vm.createNewComentary = function () {
+
+			vm.newComentary = {
+				_id: new ObjectId().toString(),
+				sender: $rootScope.user._id || 'Moderator',
+				title: { en: '' },
+				message: { en: '' }
+			};
+		}
+
+		vm.cancelComentary = function () {
+			vm.newComentary = null;
+		}
+
+
+		vm.sendComentary = function (message) {
+			vm.view.sendingMessage = true;
+
+			var data = {
+				room: vm.matchid,
+				type: "Message",
+				timeline_event: false,
+				data: {
+					title: message.title,
+					message: message.message
+				}
+
+			};
+			vm.sendMatchSocketMessage(data);
+
+
+		}
+
+
+		vm.savedMessages = [
+			{
+				title: { en: "What a match!" },
+				message: { en: "Things are heating up around that goal posts, aren't they?!" }
+			},
+			{
+				title: { en: "Downhill" },
+				message: { en: "The situation is not looking well for TEAM. Something needs to be done in order to get back in the game." }
+			}
+		]
+
+
+
+		// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+		// @@
 		// @@    ACTIONS: SPONSORS     
 
 
@@ -9453,6 +9702,7 @@ ObjectId.prototype.toString = function () {
 				data: addEventData
 			}).then(function successCallback(response) {
 				console.log(response);
+				vm.view.sendingMessage = false;
 			}, function errorCallback(response) {
 				// called asynchronously if an error occurs
 				// or server returns response with an error status.
@@ -9614,7 +9864,7 @@ ObjectId.prototype.toString = function () {
 				delete condition.teamid;
 				delete condition.player;
 				delete condition.playerid;
-				
+
 				// Is it team related or not
 				if (item.alias) {
 					if (item.alias == "home_team")
@@ -9622,9 +9872,9 @@ ObjectId.prototype.toString = function () {
 					if (item.alias == "away_team")
 						condition.teamid = item._id;
 				}
-				
+
 				// If it is a player let's populate the player properties
-				if(item.type == "Player"){
+				if (item.type == "Player") {
 					console.log("Is it?");
 					condition.playerid = item._id;
 					condition.player = item;
