@@ -15,7 +15,7 @@
                         </div>
                         <div class="event-team-logo text-center" ng-show="!selectedItem._id">
                             <p ng-if="!selectedItem.logo" class="muted">This data item does not have an ID yet.</br>Therefore you cannot upload an image until it has.</br>However
-                                you can pass an image url in the settings tab.</p>
+                                you can pass an image url in the settings uib-tab.</p>
                             <img ng-if="selectedItem.logo" class="thumb256 m" ng-src="{{selectedItem.logo}}" />
                         </div>
                     </div>
@@ -38,11 +38,11 @@
 
                     </div>
 
-                    <tabset justified="true" class="bg-white  col-sm-12 col-lg-5" style="margin-top:20px">
-                        <tab>
-                            <tab-heading>
+                    <uib-tabset justified="true" class="bg-white  col-sm-12 col-lg-5" style="margin-top:20px">
+                        <uib-tab>
+                            <uib-tab-heading>
                                 Players
-                            </tab-heading>
+                            </uib-tab-heading>
                             <div ng-show="!selectedItem.playersLoaded" class="col-xs-12 p0">
                                 <button ladda="view.loadingPlayers == 1" style="margin:5px" data-style="expand-right" ng-click="LoadPlayers(selectedItem)"
                                     ng-show="!selectedTeam.playersLoaded" class="col-xs-12 btn btn-primary edit">Load Players</button>
@@ -92,11 +92,11 @@
                                 <!-- END OF Players Table -->
 
                             </div>
-                        </tab>
-                        <tab>
-                            <tab-heading>
+                        </uib-tab>
+                        <uib-tab>
+                            <uib-tab-heading>
                                 Info
-                            </tab-heading>
+                            </uib-tab-heading>
 
                             <table class="table table-striped table-bordered table-hover">
                                 <thead>
@@ -187,7 +187,7 @@
                                 </tbody>
                             </table>
 
-                         
+
 
                             <table class="mt-sm table table-striped table-bordered table-hover">
                                 <tbody>
@@ -211,13 +211,17 @@
                                 </tbody>
                             </table>
 
-                        </tab>
-                        <tab>
-                            <tab-heading>
+                        </uib-tab>
+                        <uib-tab>
+                            <uib-tab-heading>
                                 Settings
-                            </tab-heading>
+                            </uib-tab-heading>
                             <div class="col-xs-12" style="margin-top:20px">
                                 <div class="form-group">
+                                    <label>Team database ID</label>
+                                    <div class="input-group mb-sm"><input type="text" ng-model="selectedItem._id" ng-disabled="true" class="form-control">
+                                        <span class="input-group-btn"><button type="button" ng-click="clipboard(selectedItem._id)" class="btn btn-default"><em class="fa fa-clipboard"></em></button></span>
+                                    </div>
                                     <label>Image url</label>
                                     <input type="text" class="form-control" ng-model="selectedItem.logo" />
                                     <multi-lang-text ng-model="parserid" language-object="selectedItem.parserids" default="Stats" label="Parsers"></multi-lang-text>
@@ -225,8 +229,8 @@
                                 </div>
                             </div>
 
-                        </tab>
-                    </tabset>
+                        </uib-tab>
+                    </uib-tabset>
 
 
 

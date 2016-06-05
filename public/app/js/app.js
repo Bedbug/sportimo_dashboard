@@ -7440,8 +7440,9 @@ ObjectId.prototype.toString = function () {
 		});
 
 		vm.editDefinition = function (definition) {
-			console.log(definition);
+			
 			vm.selectedGameCard = definition;
+			vm.selectedGameCard.activeTab = 1;
 		}
 
 
@@ -9753,13 +9754,8 @@ ObjectId.prototype.toString = function () {
 		// @@
 		// @@    TAB: Gamecards     
 
-		// Flag to inform different methods in gamecards .
+		// Flag to inform different methods in gamecards.
 		vm.isTemplateDefinitions = false;
-		vm.activeTabIndex = {};
-		vm.selectTab = function(option){
-			vm.activeTabIndex = option;
-		}
-		
 		vm.gamecardTemplates = {};
 		vm.selectedGameCard = null;
 		vm.icons = [
@@ -9789,7 +9785,15 @@ ObjectId.prototype.toString = function () {
 
 		vm.editDefinition = function (definition) {
 			vm.selectedGameCard = definition;
-			vm.activeTabIndex = 0;
+			vm.selectedGameCard.activeTab = 1;
+			
+		}
+		
+		vm.setActiveTab = function(to){
+			$timeout(function(){
+				vm.selectedGameCard.activeTab = to;
+				console.log(vm.activeTab);
+			})
 		}
 
 		TagsService.getTagsByMatch(vm.matchid).then(function (result) {
@@ -9844,12 +9848,18 @@ ObjectId.prototype.toString = function () {
 					$rootScope.toast(err, "error");
 			})
 		}
+		
 
 		vm.addOption = function (cardOptions) {
+			if(!cardOptions) return;
 			
 			var size = _.size(cardOptions);
-			if (size == 4)
-				return $rootScope.toast("You cannot have more than 4 options in a game card. Maybe we will implement it down the road.", "warn");
+			if (size == 4){
+				$rootScope.toast("You cannot have more than 4 options in a game card. Maybe we will implement it down the road.", "warn");
+				vm.setActiveTab(size);
+				return;
+			}
+			
 			var option = {
 				"optionId": new ObjectId().toString(),
 				"endPoints": 150,
@@ -9862,7 +9872,7 @@ ObjectId.prototype.toString = function () {
 				"appearConditions": []
 			}
 			cardOptions.push(option);
-			vm.activeTabIndex = size;
+			vm.setActiveTab(size+1);
 		}
 
 		vm.onAddtag = function (condition, item, model) {
@@ -9890,7 +9900,7 @@ ObjectId.prototype.toString = function () {
 		}
 
 		vm.removeOption = function (cardOptions, option) {
-			vm.activeTabIndex = 0;
+			vm.setActiveTab(_.size(cardOptions)-1);
 			return _.without(cardOptions, option);
 		}
 

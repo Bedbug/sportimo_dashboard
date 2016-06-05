@@ -14,7 +14,7 @@
                         </div>
                         <div class="event-team-logo" ng-show="!selectedItem._id">
                             <p ng-if="!selectedItem.pic" class="muted">This data item does not have an ID yet.</br>Therefore you cannot upload an image until it has.</br>However
-                                you can pass an image url in the settings tab.</p>
+                                you can pass an image url in the settings uib-tab.</p>
                             <img ng-if="selectedItem.pic" class="img-responsive dragover" ng-src="{{selectedItem.pic}}" />
                         </div>
                     </div>
@@ -51,19 +51,19 @@
                     </div>
 
 
-                    <tabset type="pills" class=" col-sm-8 col-lg-5" style="margin-top:20px">
-                        <tab>
-                            <tab-heading>
+                    <uib-tabset type="pills" class=" col-sm-8 col-lg-5" style="margin-top:20px">
+                        <uib-tab>
+                            <uib-tab-heading>
                                 Stats
-                            </tab-heading>
+                            </uib-tab-heading>
                             <div class="col-xs-12 p0 mt-lg">
                                 <multi-lang-text language-object="selectedItem.stats" placeholder="Add a new stat"></multi-lang-text>
                                 
                                 <!--<multi-lang-text language-object="value" placeholder="Add a new stat"></multi-lang-text>-->
-                                <scrollable-tabset api="scrlTabsApi" show-drop-down="false" tooltip-left-placement="top">
-                                    <tabset>
-                                        <tab ng-repeat="(key,value) in selectedItem.stats">
-                                            <tab-heading>{{key}}</tab-heading>
+                                <scrollable-uib-tabset api="scrlTabsApi" show-drop-down="false" tooltip-left-placement="top">
+                                    <uib-tabset>
+                                        <uib-tab ng-repeat="(key,value) in selectedItem.stats">
+                                            <uib-tab-heading>{{key}}</uib-tab-heading>
                                             <div class="tabContent">
                                                 <div class="list-group mb0">
                                                     <multi-lang-text language-object="value" placeholder="Add a new stat"></multi-lang-text>
@@ -74,19 +74,19 @@
                                                     <!--<span ng-repeat="stat in stats.match.stats"><strong>{{stat.key}}</strong>:{{stat.value}}</br></span></td>-->
                                                 </div>
                                             </div>
-                                        </tab>
-                                        <tab>
-                                            <tab-heading>Last tab</tab-heading>
-                                            <div class="tabContent">Last tab content</div>
-                                        </tab>
-                                    </tabset>
-                                </scrollable-tabset>
+                                        </uib-tab>
+                                        <uib-tab>
+                                            <uib-tab-heading>Last uib-tab</uib-tab-heading>
+                                            <div class="tabContent">Last uib-tab content</div>
+                                        </uib-tab>
+                                    </uib-tabset>
+                                </scrollable-uib-tabset>
                             </div>
-                        </tab>
-                        <tab>
-                            <tab-heading>
+                        </uib-tab>
+                        <uib-tab>
+                            <uib-tab-heading>
                                 Personal
-                            </tab-heading>
+                            </uib-tab-heading>
                             <div class="col-xs-12 pt-lg">
                                 <label>Birth Date</label>
                                 <p class="input-group" style="position:relative">
@@ -99,14 +99,18 @@
                             </span>
                                 </p>
                             </div>
-                        </tab>
+                        </uib-tab>
                         
-                        <tab>
-                            <tab-heading>
+                        <uib-tab>
+                            <uib-tab-heading>
                                 Settings
-                            </tab-heading>
+                            </uib-tab-heading>
                             <div class="col-xs-12" style="margin-top:20px">
                                 <div class="form-group">
+                                    <label>Player database ID</label>
+                                    <div class="input-group mb-sm"><input type="text" ng-model="selectedItem._id" ng-disabled="true" class="form-control">
+                                        <span class="input-group-btn"><button type="button" ng-click="clipboard(selectedItem._id)" class="btn btn-default"><em class="fa fa-clipboard"></em></button></span>
+                                    </div>
                                     <label>Image url</label>
                                     <input type="text" class="form-control" ng-model="selectedItem.pic" />
                                     <multi-lang-text ng-model="parserid" language-object="selectedItem.parserids" default="Stats" label="Parsers"></multi-lang-text>
@@ -114,8 +118,8 @@
                                 </div>
                             </div>
 
-                        </tab>
-                    </tabset>
+                        </uib-tab>
+                    </uib-tabset>
                 </div>
             </div>
             <div ng-show="type=='edit'">
