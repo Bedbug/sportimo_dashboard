@@ -115,7 +115,7 @@
                                 <td>
                                     <div class="media-box">
                                         <div ng-click="showUserProfile(item.user._id)" class="media-box-object text-info"><strong>{{item.user.username}}</strong>
-                                            <em tooltip="{{item.user._id}}" ng-click="clipboard(item.user._id)" class="fa fa-info-circle"></em>
+                                            <em uib-tooltip="{{item.user._id}}" ng-click="clipboard(item.user._id)" class="fa fa-info-circle"></em>
                                             <br/><span class="text-muted"> <div ng-if="item.user.name">{{item.user.name}}<br/></div>[{{item.user.email}}]</span>
                                         </div>
                                     </div>
