@@ -225,7 +225,7 @@
 			'ngStorage',
 			'ngCookies',
 			'pascalprecht.translate',
-			'ui.bootstrap',
+			'ui.bootstrap',		
 			'ui.router',
 			'oc.lazyLoad',
 			'cfp.loadingBar',
@@ -9755,7 +9755,11 @@ ObjectId.prototype.toString = function () {
 
 		// Flag to inform different methods in gamecards .
 		vm.isTemplateDefinitions = false;
-
+		vm.activeTabIndex = {};
+		vm.selectTab = function(option){
+			vm.activeTabIndex = option;
+		}
+		
 		vm.gamecardTemplates = {};
 		vm.selectedGameCard = null;
 		vm.icons = [
@@ -9784,8 +9788,8 @@ ObjectId.prototype.toString = function () {
 		});
 
 		vm.editDefinition = function (definition) {
-			console.log(definition);
 			vm.selectedGameCard = definition;
+			vm.activeTabIndex = 0;
 		}
 
 		TagsService.getTagsByMatch(vm.matchid).then(function (result) {
@@ -9842,7 +9846,9 @@ ObjectId.prototype.toString = function () {
 		}
 
 		vm.addOption = function (cardOptions) {
-			if (_.size(cardOptions) == 4)
+			
+			var size = _.size(cardOptions);
+			if (size == 4)
 				return $rootScope.toast("You cannot have more than 4 options in a game card. Maybe we will implement it down the road.", "warn");
 			var option = {
 				"optionId": new ObjectId().toString(),
@@ -9856,6 +9862,7 @@ ObjectId.prototype.toString = function () {
 				"appearConditions": []
 			}
 			cardOptions.push(option);
+			vm.activeTabIndex = size;
 		}
 
 		vm.onAddtag = function (condition, item, model) {
@@ -9883,6 +9890,7 @@ ObjectId.prototype.toString = function () {
 		}
 
 		vm.removeOption = function (cardOptions, option) {
+			vm.activeTabIndex = 0;
 			return _.without(cardOptions, option);
 		}
 
