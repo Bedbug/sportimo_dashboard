@@ -1,16 +1,17 @@
-<div class="panel widget articleCard" >
+<div class="panel widget articleCard">
     <img ng-src="http://ep7t6ae.cloudimg.io/s/width/400/{{card.photo}}" class="img-responsive" />
     <div ng-class="card.type?card.type:''" class="col-sm-12">
         <strong>{{card.type}}</strong>
         <button ng-click="mother.editItem = card" class="btn pull-right" style="background:none; border:none; box-shadow:none; margin-top: 2px;"><i class="fa fa-edit"></i></button>
-         <button ng-click="mother.viewItem(card)" class="btn pull-right" style="background:none; border:none; box-shadow:none; margin-top: 2px;"><i class="fa fa-eye"></i></button>
+        <button ng-click="mother.viewItem(card)" class="btn pull-right" style="background:none; border:none; box-shadow:none; margin-top: 2px;"><i class="fa fa-eye"></i></button>
     </div>
-    </div>
+
     <div class="panel-body">
         <div class="form-group">
             <div class="col-sm-12 select-input">
-               
-                <ui-select multiple="" on-remove="mother.onChangeCallback(card)" on-select="mother.onAddtag(card,$item,$model)" ng-model="card.tags" theme="bootstrap" ng-disabled="uisel.disabled">
+
+                <ui-select multiple="" on-remove="mother.onChangeCallback(card)" on-select="mother.onAddtag(card,$item,$model)" ng-model="card.tags"
+                    theme="bootstrap" ng-disabled="uisel.disabled">
                     <ui-select-match placeholder="Select article tags">{{$item.name.en}}</ui-select-match>
                     <ui-select-choices group-by="'type'" repeat="tag as tag in mother.Tags | filter: $select.search">
                         <div ng-bind-html="tag.name.en | highlight: $select.search"></div>
@@ -26,7 +27,7 @@
             <h5 style="float:left" ng-bind-html="card.publication.text.en | words:30 :true"></h5></p>
     </div>
     <!--<div class="panel-footer" > -->
-        <!--<strong>{{card.type}}</strong>-->
-        <!--<button ng-click="mother.editItem = card" class="btn btn-default pull-right"><i class="fa fa-edit"></i></button>-->
+    <!--<strong>{{card.type}}</strong>-->
+    <!--<button ng-click="mother.editItem = card" class="btn btn-default pull-right"><i class="fa fa-edit"></i></button>-->
     <!--</div>-->
 </div>

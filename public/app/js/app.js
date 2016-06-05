@@ -4850,11 +4850,14 @@ ObjectId.prototype.toString = function () {
 		var lastfixtureid = null;
 
 		return {
-			GetFixtures: function (id) {
+			GetFixtures: function (id, season) {
 				var Defer = $q.defer();
 				if (upfixtures && lastfixtureid == id)
 					Defer.resolve(upfixtures)
-				else
+				else{
+					if(season)
+						id = id+"/"+season;
+					
 					fixtures.get(id).then(function (result) {
 						upfixtures = result.parsers.Stats.comingFixtures;
 						console.log(upfixtures);
@@ -4869,6 +4872,7 @@ ObjectId.prototype.toString = function () {
 						})
 
 					});
+				}
 				return Defer.promise;
 			}
 		}
@@ -9531,7 +9535,8 @@ ObjectId.prototype.toString = function () {
 		vm.activeUsers = 0;
 		vm.userBarValues = [];
 
-		vm.reloadUsers = $interval(function () {
+		vm.reloadUsers = function () {
+			vm.lastUsersUpdate = "";
 			UsersService.getUserActivityByMatch(vm.matchid).then(function (result) {
 				vm.lastUsersUpdate = moment().format("HH:mm:ss");
 				vm.matchUsers = result;
@@ -9542,9 +9547,8 @@ ObjectId.prototype.toString = function () {
 					vm.userBarValues.push(newUserCount);
 					vm.activeUsers = newUserCount;
 				}
-
 			})
-		}, 30000);
+		}
 
 		vm.$on('$destroy', function () {
 			if (vm.reloadUsers)
@@ -9781,6 +9785,7 @@ ObjectId.prototype.toString = function () {
 		GamecardsService.getMatchDefinitions(vm.matchid).then(function (templates) {
 			vm.gamecardTemplates.instants = _.filter(templates, { cardType: "Instant" });
 			vm.gamecardTemplates.overalls = _.filter(templates, { cardType: "Overall" });
+			console.log(vm.gamecardTemplates.overalls);
 		});
 
 		vm.editDefinition = function (definition) {

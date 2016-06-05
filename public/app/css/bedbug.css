@@ -2112,6 +2112,13 @@ height: 43px;
     float: left;
 }
 
+.condition-item{
+    background-color: #ECECEC;
+    padding-top: 13px;
+    border-radius: 6px;
+    border: 1px #ccc dotted;
+    margin-top: 2px;
+}
 .graph-info{
     position: absolute;
     width: 100%;

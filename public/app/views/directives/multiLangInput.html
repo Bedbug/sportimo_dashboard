@@ -1,15 +1,16 @@
 <div class="p0 mb-sm" style="clear:both;">
     <!--   LABEL   -->
     <label ng-show="label">{{label}}</label>
+
     <!-- INPUTS    -->
     <div ng-if="key" class="input-group">
-        <div dropdown="" class="input-group-btn">
+        <div uib-dropdown="" class="input-group-btn">
             <button type="button" tabindex="-1" class="btn btn-default">{{key}}</button>
-            <button type="button" dropdown-toggle="" class="btn btn-default">
+            <button type="button" uib-dropdown-toggle class="btn btn-default">
                            <span class="caret"></span>
                         </button>
 
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu" uib-dropdown-menu>
                 <li ng-repeat="(key,val) in lObject"><a href="" ng-click="select(key)">{{key}}</a>
                 </li>
                 <li class="divider"></li>
@@ -20,14 +21,14 @@
         <div ng-show="key && lObject">
             <input type="text" placeholder="{{placeholder}}" class="form-control" ng-model="lObject[key]" />
         </div>
-        <div dropdown="" class="input-group-btn">
+        <div uib-dropdown="" class="input-group-btn">
             <button type="button" ng-click="delete(key)" tabindex="2" class="btn btn-default"><em class="fa fa-trash"></em></button>
         </div>
     </div>
 
     <div ng-if="!key" class="input-group">
-        <div dropdown="" class="input-group-btn">
-            <button type="button" dropdown-toggle="" class="btn btn-default">
+        <div uib-dropdown="" class="input-group-btn">
+            <button type="button" uib-dropdown-toggle="" class="btn btn-default">
                            <span class="caret"></span>
                         </button>
 
@@ -41,32 +42,4 @@
             <button type="button" ng-click="pushLangKey(newLangKey)" tabindex="2" class="btn btn-default"><em class="fa fa-plus"></em></button>
         </div>
     </div>
-
-
-   <!--<div class="col-md-6 col-lg-4 no-padding" style="">
-        <div class="input-group">
-            <select chosen="somethibg" ng-change="showChange('hello')" disable-search="true" data-placeholder="Add new" allow-single-deselect="true"
-                ng-model="key" ng-options="key as key for (key , value) in lObject" class="form-control chosen-select">
-                    <option value=""></option>
-                </select>
-            <div class="input-group-btn">
-                <div ng-show="!key || !lObject">
-                    <button ng-click="pushLangKey()" class="form-control  btn btn-default">+</button>
-                </div>
-            </div>
-            <div class="input-group-btn">
-                <div ng-show="key && lObject">
-                    <button ng-click="delete(key)" class="form-control  btn btn-default">-</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div ng-show="key && lObject" class="col-md-6 col-lg-8 no-padding" style="">
-        <input style="text-align: center;" type="text" placeholder="{{placeholder}}" class="form-control" ng-model="lObject[key]"
-        />
-    </div>
-    <div style="text-align: center;" ng-show="!key || !lObject" class="col-md-6 col-lg-8 no-padding" style="">
-        <input type="text" placeholder="Add new language key" class="form-control" ng-model="newLangKey" />
-    </div>-->
-
 </div>

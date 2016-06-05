@@ -39,9 +39,9 @@
                         </ui-select>
 
                         <label>Birth Date</label>
+        
                         <p class="input-group" style="position:relative">
-
-                            <input type="text" placeholder="Birth Date" name="date" datepicker-popup ng-model="selectedItem.personalData.birth.birthDate.full"
+                            <input type="text" placeholder="Birth Date"  uib-datepicker-popup="dd/MMMM/yyyy" ng-model="selectedItem.personalData.birth.birthDate.full"
                                 is-open="openedCal.birth" datepicker-options="popupOptions" close-text="Close" class="form-control"
                             />
                             <span class="input-group-btn">

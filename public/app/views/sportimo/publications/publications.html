@@ -8,7 +8,7 @@
 
             <div class="col-md-2">
                 <p class="input-group">
-                    <input type="text" placeholder="Min Date" name="date" datepicker-popup="{{format}}" ng-model="searchObj.minDate" is-open="opened['min']"
+                    <input type="text" placeholder="Min Date" name="date" uib-datepicker-popup="{{format}}" ng-model="searchObj.minDate" is-open="opened['min']"
                     datepicker-options="dateOptions" close-text="Close" class="form-control" />
                     <span class="input-group-btn">
                     <button type="button" ng-click="open($event,'min')" class="btn btn-default">
@@ -20,7 +20,7 @@
 
             <div class="col-md-2">
                 <p class="input-group">
-                    <input type="text" placeholder="Max Date" name="date" datepicker-popup="{{format}}" ng-model="searchObj.maxDate" is-open="opened['max']"
+                    <input type="text" placeholder="Max Date" name="date" uib-datepicker-popup="{{format}}" ng-model="searchObj.maxDate" is-open="opened['max']"
                     datepicker-options="dateOptions" date-disabled="disabled(date, mode)" close-text="Close" class="form-control" />
                     <span class="input-group-btn">
                     <button type="button" ng-click="open($event,'max')" class="btn btn-default">
