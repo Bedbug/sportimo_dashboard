@@ -1,281 +1,37 @@
 <div class="panel" style="border:none">
-    <!-- START OF SETUP-->
-    <div ng-show="selectedGameCard" class="col-xs-12 card">
-        <div class="text-center col-xs-12 no-padding">
-            <div class="col-md-7 panel panel-highlighted">
-                <!--<div class="panel-heading">
-                    <label>Setup</label>
-                </div>-->
-                <fieldset class="pt-lg mb0">
-                    <div class="form-group text-left">
-
-                        <label class="col-sm-2 control-label">ID</label>
-                        <div class="col-sm-10 mb-sm">
-                            <div class="input-group"><input type="text" ng-model="selectedGameCard._id" ng-disabled="true" class="form-control">
-                                <span class="input-group-btn"><button type="button" ng-click="clipboard(selectedGameCard._id)" class="btn btn-default"><em class="fa fa-clipboard"></em></button></span>
-                            </div>
-                        </div>
-                        <label class="col-sm-2 control-label">Status</label>
-                        <div class="btn-group col-sm-10 bottom-space">
-                            <div class="btn-group col-sm-12 no-padding">
-                                <label ng-model="selectedGameCard.isVisible" btn-radio="true" class="col-xs-6 btn btn-default">Visible</label>
-                                <label ng-model="selectedGameCard.isVisible" btn-radio="false" class="col-xs-6 btn btn-default">Not Visible</label>
-                            </div>
-                        </div>
-                        <label class="col-sm-2 control-label">Type</label>
-                        <div class="col-sm-10 text-center">
-                            <ui-select ng-model="selectedGameCard.cardType" theme="bootstrap" class="text-left">
-                                <ui-select-match placeholder="Select type">{{$select.selected}}</ui-select-match>
-                                <ui-select-choices repeat="cardType in ['Instant','Overall']">
-                                    <span ng-bind-html="cardType | highlight: $select.search"></span>
-                                </ui-select-choices>
-                            </ui-select>
-                        </div>
-
-                        <div ng-if="selectedGameCard.image.url">
-                            <label class="col-sm-2 control-label"></label>
-                            <div class="col-sm-10 text-center">
-                                <img ng-src="{{selectedGameCard.image.url}}" class="media-box-object img-responsive img-rounded" />
-                            </div>
-                        </div>
-                        <label class="col-sm-2 control-label">Icon</label>
-                        <div class="col-sm-10">
-                            <multi-lang-text language-object="selectedGameCard.image" default="sprite"></multi-lang-text>
-                            <span class="col-sm-12 p0">
-                                <div class="col-xs-1 p0" ng-style="selectedGameCard.image.sprite?{                       
-                                'height': '32px',
-                                'background-size': 'contain',
-                                'background-repeat': 'no-repeat',
-                                'background-position': '50%',
-                                 'background-clip': 'content-box',
-                                'background-image':'url(/app/img/sportimo/cardicons/'+getSpriteFilename(selectedGameCard.image.sprite)+')'}:''">
-                     </div>
-                     <div class="col-xs-11 p0">
-                            <ui-select ng-ig="selectedGameCard.image.sprite" ng-model="selectedGameCard.image.sprite" allow-single-deselect="true" theme="bootstrap" class="text-left">
-                                <ui-select-match placeholder="Select icon ...">{{$select.selected.spriteName}}</ui-select-match>
-                                <ui-select-choices repeat="icon.name as icon in icons | filter: $select.search">
-                                    <span ng-bind-html="icon.spriteName | highlight: $select.search"></span>
-                            </ui-select-choices>
-                            </ui-select>
-                        </div>
-                        </span>
-                    </div>
-
-                    <label class="col-sm-2 control-label">Title</label>
-                    <div class="col-sm-10">
-                        <multi-lang-text language-object="selectedGameCard.title" default="en"></multi-lang-text>
-                    </div>
-
-                    <label class="col-sm-2 control-label">Text</label>
-                    <div class="col-sm-10">
-                        <multi-lang-text-area language-object="selectedGameCard.text" default="en"></multi-lang-text-area>
-                    </div>
-
-                    <label class="col-sm-2 control-label">Duration</label>
-                    <div class="col-sm-10">
-                        <input type="text" ng-model="selectedGameCard.duration" ng-disabled="selectedGameCard.cardType == 'Overall'" class="form-control"
-                        />
-                    </div>
-
-                    <label class="col-sm-2 control-label">Activation delay</label>
-                    <div class="col-sm-10">
-                        <input type="text" ng-model="selectedGameCard.activationLatency" class="form-control" />
-                    </div>
-
-                    <!--<label class="col-sm-2 control-label">Sponsor</label>
-                        <div class="col-sm-10">
-
-                            <span class="input-group col-sm-12">
-                            <ui-select ng-model="SelectedQuestion.sponsor" allow-single-deselect="true" theme="bootstrap" class="text-left">
-                                <ui-select-match placeholder="Select sponsor from the list...">{{$select.selected.name}}</ui-select-match>
-                                <ui-select-choices repeat="sponsor in sponsors | filter: $select.search">
-                                    <span ng-bind-html="sponsor.name | highlight: $select.search"></span>
-                            </ui-select-choices>
-                            </ui-select>
-                            <span ng-show="SelectedQuestion.sponsor" class="input-group-btn">
-                             <button  type="button" ng-click="SelectedQuestion.sponsor = null" class="btn btn-default">Clear</button>
-                            </span>
-                            </span>
-
-                            <div class="col-xs-12" ng-style="SelectedQuestion.sponsor?{                       
-                                'height': '75px',
-                                'background-size': 'cover',
-                                'background-repeat': 'no-repeat',
-                                'background-position': '50%',
-                                'background-image':'url('+SelectedQuestion.sponsor.banner+')'}:''">
-                            </div>
-                            <div class="text-center">
-                                <label> {{SelectedQuestion.sponsor.name}}</label>
-                            </div>
-                        </div>
-                        -->
-            </div>
-            </fieldset>
-
-        </div>
-
-        <div ng-if="selectedGameCard" class="col-md-5">
-            <uib-tabset active="selectedGameCard.activeTab" justified="true">
-                <uib-tab ng-repeat="option in selectedGameCard.options track by $index">
-                    <uib-tab-heading>Option {{$index+1}}</uib-tab-heading>
-
-                    <div class="panel panel-highlighted mb-sm">
-                        <table width="100%">
-                            <tr>
-                                <td class="pv text-left">
-                                    <div class="col-xs-12 pr0">
-                                        <label class="col-xs-2">Text</label>
-                                        <div class="col-xs-10 pr0">
-                                            <multi-lang-text language-object="option.text" default="en"></multi-lang-text>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-12 pr0">
-                                        <label class="col-xs-2">Start Points</label>
-                                        <div class="col-xs-10 pr0">
-                                            <input class="form-control" type="text" placeholder="Start points" ng-model="option.startPoints" />
-                                        </div>
-                                    </div>
-
-                                    <div class="col-xs-12 pr0">
-                                        <label class="col-xs-2">End Points</label>
-                                        <div class="col-xs-10 pr0">
-                                            <input class="form-control" type="text" placeholder="End points" ng-model="option.endPoints" />
-                                        </div>
-                                    </div>
-                                </td>
-                                <td style="width:45px; vertical-align: top;" class="pv ph">
-                                    <button type="button" ng-click="selectedGameCard.options = removeOption(selectedGameCard.options,option)" class="btn btn-danger minimal"><em class="fa fa-minus-circle"></em></button>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="panel panel-highlighted col-xs-12">
-                        <uib-tabset class="mt-lg">
-                            <uib-tab heading="Win Conditions">
-                                <button ng-click="addNewWinCondition(option.winConditions,'Instant')" class="btn btn-default btn-outline mb-sm mr-lg mt-sm col-xs-12">Add condition</button>
-                                <div ng-repeat="condition in option.winConditions" class="col-xs-12 condition-item">
-                                    <div class="form-group col-xs-12 p0">
-                                        <div class="select-input mb0">
-                                            <ui-select on-remove="onChangeCallback(card)" on-select="onAddtag(condition,$item,$model)" ng-model="condition.id" theme="bootstrap"
-                                                ng-disabled="uisel.disabled">
-                                                <ui-select-match placeholder="Select reference">{{$select.selected.name.en}}</ui-select-match>
-                                                <ui-select-choices group-by="'type'" repeat="tag._id as tag in matchTags | filter: $select.search">
-                                                    <div ng-bind-html="tag.name.en | highlight: $select.search"></div>
-                                                </ui-select-choices>
-                                            </ui-select>
-                                        </div>
-                                        <multi-lang-text language-object="condition" default="stat"></multi-lang-text>
-                                        <button type="button" ng-click="option.winConditions = removeCondition(option.winConditions, condition)" class="col-xs-12 btn delete"></button>
-                                    </div>
+    <!-- START OF EDITOR-->
+    <div ng-include="'app/views/partials/gamecard-editor.html'"></div>
+    <!-- END OF EDITOR -->
 
 
 
-                                </div>
-                            </uib-tab>
+    <uib-tabset ng-show="!selectedGameCard" class="moderationTabs" justified="true" class="p0">
+        <uib-tab>
+            <uib-tab-heading>
+                Instant
+            </uib-tab-heading>
 
-                            <uib-tab heading="Appear Conditions">
-                                <button ng-click="addNewWinCondition(option.appearConditions)" class="btn btn-default btn-outline mb-sm mr-lg col-xs-12">Add condition</button>
-                                <div ng-repeat="condition in option.appearConditions">
+            <!-- START Gamcards List -->
+            <div class="table-responsive">
+                <div class="col-xs-12 no-padding ">
+                    <button ng-click="addNewGamecard()" class="col-xs-12 btn btn-lg minimal">Add a new Gamecard</button>
+                </div>
 
-                                    <div class="form-group col-xs-12 pr0">
-                                        <div class="select-input mb0">
-                                            <ui-select on-remove="onChangeCallback(card)" on-select="onAddtag(condition,$item,$model)" ng-model="condition.id" theme="bootstrap"
-                                                ng-disabled="uisel.disabled">
-                                                <ui-select-match placeholder="Select reference">{{$select.selected.name.en}}</ui-select-match>
-                                                <ui-select-choices group-by="'type'" repeat="tag._id as tag in matchTags | filter: $select.search">
-                                                    <div ng-bind-html="tag.name.en | highlight: $select.search"></div>
-                                                </ui-select-choices>
-                                            </ui-select>
-                                        </div>
+                <div class="input-group col-xs-12 no-padding">
+                    <input ng-model="definitionSearch" placeholder="Search gamecards..." type="text" class="form-control">
+                    <span class="input-group-btn"><button type="button" class="btn btn btn-default"><i class="fa fa-search"></i></button></span>
+                </div>
 
-                                        <multi-lang-text language-object="condition" default="stat"></multi-lang-text>
-                                    </div>
-                                    <button type="button" ng-click="option.appearConditions = removeCondition(option.appearConditions, condition)" class="col-xs-12 btn delete"></button>
-                                </div>
-                            </uib-tab>
+                <div ng-show="true" class="container-fluid">
+                    <!-- START OF Questions List -->
+                    <div class="list-group">
+                        <div ng-repeat="definition in gamecardTemplates.instants | filter: definitionSearch track by $index" class="list-group-item">
+                            <table class="wd-wide">
+                                <tbody>
+                                    <tr>
+                                        <td ng-if="definition.image.sprite">
 
-                            <uib-tab ng-if="selectedGameCard.cardType=='Overall'" heading="Termination Conditions">
-                                <button ng-click="addNewWinCondition(option.terminationConditions)" class="btn btn-default btn-outline mb-sm mr-lg col-xs-12">Add condition</button>
-                                <div ng-repeat="condition in option.terminationConditions">
-
-                                    <div class="form-group col-xs-12 pr0">
-                                        <div class="select-input mb0">
-                                            <ui-select on-remove="onChangeCallback(card)" on-select="onAddtag(condition,$item,$model)" ng-model="condition.id" theme="bootstrap"
-                                                ng-disabled="uisel.disabled">
-                                                <ui-select-match placeholder="Select reference">{{$select.selected.name.en}}</ui-select-match>
-                                                <ui-select-choices group-by="'type'" repeat="tag._id as tag in matchTags | filter: $select.search">
-                                                    <div ng-bind-html="tag.name.en | highlight: $select.search"></div>
-                                                </ui-select-choices>
-                                            </ui-select>
-                                        </div>
-
-                                        <multi-lang-text language-object="condition" default="stat"></multi-lang-text>
-                                    </div>
-                                    <button type="button" ng-click="option.terminationConditions = removeCondition(option.terminationConditions, condition)"
-                                        class="col-xs-12 btn delete"></button>
-                                </div>
-                            </uib-tab>
-                        </uib-tabset>
-                    </div>
-
-
-                </uib-tab>
-                <uib-tab select="addOption(selectedGameCard.options)">
-                    <uib-tab-heading>Add</uib-tab-heading>
-                </uib-tab>
-            </uib-tabset>
-        </div>
-
-    </div>
-    <div class="col-xs-12 p0 pb-lg">
-        <div class="col-xs-10">
-            <div ng-show="selectedGameCard._id" class="col-xs-5 col-xs-offset-3">
-                <!--ng-disabled="selectedGameCard.status == 1"-->
-                <button ng-click="UpdateGamecard(selectedGameCard)" class="col-xs-12 btn btn-primary btn-lg ">Update</button>
-            </div>
-            <div ng-hide="selectedGameCard._id" class="col-xs-5 col-xs-offset-3">
-                <button ng-click="CreateGameCard(selectedGameCard)" class="col-xs-12 btn btn-primary btn-lg ">Create</button>
-            </div>
-            <button ng-click="deleteGameCard(selectedGameCard)" class="col-xs-1  btn btn-danger delete mr-sm btn-lg ">Delete</button>
-            <button ng-click="CancelGamecardEdit()" class="col-xs-1 btn btn-lg minimal">Cancel</button>
-        </div>
-        <div class="col-xs-2">
-            <div class="btn-group pull-right">
-                <button tooltip="Duplicate" ng-click="duplicateGameCard(selectedGameCard)" class="btn btn-primary btn-lg minimal"><em class="fa fa-files-o"></em></button>
-                <button type="button" ng-click="showFavoritesInfo()" class="btn btn-primary btn-lg minimal"><em class="fa fa-info"></em></button>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- END OF SETUP -->
-
-<uib-tabset ng-show="!selectedGameCard" class="moderationTabs" justified="true" class="p0">
-    <uib-tab>
-        <uib-tab-heading>
-            Instant
-        </uib-tab-heading>
-
-        <!-- START LeaderBoards -->
-        <div class="table-responsive">
-            <div class="col-xs-12 no-padding ">
-                <button ng-click="addNewGamecard()" class="col-xs-12 btn btn-lg minimal">Add a new Gamecard</button>
-            </div>
-
-            <div class="input-group col-xs-12 no-padding">
-                <input ng-model="definitionSearch" placeholder="Search gamecards..." type="text" class="form-control">
-                <span class="input-group-btn"><button type="button" class="btn btn btn-default"><i class="fa fa-search"></i></button></span>
-            </div>
-
-            <div ng-show="true" class="container-fluid">
-                <!-- START OF Questions List -->
-                <div class="list-group">
-                    <div ng-repeat="definition in gamecardTemplates.instants | filter: definitionSearch track by $index" class="list-group-item">
-                        <table class="wd-wide">
-                            <tbody>
-                                <tr>
-                                    <td ng-if="definition.image.sprite">
-
-                                        <div class="p0" ng-style="definition.image.sprite?{   
+                                            <div class="p0" ng-style="definition.image.sprite?{   
                                 'min-width':'15px',                    
                                 'height': '32px',
                                 'background-size': 'contain',
@@ -283,50 +39,113 @@
                                 'background-position': '50%',
                                  'background-clip': 'content-box',
                                 'background-image':'url(/app/img/sportimo/cardicons/'+getSpriteFilename(definition.image.sprite)+')'}:''"></div>
-                                    </td>
-                                    <td style="min-width: 350px">
-                                        <div class="ph">
-                                            <h4 class="text-muted media-box-heading">{{definition.title.en}}</h4>
-                                            <span style="font-size: 16px; font-weight: 600; color: #666;">{{definition.text.en}}</span>
-                                        </div>
-                                    </td>
-                                    <td width="100px" class="text-center">
-                                        {{definition.options.length}}&nbsp; options
-                                    </td>
-                                    <td class="wd-xs text-center">
-                                        <div ng-show="definition.isVisible"><button ng-click="changeStatus(definition,
+                                        </td>
+                                        <td style="min-width: 350px">
+                                            <div class="ph">
+                                                <h4 class="text-muted media-box-heading">{{definition.title.en}}</h4>
+                                                <span style="font-size: 16px; font-weight: 600; color: #666;">{{definition.text.en}}</span>
+                                            </div>
+                                        </td>
+                                        <td width="100px" class="text-center">
+                                            {{definition.options.length}}&nbsp; options
+                                        </td>
+                                        <td class="wd-xs text-center">
+                                            <div ng-show="definition.isVisible"><button ng-click="changeStatus(definition,
                                             false)" class="btn btn-primary "><em class="fa fa-thumbs-up "></em></button></div>
-                                        <div ng-show="!definition.isVisible"><button ng-click="changeStatus(definition,
+                                            <div ng-show="!definition.isVisible"><button ng-click="changeStatus(definition,
                                             true)" class="btn btn-danger "><em class="fa fa-thumbs-down "></em></button></div>
-                                    </td>
-                                    <td style="width:60px; text-align:center ">
-                                        <button ng-click="editDefinition(definition) " class="minimal small-margin
+                                        </td>
+                                        <td style="width:60px; text-align:center ">
+                                            <button ng-click="editDefinition(definition) " class="minimal small-margin
                                             btn btn-info " tabindex="0 "><span class=" "><i class="fa fa-pencil "></i>
                                     </span></button>
-                                    </td>
-                                    <!--<td class="wd-sm ">
+                                        </td>
+                                        <!--<td class="wd-sm ">
                                 <div class="ph ">
                                     <progressbar value="80 " type="success " class="m0 progress-xs "></progressbar>
                                 </div>
                             </td>-->
-                                </tr>
-                            </tbody>
-                        </table>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
+                    <!-- END OF Questions List -->
                 </div>
-                <!-- END OF Questions List -->
+
             </div>
-
-        </div>
-        <!-- END LEaderBoards -->
-    </uib-tab>
+            <!-- END Gamcards List -->
+        </uib-tab>
 
 
-    <uib-tab>
-        <uib-tab-heading>
-            Overall
-        </uib-tab-heading>
+        <uib-tab>
+            <uib-tab-heading>
+                Overall
+            </uib-tab-heading>
+               <!-- START Gamcards List -->
+            <div class="table-responsive">
+                <div class="col-xs-12 no-padding ">
+                    <button ng-click="addNewGamecard()" class="col-xs-12 btn btn-lg minimal">Add a new Gamecard</button>
+                </div>
 
-    </uib-tab>
-</uib-tabset>
+                <div class="input-group col-xs-12 no-padding">
+                    <input ng-model="definitionSearch" placeholder="Search gamecards..." type="text" class="form-control">
+                    <span class="input-group-btn"><button type="button" class="btn btn btn-default"><i class="fa fa-search"></i></button></span>
+                </div>
+
+                <div ng-show="true" class="container-fluid">
+                    <!-- START OF Questions List -->
+                    <div class="list-group">
+                        <div ng-repeat="definition in gamecardTemplates.overalls | filter: definitionSearch track by $index" class="list-group-item">
+                            <table class="wd-wide">
+                                <tbody>
+                                    <tr>
+                                        <td ng-if="definition.image.sprite">
+
+                                            <div class="p0" ng-style="definition.image.sprite?{   
+                                'min-width':'15px',                    
+                                'height': '32px',
+                                'background-size': 'contain',
+                                'background-repeat': 'no-repeat',
+                                'background-position': '50%',
+                                 'background-clip': 'content-box',
+                                'background-image':'url(/app/img/sportimo/cardicons/'+getSpriteFilename(definition.image.sprite)+')'}:''"></div>
+                                        </td>
+                                        <td style="min-width: 350px">
+                                            <div class="ph">
+                                                <h4 class="text-muted media-box-heading">{{definition.title.en}}</h4>
+                                                <span style="font-size: 16px; font-weight: 600; color: #666;">{{definition.text.en}}</span>
+                                            </div>
+                                        </td>
+                                        <td width="100px" class="text-center">
+                                            {{definition.options.length}}&nbsp; options
+                                        </td>
+                                        <td class="wd-xs text-center">
+                                            <div ng-show="definition.isVisible"><button ng-click="changeStatus(definition,
+                                            false)" class="btn btn-primary "><em class="fa fa-thumbs-up "></em></button></div>
+                                            <div ng-show="!definition.isVisible"><button ng-click="changeStatus(definition,
+                                            true)" class="btn btn-danger "><em class="fa fa-thumbs-down "></em></button></div>
+                                        </td>
+                                        <td style="width:60px; text-align:center ">
+                                            <button ng-click="editDefinition(definition) " class="minimal small-margin
+                                            btn btn-info " tabindex="0 "><span class=" "><i class="fa fa-pencil "></i>
+                                    </span></button>
+                                        </td>
+                                        <!--<td class="wd-sm ">
+                                <div class="ph ">
+                                    <progressbar value="80 " type="success " class="m0 progress-xs "></progressbar>
+                                </div>
+                            </td>-->
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- END OF Questions List -->
+                </div>
+
+            </div>
+            <!-- END Gamcards List -->
+        </uib-tab>
+    </uib-tabset>
 </div>

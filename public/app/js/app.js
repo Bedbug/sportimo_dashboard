@@ -225,7 +225,7 @@
 			'ngStorage',
 			'ngCookies',
 			'pascalprecht.translate',
-			'ui.bootstrap',		
+			'ui.bootstrap',
 			'ui.router',
 			'oc.lazyLoad',
 			'cfp.loadingBar',
@@ -4854,10 +4854,10 @@ ObjectId.prototype.toString = function () {
 				var Defer = $q.defer();
 				if (upfixtures && lastfixtureid == id)
 					Defer.resolve(upfixtures)
-				else{
-					if(season)
-						id = id+"/"+season;
-					
+				else {
+					if (season)
+						id = id + "/" + season;
+
 					fixtures.get(id).then(function (result) {
 						upfixtures = result.parsers.Stats.comingFixtures;
 						console.log(upfixtures);
@@ -7418,6 +7418,21 @@ ObjectId.prototype.toString = function () {
 
 		vm.gamecardTemplates = {};
 		vm.selectedGameCard = null;
+		vm.comparativeMethods = [{ symbol: 'No comparison', type: null }, { symbol: 'will have more than', type: 'gt' }, { symbol: 'will have less than', type: 'lt' }, { symbol: 'will have equal to', type: 'eq' }];
+		
+		vm.statSelections = [
+			{ name: 'Goal', property: 'Goal' },
+			{ name: 'Foul', property: 'Foul' },
+			{ name: 'Yellow', property: 'Yellow' },
+			{ name: 'Red', property: 'Red' },
+			{ name: 'Corner', property: 'Corner' },
+			{ name: 'Offside', property: 'Offside' },
+			{ name: 'Possession', property: 'Possession' },
+			{ name: 'Penalty', property: 'Penalty' },
+			{ name: 'Shot on goal', property: 'Shot_on_Goal' }
+		]
+
+
 		vm.icons = [
 			{ spriteName: 'Corner', name: 'corner', filename: 'corner.png' },
 			{ spriteName: 'Score', name: 'exact-score', filename: 'exact-score.png' },
@@ -7444,7 +7459,7 @@ ObjectId.prototype.toString = function () {
 		});
 
 		vm.editDefinition = function (definition) {
-			
+
 			vm.selectedGameCard = definition;
 			vm.selectedGameCard.activeTab = 1;
 		}
@@ -7514,6 +7529,7 @@ ObjectId.prototype.toString = function () {
 			}
 			cardOptions.push(option);
 		}
+		
 		vm.matchTags = [
 			{
 				_id: "match",
@@ -7521,18 +7537,19 @@ ObjectId.prototype.toString = function () {
 				type: "Match selection"
 			},
 			{
-				_id: "home_team",
+				_id: "[[home_team_id]]",
 				name: { "en": "Home Team" },
 				type: "Team selection",
 				alias: "home_team"
 			},
 			{
-				_id: "away_team",
+				_id: "[[away_team_id]]",
 				name: { "en": "Away Team" },
 				type: "Team selection",
 				alias: "away_team"
 			}
 		]
+		
 		vm.onAddtag = function (condition, item, model) {
 			if (vm.isTemplateDefinitions) {
 				// let's delete stuff. Yay!!name
@@ -7546,10 +7563,24 @@ ObjectId.prototype.toString = function () {
 					if (item.alias == "away_team")
 						condition.teamid = "[[away_team_id]]";
 				}
-
-
 			}
 		}
+		
+		vm.onAddComparativeTag = function (condition, item, model) {
+			if (vm.isTemplateDefinitions) {
+				// let's delete stuff. Yay!!
+				delete condition.teamid;
+				
+				// Is it team related or not
+				if (item.alias) {
+					if (item.alias == "home_team")
+						condition.comparativeTeamid =  "[[home_team_id]]";
+					if (item.alias == "away_team")
+						condition.comparativeTeamid = "[[away_team_id]]";
+				}
+			}
+		}
+
 
 		vm.removeOption = function (cardOptions, option) {
 			return _.without(cardOptions, option);
@@ -8357,7 +8388,7 @@ ObjectId.prototype.toString = function () {
 					vm.parseFavoriteQuestions();
 				})
 				PollsService.findByTagId(vm.matchid).then(function (polls) {
-					vm.polls = polls; 
+					vm.polls = polls;
 					drawPollsPies(vm.polls);
 				})
 				vm.pushLoading = false;
@@ -9404,8 +9435,8 @@ ObjectId.prototype.toString = function () {
 		vm.SelectedPoll = null;
 
 		function drawPollsPies(polls) {
-			
-			
+
+
 			_.each(polls, function (poll) {
 				var ThisAnwer = 0;
 				_.each(poll.answers, function (answer) {
@@ -9424,8 +9455,8 @@ ObjectId.prototype.toString = function () {
 					ThisAnwer++;
 				})
 			})
-			
-			return  polls;
+
+			return polls;
 		}
 
 		vm.addNewPoll = function () {
@@ -9475,15 +9506,15 @@ ObjectId.prototype.toString = function () {
 		}
 
 		vm.UpdatePoll = function (poll) {
-			
+
 			poll.save().then(function (data, err) {
-				
+
 				vm.polls = _.without(vm.polls, poll);
-		
+
 				vm.polls.push(data);
-			
+
 				drawPollsPies(vm.polls);
-			
+
 				vm.SelectedPoll = null;
 			})
 		}
@@ -9500,7 +9531,7 @@ ObjectId.prototype.toString = function () {
 			poll.tags[index] = newTag;
 			poll.img = item.pic;
 		}
-		
+
 		vm.onImageFromTag = function (answer, item, model) {
 			answer.img = item.logo;
 		}
@@ -9762,6 +9793,43 @@ ObjectId.prototype.toString = function () {
 		vm.isTemplateDefinitions = false;
 		vm.gamecardTemplates = {};
 		vm.selectedGameCard = null;
+		vm.comparativeMethods = [{ symbol: 'No comparison', type: null }, { symbol: 'will have more than', type: 'gt' }, { symbol: 'will have less than', type: 'lt' }, { symbol: 'will have equal to', type: 'eq' }];
+		vm.onAddComparativeTag = function (condition, item, model) {
+			if (!vm.isTemplateDefinitions) {
+				// let's delete stuff. Yay!!
+				delete condition.teamid;
+				delete condition.player;
+				delete condition.playerid;
+
+				// Is it team related or not
+				if (item.alias) {
+					if (item.alias == "home_team")
+						condition.comparativeTeamid = item._id;
+					if (item.alias == "away_team")
+						condition.comparativeTeamid = item._id;
+				}
+
+				// If it is a player let's populate the player properties
+				if (item.type == "Player") {
+					console.log("Is it?");
+					condition.comparativePlayerid = item._id;
+					condition.comparativePlayer = item;
+				}
+			}
+		}
+
+		vm.statSelections = [
+			{ name: 'Goal', property: 'Goal' },
+			{ name: 'Foul', property: 'Foul' },
+			{ name: 'Yellow', property: 'Yellow' },
+			{ name: 'Red', property: 'Red' },
+			{ name: 'Corner', property: 'Corner' },
+			{ name: 'Offside', property: 'Offside' },
+			{ name: 'Possession', property: 'Possession' },
+			{ name: 'Penalty', property: 'Penalty' },
+				{ name: 'Shot on goal', property: 'Shot_on_Goal' }
+		]
+
 		vm.icons = [
 			{ spriteName: 'Corner', name: 'corner', filename: 'corner.png' },
 			{ spriteName: 'Score', name: 'exact-score', filename: 'exact-score.png' },
@@ -9791,11 +9859,11 @@ ObjectId.prototype.toString = function () {
 		vm.editDefinition = function (definition) {
 			vm.selectedGameCard = definition;
 			vm.selectedGameCard.activeTab = 1;
-			
+
 		}
-		
-		vm.setActiveTab = function(to){
-			$timeout(function(){
+
+		vm.setActiveTab = function (to) {
+			$timeout(function () {
 				vm.selectedGameCard.activeTab = to;
 				console.log(vm.activeTab);
 			})
@@ -9853,18 +9921,18 @@ ObjectId.prototype.toString = function () {
 					$rootScope.toast(err, "error");
 			})
 		}
-		
+
 
 		vm.addOption = function (cardOptions) {
-			if(!cardOptions) return;
-			
+			if (!cardOptions) return;
+
 			var size = _.size(cardOptions);
-			if (size == 4){
+			if (size == 4) {
 				$rootScope.toast("You cannot have more than 4 options in a game card. Maybe we will implement it down the road.", "warn");
 				vm.setActiveTab(size);
 				return;
 			}
-			
+
 			var option = {
 				"optionId": new ObjectId().toString(),
 				"endPoints": 150,
@@ -9877,7 +9945,7 @@ ObjectId.prototype.toString = function () {
 				"appearConditions": []
 			}
 			cardOptions.push(option);
-			vm.setActiveTab(size+1);
+			vm.setActiveTab(size + 1);
 		}
 
 		vm.onAddtag = function (condition, item, model) {
@@ -9904,8 +9972,10 @@ ObjectId.prototype.toString = function () {
 			}
 		}
 
+
+
 		vm.removeOption = function (cardOptions, option) {
-			vm.setActiveTab(_.size(cardOptions)-1);
+			vm.setActiveTab(_.size(cardOptions) - 1);
 			return _.without(cardOptions, option);
 		}
 
@@ -9923,6 +9993,12 @@ ObjectId.prototype.toString = function () {
 		vm.addNewWinCondition = function (context, type) {
 			console.log("Add new")
 			if (type == 'Instant') {
+				var emptyCondition = {
+					id: null
+				}
+				context.push(emptyCondition);
+			}
+			else {
 				var emptyCondition = {
 					id: null
 				}
