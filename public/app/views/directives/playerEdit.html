@@ -113,8 +113,8 @@
                                     </div>
                                     <label>Image url</label>
                                     <input type="text" class="form-control" ng-model="selectedItem.pic" />
-                                    <multi-lang-text ng-model="parserid" language-object="selectedItem.parserids" default="Stats" label="Parsers"></multi-lang-text>
-                                    <btn ladda="view.busy" ng-click="updateByFeedParser(selectedItem, parserid.value)" data-style="zoom-out" class="col-xs-12 btn btn-lg edit">Update data by {{parserid.key}} parser and id:{{parserid.value}}</btn>
+                                    <multi-lang-text ng-model="selectedItem.parservalue" language-object="selectedItem.parserids" default="Stats" label="Parsers"></multi-lang-text>
+                                    <btn ladda="view.busy" ng-click="updateByFeedParser(selectedItem, parserid.value)" data-style="zoom-out" class="col-xs-12 btn btn-lg edit">Update data by {{parserid.key}} parser and id:{{selectedItem.parservalue}}</btn>
                                 </div>
                             </div>
 

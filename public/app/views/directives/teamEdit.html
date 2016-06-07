@@ -103,12 +103,12 @@
                                     <tr>
                                         <th>Rank</th>
                                         <th class="text-center">Team</th>
-                                        <th tooltip="Matches Played" tooltip-append-to-body="true" class="text-center">MP</th>
-                                        <th tooltip="Goals For" tooltip-append-to-body="true" class="text-center">GF</th>
-                                        <th tooltip="Goals Against" tooltip-append-to-body="true" class="text-center">GA</th>
-                                        <th tooltip="Wins" tooltip-append-to-body="true" class="text-center">W</th>
-                                        <th tooltip="Losses" tooltip-append-to-body="true" class="text-center">L</th>
-                                        <th tooltip="Ties" tooltip-append-to-body="true" class="text-center">T</th>
+                                        <th uib-tooltip="Matches Played" tooltip-append-to-body="true" class="text-center">MP</th>
+                                        <th uib-tooltip="Goals For" tooltip-append-to-body="true" class="text-center">GF</th>
+                                        <th uib-tooltip="Goals Against" tooltip-append-to-body="true" class="text-center">GA</th>
+                                        <th uib-tooltip="Wins" tooltip-append-to-body="true" class="text-center">W</th>
+                                        <th uib-tooltip="Losses" tooltip-append-to-body="true" class="text-center">L</th>
+                                        <th uib-tooltip="Ties" tooltip-append-to-body="true" class="text-center">T</th>
                                         <th class="text-center">Points</th>
                                     </tr>
                                 </thead>
@@ -160,28 +160,28 @@
 
                             <table class="mt-sm table table-striped table-bordered table-hover">
                                 <tbody>
-                                    <tr>
+                                    <tr ng-if="selectedItem.lastmatch">
                                         <td>
                                             Last match
                                         </td>
                                         <td class="text-center">
-                                            <span tooltip="{{selectedItem.lastmatch.home.name.en}}"><img class="thumb24" ng-src="{{selectedItem.lastmatch.home.logo}}"/></span>
+                                            <span uib-tooltip="{{selectedItem.lastmatch.home.name.en}}"><img class="thumb24" ng-src="{{selectedItem.lastmatch.home.logo}}"/></span>
                                         </td>
                                         <td class="text-center">{{selectedItem.lastmatch.homescore}} &nbsp;-&nbsp; {{selectedItem.lastmatch.awayscore}}</td>
                                         <td class="text-center">
-                                            <span tooltip="{{selectedItem.lastmatch.away.name.en}}"><img class="thumb24" ng-src="{{selectedItem.lastmatch.away.logo}}"/></span>
+                                            <span uib-tooltip="{{selectedItem.lastmatch.away.name.en}}"><img class="thumb24" ng-src="{{selectedItem.lastmatch.away.logo}}"/></span>
                                         </td>
                                     </tr>
-                                    <tr>
+                                    <tr ng-if="selectedItem.nextmatch">
                                         <td>
                                             Next match
                                         </td>
                                         <td class="text-center">
-                                            <span tooltip="{{selectedItem.nextmatch.home.name.en}}"><img class="thumb24" ng-src="{{selectedItem.nextmatch.home.logo}}"/></span>
+                                            <span uib-tooltip="{{selectedItem.nextmatch.home.name.en}}"><img class="thumb24" ng-src="{{selectedItem.nextmatch.home.logo}}"/></span>
                                         </td>
                                         <td class="text-center">{{formatDate(selectedItem.nextmatch.eventdate)}}</td>
                                         <td class="text-center">
-                                            <span tooltip="{{selectedItem.nextmatch.away.name.en}}"><img class="thumb24" ng-src="{{selectedItem.nextmatch.away.logo}}"/></span>
+                                            <span uib-tooltip="{{selectedItem.nextmatch.away.name.en}}"><img class="thumb24" ng-src="{{selectedItem.nextmatch.away.logo}}"/></span>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -224,8 +224,8 @@
                                     </div>
                                     <label>Image url</label>
                                     <input type="text" class="form-control" ng-model="selectedItem.logo" />
-                                    <multi-lang-text ng-model="parserid" language-object="selectedItem.parserids" default="Stats" label="Parsers"></multi-lang-text>
-                                    <btn ladda="view.busy" ng-click="updateByFeedParser(selectedItem, parserid.value)" data-style="zoom-out" class="col-xs-12 btn btn-lg edit">Update data by {{parserid.key}} parser and id:{{parserid.value}}</btn>
+                                    <multi-lang-text ng-model="selectedItem.parser" language-object="selectedItem.parserids" default="Stats" label="Parsers"></multi-lang-text>
+                                    <btn ladda="view.busy" ng-class="view.busy?'':'edit'" ng-click="updateByFeedParser(selectedItem, selectedItem.parser.key, selectedItem.parser.value, selectedItem.leagueids)" data-style="zoom-out" class="btn-primary col-xs-12 btn btn-lg ">Update data by {{selectedItem.parser.key}} parser and id:{{selectedItem.parser.value}}</btn>
                                 </div>
                             </div>
 

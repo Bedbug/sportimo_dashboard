@@ -5741,7 +5741,7 @@ ObjectId.prototype.toString = function () {
 				onCancel: '@onCancel',
 				type: '@type'
 			},
-			controller: ['$scope', '$window', '$rootScope', function ($scope, $window, $rootScope) {
+			controller: ['$scope', '$window', '$rootScope', '$http', function ($scope, $window, $rootScope, $http) {
 
 				$scope.loading = true;
 				$scope.$watch('reload', function (newValue, oldValue) {
@@ -5768,9 +5768,10 @@ ObjectId.prototype.toString = function () {
 					$scope.reCalcScroll();
 				});
 
-				console.log("tags:" + $scope.Tags)
+
 				$scope.updateByFeedParser = function (item, parserid) {
 					console.log("ID: " + parserid);
+
 				}
 
 				$scope.updateItem = function (item) {
@@ -5880,9 +5881,9 @@ ObjectId.prototype.toString = function () {
 		}
 	}
 
-	teamEdit.$inject = ['$rootScope', '$timeout', 'TagsService', 'TeamsService', 'CompetitionsService', 'PlayersService'];
+	teamEdit.$inject = ['$http', '$rootScope', '$timeout', 'TagsService', 'TeamsService', 'CompetitionsService', 'PlayersService'];
 
-	function teamEdit($rootScope, $timeout, TagsService, TeamsService, CompetitionsService, PlayersService) {
+	function teamEdit($http, $rootScope, $timeout, TagsService, TeamsService, CompetitionsService, PlayersService) {
 		return {
 			restrict: 'E',
 			templateUrl: './app/views/directives/teamEdit.html',
@@ -5924,8 +5925,23 @@ ObjectId.prototype.toString = function () {
 				});
 
 				console.log("tags:" + $scope.Tags)
-				$scope.updateByFeedParser = function (item, parserid) {
+				$scope.updateByFeedParser = function (item, parser,parserid, leagueids) {
+					$scope.view.busy = true;
 					console.log("ID: " + parserid);
+					console.log("league: " + leagueids);
+					var requestdata = {
+						"teamid": parserid
+					}
+					$http.post($rootScope.servers[$rootScope.serverEnvironment].game_server + "offline_data/teamstats/" + leagueids[0] + "/update/full", requestdata)
+						.success(function (result) {
+							console.log( result.parsers[parser]);
+							$scope.selectedItem = result.parsers[parser];
+							$scope.view.busy = false;
+						})
+						.error(function (error) {
+							console.log(error);
+							$scope.view.busy = false;
+						});
 				}
 
 				$scope.CreateItem = function (item) {
@@ -6400,7 +6416,9 @@ ObjectId.prototype.toString = function () {
 						$scope.key = _.keys($scope.lObject)[0];
 					}
 
-
+					if ($scope.lObject && $scope.selected && $scope.lObject[$scope.selected]) {
+						$scope.ngModel = { key: $scope.selected, value: $scope.lObject[$scope.selected] };
+					}
 				});
 
 
@@ -7419,7 +7437,7 @@ ObjectId.prototype.toString = function () {
 		vm.gamecardTemplates = {};
 		vm.selectedGameCard = null;
 		vm.comparativeMethods = [{ symbol: 'No comparison', type: null }, { symbol: 'will have more than', type: 'gt' }, { symbol: 'will have less than', type: 'lt' }, { symbol: 'will have equal to', type: 'eq' }];
-		
+
 		vm.statSelections = [
 			{ name: 'Goal', property: 'Goal' },
 			{ name: 'Foul', property: 'Foul' },
@@ -7529,7 +7547,7 @@ ObjectId.prototype.toString = function () {
 			}
 			cardOptions.push(option);
 		}
-		
+
 		vm.matchTags = [
 			{
 				_id: "match",
@@ -7549,7 +7567,7 @@ ObjectId.prototype.toString = function () {
 				alias: "away_team"
 			}
 		]
-		
+
 		vm.onAddtag = function (condition, item, model) {
 			if (vm.isTemplateDefinitions) {
 				// let's delete stuff. Yay!!name
@@ -7565,16 +7583,16 @@ ObjectId.prototype.toString = function () {
 				}
 			}
 		}
-		
+
 		vm.onAddComparativeTag = function (condition, item, model) {
 			if (vm.isTemplateDefinitions) {
 				// let's delete stuff. Yay!!
 				delete condition.teamid;
-				
+
 				// Is it team related or not
 				if (item.alias) {
 					if (item.alias == "home_team")
-						condition.comparativeTeamid =  "[[home_team_id]]";
+						condition.comparativeTeamid = "[[home_team_id]]";
 					if (item.alias == "away_team")
 						condition.comparativeTeamid = "[[away_team_id]]";
 				}
@@ -9827,7 +9845,7 @@ ObjectId.prototype.toString = function () {
 			{ name: 'Offside', property: 'Offside' },
 			{ name: 'Possession', property: 'Possession' },
 			{ name: 'Penalty', property: 'Penalty' },
-				{ name: 'Shot on goal', property: 'Shot_on_Goal' }
+			{ name: 'Shot on goal', property: 'Shot_on_Goal' }
 		]
 
 		vm.icons = [
@@ -18191,7 +18209,7 @@ ObjectId.prototype.toString = function () {
 			.state('app.polls', {
 				url: '/polls',
 				title: 'Polls Management',
-				templateUrl: helper.basepath('sportimo_polls.html'),
+				templateUrl: helper.basepath('sportimo/polls/polls.html'),
 				controller: 'SportimoPollsController',
 				resolve: helper.resolveFor('restangular', 'toaster', 'dirPagination', 'ui.knob')
 			})
