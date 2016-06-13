@@ -4831,8 +4831,25 @@ ObjectId.prototype.toString = function () {
 		.module('app.schedule')
 		.service('ScheduleService', ScheduleService)
 		.service('StatsComService', StatsComService)
+		.filter('FilterByStartTimeAndFinality', FilterByStartTimeAndFinality)
 		.controller('ScheduleController', ScheduleController);
 
+	function FilterByStartTimeAndFinality() {
+		return function (input) {
+
+			var out = [];
+
+			// Using the angular.forEach method, go through the array of data and perform the operation of figuring out if the language is statically or dynamically typed.
+			angular.forEach(input, function (event) {
+				if (event.start > moment().utc().subtract(3, 'h') || event.completed == false) {
+					out.push(event)
+				}
+
+			})
+
+			return out;
+		}
+	}
 
 	ScheduleService.$inject = ['$resource', 'Restangular', '$rootScope', '$q'];
 	StatsComService.$inject = ['$resource', 'Restangular', '$rootScope', '$q', 'TagsService'];
@@ -5925,16 +5942,26 @@ ObjectId.prototype.toString = function () {
 				});
 
 				console.log("tags:" + $scope.Tags)
-				$scope.updateByFeedParser = function (item, parser,parserid, leagueids) {
+				$scope.updateByFeedParser = function (item, parser, parserid, leagueids) {
+
+					if (!leagueids) {
+						leagueids = _.find($scope.Competitions, function (o) {
+							return o._id == item.competitionid;
+						}).parserids[parser];
+						console.log(leagueids);
+					}
+					else
+						leagueids = leagueids[0];
+
 					$scope.view.busy = true;
 					console.log("ID: " + parserid);
 					console.log("league: " + leagueids);
 					var requestdata = {
 						"teamid": parserid
 					}
-					$http.post($rootScope.servers[$rootScope.serverEnvironment].game_server + "offline_data/teamstats/" + leagueids[0] + "/update/full", requestdata)
+					$http.post($rootScope.servers[$rootScope.serverEnvironment].game_server + "offline_data/teamstats/" + leagueids + "/update/full", requestdata)
 						.success(function (result) {
-							console.log( result.parsers[parser]);
+							console.log(result.parsers[parser]);
 							$scope.selectedItem = result.parsers[parser];
 							$scope.view.busy = false;
 						})
@@ -7454,14 +7481,22 @@ ObjectId.prototype.toString = function () {
 		vm.icons = [
 			{ spriteName: 'Corner', name: 'corner', filename: 'corner.png' },
 			{ spriteName: 'Score', name: 'exact-score', filename: 'exact-score.png' },
-			{ spriteName: 'Foul', name: 'foul-icon', filename: 'foul-icon.png' },
+			{ spriteName: 'Foul', name: 'foul', filename: 'foul-icon.png' },
 			{ spriteName: 'Goal', name: 'goal', filename: 'goal2.png' },
 			{ spriteName: 'Double yellow', name: 'most-yellow', filename: 'most-yellow.png' },
 			{ spriteName: 'Offside', name: 'offside', filename: 'offside.png' },
 			{ spriteName: 'Penalty', name: 'penalty', filename: 'penalty.png' },
 			{ spriteName: 'Play', name: 'play-icon', filename: 'play-icon.png' },
-			{ spriteName: 'Red', name: 'red-card', filename: 'red-card.png' },
-			{ spriteName: 'Yellow', name: 'yellow-card', filename: 'yellow-card.png' }, { spriteName: 'Goal2', name: 'firstgoal', filename: 'firstgoal.png' }, { spriteName: 'KickOff', name: 'kickoff', filename: 'kickoff.png' }, { spriteName: 'Possession', name: 'possession', filename: 'possession.png' }, { spriteName: 'Result', name: 'result', filename: 'result.png' }, { spriteName: 'ShotOn', name: 'shoton', filename: 'shoton.png' }, { spriteName: 'Sub1', name: 'sub1', filename: 'sub1.png' }, { spriteName: 'Sub2', name: 'sub2', filename: 'sub2' }, { spriteName: 'Score', name: 'who-will-score', filename: 'who-will-score.png' }];
+			{ spriteName: 'Red', name: 'red', filename: 'red-card.png' },
+			{ spriteName: 'Yellow', name: 'yellow', filename: 'yellow-card.png' },
+			{ spriteName: 'Goal2', name: 'firstgoal', filename: 'firstgoal.png' },
+			{ spriteName: 'KickOff', name: 'kickoff', filename: 'kickoff.png' },
+			{ spriteName: 'Possession', name: 'possession', filename: 'possession.png' },
+			{ spriteName: 'Result', name: 'result', filename: 'result.png' },
+			{ spriteName: 'ShotOn', name: 'shoton', filename: 'shoton.png' },
+			{ spriteName: 'Sub1', name: 'sub1', filename: 'sub1.png' },
+			{ spriteName: 'Sub2', name: 'sub2', filename: 'sub2' },
+			{ spriteName: 'Score', name: 'who-will-score', filename: 'who-will-score.png' }];
 
 		vm.getSpriteFilename = function (sprite) {
 			var selectedSprite = _.find(vm.icons, { name: sprite });
@@ -9851,14 +9886,23 @@ ObjectId.prototype.toString = function () {
 		vm.icons = [
 			{ spriteName: 'Corner', name: 'corner', filename: 'corner.png' },
 			{ spriteName: 'Score', name: 'exact-score', filename: 'exact-score.png' },
-			{ spriteName: 'Foul', name: 'foul-icon', filename: 'foul-icon.png' },
+			{ spriteName: 'Foul', name: 'foul', filename: 'foul-icon.png' },
 			{ spriteName: 'Goal', name: 'goal', filename: 'goal2.png' },
 			{ spriteName: 'Double yellow', name: 'most-yellow', filename: 'most-yellow.png' },
 			{ spriteName: 'Offside', name: 'offside', filename: 'offside.png' },
 			{ spriteName: 'Penalty', name: 'penalty', filename: 'penalty.png' },
 			{ spriteName: 'Play', name: 'play-icon', filename: 'play-icon.png' },
-			{ spriteName: 'Red', name: 'red-card', filename: 'red-card.png' },
-			{ spriteName: 'Yellow', name: 'yellow-card', filename: 'yellow-card.png' }, { spriteName: 'Goal2', name: 'firstgoal', filename: 'firstgoal.png' }, { spriteName: 'KickOff', name: 'kickoff', filename: 'kickoff.png' }, { spriteName: 'Possession', name: 'possession', filename: 'possession.png' }, { spriteName: 'Result', name: 'result', filename: 'result.png' }, { spriteName: 'ShotOn', name: 'shoton', filename: 'shoton.png' }, { spriteName: 'Sub1', name: 'sub1', filename: 'sub1.png' }, { spriteName: 'Sub2', name: 'sub2', filename: 'sub2' }, { spriteName: 'Score', name: 'who-will-score', filename: 'who-will-score.png' }];
+			{ spriteName: 'Red', name: 'red', filename: 'red-card.png' },
+			{ spriteName: 'Yellow', name: 'yellow', filename: 'yellow-card.png' },
+			{ spriteName: 'Goal2', name: 'firstgoal', filename: 'firstgoal.png' },
+			{ spriteName: 'KickOff', name: 'kickoff', filename: 'kickoff.png' },
+			{ spriteName: 'Possession', name: 'possession', filename: 'possession.png' },
+			{ spriteName: 'Result', name: 'result', filename: 'result.png' },
+			{ spriteName: 'ShotOn', name: 'shoton', filename: 'shoton.png' },
+			{ spriteName: 'Sub1', name: 'sub1', filename: 'sub1.png' },
+			{ spriteName: 'Sub2', name: 'sub2', filename: 'sub2' },
+			{ spriteName: 'Score', name: 'who-will-score', filename: 'who-will-score.png' }
+		];
 
 		vm.getSpriteFilename = function (sprite) {
 			var selectedSprite = _.find(vm.icons, { name: sprite });
@@ -17648,14 +17692,14 @@ ObjectId.prototype.toString = function () {
 
 			var templates = {
 				/* jshint multistr: true */
-				collapse: '<a href="#" panel-collapse="" tooltip="Collapse Panel" ng-click="{{panelId}} = !{{panelId}}"> \
+				collapse: '<a href="#" panel-collapse="" uib-tooltip="Collapse Panel" ng-click="{{panelId}} = !{{panelId}}"> \
 						<em ng-show="{{panelId}}" class="fa fa-plus"></em> \
 						<em ng-show="!{{panelId}}" class="fa fa-minus"></em> \
 					  </a>',
-				dismiss: '<a href="#" panel-dismiss="" tooltip="Close Panel">\
+				dismiss: '<a href="#" panel-dismiss="" uib-tooltip="Close Panel">\
 					   <em class="fa fa-times"></em>\
 					 </a>',
-				refresh: '<a href="#" panel-refresh="" data-spinner="{{spinner}}" tooltip="Refresh Panel">\
+				refresh: '<a href="#" panel-refresh="" data-spinner="{{spinner}}" uib-tooltip="Refresh Panel">\
 					   <em class="fa fa-refresh"></em>\
 					 </a>'
 			};

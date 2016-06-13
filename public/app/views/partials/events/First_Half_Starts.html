@@ -1,33 +1,41 @@
-<div class="event-card">
-    <div ng-show="modCtrl.clickedEvent == event.id" class="controlls col-xs-12">
-        <button ng-click="editEvent(event)" class="edit col-xs-6 btn btn-info"><span class="btn-label"><i class="fa fa-pencil"></i>
+
+<div class="timeline-panel match-segment-event">
+    <div class="popover timeline-header" ng-class="($index%2==0?'right':'left') +' '+ event.trigger" style="min-height:48px">
+        <div class="arrow"></div>
+        <!-- EVENT DATA VIEW -->
+        <div class="event-card">
+            <div ng-show="modCtrl.clickedEvent == event.id" class="controlls col-xs-12">
+                <button ng-click="editEvent(event)" class="edit col-xs-6 btn btn-info"><span class="btn-label"><i class="fa fa-pencil"></i>
                                     </span></button>
-        <button ng-click="removeEvent(event)" class="delete col-xs-6 btn btn-danger"><span class="btn-label"><i class="fa fa-trash"></i>
+                <button ng-click="removeEvent(event)" class="delete col-xs-6 btn btn-danger"><span class="btn-label"><i class="fa fa-trash"></i>
                                     </span></button>
-    </div>
+            </div>
 
-    <div noSwipeClick ng-click="modCtrl.clickedEvent == event.id? modCtrl.clickedEvent = -1: modCtrl.clickedEvent = event.id;  event.clicked = true"
-        class="text-center popover-content" style="line-height: 30px; height:50px; overflow:hidden" ng-class="modCtrl.clickedEvent!=null &&  event.clicked? ((modCtrl.clickedEvent == event.id)? 'slideLeft': 'slideRight'): ''">
+            <div noSwipeClick ng-click="modCtrl.clickedEvent == event.id? modCtrl.clickedEvent = -1: modCtrl.clickedEvent = event.id;  event.clicked = true"
+                class="timeline-header text-center popover-content" style="line-height: 30px; height:50px; overflow:hidden" ng-class="modCtrl.clickedEvent!=null &&  event.clicked? ((modCtrl.clickedEvent == event.id)? 'slideLeft': 'slideRight'): ''">
 
 
 
-        <img class="shadowed" style="position: absolute;
+                <img class="shadowed" style="position: absolute;
     height: 85px;
     width: auto;
     top: -15px;
     left: 5px;
     float: left;" alt='{{event.type}}' src='{{match.data.home_team.logo}}'>
 
-        <span style="font-size: 20px;
-    color: #164C75;">
+                <span style="font-size: 20px;
+    ">
           <em class="fa fa-clock-o fa-fw"></em><strong>Match Starts</strong>
          </span>
 
-        <img class="shadowed" style="    position: absolute;
+                <img class="shadowed" style="    position: absolute;
     height: 85px;
     width: auto;
     top: -10px;
     right: 0;
     float: right;" alt='{{event.type}}' src='{{match.data.away_team.logo}}'>
+            </div>
+        </div>
+        <!-- END EVENT DATA VIEW -->
     </div>
 </div>

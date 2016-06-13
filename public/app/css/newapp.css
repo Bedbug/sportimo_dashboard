@@ -5872,11 +5872,11 @@ x:-o-prefocus {
     color: #fff
 }
 .timeline-alt>li>.timeline-panel,
-.timeline>li>.timeline-panel {
+.timeline-panel {
     margin-left: 60px
 }
 .timeline-alt>li>.timeline-panel .popover,
-.timeline>li>.timeline-panel .popover {
+.timeline-panel .popover {
     position: relative;
     display: block;
     margin: 0;
@@ -5884,19 +5884,19 @@ x:-o-prefocus {
     max-width: none
 }
 .timeline-alt>li>.timeline-panel .popover .arrow,
-.timeline>li>.timeline-panel .popover .arrow {
+.timeline-panel .popover .arrow {
     top: 18px;
     display: none
 }
 .timeline-alt>li>.timeline-panel .popover .popover-content .popover-title,
-.timeline>li>.timeline-panel .popover .popover-content .popover-title {
+.timeline-panel .popover .popover-content .popover-title {
     background-color: transparent;
     border: 0;
     padding-left: 0;
     padding-top: 0
 }
 .timeline-alt>li>.timeline-date,
-.timeline>li>.timeline-date {
+.timeline-date {
     margin: -20px 0 0;
     display: block;
     height: 20px;
@@ -5904,11 +5904,11 @@ x:-o-prefocus {
     font-size: 13px
 }
 .timeline-alt>li>.timeline-date>time:after,
-.timeline>li>.timeline-date>time:after {
+.timeline-date>time:after {
     content: attr(datetime)
 }
 .timeline-alt>li>.timeline-badge,
-.timeline>li>.timeline-badge {
+.timeline-badge {
     position: absolute;
     left: 0;
     width: 36px;
@@ -5922,47 +5922,47 @@ x:-o-prefocus {
     z-index: 100
 }
 .timeline-alt>li>.timeline-badge.primary,
-.timeline>li>.timeline-badge.primary {
+.timeline-badge.primary {
     background-color: #5d9cec
 }
 .timeline-alt>li>.timeline-badge.success,
-.timeline>li>.timeline-badge.success {
+.timeline-badge.success {
     background-color: #27c24c
 }
 .timeline-alt>li>.timeline-badge.warning,
-.timeline>li>.timeline-badge.warning {
+.timeline-badge.warning {
     background-color: #ff902b
 }
 .timeline-alt>li>.timeline-badge.danger,
-.timeline>li>.timeline-badge.danger {
+.timeline-badge.danger {
     background-color: #f05050
 }
 .timeline-alt>li>.timeline-badge.info,
-.timeline>li>.timeline-badge.info {
+.timeline-badge.info {
     background-color: #23b7e5
 }
 .timeline-alt>li>.timeline-badge.inverse,
-.timeline>li>.timeline-badge.inverse {
+.timeline-badge.inverse {
     background-color: #131e26
 }
 .timeline-alt>li>.timeline-badge.green,
-.timeline>li>.timeline-badge.green {
+.timeline-badge.green {
     background-color: #37bc9b
 }
 .timeline-alt>li>.timeline-badge.pink,
-.timeline>li>.timeline-badge.pink {
+.timeline-badge.pink {
     background-color: #f532e5
 }
 .timeline-alt>li>.timeline-badge.purple,
-.timeline>li>.timeline-badge.purple {
+.timeline-badge.purple {
     background-color: #7266ba
 }
 .timeline-alt>li>.timeline-badge.dark,
-.timeline>li>.timeline-badge.dark {
+.timeline-badge.dark {
     background-color: #3a3f51
 }
 .timeline-alt>li>.timeline-badge.yellow,
-.timeline>li>.timeline-badge.yellow {
+.timeline-badge.yellow {
     background-color: #fad732
 }
 .timeline-alt .popover .arrow {
@@ -6000,11 +6000,11 @@ x:-o-prefocus {
     .timeline>li.timeline-separator:before {
         margin-left: 36px
     }
-    .timeline>li>.timeline-badge {
+    .timeline-badge {
         left: 50%;
         margin-left: 0
     }
-    .timeline>li>.timeline-date {
+    .timeline-date {
         float: none;
         position: absolute;
         width: 40%;
@@ -6013,24 +6013,24 @@ x:-o-prefocus {
         margin-left: 54px;
         margin-top: -10px
     }
-    .timeline>li>.timeline-panel {
+    .timeline-panel {
         margin: 0
     }
-    .timeline>li>.timeline-panel:before {
+    .timeline-panel:before {
         border-left-width: 15px;
         border-right-width: 0;
         top: 26px;
         right: -15px;
         left: auto
     }
-    .timeline>li>.timeline-panel:after {
+    .timeline-panel:after {
         border-left-width: 14px;
         border-right-width: 0;
         top: 27px;
         right: -14px;
         left: auto
     }
-    .timeline>li>.timeline-panel .popover .arrow {
+    .timeline-panel .popover .arrow {
         display: block
     }
     .timeline>li.timeline-inverted>.timeline-panel {

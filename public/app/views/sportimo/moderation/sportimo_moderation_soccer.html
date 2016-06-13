@@ -40,14 +40,22 @@
 
         </div>
     </div>
-    <div class="text-center bg-gray-dark p-lg">
+    <div class="text-center bg-gray-dark p-sm">
         <div class="row row-table">
             <div class="col-xs-4 br">
+                 <div ng-if="match.data.competition.graphics.match_decoration" class="col-xs-12" ng-style="match.data.competition.graphics.match_decoration?{                       
+                                'height': '54px',
+                                'background-size': 'cover',
+                                'border-radius': '5px 5px 0 0',
+                                'background-repeat': 'no-repeat',
+                                'background-position': '50%',
+                                'background-image':'url('+match.data.competition.graphics.match_decoration+')'}:''">
+                        </div>
                 <!--<h3 class="m0">400</h3>-->
                 <!--<p class="m0">-->
                 <!--<span class="hidden-xs">Connected</span>-->
                 <!--<span>Users</span>-->
-                <!--</p>-->
+                <!--</p>--> 
             </div>
             <div ng-click="advanceSegment()" class="col-xs-4 br">
 

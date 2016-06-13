@@ -1,3 +1,8 @@
+
+<div class="timeline-panel match-segment-event">
+    <div class="popover timeline-header" ng-class="($index%2==0?'right':'left') +' '+ event.trigger" style="min-height:48px">
+        <div class="arrow"></div>
+        <!-- EVENT DATA VIEW -->
 <div class="event-card">
     <div ng-show="modCtrl.clickedEvent == event.id" class="controlls col-xs-12">
         <button ng-click="editEvent(event)" class="edit col-xs-6 btn btn-info"><span class="btn-label"><i class="fa fa-pencil"></i>
@@ -7,7 +12,7 @@
     </div>
 
     <div noSwipeClick ng-click="modCtrl.clickedEvent == event.id? modCtrl.clickedEvent = -1: modCtrl.clickedEvent = event.id;  event.clicked = true"
-        class="text-center popover-content" style="line-height: 30px; height:50px; overflow:hidden" ng-class="modCtrl.clickedEvent!=null &&  event.clicked? ((modCtrl.clickedEvent == event.id)? 'slideLeft': 'slideRight'): ''">
+        class="timeline-header text-center popover-content" style="line-height: 30px; height:50px; overflow:hidden" ng-class="modCtrl.clickedEvent!=null &&  event.clicked? ((modCtrl.clickedEvent == event.id)? 'slideLeft': 'slideRight'): ''">
 
 
 
@@ -19,7 +24,7 @@
     float: left;" alt='{{event.type}}' src='{{match.data.home_team.logo}}'>
 
         <span style="font-size: 20px;
-    color: #164C75;">
+    ">
           <em class="fa fa-clock-o fa-fw"></em><strong>First Half Ends</strong>
          </span>
 
@@ -31,3 +36,7 @@
     float: right;" alt='{{event.type}}' src='{{match.data.away_team.logo}}'>
     </div>
 </div>
+        <!-- END EVENT DATA VIEW -->
+    </div>
+</div>
+

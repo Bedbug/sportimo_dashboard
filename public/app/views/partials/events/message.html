@@ -1,3 +1,10 @@
+<div class="timeline-badge">
+    {{event.time}}'
+</div>
+<div class="timeline-panel">
+    <div class="popover" ng-class="($index%2==0?'right':'left') +' '+ event.trigger" style="min-height:48px">
+        <div class="arrow"></div>
+        <!-- EVENT DATA VIEW -->
 <div class="popover-content" ng-class="event.type">
     <div class="table-grid table-grid-align-middle mb">
         <div class="col">
@@ -11,3 +18,7 @@
         <em>{{event.data.message}}</em>
     </p>
 </div>
+        <!-- END EVENT DATA VIEW -->
+    </div>
+</div>
+

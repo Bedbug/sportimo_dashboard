@@ -137,15 +137,7 @@
                             </li>
                             <!-- START timeline item-->
                             <li ng-repeat="event in segment.events | reverse | filter: {status:'!removed'} track by $index" class="custom" ng-class="$index%2==0?'timeline-inverted':'timeline-left'">
-                                <div class="timeline-badge">
-                                    {{event.time}}'
-                                </div>
-                                <div class="timeline-panel">
-                                    <div class="popover" ng-class="($index%2==0?'right':'left') +' '+ event.trigger">
-                                        <div class="arrow"></div>
-                                        <ng-include src="event.type?'app/views/partials/events/'+event.type+'.html':'app/views/partials/events/default.html'"></ng-include>
-                                    </div>
-                                </div>
+                                <ng-include class="timeline-left" src="event.type?'app/views/partials/events/'+event.type+'.html':'app/views/partials/events/default.html'"></ng-include>
                             </li>
                             <!-- END timeline item-->
                             <!-- START timeline item-->
