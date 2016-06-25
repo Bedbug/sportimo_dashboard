@@ -73,8 +73,8 @@
 
                 <!--<p class="m0">Following</p>-->
             </div>
-             <div ng-show="match.data.completed" class="col-xs-4">
-                <button class="btn btn-success"><em class="fa fa-thumbs-up"></em></button></div>
+             <div ng-click="toggleCompleted(match.data._id)" ng-show="match.data.completed" class="col-xs-4">
+                <button class="btn btn-inverse"><em class="fa fa-thumbs-up"></em></button></div>
         </div>
     </div>
     <div class="col-lg-12 no-padding">

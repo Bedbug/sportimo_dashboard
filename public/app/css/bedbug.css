@@ -5,7 +5,7 @@
 
 .card-icon{
    position: absolute;
-    left: 90px;
+    /*left: 90px;*/
 }
 
 .right-team-logo {
@@ -26,7 +26,7 @@
 .event-type{ 
     float: left;
     position: absolute;
-    left: 120px;
+        left: 70px;
     padding: inherit;
     color: #164C75;
     font-weight: bold;
@@ -34,7 +34,7 @@
  }
 .event-player{
     position: absolute;
-    left: 222px;
+    left: 200px;
     padding: inherit;
     color: #164C75;
     font-size: 15px;
@@ -1885,6 +1885,12 @@ height: 43px;
     /*darkslategrey;*/
 }
 
+.event-minute{
+    font-size: 100%;
+ color: #164C75 !important;
+    font-weight: bold !important;
+}
+
 /*
 .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus{
     background-color: #f0f0f0;
@@ -1957,6 +1963,9 @@ li.timeline-separator,
     background-color: transparent !important;
     border: 0 !important;
     z-index: 100;
+}
+.new-event{
+    animation: 0.5s fadeInRight  ease;
 }
 .custom.ng-enter,
 .custom.ng-leave,

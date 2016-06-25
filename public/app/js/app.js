@@ -58,6 +58,7 @@
 			"app.competitions",
 			"app.standings",
 			"app.sponsors",
+			"app.achievements",
 			"angular-ladda"
 		]);
 })();
@@ -145,6 +146,13 @@
 
 	angular
 		.module('app.sponsors', ['angular-ladda']);
+})();
+
+(function () {
+	'use strict';
+
+	angular
+		.module('app.achievements', ['angular-ladda']);
 })();
 
 
@@ -2984,6 +2992,7 @@
 		};
 		return {
 			transStat: function (stat) {
+				// console.log(stat);
 				var trStat = statsTransalations[stat];
 				if (trStat)
 					return statsTransalations[stat];
@@ -4998,7 +5007,7 @@ ObjectId.prototype.toString = function () {
 					"type": "rss-feed",
 					"parserid": match.parserids.Stats,
 					"parsername": "Stats",
-					"active": false
+					"active": true
 				}];
 			}
 
@@ -7042,6 +7051,127 @@ ObjectId.prototype.toString = function () {
 (function () {
 	'use strict';
 
+	angular.module('app.achievements')
+		.service("AchievementsService", AchievementsService)
+		.controller('AchievementsController', AchievementsController);
+
+	AchievementsController.$inject = ['$scope', 'AchievementsService'];
+	function AchievementsController($scope, AchievementsService) {
+
+		var vm = $scope;
+		vm.loading = {};
+		vm.needsSync = false;
+		vm.recalculate = false;
+		vm.items = [];
+
+		AchievementsService.All().then(function (result) {
+			vm.items = result;
+		})
+
+		vm.editItem = function (item) {
+			if (item != null)
+				vm.selectedItem = item;
+			else
+				vm.selectedItem = {
+					"uniqueid": "",
+					"icon": "",
+					"title": {
+						"en": ""
+					},
+					"text": {
+						"en": ""
+					},
+					"has": 0,
+					"total": 20,
+					"completed": false
+				};
+		}
+
+		$scope.save = function (item) {
+			vm.loading.updating = true;
+			if (!item._id) {
+				console.log("saving it");
+				AchievementsService.Create(item).then(function (returnedItem) {
+					vm.items.push(returnedItem);
+					vm.selectedItem = null;
+					vm.loading.updating = false;
+					vm.needsSync = true;
+				});
+			}
+			else {
+				vm.loading.updating = true;
+				item.save().then(function () {
+					vm.loading.updating = false;
+					vm.selectedItem = null;
+					console.log("needs sync");
+					vm.needsSync = true;
+				});
+			}
+		}
+
+		$scope.removeItem = function (item) {
+			vm.loading.updating = true;
+			item.remove().then(function () {
+				vm.items = _.without(vm.items, item);
+				vm.loading.updating = false;
+				
+			})
+
+		}
+
+		vm.SyncUsers = function(){
+			vm.loading.syncing = true;
+			AchievementsService.SyncAll(vm.recalculate).then(function(){
+				vm.loading.syncing = false;
+				vm.needsSync = false;
+			})
+		}
+
+
+	}
+
+	
+	AchievementsService.$inject = ['$resource', 'Restangular', '$rootScope', '$q'];
+	function AchievementsService($resource, Restangular, $rootScope, $q) {
+
+		var Data = Restangular.all('v1/data/achievements');
+
+		Restangular.setBaseUrl($rootScope.servers[$rootScope.serverEnvironment].game_server);
+		Restangular.setRestangularFields({
+			id: "_id"
+		});
+
+		return {
+			All: function () {
+				var Defer = $q.defer();
+				Data.getList().then(function (all) {
+					Defer.resolve(all);
+				});
+				return Defer.promise;
+			},
+			Create: function (item) {
+				var Defer = $q.defer();
+				Data.post(item).then(function (returnItem) {
+					Defer.resolve(returnItem);
+				});
+				return Defer.promise;
+			},
+			SyncAll: function(recalculate){
+				var Defer = $q.defer();
+				Restangular.all('v1/users/update').get('achievements/'+recalculate)
+				.then(function (result) {
+					Defer.resolve(result);
+				});
+				return Defer.promise;
+			}
+		}
+	}
+
+})();
+
+(function () {
+	'use strict';
+
 	angular.module('app.competitions')
 		.service('CompetitionsService', CompetitionsService)
 		.controller('CompetitionsController', CompetitionsController);
@@ -8351,6 +8481,11 @@ ObjectId.prototype.toString = function () {
 						if (event.players && event.playerscount && event.playerscount != event.players.length)
 							$scope.InNeedUpdateEvents.push(evt.data);
 
+
+						evt.data.newevent = true;
+						$timeout(function () {
+							evt.data.newevent = false;
+						}, 4000);
 						$scope.match.data.timeline[evt.data.state].events.push(evt.data);
 					}
 				// break;
@@ -8422,6 +8557,24 @@ ObjectId.prototype.toString = function () {
 			$scope.sendEvent(addEventData);
 		}
 
+		$scope.toggleCompleted =  function (id) {
+
+			$http({
+				method: 'GET',
+				url: $rootScope.servers[$rootScope.serverEnvironment].game_server + 'v1/moderation/' + id + '/event/complete'
+
+			}).then(function successCallback(response) {
+				$rootScope.toast("State set to not complete.")
+				vm.match.data.completed = false;
+				vm.pushLoading = false;
+			}, function errorCallback(response) {
+				vm.pushLoading = false;
+				$rootScope.toast(response, "error");
+				// called asynchronously if an error occurs
+				// or server returns response with an error status.
+			});
+		};
+
 		$scope.loadMatchData = function (id) {
 
 			$http({
@@ -8447,6 +8600,23 @@ ObjectId.prototype.toString = function () {
 				vm.pushLoading = false;
 			}, function errorCallback(response) {
 				vm.pushLoading = false;
+				// called asynchronously if an error occurs
+				// or server returns response with an error status.
+			});
+		};
+
+		$scope.resetMatchData = function (id) {
+
+			$http({
+				method: 'GET',
+				url: $rootScope.servers[$rootScope.serverEnvironment].game_server + 'v1/moderation/' + id + '/event/reset'
+
+			}).then(function successCallback(response) {
+				$rootScope.toast("Feed data was reset.")
+				vm.pushLoading = false;
+			}, function errorCallback(response) {
+				vm.pushLoading = false;
+				$rootScope.toast(response, "error");
 				// called asynchronously if an error occurs
 				// or server returns response with an error status.
 			});
@@ -8786,9 +8956,11 @@ ObjectId.prototype.toString = function () {
 		};
 
 		$scope.GetStat = function (statId, statkey) {
-			return _.result(_.find($scope.match.data.stats, {
-				id: statId
-			}), statkey);
+			if ($scope.match)
+				return _.result(_.find($scope.match.data.stats, {
+					id: statId
+				}), statkey);
+			return null;
 		};
 
 		$scope.UpperCase = function (str) {
@@ -9410,7 +9582,7 @@ ObjectId.prototype.toString = function () {
 
 		var storedModObject = null;
 		vm.toggleNewModeration = function (form) {
-
+			console.log("toggleNewModeration");
 			form.$dirty = true;
 
 			if (vm.match.data.automoderation) {
@@ -9475,6 +9647,17 @@ ObjectId.prototype.toString = function () {
 				return moment(d).utc().format(style);
 			else
 				return moment(d).format(style) + " (local time)";
+		}
+
+		// 	@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+		//	@@
+		//	@@		TAB: TIMELINE
+
+		vm.GetStatValue = function (statKey, StatObject) {
+			var stat = _.find(StatObject, { key: statKey });
+			console.log(statKey);
+			console.log(stat);
+			// return .value;
 		}
 
 		// 	@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -18205,6 +18388,13 @@ ObjectId.prototype.toString = function () {
 				templateUrl: helper.basepath('database/sponsors.html'),
 				resolve: helper.resolveFor('ui.select', 'ngFileUpload'),
 				controller: 'SponsorsController'
+			})
+			.state('app.achievements', {
+				url: '/achievements',
+				title: 'Game Achievements',
+				templateUrl: helper.basepath('database/achievements.html'),
+				resolve: helper.resolveFor('ui.select', 'ngFileUpload'),
+				controller: 'AchievementsController'
 			})
 			.state('app.leaderboards', {
 				url: '/leaderboards',

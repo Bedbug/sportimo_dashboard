@@ -59,6 +59,10 @@
             {
                 "text": "Sponsors",
                 "sref": "app.sponsors"
+            },
+            {
+                "text": "Achievements",
+                "sref": "app.achievements"
             }
         ]
     },

@@ -1,5 +1,5 @@
 <h3>Match Schedule
-   <small>Schedule matches to be active in the game.</small>
+    <small>Schedule matches to be active in the game.</small>
 </h3>
 
 <div class="panel">
@@ -175,7 +175,7 @@
                         </ui-select>
                     </div>
                     <div class="col-xs-6">
-                        <ui-select limit=1 on-select="OnEventSelection($item)" reset-search-input="true" ng-model="selected" theme="bootstrap" ng-disabled="!statsSearch.competition">
+                        <ui-select ng-show="StatsUpcomingEvents" limit=1 on-select="OnEventSelection($item)" reset-search-input="true" ng-model="selected" theme="bootstrap" ng-disabled="!statsSearch.competition">
                             <ui-select-match placeholder="{{statsSearch.message}}">
                             </ui-select-match>
                             <ui-select-choices repeat="event in StatsUpcomingEvents | filter: $select.search">
@@ -305,7 +305,7 @@
                     </thead>
                     <tbody>
 
-                        <tr ng-repeat="event in events | filter: inRange()">
+                        <tr ng-repeat="event in events | reverse">
 
                             <td>{{formatDate(event.start, "DD/MM")}}</td>
                             <td>{{formatDate(event.start,"H:mm")}}</td>
@@ -315,7 +315,15 @@
                                 <img style="padding-bottom: 5px;" ng-src="http://ep7t6ae.cloudimg.io/s/height/25/{{event.away_team.logo}}">                                {{event.away_team.name.en}}
 
                             </td>
-                            <td>{{ event.competition.name.en}}</td>
+                            <td ng-if='event.donttouch'>
+                                <div class="col-xs-12" ng-style="{                       
+                                'height': '40px',
+                                'width':'100%',
+                                'background-color':'red',
+                                'color':'white'}">Don'T Touch!
+                                </div>
+                            </td>
+                            <td ng-if='!event.donttouch'>{{ event.competition.name.en}}</td>
                             <td>
 
                                 <!-- START button group-->

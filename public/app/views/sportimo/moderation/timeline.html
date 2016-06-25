@@ -1,160 +1,11 @@
 <div>
     <!-- START Timeline Group-->
-    <div class="grid col-xs-12 mt-lg">
-        <div>
-            <!-- START Create EVENT DRAWER -->
-
-
-        </div>
+    <div class="col-xs-12">
         <!-- END Create EVENT DRAWER -->
         <div class="col-xs-12"></div>
-        <div class="col-xs-6 panel panel-highlighted">
-            <!-- START Update EVENT DRAWER -->
-            <div ng-show="eventDrawer == 3" class="events-self ">
-                <div class="type-banner-vertical" ng-class="selectedEvent.type">
-                    <span>{{selectedEvent.type}}</span>
-                </div>
-                <div class="events-self panel">
-                    <!--<div class="panel-heading"><strong>{{event.time+"'"+" "+event.type}}</strong></div>-->
-                    <div class="moving-self panel-body">
-                        <div class="row">
 
-                            <div class="match-logos col-sm-4 col-xs-12">
-                                <div class="event-team-logo col-xs-6 col-sm-12 col-md-6">
-                                    <img class="moving-self-img" ng-click="selectedEvent.team = 'home_team'" ng-style="selectedEvent.team != 'home_team'?{'background-color':'#ccc'}:''"
-                                        ng-class="selectedEvent.team != 'home_team'? 'desaturate':'zoom'" ng-src="{{match.data.home_team.logo}}"
-                                    />
-                                    <br/> {{match.data.home_team.name.en}}
-                                </div>
-                                <div class="event-team-logo col-xs-6 col-sm-12 col-md-6">
-                                    <img class="moving-self-img" ng-click="selectedEvent.team ='away_team'" ng-class="selectedEvent.team != 'away_team'? 'desaturate':'zoom'"
-                                        ng-src="{{match.data.away_team.logo}}" />
-                                    <br/> {{match.data.away_team.name.en}}
-                                </div>
-                            </div>
-                            <div class="col-sm-8 col-xs-12">
-                                <!-- For single player events -->
-                                <div ng-hide="selectedEvent.playerscount == 2" ng-class="selectedEvent.type+'-text'" class="moving-self-heading">
-                                    Event player name:
-                                </div>
-                                <ui-select ng-hide="selectedEvent.playerscount == 2" limit=1 on-select="checkSelection($item,$model)" multiple reset-search-input="true"
-                                    ng-model="selectedEvent.players" theme="bootstrap" ng-disabled="selectedEvent.chooseplayer.disabled">
-                                    <ui-select-match placeholder="Select player name"><img class="ui-select-match-img" alt="$item.team" ng-src="{{match.data[$item.team].logo}}">                                        {{$item.name}}
-                                    </ui-select-match>
-                                    <ui-select-choices repeat="player in players | filter: (filterTeamPlayers || '') && {team: selectedEvent.team} | propsFilter: {name: $select.search, team: $select.search}">
-                                        <img class="ui-select-match-img" alt='{{player.team}}' ng-src='{{match.data[player.team].logo}}'>
-
-                                        <div ng-bind-html=" player.name | highlight: $select.search"></div>
-                                        <!--<small>-->
-                                        <!--<span ng-bind-html="''+player.team | highlight: $select.search"></span>-->
-                                        <!--</small>-->
-                                    </ui-select-choices>
-                                </ui-select>
-                                <!-- For multi player events -->
-                                <div ng-hide="selectedEvent.playerscount == 1" ng-class="selectedEvent.type+'-text'" class="moving-self-heading">
-                                    Event player names:
-                                </div>
-                                <ui-select ng-hide="selectedEvent.playerscount == 1" limit=2 on-select="checkSelection" multiple reset-search-input="true"
-                                    ng-model="selectedEvent.players" theme="bootstrap" ng-disabled="selectedEvent.chooseplayer.disabled">
-                                    <ui-select-match placeholder="Select player name"><img class="ui-select-match-img" alt="$item.team" ng-src="{{match.data[$item.team].logo}}">                                        {{$item.name}}
-                                    </ui-select-match>
-                                    <ui-select-choices repeat="player in players | filter: (filterTeamPlayers || '') && {team: selectedEvent.team} | propsFilter: {name: $select.search, team: $select.search}">
-                                        <img class="ui-select-match-img" alt='{{player.team}}' ng-src='{{match.data[player.team].logo}}'>
-
-                                        <div ng-bind-html=" player.name | highlight: $select.search"></div>
-                                        <!--<small>-->
-                                        <!--<span ng-bind-html="''+player.team | highlight: $select.search"></span>-->
-                                        <!--</small>-->
-                                    </ui-select-choices>
-                                </ui-select>
-                                <div class="mb">
-                                    <label class="mda-checkbox">
-                                            <input type="checkbox" ng-model="filterTeamPlayers" />
-                                            <em class="subtle-checkbox"></em>Only selected team players
-                                        </label>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div ng-show="humanizedEvent" ng-class="selectedEvent.type" class="humanized-event" ng-bind-html="humanizedEvent"></div>
-                    </div>
-                    <div class="panel-footer">
-
-                        <button ng-click="closeDrawer()" type="button" class="mb-sm btn btn-pill-right btn-default pull-right">Cancel
-                            </button>
-                        <button ng-click="updateEvent(selectedEvent)" disable-animation type="button" class="btn btn-square btn-pill-left pull-right btn-success">
-                                Update Event
-                            </button>
-                        <!--<button ng-click="addEvent(selectedEvent)" disable-animation ng-show="selectedEvent.complete == true" type="button" class="btn btn-success">Send Event
-                            </button>-->
-                    </div>
-                </div>
-            </div>
-            <!-- END Update EVENT DRAWER -->
-
-            <!-- START timeline-->
-            <div class="panel-body">
-                <div id="timeline-card">
-                    <!--<div>-->
-                    <!--<paneltool tool-refresh="line back-and-forth grow" class="pull-right"><a-->
-                    <!--href="#" panel-refresh="" data-spinner="line back-and-forth grow"-->
-                    <!--tooltip="Refresh"> <em-->
-                    <!--class="fa fa-refresh"></em> </a></paneltool>-->
-                    <!--</div>-->
-                    <div>
-                        <ul ng-repeat="segment in match.data.timeline | reverse track by $index" class="timeline">
-
-                            <li data-datetime="{{match.sport.segments[ match.data.timeline.length - 1 - $index].name.en}}" class="timeline-separator">
-                                <div ng-show="(match.data.timeline.length - 1 - $index)>0" ng-click="EditSegmentTimes(match.data.timeline.length - 1 - $index)"
-                                    class="segment-watch"><i class="glyph-stopwatch"></i></div>
-                                <div ng-show="editingSegmentTime.index == (match.data.timeline.length - 1 - $index)" class="segment-time-editor">
-
-                                    <div ng-show="match.data.timeline[match.data.timeline.length - 1 - $index].start" class="col-xs-6">
-                                        <div class="edit-segment-container"><span class="edit-segment-title pull-left">Start:</span>
-                                            <timepicker name="timepickr" required="" ng-model="match.data.timeline[match.data.timeline.length - 1 - $index].start" ng-change="changed()"
-                                                hour-step="1" minute-step="1" show-meridian="false"></timepicker>
-                                        </div>
-                                    </div>
-
-                                    <div ng-show="match.data.timeline[match.data.timeline.length - 1 - $index].end" class="col-xs-5">
-                                        <div class="edit-segment-container"><span class="edit-segment-title pull-left">End:</span>
-                                            <timepicker name="timepickr" required="" ng-model="match.data.timeline[match.data.timeline.length - 1 - $index].end" ng-change="changed()"
-                                                hour-step="1" minute-step="1" show-meridian="false"></timepicker>
-                                        </div>
-                                    </div>
-
-                                    <div class="segment-delete">
-                                        <!--<button class="btn btn-sm btn-danger btn-delete"> <i class="fa fa-trash"></i></button>-->
-                                        <button ng-show="(match.data.timeline.length - 1 - $index)>0" ng-click="removeSegment(match.data.timeline.length - 1 - $index)"
-                                            class="delete btn btn-danger"></button>
-                                        <button ng-show="(match.data.timeline.length - 1 - $index)>0" ng-click="removeSegment(match.data.timeline.length - 1 - $index)"
-                                            class="btn btn-primary btn-outline"><i class="fa fa-pause"></i></button>
-
-                                    </div>
-
-                                    <!--<pre class="alert alert-info">{{match.data.timeline[match.data.timeline.length - 1 - $index]}}</pre>-->
-                                </div>
-                            </li>
-                            <!-- START timeline item-->
-                            <li ng-repeat="event in segment.events | reverse | filter: {status:'!removed'} track by $index" class="custom" ng-class="$index%2==0?'timeline-inverted':'timeline-left'">
-                                <ng-include class="timeline-left" src="event.type?'app/views/partials/events/'+event.type+'.html':'app/views/partials/events/default.html'"></ng-include>
-                            </li>
-                            <!-- END timeline item-->
-                            <!-- START timeline item-->
-                            <li class="timeline-end">
-                                <a href="#" class="timeline-badge timeline-start-badge">
-                                    <em class="fa fa-circle"></em>
-                                </a>
-                            </li>
-                            <!-- END timeline item-->
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <!-- END timeline-->
-        </div>
         <!-- START Moderator Panel-->
-        <div class="col-xs-6 pr0">
+        <div class="col-md-6 col-md-push-6 pr0">
             <!-- Moderator Events -->
             <div class="panel col-xs-12 panel-highlighted">
 
@@ -166,13 +17,13 @@
                     <div ng-show="debugEvent">
                         <div class="btn-group col-xs-12 p0 pb-lg">
 
-                            <button ladda="pushLoading" data-style="zoom-in" ng-click="loadMatchData(match.id)" type="button" class="moderation btn btn-lg col-xs-6 btn-default">
-                        <em class="fa fa-refresh fa-fw"></em> Data
+                            <button ladda="pushLoading" data-style="zoom-in" ng-click="resetMatchData(match.id)" type="button" class="moderation btn btn-lg col-xs-6 btn-default">
+                        <em class="fa fa-refresh fa-fw"></em> Reset Feed Data
                     </button>
 
 
                             <button ladda="reloadingServer" data-style="zoom-in" ng-click="reloadMatch(match.id)" type="button" class="moderation btn btn-lg col-xs-6 btn-default">
-                        <em class="fa fa-refresh fa-fw"></em> Server
+                        <em class="fa fa-refresh fa-fw"></em> Reload Match
                     </button>
                         </div>
 
@@ -470,7 +321,166 @@
                 <!-- END VIDEO -->
             </div>
             <!-- END Sponsor Panel -->
+
+            <div class="panel col-xs-12 panel-highlighted">
+                <div class="panel-heading"> <label class="control-label">Match Stats</label></div>
+                <div class="panel-body">
+                    <div ng-if="GetStat(match.data.home_team._id,'possession')"> <label> Possession</label>
+                        <uib-progress max="100">
+                            <uib-bar value="GetStat(match.data.home_team._id,'possession')" type="info"><span ng-hide="bar.value < 5">{{GetStat(match.data.home_team._id,'possession')}}%</span></uib-bar>
+                            <uib-bar value="GetStat(match.data.away_team._id,'possession')" type="warning"><span ng-hide="bar.value < 5">{{GetStat(match.data.away_team._id,'possession')}}%</span></uib-bar>
+                        </uib-progress>
+                    </div>
+                </div>
+            </div>
         </div>
+
+        <div class="col-md-6 col-md-pull-6 panel panel-highlighted">
+            <!-- START Update EVENT DRAWER -->
+            <div ng-show="eventDrawer == 3" class="events-self ">
+                <div class="type-banner-vertical" ng-class="selectedEvent.type">
+                    <span>{{selectedEvent.type}}</span>
+                </div>
+                <div class="events-self panel">
+                    <!--<div class="panel-heading"><strong>{{event.time+"'"+" "+event.type}}</strong></div>-->
+                    <div class="moving-self panel-body col-xs-12">
+                        <div class="row">
+
+                            <div class="match-logos col-sm-4 col-xs-12">
+                                <div class="event-team-logo col-xs-6 col-sm-12 col-md-6">
+                                    <img class="moving-self-img" ng-click="selectedEvent.team = 'home_team'" ng-style="selectedEvent.team != 'home_team'?{'background-color':'#ccc'}:''"
+                                        ng-class="selectedEvent.team != 'home_team'? 'desaturate':'zoom'" ng-src="{{match.data.home_team.logo}}"
+                                    />
+                                    <br/> {{match.data.home_team.name.en}}
+                                </div>
+                                <div class="event-team-logo col-xs-6 col-sm-12 col-md-6">
+                                    <img class="moving-self-img" ng-click="selectedEvent.team ='away_team'" ng-class="selectedEvent.team != 'away_team'? 'desaturate':'zoom'"
+                                        ng-src="{{match.data.away_team.logo}}" />
+                                    <br/> {{match.data.away_team.name.en}}
+                                </div>
+                            </div>
+                            <div class="col-sm-8 col-xs-12">
+                                <!-- For single player events -->
+                                <div ng-hide="selectedEvent.playerscount == 2" ng-class="selectedEvent.type+'-text'" class="moving-self-heading">
+                                    Event player name:
+                                </div>
+                                <ui-select ng-hide="selectedEvent.playerscount == 2" limit=1 on-select="checkSelection($item,$model)" multiple reset-search-input="true"
+                                    ng-model="selectedEvent.players" theme="bootstrap" ng-disabled="selectedEvent.chooseplayer.disabled">
+                                    <ui-select-match placeholder="Select player name"><img class="ui-select-match-img" alt="$item.team" ng-src="{{match.data[$item.team].logo}}">                                        {{$item.name}}
+                                    </ui-select-match>
+                                    <ui-select-choices repeat="player in players | filter: (filterTeamPlayers || '') && {team: selectedEvent.team} | propsFilter: {name: $select.search, team: $select.search}">
+                                        <img class="ui-select-match-img" alt='{{player.team}}' ng-src='{{match.data[player.team].logo}}'>
+
+                                        <div ng-bind-html=" player.name | highlight: $select.search"></div>
+                                        <!--<small>-->
+                                        <!--<span ng-bind-html="''+player.team | highlight: $select.search"></span>-->
+                                        <!--</small>-->
+                                    </ui-select-choices>
+                                </ui-select>
+                                <!-- For multi player events -->
+                                <div ng-hide="selectedEvent.playerscount == 1" ng-class="selectedEvent.type+'-text'" class="moving-self-heading">
+                                    Event player names:
+                                </div>
+                                <ui-select ng-hide="selectedEvent.playerscount == 1" limit=2 on-select="checkSelection" multiple reset-search-input="true"
+                                    ng-model="selectedEvent.players" theme="bootstrap" ng-disabled="selectedEvent.chooseplayer.disabled">
+                                    <ui-select-match placeholder="Select player name"><img class="ui-select-match-img" alt="$item.team" ng-src="{{match.data[$item.team].logo}}">                                        {{$item.name}}
+                                    </ui-select-match>
+                                    <ui-select-choices repeat="player in players | filter: (filterTeamPlayers || '') && {team: selectedEvent.team} | propsFilter: {name: $select.search, team: $select.search}">
+                                        <img class="ui-select-match-img" alt='{{player.team}}' ng-src='{{match.data[player.team].logo}}'>
+
+                                        <div ng-bind-html=" player.name | highlight: $select.search"></div>
+                                        <!--<small>-->
+                                        <!--<span ng-bind-html="''+player.team | highlight: $select.search"></span>-->
+                                        <!--</small>-->
+                                    </ui-select-choices>
+                                </ui-select>
+                                <div class="mb">
+                                    <label class="mda-checkbox">
+                                            <input type="checkbox" ng-model="filterTeamPlayers" />
+                                            <em class="subtle-checkbox"></em>Only selected team players
+                                        </label>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div ng-show="humanizedEvent" ng-class="selectedEvent.type" class="humanized-event" ng-bind-html="humanizedEvent"></div>
+                    </div>
+                    <div class="panel-footer">
+
+                        <button ng-click="closeDrawer()" type="button" class="mb-sm btn btn-pill-right btn-default pull-right">Cancel
+                            </button>
+                        <button ng-click="updateEvent(selectedEvent)" disable-animation type="button" class="btn btn-square btn-pill-left pull-right btn-success">
+                                Update Event
+                            </button>
+                        <!--<button ng-click="addEvent(selectedEvent)" disable-animation ng-show="selectedEvent.complete == true" type="button" class="btn btn-success">Send Event
+                            </button>-->
+                    </div>
+                </div>
+            </div>
+            <!-- END Update EVENT DRAWER -->
+
+            <!-- START timeline-->
+            <div class="panel-body col-xs-12">
+                <div id="timeline-card">
+                    <!--<div>-->
+                    <!--<paneltool tool-refresh="line back-and-forth grow" class="pull-right"><a-->
+                    <!--href="#" panel-refresh="" data-spinner="line back-and-forth grow"-->
+                    <!--tooltip="Refresh"> <em-->
+                    <!--class="fa fa-refresh"></em> </a></paneltool>-->
+                    <!--</div>-->
+                    <div>
+                        <ul ng-repeat="segment in match.data.timeline | reverse track by $index" class="timeline">
+
+                            <li data-datetime="{{match.sport.segments[ match.data.timeline.length - 1 - $index].name.en}}" class="timeline-separator">
+                                <div ng-show="(match.data.timeline.length - 1 - $index)>0" ng-click="EditSegmentTimes(match.data.timeline.length - 1 - $index)"
+                                    class="segment-watch"><i class="glyph-stopwatch"></i></div>
+                                <div ng-show="editingSegmentTime.index == (match.data.timeline.length - 1 - $index)" class="segment-time-editor">
+
+                                    <div ng-show="match.data.timeline[match.data.timeline.length - 1 - $index].start" class="col-xs-6">
+                                        <div class="edit-segment-container"><span class="edit-segment-title pull-left">Start:</span>
+                                            <timepicker name="timepickr" required="" ng-model="match.data.timeline[match.data.timeline.length - 1 - $index].start" ng-change="changed()"
+                                                hour-step="1" minute-step="1" show-meridian="false"></timepicker>
+                                        </div>
+                                    </div>
+
+                                    <div ng-show="match.data.timeline[match.data.timeline.length - 1 - $index].end" class="col-xs-5">
+                                        <div class="edit-segment-container"><span class="edit-segment-title pull-left">End:</span>
+                                            <timepicker name="timepickr" required="" ng-model="match.data.timeline[match.data.timeline.length - 1 - $index].end" ng-change="changed()"
+                                                hour-step="1" minute-step="1" show-meridian="false"></timepicker>
+                                        </div>
+                                    </div>
+
+                                    <div class="segment-delete">
+                                        <!--<button class="btn btn-sm btn-danger btn-delete"> <i class="fa fa-trash"></i></button>-->
+                                        <button ng-show="(match.data.timeline.length - 1 - $index)>0" ng-click="removeSegment(match.data.timeline.length - 1 - $index)"
+                                            class="delete btn btn-danger"></button>
+                                        <button ng-show="(match.data.timeline.length - 1 - $index)>0" ng-click="removeSegment(match.data.timeline.length - 1 - $index)"
+                                            class="btn btn-primary btn-outline"><i class="fa fa-pause"></i></button>
+
+                                    </div>
+
+                                    <!--<pre class="alert alert-info">{{match.data.timeline[match.data.timeline.length - 1 - $index]}}</pre>-->
+                                </div>
+                            </li>
+                            <!-- START timeline item-->
+                            <li ng-repeat="event in segment.events | reverse | filter: {status:'!removed'} track by $index" class="" ng-class="event.newevent?'new-event':''">
+                                <ng-include class="timeline-left" src="event.type?'app/views/partials/events/'+event.type+'.html':'app/views/partials/events/default.html'"></ng-include>
+                            </li>
+                            <!-- END timeline item-->
+                            <!-- START timeline item-->
+                            <li class="timeline-end">
+                                <a href="#" class="timeline-badge timeline-start-badge">
+                                    <em class="fa fa-circle"></em>
+                                </a>
+                            </li>
+                            <!-- END timeline item-->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- END timeline-->
+        </div>
+
         <!-- END Moderator Panel -->
         <!-- JSON Event Data-->
         <!--<div ng-show="eventDrawer == 1" class="panel" style="margin-top: 18px;">

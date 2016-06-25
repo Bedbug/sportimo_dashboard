@@ -1,13 +1,23 @@
 <div ng-repeat="match in ngModel | FilterByStartTimeAndFinality" class="pl0  mini-match-panel">
     <div class="panel">
-         <div class="col-xs-12" ng-style="match.competition.graphics.match_decoration?{                       
+        <div ng-if='match.donttouch' class="col-xs-12" ng-style=" {                      
+                                'height': '20px',
+                                'width':'100%',
+                                'background-color':'red',
+                                'color':'white',
+                                'text-align':'center',                   
+                                'background-color': 'red',
+   	                            'border-radius': '6px 6px 0 0'
+                                }">DON'T TOUCH
+        </div>
+        <div class="col-xs-12" ng-style="match.competition.graphics.match_decoration?{                       
                                 'height': '40px',
                                 'background-size': 'cover',
                                 'border-radius': '5px 5px 0 0',
                                 'background-repeat': 'no-repeat',
                                 'background-position': '50%',
                                 'background-image':'url('+match.competition.graphics.match_decoration+')'}:''">
-                        </div>
+        </div>
         <!--{{match}}-->
         <div ng-show="match.state == 0" class="panel-heading col-xs-12 text-center" sty=" font-weight: bold;
     font-size: large;">
@@ -27,15 +37,17 @@
             <team-link teamid="match.away_team._id" teamshort="match.away_team.name.short" teamfull="match.away_team.name.en"></team-link>
         </div>
 
-        <div  class="panel-body col-xs-12 p0" style="min-height: 131px;">
+        <div class="panel-body col-xs-12 p0" style="min-height: 131px;">
             <div class="col-xs-12 p0 pl-lg pr-lg">
                 <div class="col-xs-4 p0 text-center">
                     <img ng-if="match.home_team.logo" class="thumb48" ng-src="{{match.home_team.logo}}" />
                 </div>
-                <div class="col-xs-4 p0 text-muted text-center"><h4>VS</h4></div>
-                 <div class="col-xs-4 p0 text-center">
-                    <img ng-if="match.away_team.logo"  class="thumb48" ng-src="{{match.away_team.logo}}" />
-                  
+                <div class="col-xs-4 p0 text-muted text-center">
+                    <h4>VS</h4>
+                </div>
+                <div class="col-xs-4 p0 text-center">
+                    <img ng-if="match.away_team.logo" class="thumb48" ng-src="{{match.away_team.logo}}" />
+
                 </div>
             </div>
             <div ng-show="match.state > 0 && !match.completed" class="time mb-sm mt-lg text-center"> <em class="fa fa-clock-o "></em> {{match.time}}'</div>
