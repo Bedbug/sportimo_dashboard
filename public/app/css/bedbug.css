@@ -59,7 +59,7 @@
 
 /*Timeline Tabs Behaviour*/
 .match-tab-text { display: inline-block; }
-@media (max-width: 1694px) { 
+@media (max-width: 1720px) { 
   .match-tab-text { display: none; }
 }
 

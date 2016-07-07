@@ -16,8 +16,10 @@
                     <label class="col-sm-2 control-label">Status</label>
                     <div class="btn-group col-sm-10 bottom-space">
                         <div class="btn-group col-sm-12 no-padding">
-                            <label ng-model="selectedGameCard.isVisible" uib-btn-radio="true" ng-class="selectedGameCard.isVisible?'btn-primary':'btn-default'" class="col-xs-6 btn">Visible</label>
-                            <label ng-model="selectedGameCard.isVisible" uib-btn-radio="false" ng-class="!selectedGameCard.isVisible?'outline':'btn-default'" class="col-xs-6 btn">Not Visible</label>
+                            <label ng-model="selectedGameCard.isVisible" uib-btn-radio="true" ng-class="selectedGameCard.isVisible?'btn-primary':'btn-default'"
+                                class="col-xs-6 btn">Visible</label>
+                            <label ng-model="selectedGameCard.isVisible" uib-btn-radio="false" ng-class="!selectedGameCard.isVisible?'outline':'btn-default'"
+                                class="col-xs-6 btn">Not Visible</label>
                         </div>
                     </div>
                     <label class="col-sm-2 control-label">Type</label>
@@ -80,6 +82,140 @@
                     <input type="text" ng-model="selectedGameCard.activationLatency" class="form-control" />
                 </div>
 
+                <div class="col-xs-offset-2 col-xs-10 panel">
+                    <uib-tabset class="mt-lg">
+
+                        <uib-tab heading="Appear Conditions">
+                            <span class="btn-group col-xs-12 p0 mb-sm mr-lg mt-sm">
+                            <button ng-click="addNewCondition(selectedGameCard,'appearConditions', selectedGameCard.cardType)" class="btn btn-default btn-outline col-xs-10 m0">Add condition</button>
+                            <button type="button" ng-model="debugConditions" uib-btn-checkbox="btn-checkbox" btn-checkbox-true="true" btn-checkbox-false="false" class="btn col-xs-2" ng-class="debugConditions?'btn-primary':'btn-default'">Debug</button>
+                            </span>
+                            <div ng-repeat="condition in selectedGameCard.appearConditions" class="col-xs-12 pb-lg condition-item">
+                                <div class="form-group col-xs-12 p0">
+
+                                    <multi-lang-text ng-if="debugConditions" language-object="condition" default="stat"></multi-lang-text>
+
+                                    <!-- SELECT STAT -->
+                                    <div class="col-xs-12 p0">
+                                        <div class="col-xs-12 p0">
+                                            <div class="select-input mb0">
+                                                <ui-select append-to-body="true" on-select="onStatSelection(condition,$item,$model)" ng-model="condition.stat" theme="bootstrap"
+                                                    ng-disabled="uisel.disabled">
+                                                    <ui-select-match placeholder="Select stat">{{$select.selected.name}}</ui-select-match>
+                                                    <ui-select-choices repeat="stat.property as stat in statSelections | filter: $select.search">
+                                                        <div ng-bind-html="stat.name | highlight: $select.search"></div>
+                                                    </ui-select-choices>
+                                                </ui-select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!--SELECT TAG-->
+                                    <div class="select-input mb0 col-xs-12">
+                                        <ui-select on-remove="onChangeCallback(card)" on-select="onAddtag(condition,$item,$model)" ng-model="condition.id" theme="bootstrap"
+                                            ng-disabled="uisel.disabled">
+                                            <ui-select-match placeholder="Select reference">{{$select.selected.name.en}}</ui-select-match>
+                                            <ui-select-choices group-by="'type'" repeat="tag._id as tag in matchTags | filter: $select.search">
+                                                <div ng-bind-html="tag.name.en | highlight: $select.search"></div>
+                                            </ui-select-choices>
+                                        </ui-select>
+                                    </div>
+
+
+                                    <!--SELECT COMPERATIVE-->
+
+                                    <div ng-if="selectedGameCard.cardType == 'Overall'" class="select-input mb0 col-xs-12">
+                                        <ui-select on-remove="onConditionalChange(selectedGameCard)" on-select="onSelectedCompare(condition,$item,$model)" ng-model="condition.comparisonOperator"
+                                            theme="bootstrap">
+                                            <ui-select-match placeholder="Select comparative method if any">{{$select.selected.symbol}}</ui-select-match>
+                                            <ui-select-choices repeat="tag.type as tag in comparativeAppearMethods | filter: $select.search">
+                                                <div ng-bind-html="tag.symbol | highlight: $select.search"></div>
+                                            </ui-select-choices>
+                                        </ui-select>
+                                    </div>
+
+                                    <div ng-show="condition.comparisonOperator != 'by'" class="col-xs-12 p0">
+                                        <input type="number" ng-change="condition.remaining = condition.statTotal" ng-model="condition.statTotal" class="form-control"
+                                        />
+                                    </div>
+
+                                    <div ng-show="condition.comparisonOperator == 'by'" class="col-xs-12 p0">
+                                        <input type="number" ng-model="condition.remaining" class="form-control" />
+                                    </div>
+
+
+                                    <button type="button" ng-click="selectedGameCard.appearConditions = removeCondition(selectedGameCard.appearConditions, condition)"
+                                        class="col-xs-12 btn delete">Delete condition</button>
+                                </div>
+                            </div>
+
+                        </uib-tab>
+
+                        <uib-tab ng-if="selectedGameCard.cardType=='Overall'" heading="Termination Conditions">
+                            <span class="btn-group col-xs-12 p0 mb-sm mr-lg mt-sm">
+                            <button ng-click="addNewCondition(selectedGameCard,'terminationConditions', selectedGameCard.cardType)" class="btn btn-default btn-outline col-xs-10 m0">Add condition</button>
+                            <button type="button" ng-model="debugConditions" uib-btn-checkbox="btn-checkbox" btn-checkbox-true="true" btn-checkbox-false="false" class="btn col-xs-2" ng-class="debugConditions?'btn-primary':'btn-default'">Debug</button>
+                            </span>
+                            <div ng-repeat="condition in selectedGameCard.terminationConditions" class="col-xs-12 condition-item">
+                                <div class="form-group col-xs-12 p0">
+
+                                    <multi-lang-text ng-if="debugConditions" language-object="condition" default="stat"></multi-lang-text>
+
+                                  
+
+
+                                    <!-- SELECT STAT -->
+                                    <div class="col-xs-12 p0">
+                                        <div class="col-xs-12 p0">
+                                            <div class="select-input mb0">
+                                                <ui-select append-to-body="true" on-select="onStatSelection(condition,$item,$model)" ng-model="condition.stat" theme="bootstrap"
+                                                    ng-disabled="uisel.disabled">
+                                                    <ui-select-match placeholder="Select stat">{{$select.selected.name}}</ui-select-match>
+                                                    <ui-select-choices repeat="stat.property as stat in statSelections | filter: $select.search">
+                                                        <div ng-bind-html="stat.name | highlight: $select.search"></div>
+                                                    </ui-select-choices>
+                                                </ui-select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                      <!--SELECT TAG-->
+                                    <div class="select-input mb0 col-xs-12">
+                                        <ui-select on-remove="onChangeCallback(card)" on-select="onAddtag(condition,$item,$model)" ng-model="condition.id" theme="bootstrap"
+                                            ng-disabled="uisel.disabled">
+                                            <ui-select-match placeholder="Select reference">{{$select.selected.name.en}}</ui-select-match>
+                                            <ui-select-choices group-by="'type'" repeat="tag._id as tag in matchTags | filter: $select.search">
+                                                <div ng-bind-html="tag.name.en | highlight: $select.search"></div>
+                                            </ui-select-choices>
+                                        </ui-select>
+                                    </div>
+
+                                    <!--SELECT COMPERATIVE-->
+                                    <div ng-if="selectedGameCard.cardType == 'Overall'" class="select-input mb0 col-xs-12">
+                                        <ui-select on-remove="onConditionalChange(selectedGameCard)" on-select="onSelectedCompare(condition,$item,$model)" ng-model="condition.comparativeOperator"
+                                            theme="bootstrap">
+                                            <ui-select-match placeholder="Select comparative method if any">{{$select.selected.symbol}}</ui-select-match>
+                                            <ui-select-choices repeat="tag.type as tag in comparativeTerminationMethods | filter: $select.search">
+                                                <div ng-bind-html="tag.symbol | highlight: $select.search"></div>
+                                            </ui-select-choices>
+                                        </ui-select>
+                                    </div>
+
+                                    <div class="col-xs-12 p0">
+                                        <input type="number" ng-model="condition.remaining" class="form-control" />
+                                    </div>
+
+
+                                    <!--NEGATION-->
+                                    <button ng-if="!condition.comparativeOperator" type="button" ng-model="condition.conditionNegation" uib-btn-checkbox="btn-checkbox"
+                                        btn-checkbox-true="true" btn-checkbox-false="false" class="btn col-xs-12 mb-sm" ng-class="condition.conditionNegation?'btn-primary':'btn-default'">Negation</button>
+                                    <button type="button" ng-click="selectedGameCard.terminationConditions = removeCondition(selectedGameCard.terminationConditions, condition)"
+                                        class="col-xs-12 btn delete">Delete condition</button>
+                                </div>
+                            </div>
+                        </uib-tab>
+                    </uib-tabset>
+                </div>
                 <!--<label class="col-sm-2 control-label">Sponsor</label>
                         <div class="col-sm-10">
 
@@ -156,7 +292,7 @@
                     <uib-tabset class="mt-lg">
                         <uib-tab heading="Win Conditions">
                             <span class="btn-group col-xs-12 p0 mb-sm mr-lg mt-sm">
-                            <button ng-click="addNewWinCondition(option.winConditions,selectedGameCard.cardType)" class="btn btn-default btn-outline col-xs-10 m0">Add condition</button>
+                            <button ng-click="addNewCondition(option, 'winConditions',selectedGameCard.cardType)" class="btn btn-default btn-outline col-xs-10 m0">Add condition</button>
                             <button type="button" ng-model="debugConditions" uib-btn-checkbox="btn-checkbox" btn-checkbox-true="true" btn-checkbox-false="false" class="btn col-xs-2" ng-class="debugConditions?'btn-primary':'btn-default'">Debug</button>
                             </span>
                             <div ng-repeat="condition in option.winConditions" class="col-xs-12 condition-item">
@@ -164,6 +300,7 @@
 
                                     <multi-lang-text ng-if="debugConditions" language-object="condition" default="stat"></multi-lang-text>
 
+                                    <!-- SELECT STAT -->
                                     <div class="col-xs-12 p0">
                                         <div class="col-xs-8 p0">
                                             <div class="select-input mb0">
@@ -176,12 +313,14 @@
                                                 </ui-select>
                                             </div>
                                         </div>
+                                    
                                         <div class="col-xs-4 p0">
-                                            <input type="number" ng-model="condition.remaining" ng-disabled="selectedGameCard.cardType == 'Overall' && condition.comparativeOperator"
+                                            <input type="number" ng-model="condition.remaining" ng-disabled="selectedGameCard.cardType == 'Overall' && condition.comparisonOperator"
                                                 class="form-control" />
                                         </div>
                                     </div>
 
+                                    <!--SELECT TAG-->
                                     <div class="select-input mb0 col-xs-12">
                                         <ui-select on-remove="onChangeCallback(card)" on-select="onAddtag(condition,$item,$model)" ng-model="condition.id" theme="bootstrap"
                                             ng-disabled="uisel.disabled">
@@ -192,8 +331,9 @@
                                         </ui-select>
                                     </div>
 
+                                    <!--SELECT COMPERATIVE-->
                                     <div ng-if="selectedGameCard.cardType == 'Overall'" class="select-input mb0 col-xs-12">
-                                        <ui-select on-remove="onConditionalChange(option)" on-select="onSelectedCompare(condition,$item,$model)" ng-model="condition.comparativeOperator"
+                                        <ui-select on-remove="onConditionalChange(option)" on-select="onSelectedCompare(condition,$item,$model)" ng-model="condition.comparisonOperator"
                                             theme="bootstrap">
                                             <ui-select-match placeholder="Select comparative method if any">{{$select.selected.symbol}}</ui-select-match>
                                             <ui-select-choices repeat="tag.type as tag in comparativeMethods | filter: $select.search">
@@ -202,7 +342,7 @@
                                         </ui-select>
                                     </div>
 
-                                    <div ng-show="condition.comparativeOperator" class="select-input mb0 col-xs-12">
+                                    <div ng-show="condition.comparisonOperator" class="select-input mb0 col-xs-12">
                                         <ui-select on-select="onAddComparativeTag(condition,$item,$model)" ng-model="condition.comparativeTeamid" theme="bootstrap"
                                             ng-disabled="uisel.disabled">
                                             <ui-select-match placeholder="Select reference">{{$select.selected.name.en}}</ui-select-match>
@@ -211,22 +351,26 @@
                                             </ui-select-choices>
                                         </ui-select>
                                     </div>
+                                    <!--NEGATION-->
                                     <button ng-if="!condition.comparativeOperator" type="button" ng-model="condition.conditionNegation" uib-btn-checkbox="btn-checkbox"
                                         btn-checkbox-true="true" btn-checkbox-false="false" class="btn col-xs-12 mb-sm" ng-class="condition.conditionNegation?'btn-primary':'btn-default'">Negation</button>
                                     <button type="button" ng-click="option.winConditions = removeCondition(option.winConditions, condition)" class="col-xs-12 btn delete">Delete condition</button>
                                 </div>
-
-
-
                             </div>
                         </uib-tab>
 
                         <uib-tab heading="Appear Conditions">
-                            <button ng-click="addNewWinCondition(option.appearConditions)" class="btn btn-default btn-outline mb-sm mr-lg col-xs-12">Add condition</button>
-                            <div ng-repeat="condition in option.appearConditions">
+                            <span class="btn-group col-xs-12 p0 mb-sm mr-lg mt-sm">
+                            <button ng-click="addNewCondition(option,'appearConditions', selectedGameCard.cardType)" class="btn btn-default btn-outline col-xs-10 m0">Add condition</button>
+                            <button type="button" ng-model="debugConditions" uib-btn-checkbox="btn-checkbox" btn-checkbox-true="true" btn-checkbox-false="false" class="btn col-xs-2" ng-class="debugConditions?'btn-primary':'btn-default'">Debug</button>
+                            </span>
+                            <div ng-repeat="condition in option.appearConditions" class="col-xs-12 mb-lg condition-item">
+                                <div class="form-group col-xs-12 p0">
 
-                                <div class="form-group col-xs-12 pr0">
-                                    <div class="select-input mb0">
+                                    <multi-lang-text ng-if="debugConditions" language-object="condition" default="stat"></multi-lang-text>
+
+                                    <!--SELECT TAG-->
+                                    <div class="select-input mb0 col-xs-12">
                                         <ui-select on-remove="onChangeCallback(card)" on-select="onAddtag(condition,$item,$model)" ng-model="condition.id" theme="bootstrap"
                                             ng-disabled="uisel.disabled">
                                             <ui-select-match placeholder="Select reference">{{$select.selected.name.en}}</ui-select-match>
@@ -236,18 +380,62 @@
                                         </ui-select>
                                     </div>
 
-                                    <multi-lang-text language-object="condition" default="stat"></multi-lang-text>
+
+                                    <!-- SELECT STAT -->
+                                    <div class="col-xs-12 p0">
+                                        <div class="col-xs-12 p0">
+                                            <div class="select-input mb0">
+                                                <ui-select append-to-body="true" on-select="onStatSelection(condition,$item,$model)" ng-model="condition.stat" theme="bootstrap"
+                                                    ng-disabled="uisel.disabled">
+                                                    <ui-select-match placeholder="Select stat">{{$select.selected.name}}</ui-select-match>
+                                                    <ui-select-choices repeat="stat.property as stat in statSelections | filter: $select.search">
+                                                        <div ng-bind-html="stat.name | highlight: $select.search"></div>
+                                                    </ui-select-choices>
+                                                </ui-select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <!--SELECT COMPERATIVE-->
+
+                                    <div ng-if="selectedGameCard.cardType == 'Overall'" class="select-input mb0 col-xs-12">
+                                        <ui-select on-remove="onConditionalChange(option)" on-select="onSelectedCompare(condition,$item,$model)" ng-model="condition.comparisonOperator"
+                                            theme="bootstrap">
+                                            <ui-select-match placeholder="Select comparative method if any">{{$select.selected.symbol}}</ui-select-match>
+                                            <ui-select-choices repeat="tag.type as tag in comparativeAppearMethods | filter: $select.search">
+                                                <div ng-bind-html="tag.symbol | highlight: $select.search"></div>
+                                            </ui-select-choices>
+                                        </ui-select>
+                                    </div>
+
+                                    <div ng-show="condition.comparisonOperator != 'by'" class="col-xs-12 p0">
+                                        <input type="number" ng-change="condition.remaining = condition.statTotal" ng-model="condition.statTotal" class="form-control"
+                                        />
+                                    </div>
+
+                                    <div ng-show="condition.comparisonOperator == 'by'" class="col-xs-12 p0">
+                                        <input type="number" ng-model="condition.remaining" class="form-control" />
+                                    </div>
+
+                                    <button type="button" ng-click="option.appearConditions = removeCondition(option.appearConditions, condition)" class="col-xs-12 btn delete">Delete condition</button>
                                 </div>
-                                <button type="button" ng-click="option.appearConditions = removeCondition(option.appearConditions, condition)" class="col-xs-12 btn delete"></button>
                             </div>
+
                         </uib-tab>
 
                         <uib-tab ng-if="selectedGameCard.cardType=='Overall'" heading="Termination Conditions">
-                            <button ng-click="addNewWinCondition(option.terminationConditions)" class="btn btn-default btn-outline mb-sm mr-lg col-xs-12">Add condition</button>
-                            <div ng-repeat="condition in option.terminationConditions">
+                            <span class="btn-group col-xs-12 p0 mb-sm mr-lg mt-sm">
+                            <button ng-click="addNewCondition(option,'terminationConditions', selectedGameCard.cardType)" class="btn btn-default btn-outline col-xs-10 m0">Add condition</button>
+                            <button type="button" ng-model="debugConditions" uib-btn-checkbox="btn-checkbox" btn-checkbox-true="true" btn-checkbox-false="false" class="btn col-xs-2" ng-class="debugConditions?'btn-primary':'btn-default'">Debug</button>
+                            </span>
+                            <div ng-repeat="condition in option.terminationConditions" class="col-xs-12 pb-lg condition-item">
+                                <div class="form-group col-xs-12 p0">
 
-                                <div class="form-group col-xs-12 pr0">
-                                    <div class="select-input mb0">
+                                    <multi-lang-text ng-if="debugConditions" language-object="condition" default="stat"></multi-lang-text>
+
+                                    <!--SELECT TAG-->
+                                    <div class="select-input mb0 col-xs-12">
                                         <ui-select on-remove="onChangeCallback(card)" on-select="onAddtag(condition,$item,$model)" ng-model="condition.id" theme="bootstrap"
                                             ng-disabled="uisel.disabled">
                                             <ui-select-match placeholder="Select reference">{{$select.selected.name.en}}</ui-select-match>
@@ -257,10 +445,45 @@
                                         </ui-select>
                                     </div>
 
-                                    <multi-lang-text language-object="condition" default="stat"></multi-lang-text>
+
+                                    <!-- SELECT STAT -->
+                                    <div class="col-xs-12 p0">
+                                        <div class="col-xs-12 p0">
+                                            <div class="select-input mb0">
+                                                <ui-select append-to-body="true" on-select="onStatSelection(condition,$item,$model)" ng-model="condition.stat" theme="bootstrap"
+                                                    ng-disabled="uisel.disabled">
+                                                    <ui-select-match placeholder="Select stat">{{$select.selected.name}}</ui-select-match>
+                                                    <ui-select-choices repeat="stat.property as stat in statSelections | filter: $select.search">
+                                                        <div ng-bind-html="stat.name | highlight: $select.search"></div>
+                                                    </ui-select-choices>
+                                                </ui-select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <!--SELECT COMPERATIVE-->
+                                    <div ng-if="selectedGameCard.cardType == 'Overall'" class="select-input mb0 col-xs-12">
+                                        <ui-select on-remove="onConditionalChange(option)" on-select="onSelectedCompare(condition,$item,$model)" ng-model="condition.comparativeOperator"
+                                            theme="bootstrap">
+                                            <ui-select-match placeholder="Select comparative method if any">{{$select.selected.symbol}}</ui-select-match>
+                                            <ui-select-choices repeat="tag.type as tag in comparativeTerminationMethods | filter: $select.search">
+                                                <div ng-bind-html="tag.symbol | highlight: $select.search"></div>
+                                            </ui-select-choices>
+                                        </ui-select>
+                                    </div>
+
+                                    <div class="col-xs-12 p0">
+                                        <input type="number" ng-model="condition.remaining" class="form-control" />
+                                    </div>
+
+
+                                    <!--NEGATION-->
+                                    <button ng-if="!condition.comparativeOperator" type="button" ng-model="condition.conditionNegation" uib-btn-checkbox="btn-checkbox"
+                                        btn-checkbox-true="true" btn-checkbox-false="false" class="btn col-xs-12 mb-sm" ng-class="condition.conditionNegation?'btn-primary':'btn-default'">Negation</button>
+                                    <button type="button" ng-click="option.terminationConditions = removeCondition(option.terminationConditions, condition)"
+                                        class="col-xs-12 btn delete">Delete condition</button>
                                 </div>
-                                <button type="button" ng-click="option.terminationConditions = removeCondition(option.terminationConditions, condition)"
-                                    class="col-xs-12 btn delete"></button>
                             </div>
                         </uib-tab>
                     </uib-tabset>
@@ -275,7 +498,7 @@
     </div>
 
 </div>
-<div class="col-xs-12 p0 pb-lg">
+<div class="col-xs-12 p0 pb-lg panel">
     <div class="col-xs-10">
         <div ng-show="selectedGameCard._id" class="col-xs-5 col-xs-offset-3">
             <!--ng-disabled="selectedGameCard.status == 1"-->

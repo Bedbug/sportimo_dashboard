@@ -7114,14 +7114,14 @@ ObjectId.prototype.toString = function () {
 			item.remove().then(function () {
 				vm.items = _.without(vm.items, item);
 				vm.loading.updating = false;
-				
+
 			})
 
 		}
 
-		vm.SyncUsers = function(){
+		vm.SyncUsers = function () {
 			vm.loading.syncing = true;
-			AchievementsService.SyncAll(vm.recalculate).then(function(){
+			AchievementsService.SyncAll(vm.recalculate).then(function () {
 				vm.loading.syncing = false;
 				vm.needsSync = false;
 			})
@@ -7130,7 +7130,7 @@ ObjectId.prototype.toString = function () {
 
 	}
 
-	
+
 	AchievementsService.$inject = ['$resource', 'Restangular', '$rootScope', '$q'];
 	function AchievementsService($resource, Restangular, $rootScope, $q) {
 
@@ -7156,12 +7156,12 @@ ObjectId.prototype.toString = function () {
 				});
 				return Defer.promise;
 			},
-			SyncAll: function(recalculate){
+			SyncAll: function (recalculate) {
 				var Defer = $q.defer();
-				Restangular.all('v1/users/update').get('achievements/'+recalculate)
-				.then(function (result) {
-					Defer.resolve(result);
-				});
+				Restangular.all('v1/users/update').get('achievements/' + recalculate)
+					.then(function (result) {
+						Defer.resolve(result);
+					});
 				return Defer.promise;
 			}
 		}
@@ -7593,7 +7593,23 @@ ObjectId.prototype.toString = function () {
 
 		vm.gamecardTemplates = {};
 		vm.selectedGameCard = null;
+
 		vm.comparativeMethods = [{ symbol: 'No comparison', type: null }, { symbol: 'will have more than', type: 'gt' }, { symbol: 'will have less than', type: 'lt' }, { symbol: 'will have equal to', type: 'eq' }];
+		
+		vm.comparativeAppearMethods = [
+			// { symbol: 'is more than', type: 'gt' },
+			{ symbol: 'is less than', type: 'lt' },
+			{ symbol: 'is not changed by', type: 'by' }
+			//  , { symbol: 'is equal to', type: 'eq' }
+		];
+
+		vm.comparativeTerminationMethods = [
+			// { symbol: 'is more than', type: 'gt' },
+			// { symbol: 'is less than', type: 'lt' },
+			// { symbol: 'is not changed by', type: 'by' }
+			{ symbol: 'is equal to', type: 'eq' }
+		];
+
 
 		vm.statSelections = [
 			{ name: 'Goal', property: 'Goal' },
@@ -7604,13 +7620,17 @@ ObjectId.prototype.toString = function () {
 			{ name: 'Offside', property: 'Offside' },
 			{ name: 'Possession', property: 'Possession' },
 			{ name: 'Penalty', property: 'Penalty' },
-			{ name: 'Shot on goal', property: 'Shot_on_Goal' }
+			{ name: 'Shot on goal', property: 'Shot_on_Goal' },
+			{ name: 'Match Time', property: 'Minute' },
+			{ name: 'Match Segment', property: 'Segment' },
+			{ name: 'Match Terminated', property: 'Terminated' }
 		]
-
 
 		vm.icons = [
 			{ spriteName: 'Corner', name: 'corner', filename: 'corner.png' },
 			{ spriteName: 'Score', name: 'exact-score', filename: 'exact-score.png' },
+			{ spriteName: 'CleanSheet', name: 'cleansheet', filename: 'clean-sheet.png' },
+			{ spriteName: 'MostShots', name: 'most-shots-target', filename: 'most-shots-on-target.svg' },
 			{ spriteName: 'Foul', name: 'foul', filename: 'foul-icon.png' },
 			{ spriteName: 'Goal', name: 'goal', filename: 'goal2.png' },
 			{ spriteName: 'Double yellow', name: 'most-yellow', filename: 'most-yellow.png' },
@@ -7780,13 +7800,23 @@ ObjectId.prototype.toString = function () {
 			})
 		}
 
-		vm.addNewWinCondition = function (context, type) {
-			console.log("Add new")
+		vm.addNewCondition = function (context, key, type) {
+			console.log("Add new condition")
+
+			if (context[key] == null)
+				context[key] = [];
+
 			if (type == 'Instant') {
 				var emptyCondition = {
 					id: null
 				}
-				context.push(emptyCondition);
+				context[key].push(emptyCondition);
+			}
+			else {
+				var emptyCondition = {
+					id: null
+				}
+				context[key].push(emptyCondition);
 			}
 
 		}
@@ -8557,7 +8587,7 @@ ObjectId.prototype.toString = function () {
 			$scope.sendEvent(addEventData);
 		}
 
-		$scope.toggleCompleted =  function (id) {
+		$scope.toggleCompleted = function (id) {
 
 			$http({
 				method: 'GET',
@@ -8687,6 +8717,35 @@ ObjectId.prototype.toString = function () {
 
 		vm.transStat = function (stat) {
 			return StatsService.transStat(stat);
+		}
+
+		var h2hresults = ["W","L","D",""];
+		vm.changeResult = function(arr, indx){
+			console.log(arr[indx]);
+			var posIndx = _.findIndex(h2hresults, function (o){
+				return o === arr[indx];
+			});
+			console.log(posIndx);
+			posIndx++;
+
+			if(posIndx > h2hresults.length-1)
+				posIndx = 0;
+
+				arr[indx] = h2hresults[posIndx];
+
+				console.log(h2hresults[posIndx]);
+
+				$http({
+					method: 'POST',
+					url: $rootScope.servers[$rootScope.serverEnvironment].game_server + 'v1/data/match/' + $stateParams.id + '/headtohead',
+					data: arr
+				}).then(function successCallback(response) {
+					// $scope.match = AddHooks(response.data);
+					$rootScope.toast("Head to head updated")
+				}, function errorCallback(response) {
+					// called asynchronously if an error occurs
+					// or server returns response with an error status.
+				});
 		}
 		// $scope.players = [
 		//     {
@@ -9727,9 +9786,11 @@ ObjectId.prototype.toString = function () {
 			vm.SelectedPoll.answers = _.without(vm.SelectedPoll.answers, answer);
 		}
 
-		vm.deletePoll = function (poll) {
+		vm.DeletePoll = function (poll) {
+			console.log(poll);
 			PollsService.Remove(poll).then(function (result) {
-				vm.pools = _.without(vm.polls, poll);
+				vm.polls = _.without(vm.polls, poll);
+				vm.SelectedPoll = null;
 			})
 		}
 
@@ -9863,6 +9924,7 @@ ObjectId.prototype.toString = function () {
 				message: true,
 				push: false,
 				sockets: true
+				
 			};
 		}
 
@@ -10030,6 +10092,20 @@ ObjectId.prototype.toString = function () {
 		vm.gamecardTemplates = {};
 		vm.selectedGameCard = null;
 		vm.comparativeMethods = [{ symbol: 'No comparison', type: null }, { symbol: 'will have more than', type: 'gt' }, { symbol: 'will have less than', type: 'lt' }, { symbol: 'will have equal to', type: 'eq' }];
+		vm.comparativeAppearMethods = [
+			// { symbol: 'is more than', type: 'gt' },
+			{ symbol: 'is less than', type: 'lt' },
+			{ symbol: 'is not changed by', type: 'by' }
+			//  , { symbol: 'is equal to', type: 'eq' }
+		];
+		vm.comparativeTerminationMethods = [
+			// { symbol: 'is more than', type: 'gt' },
+			// { symbol: 'is less than', type: 'lt' },
+			// { symbol: 'is not changed by', type: 'by' }
+			{ symbol: 'is equal to', type: 'eq' }
+		];
+
+
 		vm.onAddComparativeTag = function (condition, item, model) {
 			if (!vm.isTemplateDefinitions) {
 				// let's delete stuff. Yay!!
@@ -10063,12 +10139,17 @@ ObjectId.prototype.toString = function () {
 			{ name: 'Offside', property: 'Offside' },
 			{ name: 'Possession', property: 'Possession' },
 			{ name: 'Penalty', property: 'Penalty' },
-			{ name: 'Shot on goal', property: 'Shot_on_Goal' }
+			{ name: 'Shot on goal', property: 'Shot_on_Goal' },
+			{ name: 'Match Time', property: 'Minute' },
+			{ name: 'Match Segment', property: 'Segment' },
+			{ name: 'Match Terminated', property: 'Terminated' }
 		]
 
 		vm.icons = [
 			{ spriteName: 'Corner', name: 'corner', filename: 'corner.png' },
 			{ spriteName: 'Score', name: 'exact-score', filename: 'exact-score.png' },
+			{ spriteName: 'CleanSheet', name: 'cleansheet', filename: 'clean-sheet.png' },
+			{ spriteName: 'MostShots', name: 'most-shots-target', filename: 'most-shots-on-target.svg' },
 			{ spriteName: 'Foul', name: 'foul', filename: 'foul-icon.png' },
 			{ spriteName: 'Goal', name: 'goal', filename: 'goal2.png' },
 			{ spriteName: 'Double yellow', name: 'most-yellow', filename: 'most-yellow.png' },
@@ -10084,8 +10165,7 @@ ObjectId.prototype.toString = function () {
 			{ spriteName: 'ShotOn', name: 'shoton', filename: 'shoton.png' },
 			{ spriteName: 'Sub1', name: 'sub1', filename: 'sub1.png' },
 			{ spriteName: 'Sub2', name: 'sub2', filename: 'sub2' },
-			{ spriteName: 'Score', name: 'who-will-score', filename: 'who-will-score.png' }
-		];
+			{ spriteName: 'Score', name: 'who-will-score', filename: 'who-will-score.png' }];
 
 		vm.getSpriteFilename = function (sprite) {
 			var selectedSprite = _.find(vm.icons, { name: sprite });
@@ -10235,19 +10315,23 @@ ObjectId.prototype.toString = function () {
 			})
 		}
 
-		vm.addNewWinCondition = function (context, type) {
-			console.log("Add new")
+		vm.addNewCondition = function (context, key, type) {
+			console.log("Add new condition")
+
+			if (context[key] == null)
+				context[key] = [];
+
 			if (type == 'Instant') {
 				var emptyCondition = {
 					id: null
 				}
-				context.push(emptyCondition);
+				context[key].push(emptyCondition);
 			}
 			else {
 				var emptyCondition = {
 					id: null
 				}
-				context.push(emptyCondition);
+				context[key].push(emptyCondition);
 			}
 
 		}

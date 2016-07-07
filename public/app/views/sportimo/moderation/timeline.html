@@ -109,11 +109,11 @@
                             <em class="fa fa-refresh fa-fw"></em>Own Goal
                         </button>
                     </div>
-                    <div class="col-xs-12 mt">
+                    <!--<div class="col-xs-12 mt">
                         <button ng-click="createEvent('Substitution',{Substitution:1})" type="button" class="btn btn-lg btn-default col-xs-12 m0">
                             <em class="fa fa-refresh fa-fw"></em>Substitution
                         </button>
-                    </div>
+                    </div>-->
                     <div class="col-xs-12 mt">
                         <button ng-click="sendCancel()" ng-show="!needUpdate._id" type="button" class="mb-sm btn btn-warning col-xs-12">Remove</button>
                     </div>
@@ -130,7 +130,7 @@
                                 <div class="rounded pl" ng-class="needUpdate.type.toLowerCase()" style="line-height:30px">
                                     <strong>{{"  "+needUpdate.time+"'&nbsp;&nbsp;"+ capitalize(needUpdate.type) + "&nbsp;&nbsp;-&nbsp;&nbsp;"}}</strong>
                                     <img class="thumb24 btn-space" style="margin-bottom: 5px;" ng-if="match.data[needUpdate.team].logo" ng-src="{{match.data[needUpdate.team].logo}}"
-                                    />{{match.data.home_team.name.en}}
+                                    />{{match.data[needUpdate.team].name.en}}
                                 </div>
                             </div>
 
@@ -185,7 +185,7 @@
                             <div class="rounded pl" ng-class="needUpdate.type.toLowerCase()" style="line-height:30px">
                                 <strong>{{"  "+needUpdate.time+"'&nbsp;&nbsp;"+ capitalize(needUpdate.type) + "&nbsp;&nbsp;-&nbsp;&nbsp;"}}</strong>
                                 <img class="thumb24 btn-space" ng-if="match.data[needUpdate.team].logo" style="margin-bottom: 5px;" ng-src="{{match.data[needUpdate.team].logo}}"
-                                />{{match.data.home_team.name.en}}
+                                />{{match.data[needUpdate.team].name.en}}
                             </div>
                         </div>
                         <div class="col-xs-4 " ng-init="filterTeamPlayers=true">
