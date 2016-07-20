@@ -42,7 +42,7 @@
 			'app.mailbox',
 			'app.utils',
 			'app.material',
-			'app.pushes',
+			'app.messages',
 			'app.activities',
 			'app.interviews',
 			'app.welcomes',
@@ -67,7 +67,7 @@
 	'use strict';
 
 	angular
-		.module('app.pushes', []);
+		.module('app.messages', []);
 })();
 
 (function () {
@@ -3046,6 +3046,8 @@
 		$rootScope.$stateParams = $stateParams;
 		$rootScope.$storage = $window.localStorage;
 
+		$rootScope.version = "v0.9.5";
+
 		$rootScope.toggleEnvironment = function () {
 			if ($rootScope.serverEnvironment == 'production')
 				$rootScope.serverEnvironment = $rootScope.$storage.environment = 'development';
@@ -3081,6 +3083,11 @@
 				hideDelay: 5000,
 				position: 'top right'
 			});
+		}
+
+		$rootScope.debugState = false;
+		$rootScope.toggleDebugState = function () {
+			$rootScope.debugState = !$rootScope.debugState;
 		}
 
 		$rootScope.servers = {
@@ -4078,7 +4085,7 @@ ObjectId.prototype.toString = function () {
 	'use strict';
 
 	angular
-		.module('app.pushes')
+		.module('app.messages')
 		.filter('filterLastAction', function () {
 			return function (items, coddition) {
 
@@ -4101,236 +4108,167 @@ ObjectId.prototype.toString = function () {
 				return result;
 			};
 		})
-		.controller('SportimoPushesController', SportimoPushesController);
+		.controller('MessagesController', MessagesController)
+		.directive('messageEditor', messageEditor)
+		.service('MessagesService', MessagesService);
+
+	MessagesService.$inject = ['$rootScope', '$q', 'Restangular'];
+	MessagesController.$inject = ['$scope', 'Restangular', 'toaster', 'UsersService', 'MessagesService'];
+
+	function MessagesController($scope, Restangular, toaster, UsersService, MessagesService) {
+
+		$scope.view = {
+			sendingMessage: false
+		}
+
+		$scope.allSendMessages = [];
+		MessagesService.GetAll().then(function (messages) {
+			$scope.allSendMessages = messages;
+		})
+
+		// TODO: User Messages
+		$scope.sendMessage = function () {
+			$scope.view.sendingMessage = true;
+			UserService.sendMessage($scope.selectedMessage.recipients, $scope.selectedMessage)
+				.then(function (res, err) {
+					$scope.selectedMessage = null;
+					$scope.view.sendingMessage = false;
+					$rootScope.toast("Message sent succesfuly to " + recipients.length + " users.")
+				});
+		}
 
 
-	SportimoPushesController.$inject = ['$scope', 'Restangular', 'toaster'];
+		$scope.onUserSelect = function ($item, $model, $label) {
+
+			if (!$scope.selectedMessage)
+				$scope.selectedMessage = {
+					_id: new ObjectId().toString(),
+					recipients: [$item._id],
+					title: { en: "" },
+					msg: { en: "" }
+				};
+			else
+				$scope.selectedMessage.recipients = $scope.ctrl.recipients;
+
+			if ($scope.selectedMessage.recipients.length == 0) delete $scope.selectedMessage.recipients;
+		}
+
+		$scope.onAllSelect = function () {
+			$scope.selectedMessage = {
+				_id: new ObjectId().toString(),
+				title: { en: "" },
+				msg: { en: "" }
+			};
+
+			$scope.ctrl.recipients = [];
+		}
 
 
-	function SportimoPushesController($scope, Restangular, toaster) {
+		$scope.selectedMessage = null;
+		$scope.editMessage = function (message) {
+			$scope.selectedMessage = message;
+			$scope.selectedMessage.message = true;
+		}
 
-		$scope.pushLoading = false;
-		$scope.reloadingServer = false;
-		$scope.allItems = [];
-		$scope.push = {};
 
-		var Items = Restangular.all('users');
-		var Push = Restangular.all('push');
 
-		Restangular.setBaseUrl($rootScope.servers[$rootScope.serverEnvironment].game_server + 'v1/notifications/');
-		//        Restangular.setBaseUrl('http://sportimo_cardsserver.mod.bz/v1/notifications/');
-		//Restangular.setBaseUrl('http://localhost:3030/v1/notifications/');
+		$scope.removeMessage = function (message) {
+			message.remove().then(function (err, result) {
+				if (!err)
+					$scope.allSendMessages = _.without($scope.allSendMessages, message);
+			})
+		};
+
+		$scope.searchUsers = function (val) {
+
+			return UsersService.findUsers(val)
+				.then(function (response) {
+					return response;
+					// response.data.results.map(function (item) {
+					// 	return item.formatted_address;
+					// });
+				});
+		};
+
+		$scope.ctrl = { recipients: [] };
+		$scope.foundUsers = [];
+		$scope.funcAsync = function (query) {
+			if (query != "")
+				UsersService.findUsers(query)
+					.then(function (response) {
+						$scope.foundUsers = response;
+					});
+		}
+	}
+
+	function MessagesService($rootScope, $q, Restangular) {
+		var API = Restangular.all('v1/data/messages');
+
+		Restangular.setBaseUrl($rootScope.servers[$rootScope.serverEnvironment].game_server);
 		Restangular.setRestangularFields({
 			id: "_id"
 		});
 
-
-		function loadItems() {
-			Items.getList().then(function (data) {
-				$scope.allItems = data;
-			});
+		return {
+			GetAll: function (skip, limit) {
+				var options = {
+					skip: skip | 0,
+					limit: limit | 20
+				}
+				var Defer = $q.defer();
+				API.getList(options).then(function (docs) {
+					Defer.resolve(docs);
+				});
+				return Defer.promise;
+			}
 		}
-
-		loadItems();
-
-		//$scope.RefreshUsers = function(){
-		//    console.log("refresh");
-		//}
+	};
 
 
-		$scope.$on('panel-refresh', function (event, id) {
-			$scope.pushLoading = true;
-			console.log('Simulating chart refresh during 3s on #' + id);
-			Items.getList().then(function (data, err) {
-				if (!err)
-					$scope.allItems = data;
-				$scope.$broadcast('removeSpinner', id);
-				$scope.pushLoading = false;
-
-			});
-
-			//// Instead of timeout you can request a chart data
-			//$timeout(function () {
-			//
-			//    // directive listen for to remove the spinner
-			//    // after we end up to perform own operations
-			//    $scope.$broadcast('removeSpinner', id);
-			//
-			//    console.log('Refreshed #' + id);
-			//
-			//}, 3000);
-
-		});
-
-		$scope.FormatDate = function (date) {
-
-			var d = new Date(date);
-			var d_string = ("0" + d.getDate()).slice(-2) + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" +
-				d.getFullYear() + " " + ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2);
-
-			return d_string;
-		};
-
-
-		$scope.pushRequest = function (Users, message, data) {
-			$scope.pushLoading = true;
-
-			if (message == undefined) {
-				toaster.pop("error", "Error", "Message cannot be empty");
-				$scope.pushLoading = false;
-				return;
-			}
-
-			var Request = {
-				application: $scope.pushService.selected.id,
-				tokens: _.pluck(Users, 'pushtoken'),
-				message: JSON.parse(message),
-				data: data != undefined ? JSON.parse(JSON.stringify(data)) : data
-			};
-
-			Push.post(Request).then(function (res) {
-				$scope.pushLoading = false;
-				toaster.pop("success", "Success", "Successfuly sent Push Request");
-				console.log(res);
-			}, function () {
-				$scope.pushLoading = false;
-				console.log("There was an error saving");
-			});
-
-		};
-
-		$scope.demomessage = "Message can be multilingual. You can send them as objects like the Data format. \n ex. \n";
-		$scope.demomessage += JSON.stringify({
-			"en": "English",
-			"ru": "Русский",
-			"de": "Deutsch"
-		}, null, 4);
-
-		$scope.demodata = JSON.stringify({
-			"match_id": "435",
-			"screen": "match"
-		}, null, 4);
-
-
-		// SELECTION
-
-		$scope.onServiceSelected = function (item, model) {
-
-			$scope.selectedService = item.id;
-
-
-		};
-
-		$scope.onSelected = function (item, model) {
-
-			$scope.push.message = JSON.stringify(item.message, null, 4);
-
-		};
-
-		$scope.onDataSelected = function (item) {
-
-			item.message.match_id = $scope.matchIdFilter;
-			$scope.push.data = JSON.stringify(item.message, null, 4);
-
-		};
-
-		////////////////
-		$scope.selectedService = "";
-		$scope.pushService = {};
-		$scope.pushServices = [
-			{
-				name: 'Production',
-				id: "F18C2-2FBDB"
+	function messageEditor() {
+		return {
+			restrict: 'E',
+			templateUrl: './app/views/sportimo/messages/components/message-editor.html',
+			scope: {
+				ngModel: '=ngModel',
+				userSelected: '=userSelected',
+				debugState: '=debugState'
 			},
-			{
-				name: 'Development',
-				id: "CDE00-B154C"
-			}
-		];
+			controller: ['$scope', '$window', '$rootScope', 'UsersService', function ($scope, $window, $rootScope, UsersService) {
 
-		$scope.pushService.selected = $scope.pushServices[0];
+				var vm = $scope;
 
-
-		$scope.disabled = undefined;
-
-		$scope.enable = function () {
-			$scope.disabled = false;
-		};
-
-		$scope.disable = function () {
-			vm.disabled = true;
-		};
-
-		$scope.clear = function () {
-			vm.template.selected = undefined;
-		};
-
-		$scope.template = {};
-		$scope.templates = [
-			{
-				name: 'Blank',
-				message: {
-					"en": "_message_",
-					"ru": "_message_"
+				vm.cancelMessage = function () {
+					vm.ngModel = null;
+					vm.userSelected = [];
+					vm.view.sendingMessage = false;
 				}
-			},
-			{
-				name: 'New question',
-				message: {
-					"en": "Question coming in about a minute! Don't miss it...",
-					"ru": "Мы зададим следующий вопрос через минуту"
+
+				vm.updateMessage = function (message) {
+					message.save().then(function (err, result) {
+						vm.ngModel = null;
+						vm.userSelected = null;
+					})
+				};
+
+				vm.view = {
+					sendingMessage: false
 				}
-			}
-		];
 
-		$scope.templateData = {};
-		$scope.templatesData = [
-			{
-				name: 'Blank Key/Value',
-				message: {
-					"_key_": "_value_"
+				vm.sendMessage = function (selectedMessage) {
+					vm.view.sendingMessage = true;
+					UsersService.SendMessage(selectedMessage.recipients, selectedMessage)
+						.then(function (res, err) {
+							vm.view.sendingMessage = false;
+							$rootScope.toast("Message sent succesfuly to " + selectedMessage.recipients.length + " users.");
+							vm.ngModel = null;
+							vm.userSelected = [];
+						});
 				}
-			},
-			{
-				name: 'Set Match Screen',
-				message: {
-					"screen": "match",
-					"match_id": "_message_"
-				}
-			}
-		];
 
-
-		// Multiple
-		$scope.someGroupFn = function (item) {
-
-			if (item.name[0] >= 'A' && item.name[0] <= 'M')
-				return 'From A - M';
-
-			if (item.name[0] >= 'N' && item.name[0] <= 'Z')
-				return 'From N - Z';
-
+			}]
 		};
-
-		$scope.counter = 0;
-		$scope.someFunction = function (item, model) {
-			$scope.counter++;
-			$scope.eventResult = {
-				item: item,
-				model: model
-			};
-		};
-
-		$scope.availableColors = ['Red', 'Green', 'Blue', 'Yellow', 'Magenta', 'Maroon', 'Umbra', 'Turquoise'];
-
-		$scope.multipleDemo = {};
-		$scope.multipleDemo.colors = ['Blue', 'Red'];
-		$scope.multipleDemo.selectedPeople = [$scope.templates[5], $scope.templates[4]];
-		$scope.multipleDemo.selectedPeopleWithGroupBy = [$scope.templates[8], $scope.templates[6]];
-		$scope.multipleDemo.selectedPeopleSimple = ['samantha@email.com', 'wladimir@email.com'];
-
-
-	}
+	};
 })();
 
 
@@ -7594,13 +7532,26 @@ ObjectId.prototype.toString = function () {
 		vm.gamecardTemplates = {};
 		vm.selectedGameCard = null;
 
+		vm.beautify = function (obj) {
+			console.log(obj);
+			return JSON.stringify(obj, null, 4);
+		}
+
+		vm.onSelectedCompare = function (condition, $item, $model) {
+			if ($item.type == "diff") {
+				condition.id = "[[home_team_id]]";
+				condition.id2 = "[[away_team_id]]";
+			}
+		}
+
 		vm.comparativeMethods = [{ symbol: 'No comparison', type: null }, { symbol: 'will have more than', type: 'gt' }, { symbol: 'will have less than', type: 'lt' }, { symbol: 'will have equal to', type: 'eq' }];
-		
+
 		vm.comparativeAppearMethods = [
-			// { symbol: 'is more than', type: 'gt' },
+			{ symbol: 'is more than', type: 'gt' },
 			{ symbol: 'is less than', type: 'lt' },
-			{ symbol: 'is not changed by', type: 'by' }
-			//  , { symbol: 'is equal to', type: 'eq' }
+			{ symbol: 'is equal to', type: 'eq' },
+			{ symbol: 'is not changed by', type: 'by' },
+			{ symbol: 'difference is not more than', type: 'diff' }
 		];
 
 		vm.comparativeTerminationMethods = [
@@ -7647,6 +7598,8 @@ ObjectId.prototype.toString = function () {
 			{ spriteName: 'Sub1', name: 'sub1', filename: 'sub1.png' },
 			{ spriteName: 'Sub2', name: 'sub2', filename: 'sub2' },
 			{ spriteName: 'Score', name: 'who-will-score', filename: 'who-will-score.png' }];
+
+
 
 		vm.getSpriteFilename = function (sprite) {
 			var selectedSprite = _.find(vm.icons, { name: sprite });
@@ -7707,7 +7660,7 @@ ObjectId.prototype.toString = function () {
 
 		vm.changeStatus = function (definition, status) {
 
-			definition.isVisible = status;
+			definition.isActive = status;
 
 			definition.save().then(function (res, err) {
 				if (!err)
@@ -7735,7 +7688,7 @@ ObjectId.prototype.toString = function () {
 
 		vm.matchTags = [
 			{
-				_id: "match",
+				_id: "[[match_id]]",
 				name: { "en": "Regardless Team" },
 				type: "Match selection"
 			},
@@ -7826,6 +7779,8 @@ ObjectId.prototype.toString = function () {
 			return _.without(context, condition);
 
 		}
+
+
 
 		vm.showFavoritesInfo = function () {
 			$rootScope.toast("You can use variables before you save your game card.</br></br> Vars:</br> [[home_team_name]] - home_team</br> [[away_team_name]] - away_team");
@@ -8308,6 +8263,13 @@ ObjectId.prototype.toString = function () {
 		});
 
 		return {
+			findUsers: function (val) {
+				var Defer = $q.defer();
+				Restangular.one('v1/users/search', val).getList().then(function (items) {
+					Defer.resolve(items);
+				});
+				return Defer.promise;
+			},
 			getuserById: function (id) {
 				var Defer = $q.defer();
 				Restangular.one('v1/user', id).get().then(function (items) {
@@ -8719,33 +8681,33 @@ ObjectId.prototype.toString = function () {
 			return StatsService.transStat(stat);
 		}
 
-		var h2hresults = ["W","L","D",""];
-		vm.changeResult = function(arr, indx){
+		var h2hresults = ["W", "L", "D", ""];
+		vm.changeResult = function (arr, indx) {
 			console.log(arr[indx]);
-			var posIndx = _.findIndex(h2hresults, function (o){
+			var posIndx = _.findIndex(h2hresults, function (o) {
 				return o === arr[indx];
 			});
 			console.log(posIndx);
 			posIndx++;
 
-			if(posIndx > h2hresults.length-1)
+			if (posIndx > h2hresults.length - 1)
 				posIndx = 0;
 
-				arr[indx] = h2hresults[posIndx];
+			arr[indx] = h2hresults[posIndx];
 
-				console.log(h2hresults[posIndx]);
+			console.log(h2hresults[posIndx]);
 
-				$http({
-					method: 'POST',
-					url: $rootScope.servers[$rootScope.serverEnvironment].game_server + 'v1/data/match/' + $stateParams.id + '/headtohead',
-					data: arr
-				}).then(function successCallback(response) {
-					// $scope.match = AddHooks(response.data);
-					$rootScope.toast("Head to head updated")
-				}, function errorCallback(response) {
-					// called asynchronously if an error occurs
-					// or server returns response with an error status.
-				});
+			$http({
+				method: 'POST',
+				url: $rootScope.servers[$rootScope.serverEnvironment].game_server + 'v1/data/match/' + $stateParams.id + '/headtohead',
+				data: arr
+			}).then(function successCallback(response) {
+				// $scope.match = AddHooks(response.data);
+				$rootScope.toast("Head to head updated")
+			}, function errorCallback(response) {
+				// called asynchronously if an error occurs
+				// or server returns response with an error status.
+			});
 		}
 		// $scope.players = [
 		//     {
@@ -9924,7 +9886,7 @@ ObjectId.prototype.toString = function () {
 				message: true,
 				push: false,
 				sockets: true
-				
+
 			};
 		}
 
@@ -10091,12 +10053,27 @@ ObjectId.prototype.toString = function () {
 		vm.isTemplateDefinitions = false;
 		vm.gamecardTemplates = {};
 		vm.selectedGameCard = null;
+
+		vm.beautify = function (obj) {
+			console.log(obj);
+			return JSON.stringify(obj, null, 4);
+		}
+
+		vm.onSelectedCompare = function (condition, $item, $model) {
+			console.log($item);
+			if ($item.type == "diff") {
+				condition.id = vm.match.data.home_team._id;
+				condition.id2 = vm.match.data.away_team._id;
+			}
+		}
+
 		vm.comparativeMethods = [{ symbol: 'No comparison', type: null }, { symbol: 'will have more than', type: 'gt' }, { symbol: 'will have less than', type: 'lt' }, { symbol: 'will have equal to', type: 'eq' }];
 		vm.comparativeAppearMethods = [
-			// { symbol: 'is more than', type: 'gt' },
+			{ symbol: 'is more than', type: 'gt' },
 			{ symbol: 'is less than', type: 'lt' },
-			{ symbol: 'is not changed by', type: 'by' }
-			//  , { symbol: 'is equal to', type: 'eq' }
+			{ symbol: 'is not changed by', type: 'by' },
+			{ symbol: 'is equal to', type: 'eq' },
+			{ symbol: 'difference is not more than', type: 'diff' }
 		];
 		vm.comparativeTerminationMethods = [
 			// { symbol: 'is more than', type: 'gt' },
@@ -10178,7 +10155,7 @@ ObjectId.prototype.toString = function () {
 		GamecardsService.getMatchDefinitions(vm.matchid).then(function (templates) {
 			vm.gamecardTemplates.instants = _.filter(templates, { cardType: "Instant" });
 			vm.gamecardTemplates.overalls = _.filter(templates, { cardType: "Overall" });
-			console.log(vm.gamecardTemplates.overalls);
+			// console.log(vm.gamecardTemplates.overalls);
 		});
 
 		vm.editDefinition = function (definition) {
@@ -10237,7 +10214,7 @@ ObjectId.prototype.toString = function () {
 
 		vm.changeStatus = function (definition, status) {
 
-			definition.isVisible = status;
+			definition.isActive = status;
 
 			definition.save().then(function (res, err) {
 				if (!err)
@@ -18503,6 +18480,13 @@ ObjectId.prototype.toString = function () {
 				controller: 'SportimoModerationSoccerController',
 				controllerAs: 'modCtrl',
 			})
+			.state('app.messages', {
+				url: '/messages',
+				title: 'Messages Management',
+				templateUrl: helper.basepath('sportimo/messages/index.html'),
+				controller: 'MessagesController',
+				resolve: helper.resolveFor('ui.select', 'ngFileUpload')
+			})
 			.state('app.gamecards', {
 				url: '/gamecards',
 				title: 'Game cards',
@@ -18517,13 +18501,7 @@ ObjectId.prototype.toString = function () {
 				resolve: helper.resolveFor('restangular', 'toaster', 'dirPagination', 'moment'),
 				controller: 'SportimoWelcomesController'
 			})
-			.state('app.pushes', {
-				url: '/pushes',
-				title: 'Push Notifications Management',
-				templateUrl: helper.basepath('sportimo_pushes.html'),
-				controller: 'SportimoPushesController',
-				resolve: helper.resolveFor('restangular', 'toaster', 'dirPagination', 'ui.select')
-			})
+
 			.state('app.polls', {
 				url: '/polls',
 				title: 'Polls Management',

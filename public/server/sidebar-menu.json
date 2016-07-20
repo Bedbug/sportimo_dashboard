@@ -73,10 +73,10 @@
         "translate": "Leaderboards"
     },
     {
-        "text": "Pushes",
-        "sref": "app.pushes",
+        "text": "Messages",
+        "sref": "app.messages",
         "icon": "icon-note",
-        "translate": "Push Notifications"
+        "translate": "Messages"
     },
     {
         "text": "Settings",

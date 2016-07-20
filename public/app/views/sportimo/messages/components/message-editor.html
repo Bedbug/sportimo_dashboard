@@ -1,0 +1,54 @@
+<!--<pre>{{userSelected | json}}</pre>-->
+<div class="col-xs-12 animShow panel panel-highlighted">
+    <h3 class="m0 pb-lg panel-heading">Messages & Push Notifications</h3>
+    <pre ng-show="debugState">{{ngModel|json}}</pre>
+    <div class="panel-body">
+        <div class="btn-group col-xs-12 p0 pb-lg">
+            <label ng-model="ngModel.message" uib-btn-checkbox="btn-checkbox" class="col-xs-6  btn btn-default" style="">Inbox Message</label>
+            <label ng-model="ngModel.push" uib-btn-checkbox="btn-checkbox" class="col-xs-6 btn  btn-default" style="">Push Notification</label>
+        </div>
+        <div class="clearfix"></div>
+
+
+        <div class="pb-lg">
+            <image-upload folder="messages" search="false" filename="ngModel._id" ng-model="ngModel" pic-key="img"></image-upload>
+            <input type="text" ng-model="ngModel.img" placeholder="Url to message image" class="form-control">
+
+            <label>Message</label>
+            <ui-select ng-model="template.selected" theme="bootstrap" on-select="onSelected($item,$model)" ng-disabled="disabled">
+                <ui-select-match placeholder="Select message template">{{$select.selected.name}}</ui-select-match>
+                <ui-select-choices repeat="template in messageTemplates | propsFilter: {name: $select.search}">
+                    <div ng-bind-html="template.name | highlight: $select.search"></div>
+                    <small>{{template}}</small>
+                </ui-select-choices>
+            </ui-select>
+            <multi-lang-text label="Title" placeholder="Message title" language-object="ngModel.title" default="en"></multi-lang-text>
+            <multi-lang-text-area label="Message" placeholder="Message body" language-object="ngModel.msg" default="en"></multi-lang-text-area>
+
+        </div>
+        <div>
+            <label>Link</label>
+            <input type="text" ng-model="ngModel.link" placeholder="Url to link with the message" class="form-control">
+        </div>
+
+        <div class="">
+            <label>Data</label>
+
+            <textarea ng-model="ngModel.data" placeholder="{{demodata}}" aria-multiline="true" tabindex="0" aria-invalid="false" class="form-control"
+                style="max-width:100%; border-color: #eaeaea;"></textarea>
+        </div>
+
+        <br/>
+        <button data-style="expand-left" ng-click="cancelMessage()" class="btn btn-simple pull-right">Cancel</button>
+        <div ng-show="ngModel.fromServer"> <button ladda="view.sendingMessage" data-style="expand-right" ng-click="updateMessage(ngModel)" class="btn btn-success btn-space do pull-right">Update Message</button></div>
+        <div ng-show="!ngModel.recipients && !ngModel.fromServer"> <button ladda="view.sendingMessage" data-style="expand-right" ng-click="sendMessage(ngModel)" class="btn btn-success btn-space do pull-right">Send message to all users</button></div>
+        <div ng-show="ngModel.recipients && !ngModel.fromServer"><button ladda="view.sendingMessage" data-style="expand-right" ng-click="sendMessage(ngModel)" class="btn btn-success btn-space do pull-right">Send message to {{ngModel.recipients.length}} users</button></div>
+
+    </div>
+
+</div>
+
+<!--<div class="col-xs-12 no-padding ">
+        <div ng-show="!userSelected"><button  ng-click="createNewMessage()" class="col-xs-12 btn btn-lg minimal">Send message to all users</button></div>
+        <div ng-show="userSelected"><button  ng-click="createNewMessage(userSelected)" class="col-xs-12 btn btn-lg minimal">Send message to {{userSelected.username}}</button></div>
+</div>-->

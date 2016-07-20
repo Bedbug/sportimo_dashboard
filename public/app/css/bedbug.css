@@ -2,6 +2,23 @@
     /*display: none;*/
 }
 
+.not-visible-card{
+        background-color: #f3f3f3;
+}
+
+.not-visible-card .cardIcon{
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+    opacity: 0.4;
+    filter: alpha(opacity=50);
+}
+.not-visible-card .text-muted{
+    opacity: 0.5;
+} 
+
+.not-visible-card .cardText{
+    opacity: 0.3;
+} 
 
 .card-icon{
    position: absolute;

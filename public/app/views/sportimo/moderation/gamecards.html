@@ -25,13 +25,13 @@
                 <div ng-show="true" class="container-fluid">
                     <!-- START OF Questions List -->
                     <div class="list-group">
-                        <div ng-repeat="definition in gamecardTemplates.instants | filter: definitionSearch track by $index" class="list-group-item">
+                        <div ng-repeat="definition in gamecardTemplates.instants | filter: definitionSearch track by $index" class="list-group-item" ng-class="definition.isVisible?'':'not-visible-card'">
                             <table class="wd-wide">
                                 <tbody>
                                     <tr>
                                         <td ng-if="definition.image.sprite">
 
-                                            <div class="p0" ng-style="definition.image.sprite?{   
+                                            <div class="p0 cardIcon" ng-style="definition.image.sprite?{   
                                 'min-width':'15px',                    
                                 'height': '32px',
                                 'background-size': 'contain',
@@ -50,9 +50,9 @@
                                             {{definition.options.length}}&nbsp; options
                                         </td>
                                         <td class="wd-xs text-center">
-                                            <div ng-show="definition.isVisible"><button ng-click="changeStatus(definition,
+                                            <div ng-show="definition.isActive"><button ng-click="changeStatus(definition,
                                             false)" class="btn btn-primary "><em class="fa fa-thumbs-up "></em></button></div>
-                                            <div ng-show="!definition.isVisible"><button ng-click="changeStatus(definition,
+                                            <div ng-show="!definition.isActive"><button ng-click="changeStatus(definition,
                                             true)" class="btn btn-danger "><em class="fa fa-thumbs-down "></em></button></div>
                                         </td>
                                         <td style="width:60px; text-align:center ">
@@ -96,13 +96,13 @@
                 <div ng-show="true" class="container-fluid">
                     <!-- START OF Questions List -->
                     <div class="list-group">
-                        <div ng-repeat="definition in gamecardTemplates.overalls | filter: definitionSearch track by $index" class="list-group-item">
+                        <div ng-repeat="definition in gamecardTemplates.overalls | filter: definitionSearch track by $index" class="list-group-item" ng-class="definition.isVisible?'':'not-visible-card'">
                             <table class="wd-wide">
                                 <tbody>
                                     <tr>
                                         <td ng-if="definition.image.sprite">
 
-                                            <div class="p0" ng-style="definition.image.sprite?{   
+                                            <div class="p0 cardIcon" ng-style="definition.image.sprite?{   
                                 'min-width':'15px',                    
                                 'height': '32px',
                                 'background-size': 'contain',
@@ -114,16 +114,16 @@
                                         <td style="min-width: 350px">
                                             <div class="ph">
                                                 <h4 class="text-muted media-box-heading">{{definition.title.en}}</h4>
-                                                <span style="font-size: 16px; font-weight: 600; color: #666;">{{definition.text.en}}</span>
+                                                <span class ="cardText" style="font-size: 16px; font-weight: 600; color: #666;">{{definition.text.en}}</span>
                                             </div>
                                         </td>
                                         <td width="100px" class="text-center">
                                             {{definition.options.length}}&nbsp; options
                                         </td>
                                         <td class="wd-xs text-center">
-                                            <div ng-show="definition.isVisible"><button ng-click="changeStatus(definition,
+                                            <div ng-show="definition.isActive"><button ng-click="changeStatus(definition,
                                             false)" class="btn btn-primary "><em class="fa fa-thumbs-up "></em></button></div>
-                                            <div ng-show="!definition.isVisible"><button ng-click="changeStatus(definition,
+                                            <div ng-show="!definition.isActive"><button ng-click="changeStatus(definition,
                                             true)" class="btn btn-danger "><em class="fa fa-thumbs-down "></em></button></div>
                                         </td>
                                         <td style="width:60px; text-align:center ">

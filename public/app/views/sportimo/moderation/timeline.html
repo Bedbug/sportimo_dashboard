@@ -438,15 +438,15 @@
 
                                     <div ng-show="match.data.timeline[match.data.timeline.length - 1 - $index].start" class="col-xs-6">
                                         <div class="edit-segment-container"><span class="edit-segment-title pull-left">Start:</span>
-                                            <timepicker name="timepickr" required="" ng-model="match.data.timeline[match.data.timeline.length - 1 - $index].start" ng-change="changed()"
-                                                hour-step="1" minute-step="1" show-meridian="false"></timepicker>
+                                            <uib-timepicker name="timepickr" required="" ng-model="match.data.timeline[match.data.timeline.length - 1 - $index].start" ng-change="changed()"
+                                                hour-step="1" minute-step="1" show-meridian="false"></uib-timepicker>
                                         </div>
                                     </div>
 
                                     <div ng-show="match.data.timeline[match.data.timeline.length - 1 - $index].end" class="col-xs-5">
                                         <div class="edit-segment-container"><span class="edit-segment-title pull-left">End:</span>
-                                            <timepicker name="timepickr" required="" ng-model="match.data.timeline[match.data.timeline.length - 1 - $index].end" ng-change="changed()"
-                                                hour-step="1" minute-step="1" show-meridian="false"></timepicker>
+                                            <uib-timepicker name="timepickr" required="" ng-model="match.data.timeline[match.data.timeline.length - 1 - $index].end" ng-change="changed()"
+                                                hour-step="1" minute-step="1" show-meridian="false"></uib-timepicker>
                                         </div>
                                     </div>
 
