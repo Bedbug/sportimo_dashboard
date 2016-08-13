@@ -3046,7 +3046,7 @@
 		$rootScope.$stateParams = $stateParams;
 		$rootScope.$storage = $window.localStorage;
 
-		$rootScope.version = "v0.9.5";
+		$rootScope.version = "v0.9.5.4";
 
 		$rootScope.toggleEnvironment = function () {
 			if ($rootScope.serverEnvironment == 'production')
@@ -4121,10 +4121,25 @@ ObjectId.prototype.toString = function () {
 			sendingMessage: false
 		}
 
+		$scope.currentPage = 1;
+		$scope.itemsPerPage = 10;
+
+		$scope.pageCount = function () {
+			return Math.ceil($scope.allSendMessages.length / $scope.itemsPerPage);
+		};
+
 		$scope.allSendMessages = [];
-		MessagesService.GetAll().then(function (messages) {
+		MessagesService.GetAll(null,200).then(function (messages) {
 			$scope.allSendMessages = messages;
+			$scope.pageChanged();
 		})
+
+		$scope.pageChanged = function () {
+			var begin = (($scope.currentPage - 1) * $scope.itemsPerPage),
+				end = begin + $scope.itemsPerPage;
+
+			$scope.slicedMessages = $scope.allSendMessages.slice(begin, end);
+		}
 
 		// TODO: User Messages
 		$scope.sendMessage = function () {
@@ -4210,11 +4225,12 @@ ObjectId.prototype.toString = function () {
 		});
 
 		return {
-			GetAll: function (skip, limit) {
+			GetAll: function (skip, itemslimit) {
 				var options = {
-					skip: skip | 0,
-					limit: limit | 20
+					skip: skip || 0,
+					limit: itemslimit || 0 
 				}
+				console.log(options);
 				var Defer = $q.defer();
 				API.getList(options).then(function (docs) {
 					Defer.resolve(docs);
@@ -7794,6 +7810,7 @@ ObjectId.prototype.toString = function () {
 
 	angular
 		.module('app.match-moderation-soccer')
+		.service('DataService', DataService)
 		.service('PrizesService', PrizesService)
 		.service('PoolsService', PoolsService)
 		.service('SponsorsService', SponsorsService)
@@ -7860,12 +7877,58 @@ ObjectId.prototype.toString = function () {
 			};
 		});
 
+	DataService.$inject = ['$rootScope', '$q', 'Restangular'];
 	PrizesService.$inject = ['$rootScope', '$q', 'Restangular'];
 	PoolsService.$inject = ['$rootScope', '$q', 'Restangular'];
 	QuestionsService.$inject = ['$rootScope', '$q', 'Restangular'];
 	PollsService.$inject = ['$rootScope', '$q', 'Restangular'];
 	UsersService.$inject = ['$rootScope', '$q', 'Restangular'];
 	GamecardsService.$inject = ['$rootScope', '$q', 'Restangular'];
+
+	function DataService($rootScope, $q, Restangular) {
+		var API = Restangular.all('v1/data');
+
+		Restangular.setBaseUrl($rootScope.servers[$rootScope.serverEnvironment].game_server);
+		Restangular.setRestangularFields({
+			id: "_id"
+		});
+
+		return {
+			// Intro Questions
+
+			getIntroQuestionsByMatch: function (id) {
+				var Defer = $q.defer();
+				API.one('inquestions',id).getList('match').then(function (items) {
+					items = Restangular.restangularizeCollection(null, items, 'v1/data/inquestions');
+					items = _.forEach(items, function (item) {
+						item.fromServer = true;
+					});
+					Defer.resolve(items);
+				});
+				return Defer.promise;
+			},
+			createIntroQuestion: function (question) {
+				var Defer = $q.defer();
+				question = Restangular.restangularizeElement(null, question, 'v1/data/inquestions');
+				question.save().then(function (res, err) {
+					console.log(res);
+					console.log(err);
+					Defer.resolve(res);
+				})
+
+				return Defer.promise;
+			},
+			Remove: function (poll) {
+				var Defer = $q.defer();
+				poll.remove().then(function (res, err) {
+
+					Defer.resolve(res);
+				})
+
+				return Defer.promise;
+			}
+		}
+	};
 
 	function PollsService($rootScope, $q, Restangular) {
 		var API = Restangular.all('v1/polls');
@@ -8303,9 +8366,9 @@ ObjectId.prototype.toString = function () {
 		}
 	};
 
-	SportimoModerationSoccerController.$inject = ['PollsService', 'GamecardsService', 'UsersService', 'StatsComService', 'CompetitionsService', 'StatsService', 'TagsService', 'ngClipboard', '$location', '$anchorScroll', 'QuestionsService', 'LeaderboardsService', 'CountriesService', 'PrizesService', 'SponsorsService', 'PoolsService', '$scope', 'ngDialog', '$stateParams', '$http', '$rootScope', '$timeout', '$interval', '$mdToast', '$mdBottomSheet', '$window'];
+	SportimoModerationSoccerController.$inject = ['DataService','PollsService', 'GamecardsService', 'UsersService', 'StatsComService', 'CompetitionsService', 'StatsService', 'TagsService', 'ngClipboard', '$location', '$anchorScroll', 'QuestionsService', 'LeaderboardsService', 'CountriesService', 'PrizesService', 'SponsorsService', 'PoolsService', '$scope', 'ngDialog', '$stateParams', '$http', '$rootScope', '$timeout', '$interval', '$mdToast', '$mdBottomSheet', '$window'];
 
-	function SportimoModerationSoccerController(PollsService, GamecardsService, UsersService, StatsComService, CompetitionsService, StatsService, TagsService, ngClipboard, $location, $anchorScroll, QuestionsService, LeaderboardsService, CountriesService, PrizesService, SponsorsService, PoolsService, $scope, ngDialog, $stateParams, $http, $rootScope, $timeout, $interval, $mdToast, $mdBottomSheet, $window) {
+	function SportimoModerationSoccerController(DataService,PollsService, GamecardsService, UsersService, StatsComService, CompetitionsService, StatsService, TagsService, ngClipboard, $location, $anchorScroll, QuestionsService, LeaderboardsService, CountriesService, PrizesService, SponsorsService, PoolsService, $scope, ngDialog, $stateParams, $http, $rootScope, $timeout, $interval, $mdToast, $mdBottomSheet, $window) {
 
 
 		var vm = $scope;
@@ -8581,10 +8644,15 @@ ObjectId.prototype.toString = function () {
 
 				$scope.stats = ParseMatchStats(response.data.data.stats);
 				QuestionsService.AllByMatch(vm.matchid).then(function (questions) {
-					vm.questions = questions;
+					vm.questions = questions;			
 					vm.ClosedQuestions = _.filter(questions, { status: 1 }).length;
 					vm.parseFavoriteQuestions();
 				})
+
+				DataService.getIntroQuestionsByMatch(vm.matchid).then(function (questions) {
+					vm.introQuestions = questions;
+				});
+
 				PollsService.findByTagId(vm.matchid).then(function (polls) {
 					vm.polls = polls;
 					drawPollsPies(vm.polls);
@@ -9469,6 +9537,58 @@ ObjectId.prototype.toString = function () {
 		vm.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
 		vm.format = vm.formats[0];
 		vm.searchObj = {};
+
+		/* ========================================================================
+		  IntroQuestions Administration
+		========================================================================== */
+		vm.introQuestions = null;
+		
+		vm.selectedIntroQuestion = null;
+
+		vm.addNewIntroQuestion = function () {
+
+			vm.selectedIntroQuestion = {
+				matchid: vm.matchid,
+				type: "intro",
+				text: {
+					en: ""
+				},
+				answers:[{_id: new ObjectId().toString() ,text:{"en":""}},{_id: new ObjectId().toString() ,text:{"en":""}}]
+			}
+		}
+
+
+		vm.cancelEditIntroQuestion = function () {
+			vm.selectedIntroQuestion = null;
+		}
+
+		vm.editIntroQuestion = function (question) {
+			vm.selectedIntroQuestion = question;
+		}
+
+		vm.updateIntroQuestion = function (question) {
+			question.save().then(function ($anchorScrolldata) {
+				vm.selectedIntroQuestion = null;
+			})
+		}
+
+		vm.createSendIntroQuestion = function (question) {
+			DataService.createIntroQuestion(question).then(function (res) {
+				vm.introQuestions.push(res);
+				vm.selectedIntroQuestion = null;
+			})
+		}
+
+		vm.deleteIntroQuestion = function(question){
+			question.remove().then(function (err, result) {
+				
+				if (!err){
+					$scope.introQuestions = _.without($scope.introQuestions, question);
+					vm.selectedIntroQuestion = null;
+				}
+			})
+		}
+
 
 		/* ========================================================================
 		  Questions Administration
@@ -11311,11 +11431,22 @@ ObjectId.prototype.toString = function () {
 
 	angular
 		.module('app.dashboard')
+		.directive('debugThis', debugThis)
 		.directive('matchPanels', matchPanels)
 		.directive('teamLink', teamLink)
 		.directive('playerLink', playerLink)
 		.directive('matchMiniPanels', matchMiniPanels)
 		.controller('DashboardController', DashboardController);
+
+function debugThis() {
+		return {
+			restrict: 'E',
+			transclude: true,
+			template: '<div ng-show="debugState" class="text-left"><pre ng-transclude></pre></div>',
+			controller: ['$scope', function ($scope) {
+			}]
+		};
+	};
 
 	matchPanels.$inject = ['$timeout', 'TagsService'];
 
