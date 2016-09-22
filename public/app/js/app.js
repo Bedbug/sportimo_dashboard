@@ -3046,7 +3046,7 @@
 		$rootScope.$stateParams = $stateParams;
 		$rootScope.$storage = $window.localStorage;
 
-		$rootScope.version = "v0.9.5.4";
+		$rootScope.version = "v0.9.6.1";
 
 		$rootScope.toggleEnvironment = function () {
 			if ($rootScope.serverEnvironment == 'production')
@@ -7241,9 +7241,9 @@ ObjectId.prototype.toString = function () {
 		}
 	};
 
-	LeaderboardsController.$inject = ['LeaderboardsService', 'CountriesService', 'PrizesService', 'SponsorsService', 'PoolsService', '$scope', 'ngDialog', '$stateParams', '$http', '$rootScope', '$timeout', '$interval', '$mdToast', '$mdBottomSheet', '$window'];
+	LeaderboardsController.$inject = ['CompetitionsService','LeaderboardsService', 'CountriesService', 'PrizesService', 'SponsorsService', 'PoolsService', '$scope', 'ngDialog', '$stateParams', '$http', '$rootScope', '$timeout', '$interval', '$mdToast', '$mdBottomSheet', '$window'];
 
-	function LeaderboardsController(LeaderboardsService, CountriesService, PrizesService, SponsorsService, PoolsService, $scope, ngDialog, $stateParams, $http, $rootScope, $timeout, $interval, $mdToast, $mdBottomSheet, $window) {
+	function LeaderboardsController(CompetitionsService, LeaderboardsService, CountriesService, PrizesService, SponsorsService, PoolsService, $scope, ngDialog, $stateParams, $http, $rootScope, $timeout, $interval, $mdToast, $mdBottomSheet, $window) {
 
 		var vm = $scope;
 		vm.loading = {};
@@ -7251,6 +7251,9 @@ ObjectId.prototype.toString = function () {
 		//-----------------------------
 		// Get the data from SERVER
 		//-----------------------------
+		CompetitionsService.All().then(function (all) {
+			vm.competitions = all;
+		})
 
 		// Basic
 		var columnDefs = [
