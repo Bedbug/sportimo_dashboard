@@ -6,6 +6,76 @@
 
 
     <uib-tabset ng-show="!selectedGameCard" class="moderationTabs" justified="true" class="p0">
+         <uib-tab>
+            <uib-tab-heading>
+                Preset
+            </uib-tab-heading>
+
+            <!-- START Gamcards List -->
+            <div class="table-responsive">
+                <div class="col-xs-12 no-padding ">
+                    <button ng-click="addNewGamecard('PresetInstant')" class="col-xs-12 btn btn-lg minimal">Add a new Gamecard</button>
+                </div>
+
+                <div class="input-group col-xs-12 no-padding">
+                    <input ng-model="definitionSearch" placeholder="Search gamecards..." type="text" class="form-control">
+                    <span class="input-group-btn"><button type="button" class="btn btn btn-default"><i class="fa fa-search"></i></button></span>
+                </div>
+
+                <div ng-show="true" class="container-fluid">
+                    <!-- START OF Questions List -->
+                    <div class="list-group">
+                        <div ng-repeat="definition in gamecardTemplates.presets | filter: definitionSearch track by $index" class="list-group-item" ng-class="definition.isVisible?'':'not-visible-card'">
+                            <table class="wd-wide">
+                                <tbody>
+                                    <tr>
+                                        <td ng-if="definition.image.sprite">
+
+                                            <div class="p0 cardIcon" ng-style="definition.image.sprite?{   
+                                'min-width':'15px',                    
+                                'height': '32px',
+                                'background-size': 'contain',
+                                'background-repeat': 'no-repeat',
+                                'background-position': '50%',
+                                 'background-clip': 'content-box',
+                                'background-image':'url(/app/img/sportimo/cardicons/'+getSpriteFilename(definition.image.sprite)+')'}:''"></div>
+                                        </td>
+                                        <td style="min-width: 350px">
+                                            <div class="ph">
+                                                <h4 class="text-muted media-box-heading">{{definition.title.en}}</h4>
+                                                <span style="font-size: 16px; font-weight: 600; color: #666;">{{definition.text.en}}</span>
+                                            </div>
+                                        </td>
+                                        <td width="100px" class="text-center">
+                                            {{definition.options.length}}&nbsp; options
+                                        </td>
+                                        <td class="wd-xs text-center">
+                                            <div ng-show="definition.isActive"><button ng-click="changeStatus(definition,
+                                            false)" class="btn btn-primary "><em class="fa fa-thumbs-up "></em></button></div>
+                                            <div ng-show="!definition.isActive"><button ng-click="changeStatus(definition,
+                                            true)" class="btn btn-danger "><em class="fa fa-thumbs-down "></em></button></div>
+                                        </td>
+                                        <td style="width:60px; text-align:center ">
+                                            <button ng-click="editDefinition(definition) " class="minimal small-margin
+                                            btn btn-info " tabindex="0 "><span class=" "><i class="fa fa-pencil "></i>
+                                    </span></button>
+                                        </td>
+                                        <!--<td class="wd-sm ">
+                                <div class="ph ">
+                                    <progressbar value="80 " type="success " class="m0 progress-xs "></progressbar>
+                                </div>
+                            </td>-->
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- END OF Questions List -->
+                </div>
+
+            </div>
+            <!-- END Gamcards List -->
+        </uib-tab>
         <uib-tab>
             <uib-tab-heading>
                 Instant
@@ -14,7 +84,7 @@
             <!-- START Gamcards List -->
             <div class="table-responsive">
                 <div class="col-xs-12 no-padding ">
-                    <button ng-click="addNewGamecard()" class="col-xs-12 btn btn-lg minimal">Add a new Gamecard</button>
+                    <button ng-click="addNewGamecard('Instant')" class="col-xs-12 btn btn-lg minimal">Add a new Gamecard</button>
                 </div>
 
                 <div class="input-group col-xs-12 no-padding">
@@ -85,7 +155,7 @@
                <!-- START Gamcards List -->
             <div class="table-responsive">
                 <div class="col-xs-12 no-padding ">
-                    <button ng-click="addNewGamecard()" class="col-xs-12 btn btn-lg minimal">Add a new Gamecard</button>
+                    <button ng-click="addNewGamecard('Overall')" class="col-xs-12 btn btn-lg minimal">Add a new Gamecard</button>
                 </div>
 
                 <div class="input-group col-xs-12 no-padding">

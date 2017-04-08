@@ -18,6 +18,12 @@
         "translate": "Manage"
     },
     {
+        "text": "Early Access",
+        "sref": "app.earlyaccess",
+        "icon": "icon-screen-tablet",
+        "translate": "Early Access"
+    },
+    {
         "text": "Game Cards",
         "sref": "app.gamecards",
         "icon": "icon-screen-tablet",
@@ -59,6 +65,10 @@
             {
                 "text": "Sponsors",
                 "sref": "app.sponsors"
+            },
+            {
+                "text": "Prizes",
+                "sref": "app.prizes"
             },
             {
                 "text": "Achievements",

@@ -43,6 +43,7 @@
 			'app.utils',
 			'app.material',
 			'app.messages',
+			'app.earlyaccess',
 			'app.activities',
 			'app.interviews',
 			'app.welcomes',
@@ -56,6 +57,7 @@
 			"app.publications",
 			"app.leaderboards",
 			"app.competitions",
+			"app.prizes",
 			"app.standings",
 			"app.sponsors",
 			"app.achievements",
@@ -68,6 +70,13 @@
 
 	angular
 		.module('app.messages', []);
+})();
+
+(function () {
+	'use strict';
+
+	angular
+		.module('app.earlyaccess', []);
 })();
 
 (function () {
@@ -131,6 +140,13 @@
 
 	angular
 		.module('app.competitions', ['angular-ladda']);
+})();
+
+(function () {
+	'use strict';
+
+	angular
+		.module('app.prizes', ['angular-ladda']);
 })();
 
 (function () {
@@ -988,153 +1004,153 @@
 				'name': 'Alabama',
 				'flag': '5/5c/Flag_of_Alabama.svg/45px-Flag_of_Alabama.svg.png'
 			}, {
-					'name': 'Alaska',
-					'flag': 'e/e6/Flag_of_Alaska.svg/43px-Flag_of_Alaska.svg.png'
-				}, {
-					'name': 'Arizona',
-					'flag': '9/9d/Flag_of_Arizona.svg/45px-Flag_of_Arizona.svg.png'
-				}, {
-					'name': 'Arkansas',
-					'flag': '9/9d/Flag_of_Arkansas.svg/45px-Flag_of_Arkansas.svg.png'
-				}, {
-					'name': 'California',
-					'flag': '0/01/Flag_of_California.svg/45px-Flag_of_California.svg.png'
-				}, {
-					'name': 'Colorado',
-					'flag': '4/46/Flag_of_Colorado.svg/45px-Flag_of_Colorado.svg.png'
-				}, {
-					'name': 'Connecticut',
-					'flag': '9/96/Flag_of_Connecticut.svg/39px-Flag_of_Connecticut.svg.png'
-				}, {
-					'name': 'Delaware',
-					'flag': 'c/c6/Flag_of_Delaware.svg/45px-Flag_of_Delaware.svg.png'
-				}, {
-					'name': 'Florida',
-					'flag': 'f/f7/Flag_of_Florida.svg/45px-Flag_of_Florida.svg.png'
-				}, {
-					'name': 'Georgia',
-					'flag': '5/54/Flag_of_Georgia_%28U.S._state%29.svg/46px-Flag_of_Georgia_%28U.S._state%29.svg.png'
-				}, {
-					'name': 'Hawaii',
-					'flag': 'e/ef/Flag_of_Hawaii.svg/46px-Flag_of_Hawaii.svg.png'
-				}, {
-					'name': 'Idaho',
-					'flag': 'a/a4/Flag_of_Idaho.svg/38px-Flag_of_Idaho.svg.png'
-				}, {
-					'name': 'Illinois',
-					'flag': '0/01/Flag_of_Illinois.svg/46px-Flag_of_Illinois.svg.png'
-				}, {
-					'name': 'Indiana',
-					'flag': 'a/ac/Flag_of_Indiana.svg/45px-Flag_of_Indiana.svg.png'
-				}, {
-					'name': 'Iowa',
-					'flag': 'a/aa/Flag_of_Iowa.svg/44px-Flag_of_Iowa.svg.png'
-				}, {
-					'name': 'Kansas',
-					'flag': 'd/da/Flag_of_Kansas.svg/46px-Flag_of_Kansas.svg.png'
-				}, {
-					'name': 'Kentucky',
-					'flag': '8/8d/Flag_of_Kentucky.svg/46px-Flag_of_Kentucky.svg.png'
-				}, {
-					'name': 'Louisiana',
-					'flag': 'e/e0/Flag_of_Louisiana.svg/46px-Flag_of_Louisiana.svg.png'
-				}, {
-					'name': 'Maine',
-					'flag': '3/35/Flag_of_Maine.svg/45px-Flag_of_Maine.svg.png'
-				}, {
-					'name': 'Maryland',
-					'flag': 'a/a0/Flag_of_Maryland.svg/45px-Flag_of_Maryland.svg.png'
-				}, {
-					'name': 'Massachusetts',
-					'flag': 'f/f2/Flag_of_Massachusetts.svg/46px-Flag_of_Massachusetts.svg.png'
-				}, {
-					'name': 'Michigan',
-					'flag': 'b/b5/Flag_of_Michigan.svg/45px-Flag_of_Michigan.svg.png'
-				}, {
-					'name': 'Minnesota',
-					'flag': 'b/b9/Flag_of_Minnesota.svg/46px-Flag_of_Minnesota.svg.png'
-				}, {
-					'name': 'Mississippi',
-					'flag': '4/42/Flag_of_Mississippi.svg/45px-Flag_of_Mississippi.svg.png'
-				}, {
-					'name': 'Missouri',
-					'flag': '5/5a/Flag_of_Missouri.svg/46px-Flag_of_Missouri.svg.png'
-				}, {
-					'name': 'Montana',
-					'flag': 'c/cb/Flag_of_Montana.svg/45px-Flag_of_Montana.svg.png'
-				}, {
-					'name': 'Nebraska',
-					'flag': '4/4d/Flag_of_Nebraska.svg/46px-Flag_of_Nebraska.svg.png'
-				}, {
-					'name': 'Nevada',
-					'flag': 'f/f1/Flag_of_Nevada.svg/45px-Flag_of_Nevada.svg.png'
-				}, {
-					'name': 'New Hampshire',
-					'flag': '2/28/Flag_of_New_Hampshire.svg/45px-Flag_of_New_Hampshire.svg.png'
-				}, {
-					'name': 'New Jersey',
-					'flag': '9/92/Flag_of_New_Jersey.svg/45px-Flag_of_New_Jersey.svg.png'
-				}, {
-					'name': 'New Mexico',
-					'flag': 'c/c3/Flag_of_New_Mexico.svg/45px-Flag_of_New_Mexico.svg.png'
-				}, {
-					'name': 'New York',
-					'flag': '1/1a/Flag_of_New_York.svg/46px-Flag_of_New_York.svg.png'
-				}, {
-					'name': 'North Carolina',
-					'flag': 'b/bb/Flag_of_North_Carolina.svg/45px-Flag_of_North_Carolina.svg.png'
-				}, {
-					'name': 'North Dakota',
-					'flag': 'e/ee/Flag_of_North_Dakota.svg/38px-Flag_of_North_Dakota.svg.png'
-				}, {
-					'name': 'Ohio',
-					'flag': '4/4c/Flag_of_Ohio.svg/46px-Flag_of_Ohio.svg.png'
-				}, {
-					'name': 'Oklahoma',
-					'flag': '6/6e/Flag_of_Oklahoma.svg/45px-Flag_of_Oklahoma.svg.png'
-				}, {
-					'name': 'Oregon',
-					'flag': 'b/b9/Flag_of_Oregon.svg/46px-Flag_of_Oregon.svg.png'
-				}, {
-					'name': 'Pennsylvania',
-					'flag': 'f/f7/Flag_of_Pennsylvania.svg/45px-Flag_of_Pennsylvania.svg.png'
-				}, {
-					'name': 'Rhode Island',
-					'flag': 'f/f3/Flag_of_Rhode_Island.svg/32px-Flag_of_Rhode_Island.svg.png'
-				}, {
-					'name': 'South Carolina',
-					'flag': '6/69/Flag_of_South_Carolina.svg/45px-Flag_of_South_Carolina.svg.png'
-				}, {
-					'name': 'South Dakota',
-					'flag': '1/1a/Flag_of_South_Dakota.svg/46px-Flag_of_South_Dakota.svg.png'
-				}, {
-					'name': 'Tennessee',
-					'flag': '9/9e/Flag_of_Tennessee.svg/46px-Flag_of_Tennessee.svg.png'
-				}, {
-					'name': 'Texas',
-					'flag': 'f/f7/Flag_of_Texas.svg/45px-Flag_of_Texas.svg.png'
-				}, {
-					'name': 'Utah',
-					'flag': 'f/f6/Flag_of_Utah.svg/45px-Flag_of_Utah.svg.png'
-				}, {
-					'name': 'Vermont',
-					'flag': '4/49/Flag_of_Vermont.svg/46px-Flag_of_Vermont.svg.png'
-				}, {
-					'name': 'Virginia',
-					'flag': '4/47/Flag_of_Virginia.svg/44px-Flag_of_Virginia.svg.png'
-				}, {
-					'name': 'Washington',
-					'flag': '5/54/Flag_of_Washington.svg/46px-Flag_of_Washington.svg.png'
-				}, {
-					'name': 'West Virginia',
-					'flag': '2/22/Flag_of_West_Virginia.svg/46px-Flag_of_West_Virginia.svg.png'
-				}, {
-					'name': 'Wisconsin',
-					'flag': '2/22/Flag_of_Wisconsin.svg/45px-Flag_of_Wisconsin.svg.png'
-				}, {
-					'name': 'Wyoming',
-					'flag': 'b/bc/Flag_of_Wyoming.svg/43px-Flag_of_Wyoming.svg.png'
-				}];
+				'name': 'Alaska',
+				'flag': 'e/e6/Flag_of_Alaska.svg/43px-Flag_of_Alaska.svg.png'
+			}, {
+				'name': 'Arizona',
+				'flag': '9/9d/Flag_of_Arizona.svg/45px-Flag_of_Arizona.svg.png'
+			}, {
+				'name': 'Arkansas',
+				'flag': '9/9d/Flag_of_Arkansas.svg/45px-Flag_of_Arkansas.svg.png'
+			}, {
+				'name': 'California',
+				'flag': '0/01/Flag_of_California.svg/45px-Flag_of_California.svg.png'
+			}, {
+				'name': 'Colorado',
+				'flag': '4/46/Flag_of_Colorado.svg/45px-Flag_of_Colorado.svg.png'
+			}, {
+				'name': 'Connecticut',
+				'flag': '9/96/Flag_of_Connecticut.svg/39px-Flag_of_Connecticut.svg.png'
+			}, {
+				'name': 'Delaware',
+				'flag': 'c/c6/Flag_of_Delaware.svg/45px-Flag_of_Delaware.svg.png'
+			}, {
+				'name': 'Florida',
+				'flag': 'f/f7/Flag_of_Florida.svg/45px-Flag_of_Florida.svg.png'
+			}, {
+				'name': 'Georgia',
+				'flag': '5/54/Flag_of_Georgia_%28U.S._state%29.svg/46px-Flag_of_Georgia_%28U.S._state%29.svg.png'
+			}, {
+				'name': 'Hawaii',
+				'flag': 'e/ef/Flag_of_Hawaii.svg/46px-Flag_of_Hawaii.svg.png'
+			}, {
+				'name': 'Idaho',
+				'flag': 'a/a4/Flag_of_Idaho.svg/38px-Flag_of_Idaho.svg.png'
+			}, {
+				'name': 'Illinois',
+				'flag': '0/01/Flag_of_Illinois.svg/46px-Flag_of_Illinois.svg.png'
+			}, {
+				'name': 'Indiana',
+				'flag': 'a/ac/Flag_of_Indiana.svg/45px-Flag_of_Indiana.svg.png'
+			}, {
+				'name': 'Iowa',
+				'flag': 'a/aa/Flag_of_Iowa.svg/44px-Flag_of_Iowa.svg.png'
+			}, {
+				'name': 'Kansas',
+				'flag': 'd/da/Flag_of_Kansas.svg/46px-Flag_of_Kansas.svg.png'
+			}, {
+				'name': 'Kentucky',
+				'flag': '8/8d/Flag_of_Kentucky.svg/46px-Flag_of_Kentucky.svg.png'
+			}, {
+				'name': 'Louisiana',
+				'flag': 'e/e0/Flag_of_Louisiana.svg/46px-Flag_of_Louisiana.svg.png'
+			}, {
+				'name': 'Maine',
+				'flag': '3/35/Flag_of_Maine.svg/45px-Flag_of_Maine.svg.png'
+			}, {
+				'name': 'Maryland',
+				'flag': 'a/a0/Flag_of_Maryland.svg/45px-Flag_of_Maryland.svg.png'
+			}, {
+				'name': 'Massachusetts',
+				'flag': 'f/f2/Flag_of_Massachusetts.svg/46px-Flag_of_Massachusetts.svg.png'
+			}, {
+				'name': 'Michigan',
+				'flag': 'b/b5/Flag_of_Michigan.svg/45px-Flag_of_Michigan.svg.png'
+			}, {
+				'name': 'Minnesota',
+				'flag': 'b/b9/Flag_of_Minnesota.svg/46px-Flag_of_Minnesota.svg.png'
+			}, {
+				'name': 'Mississippi',
+				'flag': '4/42/Flag_of_Mississippi.svg/45px-Flag_of_Mississippi.svg.png'
+			}, {
+				'name': 'Missouri',
+				'flag': '5/5a/Flag_of_Missouri.svg/46px-Flag_of_Missouri.svg.png'
+			}, {
+				'name': 'Montana',
+				'flag': 'c/cb/Flag_of_Montana.svg/45px-Flag_of_Montana.svg.png'
+			}, {
+				'name': 'Nebraska',
+				'flag': '4/4d/Flag_of_Nebraska.svg/46px-Flag_of_Nebraska.svg.png'
+			}, {
+				'name': 'Nevada',
+				'flag': 'f/f1/Flag_of_Nevada.svg/45px-Flag_of_Nevada.svg.png'
+			}, {
+				'name': 'New Hampshire',
+				'flag': '2/28/Flag_of_New_Hampshire.svg/45px-Flag_of_New_Hampshire.svg.png'
+			}, {
+				'name': 'New Jersey',
+				'flag': '9/92/Flag_of_New_Jersey.svg/45px-Flag_of_New_Jersey.svg.png'
+			}, {
+				'name': 'New Mexico',
+				'flag': 'c/c3/Flag_of_New_Mexico.svg/45px-Flag_of_New_Mexico.svg.png'
+			}, {
+				'name': 'New York',
+				'flag': '1/1a/Flag_of_New_York.svg/46px-Flag_of_New_York.svg.png'
+			}, {
+				'name': 'North Carolina',
+				'flag': 'b/bb/Flag_of_North_Carolina.svg/45px-Flag_of_North_Carolina.svg.png'
+			}, {
+				'name': 'North Dakota',
+				'flag': 'e/ee/Flag_of_North_Dakota.svg/38px-Flag_of_North_Dakota.svg.png'
+			}, {
+				'name': 'Ohio',
+				'flag': '4/4c/Flag_of_Ohio.svg/46px-Flag_of_Ohio.svg.png'
+			}, {
+				'name': 'Oklahoma',
+				'flag': '6/6e/Flag_of_Oklahoma.svg/45px-Flag_of_Oklahoma.svg.png'
+			}, {
+				'name': 'Oregon',
+				'flag': 'b/b9/Flag_of_Oregon.svg/46px-Flag_of_Oregon.svg.png'
+			}, {
+				'name': 'Pennsylvania',
+				'flag': 'f/f7/Flag_of_Pennsylvania.svg/45px-Flag_of_Pennsylvania.svg.png'
+			}, {
+				'name': 'Rhode Island',
+				'flag': 'f/f3/Flag_of_Rhode_Island.svg/32px-Flag_of_Rhode_Island.svg.png'
+			}, {
+				'name': 'South Carolina',
+				'flag': '6/69/Flag_of_South_Carolina.svg/45px-Flag_of_South_Carolina.svg.png'
+			}, {
+				'name': 'South Dakota',
+				'flag': '1/1a/Flag_of_South_Dakota.svg/46px-Flag_of_South_Dakota.svg.png'
+			}, {
+				'name': 'Tennessee',
+				'flag': '9/9e/Flag_of_Tennessee.svg/46px-Flag_of_Tennessee.svg.png'
+			}, {
+				'name': 'Texas',
+				'flag': 'f/f7/Flag_of_Texas.svg/45px-Flag_of_Texas.svg.png'
+			}, {
+				'name': 'Utah',
+				'flag': 'f/f6/Flag_of_Utah.svg/45px-Flag_of_Utah.svg.png'
+			}, {
+				'name': 'Vermont',
+				'flag': '4/49/Flag_of_Vermont.svg/46px-Flag_of_Vermont.svg.png'
+			}, {
+				'name': 'Virginia',
+				'flag': '4/47/Flag_of_Virginia.svg/44px-Flag_of_Virginia.svg.png'
+			}, {
+				'name': 'Washington',
+				'flag': '5/54/Flag_of_Washington.svg/46px-Flag_of_Washington.svg.png'
+			}, {
+				'name': 'West Virginia',
+				'flag': '2/22/Flag_of_West_Virginia.svg/46px-Flag_of_West_Virginia.svg.png'
+			}, {
+				'name': 'Wisconsin',
+				'flag': '2/22/Flag_of_Wisconsin.svg/45px-Flag_of_Wisconsin.svg.png'
+			}, {
+				'name': 'Wyoming',
+				'flag': 'b/bc/Flag_of_Wyoming.svg/43px-Flag_of_Wyoming.svg.png'
+			}];
 
 		}
 	}
@@ -2657,15 +2673,15 @@
 				id: 'area',
 				name: 'Area'
 			}, {
-					id: 'line',
-					name: 'Line'
-				}, {
-					id: 'bar',
-					name: 'Bar'
-				}, {
-					id: 'scatterplot',
-					name: 'Scatterplot'
-				}];
+				id: 'line',
+				name: 'Line'
+			}, {
+				id: 'bar',
+				name: 'Bar'
+			}, {
+				id: 'scatterplot',
+				name: 'Scatterplot'
+			}];
 
 			vm.palettes = [
 				'spectrum14',
@@ -3009,7 +3025,8 @@
 						upsert($rootScope.SocketInstances, { instance: payload.data.instance }, payload.data);
 						break;
 				}
-
+				
+				console.log(payload);
 				// Total User Counts
 				$rootScope.administratorsCount = 0;
 				$rootScope.usersCount = _.reduce($rootScope.SocketInstances, function (sum, n) {
@@ -3018,7 +3035,7 @@
 					if (Administrators) {
 						minus = Administrators.count;
 						$rootScope.administratorsCount += minus;
-					}
+					}					
 					return sum + n.connections - minus;
 				}, 0);
 
@@ -3046,11 +3063,13 @@
 		$rootScope.$stateParams = $stateParams;
 		$rootScope.$storage = $window.localStorage;
 
-		$rootScope.version = "v0.9.6.1";
+		$rootScope.version = "v0.9.8.2";
 
 		$rootScope.toggleEnvironment = function () {
 			if ($rootScope.serverEnvironment == 'production')
 				$rootScope.serverEnvironment = $rootScope.$storage.environment = 'development';
+			else if ($rootScope.serverEnvironment == 'development')
+				$rootScope.serverEnvironment = $rootScope.$storage.environment = 'local';
 			else
 				$rootScope.serverEnvironment = $rootScope.$storage.environment = 'production';
 
@@ -3098,10 +3117,17 @@
 			},
 			development: {
 				data_server: '',
+				game_server: 'http://sportimo_dev.mod.bz/',
+				// sockets: 'wss://socketserverv2-56658.onmodulus.net/'
+				sockets: 'wss://socketsserverdevelopment-96598.app.xervo.io/'
+			},
+			local: {
+				data_server: '',
 				game_server: 'http://localhost:3030/',
 				// sockets: 'wss://socketserverv2-56658.onmodulus.net/'
 				sockets: 'ws://localhost:8080/'
 			}
+
 		};
 
 		$rootScope.serverEnvironment = $rootScope.$storage.environment || 'production';
@@ -3243,11 +3269,12 @@
 		});
 
 
-	SportimoPollsController.$inject = ['$scope', 'Restangular', 'toaster', '$state',];
+	SportimoPollsController.$inject = ['TagsService', 'PollsService', '$rootScope', '$scope', 'Restangular', 'toaster', '$state',];
 
-	function SportimoPollsController($scope, Restangular, toaster, $state) {
+	function SportimoPollsController(TagsService, PollsService, $rootScope, $scope, Restangular, toaster, $state) {
 
 		'use strict';
+		var vm = $scope;
 
 		$scope.getPercentFor = function (results, index) {
 			var sum = 0;
@@ -3269,9 +3296,9 @@
 			readOnly: true
 		};
 
-		$scope.allItems = [];
+		$scope.polls = [];
 
-		var Items = Restangular.all('v1/polls');
+		var Polls = Restangular.all('v1/polls');
 
 
 		Restangular.setBaseUrl($rootScope.servers[$rootScope.serverEnvironment].game_server);
@@ -3284,74 +3311,158 @@
 		//Restangular.setDefaultRequestParams({ apiKey: '4f847ad3e4b08a2eed5f3b54' })
 
 
-		function loadItems() {
-			Items.getList().then(function (data) {
-				$scope.allItems = data;
+		function loadPolls() {
+			Polls.getList().then(function (data) {
+				$scope.polls = data;
+				drawPollsPies($scope.polls);
 			});
 		}
 
-		loadItems();
 
 
-		$scope.composeItem = false;
-		$scope.activeItem;
+		// 	@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+		//	@@
+		//	@@		TAB: POLLS
 
-		$scope.newPoll = function () {
-			$scope.composeItem = true;
-		};
+		// TODO: POLLS
 
-		$scope.updateItem = function (item) {
-			item.save().then(function (res) {
-				toaster.pop("success", "Task Completed", res);
-			})
-		};
+		vm.polls = null;
+		vm.ClosedPolls;
+		vm.SelectedPoll = null;
 
-		$scope.pushPoll = function (poll) {
-
-			console.log(poll);
-			var newquest = angular.copy(poll);
-
-			if (newquest.matchid == undefined) {
-				toaster.pop("toast-error", "Task Error", "The id of the match is required in order to post a poll");
-				return;
-			}
-
-
-			Items.post(newquest).then(function (poll) {
-				$scope.allItems.push(newquest);
-				$scope.activeItem = null;
-				$scope.composeItem = false;
-				toaster.pop("success", "Success", "Successfuly added a new poll");
-
-			});
-		};
-
-		$scope.delete = function (item) {
-			$scope.loading = true;
-
-			console.log(item);
-			item.remove().then(function (res, err) {
-
-				$scope.loading = false;
-				// Remove the deleted question from the array
-				//  var index = $scope.Users.indexOf(item);
-				// if (index > -1) $scope.Users.splice(index, 1);
-				toaster.pop("success", "Task Completed", "Poll deleted succsesfuly");
-				$scope.activeItem = null;
-				$state.go($state.current, {}, {
-					reload: true
+		vm.typeAheadTimeout;
+		vm.searchForTag = function (search_string) {
+			clearTimeout(vm.typeAheadTimeout);
+			vm.typeAheadTimeout = setTimeout(function () {
+				console.log(search_string);
+				TagsService.getTagByString(search_string).then(function (result) {
+					vm.Tags = result;
 				});
-
-				//    var message = JSON.stringify({screen:"users",method:"update"});
-				//   ws.send(message);
-				//    });
-				//}, function (reason) {
-				//    //console.log('Modal promise rejected. Reason: ', reason);
-			});
-
+			}, 300);
 		}
 
+		function drawPollsPies(polls) {
 
+			_.each(polls, function (poll) {
+				var ThisAnwer = 0;
+				_.each(poll.answers, function (answer) {
+					answer.pieData = [];
+
+					for (var i = 0; i < poll.answers.length; i++) {
+						var votes = poll.answers[i].votes;
+						var is = ThisAnwer == i;
+						answer.pieData[i] = {
+							value: votes,
+							color: is ? '#128F1F' : '#131e26',
+							highlight: is ? '#3DF555' : '#3a3f51',
+							label: poll.answers[i].text.en
+						};
+					}
+					ThisAnwer++;
+				})
+			})
+
+			return polls;
+		}
+
+		vm.addNewPoll = function () {
+
+			// vm.parseFavoriteQuestions();
+			var matchtag = _.pick(_.find(vm.matchTags, function (o) {
+				return o._id == vm.matchid;
+			}), ['_id', 'name']);
+
+			vm.SelectedPoll = {
+
+				tags: [matchtag],
+				text: {
+					en: ""
+				},
+				answers: []
+			}
+		}
+
+		vm.addPollAnswer = function () {
+			vm.SelectedPoll.answers.push({
+				"text": {
+					"en": ""
+				},
+				"img": null,
+				"votes": 0
+
+			})
+		}
+
+		vm.deletePollAnswer = function (answer) {
+			vm.SelectedPoll.answers = _.without(vm.SelectedPoll.answers, answer);
+		}
+
+		vm.DeletePoll = function (poll) {
+			console.log(poll);
+			PollsService.Remove(poll).then(function (result) {
+				vm.polls = _.without(vm.polls, poll);
+				vm.SelectedPoll = null;
+			})
+		}
+
+		vm.cancelEditPoll = function () {
+			vm.SelectedPoll = null;
+		}
+
+		vm.editPoll = function (poll) {
+			vm.SelectedPoll = poll;
+		}
+
+		vm.UpdatePoll = function (poll) {
+
+			poll.save().then(function (data, err) {
+
+				vm.polls = _.without(vm.polls, poll);
+
+				vm.polls.push(data);
+
+				vm.polls = _.orderBy(vm.polls, ['created'], ['desc']);
+
+				drawPollsPies(vm.polls);
+
+				vm.SelectedPoll = null;
+			})
+		}
+
+		vm.onAddPollTag = function (poll, item, model) {
+			var newTag = {
+				name: item.name,
+				_id: item._id
+			};
+
+			var index = _.findIndex(poll.tags, {
+				"_id": item._id
+			});
+			poll.tags[index] = newTag;
+			poll.img = item.pic;
+		}
+
+		vm.onImageFromTag = function (answer, item, model) {
+			answer.img = item.logo;
+		}
+
+		// We request this after loading match now
+		//
+		// QuestionsService.AllByMatch(vm.matchid).then(function (questions) {
+		//     vm.questions = questions;
+		//     vm.ClosedQuestions = _.filter(questions, { status: 1 }).length;
+		//     vm.parseFavoriteQuestions();
+
+		// })
+
+		vm.CreateSendPoll = function (poll) {
+			PollsService.Save(poll).then(function (res) {
+				vm.polls.push(res);
+				vm.SelectedPoll = null;
+				poll = null;
+			})
+		}
+		loadPolls();
 	}
 })();
 
@@ -4080,6 +4191,155 @@ ObjectId.prototype.toString = function () {
 
 })();
 
+(function () {
+	'use strict';
+	angular
+		.module('app.earlyaccess')
+		.service('EarlyAccessService', EarlyAccessService)
+		.controller('EarlyAccessController', EarlyAccessController)
+		.filter('startFrom', function () {
+			return function (input, start) {
+				start = +start; //parse to int
+				return input.slice(start);
+			}
+		});
+
+	/** Early Access Module Injections */
+	EarlyAccessService.$inject = ['$rootScope', '$q', 'Restangular'];
+	EarlyAccessController.$inject = ['$scope', 'toaster', 'EarlyAccessService'];
+
+	/** Early Access Controller */
+	function EarlyAccessController($scope, toaster, EarlyAccessService) {
+
+		$scope.view = {
+			busy: false
+		}
+
+		$scope.allItems = [];
+		$scope.allItemsSelected = [];
+		$scope.batchSelectItems = { state: 0 };
+		$scope.currentPage = 1;
+		$scope.itemsPerPage = 10;
+
+		$scope.verifiedCurrentPage = 1;
+		$scope.requestedCurrentPage = 1;
+		$scope.invitedCurrentPage = 1;
+
+		$scope.pageCount = function () {
+			return Math.ceil($scope.allItems.length / $scope.itemsPerPage);
+		};
+
+		$scope.pageChanged = function () {
+			var begin = (($scope.currentPage - 1) * $scope.itemsPerPage),
+				end = begin + $scope.itemsPerPage;
+
+			$scope.slicedItems = $scope.allItems.slice(begin, end);
+		}
+
+
+		$scope.toggleSelection = function (item) {
+			if (item.selected)
+				$scope.allItemsSelected.push(item);
+			else
+				_.remove($scope.allItemsSelected, item);
+		}
+
+		$scope.batchSelect = function () {
+			console.log($scope.batchSelectItems.state);
+			if ($scope.batchSelectItems.state == 1) {
+				$scope.allItemsSelected = [];
+				_.each($scope.slicedItems, function (o) {
+					o.selected = true;
+					$scope.allItemsSelected.push(o);
+				})
+			}
+			else {
+				$scope.allItemsSelected = [];
+				_.each($scope.slicedItems, function (o) {
+					o.selected = false
+				})
+			}
+
+			console.log($scope.allItemsSelected);
+		}
+
+		$scope.batchInvite = function () {
+			$scope.view.busy = true;
+
+			EarlyAccessService.Invite($scope.allItemsSelected).then(function (result) {
+				if (result.failed && result.failed.length > 0)
+					console.log(result.failed);
+				_.each($scope.allItemsSelected, function (si) {
+					_.find($scope.slicedItems, si).email_sent = true;
+				})
+
+				$scope.allItemsSelected = [];
+				$scope.view.busy = false;
+			})
+		}
+
+		// Early Access Service Methods
+		EarlyAccessService.GetAll(null, 200).then(function (result) {
+			$scope.allItems = result;
+			$scope.pageChanged();
+		})
+
+		$scope.inviteUser = function (item) {
+			$scope.view.busy = true;
+			EarlyAccessService.Invite([item]).then(function (result) {
+				if (result.failed && result.failed.length > 0)
+					console.log(result.failed);
+
+				_.find($scope.slicedItems, item).email_sent = true;
+
+				$scope.view.busy = false;
+			})
+		}
+
+		$scope.removeUser = function (item) {
+			item.remove().then(function (o) {
+				_.remove($scope.slicedItems, item);
+			})
+		}
+
+
+
+
+
+	}
+
+	/** Early Access Service */
+	function EarlyAccessService($rootScope, $q, Restangular) {
+		var API = Restangular.all('v1/early-access/');
+
+		Restangular.setBaseUrl($rootScope.servers[$rootScope.serverEnvironment].game_server);
+		Restangular.setRestangularFields({
+			id: "_id"
+		});
+
+		return {
+			GetAll: function (skip, itemslimit) {
+				var options = {
+					skip: skip || 0,
+					limit: itemslimit || 0
+				}
+
+				var Defer = $q.defer();
+				API.getList(options).then(function (docs) {
+					Defer.resolve(docs);
+				});
+				return Defer.promise;
+			},
+			Invite: function (emailList) {
+				var Defer = $q.defer();
+				API.customPOST(emailList, "action/sendemail").then(function (res, err) {
+					Defer.resolve(res, err);
+				});
+				return Defer.promise;
+			}
+		}
+	};
+})();
 
 (function () {
 	'use strict';
@@ -4110,7 +4370,14 @@ ObjectId.prototype.toString = function () {
 		})
 		.controller('MessagesController', MessagesController)
 		.directive('messageEditor', messageEditor)
-		.service('MessagesService', MessagesService);
+		.service('MessagesService', MessagesService)
+		.filter('start', function () {
+			return function (input, start) {
+				if (!input || !input.length) { return; }
+				start = +start;
+				return input.slice(start);
+			};
+		});
 
 	MessagesService.$inject = ['$rootScope', '$q', 'Restangular'];
 	MessagesController.$inject = ['$scope', 'Restangular', 'toaster', 'UsersService', 'MessagesService'];
@@ -4121,25 +4388,36 @@ ObjectId.prototype.toString = function () {
 			sendingMessage: false
 		}
 
-		$scope.currentPage = 1;
-		$scope.itemsPerPage = 10;
+		$scope.welcomeOnly = false;
+		$scope.toggleWelcome = function () {
+			$scope.welcomeOnly = !$scope.welcomeOnly;
+		}
 
-		$scope.pageCount = function () {
-			return Math.ceil($scope.allSendMessages.length / $scope.itemsPerPage);
+		$scope.perPage = 10;
+		$scope.maxSize = 5;
+		$scope.setPage = function (pageNo) {
+			$scope.currentPage = pageNo;
 		};
 
+		// $scope.currentPage = 1;
+		// $scope.itemsPerPage = 10;
+
+		// $scope.pageCount = function () {
+		// 	return Math.ceil($scope.allSendMessages.length / $scope.itemsPerPage);
+		// };
+
 		$scope.allSendMessages = [];
-		MessagesService.GetAll(null,200).then(function (messages) {
+		MessagesService.GetAll(null, 200).then(function (messages) {
 			$scope.allSendMessages = messages;
-			$scope.pageChanged();
+			$scope.currentPage = 1;
 		})
 
-		$scope.pageChanged = function () {
-			var begin = (($scope.currentPage - 1) * $scope.itemsPerPage),
-				end = begin + $scope.itemsPerPage;
+		// $scope.pageChanged = function () {
+		// 	var begin = (($scope.currentPage - 1) * $scope.itemsPerPage),
+		// 		end = begin + $scope.itemsPerPage;
 
-			$scope.slicedMessages = $scope.allSendMessages.slice(begin, end);
-		}
+		// 	$scope.slicedMessages = $scope.allSendMessages.slice(begin, end);
+		// }
 
 		// TODO: User Messages
 		$scope.sendMessage = function () {
@@ -4189,8 +4467,13 @@ ObjectId.prototype.toString = function () {
 
 		$scope.removeMessage = function (message) {
 			message.remove().then(function (err, result) {
-				if (!err)
+				console.log(err);
+				console.log(result);
+				if (!err) {
 					$scope.allSendMessages = _.without($scope.allSendMessages, message);
+					$scope.slicedMessages = _.without($scope.slicedMessages, message);
+					console.log(message);
+				}
 			})
 		};
 
@@ -4228,7 +4511,7 @@ ObjectId.prototype.toString = function () {
 			GetAll: function (skip, itemslimit) {
 				var options = {
 					skip: skip || 0,
-					limit: itemslimit || 0 
+					limit: itemslimit || 0
 				}
 				console.log(options);
 				var Defer = $q.defer();
@@ -6284,6 +6567,16 @@ ObjectId.prototype.toString = function () {
 
 		}
 
+		vm.DeleteItem = function (item) {
+			vm.view.busy = true;
+			item.remove().then(function () {
+				vm.Articles = _.without(vm.Articles, item);
+				vm.editItem = null;
+				vm.view.busy = false;
+			})
+
+		}
+
 		PublicationsService.getArticles({
 			limit: 30
 		}).then(function (articles) {
@@ -6902,6 +7195,15 @@ ObjectId.prototype.toString = function () {
 				return _.get(_.find(tags, {
 					_id: ID
 				}), 'name.en');
+			},
+			getTagByString: function (search_string) {
+				var Defer = $q.defer();
+
+				Restangular.one('v1/data/tags/search/', search_string).getList().then(function (items) {
+					Defer.resolve(Restangular.stripRestangular(items));
+				});
+
+				return Defer.promise;
 			}
 		}
 
@@ -7126,6 +7428,113 @@ ObjectId.prototype.toString = function () {
 (function () {
 	'use strict';
 
+	angular.module('app.prizes')
+		.service('PrizesService', PrizesService)
+		.controller('PrizesController', PrizesController);
+
+	PrizesService.$inject = ['$rootScope', '$q', 'Restangular'];
+	PrizesController.$inject = ['PrizesService', '$scope', '$state'];
+
+	function PrizesController(PrizesService, $scope, $state) {
+
+		var vm = $scope;
+		vm.loading = {};
+		vm.selectedItem = null;
+
+		vm.allPizes = [];
+		// *** Load all countries *** //
+		// vm.countries = CountriesService.getCountries();
+
+		// *** Load all registered competitions *** //
+		PrizesService.getAllPlain().then(function (all) {
+			vm.allPizes = all;
+		});
+
+		vm.editItem = function (item) {
+			if (item != null)
+				vm.selectedItem = item;
+			else
+				vm.selectedItem = {
+					name: { en: "" }
+				};
+		}
+
+		// $scope.showStandings = function (id) {
+		// 	$state.go('app.standings', {
+		// 		competition: id
+		// 	})
+		// }
+
+		$scope.save = function (item) {
+			if (!item._id) {
+				console.log("saving it");
+				PrizesService.createPrize(item).then(function (savedItem) {
+					vm.allPizes.push(savedItem);
+					vm.selectedItem = null;
+				})
+			}
+			else {
+				vm.loading.updating = true;
+				console.log("updating it");
+				item.save().then(function () {
+					vm.loading.updating = false;
+					vm.selectedItem = null;
+					console.log(item);
+				})
+			}
+		}
+
+		$scope.removeItem = function (item) {
+			item.remove().then(function () {
+				console.log(item);
+				vm.allPizes = _.without(vm.allPizes, item);
+				console.log(vm.allItems);
+			})
+		}
+
+	}
+
+	function PrizesService($rootScope, $q, Restangular) {
+		var PrizesAPI = Restangular.all('leaderpay/v1/prizes');
+
+		Restangular.setBaseUrl($rootScope.servers[$rootScope.serverEnvironment].game_server);
+		Restangular.setRestangularFields({
+			id: "_id"
+		});
+
+		return {
+
+			getAllPlain: function () {
+				var Defer = $q.defer();
+
+				PrizesAPI.getList().then(function (prizes) {
+					prizes = _.forEach(prizes, function (prize) {
+						prize = prize.plain();
+					});
+					Defer.resolve(prizes);
+				});
+				return Defer.promise;
+			},
+			createPrize: function (prize) {
+				var Defer = $q.defer();
+				prize = Restangular.restangularizeElement(null, prize, 'leaderpay/v1/prizes');
+				prize.save().then(function (res, err) {
+					console.log(res);
+					console.log(err);
+					Defer.resolve(res);
+				})
+
+				return Defer.promise;
+			},
+		}
+	};
+
+})();
+
+
+(function () {
+	'use strict';
+
 	angular.module('app.competitions')
 		.service('CompetitionsService', CompetitionsService)
 		.controller('CompetitionsController', CompetitionsController);
@@ -7147,9 +7556,10 @@ ObjectId.prototype.toString = function () {
 		});
 
 		vm.editItem = function (item) {
-			if (item != null)
+			if (item != null) {
+				if (!item.graphics) item.graphics = {};
 				vm.selectedItem = item;
-			else
+			} else
 				vm.selectedItem = {
 					name: { en: "" }
 				};
@@ -7241,7 +7651,7 @@ ObjectId.prototype.toString = function () {
 		}
 	};
 
-	LeaderboardsController.$inject = ['CompetitionsService','LeaderboardsService', 'CountriesService', 'PrizesService', 'SponsorsService', 'PoolsService', '$scope', 'ngDialog', '$stateParams', '$http', '$rootScope', '$timeout', '$interval', '$mdToast', '$mdBottomSheet', '$window'];
+	LeaderboardsController.$inject = ['CompetitionsService', 'LeaderboardsService', 'CountriesService', 'PrizesService', 'SponsorsService', 'PoolsService', '$scope', 'ngDialog', '$stateParams', '$http', '$rootScope', '$timeout', '$interval', '$mdToast', '$mdBottomSheet', '$window'];
 
 	function LeaderboardsController(CompetitionsService, LeaderboardsService, CountriesService, PrizesService, SponsorsService, PoolsService, $scope, ngDialog, $stateParams, $http, $rootScope, $timeout, $interval, $mdToast, $mdBottomSheet, $window) {
 
@@ -7556,6 +7966,90 @@ ObjectId.prototype.toString = function () {
 			return JSON.stringify(obj, null, 4);
 		}
 
+		vm.addNewGamecard = function (type) {
+			console.log("add new");
+
+			vm.selectedGameCard = {
+				"title": {
+					"en": ""
+				},
+				"image": {
+					"url": "",
+					"sprite": "goal"
+				},
+				"primaryStatistic": "Goal",
+				"cardType": type,
+				"endPoints": 0,
+				"startPoints": 0,
+				"duration": type != "Overall" ? 600000 : 0,
+				"activationLatency": 45000,
+				"text": {
+					"en": "A goal will be scored in the next 10 minutes"
+				},
+				"options": [
+					{
+						"startPoints": 300,
+						"endPoints": 150,
+						"optionId": "1",
+						"text": {
+							"en": "[[home_team_name]]"
+						},
+						"terminationConditions": [],
+						"winConditions": [
+							{
+								"stat": "Goal",
+								"remaining": 1,
+								"conditionNegation": false,
+								"id": "[[home_team_id]]",
+								"teamid": "[[home_team_id]]"
+							}
+						]
+					},
+					{
+						"startPoints": 300,
+						"endPoints": 150,
+						"optionId": "2",
+						"text": {
+							"en": "[[away_team_name]]"
+						},
+						"terminationConditions": [],
+						"winConditions": [
+							{
+								"stat": "Goal",
+								"remaining": 1,
+								"conditionNegation": false,
+								"id": "[[away_team_id]]",
+								"teamid": "[[away_team_id]]"
+							}
+						]
+					},
+					{
+						"startPoints": 200,
+						"endPoints": 100,
+						"optionId": "3",
+						"text": {
+							"en": "Yes any team"
+						},
+						"terminationConditions": [],
+						"winConditions": [
+							{
+								"stat": "Goal",
+								"remaining": 1,
+								"conditionNegation": false,
+								"id": "match"
+							}
+						]
+					}
+				],
+				"__v": 0,
+				"appearConditions": [],
+				"winConditions": [],
+				"terminationConditions": [],
+				"isVisible": true,
+				"isActive": true
+			}
+		}
+
 		vm.onSelectedCompare = function (condition, $item, $model) {
 			if ($item.type == "diff") {
 				condition.id = "[[home_team_id]]";
@@ -7614,6 +8108,7 @@ ObjectId.prototype.toString = function () {
 			{ spriteName: 'Possession', name: 'possession', filename: 'possession.png' },
 			{ spriteName: 'Result', name: 'result', filename: 'result.png' },
 			{ spriteName: 'ShotOn', name: 'shoton', filename: 'shoton.png' },
+			{ spriteName: 'Goals Num', name: 'goals-num', filename: 'goals-num.png' },
 			{ spriteName: 'Sub1', name: 'sub1', filename: 'sub1.png' },
 			{ spriteName: 'Sub2', name: 'sub2', filename: 'sub2' },
 			{ spriteName: 'Score', name: 'who-will-score', filename: 'who-will-score.png' }];
@@ -7629,6 +8124,7 @@ ObjectId.prototype.toString = function () {
 		}
 
 		GamecardsService.getTemplateDefinitions().then(function (templates) {
+			vm.gamecardTemplates.presets = _.filter(templates, { cardType: "PresetInstant" });
 			vm.gamecardTemplates.instants = _.filter(templates, { cardType: "Instant" });
 			vm.gamecardTemplates.overalls = _.filter(templates, { cardType: "Overall" });
 		});
@@ -7652,8 +8148,9 @@ ObjectId.prototype.toString = function () {
 
 		vm.CreateGameCard = function (gamecard) {
 			GamecardsService.ceateTemplateDefinition(gamecard).then(function (result) {
-
-				if (result.cardType == "Instant")
+				if (result.cardType == "PresetInstant")
+					vm.gamecardTemplates.presets.push(result);
+				else if (result.cardType == "Instant")
 					vm.gamecardTemplates.instants.push(result);
 				else
 					vm.gamecardTemplates.overalls.push(result);
@@ -7666,8 +8163,9 @@ ObjectId.prototype.toString = function () {
 		vm.deleteGameCard = function (gamecard) {
 			gamecard.remove().then(function (res, err) {
 				if (!err) {
-
-					if (gamecard.cardType == "Instant")
+					if (gamecard.cardType == "PresetInstant")
+						vm.gamecardTemplates.presets = _.without(vm.gamecardTemplates.presets, gamecard);
+					else if (gamecard.cardType == "Instant")
 						vm.gamecardTemplates.instants = _.without(vm.gamecardTemplates.instants, gamecard);
 					else
 						vm.gamecardTemplates.overalls = _.without(vm.gamecardTemplates.overalls, gamecard);
@@ -7692,7 +8190,7 @@ ObjectId.prototype.toString = function () {
 			if (_.size(cardOptions) == 4)
 				return $rootScope.toast("You cannot have more than 4 options in a game card. Maybe we will implement it down the road.", "warn");
 			var option = {
-				"optionId": new ObjectId().toString(),
+				"optionId": _.size(cardOptions).toString(),
 				"endPoints": 150,
 				"startPoints": 300,
 				"text": {
@@ -7814,7 +8312,7 @@ ObjectId.prototype.toString = function () {
 	angular
 		.module('app.match-moderation-soccer')
 		.service('DataService', DataService)
-		.service('PrizesService', PrizesService)
+		// .service('PrizesService', PrizesService)
 		.service('PoolsService', PoolsService)
 		.service('SponsorsService', SponsorsService)
 		.service('QuestionsService', QuestionsService)
@@ -7881,7 +8379,7 @@ ObjectId.prototype.toString = function () {
 		});
 
 	DataService.$inject = ['$rootScope', '$q', 'Restangular'];
-	PrizesService.$inject = ['$rootScope', '$q', 'Restangular'];
+	// PrizesService.$inject = ['$rootScope', '$q', 'Restangular'];
 	PoolsService.$inject = ['$rootScope', '$q', 'Restangular'];
 	QuestionsService.$inject = ['$rootScope', '$q', 'Restangular'];
 	PollsService.$inject = ['$rootScope', '$q', 'Restangular'];
@@ -7901,7 +8399,7 @@ ObjectId.prototype.toString = function () {
 
 			getIntroQuestionsByMatch: function (id) {
 				var Defer = $q.defer();
-				API.one('inquestions',id).getList('match').then(function (items) {
+				API.one('inquestions', id).getList('match').then(function (items) {
 					items = Restangular.restangularizeCollection(null, items, 'v1/data/inquestions');
 					items = _.forEach(items, function (item) {
 						item.fromServer = true;
@@ -8138,19 +8636,19 @@ ObjectId.prototype.toString = function () {
 					"banner": "http://static.wixstatic.com/media/86524a_8e7cf46163d10eb8ccb2ceb407085a97.jpg_1024",
 					"video": ""
 				},
-					{
-						"company": "Amstel",
-						"name": "Seeing you later - Amstel",
-						"text": { "en": "Sponsored by Amstel" },
-						"banner": "http://2.bp.blogspot.com/-KQ4Ze7kZoEM/UYlG1Lcp9nI/AAAAAAAAH1I/dhuMMd8EFGU/s1600/amstel-lager.jpg"
-					},
-					{
-						"company": "Vodagone",
-						"name": "Vodafone",
-						"text": { "en": "Sponsored by Vodafone" },
-						"banner": "http://www.vodafone.gr/portal/resources/media/Vodafone_Elladas/network/network-banner-inner-en--.jpg",
-						"video": ""
-					}
+				{
+					"company": "Amstel",
+					"name": "Seeing you later - Amstel",
+					"text": { "en": "Sponsored by Amstel" },
+					"banner": "http://2.bp.blogspot.com/-KQ4Ze7kZoEM/UYlG1Lcp9nI/AAAAAAAAH1I/dhuMMd8EFGU/s1600/amstel-lager.jpg"
+				},
+				{
+					"company": "Vodagone",
+					"name": "Vodafone",
+					"text": { "en": "Sponsored by Vodafone" },
+					"banner": "http://www.vodafone.gr/portal/resources/media/Vodafone_Elladas/network/network-banner-inner-en--.jpg",
+					"video": ""
+				}
 				]);
 
 				// SponsorsAPI.getList().then(function(sponsors) {
@@ -8161,29 +8659,7 @@ ObjectId.prototype.toString = function () {
 		}
 	};
 
-	function PrizesService($rootScope, $q, Restangular) {
-		var PrizesAPI = Restangular.all('leaderpay/v1/prizes');
 
-		Restangular.setBaseUrl($rootScope.servers[$rootScope.serverEnvironment].game_server);
-		Restangular.setRestangularFields({
-			id: "_id"
-		});
-
-		return {
-
-			getAllPlain: function () {
-				var Defer = $q.defer();
-
-				PrizesAPI.getList().then(function (prizes) {
-					prizes = _.forEach(prizes, function (prize) {
-						prize = prize.plain();
-					});
-					Defer.resolve(prizes);
-				});
-				return Defer.promise;
-			}
-		}
-	};
 
 	function PoolsService($rootScope, $q, Restangular) {
 
@@ -8369,9 +8845,9 @@ ObjectId.prototype.toString = function () {
 		}
 	};
 
-	SportimoModerationSoccerController.$inject = ['DataService','PollsService', 'GamecardsService', 'UsersService', 'StatsComService', 'CompetitionsService', 'StatsService', 'TagsService', 'ngClipboard', '$location', '$anchorScroll', 'QuestionsService', 'LeaderboardsService', 'CountriesService', 'PrizesService', 'SponsorsService', 'PoolsService', '$scope', 'ngDialog', '$stateParams', '$http', '$rootScope', '$timeout', '$interval', '$mdToast', '$mdBottomSheet', '$window'];
+	SportimoModerationSoccerController.$inject = ['DataService', 'PollsService', 'GamecardsService', 'UsersService', 'StatsComService', 'CompetitionsService', 'StatsService', 'TagsService', 'ngClipboard', '$location', '$anchorScroll', 'QuestionsService', 'LeaderboardsService', 'CountriesService', 'PrizesService', 'SponsorsService', 'PoolsService', '$scope', 'ngDialog', '$stateParams', '$http', '$rootScope', '$timeout', '$interval', '$mdToast', '$mdBottomSheet', '$window'];
 
-	function SportimoModerationSoccerController(DataService,PollsService, GamecardsService, UsersService, StatsComService, CompetitionsService, StatsService, TagsService, ngClipboard, $location, $anchorScroll, QuestionsService, LeaderboardsService, CountriesService, PrizesService, SponsorsService, PoolsService, $scope, ngDialog, $stateParams, $http, $rootScope, $timeout, $interval, $mdToast, $mdBottomSheet, $window) {
+	function SportimoModerationSoccerController(DataService, PollsService, GamecardsService, UsersService, StatsComService, CompetitionsService, StatsService, TagsService, ngClipboard, $location, $anchorScroll, QuestionsService, LeaderboardsService, CountriesService, PrizesService, SponsorsService, PoolsService, $scope, ngDialog, $stateParams, $http, $rootScope, $timeout, $interval, $mdToast, $mdBottomSheet, $window) {
 
 
 		var vm = $scope;
@@ -8647,7 +9123,7 @@ ObjectId.prototype.toString = function () {
 
 				$scope.stats = ParseMatchStats(response.data.data.stats);
 				QuestionsService.AllByMatch(vm.matchid).then(function (questions) {
-					vm.questions = questions;			
+					vm.questions = questions;
 					vm.ClosedQuestions = _.filter(questions, { status: 1 }).length;
 					vm.parseFavoriteQuestions();
 				})
@@ -9545,7 +10021,7 @@ ObjectId.prototype.toString = function () {
 		  IntroQuestions Administration
 		========================================================================== */
 		vm.introQuestions = null;
-		
+
 		vm.selectedIntroQuestion = null;
 
 		vm.addNewIntroQuestion = function () {
@@ -9556,7 +10032,7 @@ ObjectId.prototype.toString = function () {
 				text: {
 					en: ""
 				},
-				answers:[{_id: new ObjectId().toString() ,text:{"en":""}},{_id: new ObjectId().toString() ,text:{"en":""}}]
+				answers: [{ _id: new ObjectId().toString(), text: { "en": "" } }, { _id: new ObjectId().toString(), text: { "en": "" } }]
 			}
 		}
 
@@ -9582,10 +10058,10 @@ ObjectId.prototype.toString = function () {
 			})
 		}
 
-		vm.deleteIntroQuestion = function(question){
+		vm.deleteIntroQuestion = function (question) {
 			question.remove().then(function (err, result) {
-				
-				if (!err){
+
+				if (!err) {
 					$scope.introQuestions = _.without($scope.introQuestions, question);
 					vm.selectedIntroQuestion = null;
 				}
@@ -10003,9 +10479,13 @@ ObjectId.prototype.toString = function () {
 
 		vm.createNewMessage = function () {
 
+			if (!$rootScope.user) {
+				alert("You ar enot logged in as superuser");
+			}
+
 			vm.newMessage = {
 				_id: new ObjectId().toString(),
-				sender: $rootScope.user._id || 'Moderator',
+				sender: 'Moderator',
 				message: true,
 				push: false,
 				sockets: true
@@ -10155,6 +10635,7 @@ ObjectId.prototype.toString = function () {
 			};
 			vm.sendMatchSocketMessage(data);
 		}
+
 		vm.sponsorSendVideo = function (video) {
 			var data = {
 				room: vm.matchid,
@@ -10163,6 +10644,17 @@ ObjectId.prototype.toString = function () {
 				data: {
 					url: video
 				}
+
+			};
+			vm.sendMatchSocketMessage(data);
+		}
+
+		vm.sendVideoAd = function (video) {
+			var data = {
+				room: vm.matchid,
+				type: "VideoAd",
+				timeline_event: false,
+				data: {}
 
 			};
 			vm.sendMatchSocketMessage(data);
@@ -10180,6 +10672,90 @@ ObjectId.prototype.toString = function () {
 		vm.beautify = function (obj) {
 			console.log(obj);
 			return JSON.stringify(obj, null, 4);
+		}
+
+		vm.addNewGamecard = function (type) {
+			console.log("add new");
+
+			vm.selectedGameCard = {
+				"title": {
+					"en": ""
+				},
+				"image": {
+					"url": "",
+					"sprite": "goal"
+				},
+				"primaryStatistic": "Goal",
+				"cardType": type,
+				"endPoints": 0,
+				"startPoints": 0,
+				"duration": type != "Overall" ? 600000 : 0,
+				"activationLatency": 45000,
+				"text": {
+					"en": "A goal will be scored in the next 10 minutes"
+				},
+				"options": [
+					{
+						"startPoints": 300,
+						"endPoints": 150,
+						"optionId": "1",
+						"text": {
+							"en": "[[home_team_name]]"
+						},
+						"terminationConditions": [],
+						"winConditions": [
+							{
+								"stat": "Goal",
+								"remaining": 1,
+								"conditionNegation": false,
+								"id": "[[home_team_id]]",
+								"teamid": "[[home_team_id]]"
+							}
+						]
+					},
+					{
+						"startPoints": 300,
+						"endPoints": 150,
+						"optionId": "2",
+						"text": {
+							"en": "[[away_team_name]]"
+						},
+						"terminationConditions": [],
+						"winConditions": [
+							{
+								"stat": "Goal",
+								"remaining": 1,
+								"conditionNegation": false,
+								"id": "[[away_team_id]]",
+								"teamid": "[[away_team_id]]"
+							}
+						]
+					},
+					{
+						"startPoints": 200,
+						"endPoints": 100,
+						"optionId": "3",
+						"text": {
+							"en": "Yes any team"
+						},
+						"terminationConditions": [],
+						"winConditions": [
+							{
+								"stat": "Goal",
+								"remaining": 1,
+								"conditionNegation": false,
+								"id": "match"
+							}
+						]
+					}
+				],
+				"__v": 0,
+				"appearConditions": [],
+				"winConditions": [],
+				"terminationConditions": [],
+				"isVisible": true,
+				"isActive": true
+			}
 		}
 
 		vm.onSelectedCompare = function (condition, $item, $model) {
@@ -10265,7 +10841,8 @@ ObjectId.prototype.toString = function () {
 			{ spriteName: 'ShotOn', name: 'shoton', filename: 'shoton.png' },
 			{ spriteName: 'Sub1', name: 'sub1', filename: 'sub1.png' },
 			{ spriteName: 'Sub2', name: 'sub2', filename: 'sub2' },
-			{ spriteName: 'Score', name: 'who-will-score', filename: 'who-will-score.png' }];
+			{ spriteName: 'Score', name: 'who-will-score', filename: 'who-will-score.png' },
+				{ spriteName: 'Goals Num', name: 'goals-num', filename: 'goals-num.png' }];
 
 		vm.getSpriteFilename = function (sprite) {
 			var selectedSprite = _.find(vm.icons, { name: sprite });
@@ -10276,6 +10853,7 @@ ObjectId.prototype.toString = function () {
 		}
 
 		GamecardsService.getMatchDefinitions(vm.matchid).then(function (templates) {
+			vm.gamecardTemplates.presets = _.filter(templates, { cardType: "PresetInstant" });
 			vm.gamecardTemplates.instants = _.filter(templates, { cardType: "Instant" });
 			vm.gamecardTemplates.overalls = _.filter(templates, { cardType: "Overall" });
 			// console.log(vm.gamecardTemplates.overalls);
@@ -10310,8 +10888,9 @@ ObjectId.prototype.toString = function () {
 
 		vm.CreateGameCard = function (gamecard) {
 			GamecardsService.ceateDefinitionForMatch(gamecard, vm.matchid).then(function (result) {
-
-				if (result.cardType == "Instant")
+				if (result.cardType == "PresetInstant")
+					vm.gamecardTemplates.presets.push(result);
+				else if (result.cardType == "Instant")
 					vm.gamecardTemplates.instants.push(result);
 				else
 					vm.gamecardTemplates.overalls.push(result);
@@ -10324,8 +10903,9 @@ ObjectId.prototype.toString = function () {
 		vm.deleteGameCard = function (gamecard) {
 			gamecard.remove().then(function (res, err) {
 				if (!err) {
-
-					if (gamecard.cardType == "Instant")
+					if (result.cardType == "PresetInstant")
+						vm.gamecardTemplates.presets = _.without(vm.gamecardTemplates.instants, gamecard);
+					else if (gamecard.cardType == "Instant")
 						vm.gamecardTemplates.instants = _.without(vm.gamecardTemplates.instants, gamecard);
 					else
 						vm.gamecardTemplates.overalls = _.without(vm.gamecardTemplates.overalls, gamecard);
@@ -11441,7 +12021,7 @@ ObjectId.prototype.toString = function () {
 		.directive('matchMiniPanels', matchMiniPanels)
 		.controller('DashboardController', DashboardController);
 
-function debugThis() {
+	function debugThis() {
 		return {
 			restrict: 'E',
 			transclude: true,
@@ -16161,71 +16741,71 @@ function debugThis() {
 				'stylers': [{
 					'visibility': 'on'
 				}, {
-						'color': '#bdd1f9'
-					}]
+					'color': '#bdd1f9'
+				}]
 			}, {
-					'featureType': 'all',
-					'elementType': 'labels.text.fill',
-					'stylers': [{
-						'color': '#334165'
-					}]
+				'featureType': 'all',
+				'elementType': 'labels.text.fill',
+				'stylers': [{
+					'color': '#334165'
+				}]
+			}, {
+				featureType: 'landscape',
+				stylers: [{
+					color: '#e9ebf1'
+				}]
+			}, {
+				featureType: 'road.highway',
+				elementType: 'geometry',
+				stylers: [{
+					color: '#c5c6c6'
+				}]
+			}, {
+				featureType: 'road.arterial',
+				elementType: 'geometry',
+				stylers: [{
+					color: '#fff'
+				}]
+			}, {
+				featureType: 'road.local',
+				elementType: 'geometry',
+				stylers: [{
+					color: '#fff'
+				}]
+			}, {
+				featureType: 'transit',
+				elementType: 'geometry',
+				stylers: [{
+					color: '#d8dbe0'
+				}]
+			}, {
+				featureType: 'poi',
+				elementType: 'geometry',
+				stylers: [{
+					color: '#cfd5e0'
+				}]
+			}, {
+				featureType: 'administrative',
+				stylers: [{
+					visibility: 'on'
 				}, {
-					featureType: 'landscape',
-					stylers: [{
-						color: '#e9ebf1'
-					}]
+					lightness: 33
+				}]
+			}, {
+				featureType: 'poi.park',
+				elementType: 'labels',
+				stylers: [{
+					visibility: 'on'
 				}, {
-					featureType: 'road.highway',
-					elementType: 'geometry',
-					stylers: [{
-						color: '#c5c6c6'
-					}]
-				}, {
-					featureType: 'road.arterial',
-					elementType: 'geometry',
-					stylers: [{
-						color: '#fff'
-					}]
-				}, {
-					featureType: 'road.local',
-					elementType: 'geometry',
-					stylers: [{
-						color: '#fff'
-					}]
-				}, {
-					featureType: 'transit',
-					elementType: 'geometry',
-					stylers: [{
-						color: '#d8dbe0'
-					}]
-				}, {
-					featureType: 'poi',
-					elementType: 'geometry',
-					stylers: [{
-						color: '#cfd5e0'
-					}]
-				}, {
-					featureType: 'administrative',
-					stylers: [{
-						visibility: 'on'
-					}, {
-							lightness: 33
-						}]
-				}, {
-					featureType: 'poi.park',
-					elementType: 'labels',
-					stylers: [{
-						visibility: 'on'
-					}, {
-							lightness: 20
-						}]
-				}, {
-					featureType: 'road',
-					stylers: [{
-						color: '#d8dbe0',
-						lightness: 20
-					}]
-				}];
+					lightness: 20
+				}]
+			}, {
+				featureType: 'road',
+				stylers: [{
+					color: '#d8dbe0',
+					lightness: 20
+				}]
+			}];
 			vm.mapOptions5 = {
 				zoom: 14,
 				center: position[3],
@@ -16708,14 +17288,14 @@ function debugThis() {
 			title: 'avatar 1',
 			value: 'avatar-1'
 		}, {
-				id: 'svg-2',
-				title: 'avatar 2',
-				value: 'avatar-2'
-			}, {
-				id: 'svg-3',
-				title: 'avatar 3',
-				value: 'avatar-3'
-			}];
+			id: 'svg-2',
+			title: 'avatar 2',
+			value: 'avatar-2'
+		}, {
+			id: 'svg-3',
+			title: 'avatar 3',
+			value: 'avatar-3'
+		}];
 
 		$scope.radioData = [
 			{
@@ -17719,7 +18299,7 @@ function debugThis() {
 	$.notify.closeAll = closeAll;
 
 	return notify;
-} (jQuery));
+}(jQuery));
 
 /**=========================================================
  * Module: access-login.js
@@ -18577,6 +19157,13 @@ function debugThis() {
 				resolve: helper.resolveFor('ui.select', 'ngFileUpload'),
 				controller: 'CompetitionsController'
 			})
+			.state('app.prizes', {
+				url: '/prizes',
+				title: 'Prizes',
+				templateUrl: helper.basepath('database/prizes.html'),
+				resolve: helper.resolveFor('ui.select', 'ngFileUpload'),
+				controller: 'PrizesController'
+			})
 			.state('app.sponsors', {
 				url: '/sponsors',
 				title: 'Sponsors',
@@ -18614,12 +19201,26 @@ function debugThis() {
 				controller: 'SportimoModerationSoccerController',
 				controllerAs: 'modCtrl',
 			})
+			.state('app.polls', {
+				url: '/polls',
+				title: 'Polls Management',
+				templateUrl: helper.basepath('sportimo/polls/polls.html'),
+				controller: 'SportimoPollsController',
+				resolve: helper.resolveFor('chartjs', 'restangular', 'toaster', 'dirPagination', 'ui.knob', 'ngFileUpload', 'ui.select')
+			})
 			.state('app.messages', {
 				url: '/messages',
 				title: 'Messages Management',
 				templateUrl: helper.basepath('sportimo/messages/index.html'),
 				controller: 'MessagesController',
 				resolve: helper.resolveFor('ui.select', 'ngFileUpload')
+			})
+			.state('app.earlyaccess', {
+				url: '/earlyaccess',
+				title: 'Early Access Management',
+				templateUrl: helper.basepath('sportimo/earlyaccess/index.html'),
+				controller: 'EarlyAccessController',
+				resolve: helper.resolveFor('ui.select')
 			})
 			.state('app.gamecards', {
 				url: '/gamecards',
@@ -18636,13 +19237,7 @@ function debugThis() {
 				controller: 'SportimoWelcomesController'
 			})
 
-			.state('app.polls', {
-				url: '/polls',
-				title: 'Polls Management',
-				templateUrl: helper.basepath('sportimo/polls/polls.html'),
-				controller: 'SportimoPollsController',
-				resolve: helper.resolveFor('restangular', 'toaster', 'dirPagination', 'ui.knob')
-			})
+
 			.state('app.activities', {
 				url: '/activities',
 				title: 'Activities Management',
@@ -19924,18 +20519,18 @@ function debugThis() {
 				'firstName': 'Superman',
 				'lastName': 'Yoda'
 			}, {
-					'id': 870,
-					'firstName': 'Ace',
-					'lastName': 'Ventura'
-				}, {
-					'id': 590,
-					'firstName': 'Flash',
-					'lastName': 'Gordon'
-				}, {
-					'id': 803,
-					'firstName': 'Luke',
-					'lastName': 'Skywalker'
-				}
+				'id': 870,
+				'firstName': 'Ace',
+				'lastName': 'Ventura'
+			}, {
+				'id': 590,
+				'firstName': 'Flash',
+				'lastName': 'Gordon'
+			}, {
+				'id': 803,
+				'firstName': 'Luke',
+				'lastName': 'Skywalker'
+			}
 			];
 
 			vm.dtOptions = DTOptionsBuilder.newOptions().withPaginationType('full_numbers');
@@ -20259,70 +20854,70 @@ function debugThis() {
 				name: 'Moroni',
 				age: 50
 			},
-				{
-					name: 'Tiancum',
-					age: 43
-				},
-				{
-					name: 'Jacob',
-					age: 27
-				},
-				{
-					name: 'Nephi',
-					age: 29
-				},
-				{
-					name: 'Enos',
-					age: 34
-				},
-				{
-					name: 'Tiancum',
-					age: 43
-				},
-				{
-					name: 'Jacob',
-					age: 27
-				},
-				{
-					name: 'Nephi',
-					age: 29
-				},
-				{
-					name: 'Enos',
-					age: 34
-				},
-				{
-					name: 'Tiancum',
-					age: 43
-				},
-				{
-					name: 'Jacob',
-					age: 27
-				},
-				{
-					name: 'Nephi',
-					age: 29
-				},
-				{
-					name: 'Enos',
-					age: 34
-				},
-				{
-					name: 'Tiancum',
-					age: 43
-				},
-				{
-					name: 'Jacob',
-					age: 27
-				},
-				{
-					name: 'Nephi',
-					age: 29
-				},
-				{
-					name: 'Enos',
-					age: 34
-				}];
+			{
+				name: 'Tiancum',
+				age: 43
+			},
+			{
+				name: 'Jacob',
+				age: 27
+			},
+			{
+				name: 'Nephi',
+				age: 29
+			},
+			{
+				name: 'Enos',
+				age: 34
+			},
+			{
+				name: 'Tiancum',
+				age: 43
+			},
+			{
+				name: 'Jacob',
+				age: 27
+			},
+			{
+				name: 'Nephi',
+				age: 29
+			},
+			{
+				name: 'Enos',
+				age: 34
+			},
+			{
+				name: 'Tiancum',
+				age: 43
+			},
+			{
+				name: 'Jacob',
+				age: 27
+			},
+			{
+				name: 'Nephi',
+				age: 29
+			},
+			{
+				name: 'Enos',
+				age: 34
+			},
+			{
+				name: 'Tiancum',
+				age: 43
+			},
+			{
+				name: 'Jacob',
+				age: 27
+			},
+			{
+				name: 'Nephi',
+				age: 29
+			},
+			{
+				name: 'Enos',
+				age: 34
+			}];
 
 			vm.tableParams4 = new ngTableParams({
 				page: 1, // show first page
@@ -21249,7 +21844,7 @@ function debugThis() {
 						for (name in transEndEventNames) {
 							if (element.style[name] !== undefined) return transEndEventNames[name];
 						}
-					} ());
+					}());
 
 					return transitionEnd && {
 						end: transitionEnd
@@ -21271,7 +21866,7 @@ function debugThis() {
 						for (name in animEndEventNames) {
 							if (element.style[name] !== undefined) return animEndEventNames[name];
 						}
-					} ());
+					}());
 
 					return animationEnd && {
 						end: animationEnd

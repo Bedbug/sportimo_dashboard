@@ -1,0 +1,245 @@
+<div>
+
+    <div class="col-xs-12 no-padding">
+        <pre ng-show="debugState">{{allItemsSelected | json}}</pre>
+    </div>
+    <!-- END SEARCH USERS -->
+
+    <div class="panel panel-transparent col-lg-12 no-padding">
+        <uib-tabset justified="true" class="bg-white p0">
+            <!--REQUESTS-->
+            <uib-tab>
+                <uib-tab-heading>
+                    Requests
+                </uib-tab-heading>
+
+                <!-- START  LIST -->
+                <div ng-show="!selectedMessage && !userSelected" class="col-lg-12 p0 mt-lg">
+                    <div ng-show="allItemsSelected.length>0" class="panel">
+                        <div class="panel-body">
+                            <button ladda="view.busy" ng-click="batchInvite()" class="col-xs-12 btn btn-default">Batch invite {{allItemsSelected.length}} users</button>
+                        </div>
+                    </div>
+                    <!-- START panel tab-->
+                    <div class="panel">
+                        <div class="panel-body">
+                            <!-- START COMPETITIONS -->
+                            <div class="col-xs-12 p0">
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center">
+                                                    <button type="button" ng-click="batchSelect()" class="btn btn-primary" ng-model="batchSelectItems.state" uib-btn-checkbox btn-checkbox-true="1"
+                                                        btn-checkbox-false="0">
+                                            <span ng-if="batchSelectItems.state == 1">Deselect All</span><span ng-if="batchSelectItems.state != 1">Select All</span>
+                                        </button>
+                                                    <pre ng-show="debugState">{{batchSelectItems}}</pre>
+                                                </th>
+                                                <th class="text-center">Email</th>
+                                                <th class="text-center">Code</th>
+                                                <th class="text-center">Invited</th>
+                                                <th class="text-center">Used</th>
+                                                <th class="text-center">Created</th>
+                                                <th class="text-center">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                             <tr ng-repeat="item in requests = (allItems | filter:{email_sent: false, verified: false}) | startFrom:(requestedCurrentPage-1)*itemsPerPage | limitTo: 10">
+                                                <td class="text-center">
+                                                    <div class="checkbox">
+                                                        <input type="checkbox" class="m0" ng-change="toggleSelection(item)" ng-model="item.selected">
+                                                    </div>
+                                                </td>
+                                                <td class="text-center">
+                                                    {{item.email}}
+                                                </td>
+                                                <td class="text-center" style="width:200px">
+                                                    <label>{{item.code}}</label>
+                                                </td>
+                                                <td class="text-center" width="100px">
+                                                    {{item.email_sent}}
+                                                </td>
+                                                <td class="text-center" width="100px">{{item.verified}} </td>
+                                                <td class="text-center" width="100px">{{item.createdAt | date:'dd/MM/yyyy'}} </td>
+                                                <td class="text-center" style="width:200px">
+                                                    <div class="event-card" ng-init="poolroom.openActions = false">
+                                                        <div class="controlls col-xs-12" style="width:auto; height: auto">
+                                                            <button ng-click="removeUser(item)" class="delete pull-right btn btn-danger"><span class="btn-label" style="left:0">
+                                            </span></button>
+                                                            <button ng-click="inviteUser(item)" ladda="view.busy" class="minimal pull-right btn btn-info"><span class="btn-label" style="left:0">Invite <i class="fa-fw fa fa-envelope"></i>
+                                            </span></button>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <!-- END COMPETITIONS -->
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                            <ul uib-pagination items-per-page="itemsPerPage" total-items="requests.length" 
+                                ng-model="requestedCurrentPage" max-size="3" class="pagination-sm mb-lg pull-right" boundary-links="true"
+                                force-ellipses="true"></ul>
+                        </div>
+                    <!-- END panel tab-->
+                </div>
+            </uib-tab>
+            <!--PENDING-->
+            <uib-tab>
+                <uib-tab-heading>
+                    Pending
+                </uib-tab-heading>
+
+                <!-- START  LIST -->
+                <div ng-show="!selectedMessage && !userSelected" class="col-lg-12 p0 mt-lg">
+                    <!-- START panel tab-->
+                    <div class="panel">
+                        <div class="panel-body">
+                            <!-- START COMPETITIONS -->
+                            <div class="col-xs-12 p0">
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center">
+                                                    <button type="button" ng-click="batchSelect()" class="btn btn-primary" ng-model="batchSelectItems.state" uib-btn-checkbox btn-checkbox-true="1"
+                                                        btn-checkbox-false="0">
+                                            <span ng-if="batchSelectItems.state == 1">Deselect All</span><span ng-if="batchSelectItems.state != 1">Select All</span>
+                                        </button>
+                                                    <pre ng-show="debugState">{{batchSelectItems}}</pre>
+                                                </th>
+                                                <th class="text-center">Email</th>
+                                                <th class="text-center">Code</th>
+                                                <th class="text-center">Invited</th>
+                                                <th class="text-center">Used</th>
+                                                <th class="text-center">Created</th>
+                                                <th class="text-center">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="item in invited = (allItems | filter:{email_sent: true, verified: false}) | startFrom:(invitedCurrentPage-1)*itemsPerPage | limitTo: 10">
+                                                <td class="text-center">
+                                                    <div class="checkbox">
+                                                        <input type="checkbox" class="m0" ng-change="toggleSelection(item)" ng-model="item.selected">
+                                                    </div>
+                                                </td>
+                                                <td class="text-center">
+                                                    {{item.email}}
+                                                </td>
+                                                <td class="text-center" style="width:200px">
+                                                    <label>{{item.code}}</label>
+                                                </td>
+                                                <td class="text-center" width="100px">
+                                                    {{item.email_sent}}
+                                                </td>
+                                                <td class="text-center" width="100px">{{item.verified}} </td>
+                                                <td class="text-center" width="100px">{{item.createdAt | date:'dd/MM/yyyy'}} </td>
+                                                <td class="text-center" style="width:215px">
+                                                    <div class="event-card" ng-init="poolroom.openActions = false">
+                                                        <div class="controlls col-xs-12" style="width:auto; height: auto">
+                                                            <button ng-click="removeUser(item)" class="delete pull-right btn btn-danger"><span class="btn-label" style="left:0">
+                                            </span></button>
+                                                            <button ng-click="inviteUser(item)" ladda="view.busy" class="minimal pull-right btn btn-info"><span class="btn-label" style="left:0">Re-send <i class="fa-fw fa fa-envelope"></i>
+                                            </span></button>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <!-- END COMPETITIONS -->
+                        </div>
+                    </div>
+                    <!-- END panel tab-->
+                     <div class="col-lg-12">
+                            <ul uib-pagination items-per-page="itemsPerPage" total-items="invited.length"
+                                ng-model="invitedCurrentPage" max-size="3" class="pagination-sm mb-lg pull-right" boundary-links="true"
+                                force-ellipses="true"></ul>
+                    </div>
+                </div>
+            </uib-tab>
+            <!--Accepted-->
+            <uib-tab>
+                <uib-tab-heading>
+                    Accepted
+                </uib-tab-heading>
+
+                <!-- START  LIST -->
+                <div ng-show="!selectedMessage && !userSelected" class="col-lg-12 p0 mt-lg">
+                    <!-- START panel tab-->
+                    <div class="panel">
+                        <div class="panel-body">
+                            <!-- START COMPETITIONS -->
+                            <div class="col-xs-12 p0">
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center">
+                                                    <button type="button" ng-click="batchSelect()" class="btn btn-primary" ng-model="batchSelectItems.state" uib-btn-checkbox btn-checkbox-true="1"
+                                                        btn-checkbox-false="0">
+                                            <span ng-if="batchSelectItems.state == 1">Deselect All</span><span ng-if="batchSelectItems.state != 1">Select All</span>
+                                        </button>
+                                                    <pre ng-show="debugState">{{batchSelectItems}}</pre>
+                                                </th>
+                                                <th class="text-center">Email</th>
+                                                <th class="text-center">Code</th>
+                                                <th class="text-center">Invited</th>
+                                                <th class="text-center">Used</th>
+                                                <th class="text-center">Created</th>
+                                                <th class="text-center">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <pre>{{verifiedCurrentPage*itemsPerPage}} | {{itemsPerPage}} | {{verified.length}}</pre>
+                                            <tr ng-repeat="item in verified = (allItems | filter:{verified: true}) | startFrom:(verifiedCurrentPage-1)*itemsPerPage | limitTo: 10">
+                                                <td class="text-center">
+                                                    <div class="checkbox">
+                                                        <input type="checkbox" class="m0" ng-change="toggleSelection(item)" ng-model="item.selected">
+                                                    </div>
+                                                </td>
+                                                <td class="text-center">
+                                                    {{item.email}}
+                                                </td>
+                                                <td class="text-center" style="width:200px">
+                                                    <label>{{item.code}}</label>
+                                                </td>
+                                                <td class="text-center" width="100px">
+                                                    {{item.email_sent}}
+                                                </td>
+                                                <td class="text-center" width="100px">{{item.verified}} </td>
+                                                <td class="text-center" width="100px">{{item.createdAt | date:'dd/MM/yyyy'}} </td>
+                                                <td class="text-center" style="width:200px">
+                                                    <div class="event-card" ng-init="poolroom.openActions = false">
+                                                        <div class="controlls col-xs-12" style="width:auto; height: auto">
+                                                            <button ng-click="removeUser(item)" class="delete pull-right btn btn-danger"><span class="btn-label" style="left:0">
+                                            </span></button>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <!-- END COMPETITIONS -->
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <ul uib-pagination items-per-page="itemsPerPage" total-items="verified.length" ng-model="verifiedCurrentPage"
+                            max-size="3" class="pagination-sm mb-lg pull-right" boundary-links="true" force-ellipses="true">
+                        </ul>
+                    </div>
+                    <!-- END panel tab-->
+                </div>
+            </uib-tab>
+        </uib-tabset>
+    </div>
+</div>

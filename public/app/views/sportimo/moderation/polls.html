@@ -1,5 +1,6 @@
 <!-- START EDITOR -->
 <!-- START OF SETUP-->
+
 <div ng-show="SelectedPoll" class="col-xs-12 card">
     <div class="card-body text-center col-xs-12 no-padding">
 
@@ -28,14 +29,15 @@
 
                     <label class="col-sm-2 control-label">Question</label>
                     <div class="col-sm-10">
-                        <multi-lang-text-area language-object="SelectedPoll.text" default="en"></multi-lang-text-area>
+                        <multi-lang-text placeholder="Question text" language-object="SelectedPoll.text" default="en"></multi-lang-text>
+                        <!--<multi-lang-text-area language-object="SelectedPoll.text" default="en"></multi-lang-text-area>-->
                     </div>
                     <label class="col-sm-2 control-label">Tags</label>
                     <div class="col-sm-10">
-                        <ui-select multiple="" on-select="onAddPollTag(SelectedPoll,$item,$model)" ng-model="SelectedPoll.tags" theme="bootstrap"
+                        <ui-select multiple="" on-select="onAddPollTag(SelectedPoll,$item,$model)" ng-keypress="searchForTag($select.search)" ng-model="SelectedPoll.tags" theme="bootstrap"
                             ng-disabled="uisel.disabled">
                             <ui-select-match placeholder="Select  tags">{{$item.name.en}}</ui-select-match>
-                            <ui-select-choices group-by="'type'" repeat="tag as tag in matchTags | filter: $select.search">
+                            <ui-select-choices group-by="'type'" repeat="tag as tag in Tags | filter: $select.search">
                                 <div ng-bind-html="tag.name.en | highlight: $select.search"></div>
                             </ui-select-choices>
                         </ui-select>

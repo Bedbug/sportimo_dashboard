@@ -9,6 +9,7 @@
     "angular-bootstrap-datetimepicker": "^1.0.1",
     "colors": "1.0.3",
     "ecstatic": "~0.5.6",
+    "mkdirp": "^0.5.1",
     "opener": "~1.4.0",
     "optimist": "0.6.x",
     "portfinder": "0.2.x",
@@ -47,7 +48,6 @@
     "node": "0.10.x"
   },
   "name": "Sportimo_Dashboard",
-  "os": "sunos",
   "bundledDependencies": [
     "colors",
     "ecstatic",

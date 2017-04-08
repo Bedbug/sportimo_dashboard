@@ -13,10 +13,13 @@
 </div>
 
 <div ng-click="toggleEnvironment()" class="pull-left" ng-show="serverEnvironment == 'production'">
-    <em class="fa fa-cloud"> </em>
+    <em class="fa fa-cloud"></em>Production
 </div>
 <div ng-click="toggleEnvironment()" class="pull-left" ng-show="serverEnvironment == 'development'">
-    <em class="fa  fa-circle-o"> </em>
+    <em class="fa  fa-heartbeat"></em>Development
+</div>
+<div ng-click="toggleEnvironment()" class="pull-left" ng-show="serverEnvironment == 'local'">
+    <em class="fa fa-desktop"></em>Local
 </div>
 
 <div ng-click="toggleDebugState()" class="pull-left" ng-show="debugState == true">

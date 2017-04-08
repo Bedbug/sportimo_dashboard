@@ -321,6 +321,28 @@
                 <!-- END VIDEO -->
             </div>
             <!-- END Sponsor Panel -->
+            <div class="panel col-xs-12 panel-highlighted">
+                <div class="panel-heading">
+                    <label class="control-label">Other</label>                   
+                </div>
+
+              
+                <!-- VIDEO -->
+                <div  class="col-xs-12">
+                    <input type="text" ng-model="videoUrl" placeholder="Video url..." class="form-control mb0" />
+                    <button ng-click="sponsorSendVideo(videoUrl)" type="button" class="moderation btn btn-lg mt0 mb-lg col-xs-12 btn-default">
+                        <em class="fa fa-bullhorn fa-fw"></em> Send Video
+                    </button>
+                </div>
+                <!-- END VIDEO -->
+                 <!-- VIDEO -->
+                <div  class="col-xs-12">
+                    <button ng-click="sendVideoAd()" type="button" class="moderation btn btn-lg mt0 mb-lg col-xs-12 btn-default">
+                        <em class="fa fa-bullhorn fa-fw"></em> Send Video Ad
+                    </button>
+                </div>
+                <!-- END VIDEO -->
+            </div>
 
             <div class="panel col-xs-12 panel-highlighted">
                 <div class="panel-heading"> <label class="control-label">Match Stats</label></div>

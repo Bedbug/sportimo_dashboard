@@ -41,7 +41,16 @@
     <div ng-show="!selectedMessage && !userSelected" class="col-lg-12 p0 mt-lg">
         <!-- START panel tab-->
         <div class="panel panel-default col-lg-12">
-            <div class="panel-heading"> <ul  uib-pagination items-per-page="itemsPerPage"  total-items="allSendMessages.length" ng-change="pageChanged()" ng-model="currentPage" max-size="3" class="pagination-sm mb-lg pull-right" boundary-links="true" force-ellipses="true"></ul></div>
+            <div class="panel-heading">
+                 <!--<ul  uib-pagination items-per-page="itemsPerPage"  total-items="allSendMessages.length" 
+            ng-change="pageChanged()" ng-model="currentPage" max-size="3" class="pagination-sm mb-lg pull-right" boundary-links="true" 
+            force-ellipses="true"></ul>-->
+            
+             <uib-pagination total-items="filtered.length" items-per-page="perPage" next-text="Next" 
+             previous-text="Previous" ng-model="currentPage" max-size="maxSize" class="pagination-sm" boundary-link-numbers="true">
+             </uib-pagination>
+            <button ng-click="toggleWelcome()" class="col-xs-4 btn btn-sm pull-right btn-default"><span>Only welcome message</span></button>
+            </div>
             <!-- START COMPETITIONS -->
             <div class="col-xs-12">
             <div class="table-responsive">
@@ -57,7 +66,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="message in slicedMessages">
+                        <tr ng-repeat="message in filtered = (allSendMessages  | filter: {welcome : welcomeOnly || undefined}: true) | start: (currentPage - 1) * perPage | limitTo: perPage">
                             <td class="text-center" ng-style="{
                     'width': '150px',
                     'background-size': 'cover',
