@@ -3112,7 +3112,7 @@
 		$rootScope.servers = {
 			production: {
 				data_server: '',
-				game_server: 'http://gameserverv2-56657.onmodulus.net/',
+				game_server: 'https://gameserverv2-56657.onmodulus.net/',
 				sockets: 'wss://socketserverv2-56658.onmodulus.net/'
 			},
 			development: {
