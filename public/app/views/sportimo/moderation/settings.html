@@ -58,7 +58,7 @@
                                     <ui-select-match placeholder="{{statsSearch.message}}">
                                     </ui-select-match>
                                     <ui-select-choices repeat="event in StatsUpcomingEvents | filter: $select.search">
-                                        <!--<img class="ui-select-match-img" alt='{{team.logo}}' ng-src='https://ep7t6ae.cloudimg.io/s/height/25/{{team.logo}}'>-->
+                                        <!--<img class="ui-select-match-img" alt='{{team.logo}}' ng-src='http://ep7t6ae.cloudimg.io/s/height/25/{{team.logo}}'>-->
                                         <strong><span ng-bind-html="event.home_team.name.en | highlight: $select.search"></span> - 
                                         <span ng-bind-html="event.away_team.name.en | highlight: $select.search"></span></strong>
                                         <div>
