@@ -27,12 +27,12 @@
                     <!-- START of Preview -->
                     <div class="match-logos col-sm-4 col-xs-12">
                         <div class="event-team-logo col-xs-6 col-sm-12 col-md-6">
-                            <img class="moving-self-img" ng-class="zoom" ng-src="http://ep7t6ae.cloudimg.io/s/height/100/{{selectedMatch.home_team.logo}}"
+                            <img class="moving-self-img" ng-class="zoom" ng-src="https://ep7t6ae.cloudimg.io/s/height/100/{{selectedMatch.home_team.logo}}"
                             />
                             <br/> {{selectedMatch.home_team.name.en}}
                         </div>
                         <div class="event-team-logo col-xs-6 col-sm-12 col-md-6">
-                            <img class="moving-self-img" ng-class="zoom" ng-src="http://ep7t6ae.cloudimg.io/s/height/100/{{selectedMatch.away_team.logo}}"
+                            <img class="moving-self-img" ng-class="zoom" ng-src="https://ep7t6ae.cloudimg.io/s/height/100/{{selectedMatch.away_team.logo}}"
                             />
                             <br/> {{selectedMatch.away_team.name.en}}
                         </div>
@@ -45,13 +45,13 @@
                             <div class="moving-self-heading">Home Team</div>
                             <ui-select limit=1 on-select="OnSet()" reset-search-input="true" ng-model="selectedMatch.home_team" theme="bootstrap" ng-disabled="event.chooseplayer.disabled">
                                 <ui-select-match placeholder="Select team name">
-                                    <img class="ui-select-match-img" alt="$item.name.en" ng-src="http://ep7t6ae.cloudimg.io/s/height/25/{{$select.selected.logo}}">                                    {{$select.selected.name.en}}
+                                    <img class="ui-select-match-img" alt="$item.name.en" ng-src="https://ep7t6ae.cloudimg.io/s/height/25/{{$select.selected.logo}}">                                    {{$select.selected.name.en}}
                                 </ui-select-match>
 
                                 <!--                                    <ui-select-choices repeat="team in Teams | filter: (filterTeamPlayers || '') && {team: event.team} | propsFilter: {name: $select.search, team: $select.search}">-->
 
                                 <ui-select-choices repeat="team in Teams | filter: $select.search">
-                                    <img class="ui-select-match-img" alt='{{team.logo}}' ng-src='http://ep7t6ae.cloudimg.io/s/height/25/{{team.logo}}'>
+                                    <img class="ui-select-match-img" alt='{{team.logo}}' ng-src='https://ep7t6ae.cloudimg.io/s/height/25/{{team.logo}}'>
                                     <div ng-bind-html="team.name.en | highlight: $select.search"></div>
                                 </ui-select-choices>
 
@@ -60,11 +60,11 @@
                             <div class="moving-self-heading">Away Team</div>
                             <ui-select limit=1 on-select="OnSet()" reset-search-input="true" ng-model="selectedMatch.away_team" theme="bootstrap" ng-disabled="event.chooseplayer.disabled">
                                 <ui-select-match placeholder="Select team name">
-                                    <img class="ui-select-match-img" alt="$item.name.en" ng-src="http://ep7t6ae.cloudimg.io/s/height/25/{{$select.selected.logo}}">{{$select.selected.name.en}}
+                                    <img class="ui-select-match-img" alt="$item.name.en" ng-src="https://ep7t6ae.cloudimg.io/s/height/25/{{$select.selected.logo}}">{{$select.selected.name.en}}
                                 </ui-select-match>
 
                                 <ui-select-choices repeat="team in Teams | filter: $select.search">
-                                    <img class="ui-select-match-img" alt='{{team.logo}}' ng-src='http://ep7t6ae.cloudimg.io/s/height/25/{{team.logo}}'>
+                                    <img class="ui-select-match-img" alt='{{team.logo}}' ng-src='https://ep7t6ae.cloudimg.io/s/height/25/{{team.logo}}'>
                                     <div ng-bind-html="team.name.en | highlight: $select.search"></div>
                                 </ui-select-choices>
                             </ui-select>
@@ -179,7 +179,7 @@
                             <ui-select-match placeholder="{{statsSearch.message}}">
                             </ui-select-match>
                             <ui-select-choices repeat="event in StatsUpcomingEvents | filter: $select.search">
-                                <!--<img class="ui-select-match-img" alt='{{team.logo}}' ng-src='http://ep7t6ae.cloudimg.io/s/height/25/{{team.logo}}'>-->
+                                <!--<img class="ui-select-match-img" alt='{{team.logo}}' ng-src='https://ep7t6ae.cloudimg.io/s/height/25/{{team.logo}}'>-->
                                 <strong><span ng-bind-html="event.home_team.name.en | highlight: $select.search"></span> - 
                                         <span ng-bind-html="event.away_team.name.en | highlight: $select.search"></span></strong>
                                 <div>
@@ -196,12 +196,12 @@
                     <!-- START of Preview -->
                     <div class="match-logos col-sm-4 col-xs-12">
                         <div class="event-team-logo col-xs-6 col-sm-12 col-md-6">
-                            <img class="moving-self-img" ng-class="!scheduledMatch.finalized? 'desaturate':'zoom'" ng-src="http://ep7t6ae.cloudimg.io/s/height/100/{{scheduledMatch.home_team.logo}}"
+                            <img class="moving-self-img" ng-class="!scheduledMatch.finalized? 'desaturate':'zoom'" ng-src="https://ep7t6ae.cloudimg.io/s/height/100/{{scheduledMatch.home_team.logo}}"
                             />
                             <br/> {{scheduledMatch.home_team.name.en}}
                         </div>
                         <div class="event-team-logo col-xs-6 col-sm-12 col-md-6">
-                            <img class="moving-self-img" ng-class="!scheduledMatch.finalized? 'desaturate':'zoom'" ng-src="http://ep7t6ae.cloudimg.io/s/height/100/{{scheduledMatch.away_team.logo}}"
+                            <img class="moving-self-img" ng-class="!scheduledMatch.finalized? 'desaturate':'zoom'" ng-src="https://ep7t6ae.cloudimg.io/s/height/100/{{scheduledMatch.away_team.logo}}"
                             />
                             <br/> {{scheduledMatch.away_team.name.en}}
                         </div>
@@ -214,13 +214,13 @@
                             <div class="moving-self-heading">Home Team</div>
                             <ui-select limit=1 on-select="OnSet()" reset-search-input="true" ng-model="scheduledMatch.home_team" theme="bootstrap" ng-disabled="event.chooseplayer.disabled">
                                 <ui-select-match placeholder="Select team name">
-                                    <img class="ui-select-match-img" alt="$item.name.en" ng-src="http://ep7t6ae.cloudimg.io/s/height/25/{{$select.selected.logo}}">                                    {{$select.selected.name.en}}
+                                    <img class="ui-select-match-img" alt="$item.name.en" ng-src="https://ep7t6ae.cloudimg.io/s/height/25/{{$select.selected.logo}}">                                    {{$select.selected.name.en}}
                                 </ui-select-match>
 
                                 <!--                                    <ui-select-choices repeat="team in Teams | filter: (filterTeamPlayers || '') && {team: event.team} | propsFilter: {name: $select.search, team: $select.search}">-->
 
                                 <ui-select-choices repeat="team in Teams | filter: $select.search">
-                                    <img class="ui-select-match-img" alt='{{team.logo}}' ng-src='http://ep7t6ae.cloudimg.io/s/height/25/{{team.logo}}'>
+                                    <img class="ui-select-match-img" alt='{{team.logo}}' ng-src='https://ep7t6ae.cloudimg.io/s/height/25/{{team.logo}}'>
                                     <div ng-bind-html="team.name.en | highlight: $select.search"></div>
                                 </ui-select-choices>
 
@@ -229,11 +229,11 @@
                             <div class="moving-self-heading">Away Team</div>
                             <ui-select limit=1 on-select="OnSet()" reset-search-input="true" ng-model="scheduledMatch.away_team" theme="bootstrap" ng-disabled="event.chooseplayer.disabled">
                                 <ui-select-match placeholder="Select team name">
-                                    <img class="ui-select-match-img" alt="$item.name.en" ng-src="http://ep7t6ae.cloudimg.io/s/height/25/{{$select.selected.logo}}">                                    {{$select.selected.name.en}}
+                                    <img class="ui-select-match-img" alt="$item.name.en" ng-src="https://ep7t6ae.cloudimg.io/s/height/25/{{$select.selected.logo}}">                                    {{$select.selected.name.en}}
                                 </ui-select-match>
                                 <!--                                    <ui-select-choices repeat="team in Teams | filter: (filterTeamPlayers || '') && {team: event.team} | propsFilter: {name: $select.search, team: $select.search}">-->
                                 <ui-select-choices repeat="team in Teams | filter:  $select.search">
-                                    <img class="ui-select-match-img" alt='{{team.logo}}' ng-src='http://ep7t6ae.cloudimg.io/s/height/25/{{team.logo}}'>
+                                    <img class="ui-select-match-img" alt='{{team.logo}}' ng-src='https://ep7t6ae.cloudimg.io/s/height/25/{{team.logo}}'>
                                     <div ng-bind-html="team.name.en | highlight: $select.search"></div>
                                 </ui-select-choices>
                             </ui-select>
@@ -310,9 +310,9 @@
                             <td>{{formatDate(event.start, "DD/MM")}}</td>
                             <td>{{formatDate(event.start,"H:mm")}}</td>
                             <td style="line-height:25px;">
-                                <img style="padding-bottom: 5px;" ng-src="http://ep7t6ae.cloudimg.io/s/height/25/{{event.home_team.logo}}">                                {{event.home_team.name.en}}
+                                <img style="padding-bottom: 5px;" ng-src="https://ep7t6ae.cloudimg.io/s/height/25/{{event.home_team.logo}}">                                {{event.home_team.name.en}}
                                 <br>
-                                <img style="padding-bottom: 5px;" ng-src="http://ep7t6ae.cloudimg.io/s/height/25/{{event.away_team.logo}}">                                {{event.away_team.name.en}}
+                                <img style="padding-bottom: 5px;" ng-src="https://ep7t6ae.cloudimg.io/s/height/25/{{event.away_team.logo}}">                                {{event.away_team.name.en}}
 
                             </td>
                             <td ng-if='event.donttouch'>
