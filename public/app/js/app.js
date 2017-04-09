@@ -3026,7 +3026,7 @@
 						break;
 				}
 				
-				console.log(payload);
+				// console.log(payload);
 				// Total User Counts
 				$rootScope.administratorsCount = 0;
 				$rootScope.usersCount = _.reduce($rootScope.SocketInstances, function (sum, n) {
