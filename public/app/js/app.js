@@ -5030,8 +5030,8 @@ ObjectId.prototype.toString = function () {
 				element.find(".fc-time").remove();
 				var new_description =
 					'<div style="height:30px; text-align: center; line-height: 30px;">' +
-					'<img style="padding-top:2px;" class="pull-left" src="http://ep7t6ae.cloudimg.io/s/height/25/' + event.home_team.logo + '">' +
-					'<img style="padding-top:2px;" class="pull-right" src="http://ep7t6ae.cloudimg.io/s/height/25/' + event.away_team.logo + '">' +
+					'<img style="padding-top:2px;" class="pull-left" src="https://res.cloudinary.com/bedbug/image/fetch/h_25/' + event.home_team.logo + '">' +
+					'<img style="padding-top:2px;" class="pull-right" src="https://res.cloudinary.com/bedbug/image/fetch/h_25/' + event.away_team.logo + '">' +
 					moment(event.start).format("H:mm a") +
 					+'</div>';
 				element.append(new_description);
