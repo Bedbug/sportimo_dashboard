@@ -3117,9 +3117,9 @@
 			},
 			development: {
 				data_server: '',
-				game_server: 'http://sportimo_dev.mod.bz/',
+				game_server: 'https://sportimo-gameserver-dev.herokuapp.com/',
 				// sockets: 'wss://socketserverv2-56658.onmodulus.net/'
-				sockets: 'wss://socketsserverdevelopment-96598.app.xervo.io/'
+				sockets: 'wss://sportimo-sockets-dev.herokuapp.com/'
 			},
 			local: {
 				data_server: '',
