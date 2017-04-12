@@ -3112,8 +3112,8 @@
 		$rootScope.servers = {
 			production: {
 				data_server: '',
-				game_server: 'https://gameserverv2-56657.onmodulus.net/',
-				sockets: 'wss://socketserverv2-56658.onmodulus.net/'
+				game_server: 'https://sportimo-gameserver-prod.herokuapp.com/',
+				sockets: 'wss://sportimo-sockets-prod.herokuapp.com/'
 			},
 			development: {
 				data_server: '',
@@ -3157,7 +3157,7 @@
 		$rootScope.dataStream.onMessage(function (message) {
 			var wsData = JSON.parse(message.data);
 
-
+			// console.log(message);
 			if (wsData.type.indexOf('stats'))
 				StatsService.ParseStats(wsData);
 
