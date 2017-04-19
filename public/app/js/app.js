@@ -12258,7 +12258,7 @@ ObjectId.prototype.toString = function () {
 			// ----------------------------------
 			$http({
 				method: 'GET',
-				url: 'http://162.13.157.7/soccerapp/client/fetch_live_matches.php'
+				url: ''
 			}).then(function successCallback(response) {
 
 				$scope.livematches = response.data;
