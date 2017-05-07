@@ -486,7 +486,7 @@
                             </li>
                             <!-- START timeline item-->
                             <li ng-repeat="event in segment.events | reverse | filter: {status:'!removed'} track by $index" class="" ng-class="event.newevent?'new-event':''">
-                                {{'./app/views/partials/events/'+event.type.toLowerCase()+'.html'}}
+                                <!--{{'./app/views/partials/events/'+event.type.toLowerCase()+'.html'}}-->
                                 <ng-include class="timeline-left" src="event.type?'./app/views/partials/events/'+event.type.toLowerCase()+'.html':'./app/views/partials/events/default.html'"></ng-include>
                             </li>
                             <!-- END timeline item-->
