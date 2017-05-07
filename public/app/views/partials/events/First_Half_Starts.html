@@ -13,9 +13,6 @@
 
             <div noSwipeClick ng-click="modCtrl.clickedEvent == event.id? modCtrl.clickedEvent = -1: modCtrl.clickedEvent = event.id;  event.clicked = true"
                 class="timeline-header text-center popover-content" style="line-height: 30px; height:50px; overflow:hidden" ng-class="modCtrl.clickedEvent!=null &&  event.clicked? ((modCtrl.clickedEvent == event.id)? 'slideLeft': 'slideRight'): ''">
-
-
-
                 <img class="shadowed" style="position: absolute;
     height: 85px;
     width: auto;
