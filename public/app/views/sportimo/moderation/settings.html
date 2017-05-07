@@ -2,7 +2,7 @@
 <div class="col-xs-12">
     <!--{{match}}-->
     <!-- START XML Moderation -->
-    <div class="panel panel-highlighted">     
+    <div class="panel panel-highlighted">
         <div class="panel-heading">
             <div class="form-group">
                 <label class="col-xs-6 control-label">Feed Moderation</label>
@@ -10,11 +10,11 @@
                 ng-true-value="true" ng-false-value="false">
           <span></span></label></div>
             </div>
-        </div>       
+        </div>
         <div ng-show="match.data.moderation[0]" class="panel-body">
-           
+
             <form name="StatsParserData" novalidate>
-                 <div class="form-group">
+                <div class="form-group">
                     <label class="col-xs-2 control-label">Parser</label>
                     <div class="col-xs-10">
                         <ui-select ng-model="match.data.moderation[0].parsername" theme="bootstrap" class="text-left">
@@ -75,11 +75,27 @@
 
                     </div>
                 </div>
-               
-                <div class="form-group">
+                <div class="col-xs-12"><hr></hr></div>
+                <div class="form-group  col-xs-12 p0">
+                    <label class="col-xs-2 control-label">Scheduled by service</label>
+                    <div class="col-xs-10 p0">
+                        <div class="col-xs-6"><label class="switch"><input type="checkbox" disabled="true" no-validate  ng-model="match.data.moderation[0].scheduled"><span></span>&nbsp;</label></div>
+                    </div>
+                </div>
+
+                <div class="form-group col-xs-12 p0"  ng-show="match.data.moderation[0].scheduled">
+                    <label class="col-xs-2 control-label">Feed will be active</label>
+                    <div class="col-xs-10 p0" ng-hide="findID">
+                        <div class="col-xs-12">
+                            <input type="text" class="form-control" ng-model="match.data.moderation[0].start" style="">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12"><hr></hr></div>
+                <div class="form-group col-xs-12 p0">
                     <label class="col-xs-2 control-label">Active</label>
                     <div class="col-xs-10 p0">
-                          <div class="col-xs-6"><label class="switch"><input type="checkbox"  no-validate ng-change="updateModerationStatus(match.data.moderation[0])" ng-model="match.data.moderation[0].active"><span></span>&nbsp; <em tooltip="Changes to auto-moderation status updates server immediatly." class="fa fa-info-circle fa-fw"></em></label></div>
+                        <div class="col-xs-6"><label class="switch"><input type="checkbox"  no-validate ng-change="updateModerationStatus(match.data.moderation[0])" ng-model="match.data.moderation[0].active"><span></span>&nbsp;</label></div>
                     </div>
                 </div>
             </form>
