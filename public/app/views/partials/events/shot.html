@@ -13,7 +13,7 @@
                                     </span></button>
     </div> 
     <div noSwipeClick ng-click="modCtrl.clickedEvent == event.id? modCtrl.clickedEvent = -1: modCtrl.clickedEvent = event.id;  event.clicked = true"
-        class="popover-content" style="line-height: 15px;" ng-class="modCtrl.clickedEvent!=null &&  event.clicked? ((modCtrl.clickedEvent == event.id)? 'slideLeft': 'slideRight'): ''">
+        class="popover-content" style="line-height: 15px;" ng-class="modCtrl.clickedEvent!=null && event.clicked? ((modCtrl.clickedEvent == event.id)? 'slideLeft': 'slideRight'): ''">
 
         <img class="shadowed right-team-logo thumb32" alt='{{event.type}}' src='{{match.data[event.team].logo}}'>
 
