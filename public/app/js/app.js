@@ -5219,7 +5219,7 @@ ObjectId.prototype.toString = function () {
 		];
 
 		ScheduleService.getSchedule().then(function (schedule) {
-			$scope.events = schedule;
+			$scope.events = _.orderBy(schedule, "start", "asc");
 			RefreshCalendar();
 		}, function (error) { });
 
