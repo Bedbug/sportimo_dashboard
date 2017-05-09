@@ -3063,7 +3063,7 @@
 		$rootScope.$stateParams = $stateParams;
 		$rootScope.$storage = $window.localStorage;
 
-		$rootScope.version = "v0.9.8.3";
+		$rootScope.version = "v0.9.8.4";
 
 		$rootScope.toggleEnvironment = function () {
 			if ($rootScope.serverEnvironment == 'production')

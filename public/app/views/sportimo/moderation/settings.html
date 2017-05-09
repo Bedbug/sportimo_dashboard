@@ -90,13 +90,21 @@
                             <input type="text" class="form-control" ng-model="match.data.moderation[0].start" style="">
                         </div>
                     </div>
-                </div>
+                </div>                 
                 <div class="col-xs-12"><hr></hr></div>
                 <div class="form-group col-xs-12 p0">
                     <label class="col-xs-2 control-label">Active</label>
                     <div class="col-xs-10 p0">
                         <div class="col-xs-6"><label class="switch"><input type="checkbox"  no-validate ng-change="updateModerationStatus(match.data.moderation[0])" ng-model="match.data.moderation[0].active"><span></span>&nbsp;</label></div>
                     </div>
+                </div>
+                <div class="btn-group col-xs-12 pb-lg">                    
+                    <button ladda="reloadingServer" data-style="zoom-in" ng-click="loadMatchData(match.id)" type="button" class="moderation btn btn-lg col-sm-6 col-xs-12 btn-default">
+                        <em class="fa fa-refresh fa-fw"></em> Reload Match Data <em tooltip-append-to-body=true uib-tooltip="Safe non-destructive operation." class="fa fa-info-circle fa-fw"></em>
+                    </button>
+                     <button ladda="reloadingServer" data-style="zoom-in" ng-click="reloadMatch(match.id)" type="button" class="moderation btn btn-lg col-sm-6 col-xs-12 btn-warning">
+                        <em class="fa fa-refresh fa-fw"></em> Reload Match <em tooltip-append-to-body=true uib-tooltip="Drops the match in memory and re-initiates the match in service." class="fa fa-info-circle fa-fw"></em>
+                    </button>
                 </div>
             </form>
         </div>
