@@ -7978,6 +7978,7 @@ ObjectId.prototype.toString = function () {
 					"sprite": "goal"
 				},
 				"primaryStatistic": "Goal",
+				"creationTime": moment().toISOString(),
 				"cardType": type,
 				"endPoints": 0,
 				"startPoints": 0,
@@ -10686,6 +10687,7 @@ ObjectId.prototype.toString = function () {
 					"sprite": "goal"
 				},
 				"primaryStatistic": "Goal",
+				"creationTime": moment().toISOString(),
 				"cardType": type,
 				"endPoints": 0,
 				"startPoints": 0,
