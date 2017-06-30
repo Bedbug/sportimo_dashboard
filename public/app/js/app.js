@@ -6397,7 +6397,7 @@ ObjectId.prototype.toString = function () {
 
 		vm.createNew = function () {
 			vm.createdReload = true;
-			vm.newItem = {};
+			vm.newItem = {name:{en:""}};
 
 		}
 
