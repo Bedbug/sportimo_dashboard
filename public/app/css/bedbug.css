@@ -1830,12 +1830,12 @@ height: 43px;
         left: 0px;
     }
     to {
-        left: -90%;
+        left: -30%;
     }
 }
 @keyframes conrtrolsSlideRight {
     from {
-        left: -90%;
+        left: -30%;
     }
     to {
         left: 0px;

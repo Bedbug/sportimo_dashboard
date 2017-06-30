@@ -6,15 +6,15 @@
         <div class="arrow"></div>
         <!-- EVENT DATA VIEW -->
         <div class="event-card">
-            <div ng-show="modCtrl.clickedEvent == event.id" class="controlls col-xs-12">
+            <div ng-show="modCtrl.clickedEvent == event._id" class="controlls col-xs-12">
                 <button ng-click="editEvent(event)" class="edit col-xs-6 btn btn-info"><span class="btn-label"><i class="fa fa-pencil"></i>
                                     </span></button>
                 <button ng-click="removeEvent(event)" class="delete col-xs-6 btn btn-danger"><span class="btn-label">
                                     </span></button>
             </div>
 
-            <div noSwipeClick ng-click="modCtrl.clickedEvent == event.id? modCtrl.clickedEvent = -1: modCtrl.clickedEvent = event.id;  event.clicked = true"
-                class="popover-content" style="line-height: 15px;" ng-class="modCtrl.clickedEvent!=null &&  event.clicked? ((modCtrl.clickedEvent == event.id)? 'slideLeft': 'slideRight'): ''">
+            <div noSwipeClick ng-click="modCtrl.clickedEvent == event._id? modCtrl.clickedEvent = -1: modCtrl.clickedEvent = event._id"
+        class="popover-content" style="line-height: 15px;" ng-class="modCtrl.clickedEvent == event._id? 'slideLeft': 'slideRight'">
 
                 <img class="shadowed right-team-logo thumb32" alt='{{event.type}}' src='{{match.data[event.team].logo}}'>
 
