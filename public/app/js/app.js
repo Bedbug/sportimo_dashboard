@@ -3025,7 +3025,7 @@
 						upsert($rootScope.SocketInstances, { instance: payload.data.instance }, payload.data);
 						break;
 				}
-				
+
 				// console.log(payload);
 				// Total User Counts
 				$rootScope.administratorsCount = 0;
@@ -3035,7 +3035,7 @@
 					if (Administrators) {
 						minus = Administrators.count;
 						$rootScope.administratorsCount += minus;
-					}					
+					}
 					return sum + n.connections - minus;
 				}, 0);
 
@@ -5990,9 +5990,9 @@ ObjectId.prototype.toString = function () {
 		};
 	}
 
-	playerEdit.$inject = ['$timeout', 'TagsService'];
+	playerEdit.$inject = ['$timeout', 'TagsService','PlayersService'];
 
-	function playerEdit($timeout, TagsService) {
+	function playerEdit($timeout, TagsService, PlayersService) {
 		return {
 			restrict: 'E',
 			templateUrl: './app/views/directives/playerEdit.html',
@@ -6035,6 +6035,15 @@ ObjectId.prototype.toString = function () {
 				$scope.updateByFeedParser = function (item, parserid) {
 					console.log("ID: " + parserid);
 
+				}
+
+				$scope.CreateItem = function (item) {
+					$scope.view.update = false;
+					PlayersService.addPlayer(item).then(function () {
+						$rootScope.toast(item.name.en + " was created succesfuly");
+						$scope.selectedItem = null; 
+						$scope.view.update = false;
+					})
 				}
 
 				$scope.updateItem = function (item) {
@@ -6397,7 +6406,7 @@ ObjectId.prototype.toString = function () {
 
 		vm.createNew = function () {
 			vm.createdReload = true;
-			vm.newItem = {name:{en:""}};
+			vm.newItem = { name: { en: "" } };
 
 		}
 
@@ -7255,6 +7264,15 @@ ObjectId.prototype.toString = function () {
 					var Defer = $q.defer();
 					PlayersAPI.one(pid).customPUT(data).then(function (players) {
 						Defer.resolve(players);
+					});
+					return Defer.promise;
+				},
+				addPlayer: function (data) {
+					var Defer = $q.defer();
+					PlayersAPI.post(data).then(function (pool) {
+						Defer.resolve(pool);
+					}, function (err) {
+						console.log(err);
 					});
 					return Defer.promise;
 				}
@@ -10844,7 +10862,7 @@ ObjectId.prototype.toString = function () {
 			{ spriteName: 'Sub1', name: 'sub1', filename: 'sub1.png' },
 			{ spriteName: 'Sub2', name: 'sub2', filename: 'sub2' },
 			{ spriteName: 'Score', name: 'who-will-score', filename: 'who-will-score.png' },
-				{ spriteName: 'Goals Num', name: 'goals-num', filename: 'goals-num.png' }];
+			{ spriteName: 'Goals Num', name: 'goals-num', filename: 'goals-num.png' }];
 
 		vm.getSpriteFilename = function (sprite) {
 			var selectedSprite = _.find(vm.icons, { name: sprite });
