@@ -45,7 +45,7 @@
   "readme": "ERROR: No README data found!",
   "subdomain": "sportimo",
   "engines": {
-    "node": "0.10.x"
+    "node": "6.11.1"
   },
   "name": "Sportimo_Dashboard",
   "bundledDependencies": [
