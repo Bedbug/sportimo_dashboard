@@ -9275,68 +9275,7 @@ ObjectId.prototype.toString = function () {
 				// or server returns response with an error status.
 			});
 		}
-		// $scope.players = [
-		//     {
-		//         id: "565c4",
-		//         team: "home_team",
-		//         name: "marco"
-		//     },
-		//     {
-		//         id: "565c4a",
-		//         team: "home_team",
-		//         name: "polo"
-		//     },
-		//     {
-		//         id: "565c4af",
-		//         team: "home_team",
-		//         name: "christopher"
-		//     },
-		//     {
-		//         id: "565c4af6",
-		//         team: "away_team",
-		//         name: "colombo"
-		//     },
-		//     {
-		//         id: "565c4af6e",
-		//         team: "away_team",
-		//         name: "jekhis"
-		//     },
-		//     {
-		//         id: "565c4af6e4",
-		//         team: "home_team",
-		//         name: "marlon"
-		//     },
-		//     {
-		//         id: "565c4af6e4b",
-		//         team: "home_team",
-		//         name: "jones"
-		//     },
-		//     {
-		//         id: "565c4af6e4b0",
-		//         team: "away_team",
-		//         name: "indiana"
-		//     },
-		//     {
-		//         id: "565c4af6e4b0a",
-		//         team: "home_team",
-		//         name: "brando"
-		//     },
-		//     {
-		//         id: "565c4af6e4b0a3",
-		//         team: "away_team",
-		//         name: "han"
-		//     },
-		//     {
-		//         id: "565c4af6e4b0ba33",
-		//         team: "home_team",
-		//         name: "indiana"
-		//     },
-		//     {
-		//         id: "565c4af6e4b0a33dd",
-		//         team: "home_team",
-		//         name: "chackie"
-		//     }
-		// ];
+		
 
 
 		$scope.checkSelection = function ($item, $model) {
@@ -10204,6 +10143,36 @@ ObjectId.prototype.toString = function () {
 		}
 
 		vm.view = {};
+		
+		// vm.showMatchRules = true;
+		// vm.showGamecardRules = true;
+
+		vm.userGameStates = [
+			{state_id: 0, state: "PreGame"},
+			{state_id: 1, state: "First Half"},
+			{state_id: 2, state: "Half Time"},
+			{state_id: 3, state: "Second Half"},
+			{state_id: 4, state: "Second Half"}
+		]
+
+		
+
+		vm.UpdateMatchSettings = function(){
+			console.log("Update match settings");
+			vm.view.busy = true;
+			
+			$http({
+				method: 'PUT',
+				url: $rootScope.servers[$rootScope.serverEnvironment].game_server + 'v1/data/schedule/' + vm.matchid + '/settings',
+				data: vm.match.data.settings
+			}).then(function successCallback(response) {
+				vm.view.busy = false;
+				$rootScope.toast("Success! Reloading match on service.")
+				vm.reloadMatch();
+			}, function errorCallback(response) {
+				console.log(response);
+			});
+		}
 
 		vm.updateModerationStatus = function (modObject) {
 			vm.view.busy = true;
@@ -10215,7 +10184,7 @@ ObjectId.prototype.toString = function () {
 			}).then(function successCallback(response) {
 				vm.view.busy = false;
 			}, function errorCallback(response) {
-				console.log(repsonse);
+				console.log(response);
 			});
 		}
 
@@ -11045,6 +11014,8 @@ ObjectId.prototype.toString = function () {
 		vm.showFavoritesInfo = function () {
 			$rootScope.toast("You can use variables before you save your game card.</br></br> Vars:</br> [[home_team_name]] - home_team</br> [[away_team_name]] - away_team");
 		}
+
+		
 	}
 
 	function CountriesService() {
