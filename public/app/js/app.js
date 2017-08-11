@@ -3063,7 +3063,7 @@
 		$rootScope.$stateParams = $stateParams;
 		$rootScope.$storage = $window.localStorage;
 
-		$rootScope.version = "v0.9.8.4";
+		$rootScope.version = "v0.9.8.7";
 
 		$rootScope.toggleEnvironment = function () {
 			if ($rootScope.serverEnvironment == 'production')
@@ -5990,7 +5990,7 @@ ObjectId.prototype.toString = function () {
 		};
 	}
 
-	playerEdit.$inject = ['$timeout', 'TagsService','PlayersService'];
+	playerEdit.$inject = ['$timeout', 'TagsService', 'PlayersService'];
 
 	function playerEdit($timeout, TagsService, PlayersService) {
 		return {
@@ -6041,7 +6041,7 @@ ObjectId.prototype.toString = function () {
 					$scope.view.update = false;
 					PlayersService.addPlayer(item).then(function () {
 						$rootScope.toast(item.name.en + " was created succesfuly");
-						$scope.selectedItem = null; 
+						$scope.selectedItem = null;
 						$scope.view.update = false;
 					})
 				}
@@ -7589,6 +7589,16 @@ ObjectId.prototype.toString = function () {
 			})
 		}
 
+		$scope.updateCompetitionStandings = function (id, season) {
+			// /offline_data/standings/56f4800fe4b02f2226646297
+			vm.loading.updating = true;
+			CompetitionsService.updateCompetitionStandings(id, season).then(function () {
+				console.log("done");
+				vm.loading.updating = false;
+			});
+
+		}
+
 		$scope.save = function (item) {
 			if (!item._id) {
 				console.log("saving it");
@@ -7607,8 +7617,8 @@ ObjectId.prototype.toString = function () {
 	}
 
 
-	CompetitionsService.$inject = ['$resource', 'Restangular', '$rootScope', '$q'];
-	function CompetitionsService($resource, Restangular, $rootScope, $q) {
+	CompetitionsService.$inject = ['$resource', 'Restangular', '$rootScope', '$q', '$http'];
+	function CompetitionsService($resource, Restangular, $rootScope, $q, $http) {
 
 		var Competitions;
 
@@ -7630,6 +7640,22 @@ ObjectId.prototype.toString = function () {
 						Competitions = all;
 						Defer.resolve(all);
 					});
+				return Defer.promise;
+			},
+			updateCompetitionStandings: function (id, season) {
+				var Defer = $q.defer();
+				$http({
+					method: 'POST',
+					url: $rootScope.servers[$rootScope.serverEnvironment].game_server + 'offline_data/standings/' + id,
+					data: { season: season }
+				}).then(function successCallback(response) {
+					// $scope.match = AddHooks(response.data);
+					$rootScope.toast("Request for standings update accepted.")
+					Defer.resolve();
+				}, function errorCallback(response) {
+					// called asynchronously if an error occurs
+					// or server returns response with an error status.
+				});
 				return Defer.promise;
 			}
 		}
@@ -9275,7 +9301,7 @@ ObjectId.prototype.toString = function () {
 				// or server returns response with an error status.
 			});
 		}
-		
+
 
 
 		$scope.checkSelection = function ($item, $model) {
@@ -10143,24 +10169,24 @@ ObjectId.prototype.toString = function () {
 		}
 
 		vm.view = {};
-		
+
 		// vm.showMatchRules = true;
 		// vm.showGamecardRules = true;
 
 		vm.userGameStates = [
-			{state_id: 0, state: "PreGame"},
-			{state_id: 1, state: "First Half"},
-			{state_id: 2, state: "Half Time"},
-			{state_id: 3, state: "Second Half"},
-			{state_id: 4, state: "Second Half"}
+			{ state_id: 0, state: "PreGame" },
+			{ state_id: 1, state: "First Half" },
+			{ state_id: 2, state: "Half Time" },
+			{ state_id: 3, state: "Second Half" },
+			{ state_id: 4, state: "Second Half" }
 		]
 
-		
 
-		vm.UpdateMatchSettings = function(){
+
+		vm.UpdateMatchSettings = function () {
 			console.log("Update match settings");
 			vm.view.busy = true;
-			
+
 			$http({
 				method: 'PUT',
 				url: $rootScope.servers[$rootScope.serverEnvironment].game_server + 'v1/data/schedule/' + vm.matchid + '/settings',
@@ -11015,7 +11041,7 @@ ObjectId.prototype.toString = function () {
 			$rootScope.toast("You can use variables before you save your game card.</br></br> Vars:</br> [[home_team_name]] - home_team</br> [[away_team_name]] - away_team");
 		}
 
-		
+
 	}
 
 	function CountriesService() {
