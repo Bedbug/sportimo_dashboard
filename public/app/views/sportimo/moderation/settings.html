@@ -203,14 +203,14 @@
 
     <!-- END XML Moderation -->
     <div class="panel panel-highlighted">
-         <div class="panel-heading">
+        <div class="panel-heading">
             <div class="form-group">
                 <label class="col-xs-6 control-label">GameCards Settings</label>
                 <div class="col-xs-6"><label class="switch pull-right"><input type="checkbox" ng-init="showGamecardOptions = true" ng-model ="showGamecardOptions" ng-true-value="true" ng-false-value="false">
           <span></span></label></div>
             </div>
         </div>
-        <div class="panel-body"  ng-show="showGamecardOptions">
+        <div class="panel-body" ng-show="showGamecardOptions">
             <div class="list-group mb0">
                 <div class="list-group-item col-sm-12">
                     <form name="ExtraSettings" class="form-horizontal col-sm-12" novalidate>
@@ -256,22 +256,35 @@
     <div class="panel panel-highlighted">
         <div class="panel-heading"><label class="col-xs-6 control-label">Match Settings</label></div>
         <div class="panel-body">
-            <div class="list-group mb0">
-                <div class="list-group-item bt0">
-                    <label>Destroy on Delete  <em tooltip="Events will be destroyed when deleted. Otherwise they will be marked invisible." class="fa fa-info-circle fa-fw"></em></label>
-                    <label class="switch pull-right"><input type="checkbox" disabled ng-model="match.data.settings.destroyOnDelete"><span></span>
-                        </label>
-                    <div class="">
 
+            <form name="RestSettings" class="form-horizontal col-sm-12" novalidate>
+                <div class="list-group mb0">
+                    <div class="list-group-item bt0">
+                        <label>Destroy on Delete  <em tooltip="Events will be destroyed when deleted. Otherwise they will be marked invisible." class="fa fa-info-circle fa-fw"></em></label>
+                        <label class="switch pull-right"><input type="checkbox" disabled ng-model="match.data.settings.destroyOnDelete"><span></span>
+                        </label>
+                        <div class="">
+
+                        </div>
+                    </div>
+                    <div class="list-group-item bt0">
+                        <label>Send match push notifications  <em tooltip="In some case we want to do match operations or corrections without push notifications send to clients." class="fa fa-info-circle fa-fw"></em></label>
+                        <label class="switch pull-right"><input type="checkbox" ng-model="match.data.settings.sendPushes"><span></span>
+                        </label>
+                        <div class=""></div>
                     </div>
                 </div>
-                <div class="list-group-item bt0">
-                    <label>Send match push notifications  <em tooltip="In some case we want to do match operations or corrections without push notifications send to clients." class="fa fa-info-circle fa-fw"></em></label>
-                    <label class="switch pull-right"><input type="checkbox" ng-model="match.data.settings.sendPushes"><span></span>
-                        </label>
-                    <div class=""></div>
+                <div class="list-group mb0">
+                <div class="form-group">
+                    <div ng-show="RestSettings.$dirty">
+                        <div class="col-xs-12" style="color:red; text-align:center" ng-show="moderationError">{{moderationError}}</div>
+                        <div class="col-xs-12">
+                            <button ladda="view.busy" data-style="zoom-out" type="button" ng-click="UpdateMatchSettings(true)" class="form-control btn btn-primary edit">Save Changes</button>
+                        </div>
+                    </div>
                 </div>
-            </div>
+                </div>
+            </form>
         </div>
     </div>
 </div>

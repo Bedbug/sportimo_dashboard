@@ -10183,7 +10183,7 @@ ObjectId.prototype.toString = function () {
 
 
 
-		vm.UpdateMatchSettings = function () {
+		vm.UpdateMatchSettings = function (doNotReload) {
 			console.log("Update match settings");
 			vm.view.busy = true;
 
@@ -10193,8 +10193,10 @@ ObjectId.prototype.toString = function () {
 				data: vm.match.data.settings
 			}).then(function successCallback(response) {
 				vm.view.busy = false;
-				$rootScope.toast("Success! Reloading match on service.")
-				vm.reloadMatch();
+				if (!doNotReload) {
+					$rootScope.toast("Success! Reloading match on service.")
+					vm.reloadMatch();
+				}
 			}, function errorCallback(response) {
 				console.log(response);
 			});
