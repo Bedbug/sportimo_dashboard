@@ -3063,7 +3063,7 @@
 		$rootScope.$stateParams = $stateParams;
 		$rootScope.$storage = $window.localStorage;
 
-		$rootScope.version = "v0.9.8.7";
+		$rootScope.version = "v0.9.8.9";
 
 		$rootScope.toggleEnvironment = function () {
 			if ($rootScope.serverEnvironment == 'production')
@@ -5187,6 +5187,11 @@ ObjectId.prototype.toString = function () {
 			else
 				return moment(d).format(style) + " (local time)";
 		}
+
+		$scope.readbleFormatDate = function (stringDate) {
+			// console.log("format date: "+ stringDate);
+			return moment(stringDate).calendar(); //format("dddd, MMMM Do YYYY, h:mm:ss a");
+		};
 
 
 		vm.Teams = [];

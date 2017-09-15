@@ -2381,3 +2381,11 @@ li.timeline-separator,
    content: "\f00d";
 }
 
+.font-weight-bold{
+     font-weight: bold; 
+    /* color: black; */
+}
+
+.schedule-event-completed{
+    background-color: cornsilk;
+}
