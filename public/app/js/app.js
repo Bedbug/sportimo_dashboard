@@ -10630,6 +10630,21 @@ ObjectId.prototype.toString = function () {
 
 		}
 
+		vm.sendReleasePush = function () {
+			vm.view.sendingMessage = true;
+			$http({
+				method: 'GET',
+				url: $rootScope.servers[$rootScope.serverEnvironment].game_server + 'v1/moderation/' + $stateParams.id + '/event/release'				
+			}).then(function successCallback(response) {
+				console.log(response);
+				vm.view.sendingMessage = false;
+			}, function errorCallback(response) {
+				// called asynchronously if an error occurs
+				// or server returns response with an error status.
+			});
+
+		}
+
 		vm.sponsorSendTextMessage = function (message) {
 
 			var data = {
