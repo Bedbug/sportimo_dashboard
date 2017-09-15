@@ -34,7 +34,7 @@
                             <div ng-show="match.completed">
                                 <span style="color: darkslategray" class="label label-default pull-right ml"><strong>FT</strong></span><div style="font-size:smaller" class="pull-right"> {{readbleFormatDate(match.start)}} </div></div>
                             <span ng-show="match.state > 0 && !match.completed" class="label label-danger pull-right">live</span>
-                            <span ng-show="match.state == 0" class="label label-success pull-right"><strong>{{readbleFormatDate(match.start)}}</strong></span>
+                            <span ng-show="match.state == 0" class="label label-success pull-right"><strong>{{readbleFormatDate(match.start)}}</strong></span>                            
                         </div>
                     </div>
                 </div>
@@ -49,13 +49,15 @@
                             <div ng-class="{'font-weight-bold':match.away_score>match.home_score}" ng-show="match.state >0">{{match.away_score}}</div>
                         </div>
                        <div class="pull-right p0">
+                            <img ng-if="match.competition.logo" class="pull-right pl" ng-src="https://res.cloudinary.com/bedbug/image/fetch/h_29/{{match.competition.logo}}"/>
                             <div class="btn-group btn-group-sm pull-right" role="group" aria-label="Small button group">
                                 <!-- <button ladda="view.busy" data-style="zoom-out" ng-click="ModerateMatch(selectedMatch._id,selectedMatch.sport);" type="button" class="mb-sm btn  btn-default pull-right ladda-button" tabindex="0"><span class="ladda-label"><strong>MODERATE</strong>
                             </span><span class="ladda-spinner"></span></button> -->
                                 <button ladda="view.busy" data-style="zoom-out" ng-click="ModerateMatch(match._id,match.sport);" type="button" class="btn btn-default ladda-button">Moderate</button>
                                 <button type="button" class="btn btn-default"><i ng-click="EditMatch(match);" class="fa fa-edit" role="button"></i></button>
-                                <button ladda="view.busy" data-style="expand-right" ng-click="DeleteMatchEvent(match)" type="button" class="btn delete btn-danger"></button>
+                                <button ladda="view.busy" data-style="expand-right" ng-click="DeleteMatchEvent(match)" type="button" class="btn delete btn-danger"></button>                               
                             </div>
+                            
                         </div>
 
                     </div>
