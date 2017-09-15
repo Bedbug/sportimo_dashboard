@@ -34,7 +34,7 @@
                             <div ng-show="match.completed">
                                 <span style="color: darkslategray" class="label label-default pull-right ml"><strong>FT</strong></span><div style="font-size:smaller" class="pull-right"> {{readbleFormatDate(match.start)}} </div></div>
                             <span ng-show="match.state > 0 && !match.completed" class="label label-danger pull-right">live</span>
-                            <span ng-show="match.state == 0" class="label label-success pull-right"><strong>{{readbleFormatDate(match.start)}}</strong></span>                            
+                            <span ng-show="match.state == 0" ng-class="!match.disabled?'label-success':'label-warning'" class="label pull-right"><strong>{{readbleFormatDate(match.start)}}</strong></span>                            
                         </div>
                     </div>
                 </div>

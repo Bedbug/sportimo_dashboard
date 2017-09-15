@@ -10,6 +10,12 @@
             <div class="panel col-xs-12 panel-highlighted">
 
                 <div class="panel-heading">
+                    <div ng-show="!match.data.disabled" class="pull-left col-xs-10 p0">
+                        <button ng-click="ActivateMatch(true);" type="button" class="col-xs-12 mb btn btn-sm btn-success">Disable</button>
+                    </div>
+                    <div ng-show="match.data.disabled" class="pull-left col-xs-10 p0">
+                        <button ng-click="ActivateMatch(false);" type="button" class="col-xs-12 mb btn btn-sm btn-danger">Activate</button>
+                    </div>
                     <label class="mda-checkbox pull-right">
                             <input type="checkbox" ng-model="debugEvent" />
                             <em class="subtle-checkbox"></em>Debug
@@ -327,7 +333,7 @@
                 </div>
  <!-- Release -->
                 <div class="col-xs-12">                    
-                    <button ladda="view.sendingMessage" data-style="expand-right" ng-click="sendReleasePush(match._id)" type="button" class="moderation btn btn-lg mt0 mb-lg col-xs-12 btn-default">
+                    <button ladda="view.sendingMessage" data-style="expand-right" ng-click="sendReleasePush(match.id)" type="button" class="moderation btn btn-lg mt0 mb-lg col-xs-12 btn-default">
                         <em class="fa fa-bullhorn fa-fw"></em> Release Notification
                     </button>
                 </div>

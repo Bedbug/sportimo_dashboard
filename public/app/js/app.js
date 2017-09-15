@@ -10642,8 +10642,26 @@ ObjectId.prototype.toString = function () {
 				// called asynchronously if an error occurs
 				// or server returns response with an error status.
 			});
-
 		}
+
+		vm.ActivateMatch = function (state) {
+			vm.view.sendingMessage = true;
+			$http({
+				method: 'GET',
+				url: $rootScope.servers[$rootScope.serverEnvironment].game_server + 'v1/moderation/' + $stateParams.id + '/event/activate/'+state				
+			}).then(function successCallback(response) {
+				console.log(response);
+				console.log(vm.match.data.disabled);
+				vm.match.data.disabled = state;
+				console.log(vm.match.data.disabled);
+				vm.view.sendingMessage = false;
+			}, function errorCallback(response) {
+				// called asynchronously if an error occurs
+				// or server returns response with an error status.
+			});
+		}
+
+		
 
 		vm.sponsorSendTextMessage = function (message) {
 
